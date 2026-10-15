@@ -224,7 +224,7 @@ const PAGES = {
       </section>
 
       <section class="section wrap" id="new">
-        <h2>${ui('本周新作', 'New this week')}</h2>
+        <h2>${ui('最新开放', 'Latest')}</h2>
         <div class="cards" style="max-width:420px">${sceneCard(R, newest)}</div>
         ${newest.tagline ? `<p class="lead" style="margin-top:12px">${bi(newest.tagline, ' / ')}</p>` : ''}
       </section>

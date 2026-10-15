@@ -144,7 +144,7 @@ DESC = both(TAGLINE, ' ')
 # ---------- 首页 ----------
 s = f'''      <h1>{bi(NAME)}</h1>
       <p>{bi(TAGLINE)}</p>
-      <h2>本周新作 · New this week</h2>
+      <h2>最新开放 · Latest</h2>
       {scene_list(sorted(LIVE, key=lambda s: s.get('added', ''), reverse=True), '')}
       <h2>系列 · Collections</h2>
       {''.join(f'<h3><a href="collections/{c["id"]}/">{e(both(c["name"]))}</a></h3><p>{e(both(c["desc"]))}</p>{scene_list([SCENES[x] for x in c["order"] if x in SCENES], "")}' for c in R['collections'])}

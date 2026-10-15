@@ -16,6 +16,12 @@ export async function startScene(sceneUrl) {
   const S = await fetch(sceneUrl).then(r => r.json());
   const R = await loadRegistry().catch(() => null);
   const meta = R && R.sceneById[S.id];
+  // 还没开放的场景：先显示“即将开放”（地址后面加 ?preview 可以预览）
+  if (meta && meta.status !== 'live' && !/preview|debug/.test(location.search)) {
+    document.body.insertAdjacentHTML('beforeend', `<main class="wrap page-title"><h1>${bi(meta.title)}</h1>
+      <p class="lead">${ui('即将开放', 'Coming soon')}</p><a class="btn primary" href="${ROOT}">${ui('回到走进名画', 'Back to Walk into Paintings')}</a></main>`);
+    wirePrefs(); return;
+  }
   document.body.classList.add('scene');
   if (meta && R.collectionById[meta.collection]) document.body.dataset.series = R.collectionById[meta.collection].accent || '';
   buildDOM(S, R, meta);
@@ -54,7 +60,8 @@ function buildDOM(S, R, meta) {
 
   const actHTML = (a, i) => `
     <section class="act" id="act${i + 1}">
-      ${a.image ? `<img class="reveal" src="${a.image}" ${altAttr(a.alt || '')} />` : ''}
+      ${a.image ? `<img class="reveal" src="${a.image}" ${altAttr(a.alt || '')} />`
+        : a.link ? `<a class="btn reveal" href="${a.link.href}" target="_blank" rel="noopener">${ui(a.link.label.zh, a.link.label.en)} ↗</a>` : ''}
       <p class="act-cap reveal">${a.caption ? `<span class="zh">${a.caption.zh}</span><span class="en">${a.caption.en}</span>` : ''}</p>
       <div class="act-text reveal">
         <h3><small>${a.kicker || ''}</small>${bi(a.title)}</h3>
@@ -103,7 +110,7 @@ function buildDOM(S, R, meta) {
     <button class="btn" id="shotBtn">${ui('拍一张', 'Snapshot')}</button>
     <div class="seg${S.projection === false ? ' hidden' : ''}" id="modeSwitch">
       <button data-mode="paint" class="on">${ui('原画质感', 'Painted')}</button>
-      <button data-mode="flat">${ui('简化色块', 'Flat colour')}</button>
+      <button data-mode="flat">${ui('简笔画', 'Simple view')}</button>
     </div>
     ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
       `<button data-opt="${i}" class="${i === 0 ? 'on' : ''}">${ui(o.label.zh, o.label.en)}</button>`).join('')}</div>` : ''}
@@ -114,7 +121,7 @@ function buildDOM(S, R, meta) {
     <button class="btn" id="soundBtn"></button>
     <div id="leftHint" class="panel hidden"></div>
     <button class="btn hidden" id="audioBtn"></button>
-    <button class="btn primary hidden" id="endBtn">${ui('进入结尾', 'To the ending')} →</button>
+    <button class="btn primary hidden" id="endBtn">${ui('继续看故事', 'Continue the story')} →</button>
   </div>
 
   <div class="popup panel" id="compare">
@@ -156,7 +163,7 @@ function buildDOM(S, R, meta) {
     <section class="act final" id="actEnd">
       <h2 class="reveal"><span class="zh">${E.final.zh}</span><small class="en">${E.final.en}</small></h2>
       <div class="versions" id="versions"></div>
-      ${E.versions.length > 1 ? `<div class="section-title">${ui('找不同', 'Spot the difference')}<small class="en">Compare two versions — drag left and right</small></div>
+      ${E.versions.filter(v => v.image).length > 1 ? `<div class="section-title">${ui('找不同', 'Spot the difference')}<small class="en">Compare two versions — drag left and right</small></div>
       <div class="cmp-pick"><select id="cmpA" aria-label="A"></select><span>↔</span><select id="cmpB" aria-label="B"></select></div>
       <div id="cmp">
         <img id="cmpImgA" ${altAttr({ zh: '版本 A', en: 'Version A' })} onerror="this.style.visibility='hidden'" onload="this.style.visibility='visible'" />
@@ -846,7 +853,12 @@ function run(S, R, meta) {
   // ---------- 结尾：三幕 + 最后一屏 ----------
   const gallery = $('gallery'), E = S.ending;
   for (const v of E.versions) {
-    const fig = document.createElement('figure'), img = document.createElement('img');
+    const fig = document.createElement('figure');
+    if (!v.image && v.link) {   // 没有放在网站上的版本：链接到博物馆官网
+      fig.innerHTML = `<a class="ph ext" href="${v.link.href}" target="_blank" rel="noopener">${ui(v.link.label.zh, v.link.label.en)} ↗</a><figcaption>${bi(v.caption, ' / ')}</figcaption>`;
+      $('versions').append(fig); continue;
+    }
+    const img = document.createElement('img');
     img.src = v.image; img.loading = 'lazy'; img.className = 'zoomable'; img.dataset.zoom = v.image;
     img.dataset.altZh = textOf(v.caption, 'zh'); img.dataset.altEn = textOf(v.caption, 'en'); img.alt = textOf(v.caption, lang);
     onMissing(img, missing(v.image), 'ph');
@@ -859,14 +871,15 @@ function run(S, R, meta) {
   const cmp = $('cmp');   // 只有一个版本时没有“找不同”
   let setCmpImages = () => {};
   if (cmp) {
-    E.versions.forEach((v, i) => { $('cmpA').add(new Option('', i)); $('cmpB').add(new Option('', i)); });
-    $('cmpA').value = 0; $('cmpB').value = Math.min(1, E.versions.length - 1);
+    const CV = E.versions.filter(v => v.image);   // 只对比放在网站上的图
+    CV.forEach((v, i) => { $('cmpA').add(new Option('', i)); $('cmpB').add(new Option('', i)); });
+    $('cmpA').value = 0; $('cmpB').value = Math.min(1, CV.length - 1);
     const imgA = $('cmpImgA'), imgB = $('cmpImgB'), line = $('cmpLine');
     setCmpImages = () => {
-      const a = E.versions[$('cmpA').value], b = E.versions[$('cmpB').value];
+      const a = CV[$('cmpA').value], b = CV[$('cmpB').value];
       imgA.src = a.image; $('cmpTagA').textContent = textOf(a.short, lang);
       imgB.src = b.image; $('cmpTagB').textContent = textOf(b.short, lang);
-      document.querySelectorAll('#cmpA option, #cmpB option').forEach(o => o.textContent = textOf(E.versions[o.value].short, lang));
+      document.querySelectorAll('#cmpA option, #cmpB option').forEach(o => o.textContent = textOf(CV[o.value].short, lang));
     };
     $('cmpA').onchange = $('cmpB').onchange = setCmpImages;
     function setCmp(pct) { pct = Math.max(0, Math.min(100, pct)); imgB.style.clipPath = `inset(0 0 0 ${pct}%)`; line.style.left = pct + '%'; }
