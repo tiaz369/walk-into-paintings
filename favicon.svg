@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- 走进名画的小图标：一个画框，里面是一扇敞开的门 -->
+  <rect x="4" y="4" width="56" height="56" rx="6" fill="#c99a22"/>
+  <rect x="11" y="11" width="42" height="42" rx="2" fill="#2b46a6"/>
+  <path d="M24 53V24h16v29" fill="#f5f0e6"/>
+  <path d="M24 24l10 4v25l-10 0z" fill="#e4b84c"/>
+</svg>

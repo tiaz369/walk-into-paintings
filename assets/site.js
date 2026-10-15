@@ -89,6 +89,18 @@ export const creditHTML = (inline = false) => inline
   ? `<span class="zh">${creditLine(CREDIT.zh)}</span><span class="en"><span class="zh sep"> / </span>${creditLine(CREDIT.en)}</span>`
   : `<span class="zh credit-line">${creditLine(CREDIT.zh)}</span><span class="en credit-line">${creditLine(CREDIT.en)}</span>`;
 
+// ---------- 给搜索引擎看的文字（tools/build.py 写进 html 的）：JavaScript 画好页面后就不需要了 ----------
+export function removeStatic() { const s = document.getElementById('static'); if (s) s.remove(); }
+
+// ---------- 访问统计（GoatCounter） ----------
+// ★ 在 goatcounter.com 注册后，把你的代码（网址 https://代码.goatcounter.com 里的“代码”）填在这里
+export const GOATCOUNTER = '';
+if (GOATCOUNTER && !location.hostname.match(/^(localhost|127\.)/)) {
+  const sc = document.createElement('script');
+  sc.async = true; sc.src = 'https://gc.zgo.at/count.js'; sc.dataset.goatcounter = `https://${GOATCOUNTER}.goatcounter.com/count`;
+  document.head.append(sc);
+}
+
 // ---------- 登记表 ----------
 let registryPromise = null;
 export function loadRegistry() {
@@ -186,21 +198,8 @@ const WAYS = [
   { path: 'museums/', name: { zh: '按博物馆', en: 'By museum' }, ex: { zh: '梵高博物馆、荷兰国立博物馆、伦敦国家美术馆', en: 'Van Gogh Museum, Rijksmuseum, National Gallery' } }
 ];
 
-// 关于页的文字（Tia 提供，原文照录）。label 是段首加粗的小标题。
-const ABOUT = {
-  intro: [
-    { zh: '走进名画是一座可以走进去的线上美术馆。每一幅名画都被做成一个可以探索的空间：走进画里，发现细节，听它背后的故事，最后去博物馆看真迹。',
-      en: 'Walk into Paintings is an online gallery you can step inside. Each painting becomes a space to explore: walk in, discover details, hear the story behind it, then go and see the real thing in a museum.' },
-    { zh: '它不想替代原画，而是想让你更想去看原画。',
-      en: 'It is not meant to replace the original, but to make you want to see it.' }
-  ],
-  me: { label: { zh: '关于我：', en: 'About me: ' },
-    zh: '我是 Tia，住在伦敦，学过电影和教育。我不是程序员。网站的代码由 AI（Anthropic 的 Claude）编写；创意、故事、文字和每一条事实，都由我撰写和核对。',
-    en: "I'm Tia, based in London, with a background in film studies and education. I'm not a programmer. The code is written by AI (Claude, by Anthropic); the concept, stories, texts and every fact are written and checked by me." },
-  principles: { label: { zh: '内容原则：', en: 'Content principles: ' },
-    zh: '只使用已进入公有领域的画作；每条事实都有可靠来源；解读性的内容会标明是解读；图片来源注明在每个场景中。',
-    en: 'only public-domain paintings; every fact has a reliable source; interpretations are marked as such; image sources are credited in each scene.' }
-};
+// 关于页的文字在 data/about.json（Tia 提供，原文照录）
+let ABOUT = null;
 const para = (p, cls = '') => `<p class="zh ${cls}">${p.label ? `<strong>${esc(p.label.zh)}</strong>` : ''}${esc(p.zh)}</p>
   <p class="en ${cls}">${p.label ? `<strong>${esc(p.label.en)}</strong>` : ''}${esc(p.en)}</p>`;
 
@@ -208,7 +207,8 @@ const PAGES = {
   // ---------- 首页 ----------
   home(R, main) {
     const pick = R.live[Math.floor(Math.random() * R.live.length)];   // 每次打开随机换一幅
-    const newest = [...R.live].sort((a, b) => (b.added || '').localeCompare(a.added || ''))[0];
+    // 最新上线的（同一天上线的，登记表里排在后面的算更新）
+    const newest = R.live.map((s, i) => [s, i]).sort((a, b) => (b[0].added || '').localeCompare(a[0].added || '') || b[1] - a[1])[0][0];
     main.innerHTML = `
       <section class="hero">
         <img src="${ROOT + pick.cover}" ${altAttr(pick.title)} />
@@ -328,6 +328,14 @@ const PAGES = {
   },
 
   // ---------- 关于（文字来自 Tia，见上面的 ABOUT） ----------
+  // ---------- 404：找不到这一页 ----------
+  notFound(R, main) {
+    main.innerHTML = `<div class="wrap page-title"><h1>${ui('找不到这一页', 'Page not found')}</h1></div>
+      <section class="section wrap"><p class="lead">${ui('这个网址没有内容。也许画搬家了？', 'There is nothing at this address. Perhaps the painting has moved?')}</p>
+        <a class="btn primary" href="${ROOT}">${ui('回到走进名画', 'Back to Walk into Paintings')}</a></section>
+      <section class="section wrap"><h2>${ui('已上线的场景', 'Open now')}</h2>${cardsHTML(R, R.live)}</section>`;
+  },
+
   about(R, main) {
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('关于', 'About')}</h1></div>
       <section class="section wrap about">
@@ -339,12 +347,14 @@ const PAGES = {
 };
 
 export async function renderPage(kind, opts = {}) {
+  removeStatic();
   const main = document.createElement('main');
   document.body.append(main);
   chrome(opts.nav ?? (kind === 'home' ? '' : kind === 'collection' ? null : kind + '/'));
   document.querySelector('footer').before(main);
   try {
-    const R = await loadRegistry();
+    const [R, about] = await Promise.all([loadRegistry(), fetch(ROOT + 'data/about.json').then(r => r.json())]);
+    ABOUT = about;
     PAGES[kind](R, main, opts);
   } catch (e) {
     main.innerHTML = `<div class="wrap page-title"><p class="soon">${ui('内容加载失败，请刷新页面。', 'Could not load. Please refresh.')}</p></div>`;

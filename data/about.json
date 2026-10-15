@@ -1,0 +1,29 @@
+{
+  "_说明": "关于页的文字（Tia 提供，原文照录）。首页“关于这个项目”用 intro。label 是段首加粗的小标题。",
+  "intro": [
+    {
+      "zh": "走进名画是一座可以走进去的线上美术馆。每一幅名画都被做成一个可以探索的空间：走进画里，发现细节，听它背后的故事，最后去博物馆看真迹。",
+      "en": "Walk into Paintings is an online gallery you can step inside. Each painting becomes a space to explore: walk in, discover details, hear the story behind it, then go and see the real thing in a museum."
+    },
+    {
+      "zh": "它不想替代原画，而是想让你更想去看原画。",
+      "en": "It is not meant to replace the original, but to make you want to see it."
+    }
+  ],
+  "me": {
+    "label": {
+      "zh": "关于我：",
+      "en": "About me: "
+    },
+    "zh": "我是 Tia，住在伦敦，学过电影和教育。我不是程序员。网站的代码由 AI（Anthropic 的 Claude）编写；创意、故事、文字和每一条事实，都由我撰写和核对。",
+    "en": "I'm Tia, based in London, with a background in film studies and education. I'm not a programmer. The code is written by AI (Claude, by Anthropic); the concept, stories, texts and every fact are written and checked by me."
+  },
+  "principles": {
+    "label": {
+      "zh": "内容原则：",
+      "en": "Content principles: "
+    },
+    "zh": "只使用已进入公有领域的画作；每条事实都有可靠来源；解读性的内容会标明是解读；图片来源注明在每个场景中。",
+    "en": "only public-domain paintings; every fact has a reliable source; interpretations are marked as such; image sources are credited in each scene."
+  }
+}

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tiaz369.github.io/walk-into-paintings/sitemap.xml

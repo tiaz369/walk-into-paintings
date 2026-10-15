@@ -2,6 +2,10 @@
   "_说明": "卧室场景的全部内容。改文字、改卡片、改三幕，只改这个文件；3D 和互动功能在 assets/engine.js。所有事实文字由 Tia 提供。",
 
   "id": "bedroom",
+  "seo": {
+    "title": "阿尔勒的卧室 · 走进名画 | The Bedroom · Walk into Paintings",
+    "description": "在浏览器里走进梵高1888年的《阿尔勒的卧室》。Walk into Van Gogh's 1888 Bedroom in Arles."
+  },
   "painting": { "image": "images/v1888.jpg", "width": 1800, "height": 1426, "alt": { "zh": "梵高《阿尔勒的卧室》1888", "en": "Vincent van Gogh, The Bedroom, 1888" } },
 
   "label": {
@@ -134,7 +138,8 @@
       { "image": "images/v1889-chicago.jpg", "short": { "zh": "1889 · 芝加哥", "en": "1889 · Chicago" },     "caption": { "zh": "1889年9月 · 芝加哥艺术博物馆", "en": "September 1889 · Art Institute of Chicago" } },
       { "image": "images/v1889-orsay.jpg",   "short": { "zh": "1889 · 巴黎", "en": "1889 · Paris" },       "caption": { "zh": "1889年 · 巴黎奥赛博物馆", "en": "1889 · Musée d'Orsay, Paris" } }
     ],
-    "museums": ["van-gogh-museum", "art-institute-chicago", "orsay"]
+    "museums": ["van-gogh-museum", "art-institute-chicago", "orsay"],
+    "exit": { "_说明": "结尾的“走出门”按钮：去黄房子（黄房子上线后才显示）", "scene": "yellow-house", "label": { "zh": "走出门", "en": "Step outside" }, "href": "../yellow-house/" }
   },
 
   "record": {
@@ -155,7 +160,13 @@
 
   "reading": {
     "_说明": "延伸阅读与来源（页面最底部）。每条写 title（中英文）和 url。还没填的时候显示“即将补充”。",
-    "items": []
+    "items": [
+      { "title": { "zh": "梵高博物馆作品页", "en": "Van Gogh Museum: artwork page" }, "url": "https://vangoghmuseum.nl/en/collection/s0047v1962" },
+      { "title": { "zh": "芝加哥艺术博物馆作品页", "en": "Art Institute of Chicago: artwork page" }, "url": "https://www.artic.edu/artworks/28560/the-bedroom" },
+      { "title": { "zh": "奥赛博物馆作品页", "en": "Musée d'Orsay: artwork page" }, "url": "https://www.musee-orsay.fr/en/artworks/la-chambre-de-van-gogh-arles-746" },
+      { "title": { "zh": "芝加哥艺术博物馆文章：卧室墙上的画", "en": "Art Institute of Chicago article: On the wall of Van Gogh's bedroom" }, "url": "https://www.artic.edu/articles/572/on-the-wall-of-van-goghs-bedroom" },
+      { "title": { "zh": "梵高给提奥的信，附卧室草图", "en": "Van Gogh's letter to Theo, with a sketch of the bedroom" }, "url": "https://www.vangoghmuseum.nl/en/letters/collection/ba0009" }
+    ]
   },
 
   "audioGuide": {

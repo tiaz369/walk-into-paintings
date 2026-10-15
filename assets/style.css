@@ -307,3 +307,9 @@ body.scene canvas { display: block; touch-action: none; }
 #zoomBar button { font: inherit; font-size: 15px; min-width: 40px; height: 36px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: var(--ink); cursor: pointer; }
 #zoomBar button:hover { background: var(--paper-2); }
 #zoomHint { position: absolute; left: 50%; top: 14px; transform: translateX(-50%); font-size: 12px; padding: 5px 12px; border-radius: 999px; color: var(--muted); pointer-events: none; max-width: calc(100% - 120px); text-align: center; }
+
+/* 给搜索引擎看的文字（tools/build.py 生成）：有 JavaScript 时不显示 */
+.js #static { display: none; }
+.static { max-width: 760px; margin: 0 auto; padding: 20px; }
+.static img { max-width: 100%; height: auto; }
+.static nav, .static header { font-size: 14px; }

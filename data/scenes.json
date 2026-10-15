@@ -35,7 +35,8 @@
     { "id": "cafes",    "name": { "zh": "咖啡馆", "en": "Cafés" } },
     { "id": "gardens",  "name": { "zh": "花园", "en": "Gardens" } },
     { "id": "jewellery","name": { "zh": "首饰", "en": "Jewellery" } },
-    { "id": "children", "name": { "zh": "孩子", "en": "Children" } }
+    { "id": "children", "name": { "zh": "孩子", "en": "Children" } },
+    { "id": "houses-streets", "name": { "zh": "房子与街道", "en": "Houses and streets" } }
   ],
 
   "periods": [
@@ -60,7 +61,13 @@
       "version": "full", "place": "arles", "themes": ["rooms"], "period": null, "added": "2026-10-15",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
-    { "id": "yellow-house",        "status": "soon", "week": 1,  "title": { "zh": "黄房子", "en": "The Yellow House" },          "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles", "version": "full",  "place": "arles", "themes": [], "period": null },
+    {
+      "_说明": "原画 images/yellow-house.jpg 上传并对准后，把 status 改成 live", "id": "yellow-house", "status": "soon", "week": 1, "path": "scenes/yellow-house/", "cover": "scenes/yellow-house/images/yellow-house.jpg",
+      "title": { "zh": "黄房子", "en": "The Yellow House" },
+      "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles",
+      "version": "full", "place": "arles", "themes": ["houses-streets"], "period": "post-impressionism", "added": "2026-10-15",
+      "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
+    },
     { "id": "night-cafe",          "status": "soon", "week": 2,  "title": { "zh": "夜间咖啡馆", "en": "The Night Café" },      "artist": "van-gogh", "year": "1888", "museum": "yale", "collection": "arles", "version": "full",  "place": "arles", "themes": [], "period": null },
     { "id": "cafe-terrace",        "status": "soon", "week": 3,  "title": { "zh": "夜晚露天咖啡座", "en": "Café Terrace at Night" },  "artist": "van-gogh", "year": "1888", "museum": "kroller-muller", "collection": "arles", "version": "full",  "place": "arles", "themes": [], "period": null },
     { "id": "starry-night-rhone",  "status": "soon", "week": 3,  "title": { "zh": "罗纳河上的星夜", "en": "Starry Night over the Rhône" },  "artist": "van-gogh", "year": "1888", "museum": "orsay", "collection": "arles", "version": "light", "place": "arles", "themes": [], "period": null },
