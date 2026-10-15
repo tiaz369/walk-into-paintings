@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>走进名画 · Walk into Paintings</title>
+  <meta name="description" content="走进名画：在浏览器里走进一幅画。Walk into Paintings: step inside famous paintings in your browser." />
+  <link rel="canonical" href="https://tiaz369.github.io/walk-into-paintings/" />
+
+  <!-- 社交分享预览 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="走进名画 · Walk into Paintings" />
+  <meta property="og:url" content="https://tiaz369.github.io/walk-into-paintings/" />
+  <meta property="og:title" content="走进名画 · Walk into Paintings" />
+  <meta property="og:description" content="在浏览器里走进一幅画。Step inside famous paintings in your browser." />
+  <meta property="og:image" content="https://tiaz369.github.io/walk-into-paintings/bedroom/images/v1888.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="走进名画 · Walk into Paintings" />
+  <meta name="twitter:description" content="在浏览器里走进一幅画。Step inside famous paintings in your browser." />
+  <meta name="twitter:image" content="https://tiaz369.github.io/walk-into-paintings/bedroom/images/v1888.jpg" />
+
+  <style>
+    :root { --bg: #1d2840; --ink: #f3e9c6; --muted: rgba(243,233,198,.65); --card: #f3e9c6; --cardInk: #2b3a55; --accent: #e8b84a; --line: rgba(243,233,198,.18); }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: sans-serif; line-height: 1.6; }
+    a { color: inherit; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+    header { padding: 72px 0 40px; text-align: center; }
+    header h1 { margin: 0; font-weight: normal; font-size: 40px; letter-spacing: .04em; }
+    header h1 small { display: block; font-size: 18px; color: var(--muted); font-style: italic; letter-spacing: 0; margin-top: 4px; }
+
+    /* 导航：作品 / 按画家 / 按主题 / 地图 */
+    nav { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-top: 28px; }
+    nav a { text-decoration: none; padding: 6px 14px; border: 1px solid var(--line); border-radius: 20px; font-size: 14px; }
+    nav a:hover { border-color: var(--ink); }
+
+    section { padding: 36px 0; border-top: 1px solid var(--line); }
+    h2 { font-weight: normal; font-size: 22px; margin: 0 0 18px; }
+    h2 small { font-size: 14px; color: var(--muted); margin-left: 8px; }
+    .soon { color: var(--muted); font-size: 14px; }
+
+    /* 作品卡片 */
+    .works { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+    .work { display: block; background: var(--card); color: var(--cardInk); border-radius: 8px; overflow: hidden; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+    .work:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,.35); }
+    .work img { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; display: block; background: #3a4a6a; }
+    .work .txt { padding: 12px 14px 14px; }
+    .work .t { font-size: 17px; }
+    .work .t small { display: block; font-size: 13px; opacity: .7; font-style: italic; }
+    .work .m { font-size: 12px; opacity: .65; margin-top: 6px; }
+    .work .go { display: inline-block; margin-top: 10px; font-size: 13px; background: var(--accent); padding: 5px 12px; border-radius: 6px; }
+
+    /* 按画家 / 按主题：标签 */
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { padding: 6px 12px; border-radius: 16px; background: rgba(243,233,198,.1); font-size: 14px; }
+    .chip b { font-weight: normal; color: var(--muted); margin-left: 6px; }
+
+    /* 地图：先放一个占位框 */
+    .map { position: relative; height: 260px; border: 1px dashed var(--line); border-radius: 8px; display: flex; align-items: center; justify-content: center; text-align: center; padding: 16px; }
+    .map ul { list-style: none; margin: 10px 0 0; padding: 0; font-size: 14px; }
+
+    footer { padding: 32px 0 48px; border-top: 1px solid var(--line); text-align: center; font-size: 12px; color: var(--muted); line-height: 1.9; }
+
+    @media (max-width: 600px) { header { padding: 48px 0 28px; } header h1 { font-size: 32px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>走进名画<small>Walk into Paintings</small></h1>
+      <nav>
+        <a href="#works">作品 · Works</a>
+        <a href="#artists">按画家 · By artist</a>
+        <a href="#themes">按主题 · By theme</a>
+        <a href="#map">地图 · Map</a>
+      </nav>
+    </header>
+
+    <!-- 作品：卡片由下面的 WORKS 列表自动生成 -->
+    <section id="works">
+      <h2>作品<small>Works</small></h2>
+      <div class="works" id="workList"></div>
+    </section>
+
+    <!-- 按画家（预留）：根据 WORKS 里的 artist 自动列出 -->
+    <section id="artists">
+      <h2>按画家<small>By artist</small></h2>
+      <div class="chips" id="artistList"></div>
+    </section>
+
+    <!-- 按主题（预留）：以后在 WORKS 里给每件作品填 themes 就会出现 -->
+    <section id="themes">
+      <h2>按主题<small>By theme</small></h2>
+      <div class="chips" id="themeList"></div>
+    </section>
+
+    <!-- 地图（预留）：以后可以换成真正的地图 -->
+    <section id="map">
+      <h2>地图<small>Map</small></h2>
+      <div class="map">
+        <div>
+          <div class="soon">地图即将推出 · Map coming soon</div>
+          <ul id="placeList"></ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://tiaz369.github.io">由 Tia 与 Claude 共同创作 · Created by Tia with Claude</a><br>
+      画作图片：Wikimedia Commons，公有领域 / Images: Wikimedia Commons, public domain
+    </footer>
+  </div>
+
+  <script>
+    // =====================================================================
+    // ★ 作品列表 —— 以后加新作品，只要在这里复制一段 { ... } 改一改 ★
+    //   url: 作品文件夹   img: 封面图   artist: 画家   themes: 主题（可以先留空）
+    //   place: 画里的地点（以后做地图用）
+    // =====================================================================
+    const WORKS = [
+      {
+        url: 'bedroom/',
+        img: 'bedroom/images/v1888.jpg',
+        title: '梵高《阿尔勒的卧室》', titleEn: "Van Gogh, The Bedroom in Arles",
+        meta: '1888 · 3D',
+        artist: { zh: '梵高', en: 'Vincent van Gogh' },
+        themes: [],                                   // 例如 [{ zh: '房间', en: 'Rooms' }]
+        place: { zh: '阿尔勒', en: 'Arles' }
+      }
+    ];
+
+    const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+    const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    // 作品卡片
+    for (const w of WORKS) {
+      const a = el('a', 'work');
+      a.href = w.url;
+      a.innerHTML = `<img src="${esc(w.img)}" alt="${esc(w.title)}" loading="lazy" />
+        <div class="txt"><div class="t">${esc(w.title)}<small>${esc(w.titleEn)}</small></div>
+        <div class="m">${esc(w.meta)}</div><span class="go">走进去 · Enter →</span></div>`;
+      document.getElementById('workList').append(a);
+    }
+
+    // 按画家 / 按主题 / 地点：从 WORKS 里统计
+    function tally(list, pick) {
+      const m = new Map();
+      for (const w of WORKS) for (const v of pick(w)) { const k = v.zh + '|' + v.en; m.set(k, (m.get(k) || 0) + 1); }
+      return [...m].map(([k, n]) => { const [zh, en] = k.split('|'); return { zh, en, n }; });
+    }
+    function chips(id, items) {
+      const box = document.getElementById(id);
+      if (!items.length) { box.append(el('div', 'soon', '即将推出 · Coming soon')); return; }
+      for (const it of items) box.append(el('span', 'chip', `${esc(it.zh)} · ${esc(it.en)}<b>${it.n}</b>`));
+    }
+    chips('artistList', tally(WORKS, w => [w.artist]));
+    chips('themeList', tally(WORKS, w => w.themes || []));
+    for (const p of tally(WORKS, w => (w.place ? [w.place] : []))) document.getElementById('placeList').append(el('li', '', `${esc(p.zh)} · ${esc(p.en)}`));
+  </script>
+</body>
+</html>

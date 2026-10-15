@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <!-- ===== 标题和简介（搜索引擎、浏览器标签用） ===== -->
+  <title>走进梵高《阿尔勒的卧室》 · Walk into Van Gogh's Bedroom in Arles</title>
+  <meta name="description" content="在浏览器里走进梵高1888年的《阿尔勒的卧室》：3D 房间、可点击的物品介绍、三个版本对比。Walk into Van Gogh's 1888 Bedroom in Arles: a 3D room, clickable notes, and the three versions side by side." />
+
+  <!-- ===== 社交分享预览（Open Graph：微信/Facebook 等；Twitter Card：X） ===== -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="走进名画 · Walk into Paintings" />
+  <link rel="canonical" href="https://tiaz369.github.io/walk-into-paintings/bedroom/" />
+  <meta property="og:url" content="https://tiaz369.github.io/walk-into-paintings/bedroom/" />
+  <meta property="og:title" content="走进梵高《阿尔勒的卧室》 · Walk into Van Gogh's Bedroom" />
+  <meta property="og:description" content="3D 房间、物品介绍、三个版本对比。A 3D room, clickable notes, and the three versions side by side." />
+  <meta property="og:image" content="https://tiaz369.github.io/walk-into-paintings/bedroom/images/v1888.jpg" />
+  <meta property="og:image:width" content="1800" />
+  <meta property="og:image:height" content="1426" />
+  <meta property="og:image:alt" content="梵高《阿尔勒的卧室》1888 · Van Gogh, The Bedroom, 1888" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="走进梵高《阿尔勒的卧室》 · Walk into Van Gogh's Bedroom" />
+  <meta name="twitter:description" content="3D 房间、物品介绍、三个版本对比。A 3D room, clickable notes, and the three versions side by side." />
+  <meta name="twitter:image" content="https://tiaz369.github.io/walk-into-paintings/bedroom/images/v1888.jpg" />
+  <meta name="twitter:image:alt" content="梵高《阿尔勒的卧室》1888 · Van Gogh, The Bedroom, 1888" />
+
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #2b3a55; font-family: sans-serif; }
+    canvas { display: block; touch-action: none; }
+    button { font-family: inherit; cursor: pointer; }
+    .hidden { display: none !important; }
+
+    /* 中英切换：双语 = 两种都显示；中文 = 隐藏英文；EN = 隐藏中文 */
+    body.lang-zh .en, body.lang-zh .en-title { display: none !important; }
+    body.lang-en .zh { display: none !important; }
+    body:not(.lang-en) .en-ui { display: none !important; }
+    #langSwitch { position: fixed; right: 12px; bottom: 24px; z-index: 35; display: none; }
+    body.in-room #langSwitch { display: flex; }
+
+    /* 油画感：边缘稍暗 + 一层很淡的画布颗粒（纯 CSS，不影响流畅度） */
+    #canvasGrain {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1;
+      background:
+        radial-gradient(ellipse at center, rgba(0,0,0,0) 55%, rgba(30,25,40,.35) 100%),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 .5  0 0 0 0 .45  0 0 0 0 .4  0 0 0 .5 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+      opacity: .45; mix-blend-mode: multiply;
+    }
+
+    /* ---------- 开场：全屏原画（位置和 3D 画面里的“梵高视角”完全重合） ---------- */
+    #intro { position: fixed; inset: 0; z-index: 20; background: #1d2840; transition: opacity 1.6s ease; }
+    #intro img { position: absolute; transition: transform 1.6s ease; }
+    #intro.fade { opacity: 0; pointer-events: none; }
+    #intro.fade img { transform: scale(1.03); }
+    .missing { color: #f3e9c6; padding: 16px; text-align: center; font-size: 14px; }
+    #introMissing { position: absolute; top: 40%; width: 100%; box-sizing: border-box; }
+    #enter {
+      position: absolute; left: 50%; bottom: calc(7% + 36px); transform: translateX(-50%);
+      padding: 12px 28px; font-size: 18px; border: none; border-radius: 30px;
+      background: #e8b84a; color: #2b3a55; box-shadow: 0 4px 14px rgba(0,0,0,.45);
+    }
+    #enter span { display: block; }
+    #enter span.en { font-size: 12px; opacity: .75; }
+
+    /* ---------- 通用按钮样式 ---------- */
+    .tool {
+      padding: 7px 11px; border: none; border-radius: 8px; font-size: 13px;
+      background: #e8b84a; color: #2b3a55; box-shadow: 0 2px 8px rgba(0,0,0,.25);
+    }
+    .ui { position: fixed; z-index: 5; display: none; }
+    body.in-room .ui { display: flex; }
+
+    /* 左上角：工具栏 */
+    #tools { top: 12px; left: 12px; flex-direction: column; align-items: flex-start; gap: 8px; }
+    .seg { display: flex; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+    .seg button { border: none; padding: 7px 9px; font-size: 12px; background: rgba(243,233,198,.88); color: #2b3a55; }
+    .seg button.on { background: #2b3a55; color: #f3e9c6; }
+
+    /* 右上角：进度、声音、进入结尾 */
+    #status { top: 12px; right: 12px; flex-direction: column; align-items: flex-end; gap: 8px; }
+    #progress { padding: 7px 11px; border-radius: 8px; font-size: 13px; background: rgba(43, 58, 85, 0.85); color: #f3e9c6; }
+    #leftHint { padding: 5px 9px; border-radius: 8px; font-size: 12px; background: rgba(43, 58, 85, 0.85); color: #f3e9c6; text-align: right; }
+    #endBtn { background: #d42a2a; color: #fff; font-size: 15px; padding: 9px 14px; animation: pop .5s ease; }
+    @keyframes pop { 0% { transform: scale(.4); opacity: 0; } 70% { transform: scale(1.1); } 100% { transform: scale(1); } }
+
+    /* ---------- 提示条 ---------- */
+    #hint {
+      position: fixed; top: 38%; left: 50%; transform: translateX(-50%); z-index: 4;
+      background: rgba(43, 58, 85, 0.85); color: #f3e9c6; padding: 8px 14px;
+      border-radius: 8px; font-size: 14px; pointer-events: none; text-align: center;
+      width: max-content; max-width: calc(100% - 32px); box-sizing: border-box; transition: opacity 1s; opacity: 0;
+    }
+
+    /* ---------- 梵高视角点：原画叠加 + 说明 + 透明度滑杆 ---------- */
+    #vpOverlay { position: fixed; z-index: 2; pointer-events: none; opacity: 0; display: none; }
+    #vpPanel {
+      position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 6;
+      width: min(440px, calc(100% - 32px)); box-sizing: border-box; text-align: center;
+      background: rgba(29, 40, 64, .88); color: #f3e9c6; border-radius: 10px; padding: 10px 14px;
+      transition: opacity .6s; opacity: 0; pointer-events: none;
+    }
+    #vpPanel.show { opacity: 1; pointer-events: auto; }
+    #vpPanel p { margin: 0 0 8px; font-size: 14px; line-height: 1.5; }
+    #vpPanel p .en { display: block; font-size: 12px; opacity: .8; }
+    #vpPanel label { display: flex; align-items: center; gap: 8px; font-size: 12px; }
+    #vpPanel input { flex: 1; }
+    body.touch #vpPanel { bottom: 150px; }
+
+    /* ---------- 弹窗（对照原画、截图预览） ---------- */
+    .popup {
+      position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 8;
+      width: min(520px, calc(100% - 32px)); box-sizing: border-box;
+      background: #f3e9c6; border: 3px solid #c99a3a; border-radius: 8px; padding: 8px;
+      box-shadow: 0 6px 30px rgba(0,0,0,.5); display: none; color: #2b3a55; text-align: center;
+    }
+    .popup img { width: 100%; display: block; }
+    .popup p { margin: 8px; font-size: 13px; }
+    .popup a { color: #2b3a55; font-weight: bold; }
+    .close {
+      position: absolute; top: 4px; right: 6px; border: none; background: rgba(243,233,198,.9);
+      font-size: 22px; color: #2b3a55; line-height: 1; border-radius: 50%; width: 30px; height: 30px; z-index: 1;
+    }
+    #flash { position: fixed; inset: 0; background: #fff; opacity: 0; pointer-events: none; z-index: 9; transition: opacity .4s; }
+
+    /* ---------- 物品介绍卡片 ---------- */
+    #card {
+      position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 7;
+      width: min(420px, calc(100% - 32px)); box-sizing: border-box;
+      background: #f3e9c6; color: #2b3a55; border: 3px solid #2b3a55; border-radius: 10px;
+      padding: 14px 16px; display: none; box-shadow: 0 6px 20px rgba(0,0,0,.4);
+    }
+    body.touch #card { bottom: 150px; }   /* 手机上让开左下角摇杆 */
+    #card h3 { margin: 0 28px 2px 0; font-size: 18px; }
+    #card .en-title { margin: 0 0 10px; font-size: 14px; opacity: .7; font-style: italic; }
+    #card p { margin: 6px 0; font-size: 14px; line-height: 1.55; }
+    #card .en { opacity: .8; }
+
+    /* ---------- 手机虚拟摇杆 ---------- */
+    #joy {
+      position: fixed; left: 24px; bottom: 24px; width: 110px; height: 110px; z-index: 5;
+      border-radius: 50%; background: rgba(243, 233, 198, 0.25);
+      border: 2px solid rgba(243, 233, 198, 0.6); display: none; touch-action: none;
+    }
+    body.touch.in-room #joy { display: block; }
+    #knob { position: absolute; left: 35px; top: 35px; width: 40px; height: 40px; border-radius: 50%; background: rgba(243, 233, 198, 0.85); }
+
+    /* ---------- 结尾：三幕故事 ---------- */
+    #gallery {
+      position: fixed; inset: 0; z-index: 30; overflow-y: auto; -webkit-overflow-scrolling: touch;
+      background: #1d2840; color: #f3e9c6; display: none; opacity: 0; transition: opacity .8s;
+      scroll-snap-type: y proximity; scroll-behavior: smooth;
+    }
+    #gallery.show { opacity: 1; }
+    .act {
+      min-height: 100vh; min-height: 100dvh; box-sizing: border-box; scroll-snap-align: start;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 32px 16px 24px; gap: 18px;
+    }
+    .act img, .act .ph { width: min(860px, 100%); max-height: 56vh; object-fit: contain; display: block; }
+    .ph { aspect-ratio: 5 / 4; background: #3a4a6a; color: #f3e9c6; display: flex; align-items: center; justify-content: center; font-size: 13px; text-align: center; }
+    .act-text { max-width: 680px; text-align: center; }
+    .act .act-cap { margin: -8px 0 0; font-size: 13px; line-height: 1.6; opacity: .75; text-align: center; }
+    .act .act-cap span { display: block; }
+    .act h3 { margin: 0 0 10px; font-size: 22px; font-weight: normal; }
+    .act h3 small { display: block; font-size: 13px; opacity: .6; letter-spacing: .1em; margin-bottom: 4px; }
+    .act p { margin: 0 0 10px; line-height: 1.8; font-size: 15px; }
+    .act p.en { opacity: .75; font-size: 14px; }
+    .next { background: transparent; color: #f3e9c6; border: 1px solid rgba(243,233,198,.5); border-radius: 20px; padding: 8px 18px; font-size: 14px; }
+    /* 每一幕滚动到眼前时淡入 */
+    .act .reveal { opacity: 0; transform: translateY(18px); transition: opacity 1s ease, transform 1s ease; }
+    .act.seen .reveal { opacity: 1; transform: none; }
+    .act.seen .reveal:nth-child(2) { transition-delay: .25s; }
+    .act.seen .reveal:nth-child(3) { transition-delay: .5s; }
+    .act.seen .reveal:nth-child(4) { transition-delay: .75s; }
+
+    .final { justify-content: flex-start; padding-top: 60px; }
+    .final h2 { font-weight: normal; font-size: 30px; text-align: center; margin: 8vh 0 6vh; line-height: 1.5; }
+    .final h2 small { display: block; font-size: 18px; opacity: .75; font-style: italic; }
+    .versions { display: flex; gap: 18px; width: min(1100px, 100%); }
+    .versions figure { flex: 1; margin: 0; background: #f3e9c6; color: #2b3a55; padding: 8px; border-radius: 6px; }
+    .versions img, .versions .ph { width: 100%; aspect-ratio: 5 / 4; object-fit: cover; display: block; }
+    .versions figcaption { font-size: 13px; line-height: 1.5; padding: 8px 2px 2px; }
+    .section-title { text-align: center; margin: 36px 0 4px; font-size: 20px; }
+    .section-title small { display: block; font-size: 13px; opacity: .7; }
+
+    /* 对比滑块 */
+    .cmp-pick { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; }
+    .cmp-pick select { font-size: 14px; padding: 4px; border-radius: 6px; }
+    #cmp {
+      position: relative; width: min(820px, 100%); aspect-ratio: 5 / 4; margin: 0 auto;
+      overflow: hidden; border-radius: 6px; touch-action: pan-y; cursor: ew-resize; user-select: none; background: #3a4a6a;
+    }
+    #cmp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; pointer-events: none; -webkit-user-drag: none; }
+    #cmpLine { position: absolute; top: 0; bottom: 0; width: 3px; background: #f3e9c6; transform: translateX(-50%); pointer-events: none; }
+    #cmpLine::after {
+      content: '◀ ▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+      background: #f3e9c6; color: #2b3a55; font-size: 12px; padding: 6px 8px; border-radius: 14px; white-space: nowrap;
+    }
+    .cmp-tag { position: absolute; top: 8px; background: rgba(29,40,64,.8); padding: 3px 8px; border-radius: 4px; font-size: 12px; pointer-events: none; }
+    .links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .links a { color: #2b3a55; background: #e8b84a; padding: 10px 14px; border-radius: 8px; text-decoration: none; font-size: 14px; }
+    #backRoom { margin: 30px auto 10px; }
+    #moreLink { display: inline-block; margin: 0 auto 20px; text-decoration: none; }
+    .credit { text-align: center; font-size: 12px; line-height: 1.8; opacity: .7; padding-bottom: 28px; }
+    .credit a { color: inherit; }
+    #introCredit { position: absolute; left: 0; right: 0; bottom: 8px; padding: 0 12px; color: #f3e9c6; font-size: 11px; }
+
+    @media (max-width: 700px) {
+      .versions { flex-direction: column; }   /* 手机上改成上下排列 */
+      .final h2 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body class="lang-both">
+  <div id="canvasGrain"></div>
+  <img id="vpOverlay" src="images/v1888.jpg" alt="" />
+
+  <!-- 开场原画 -->
+  <div id="intro">
+    <img id="introImg" src="images/v1888.jpg" alt="梵高《阿尔勒的卧室》1888" />
+    <div id="introMissing" class="missing hidden">（找不到 images/v1888.jpg）</div>
+    <div class="credit" id="introCredit"><a href="https://tiaz369.github.io"><span class="zh">由 Tia 与 Claude 共同创作</span><span class="en"><span class="zh"> · </span>Created by Tia with Claude</span></a><br>
+        <span class="zh">画作图片：Wikimedia Commons，公有领域</span><span class="en"><span class="zh"> / </span>Images: Wikimedia Commons, public domain</span></div>
+    <button id="enter"><span class="zh">走进画里</span><span class="en">Step into the painting</span></button>
+  </div>
+
+  <div id="hint"><span class="zh">电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下物品看介绍 · 地上发光的圆点 = 梵高视角</span><span class="en-ui">Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap an object to learn more · The glowing circle = Van Gogh's viewpoint</span></div>
+
+  <!-- 梵高视角点的说明和透明度滑杆 -->
+  <div id="vpPanel">
+    <p><span class="zh">从这里看，就是画里的样子。</span><span class="en">From here, you see what the painting sees.</span></p>
+    <label><span class="zh">原画叠加</span><span class="en-ui">Painting overlay</span> <input id="vpSlider" type="range" min="0" max="100" value="0" aria-label="原画叠加透明度" /> <span id="vpVal">0%</span></label>
+  </div>
+
+  <!-- 左上角工具栏 -->
+  <div id="tools" class="ui">
+    <button class="tool" id="compareBtn"><span class="zh">对照原画</span><span class="en-ui">Original painting</span></button>
+    <button class="tool" id="shotBtn">📷 <span class="zh">拍一张</span><span class="en-ui">Snapshot</span></button>
+    <div class="seg" id="modeSwitch">
+      <button data-mode="paint" class="on"><span class="zh">原画质感</span><span class="en-ui">Painted</span></button>
+      <button data-mode="flat"><span class="zh">简化色块</span><span class="en-ui">Flat colour</span></button>
+    </div>
+    <div class="seg" id="wallSwitch">
+      <button data-wall="blue" class="on"><span class="zh">现在的蓝墙</span><span class="en-ui">Blue today</span></button>
+      <button data-wall="violet"><span class="zh">梵高画时的紫墙</span><span class="en-ui">Violet, as painted</span></button>
+    </div>
+  </div>
+
+  <!-- 右上角：进度 / 声音 / 进入结尾 -->
+  <div id="status" class="ui">
+    <div id="progress">已发现 0/7</div>
+    <button class="tool" id="soundBtn">🔇 <span class="zh">声音</span><span class="en-ui">Sound</span></button>
+    <div id="leftHint" class="hidden"></div>
+    <button class="tool hidden" id="endBtn"><span class="zh">进入结尾</span><span class="en-ui">To the ending</span> →</button>
+  </div>
+
+  <!-- 对照原画小窗 -->
+  <div class="popup" id="compare">
+    <button class="close" data-close="compare" aria-label="关闭">×</button>
+    <img src="images/v1888.jpg" alt="梵高《阿尔勒的卧室》1888" />
+  </div>
+
+  <!-- 截图预览 -->
+  <div class="popup" id="shot">
+    <button class="close" data-close="shot" aria-label="关闭">×</button>
+    <img id="shotImg" alt="截图" />
+    <p><a id="shotSave" download="arles-bedroom.png"><span class="zh">保存图片</span><span class="en"> Save</span></a><br><span class="zh">手机上也可以长按图片保存</span><span class="en"> On phones, long-press to save</span></p>
+  </div>
+  <div id="flash"></div>
+
+  <div id="card">
+    <button class="close" id="cardClose" aria-label="关闭">×</button>
+    <h3 id="cardTitle" class="zh"></h3>
+    <div class="en-title" id="cardTitleEn"></div>
+    <p id="cardZh" class="zh"></p>
+    <p class="en" id="cardEn"></p>
+  </div>
+
+  <div id="joy"><div id="knob"></div></div>
+
+  <!-- 右下角：中英切换（房间里和结尾页都能用） -->
+  <div class="seg" id="langSwitch">
+    <button data-lang="zh">中文</button>
+    <button data-lang="en">EN</button>
+    <button data-lang="both" class="on">双语</button>
+  </div>
+
+  <!-- 结尾：三幕故事 -->
+  <div id="gallery">
+    <section class="act" id="act1">
+      <img class="reveal" src="images/v1888.jpg" alt="梵高《阿尔勒的卧室》1888" />
+      <p class="act-cap reveal"><span class="zh">1888年10月 · 阿姆斯特丹梵高博物馆</span><span class="en">October 1888 · Van Gogh Museum, Amsterdam</span></p>
+      <div class="act-text reveal">
+        <h3><small>ACT I</small><span class="zh">第一幕 · 期待</span></h3>
+        <p class="zh">1888年秋，梵高租下阿尔勒的黄房子，梦想在这里建立画家们共同生活的"南方画室"。他画下自己的卧室，等待高更到来。</p>
+        <p class="en">In autumn 1888, Van Gogh rented the Yellow House in Arles, dreaming of a "Studio of the South" where artists would live together. He painted his bedroom while waiting for Gauguin.</p>
+      </div>
+      <button class="next reveal" data-next="act2"><span class="zh">下一幕</span><span class="en-ui">Next</span> ↓</button>
+    </section>
+    <section class="act" id="act2">
+      <img class="reveal" src="images/v1889-chicago.jpg" alt="梵高《阿尔勒的卧室》1889 · 芝加哥" />
+      <p class="act-cap reveal"><span class="zh">1889年9月 · 芝加哥艺术博物馆</span><span class="en">September 1889 · Art Institute of Chicago</span></p>
+      <div class="act-text reveal">
+        <h3><small>ACT II</small><span class="zh">第二幕 · 破碎</span></h3>
+        <p class="zh">高更来了，但两个月后，两人激烈争吵。梵高精神崩溃住进医院，高更离开了阿尔勒。这幅画后来也在他住院期间受潮损坏。</p>
+        <p class="en">Gauguin came, but two months later they quarrelled violently. Van Gogh broke down and was hospitalised, and Gauguin left Arles. The painting was later damaged by damp while he was in hospital.</p>
+      </div>
+      <button class="next reveal" data-next="act3"><span class="zh">下一幕</span><span class="en-ui">Next</span> ↓</button>
+    </section>
+    <section class="act" id="act3">
+      <img class="reveal" src="images/v1889-orsay.jpg" alt="梵高《阿尔勒的卧室》1889 · 奥赛" />
+      <p class="act-cap reveal"><span class="zh">1889年 · 巴黎奥赛博物馆</span><span class="en">1889 · Musée d'Orsay, Paris</span></p>
+      <div class="act-text reveal">
+        <h3><small>ACT III</small><span class="zh">第三幕 · 回望</span></h3>
+        <p class="zh">1889年，梵高自愿住进圣雷米的疗养院，在那里重画了这间卧室两次，较小的一幅送给母亲和妹妹。那时，他已经不住在这里了。</p>
+        <p class="en">In 1889, Van Gogh entered an asylum in Saint-Rémy, where he painted the bedroom twice more, the smaller one for his mother and sister. By then, he no longer lived there.</p>
+      </div>
+      <button class="next reveal" data-next="actEnd"><span class="zh">下一幕</span><span class="en-ui">Next</span> ↓</button>
+    </section>
+    <section class="act final" id="actEnd">
+      <h2 class="reveal"><span class="zh">一间等人的房间。</span><small class="en">A room that waited.</small></h2>
+
+      <div class="versions" id="versions"></div>
+
+      <div class="section-title"><span class="zh">找不同</span><small class="en">Compare two versions — drag left and right</small></div>
+      <div class="cmp-pick">
+        <select id="cmpA" aria-label="左边的版本"></select>
+        <span>↔</span>
+        <select id="cmpB" aria-label="右边的版本"></select>
+      </div>
+      <div id="cmp">
+        <img id="cmpImgA" alt="" onerror="this.style.visibility='hidden'" onload="this.style.visibility='visible'" />
+        <img id="cmpImgB" alt="" onerror="this.style.visibility='hidden'" onload="this.style.visibility='visible'" />
+        <div id="cmpLine"></div>
+        <span class="cmp-tag" id="cmpTagA" style="left:8px"></span>
+        <span class="cmp-tag" id="cmpTagB" style="right:8px"></span>
+      </div>
+
+      <div class="section-title"><span class="zh">去看真迹</span><small class="en">See the real paintings</small></div>
+      <div class="links">
+        <a href="https://www.vangoghmuseum.nl" target="_blank" rel="noopener"><span class="zh">梵高博物馆 · </span>Van Gogh Museum</a>
+        <a href="https://www.artic.edu" target="_blank" rel="noopener"><span class="zh">芝加哥艺术博物馆 · </span>Art Institute of Chicago</a>
+        <a href="https://www.musee-orsay.fr" target="_blank" rel="noopener"><span class="zh">奥赛博物馆 · </span>Musée d'Orsay</a>
+      </div>
+
+      <button class="tool" id="backRoom">← <span class="zh">回到房间</span><span class="en-ui">Back to the room</span></button>
+      <a class="tool" id="moreLink" href="../"><span class="zh">更多名画</span><span class="en-ui">More paintings</span> →</a>
+      <div class="credit">
+        <a href="https://tiaz369.github.io"><span class="zh">由 Tia 与 Claude 共同创作</span><span class="en"><span class="zh"> · </span>Created by Tia with Claude</span></a><br>
+        <span class="zh">画作图片：Wikimedia Commons，公有领域</span><span class="en"><span class="zh"> / </span>Images: Wikimedia Commons, public domain</span>
+      </div>
+    </section>
+  </div>
+
+  <!-- 告诉浏览器去哪里下载 Three.js -->
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+
+  <script type="module">
+    import * as THREE from 'three';
+    let lang = 'both';   // 当前语言：zh / en / both（右下角切换）
+
+    // =====================================================================
+    // ★ 卡片文字 —— 想改介绍内容，只需要改这里引号里的字 ★
+    //   title = 中文标题   titleEn = 英文标题
+    //   zh    = 中文介绍   en      = 英文介绍
+    // =====================================================================
+    const INFO = {
+      bed: {
+        title: '床', titleEn: 'Bed',
+        zh: '梵高说，这幅画想表达的就是"休息"。他希望人一看到它，头脑和想象力都能放松下来。',
+        en: 'Van Gogh said this painting was about rest. Looking at it should calm the mind.'
+      },
+      chair: {
+        title: '两把椅子', titleEn: 'Two chairs',
+        zh: '两把椅子、两个枕头……有人认为，这些成对的物品表达了他在等高更来同住的期待。',
+        en: 'Two chairs, two pillows. Some see this as Van Gogh waiting for Gauguin to join him.'
+      },
+      wall: {
+        title: '墙', titleEn: 'Walls',
+        zh: '你看到的蓝墙，原本是紫色的。画里的红色颜料慢慢褪色，紫色就变成了蓝色。',
+        en: 'These blue walls were once violet. The red pigment faded over time.'
+      },
+      portrait: {
+        title: '墙上的肖像', titleEn: 'Portraits',
+        zh: '床上方挂着两位朋友的画像：画家欧仁·博赫，和军官米利耶。',
+        en: 'Above the bed hang portraits of two friends: painter Eugène Boch and officer Milliet.'
+      },
+      floor: {
+        title: '地板', titleEn: 'Floor',
+        zh: '仔细看，画里几乎没有阴影。梵高故意用平涂的颜色，像日本浮世绘那样。',
+        en: 'There are almost no shadows. Van Gogh used flat colour, like Japanese prints.'
+      },
+      window: {
+        title: '窗户', titleEn: 'Window',
+        zh: '梵高在给弟弟提奥的信里，把房间的颜色一一写了下来，其中窗户是绿色的。他说，在这幅画里，颜色要承担一切。',
+        en: "In a letter to his brother Theo, Van Gogh listed the room's colours, including a green window. Here, he said, colour was to do everything."
+      },
+      corner: {
+        title: '房间角落', titleEn: 'Corner',
+        zh: '房间看起来有点歪？不是画错了，梵高的卧室本来就是不规则的梯形。',
+        en: 'Does the room look crooked? It really was an irregular shape.'
+      }
+    };
+
+    // ★ 三个版本（结尾最后一屏用）★
+    const VERSIONS = [
+      { file: 'images/v1888.jpg',         short: '1888 · 阿姆斯特丹', shortEn: '1888 · Amsterdam',
+        caption: '1888年10月 · 阿姆斯特丹梵高博物馆 · Van Gogh Museum, Amsterdam', zh: '1888年10月 · 阿姆斯特丹梵高博物馆', en: 'October 1888 · Van Gogh Museum, Amsterdam' },
+      { file: 'images/v1889-chicago.jpg', short: '1889 · 芝加哥', shortEn: '1889 · Chicago',
+        caption: '1889年9月 · 芝加哥艺术博物馆 · Art Institute of Chicago', zh: '1889年9月 · 芝加哥艺术博物馆', en: 'September 1889 · Art Institute of Chicago' },
+      { file: 'images/v1889-orsay.jpg',   short: '1889 · 巴黎', shortEn: '1889 · Paris',
+        caption: "1889年 · 巴黎奥赛博物馆 · Musée d'Orsay, Paris", zh: '1889年 · 巴黎奥赛博物馆', en: "1889 · Musée d'Orsay, Paris" }
+    ];
+
+    // ========== 1. 颜色（来自梵高的信） ==========
+    const C = {
+      wallBlue:   '#9fbde9', // 现在看到的蓝墙（颜料褪色后）
+      wallViolet: '#bda9dd', // 梵高画时的淡紫色墙
+      floor:   '#c98a7a',
+      wood:    '#e8b84a', // 黄油黄（床、椅子）
+      sheet:   '#e4efa8', // 很淡的柠檬绿（床单、枕头）
+      quilt:   '#d42a2a', // 猩红色被子
+      window:  '#4f9a5a', // 绿色窗户
+      glass:   '#c9dc8a',
+      table:   '#e08a2e', // 橙色梳妆台
+      basin:   '#3d6fc4', // 蓝色脸盆
+      door:    '#a98cc9', // 丁香紫门
+      line:    '#2b3a55', // 深蓝描边（油画的轮廓线）
+      ceiling: '#dcd8ea',
+      seat:    '#b9c98a'  // 草编椅面
+    };
+
+    // ========== 2. 基本场景 ==========
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouch) document.body.classList.add('touch');
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, isTouch ? 1.5 : 2));   // 手机上稍微降一点清晰度，保证流畅
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(C.line);
+    const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, 50);
+
+    // =====================================================================
+    // ========== 3. 梵高视角 + 房间布局（照着 v1888.jpg 算出来的） ==========
+    // 做法：先假设梵高站在 (0, 0) 这个点、眼睛高 1.55 米，镜头往右转 7.5°、往下 17.9°、
+    // 上下视角 50°。然后把原画里每个角落、家具脚、画框的位置“反投影”回 3D，得到下面这些坐标。
+    // 单位：米。x 向右，z 向“画里面”是负数，y 向上。
+    // =====================================================================
+    const VIEW = { x: 0, z: 0, eye: 1.55, yaw: 0.1301, pitch: -0.3119, fov: 50, aspect: 1800 / 1426 };
+
+    const H = 2.45;                    // 天花板高度
+    const FRONT = 0.8;                 // 前墙（梵高身后）z
+    const L = -1.585;                  // 左墙 x
+    const BL = { x: L, z: -4.32 };     // 左后角
+    const BR = { x: 1.5, z: -5.3 };    // 右后角
+    const RF = { x: 1.99, z: FRONT };  // 右墙前端（右墙稍微斜：越往里越窄，房间是不规则的梯形）
+    // 后墙 / 右墙在某处的位置
+    const backZ  = x => BL.z + (x - BL.x) / (BR.x - BL.x) * (BR.z - BL.z);
+    const rightX = z => BR.x + (z - BR.z) / (RF.z - BR.z) * (RF.x - BR.x);
+    const BACK_ROT  = -Math.atan2(BR.z - BL.z, BR.x - BL.x);   // 贴在后墙上的东西要转的角度
+    const RIGHT_ROT = -Math.atan2(RF.z - BR.z, RF.x - BR.x);   // 贴在右墙上的东西要转的角度
+
+    // 墙上物品：原画里的四个角（左上、左下、右下、右上）投到墙面上的 3D 坐标
+    const QUAD = {
+      window:    [[-0.679, 2.11, -4.608], [-0.76, 1.045, -4.582], [0.04, 1.02, -4.836], [0.097, 2.154, -4.854]],
+      mirror:    [[-1.041, 1.694, -4.493], [-1.078, 1.311, -4.481], [-0.848, 1.306, -4.554], [-0.816, 1.7, -4.564]],
+      landscape: [[0.293, 1.737, -4.917], [0.299, 1.343, -4.919], [0.916, 1.363, -5.115], [0.875, 1.768, -5.102]],
+      boch:      [[1.505, 2.177, -5.28], [1.526, 1.596, -4.98], [1.579, 1.694, -4.311], [1.559, 2.141, -4.563]],
+      milliet:   [[1.601, 2.077, -4.043], [1.623, 1.723, -3.772], [1.664, 1.774, -3.256], [1.649, 2.004, -3.445]],
+      printA:    [[1.545, 1.477, -4.734], [1.574, 1.091, -4.377], [1.609, 1.173, -3.947], [1.582, 1.545, -4.285]],
+      printB:    [[1.621, 1.486, -3.787], [1.641, 1.214, -3.54], [1.69, 1.299, -2.929], [1.675, 1.55, -3.119]]
+    };
+    // 地上的点：原画里家具的脚
+    const BED = { FL: [0.545, -2.117], FR: [1.612, -2.169], HL: [0.356, -4.9] };
+    const TABLE_LEGS = { nearL: [-0.88, -3.799], nearR: [-0.407, -4.021], farL: [-1.137, -4.357], farR: [-0.662, -4.469] };
+    const CHAIR_BACK  = { back: [[-0.171, -4.497], [-0.003, -4.046]], front: [[0.268, -4.393], [0.148, -4.106]] };
+    const CHAIR_FRONT = { back: [[-1.149, -2.312], [-1.172, -2.718]], front: [[-0.843, -2.285], [-0.808, -2.567]] };
+
+    // ========== 4. 简化色块模式的材质：程序生成的笔触纹理 ==========
+    const TEX_SIZE = 256;
+    function strokeCanvas(draw) {
+      const cv = document.createElement('canvas');
+      cv.width = cv.height = TEX_SIZE;
+      const g = cv.getContext('2d');
+      g.fillStyle = '#f4f4f4'; g.fillRect(0, 0, TEX_SIZE, TEX_SIZE);
+      g.lineCap = 'round';
+      draw(g, TEX_SIZE);
+      const t = new THREE.CanvasTexture(cv);
+      t.wrapS = t.wrapT = THREE.RepeatWrapping;
+      t.colorSpace = THREE.SRGBColorSpace;
+      t.anisotropy = 4;
+      return t;
+    }
+    // 一笔：位置、方向、长度、粗细、颜色、透明度（每笔画三遍、稍微错开，像一刷子里的几根毛）
+    function dab(g, x, y, angle, len, width, shade, alpha) {
+      g.strokeStyle = `rgb(${shade[0]},${shade[1]},${shade[2]})`;
+      g.globalAlpha = alpha;
+      g.lineWidth = width;
+      for (let k = -1; k <= 1; k++) {
+        const ox = Math.sin(angle) * k * width * 0.35, oy = -Math.cos(angle) * k * width * 0.35;
+        g.beginPath();
+        g.moveTo(x + ox, y + oy);
+        g.quadraticCurveTo(
+          x + ox + Math.cos(angle) * len * 0.5 + (Math.random() - 0.5) * 6,
+          y + oy + Math.sin(angle) * len * 0.5 + (Math.random() - 0.5) * 6,
+          x + ox + Math.cos(angle) * len, y + oy + Math.sin(angle) * len);
+        g.stroke();
+      }
+    }
+    // 画满一张纹理（边缘重复画，保证无缝平铺）
+    function fill(g, s, count, fn) {
+      for (let i = 0; i < count; i++) {
+        const p = fn();
+        for (const ox of [-s, 0, s]) for (const oy of [-s, 0, s]) {
+          if (Math.abs(p.x + ox - s / 2) > s * 0.75 || Math.abs(p.y + oy - s / 2) > s * 0.75) continue;
+          dab(g, p.x + ox, p.y + oy, p.a, p.len, p.w, p.shade, p.alpha);
+        }
+      }
+    }
+    const rnd = (a, b) => a + Math.random() * (b - a);
+    function shade(dark, light) {   // 笔触颜色：略深 / 略亮的灰，偶尔带一点冷暖色
+      const r = Math.random();
+      if (r < 0.45) { const v = rnd(dark, 240); return [v, v, v]; }
+      if (r < 0.8)  return [255, 255, 255];
+      if (r < 0.9)  return [rnd(light, 250), rnd(light, 250), 255];
+      return [255, rnd(light, 250), rnd(light - 10, 240)];
+    }
+    const TEX = {
+      wall: strokeCanvas((g, s) => fill(g, s, 260, () => ({ x: rnd(0, s), y: rnd(0, s), a: rnd(1.0, 1.9), len: rnd(18, 34), w: rnd(4, 8), shade: shade(215, 225), alpha: rnd(0.2, 0.4) }))),
+      wood: strokeCanvas((g, s) => fill(g, s, 140, () => ({ x: rnd(0, s), y: rnd(0, s), a: rnd(-0.08, 0.08), len: rnd(50, 110), w: rnd(3, 7), shade: shade(200, 220), alpha: rnd(0.3, 0.5) }))),
+      cloth: strokeCanvas((g, s) => fill(g, s, 220, () => ({ x: rnd(0, s), y: rnd(0, s), a: Math.random() < 0.5 ? rnd(0.5, 0.9) : rnd(2.2, 2.6), len: rnd(12, 24), w: rnd(4, 7), shade: shade(210, 225), alpha: rnd(0.25, 0.45) }))),
+      // 地板：和原画一样是长条地板，夹着几道绿色的线
+      floor: strokeCanvas((g, s) => {
+        fill(g, s, 160, () => ({ x: rnd(0, s), y: rnd(0, s), a: rnd(1.45, 1.7), len: rnd(40, 90), w: rnd(3, 6), shade: shade(205, 225), alpha: rnd(0.3, 0.5) }));
+        g.globalAlpha = 0.55; g.strokeStyle = '#7fae86'; g.lineWidth = 4;
+        for (const x of [40, 130, 210]) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x + 6, s); g.stroke(); }
+      })
+    };
+
+    // 卡通材质 + 3 档明暗，让光影变成一块一块的色块
+    const gradient = new THREE.DataTexture(new Uint8Array([90, 170, 255]), 3, 1, THREE.RedFormat);
+    gradient.minFilter = gradient.magFilter = THREE.NearestFilter;
+    gradient.needsUpdate = true;
+    const matCache = {};
+    function paint(color, tex = 'wood') {
+      const key = color + (typeof tex === 'string' ? tex : tex.uuid);
+      if (!matCache[key]) matCache[key] = new THREE.MeshToonMaterial({ color, gradientMap: gradient, map: typeof tex === 'string' ? TEX[tex] : tex });
+      return matCache[key];
+    }
+    const outlineMat = new THREE.LineBasicMaterial({ color: C.line });
+    const outlines = [];
+    function outline(mesh) {
+      const l = new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry, 30), outlineMat);
+      mesh.add(l); outlines.push(l);
+      return mesh;
+    }
+    function box(w, h, d, color, x, y, z, parent = scene, tex = 'wood') {
+      const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), paint(color, tex));
+      m.position.set(x, y, z);
+      parent.add(outline(m));
+      return m;
+    }
+    function cyl(rt, rb, h, color, x, y, z, parent = scene) {
+      const m = new THREE.Mesh(new THREE.CylinderGeometry(rt, rb, h, 16), paint(color));
+      m.position.set(x, y, z);
+      parent.add(outline(m));
+      return m;
+    }
+    // 一个“组”（几个零件合成一个物品）；info 填 INFO 里的名字就能被点击
+    function group(x, y, z, rotY = 0, info = null, parent = scene) {
+      const g = new THREE.Group();
+      g.position.set(x, y, z);
+      g.rotation.y = rotY;
+      if (info) g.userData.info = info;
+      parent.add(g);
+      return g;
+    }
+    // 一块四边形（四个角：左上、左下、右下、右上），离墙 1 厘米，贴上图片
+    function quad(pts, mat, info = null, lift = 0.012) {
+      const v = pts.map(p => new THREE.Vector3(...p));
+      const n = new THREE.Vector3().subVectors(v[1], v[0]).cross(new THREE.Vector3().subVectors(v[3], v[0])).normalize();   // 朝房间里面
+      const p = v.map(q => q.clone().addScaledVector(n, lift));
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.Float32BufferAttribute([...p[0].toArray(), ...p[1].toArray(), ...p[2].toArray(), ...p[3].toArray()], 3));
+      geo.setAttribute('uv', new THREE.Float32BufferAttribute([0, 1, 0, 0, 1, 0, 1, 1], 2));
+      geo.setIndex([0, 1, 2, 0, 2, 3]);
+      geo.computeVertexNormals();
+      const m = new THREE.Mesh(geo, mat);
+      if (info) m.userData.info = info;
+      scene.add(outline(m));
+      return m;
+    }
+    const loader = new THREE.TextureLoader();
+    function cropTex(name) {
+      const t = loader.load(`images/crops/${name}.jpg`);
+      t.colorSpace = THREE.SRGBColorSpace;
+      return t;
+    }
+
+    // ========== 5. 房间：地板、墙、天花板（不规则梯形） ==========
+    const plan = new THREE.Shape();   // 从上往下看的轮廓（Shape 的 y = 房间的 -z）
+    plan.moveTo(L, -FRONT); plan.lineTo(RF.x, -RF.z); plan.lineTo(BR.x, -BR.z); plan.lineTo(BL.x, -BL.z); plan.closePath();
+
+    const floor = new THREE.Mesh(new THREE.ShapeGeometry(plan), paint(C.floor, 'floor'));
+    floor.rotation.x = -Math.PI / 2;
+    floor.userData.info = 'floor';
+    scene.add(floor);
+
+    const ceil = new THREE.Mesh(new THREE.ShapeGeometry(plan), new THREE.MeshBasicMaterial({ color: C.ceiling, map: TEX.wall, side: THREE.DoubleSide }));
+    ceil.rotation.x = -Math.PI / 2;
+    ceil.position.y = H;
+    scene.add(ceil);
+
+    // 四面墙共用一个材质，这样“蓝墙/紫墙”开关只要改一个颜色
+    const wallMat = new THREE.MeshToonMaterial({ color: C.wallBlue, gradientMap: gradient, map: TEX.wall });
+    function wall(x1, z1, x2, z2) {
+      const len = Math.hypot(x2 - x1, z2 - z1);
+      const geo = new THREE.PlaneGeometry(len, H);
+      const uv = geo.attributes.uv;
+      for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * len, uv.getY(i) * H);   // 笔触大小每面墙一样
+      const m = new THREE.Mesh(geo, wallMat);
+      m.position.set((x1 + x2) / 2, H / 2, (z1 + z2) / 2);
+      m.rotation.y = -Math.atan2(z2 - z1, x2 - x1);   // 墙面朝向房间里面
+      m.userData.info = 'wall';
+      m.userData.isWall = true;
+      scene.add(m);
+      box(len, 0.03, 0.03, C.line, 0, -H / 2 + 0.015, 0.015, m);   // 墙脚的深色线
+    }
+    wall(BL.x, BL.z, BR.x, BR.z);       // 斜的后墙
+    wall(BR.x, BR.z, RF.x, RF.z);       // 右墙（也稍微斜）
+    wall(RF.x, RF.z, L, FRONT);         // 前墙（梵高身后，画里看不到）
+    wall(L, FRONT, BL.x, BL.z);         // 左墙
+    for (const p of [BL, BR, RF, { x: L, z: FRONT }]) box(0.03, H, 0.03, C.line, p.x, H / 2, p.z);   // 墙角竖线
+
+    // 左后角放一根看不见的柱子：点到墙角附近就弹出“房间角落”卡片
+    const cornerHit = new THREE.Mesh(new THREE.CylinderGeometry(0.28, 0.28, H, 12), new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false }));
+    cornerHit.position.set(BL.x, H / 2, BL.z);
+    cornerHit.userData.info = 'corner';
+    cornerHit.userData.noPaint = true;
+    scene.add(cornerHit);
+
+    // ========== 6. 后墙：窗户、镜子、风景画、毛巾、挂衣架 ==========
+    // 窗户（绿色）—— 可点击。按原画四个角算出的位置，做成贴着斜后墙的窗框
+    const winC = QUAD.window.reduce((a, p) => [a[0] + p[0] / 4, a[1] + p[1] / 4, a[2] + p[2] / 4], [0, 0, 0]);
+    const WW = Math.hypot(QUAD.window[2][0] - QUAD.window[1][0], QUAD.window[2][2] - QUAD.window[1][2]);
+    const WH = QUAD.window[0][1] - QUAD.window[1][1];
+    const win = group(winC[0], winC[1], backZ(winC[0]) + 0.03, BACK_ROT, 'window');
+    box(WW - 0.06, WH - 0.06, 0.02, C.glass, 0, 0, -0.01, win, 'cloth');
+    for (const s of [-1, 1]) {
+      box(WW, 0.07, 0.06, C.window, 0, s * WH / 2, 0, win);
+      box(0.07, WH, 0.06, C.window, s * WW / 2, 0, 0, win);
+      box(0.04, WH, 0.05, C.window, s * 0.03, 0, 0.01, win);       // 中间两扇窗的合缝
+    }
+    for (const y of [-0.12 * WH, 0.22 * WH]) box(WW, 0.04, 0.05, C.window, 0, y, 0.01, win);
+    box(WW + 0.15, 0.05, 0.14, C.window, 0, -WH / 2 - 0.04, 0.05, win);   // 窗台
+
+    // 镜子、风景画：从原画里裁下来的图，贴在原来的位置
+    quad(QUAD.mirror, paint('#ffffff', cropTex('mirror')));
+    quad(QUAD.landscape, paint('#ffffff', cropTex('landscape')));
+    // 毛巾（挂在左后角旁边）
+    const towel = group(-1.32, 0.98, backZ(-1.32) + 0.04, BACK_ROT);
+    box(0.26, 1.45, 0.02, '#d9e0a6', 0, 0, 0, towel, 'cloth');
+    // 挂衣架 + 衣服
+    const pegs = group(0.59, 1.18, backZ(0.59) + 0.03, BACK_ROT);
+    box(0.95, 0.05, 0.04, '#d39a3a', 0, 0, 0, pegs);
+    box(0.2, 0.75, 0.04, '#3f86b0', -0.36, -0.42, 0.04, pegs, 'cloth');   // 蓝色的衣服
+    box(0.1, 0.22, 0.04, '#3b8ca0', -0.08, -0.12, 0.04, pegs, 'cloth');
+    box(0.1, 0.18, 0.04, '#2e3d4a', 0.18, -0.1, 0.04, pegs, 'cloth');
+
+    // ========== 7. 右墙：两幅肖像（可点击）、两幅小画、门 ==========
+    quad(QUAD.boch, paint('#ffffff', cropTex('boch')), 'portrait');
+    quad(QUAD.milliet, paint('#ffffff', cropTex('milliet')), 'portrait');
+    quad(QUAD.printA, paint('#ffffff', cropTex('printA')));
+    quad(QUAD.printB, paint('#ffffff', cropTex('printB')));
+
+    function door(x, z, rotY, w, h) {
+      const g = group(x, 0, z, rotY);
+      box(w, h, 0.05, C.door, 0, h / 2, 0, g);
+      box(w * 0.75, h * 0.38, 0.02, '#9a7dbd', 0, h * 0.7, 0.035, g);
+      box(w * 0.75, h * 0.34, 0.02, '#9a7dbd', 0, h * 0.27, 0.035, g);
+      cyl(0.03, 0.03, 0.06, C.line, w * 0.38, h * 0.48, 0.06, g).rotation.x = Math.PI / 2;
+      box(w + 0.1, 0.06, 0.07, C.line, 0, h + 0.03, 0, g);
+    }
+    door(rightX(-2.4) - 0.03, -2.4, RIGHT_ROT, 0.8, 1.95);   // 右墙床尾旁边的门
+    door(L + 0.03, -3.78, Math.PI / 2, 0.85, 2.0);           // 左墙靠左后角的门
+
+    // ========== 8. 木床（黄油黄）—— 可点击 ==========
+    const BW = Math.hypot(BED.FR[0] - BED.FL[0], BED.FR[1] - BED.FL[1]);   // 床宽（约 1.07 米）
+    const BLEN = Math.hypot(BED.HL[0] - BED.FL[0], BED.HL[1] - BED.FL[1]); // 床长（约 2.8 米，梵高把床画得很长）
+    const bedRot = Math.atan2(-(BED.HL[0] - BED.FL[0]), -(BED.HL[1] - BED.FL[1]));
+    const bed = group((BED.FL[0] + BED.FR[0]) / 2, 0, (BED.FL[1] + BED.FR[1]) / 2, bedRot, 'bed');   // 原点在床尾中间
+    for (const sx of [-1, 1]) {
+      box(0.1, 1.27, 0.1, C.wood, sx * BW / 2, 0.635, 0, bed);            // 床尾两根柱子
+      box(0.1, 1.07, 0.1, C.wood, sx * BW / 2, 0.535, -BLEN, bed);        // 床头两根柱子
+      box(0.05, 0.3, BLEN, C.wood, sx * BW / 2, 0.38, -BLEN / 2, bed);    // 两侧床沿
+    }
+    box(BW, 1.0, 0.07, C.wood, 0, 0.66, 0, bed);                          // 高高的床尾板
+    box(BW, 0.62, 0.06, C.wood, 0, 0.62, -BLEN, bed);                     // 床头板
+    box(BW - 0.08, 0.16, BLEN - 0.1, C.sheet, 0, 0.56, -BLEN / 2, bed, 'cloth');            // 床垫 + 床单
+    box(0.45, 0.16, 0.36, C.sheet, -0.24, 0.72, -BLEN + 0.3, bed, 'cloth');                // 两个枕头
+    box(0.45, 0.16, 0.36, C.sheet, 0.24, 0.72, -BLEN + 0.3, bed, 'cloth');
+    box(BW - 0.04, 0.1, BLEN * 0.62, C.quilt, 0, 0.67, -BLEN * 0.36, bed, 'cloth');        // 猩红被子
+    box(0.04, 0.3, BLEN * 0.62, C.quilt, -BW / 2 - 0.01, 0.53, -BLEN * 0.36, bed, 'cloth'); // 被子垂下来的一边
+
+    // ========== 9. 两把椅子（黄油黄，草编椅面）—— 可点击 ==========
+    function chair(legs, seatH, backH) {
+      const back = legs.back, front = legs.front;
+      const cx = (back[0][0] + back[1][0] + front[0][0] + front[1][0]) / 4, cz = (back[0][1] + back[1][1] + front[0][1] + front[1][1]) / 4;
+      const bm = [(back[0][0] + back[1][0]) / 2, (back[0][1] + back[1][1]) / 2], fm = [(front[0][0] + front[1][0]) / 2, (front[0][1] + front[1][1]) / 2];
+      const rot = Math.atan2(fm[0] - bm[0], fm[1] - bm[1]);   // 椅子朝向：从靠背指向前面
+      const s = Math.min(0.46, Math.hypot(back[0][0] - back[1][0], back[0][1] - back[1][1]));
+      const g = group(cx, 0, cz, rot, 'chair');
+      for (const [lx, lz] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) cyl(0.025, 0.025, seatH, C.wood, lx * s / 2, seatH / 2, lz * s / 2, g);
+      box(s + 0.05, 0.05, s + 0.05, C.seat, 0, seatH, 0, g, 'cloth');
+      for (const lx of [-1, 1]) cyl(0.025, 0.025, backH - seatH, C.wood, lx * s / 2, (seatH + backH) / 2, -s / 2, g);
+      for (const k of [0.35, 0.65, 0.92]) box(s, 0.04, 0.03, C.wood, 0, seatH + (backH - seatH) * k, -s / 2, g);
+      for (const lz of [-1, 1]) box(s, 0.025, 0.025, C.wood, 0, seatH * 0.35, lz * s / 2, g);
+      return { x: cx, z: cz, r: s * 0.8 };
+    }
+    const chairB = chair(CHAIR_BACK, 0.56, 0.95);    // 里面那把，靠着床头
+    const chairF = chair(CHAIR_FRONT, 0.5, 1.03);    // 左前方那把
+
+    // ========== 10. 小桌（橙色）+ 水壶、脸盆、瓶子 ==========
+    const tl = TABLE_LEGS;
+    const tcx = (tl.nearL[0] + tl.nearR[0] + tl.farL[0] + tl.farR[0]) / 4, tcz = (tl.nearL[1] + tl.nearR[1] + tl.farL[1] + tl.farR[1]) / 4;
+    const tblRot = Math.atan2(-(tl.nearR[1] - tl.nearL[1]), tl.nearR[0] - tl.nearL[0]);
+    const TW = Math.hypot(tl.nearR[0] - tl.nearL[0], tl.nearR[1] - tl.nearL[1]), TD = Math.hypot(tl.farL[0] - tl.nearL[0], tl.farL[1] - tl.nearL[1]);
+    const tbl = group(tcx, 0, tcz, tblRot);
+    box(TW + 0.16, 0.05, TD + 0.12, C.table, 0, 0.78, 0, tbl);
+    box(TW + 0.04, 0.1, TD, C.table, 0, 0.7, 0, tbl);      // 抽屉那一圈
+    for (const [x, z] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) box(0.05, 0.76, 0.05, C.table, x * TW / 2, 0.38, z * TD / 2, tbl);
+    cyl(0.05, 0.07, 0.22, '#cfe3ea', -0.2, 0.92, 0.05, tbl);       // 玻璃水瓶
+    cyl(0.17, 0.1, 0.08, C.basin, 0.0, 0.84, -0.02, tbl);           // 蓝色脸盆
+    cyl(0.07, 0.09, 0.2, C.basin, 0.02, 0.97, -0.02, tbl);          // 盆里的蓝色水壶
+    for (const k of [0, 1, 2]) cyl(0.018, 0.018, 0.12, '#7da7d9', 0.14 + k * 0.05, 0.86, -0.15, tbl);   // 小瓶子
+
+    // ========== 11. 柔和的光（简化色块模式用） ==========
+    scene.add(new THREE.HemisphereLight('#fff4d6', '#b5533c', 1.6));
+    scene.add(new THREE.AmbientLight('#ffffff', 0.6));
+    const sun = new THREE.DirectionalLight('#fff1c4', 1.2);
+    sun.position.set(-0.3, 2.2, BL.z - 2);
+    sun.target.position.set(0.5, 0, -1);
+    scene.add(sun, sun.target);
+
+    // ========== 12. 梵高视角点：地上的发光圆点 ==========
+    const vpRing = new THREE.Mesh(new THREE.RingGeometry(0.2, 0.3, 48), new THREE.MeshBasicMaterial({ color: '#ffe27a', transparent: true, opacity: 0.85, depthWrite: false }));
+    vpRing.rotation.x = -Math.PI / 2;
+    vpRing.position.set(VIEW.x, 0.01, VIEW.z);
+    const vpDot = new THREE.Mesh(new THREE.CircleGeometry(0.2, 48), new THREE.MeshBasicMaterial({ color: '#fff3b0', transparent: true, opacity: 0.35, depthWrite: false }));
+    vpDot.rotation.x = -Math.PI / 2;
+    vpDot.position.set(VIEW.x, 0.011, VIEW.z);
+    vpRing.userData.noPaint = vpDot.userData.noPaint = true;
+    scene.add(vpRing, vpDot);
+
+    // ========== 13. 投影贴图：把 v1888.jpg 从梵高视角“投”到墙、地板和家具上 ==========
+    // 原理：想象在梵高眼睛的位置放一台投影仪，把原画打到房间里。
+    // 站在这个点看，画面就和原画一样；走开以后，就能看到画被“拉伸”在家具和墙上。
+    // 投影仪照不到的地方（比如床后面、你身后），就用简化颜色。
+    const projector = new THREE.PerspectiveCamera(VIEW.fov, VIEW.aspect, 0.3, 14);
+    projector.position.set(VIEW.x, VIEW.eye, VIEW.z);
+    projector.rotation.set(VIEW.pitch, -VIEW.yaw, 0, 'YXZ');
+    projector.updateMatrixWorld(); projector.updateProjectionMatrix();
+
+    const paintingTex = loader.load('images/v1888.jpg');
+    paintingTex.colorSpace = THREE.SRGBColorSpace;
+    paintingTex.anisotropy = 4;
+
+    // 先从投影仪的位置拍一张“深度图”，用来判断哪些表面被挡住了（只拍一次，不影响流畅度）
+    const depthRT = new THREE.WebGLRenderTarget(1024, 812);
+    depthRT.depthTexture = new THREE.DepthTexture(1024, 812);
+    depthRT.depthTexture.type = THREE.UnsignedIntType;
+
+    const projUniforms = {
+      uPaint: { value: paintingTex }, uDepth: { value: depthRT.depthTexture },
+      uProjVP: { value: new THREE.Matrix4().multiplyMatrices(projector.projectionMatrix, projector.matrixWorldInverse) },
+      uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far },
+      uViolet: { value: 0 }
+    };
+    const projVert = `
+      varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv;
+      uniform vec2 uRepeat;
+      void main() {
+        vec4 w = modelMatrix * vec4(position, 1.0);
+        vWorld = w.xyz; vNormal = normalize(mat3(modelMatrix) * normal); vUv = uv * uRepeat;
+        gl_Position = projectionMatrix * viewMatrix * w;
+      }`;
+    const projFrag = `
+      uniform sampler2D uPaint; uniform sampler2D uDepth; uniform sampler2D uMap;
+      uniform mat4 uProjVP; uniform vec3 uProjPos; uniform float uNear; uniform float uFar;
+      uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble;
+      varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv;
+      float linDepth(float d) { float z = d * 2.0 - 1.0; return 2.0 * uNear * uFar / (uFar + uNear - z * (uFar - uNear)); }
+      void main() {
+        vec3 n = normalize(vNormal);
+        if (uDouble > 0.5 && !gl_FrontFacing) n = -n;
+        // 投影仪照不到的地方：简化颜色 + 笔触
+        float l = 0.78 + 0.22 * max(dot(n, normalize(vec3(0.3, 1.0, 0.5))), 0.0);
+        vec3 col = uBase * texture2D(uMap, vUv).rgb * l;
+        vec4 pc = uProjVP * vec4(vWorld, 1.0);
+        if (pc.w > 0.0) {
+          vec3 ndc = pc.xyz / pc.w;
+          vec2 uv = ndc.xy * 0.5 + 0.5;
+          if (uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0 && ndc.z < 1.0) {
+            float sceneD = linDepth(texture2D(uDepth, uv).r);
+            float myD = linDepth(ndc.z * 0.5 + 0.5);
+            float facing = dot(n, normalize(uProjPos - vWorld));
+            if (myD <= sceneD + 0.05 && facing > 0.0) col = texture2D(uPaint, uv).rgb;   // 被投影仪照到：显示原画
+          }
+        }
+        // 褪色开关：把墙上偏蓝的颜色加回一点红色，变成梵高画时的淡紫
+        if (uWall > 0.5) {
+          float blueish = smoothstep(0.0, 0.12, col.b - col.r);
+          vec3 violet = vec3(min(col.r + 0.28 * col.b, 1.0), col.g * 0.88, col.b);
+          col = mix(col, violet, uViolet * blueish);
+        }
+        gl_FragColor = vec4(col, 1.0);
+        #include <colorspace_fragment>
+      }`;
+    const white = new THREE.DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1); white.needsUpdate = true;
+    const projCache = new Map();
+    function projMaterial(toon, isWall, doubleSide) {
+      const key = toon.uuid + isWall + doubleSide;
+      if (!projCache.has(key)) {
+        const map = toon.map || white;
+        projCache.set(key, new THREE.ShaderMaterial({
+          uniforms: { ...projUniforms, uMap: { value: map }, uRepeat: { value: map.repeat ? map.repeat.clone() : new THREE.Vector2(1, 1) },
+                      uBase: { value: toon.color.clone() }, uWall: { value: isWall ? 1 : 0 }, uDouble: { value: doubleSide ? 1 : 0 } },
+          vertexShader: projVert, fragmentShader: projFrag, side: doubleSide ? THREE.DoubleSide : THREE.FrontSide
+        }));
+      }
+      return projCache.get(key);
+    }
+    // 每个物体都准备好两套材质：简化色块（flat）和原画投影（paint）
+    const solids = [];
+    scene.traverse(o => {
+      if (!o.isMesh || o.userData.noPaint) return;
+      o.userData.flatMat = o.material;
+      o.userData.paintMat = projMaterial(o.material, !!o.userData.isWall, o === ceil);
+      solids.push(o);
+    });
+    // 拍深度图（只拍会挡住投影的实心物体）
+    function renderProjectorDepth() {
+      const hidden = [cornerHit, vpRing, vpDot, ...outlines];
+      hidden.forEach(o => o.visible = false);
+      scene.overrideMaterial = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
+      renderer.setRenderTarget(depthRT);
+      renderer.render(scene, projector);
+      renderer.setRenderTarget(null);
+      scene.overrideMaterial = null;
+      hidden.forEach(o => o.visible = true);
+    }
+    renderProjectorDepth();
+
+    let mode = 'paint';
+    function setMode(m) {
+      mode = m;
+      for (const o of solids) o.material = m === 'paint' ? o.userData.paintMat : o.userData.flatMat;
+      for (const l of outlines) l.visible = m === 'flat';   // 原画模式不要描边（原画自己有线条）
+      document.querySelectorAll('#modeSwitch button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
+    }
+    setMode('paint');
+    document.querySelectorAll('#modeSwitch button').forEach(b => b.onclick = () => setMode(b.dataset.mode));
+
+    // ========== 14. 第一人称：走动和转视角 ==========
+    const player = { x: VIEW.x, z: VIEW.z + 0.18, yaw: VIEW.yaw, pitch: VIEW.pitch, eye: VIEW.eye, r: 0.22 };
+    let walking = false;
+    const keys = {};
+    window.addEventListener('keydown', e => { keys[e.code] = true; });
+    window.addEventListener('keyup', e => { keys[e.code] = false; });
+    window.addEventListener('blur', () => { for (const k in keys) keys[k] = false; });
+
+    // 不能穿过的东西（矩形：x 最小, x 最大, z 最小, z 最大）
+    const blocks = [
+      [0.33, 1.65, -4.95, -2.08],                               // 床
+      [tcx - 0.45, tcx + 0.45, tcz - 0.45, tcz + 0.45],         // 桌子
+      [chairB.x - chairB.r, chairB.x + chairB.r, chairB.z - chairB.r, chairB.z + chairB.r],
+      [chairF.x - chairF.r, chairF.x + chairF.r, chairF.z - chairF.r, chairF.z + chairF.r]
+    ];
+    function blocked(x, z) {
+      const r = player.r;
+      if (x < L + r || x > rightX(z) - r || z > FRONT - r || z < backZ(x) + r) return true;
+      for (const [x0, x1, z0, z1] of blocks) if (x > x0 - r && x < x1 + r && z > z0 - r && z < z1 + r) return true;
+      return false;
+    }
+
+    let dragId = null, lastX = 0, lastY = 0, downX = 0, downY = 0;
+    const cvs = renderer.domElement;
+    cvs.addEventListener('pointerdown', e => { dragId = e.pointerId; lastX = downX = e.clientX; lastY = downY = e.clientY; });
+    window.addEventListener('pointermove', e => {
+      if (e.pointerId !== dragId || !walking) return;
+      const dx = e.clientX - lastX, dy = e.clientY - lastY;
+      if (Math.hypot(e.clientX - downX, e.clientY - downY) > 8) { hideHint(); leaveView(); }
+      player.yaw += dx * 0.005;
+      player.pitch = Math.max(-1.3, Math.min(1.3, player.pitch - dy * 0.005));
+      lastX = e.clientX; lastY = e.clientY;
+    });
+    window.addEventListener('pointerup', e => {
+      if (e.pointerId !== dragId) return;
+      dragId = null;
+      if (walking && Math.hypot(e.clientX - downX, e.clientY - downY) < 8) { pick(e.clientX, e.clientY); hideHint(); }
+    });
+    window.addEventListener('pointercancel', e => { if (e.pointerId === dragId) dragId = null; });
+
+    // ========== 15. 点击物品 → 双语卡片 + 发现进度 ==========
+    const $ = id => document.getElementById(id);
+    const raycaster = new THREE.Raycaster();
+    const card = $('card');
+    function pick(cx, cy) {
+      raycaster.setFromCamera(new THREE.Vector2(cx / window.innerWidth * 2 - 1, -(cy / window.innerHeight) * 2 + 1), camera);
+      const hit = raycaster.intersectObjects(scene.children, true).find(h => h.object.isMesh && h.object !== vpRing && h.object !== vpDot);
+      let obj = hit && hit.object;
+      while (obj && !obj.userData.info) obj = obj.parent;
+      if (obj) showCard(obj.userData.info); else card.style.display = 'none';
+    }
+    const found = new Set();
+    const END_AFTER = 3;   // 发现几个物品后出现“进入结尾”
+    function updateProgress() {
+      $('progress').textContent = (lang === 'en' ? 'Found ' : '已发现 ') + `${found.size}/${TOTAL}`;
+      const left = TOTAL - found.size, show = found.size >= END_AFTER;
+      $('endBtn').classList.toggle('hidden', !show);
+      $('leftHint').classList.toggle('hidden', !show || left === 0);
+      $('leftHint').innerHTML = `<span class="zh">还有 ${left} 个没发现</span><span class="en"><span class="zh"> / </span>${left} left to find</span>`;
+    }
+    const TOTAL = Object.keys(INFO).length;
+    function showCard(key) {
+      const t = INFO[key];
+      $('cardTitle').textContent = t.title;
+      $('cardTitleEn').textContent = t.titleEn;
+      $('cardZh').textContent = t.zh;
+      $('cardEn').textContent = t.en;
+      card.style.display = 'block';
+      found.add(key);
+      updateProgress();
+    }
+    $('cardClose').onclick = () => { card.style.display = 'none'; };
+
+    // ========== 16. 弹窗：对照原画 / 截图 ==========
+    const popups = { compare: $('compare'), shot: $('shot') };
+    function togglePopup(name, show) {
+      for (const k in popups) if (k !== name) popups[k].style.display = 'none';
+      const el = popups[name];
+      el.style.display = (show ?? el.style.display !== 'block') ? 'block' : 'none';
+    }
+    $('compareBtn').onclick = () => togglePopup('compare');
+    document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => togglePopup(b.dataset.close, false));
+    // 图片真的加载失败时，才换成“找不到”的提示（加载成功就什么都不显示）
+    function onMissing(img, text, cls = 'missing') {
+      const fail = () => {
+        if (!img.isConnected) return;
+        const d = document.createElement('div');
+        d.className = cls; d.textContent = text;
+        img.replaceWith(d);
+      };
+      img.addEventListener('error', fail, { once: true });
+      if (img.loading !== 'lazy' && img.complete && img.getAttribute('src') && img.naturalWidth === 0) fail();   // 脚本运行前就已经失败了
+    }
+    onMissing($('compare').querySelector('img'), '（找不到 images/v1888.jpg）');
+    document.querySelectorAll('.act img').forEach(img => onMissing(img, `（找不到 ${img.getAttribute('src')}）`, 'ph reveal'));
+
+    // ========== 17. 褪色开关：现在的蓝墙 / 梵高画时的紫墙 ==========
+    const wallTarget = new THREE.Color(C.wallBlue);
+    let violetTarget = 0;
+    document.querySelectorAll('#wallSwitch button').forEach(b => b.onclick = () => {
+      document.querySelectorAll('#wallSwitch button').forEach(x => x.classList.toggle('on', x === b));
+      const v = b.dataset.wall === 'violet';
+      wallTarget.set(v ? C.wallViolet : C.wallBlue);
+      violetTarget = v ? 1 : 0;
+    });
+
+    // ========== 18. 拍一张 ==========
+    $('shotBtn').onclick = () => {
+      renderer.render(scene, camera);
+      const url = renderer.domElement.toDataURL('image/png');
+      $('shotImg').src = url;
+      $('shotSave').href = url;
+      const f = $('flash');
+      f.style.transition = 'none'; f.style.opacity = 0.8;
+      requestAnimationFrame(() => { f.style.transition = 'opacity .4s'; f.style.opacity = 0; });
+      togglePopup('shot', true);
+    };
+
+    // ========== 19. 声音：用代码现场合成的鸟叫 + 轻风声（默认静音，无版权问题） ==========
+    let actx = null, master = null, soundOn = false, birdTimer = null;
+    function setupAudio() {
+      actx = new (window.AudioContext || window.webkitAudioContext)();
+      master = actx.createGain(); master.gain.value = 0; master.connect(actx.destination);
+      const len = actx.sampleRate * 3, buf = actx.createBuffer(1, len, actx.sampleRate), d = buf.getChannelData(0);
+      let last = 0;
+      for (let i = 0; i < len; i++) { last = (last + 0.02 * (Math.random() * 2 - 1)) / 1.02; d[i] = last * 3.5; }
+      const wind = actx.createBufferSource(); wind.buffer = buf; wind.loop = true;
+      const lp = actx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 450;
+      const wg = actx.createGain(); wg.gain.value = 0.35;
+      wind.connect(lp).connect(wg).connect(master); wind.start();
+    }
+    function chirp(t, f0, f1, dur, vol, pan) {
+      const o = actx.createOscillator(), g = actx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.012); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      let node = o.connect(g);
+      if (actx.createStereoPanner) { const p = actx.createStereoPanner(); p.pan.value = pan; node = node.connect(p); }
+      node.connect(master);
+      o.start(t); o.stop(t + dur + 0.02);
+    }
+    function birdCall() {
+      const t0 = actx.currentTime + 0.05, n = 2 + Math.floor(Math.random() * 5);
+      const base = 2600 + Math.random() * 2200, gap = 0.09 + Math.random() * 0.08, pan = Math.random() * 1.6 - 0.8;
+      for (let k = 0; k < n; k++) { const up = Math.random() < 0.5; chirp(t0 + k * gap, base * (up ? 0.8 : 1.2), base * (up ? 1.25 : 0.75), 0.06 + Math.random() * 0.05, 0.05, pan); }
+    }
+    function scheduleBird() { birdTimer = setTimeout(() => { if (soundOn) { birdCall(); scheduleBird(); } }, 1500 + Math.random() * 4500); }
+    function setSound(on) {
+      soundOn = on;
+      $('soundBtn').innerHTML = (on ? '🔊 ' : '🔇 ') + '<span class="zh">声音</span><span class="en-ui">Sound</span>';
+      if (on) { if (!actx) setupAudio(); actx.resume(); master.gain.setTargetAtTime(0.7, actx.currentTime, 0.4); clearTimeout(birdTimer); birdCall(); scheduleBird(); }
+      else if (actx) { master.gain.setTargetAtTime(0, actx.currentTime, 0.2); clearTimeout(birdTimer); }
+    }
+    $('soundBtn').onclick = () => setSound(!soundOn);
+    document.addEventListener('visibilitychange', () => { if (actx && soundOn) document.hidden ? actx.suspend() : actx.resume(); });
+
+    // ========== 20. 手机虚拟摇杆 ==========
+    const joy = $('joy'), knob = $('knob');
+    const joyMove = { x: 0, y: 0 };
+    let joyId = null;
+    function setKnob(e) {
+      const rect = joy.getBoundingClientRect();
+      let dx = e.clientX - (rect.left + rect.width / 2), dy = e.clientY - (rect.top + rect.height / 2);
+      const len = Math.hypot(dx, dy), max = 40;
+      if (len > max) { dx *= max / len; dy *= max / len; }
+      knob.style.transform = `translate(${dx}px, ${dy}px)`;
+      joyMove.x = dx / max; joyMove.y = dy / max;
+    }
+    joy.addEventListener('pointerdown', e => { joyId = e.pointerId; joy.setPointerCapture(joyId); setKnob(e); hideHint(); });
+    joy.addEventListener('pointermove', e => { if (e.pointerId === joyId) setKnob(e); });
+    const joyEnd = e => { if (e.pointerId !== joyId) return; joyId = null; joyMove.x = joyMove.y = 0; knob.style.transform = ''; };
+    joy.addEventListener('pointerup', joyEnd);
+    joy.addEventListener('pointercancel', joyEnd);
+
+    const hint = $('hint');
+    let hintHidden = false;
+    function hideHint() { if (!hintHidden) { hintHidden = true; setTimeout(() => hint.style.opacity = 0, 2500); } }
+
+    // ========== 21. 梵高视角：站上去 → 镜头对准原画构图 + 原画叠加滑杆 ==========
+    // 在梵高视角时，原画在屏幕上占的长方形
+    function paintingRect() {
+      const W = window.innerWidth, Hh = window.innerHeight, A = W / Hh;
+      if (A >= VIEW.aspect) { const w = Hh * VIEW.aspect; return { x: (W - w) / 2, y: 0, w, h: Hh, fov: VIEW.fov }; }
+      const h = W / VIEW.aspect;
+      const fov = 2 * Math.atan(Math.tan(VIEW.fov * Math.PI / 360) * VIEW.aspect / A) * 180 / Math.PI;
+      return { x: 0, y: (Hh - h) / 2, w: W, h, fov };
+    }
+    function placeRect(el) {
+      const r = paintingRect();
+      Object.assign(el.style, { left: r.x + 'px', top: r.y + 'px', width: r.w + 'px', height: r.h + 'px' });
+    }
+    const vpOverlay = $('vpOverlay'), vpPanel = $('vpPanel'), vpSlider = $('vpSlider');
+    vpSlider.oninput = () => { vpOverlay.style.opacity = vpSlider.value / 100; $('vpVal').textContent = vpSlider.value + '%'; };
+    let view = 'none';         // none（自由走动）| aligning（正在对准）| aligned（已对准）
+    let needExit = false;      // 离开圆点后才能再次触发
+    let alignFrom = null, alignT = 0;
+    function enterView() {
+      view = 'aligning'; alignT = 0;
+      alignFrom = { x: player.x, z: player.z, yaw: player.yaw, pitch: player.pitch, fov: camera.fov };
+    }
+    function leaveView() {
+      if (view === 'none') return;
+      view = 'none'; needExit = true;
+      vpPanel.classList.remove('show');
+      vpOverlay.style.display = 'none';
+    }
+    function showAligned() {
+      view = 'aligned';
+      placeRect(vpOverlay);
+      vpOverlay.style.display = 'block';
+      vpPanel.classList.add('show');
+    }
+
+    // ========== 22. 开场：原画（和 3D 画面完全重合）→ 淡出 → 你就站在画里 ==========
+    const intro = $('intro');
+    placeRect($('introImg'));
+    const introFail = () => { $('introImg').classList.add('hidden'); $('introMissing').classList.remove('hidden'); };
+    $('introImg').addEventListener('error', introFail, { once: true });
+    if ($('introImg').complete && $('introImg').naturalWidth === 0) introFail();
+    camera.fov = paintingRect().fov; camera.updateProjectionMatrix();
+    let introT = -1;
+    $('enter').onclick = () => { intro.classList.add('fade'); introT = 0; };
+    function finishIntro() {
+      intro.style.display = 'none';
+      walking = true;
+      document.body.classList.add('in-room');
+      hint.style.opacity = 1;
+      player.x = VIEW.x; player.z = VIEW.z;
+      showAligned();
+    }
+    const ease = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+    const lerpAngle = (a, b, t) => a + Math.atan2(Math.sin(b - a), Math.cos(b - a)) * t;
+
+    // ========== 23. 结尾：三幕故事 ==========
+    const gallery = $('gallery');
+    for (const v of VERSIONS) {
+      const fig = document.createElement('figure');
+      const img = document.createElement('img');
+      img.src = v.file; img.alt = v.caption; img.loading = 'lazy';
+      onMissing(img, `（找不到 ${v.file}）`, 'ph');
+      const cap = document.createElement('figcaption');
+      cap.dataset.zh = v.zh; cap.dataset.en = v.en; cap.dataset.both = v.caption; cap.textContent = v.caption;
+      fig.append(img, cap);
+      $('versions').append(fig);
+    }
+    // 每一幕滚到眼前时淡入
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('seen'); }), { root: gallery, threshold: 0.25 });
+    document.querySelectorAll('.act').forEach(a => io.observe(a));
+    document.querySelectorAll('.next').forEach(b => b.onclick = () => $(b.dataset.next).scrollIntoView({ behavior: 'smooth' }));
+
+    // 对比滑块
+    const cmp = $('cmp'), imgA = $('cmpImgA'), imgB = $('cmpImgB'), line = $('cmpLine');
+    VERSIONS.forEach((v, i) => { $('cmpA').add(new Option(v.short, i)); $('cmpB').add(new Option(v.short, i)); });
+    $('cmpA').value = 0; $('cmpB').value = 1;
+    function setCmpImages() {
+      const a = VERSIONS[$('cmpA').value], b = VERSIONS[$('cmpB').value];
+      imgA.src = a.file; imgA.alt = a.caption; $('cmpTagA').textContent = lang === 'en' ? a.shortEn : a.short;
+      imgB.src = b.file; imgB.alt = b.caption; $('cmpTagB').textContent = lang === 'en' ? b.shortEn : b.short;
+    }
+    $('cmpA').onchange = $('cmpB').onchange = setCmpImages;
+    function setCmp(pct) {
+      pct = Math.max(0, Math.min(100, pct));
+      imgB.style.clipPath = `inset(0 0 0 ${pct}%)`;
+      line.style.left = pct + '%';
+    }
+    let cmpDrag = false;
+    const cmpAt = e => { const r = cmp.getBoundingClientRect(); setCmp((e.clientX - r.left) / r.width * 100); };
+    cmp.addEventListener('pointerdown', e => { cmpDrag = true; cmp.setPointerCapture(e.pointerId); cmpAt(e); });
+    cmp.addEventListener('pointermove', e => { if (cmpDrag) cmpAt(e); });
+    cmp.addEventListener('pointerup', () => { cmpDrag = false; });
+    cmp.addEventListener('pointercancel', () => { cmpDrag = false; });
+    setCmpImages(); setCmp(50);
+
+    $('endBtn').onclick = () => {
+      walking = false;
+      for (const k in keys) keys[k] = false;
+      card.style.display = 'none';
+      togglePopup('compare', false); togglePopup('shot', false);
+      leaveView();
+      gallery.style.display = 'block';
+      gallery.style.scrollBehavior = 'auto'; gallery.scrollTop = 0; gallery.style.scrollBehavior = '';
+      requestAnimationFrame(() => gallery.classList.add('show'));
+    };
+    $('backRoom').onclick = () => {
+      gallery.classList.remove('show');
+      setTimeout(() => { gallery.style.display = 'none'; walking = true; }, 800);
+    };
+
+    // ========== 23b. 中英切换（记住上次的选择） ==========
+    function setLang(l) {
+      lang = l;
+      document.body.classList.remove('lang-zh', 'lang-en', 'lang-both');
+      document.body.classList.add('lang-' + l);
+      document.documentElement.lang = l === 'en' ? 'en' : 'zh-CN';
+      document.querySelectorAll('#langSwitch button').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
+      document.querySelectorAll('#versions figcaption').forEach(c => c.textContent = c.dataset[l]);
+      document.querySelectorAll('#cmpA option, #cmpB option').forEach(o => o.textContent = l === 'en' ? VERSIONS[o.value].shortEn : VERSIONS[o.value].short);
+      setCmpImages();
+      updateProgress();
+      try { localStorage.setItem('bedroomLang', l); } catch (e) {}
+    }
+    document.querySelectorAll('#langSwitch button').forEach(b => b.onclick = () => setLang(b.dataset.lang));
+    let savedLang = 'both';
+    try { savedLang = localStorage.getItem('bedroomLang') || 'both'; } catch (e) {}
+    setLang(['zh', 'en', 'both'].includes(savedLang) ? savedLang : 'both');
+
+    // ========== 24. 每一帧：移动 + 梵高视角 + 墙色渐变 + 画画面 ==========
+    const clock = new THREE.Clock();
+    const introZ = player.z;
+    function loop() {
+      requestAnimationFrame(loop);
+      const dt = Math.min(clock.getDelta(), 0.05);
+      if (gallery.classList.contains('show')) return;    // 在结尾页时不画 3D，省电
+
+      // 开场：淡出的同时，镜头慢慢推到圆点上
+      if (introT >= 0 && !walking) {
+        introT = Math.min(introT + dt / 1.6, 1);
+        player.z = introZ + (VIEW.z - introZ) * ease(introT);
+        if (introT >= 1) finishIntro();
+      }
+
+      if (walking) {
+        let fwd = 0, side = 0;
+        if (keys.KeyW || keys.ArrowUp) fwd += 1;
+        if (keys.KeyS || keys.ArrowDown) fwd -= 1;
+        if (keys.KeyD || keys.ArrowRight) side += 1;
+        if (keys.KeyA || keys.ArrowLeft) side -= 1;
+        fwd -= joyMove.y; side += joyMove.x;
+        if (fwd || side) { hideHint(); leaveView(); }
+        const speed = 1.4 * dt, sin = Math.sin(player.yaw), cos = Math.cos(player.yaw);
+        const dx = (side * cos + fwd * sin) * speed, dz = (side * sin - fwd * cos) * speed;
+        if (!blocked(player.x + dx, player.z)) player.x += dx;
+        if (!blocked(player.x, player.z + dz)) player.z += dz;
+
+        // 梵高视角点：走到圆点上就自动对准；离开 0.5 米以外才能再次触发
+        const dist = Math.hypot(player.x - VIEW.x, player.z - VIEW.z);
+        if (dist > 0.5) needExit = false;
+        if (view === 'none' && !needExit && dist < 0.3 && !fwd && !side) enterView();
+      }
+
+      // 对准动画（约 1 秒）
+      if (view === 'aligning') {
+        alignT = Math.min(alignT + dt / 1.0, 1);
+        const k = ease(alignT);
+        player.x = alignFrom.x + (VIEW.x - alignFrom.x) * k;
+        player.z = alignFrom.z + (VIEW.z - alignFrom.z) * k;
+        player.yaw = lerpAngle(alignFrom.yaw, VIEW.yaw, k);
+        player.pitch = alignFrom.pitch + (VIEW.pitch - alignFrom.pitch) * k;
+        camera.fov = alignFrom.fov + (paintingRect().fov - alignFrom.fov) * k;
+        if (alignT >= 1) showAligned();
+      } else if (view === 'aligned' || !walking) {
+        camera.fov = paintingRect().fov;
+      } else {
+        camera.fov += (70 - camera.fov) * (1 - Math.exp(-dt * 3));
+      }
+      camera.updateProjectionMatrix();
+
+      // 圆点轻轻呼吸发光
+      const pulse = 0.55 + 0.35 * Math.sin(performance.now() / 400);
+      vpRing.material.opacity = pulse; vpDot.material.opacity = pulse * 0.4;
+
+      // 墙色慢慢变到目标颜色（约 1 秒）
+      wallMat.color.lerp(wallTarget, 1 - Math.exp(-dt * 4));
+      projUniforms.uViolet.value += (violetTarget - projUniforms.uViolet.value) * (1 - Math.exp(-dt * 4));
+
+      camera.position.set(player.x, player.eye, player.z);
+      camera.rotation.set(player.pitch, -player.yaw, 0, 'YXZ');
+      renderer.render(scene, camera);
+    }
+    loop();
+    // 测试用：地址后面加 ?debug 时，可以在控制台里直接移动位置（普通访问不受影响）
+    if (location.search.includes('debug')) window.__room = { player, setMode, leaveView, showCard };
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      placeRect($('introImg'));
+      if (view === 'aligned') placeRect(vpOverlay);
+    });
+  </script>
+</body>
+</html>
