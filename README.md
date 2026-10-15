@@ -41,11 +41,15 @@ walk-into-paintings/
 3. **改 `scene.json`**（场景的全部内容都在这里）：
    - `id`：改成 `yellow-house`（要和登记表里的一样）
    - `painting`：原画文件名和宽高
-   - `label`：展签——画名、画家、年份、收藏地、图片来源
+   - `label`：展签——画名、画家、年份、收藏地；`source` 是图片来源，会显示成“图片：… / Image: …”
    - `viewpoint`：画家视角（镜头位置和角度；需要对照原画调整，可以请 Claude Code 帮忙计算）
    - `room` 和 `objects`：房间形状和家具位置（可用的家具种类见 `assets/engine.js` 里的 `BUILD`）
    - `cards`：发现卡片（完整版 5–7 个，轻量版 3–4 个），每个都要有中英文
    - `ending`：三幕故事、最后一句话、各版本的展签、博物馆
+   - `record`：作品档案表（画家生卒年、画名、年份、材质、尺寸、收藏地、博物馆作品页）。空着的格子显示“待补充”
+   - `zoom`：细节放大用的图片（默认就是原画）
+   - `reading`：页面最底部的“延伸阅读与来源”，每条写 `title`（中英文）和 `url`
+   - `audioGuide`：语音导览录音文件（`zh` / `en`）。空着时按钮不显示
 4. **改 `index.html`**：只需要改 `<title>` 和分享预览（`og:` 开头的几行）里的文字和网址。
 5. **在登记表登记**：打开 `data/scenes.json`，找到 `yellow-house` 这一条：
    - `status` 改成 `live`

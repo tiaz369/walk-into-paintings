@@ -21,6 +21,8 @@ export function bi(o, sep = ' · ') {
 }
 // 界面上的短标签：中文/双语 显示中文，EN 显示英文
 export const ui = (zh, en) => `<span class="zh">${esc(zh)}</span><span class="en-ui">${esc(en)}</span>`;
+// 图片说明：{ zh, en } → alt 属性（切换语言时自动换）
+export const altAttr = o => `alt="${esc(textOf(o, lang))}" data-alt-zh="${esc(textOf(o, 'zh'))}" data-alt-en="${esc(textOf(o, 'en'))}"`;
 export const textOf = (o, lang) => (o == null ? '' : typeof o === 'string' ? o : (lang === 'en' ? (o.en || o.zh) : (o.zh || o.en)));
 
 // ---------- 偏好设置：语言、配色 ----------
@@ -28,18 +30,25 @@ const store = {
   get(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 };
-export let lang = store.get('wip-lang', 'both');
+// 第一次来（还没选过）：浏览器是中文 → 双语；其他语言 → 英文
+const browserIsZh = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || '']).some(l => /^zh/i.test(l));
+export let lang = store.get('wip-lang', browserIsZh ? 'both' : 'en');
 const langListeners = [];
 export function onLang(fn) { langListeners.push(fn); }
 export function setLang(l) {
-  if (!['zh', 'en', 'both'].includes(l)) l = 'both';
+  if (!['zh', 'en', 'both'].includes(l)) l = browserIsZh ? 'both' : 'en';
   lang = l;
   document.body.classList.remove('lang-zh', 'lang-en', 'lang-both');
   document.body.classList.add('lang-' + l);
   document.documentElement.lang = l === 'en' ? 'en' : 'zh-CN';
-  document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
   store.set('wip-lang', l);
-  langListeners.forEach(fn => fn(l));
+  langListeners.forEach(fn => fn(l));   // 先让页面重画（比如地图），再给新内容标语言
+  // 每段文字标上自己的语言（读屏软件、翻译、搜索引擎会用到）
+  document.querySelectorAll('.en, .en-ui, .en-title').forEach(e => { if (!e.lang) e.lang = 'en'; });
+  document.querySelectorAll('.zh').forEach(e => { if (!e.lang) e.lang = 'zh-CN'; });
+  // 图片的文字说明（alt）也跟着语言换
+  document.querySelectorAll('img[data-alt-en]').forEach(i => { i.alt = l === 'en' ? i.dataset.altEn : i.dataset.altZh; });
+  document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('on', b.dataset.lang === l));
 }
 export function setTheme(t) {
   if (!['light', 'dark', 'auto'].includes(t)) t = 'auto';
@@ -49,7 +58,7 @@ export function setTheme(t) {
   store.set('wip-theme', t);
 }
 export const langSwitchHTML = () => `<div class="seg" role="group" aria-label="Language">
-    <button data-lang="zh">中文</button><button data-lang="en">EN</button><button data-lang="both">双语</button></div>`;
+    <button data-lang="zh">中文</button><button data-lang="en">EN</button><button data-lang="both">${ui('双语', 'Both')}</button></div>`;
 export const themeSwitchHTML = () => `<div class="seg" role="group" aria-label="Theme">
     <button data-theme-btn="light">${ui('浅色', 'Light')}</button><button data-theme-btn="dark">${ui('深色', 'Dark')}</button><button data-theme-btn="auto">${ui('自动', 'Auto')}</button></div>`;
 export function wirePrefs(root = document) {
@@ -61,18 +70,24 @@ export function wirePrefs(root = document) {
 // 页面一打开就套用（避免先闪一下别的配色）
 setTheme(store.get('wip-theme', 'auto'));
 
-// ---------- 署名和图片来源（页脚、场景页都用） ----------
+// ---------- 署名（全站统一：页脚、场景页都用） ----------
 export const CREDIT = {
-  by: { zh: '由 Tia 与 Claude 共同创作', en: 'Created by Tia with Claude' },
   byUrl: 'https://tiaz369.github.io',
-  images: { zh: '画作图片：Wikimedia Commons，公有领域', en: 'Images: Wikimedia Commons, public domain' }
+  zh: ['创意、故事与文字：', 'Tia', ' · 使用 Claude 制作'],
+  en: ['Concept, stories and texts by ', 'Tia', ' · Built with Claude']
 };
+// 图片来源（放在每个场景的展签里）：{ zh, en } → “图片：… / Image: …”
+export const imageSourceHTML = src => src ? bi({ zh: '图片：' + src.zh, en: 'Image: ' + src.en }, ' / ') : '';
 // ★ 社交账号：填上网址后页脚会自动出现链接
 export const SOCIAL = [
   { name: 'X', url: '' },
   { name: { zh: '小红书', en: 'Xiaohongshu' }, url: '' }
 ];
-export const creditHTML = () => `<a href="${CREDIT.byUrl}">${bi(CREDIT.by, ' · ')}</a><br>${bi(CREDIT.images, ' / ')}`;
+const creditLine = ([a, name, b]) => `${esc(a)}<a href="${CREDIT.byUrl}">${esc(name)}</a>${esc(b)}`;
+// inline = 一行显示（双语时用 / 隔开）；默认中英文各占一行
+export const creditHTML = (inline = false) => inline
+  ? `<span class="zh">${creditLine(CREDIT.zh)}</span><span class="en"><span class="zh sep"> / </span>${creditLine(CREDIT.en)}</span>`
+  : `<span class="zh credit-line">${creditLine(CREDIT.zh)}</span><span class="en credit-line">${creditLine(CREDIT.en)}</span>`;
 
 // ---------- 登记表 ----------
 let registryPromise = null;
@@ -92,10 +107,10 @@ export const sceneUrl = s => ROOT + s.path;
 // 场景卡片：已上线的可以点进去；还没做的显示“即将上线”
 export function sceneCard(R, s) {
   const artist = R.artistById[s.artist], museum = R.museumById[s.museum];
-  const meta = [artist && bi(artist.name), s.year].filter(Boolean).join(' · ');
+  const meta = [artist && bi(artist.name), bi(s.year)].filter(Boolean).join(' · ');
   const live = s.status === 'live';
   const pic = live && s.cover
-    ? `<img src="${ROOT + s.cover}" alt="${esc(textOf(s.title, 'zh'))}" loading="lazy" />`
+    ? `<img src="${ROOT + s.cover}" ${altAttr(s.title)} loading="lazy" />`
     : `<span class="soon">${ui('即将上线', 'Coming soon')}</span>`;
   const inner = `<div class="pic">${pic}</div><div class="name">${bi(s.title)}</div>
     <div class="meta">${meta}</div>${museum ? `<div class="meta">${bi(museum.name)}</div>` : ''}`;
@@ -112,7 +127,7 @@ const NAV = [
 export function chrome(active) {
   const header = document.createElement('header');
   header.className = 'wrap site-header';
-  header.innerHTML = `<a class="brand" href="${ROOT}">走进名画<small>Walk into Paintings</small></a>
+  header.innerHTML = `<a class="brand" href="${ROOT}">${ui('走进名画', 'Walk into Paintings')}<small class="zh">Walk into Paintings</small></a>
     <nav class="site-nav">${NAV.slice(1).map(([p, zh, en]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}">${ui(zh, en)}</a>`).join('')}</nav>`;
   document.body.prepend(header);
   const footer = document.createElement('footer');
@@ -158,18 +173,36 @@ const countLine = (list) => {
 const scenesOf = (R, key, id) => R.scenes.filter(s => Array.isArray(s[key]) ? s[key].includes(id) : s[key] === id);
 const labelOf = (R, s) => {   // 展签：画名 · 画家 · 年份 · 收藏地
   const a = R.artistById[s.artist], m = R.museumById[s.museum];
-  return [bi(s.title), a && bi(a.name), s.year, m && bi(m.name)].filter(Boolean).join(' · ');
+  return [bi(s.title), a && bi(a.name), bi(s.year), m && bi(m.name)].filter(Boolean).join(' · ');
 };
 const param = k => new URLSearchParams(location.search).get(k);
 
 // 五种浏览方式（例子是网站蓝图里的）
 const WAYS = [
-  { path: 'artists/', name: { zh: '按画家', en: 'By artist' }, ex: '梵高、维米尔、莫奈、德加' },
-  { path: 'themes/',  name: { zh: '按主题', en: 'By theme' },  ex: '房间、窗户、咖啡馆、花园、首饰、孩子' },
-  { path: 'periods/', name: { zh: '按时期', en: 'By period' }, ex: '荷兰黄金时代、印象派、后印象派' },
-  { path: 'map/',     name: { zh: '按地图', en: 'By map' },    ex: '阿尔勒、巴黎、代尔夫特、伦敦' },
-  { path: 'museums/', name: { zh: '按博物馆', en: 'By museum' }, ex: '梵高博物馆、荷兰国立博物馆、伦敦国家美术馆' }
+  { path: 'artists/', name: { zh: '按画家', en: 'By artist' }, ex: { zh: '梵高、维米尔、莫奈、德加', en: 'Van Gogh, Vermeer, Monet, Degas' } },
+  { path: 'themes/',  name: { zh: '按主题', en: 'By theme' },  ex: { zh: '房间、窗户、咖啡馆、花园、首饰、孩子', en: 'Rooms, windows, cafés, gardens, jewellery, children' } },
+  { path: 'periods/', name: { zh: '按时期', en: 'By period' }, ex: { zh: '荷兰黄金时代、印象派、后印象派', en: 'Dutch Golden Age, Impressionism, Post-Impressionism' } },
+  { path: 'map/',     name: { zh: '按地图', en: 'By map' },    ex: { zh: '阿尔勒、巴黎、代尔夫特、伦敦', en: 'Arles, Paris, Delft, London' } },
+  { path: 'museums/', name: { zh: '按博物馆', en: 'By museum' }, ex: { zh: '梵高博物馆、荷兰国立博物馆、伦敦国家美术馆', en: 'Van Gogh Museum, Rijksmuseum, National Gallery' } }
 ];
+
+// 关于页的文字（Tia 提供，原文照录）。label 是段首加粗的小标题。
+const ABOUT = {
+  intro: [
+    { zh: '走进名画是一座可以走进去的线上美术馆。每一幅名画都被做成一个可以探索的空间：走进画里，发现细节，听它背后的故事，最后去博物馆看真迹。',
+      en: 'Walk into Paintings is an online gallery you can step inside. Each painting becomes a space to explore: walk in, discover details, hear the story behind it, then go and see the real thing in a museum.' },
+    { zh: '它不想替代原画，而是想让你更想去看原画。',
+      en: 'It is not meant to replace the original, but to make you want to see it.' }
+  ],
+  me: { label: { zh: '关于我：', en: 'About me: ' },
+    zh: '我是 Tia，住在伦敦，学过电影和教育。我不是程序员。网站的代码由 AI（Anthropic 的 Claude）编写；创意、故事、文字和每一条事实，都由我撰写和核对。',
+    en: "I'm Tia, based in London, with a background in film studies and education. I'm not a programmer. The code is written by AI (Claude, by Anthropic); the concept, stories, texts and every fact are written and checked by me." },
+  principles: { label: { zh: '内容原则：', en: 'Content principles: ' },
+    zh: '只使用已进入公有领域的画作；每条事实都有可靠来源；解读性的内容会标明是解读；图片来源注明在每个场景中。',
+    en: 'only public-domain paintings; every fact has a reliable source; interpretations are marked as such; image sources are credited in each scene.' }
+};
+const para = (p, cls = '') => `<p class="zh ${cls}">${p.label ? `<strong>${esc(p.label.zh)}</strong>` : ''}${esc(p.zh)}</p>
+  <p class="en ${cls}">${p.label ? `<strong>${esc(p.label.en)}</strong>` : ''}${esc(p.en)}</p>`;
 
 const PAGES = {
   // ---------- 首页 ----------
@@ -178,12 +211,12 @@ const PAGES = {
     const newest = [...R.live].sort((a, b) => (b.added || '').localeCompare(a.added || ''))[0];
     main.innerHTML = `
       <section class="hero">
-        <img src="${ROOT + pick.cover}" alt="${esc(textOf(pick.title, 'zh'))}" />
+        <img src="${ROOT + pick.cover}" ${altAttr(pick.title)} />
         <div class="tagline">
-          <div class="t-en">Step inside the world's great paintings.</div>
-          <div class="t-zh">走进世界名画的内部。</div>
+          <div class="t-en en">Step inside the world's great paintings.</div>
+          <div class="t-zh zh">走进世界名画的内部。</div>
           <a class="btn primary" href="${sceneUrl(pick)}">${ui('走进画里', 'Step into the painting')}</a>
-          <div class="label">${labelOf(R, pick)}</div>
+          <div class="label">${labelOf(R, pick)}${pick.imageSource ? '<br>' + imageSourceHTML(pick.imageSource) : ''}</div>
         </div>
       </section>
 
@@ -204,7 +237,7 @@ const PAGES = {
 
       <section class="section wrap" id="browse">
         <h2>${ui('五种浏览方式', 'Five ways to browse')}</h2>
-        <div class="ways">${WAYS.map(w => `<a href="${ROOT + w.path}"><div class="name">${bi(w.name)}</div><div class="ex">${w.ex}</div></a>`).join('')}</div>
+        <div class="ways">${WAYS.map(w => `<a href="${ROOT + w.path}"><div class="name">${bi(w.name)}</div><div class="ex">${bi(w.ex, ' / ')}</div></a>`).join('')}</div>
       </section>
 
       <section class="section wrap" id="map-preview">
@@ -214,8 +247,7 @@ const PAGES = {
 
       <section class="section wrap" id="about-preview">
         <h2>${ui('关于这个项目', 'About this project')}</h2>
-        <p class="lead">走进名画是一座可以走进去的线上美术馆：每一幅名画都是一个可探索的空间，配有双语故事，最后引导观众去看真迹。</p>
-        <p class="lead">作者：Tia，用AI制作，所有内容由本人撰写和核对。</p>
+        ${ABOUT.intro.map(p => para(p, 'lead')).join('')}
         <a class="btn" href="${ROOT}about/">${ui('关于', 'About')} →</a>
       </section>`;
     onLang(() => { const m = document.getElementById('mapBox'); if (m) m.innerHTML = mapSVG(R, { small: true }); });
@@ -295,10 +327,14 @@ const PAGES = {
       ${one ? `<p style="margin-top:28px"><a class="btn" href="${ROOT}museums/">← ${ui('所有博物馆', 'All museums')}</a></p>` : ''}</section>`;
   },
 
-  // ---------- 关于（占位，文字稍后由 Tia 提供） ----------
+  // ---------- 关于（文字来自 Tia，见上面的 ABOUT） ----------
   about(R, main) {
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('关于', 'About')}</h1></div>
-      <section class="section wrap"><div class="placeholder">${ui('这里的文字即将补充。', 'Text coming soon.')}</div></section>`;
+      <section class="section wrap about">
+        ${ABOUT.intro.map(p => para(p, 'lead')).join('')}
+        ${para(ABOUT.me)}
+        ${para(ABOUT.principles)}
+      </section>`;
   }
 };
 

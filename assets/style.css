@@ -46,6 +46,9 @@ img { max-width: 100%; }
 body.lang-zh .en, body.lang-zh .en-title { display: none !important; }
 body.lang-en .zh { display: none !important; }
 body:not(.lang-en) .en-ui { display: none !important; }
+body:not(.lang-both) .en-sub { display: none !important; }   /* 只在双语时出现的英文小字 */
+.credit-line { display: block; }
+.tba { color: var(--muted); font-style: italic; }
 /* 标题、卡片名：双语时英文换行显示，更小、更淡 */
 :is(h1, h3, .card .name, .series .name, .ways .name, .group h3) .sep { display: none; }
 body.lang-both :is(h1, .card .name, .series .name, .ways .name, .group h3) > .en { display: block; font-size: .62em; color: var(--muted); font-style: italic; margin-top: 2px; }
@@ -79,6 +82,11 @@ body.lang-both :is(h1, .card .name, .series .name, .ways .name, .group h3) > .en
 .page-title { padding-top: 40px; padding-bottom: 8px; }
 .page-title h1 { font-size: 44px; margin: 0; line-height: 1.15; }
 .soon { color: var(--muted); font-size: 13px; letter-spacing: .04em; }
+.about p { max-width: 680px; }
+.about p strong { font-weight: 500; color: var(--ink); }
+body.lang-both p.lead.zh + p.lead.en { margin-top: -20px; }
+body.lang-both .about p.zh:not(.lead) { margin-bottom: 4px; }
+body.lang-both .about p.en:not(.lead) { margin-top: 0; color: var(--muted); }
 .placeholder { border: 1px dashed var(--line); border-radius: 10px; padding: 28px; color: var(--muted); text-align: center; }
 
 /* 开场大图：原画完整展示，不裁切 */
@@ -173,7 +181,7 @@ body.scene canvas { display: block; touch-action: none; }
 #status { top: 12px; right: 12px; flex-direction: column; align-items: flex-end; gap: 8px; }
 #progress, #leftHint { font-size: 12px; padding: 5px 11px; border-radius: 999px; }
 #endBtn { animation: fadein var(--slow) ease both; }
-#sceneHome { position: fixed; z-index: 21; left: 12px; bottom: 12px; font-size: 12px; text-decoration: none; color: var(--muted); }
+#sceneHome { position: fixed; z-index: 21; left: 12px; top: 12px; font-size: 12px; text-decoration: none; color: var(--muted); }
 .scene.in-room #sceneHome { display: none; }
 
 /* 开场原画 */
@@ -182,10 +190,12 @@ body.scene canvas { display: block; touch-action: none; }
 #intro.fade { opacity: 0; pointer-events: none; }
 #intro.fade img { transform: scale(1.03); }
 #introMissing { position: absolute; top: 40%; width: 100%; text-align: center; color: var(--muted); font-size: 14px; }
-#enter { position: absolute; left: 50%; bottom: calc(7% + 64px); transform: translateX(-50%); font-size: 17px; padding: 11px 26px; }
+#introBottom { position: absolute; left: 12px; right: 12px; bottom: 8px; display: flex; flex-direction: column; align-items: center; gap: 4vh; pointer-events: none; }
+#introBottom > * { pointer-events: auto; }
+#enter { font-size: 17px; padding: 11px 26px; }
 #enter span { display: block; }
 #enter span.en { font-size: 12px; opacity: .8; }
-#introInfo { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 24px); padding: 6px 12px; text-align: center; font-size: 11px; color: var(--muted); line-height: 1.7; }
+#introInfo { width: max-content; max-width: 100%; padding: 6px 12px; text-align: center; font-size: 11px; color: var(--muted); line-height: 1.7; }
 #introInfo .lbl { color: var(--ink); }
 
 #hint {
@@ -205,7 +215,11 @@ body.scene canvas { display: block; touch-action: none; }
 
 /* 弹窗 */
 .popup { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 8; width: min(520px, calc(100% - 32px)); padding: 10px; display: none; text-align: center; animation: fadein .5s ease; }
+.popup { max-height: calc(100% - 32px); overflow-y: auto; }
 .popup img { width: 100%; display: block; }
+.zoomable { cursor: zoom-in; }
+.rec-box { text-align: left; margin: 4px 8px 8px; font-size: 13px; }
+.rec-box summary { cursor: pointer; color: var(--muted); padding: 4px 0; }
 .popup p { margin: 8px; font-size: 13px; }
 .close { position: absolute; top: 6px; right: 8px; border: 0; background: var(--veil); color: var(--ink); font-size: 20px; line-height: 1; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; z-index: 1; }
 
@@ -271,3 +285,25 @@ body.scene canvas { display: block; touch-action: none; }
   .versions { flex-direction: column; }
   .final h2 { font-size: 30px; }
 }
+
+/* 作品档案表 */
+.record { border-collapse: collapse; width: min(560px, 100%); margin: 8px auto 0; font-size: 14px; }
+.record th, .record td { text-align: left; vertical-align: top; padding: 7px 10px; border-bottom: 1px solid var(--line); }
+.record th { font-weight: 400; color: var(--muted); white-space: nowrap; width: 1%; }
+.rec-box .record { font-size: 13px; }
+.zoom-row { text-align: center; margin: 16px 0 0; }
+
+/* 延伸阅读与来源（场景页最底部） */
+.reading { width: min(560px, 100%); margin: 24px auto 28px; text-align: center; }
+.reading ul { list-style: none; padding: 0; margin: 8px 0 0; font-size: 14px; line-height: 2; }
+
+/* 细节放大 */
+#zoom { position: fixed; inset: 0; z-index: 40; background: var(--paper); animation: fadein .4s ease; }
+#zoomStage { position: absolute; inset: 0; overflow: hidden; touch-action: none; cursor: grab; }
+#zoomStage:active { cursor: grabbing; }
+#zoomImg { position: absolute; left: 0; top: 0; max-width: none; transform-origin: 0 0; user-select: none; -webkit-user-drag: none; }
+#zoom .close { top: 12px; right: 12px; width: 36px; height: 36px; border: 1px solid var(--line); }
+#zoomBar { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; gap: 2px; padding: 4px; border-radius: 999px; }
+#zoomBar button { font: inherit; font-size: 15px; min-width: 40px; height: 36px; padding: 0 12px; border: 0; border-radius: 999px; background: transparent; color: var(--ink); cursor: pointer; }
+#zoomBar button:hover { background: var(--paper-2); }
+#zoomHint { position: absolute; left: 50%; top: 14px; transform: translateX(-50%); font-size: 12px; padding: 5px 12px; border-radius: 999px; color: var(--muted); pointer-events: none; max-width: calc(100% - 120px); text-align: center; }

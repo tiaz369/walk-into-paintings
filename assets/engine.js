@@ -9,7 +9,7 @@
 // 这个文件只负责“怎么做”，不放任何某一幅画的文字。
 // =====================================================================
 import * as THREE from 'three';
-import { bi, ui, textOf, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, loadRegistry, sceneCard, ROOT } from './site.js';
+import { bi, ui, textOf, altAttr, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, ROOT } from './site.js';
 
 export async function startScene(sceneUrl) {
   const S = await fetch(sceneUrl).then(r => r.json());
@@ -28,12 +28,34 @@ export async function startScene(sceneUrl) {
 function buildDOM(S, R, meta) {
   const P = S.painting, L = S.label, E = S.ending;
   const labelLine = { zh: [L.title.zh, L.artist.zh, L.date.zh, L.museum.zh].join(' · '), en: [L.title.en, L.artist.en, L.date.en, L.museum.en].join(' · ') };
+  const imgLine = imageSourceHTML(L.source);   // 图片：… / Image: …
+  const missing = file => ui(`（找不到 ${file}）`, `(Image not found: ${file})`);
+  const TBA = `<span class="tba">${ui('待补充', 'To be added')}</span>`;
+
+  // 作品档案表：画家（生卒年）、画名、年份、材质、尺寸、收藏地、博物馆作品页
+  const REC = [['artist', '画家（生卒年）', 'Artist (dates)'], ['title', '画名', 'Title'], ['date', '年份', 'Date'],
+    ['medium', '材质', 'Medium'], ['dimensions', '尺寸', 'Dimensions'], ['collection', '收藏地', 'Collection'], ['url', '博物馆作品页', 'Museum page']];
+  const recordHTML = () => !S.record ? '' : `<table class="record">${REC.map(([k, zh, en]) => {
+    const v = S.record[k];
+    const val = k === 'url' ? (v ? `<a href="${v}" target="_blank" rel="noopener">${ui('打开', 'Open')} ↗</a>` : TBA)
+      : (v && (v.zh || v.en) ? bi(v, ' / ') : TBA);
+    return `<tr><th>${ui(zh, en)}</th><td>${val}</td></tr>`;
+  }).join('')}</table>`;
+
+  // 延伸阅读与来源（页面最底部）
+  const readingItems = ((S.reading && S.reading.items) || []).filter(it => it.url && it.title && (it.title.zh || it.title.en));
+  const readingHTML = !S.reading ? '' : `<section class="reading">
+      <div class="section-title">${ui('延伸阅读与来源', 'Further reading and sources')}</div>
+      ${readingItems.length ? `<ul>${readingItems.map(it => `<li><a href="${it.url}" target="_blank" rel="noopener">${bi(it.title, ' / ')}</a> ↗</li>`).join('')}</ul>`
+        : `<p class="soon">${ui('即将补充', 'Coming soon')}</p>`}
+    </section>`;
+
   const actHTML = (a, i) => `
     <section class="act" id="act${i + 1}">
-      <img class="reveal" src="${a.image}" alt="${a.alt || ''}" />
+      <img class="reveal" src="${a.image}" ${altAttr(a.alt || '')} />
       <p class="act-cap reveal">${a.caption ? `<span class="zh">${a.caption.zh}</span><span class="en">${a.caption.en}</span>` : ''}</p>
       <div class="act-text reveal">
-        <h3><small>${a.kicker || ''}</small>${a.title.en ? bi(a.title) : `<span class="zh">${a.title.zh}</span>`}</h3>
+        <h3><small>${a.kicker || ''}</small>${bi(a.title)}</h3>
         <p class="zh">${a.text.zh}</p>
         <p class="en">${a.text.en}</p>
       </div>
@@ -57,10 +79,12 @@ function buildDOM(S, R, meta) {
   <img id="vpOverlay" src="${P.image}" alt="" />
 
   <div id="intro">
-    <img id="introImg" src="${P.image}" alt="${P.alt || ''}" />
-    <div id="introMissing" class="hidden">（找不到 ${P.image}）</div>
-    <button id="enter" class="btn primary"><span class="zh">${S.enter.zh}</span><span class="en">${S.enter.en}</span></button>
-    <div id="introInfo" class="panel"><div class="lbl">${bi(labelLine, ' / ')}</div>${creditHTML()}</div>
+    <img id="introImg" src="${P.image}" ${altAttr(P.alt || '')} />
+    <div id="introMissing" class="hidden">${missing(P.image)}</div>
+    <div id="introBottom">
+      <button id="enter" class="btn primary"><span class="zh">${S.enter.zh}</span><span class="en">${S.enter.en}</span></button>
+      <div id="introInfo" class="panel"><div class="lbl">${bi(labelLine, ' / ')}</div><div>${imgLine}</div></div>
+    </div>
   </div>
   <a id="sceneHome" href="${ROOT}">← ${ui('走进名画', 'Walk into Paintings')}</a>
 
@@ -87,13 +111,16 @@ function buildDOM(S, R, meta) {
     <div id="progress" class="panel"></div>
     <button class="btn" id="soundBtn"></button>
     <div id="leftHint" class="panel hidden"></div>
+    <button class="btn hidden" id="audioBtn"></button>
     <button class="btn primary hidden" id="endBtn">${ui('进入结尾', 'To the ending')} →</button>
   </div>
 
   <div class="popup panel" id="compare">
     <button class="close" data-close="compare" aria-label="Close">×</button>
-    <img src="${P.image}" alt="${P.alt || ''}" />
-    <p>${bi(labelLine, ' / ')}</p>
+    <img src="${P.image}" ${altAttr(P.alt || '')} data-zoom="${(S.zoom && S.zoom.image) || P.image}" class="zoomable" />
+    <p>${bi(labelLine, ' / ')}<br><small>${imgLine}</small></p>
+    <p><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button></p>
+    ${S.record ? `<details class="rec-box"><summary>${ui('作品档案', 'Artwork record')}</summary>${recordHTML()}</details>` : ''}
   </div>
   <div class="popup panel" id="shot">
     <button class="close" data-close="shot" aria-label="Close">×</button>
@@ -108,6 +135,15 @@ function buildDOM(S, R, meta) {
     <div class="en-title" id="cardTitleEn"></div>
     <p id="cardZh" class="zh"></p>
     <p class="en" id="cardEn"></p>
+  </div>
+
+  <div id="zoom" class="hidden" role="dialog" aria-label="Zoom">
+    <div id="zoomStage"><img id="zoomImg" alt="" draggable="false" /></div>
+    <button class="close" id="zoomClose" aria-label="Close">×</button>
+    <div id="zoomBar" class="panel">
+      <button id="zoomOut" aria-label="Zoom out">−</button><button id="zoomReset">${ui('还原', 'Reset')}</button><button id="zoomIn" aria-label="Zoom in">+</button>
+    </div>
+    <div id="zoomHint" class="panel">${ui('双指或滚轮放大，拖动查看细节', 'Pinch or scroll to zoom, drag to explore')}</div>
   </div>
 
   <div id="joy"><div id="knob"></div></div>
@@ -127,14 +163,17 @@ function buildDOM(S, R, meta) {
         <span class="cmp-tag" id="cmpTagA" style="left:8px"></span>
         <span class="cmp-tag" id="cmpTagB" style="right:8px"></span>
       </div>
-      <div class="section-title">${ui('去看真迹', 'See the real paintings')}<small class="en">See the real paintings</small></div>
+      ${S.record ? `<div class="section-title">${ui('作品档案', 'Artwork record')}<small class="en-sub">Artwork record</small></div>${recordHTML()}
+      <p class="zoom-row"><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button></p>` : ''}
+      <div class="section-title">${ui('去看真迹', 'See the real paintings')}<small class="en-sub">See the real paintings</small></div>
       <div class="links">${museumLinks}</div>
       ${nextHTML}
       <div class="end-actions">
         <button class="btn" id="backRoom">← ${ui('回到房间', 'Back to the room')}</button>
         <a class="btn" href="${ROOT}">${ui('更多名画', 'More paintings')} →</a>
       </div>
-      <div class="credit">${creditHTML()}</div>
+      ${readingHTML}
+      <div class="credit">${imgLine}<br>${creditHTML()}</div>
     </section>
   </div>`);
 }
@@ -510,12 +549,13 @@ function run(S, R, meta) {
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => togglePopup(b.dataset.close, false));
   // 图片真的加载失败时，才换成“找不到”的提示
   function onMissing(img, text, cls = 'missing') {
-    const fail = () => { if (!img.isConnected) return; const d = document.createElement('div'); d.className = cls; d.textContent = text; img.replaceWith(d); };
+    const fail = () => { if (!img.isConnected) return; const d = document.createElement('div'); d.className = cls; d.innerHTML = text; img.replaceWith(d); };
     img.addEventListener('error', fail, { once: true });
     if (img.loading !== 'lazy' && img.complete && img.getAttribute('src') && img.naturalWidth === 0) fail();
   }
-  onMissing($('compare').querySelector('img'), `（找不到 ${S.painting.image}）`);
-  document.querySelectorAll('.act img').forEach(img => onMissing(img, `（找不到 ${img.getAttribute('src')}）`, 'ph reveal'));
+  const missing = file => ui(`（找不到 ${file}）`, `(Image not found: ${file})`);
+  onMissing($('compare').querySelector('img'), missing(S.painting.image));
+  document.querySelectorAll('.act img').forEach(img => onMissing(img, missing(img.getAttribute('src')), 'ph reveal'));
 
   // ---------- 独家发现：褪色开关 ----------
   const wallTarget = new THREE.Color(fadeOpts[0].color);
@@ -572,6 +612,84 @@ function run(S, R, meta) {
   if (S.sound) $('soundBtn').onclick = () => setSound(!soundOn); else $('soundBtn').classList.add('hidden');
   document.addEventListener('visibilitychange', () => { if (actx && soundOn) document.hidden ? actx.suspend() : actx.resume(); });
 
+  // ---------- 语音导览（scene.json 的 audioGuide 填了录音文件才显示按钮） ----------
+  const AG = S.audioGuide || {};
+  let guide = null;
+  const guideSrc = () => (lang === 'en' ? (AG.en || AG.zh) : (AG.zh || AG.en)) || '';
+  const guideLabel = () => {
+    const playing = guide && !guide.paused;
+    $('audioBtn').innerHTML = playing ? ui('❚❚ 暂停导览', '❚❚ Pause guide') : ui('▶ 语音导览', '▶ Audio guide');
+  };
+  if (AG.zh || AG.en) {
+    $('audioBtn').classList.remove('hidden');
+    $('audioBtn').onclick = () => {
+      const src = guideSrc();
+      if (!guide || guide.dataset.src !== src) {
+        if (guide) guide.pause();
+        guide = new Audio(src); guide.dataset.src = src;
+        guide.onended = guide.onpause = guide.onplay = guideLabel;
+      }
+      guide.paused ? guide.play() : guide.pause();
+    };
+  }
+  guideLabel();
+
+  // ---------- 细节放大：双指 / 滚轮放大，拖动查看 ----------
+  const zoom = $('zoom'), zStage = $('zoomStage'), zImg = $('zoomImg'), Z_MAX = 6;
+  let zs = 1, zx = 0, zy = 0, zbw = 0, zbh = 0, zWasWalking = false, lastTap = 0;
+  const zPtrs = new Map();
+  let zPrev = null;   // 上一次两指的距离和中点
+  function zFit() {
+    const W = zStage.clientWidth, Hh = zStage.clientHeight, a = (zImg.naturalWidth || 4) / (zImg.naturalHeight || 3);
+    if (W / Hh > a) { zbh = Hh; zbw = Hh * a; } else { zbw = W; zbh = W / a; }
+    zImg.style.width = zbw + 'px'; zImg.style.height = zbh + 'px';
+  }
+  function zApply() {   // 不让图片被拖出画面
+    const W = zStage.clientWidth, Hh = zStage.clientHeight, w = zbw * zs, h = zbh * zs;
+    zx = w <= W ? (W - w) / 2 : Math.min(0, Math.max(W - w, zx));
+    zy = h <= Hh ? (Hh - h) / 2 : Math.min(0, Math.max(Hh - h, zy));
+    zImg.style.transform = `translate(${zx}px, ${zy}px) scale(${zs})`;
+  }
+  function zoomAt(ns, cx, cy) {   // 以手指 / 鼠标所在的点为中心放大
+    ns = Math.max(1, Math.min(Z_MAX, ns));
+    const r = zStage.getBoundingClientRect(), px = cx - r.left, py = cy - r.top;
+    zx = px - (px - zx) * ns / zs; zy = py - (py - zy) * ns / zs; zs = ns; zApply();
+  }
+  function zReset() { zFit(); zs = 1; zApply(); }
+  const zCenter = () => { const r = zStage.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+  function openZoom(src) {
+    zWasWalking = walking; walking = false; for (const k in keys) keys[k] = false;
+    zoom.classList.remove('hidden');
+    if (zImg.getAttribute('src') !== src) { zImg.onload = zReset; zImg.src = src; }
+    zReset();
+  }
+  function closeZoom() { zoom.classList.add('hidden'); zPtrs.clear(); walking = zWasWalking; }
+  document.addEventListener('click', e => { const t = e.target.closest('[data-zoom]'); if (t) openZoom(t.dataset.zoom); });
+  $('zoomClose').onclick = closeZoom;
+  $('zoomIn').onclick = () => zoomAt(zs * 1.6, ...zCenter());
+  $('zoomOut').onclick = () => zoomAt(zs / 1.6, ...zCenter());
+  $('zoomReset').onclick = zReset;
+  window.addEventListener('keydown', e => { if (e.key === 'Escape' && !zoom.classList.contains('hidden')) closeZoom(); });
+  zStage.addEventListener('wheel', e => { e.preventDefault(); zoomAt(zs * Math.exp(-e.deltaY * 0.0015), e.clientX, e.clientY); }, { passive: false });
+  zStage.addEventListener('pointerdown', e => {
+    zStage.setPointerCapture(e.pointerId); zPtrs.set(e.pointerId, { x: e.clientX, y: e.clientY }); zPrev = null;
+    const now = performance.now();   // 双击 / 双击屏幕：放大或还原
+    if (zPtrs.size === 1 && now - lastTap < 300) { zs > 1.05 ? zReset() : zoomAt(2.5, e.clientX, e.clientY); lastTap = 0; } else lastTap = now;
+  });
+  zStage.addEventListener('pointermove', e => {
+    const p = zPtrs.get(e.pointerId); if (!p) return;
+    if (zPtrs.size === 1) { zx += e.clientX - p.x; zy += e.clientY - p.y; zApply(); }
+    p.x = e.clientX; p.y = e.clientY;
+    if (zPtrs.size === 2) {
+      const [a, b] = [...zPtrs.values()];
+      const d = Math.hypot(a.x - b.x, a.y - b.y), mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      if (zPrev) { zx += mx - zPrev.mx; zy += my - zPrev.my; zoomAt(zs * d / zPrev.d, mx, my); }
+      zPrev = { d, mx, my };
+    }
+  });
+  const zUp = e => { zPtrs.delete(e.pointerId); zPrev = null; };
+  zStage.addEventListener('pointerup', zUp); zStage.addEventListener('pointercancel', zUp);
+
   // ---------- 手机摇杆 ----------
   const joy = $('joy'), knob = $('knob'), joyMove = { x: 0, y: 0 };
   let joyId = null;
@@ -626,8 +744,9 @@ function run(S, R, meta) {
   const gallery = $('gallery'), E = S.ending;
   for (const v of E.versions) {
     const fig = document.createElement('figure'), img = document.createElement('img');
-    img.src = v.image; img.alt = textOf(v.caption, 'zh'); img.loading = 'lazy';
-    onMissing(img, `（找不到 ${v.image}）`, 'ph');
+    img.src = v.image; img.loading = 'lazy'; img.className = 'zoomable'; img.dataset.zoom = v.image;
+    img.dataset.altZh = textOf(v.caption, 'zh'); img.dataset.altEn = textOf(v.caption, 'en'); img.alt = textOf(v.caption, lang);
+    onMissing(img, missing(v.image), 'ph');
     const cap = document.createElement('figcaption'); cap.innerHTML = bi(v.caption, ' / ');
     fig.append(img, cap); $('versions').append(fig);
   }
@@ -652,7 +771,7 @@ function run(S, R, meta) {
   cmp.addEventListener('pointerup', () => { cmpDrag = false; });
   cmp.addEventListener('pointercancel', () => { cmpDrag = false; });
   setCmpImages(); setCmp(50);
-  onLang(() => { updateProgress(); setCmpImages(); soundLabel(); });
+  onLang(() => { updateProgress(); setCmpImages(); soundLabel(); guideLabel(); });
   updateProgress();
 
   $('endBtn').onclick = () => {
@@ -716,5 +835,6 @@ function run(S, R, meta) {
     camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
     placeRect(introImg); if (view === 'aligned') placeRect(vpOverlay);
+    if (!zoom.classList.contains('hidden')) zReset();
   });
 }
