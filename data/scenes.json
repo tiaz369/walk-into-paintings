@@ -62,7 +62,7 @@
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
-      "_说明": "原画 images/yellow-house.jpg 上传并对准后，把 status 改成 live", "id": "yellow-house", "status": "soon", "week": 1, "path": "scenes/yellow-house/", "cover": "scenes/yellow-house/images/yellow-house.jpg",
+      "id": "yellow-house", "status": "live", "week": 1, "path": "scenes/yellow-house/", "cover": "scenes/yellow-house/images/yellow-house.jpg",
       "title": { "zh": "黄房子", "en": "The Yellow House" },
       "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles",
       "version": "full", "place": "arles", "themes": ["houses-streets"], "period": "post-impressionism", "added": "2026-10-15",

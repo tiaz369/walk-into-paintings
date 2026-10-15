@@ -513,7 +513,7 @@ function run(S, R, meta) {
   scene.add(vpRing, vpDot);
 
   // ---------- 投影贴图：把原画从画家视角“投”到墙、地板和家具上 ----------
-  const projector = new THREE.PerspectiveCamera(VIEW.fov, VIEW.aspect, 0.3, 14);
+  const projector = new THREE.PerspectiveCamera(VIEW.fov, VIEW.aspect, 0.3, OUT ? 220 : 14);   // 户外看得更远
   projector.position.set(VIEW.x, VIEW.eye, VIEW.z);
   projector.rotation.set(VIEW.pitch, -VIEW.yaw, 0, 'YXZ');
   projector.updateMatrixWorld(); projector.updateProjectionMatrix();
@@ -531,7 +531,7 @@ function run(S, R, meta) {
   const projFrag = `
     uniform sampler2D uPaint; uniform sampler2D uDepth; uniform sampler2D uMap;
     uniform mat4 uProjVP; uniform vec3 uProjPos; uniform float uNear; uniform float uFar;
-    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha;
+    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky;
     varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv;
     float linDepth(float d) { float z = d * 2.0 - 1.0; return 2.0 * uNear * uFar / (uFar + uNear - z * (uFar - uNear)); }
     void main() {
@@ -544,7 +544,9 @@ function run(S, R, meta) {
         vec3 ndc = pc.xyz / pc.w; vec2 uv = ndc.xy * 0.5 + 0.5;
         if (uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0 && ndc.z < 1.0) {
           float sceneD = linDepth(texture2D(uDepth, uv).r), myD = linDepth(ndc.z * 0.5 + 0.5);
-          if (myD <= sceneD + 0.05 && dot(n, normalize(uProjPos - vWorld)) > 0.0) col = texture2D(uPaint, uv).rgb;   // 照到了：显示原画
+          float edge = smoothstep(0.0, 0.05, min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y)));   // 原画边缘慢慢过渡，不留硬边
+          if (myD <= sceneD + 0.05 + sceneD * 0.02 && dot(n, normalize(uProjPos - vWorld)) > 0.0) col = mix(col, texture2D(uPaint, uv).rgb, uEdge > 0.5 ? edge : 1.0);   // 照到了：显示原画
+          else if (uSky > 0.5) col = mix(col, texture2D(uPaint, vec2(uv.x, 0.9)).rgb, edge);   // 天空被房子挡住的地方：用同一列画里天空的颜色
         }
       }
       if (uWall > 0.5) {   // 褪色开关：把墙上偏蓝的颜色加回一点红色
@@ -556,13 +558,13 @@ function run(S, R, meta) {
     }`;
   const white = new THREE.DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1); white.needsUpdate = true;
   const projCache = new Map();
-  function projMaterial(toon, isWall, doubleSide) {
-    const key = toon.uuid + isWall + doubleSide;
+  function projMaterial(toon, isWall, doubleSide, isSky = false) {
+    const key = toon.uuid + isWall + doubleSide + isSky;
     if (!projCache.has(key)) {
       const map = toon.map || white;
       projCache.set(key, new THREE.ShaderMaterial({
         uniforms: { ...projUniforms, uMap: { value: map }, uRepeat: { value: map.repeat ? map.repeat.clone() : new THREE.Vector2(1, 1) },
-                    uBase: { value: toon.color.clone() }, uWall: { value: isWall ? 1 : 0 }, uDouble: { value: doubleSide ? 1 : 0 }, uAlpha: { value: 1 } },
+                    uBase: { value: toon.color.clone() }, uWall: { value: isWall ? 1 : 0 }, uDouble: { value: doubleSide ? 1 : 0 }, uAlpha: { value: 1 }, uEdge: { value: OUT ? 1 : 0 }, uSky: { value: isSky ? 1 : 0 } },
         vertexShader: projVert, fragmentShader: projFrag, side: doubleSide ? THREE.DoubleSide : THREE.FrontSide, transparent: !!toon.transparent
       }));
     }
@@ -570,9 +572,9 @@ function run(S, R, meta) {
   }
   const solids = [];
   scene.traverse(o => {
-    if (!o.isMesh || o.userData.noPaint || o.userData.isSky) return;
+    if (!o.isMesh || o.userData.noPaint) return;
     o.userData.flatMat = o.material;
-    o.userData.paintMat = projMaterial(o.material, !!o.userData.isWall, o === ceil);
+    o.userData.paintMat = projMaterial(o.material, !!o.userData.isWall, o === ceil || !!o.userData.isSky, !!o.userData.isSky);   // 天花板和天空从里面看
     solids.push(o);
   });
   const PROJ = S.projection !== false;   // 原画投影：画家视角和 3D 形状对准以后才打开
