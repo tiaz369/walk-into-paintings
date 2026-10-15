@@ -2,7 +2,11 @@
   "_说明": "卧室场景的全部内容。改文字、改卡片、改三幕，只改这个文件；3D 和互动功能在 assets/engine.js。所有事实文字由 Tia 提供。",
 
   "id": "bedroom",
-  "painting": { "image": "images/v1888.jpg", "width": 1800, "height": 1426, "alt": "梵高《阿尔勒的卧室》1888" },
+  "seo": {
+    "title": "阿尔勒的卧室 · 走进名画 | The Bedroom · Walk into Paintings",
+    "description": "在浏览器里走进梵高1888年的《阿尔勒的卧室》。Walk into Van Gogh's 1888 Bedroom in Arles."
+  },
+  "painting": { "image": "images/v1888.jpg", "width": 1800, "height": 1426, "alt": { "zh": "梵高《阿尔勒的卧室》1888", "en": "Vincent van Gogh, The Bedroom, 1888" } },
 
   "label": {
     "_说明": "展签：画名、画家、年份、收藏地、图片来源",
@@ -10,6 +14,7 @@
     "artist": { "zh": "梵高", "en": "Vincent van Gogh" },
     "date": { "zh": "1888年10月", "en": "October 1888" },
     "museum": { "zh": "阿姆斯特丹梵高博物馆", "en": "Van Gogh Museum, Amsterdam" },
+    "_图片来源": "会显示成“图片：… / Image: …”",
     "source": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
   },
 
@@ -114,17 +119,17 @@
   "ending": {
     "unlockAfter": 3,
     "acts": [
-      { "image": "images/v1888.jpg", "alt": "梵高《阿尔勒的卧室》1888",
+      { "image": "images/v1888.jpg", "alt": { "zh": "梵高《阿尔勒的卧室》1888", "en": "Vincent van Gogh, The Bedroom, 1888" },
         "caption": { "zh": "1888年10月 · 阿姆斯特丹梵高博物馆", "en": "October 1888 · Van Gogh Museum, Amsterdam" },
-        "kicker": "ACT I", "title": { "zh": "第一幕 · 期待", "en": "" },
+        "kicker": "ACT I", "title": { "zh": "第一幕 · 期待", "en": "Anticipation" },
         "text": { "zh": "1888年秋，梵高租下阿尔勒的黄房子，梦想在这里建立画家们共同生活的\"南方画室\"。他画下自己的卧室，等待高更到来。", "en": "In autumn 1888, Van Gogh rented the Yellow House in Arles, dreaming of a \"Studio of the South\" where artists would live together. He painted his bedroom while waiting for Gauguin." } },
-      { "image": "images/v1889-chicago.jpg", "alt": "梵高《阿尔勒的卧室》1889 · 芝加哥",
+      { "image": "images/v1889-chicago.jpg", "alt": { "zh": "梵高《阿尔勒的卧室》1889 · 芝加哥", "en": "Vincent van Gogh, The Bedroom, 1889 · Chicago" },
         "caption": { "zh": "1889年9月 · 芝加哥艺术博物馆", "en": "September 1889 · Art Institute of Chicago" },
-        "kicker": "ACT II", "title": { "zh": "第二幕 · 破碎", "en": "" },
+        "kicker": "ACT II", "title": { "zh": "第二幕 · 破碎", "en": "Shattered" },
         "text": { "zh": "高更来了，但两个月后，两人激烈争吵。梵高精神崩溃住进医院，高更离开了阿尔勒。这幅画后来也在他住院期间受潮损坏。", "en": "Gauguin came, but two months later they quarrelled violently. Van Gogh broke down and was hospitalised, and Gauguin left Arles. The painting was later damaged by damp while he was in hospital." } },
-      { "image": "images/v1889-orsay.jpg", "alt": "梵高《阿尔勒的卧室》1889 · 奥赛",
+      { "image": "images/v1889-orsay.jpg", "alt": { "zh": "梵高《阿尔勒的卧室》1889 · 奥赛", "en": "Vincent van Gogh, The Bedroom, 1889 · Orsay" },
         "caption": { "zh": "1889年 · 巴黎奥赛博物馆", "en": "1889 · Musée d'Orsay, Paris" },
-        "kicker": "ACT III", "title": { "zh": "第三幕 · 回望", "en": "" },
+        "kicker": "ACT III", "title": { "zh": "第三幕 · 回望", "en": "Looking back" },
         "text": { "zh": "1889年，梵高自愿住进圣雷米的疗养院，在那里重画了这间卧室两次，较小的一幅送给母亲和妹妹。那时，他已经不住在这里了。", "en": "In 1889, Van Gogh entered an asylum in Saint-Rémy, where he painted the bedroom twice more, the smaller one for his mother and sister. By then, he no longer lived there." } }
     ],
     "final": { "zh": "一间等人的房间。", "en": "A room that waited." },
@@ -133,6 +138,40 @@
       { "image": "images/v1889-chicago.jpg", "short": { "zh": "1889 · 芝加哥", "en": "1889 · Chicago" },     "caption": { "zh": "1889年9月 · 芝加哥艺术博物馆", "en": "September 1889 · Art Institute of Chicago" } },
       { "image": "images/v1889-orsay.jpg",   "short": { "zh": "1889 · 巴黎", "en": "1889 · Paris" },       "caption": { "zh": "1889年 · 巴黎奥赛博物馆", "en": "1889 · Musée d'Orsay, Paris" } }
     ],
-    "museums": ["van-gogh-museum", "art-institute-chicago", "orsay"]
+    "museums": ["van-gogh-museum", "art-institute-chicago", "orsay"],
+    "exit": { "_说明": "结尾的“走出门”按钮：去黄房子（黄房子上线后才显示）", "scene": "yellow-house", "label": { "zh": "走出门", "en": "Step outside" }, "href": "../yellow-house/" }
+  },
+
+  "record": {
+    "_说明": "作品档案表：Tia 核对后填写。空着的格子会显示“待补充 / To be added”。url 是博物馆作品页的网址。",
+    "artist":     { "zh": "", "en": "" },
+    "title":      { "zh": "", "en": "" },
+    "date":       { "zh": "", "en": "" },
+    "medium":     { "zh": "", "en": "" },
+    "dimensions": { "zh": "", "en": "" },
+    "collection": { "zh": "", "en": "" },
+    "url": ""
+  },
+
+  "zoom": {
+    "_说明": "细节放大：默认放大原画。想换更清晰的大图，把文件放进 images/，在这里写文件名。",
+    "image": "images/v1888.jpg"
+  },
+
+  "reading": {
+    "_说明": "延伸阅读与来源（页面最底部）。每条写 title（中英文）和 url。还没填的时候显示“即将补充”。",
+    "items": [
+      { "title": { "zh": "梵高博物馆作品页", "en": "Van Gogh Museum: artwork page" }, "url": "https://vangoghmuseum.nl/en/collection/s0047v1962" },
+      { "title": { "zh": "芝加哥艺术博物馆作品页", "en": "Art Institute of Chicago: artwork page" }, "url": "https://www.artic.edu/artworks/28560/the-bedroom" },
+      { "title": { "zh": "奥赛博物馆作品页", "en": "Musée d'Orsay: artwork page" }, "url": "https://www.musee-orsay.fr/en/artworks/la-chambre-de-van-gogh-arles-746" },
+      { "title": { "zh": "芝加哥艺术博物馆文章：卧室墙上的画", "en": "Art Institute of Chicago article: On the wall of Van Gogh's bedroom" }, "url": "https://www.artic.edu/articles/572/on-the-wall-of-van-goghs-bedroom" },
+      { "title": { "zh": "梵高给提奥的信，附卧室草图", "en": "Van Gogh's letter to Theo, with a sketch of the bedroom" }, "url": "https://www.vangoghmuseum.nl/en/letters/collection/ba0009" }
+    ]
+  },
+
+  "audioGuide": {
+    "_说明": "语音导览：把录音文件放进 audio/ 文件夹，在这里写文件名（例如 audio/guide-zh.mp3）。两个都空着时，按钮不显示。",
+    "zh": "",
+    "en": ""
   }
 }

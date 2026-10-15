@@ -1,0 +1,153 @@
+{
+  "_说明": "黄房子场景的全部内容。所有事实文字由 Tia 提供。房子的位置是按原画大致摆的，原画上传后会再对准（对准后把 projection 改成 true，就能在 3D 里看到原画的笔触）。",
+
+  "id": "yellow-house",
+  "painting": { "image": "images/yellow-house.jpg", "width": 1830, "height": 1440, "alt": { "zh": "梵高《黄房子（街道）》1888", "en": "Vincent van Gogh, The Yellow House (The Street), 1888" } },
+  "projection": false,
+
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title":  { "zh": "黄房子（街道）", "en": "The Yellow House (The Street)" },
+    "artist": { "zh": "梵高", "en": "Vincent van Gogh" },
+    "date":   { "zh": "1888年9月", "en": "September 1888" },
+    "museum": { "zh": "阿姆斯特丹梵高博物馆", "en": "Van Gogh Museum, Amsterdam" },
+    "_图片来源": "会显示成“图片：… / Image: …”",
+    "source": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
+  },
+
+  "enter": { "zh": "走进画里", "en": "Step into the painting" },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下房子、天空、地面看介绍 · 地上发光的圆点 = 梵高视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the houses, sky or ground to learn more · The glowing circle = Van Gogh's viewpoint"
+  },
+
+  "viewpoint": {
+    "_说明": "画家视角：站在广场上、黄房子对面。原画上传后会重新对准。",
+    "x": 0, "z": 0, "eye": 1.6, "yaw": 0.12, "pitch": 0.06, "fov": 55,
+    "text": { "zh": "从这里看，就是画里的样子。", "en": "From here, you see what the painting sees." }
+  },
+
+  "exclusive": {
+    "_说明": "独家发现：切到“今天”，黄房子慢慢淡出，只留下空的街角",
+    "type": "fadeObject", "targets": ["yellow-house"],
+    "options": [
+      { "id": "then",  "label": { "zh": "1888", "en": "1888" },  "fade": 0 },
+      { "id": "today", "label": { "zh": "今天", "en": "Today" }, "fade": 1 }
+    ]
+  },
+
+  "sound": "birds",
+
+  "colors": {
+    "line": "#3b3552", "ground": "#e4b84c", "sky": "#2b46a6", "trunk": "#6b4a2e", "leaves": "#4f8a4a",
+    "house": "#ecc64c", "shutter": "#3f8f4f", "restaurant": "#e6ad8c", "awning": "#c9653c",
+    "far": "#dcae62", "pink": "#e3a37f", "bridge": "#5f5a78", "street": "#d6a548", "glass": "#7b8db5"
+  },
+
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（广场），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [-60, 60, -90, 30],
+    "bounds": [-12, 12, -11, 8],
+    "groundCard": "ground",
+    "skyCard": "sky",
+    "skyRadius": 160
+  },
+
+  "objects": [
+    { "type": "building", "id": "yellow-house", "card": "shutters", "x": 1.5, "z": -14, "w": 9, "d": 7, "h": 7.4, "color": "house", "roof": "#d8873f",
+      "windows": [
+        { "face": "front", "x": 0.6,  "y": 5.4, "w": 1.0, "h": 1.5, "color": "shutter" },
+        { "face": "front", "x": 2.4,  "y": 5.4, "w": 1.0, "h": 1.5, "color": "shutter" },
+        { "face": "front", "x": 3.9,  "y": 5.4, "w": 1.0, "h": 1.5, "color": "shutter" },
+        { "face": "front", "x": 2.4,  "y": 2.4, "w": 1.0, "h": 1.5, "color": "shutter" },
+        { "face": "front", "x": 3.9,  "y": 2.4, "w": 1.0, "h": 1.5, "color": "shutter" },
+        { "face": "front", "x": 0.6,  "y": 1.25, "w": 1.2, "h": 2.5, "color": "shutter",
+          "portal": { "href": "../bedroom/", "label": { "zh": "回到卧室", "en": "Back to the bedroom" } } },
+        { "face": "front", "x": -2.6, "y": 2.0, "w": 2.6, "h": 2.2, "color": "glass" },
+        { "face": "side",  "x": 2.0,  "y": 5.4, "w": 1.0, "h": 1.5, "color": "shutter" },
+        { "face": "side",  "x": 4.5,  "y": 5.4, "w": 1.0, "h": 1.5, "color": "shutter" }
+      ] },
+    { "type": "building", "card": "restaurant", "x": -8.5, "z": -15.5, "w": 8, "d": 8, "h": 6.2, "color": "restaurant", "roof": "#c97a52",
+      "windows": [
+        { "face": "front", "x": -2.4, "y": 4.4, "w": 1.0, "h": 1.4, "color": "shutter" },
+        { "face": "front", "x": 0,    "y": 4.4, "w": 1.0, "h": 1.4, "color": "shutter" },
+        { "face": "front", "x": 2.4,  "y": 4.4, "w": 1.0, "h": 1.4, "color": "shutter" },
+        { "face": "front", "x": -1,   "y": 1.3, "w": 4.5, "h": 2.4, "color": "glass" }
+      ],
+      "boxes": [[6.2, 0.15, 1.6, "awning", -1, 2.9, 0.8]] },
+    { "type": "building", "x": 9.5, "z": -24, "w": 7, "d": 8, "h": 10, "color": "far", "roof": "#c98a4a",
+      "windows": [
+        { "face": "front", "x": -2, "y": 7.5, "w": 0.9, "h": 1.4, "color": "shutter" },
+        { "face": "front", "x": 0,  "y": 7.5, "w": 0.9, "h": 1.4, "color": "shutter" },
+        { "face": "front", "x": 2,  "y": 7.5, "w": 0.9, "h": 1.4, "color": "shutter" },
+        { "face": "front", "x": -2, "y": 4.5, "w": 0.9, "h": 1.4, "color": "shutter" },
+        { "face": "front", "x": 0,  "y": 4.5, "w": 0.9, "h": 1.4, "color": "shutter" },
+        { "face": "front", "x": 2,  "y": 4.5, "w": 0.9, "h": 1.4, "color": "shutter" }
+      ] },
+    { "type": "building", "x": 15.5, "z": -13, "w": 6, "d": 7, "h": 6, "color": "pink", "roof": "#b8724a" },
+    { "type": "building", "x": -17, "z": -18, "w": 6, "d": 7, "h": 5.5, "color": "far", "roof": "#b8724a" },
+    { "type": "road", "card": "title", "x0": 6.2, "x1": 12.5, "z0": -80, "z1": -12, "color": "street" },
+    { "type": "bridge", "card": "bridges", "z": -45, "x0": 2, "x1": 18, "y": 5.5, "color": "bridge" },
+    { "type": "bridge", "card": "bridges", "z": -62, "x0": 0, "x1": 22, "y": 6, "color": "bridge" },
+    { "type": "tree", "card": "restaurant", "x": -6.5, "z": -12.5, "h": 5.5, "r": 2.0 },
+    { "type": "tree", "x": -12, "z": -12, "h": 5, "r": 1.8 },
+    { "type": "tree", "x": -15, "z": -4, "h": 4.5, "r": 1.6 }
+  ],
+
+  "cards": {
+    "shutters":   { "title": { "zh": "绿色百叶窗", "en": "Green shutters" },
+                    "text": { "zh": "有绿色百叶窗的那一部分，就是梵高住的地方。1888年5月，他在这里租了四个房间。", "en": "The part with green shutters is where Van Gogh lived. In May 1888 he rented four rooms here." } },
+    "restaurant": { "title": { "zh": "左边的餐馆", "en": "The restaurant" },
+                    "text": { "zh": "梵高经常在画面左边的这家餐馆吃饭。", "en": "Van Gogh often ate at the restaurant on the left." } },
+    "bridges":    { "title": { "zh": "铁路桥", "en": "Railway bridges" },
+                    "text": { "zh": "他的朋友、邮递员约瑟夫·鲁兰，就住在第二座铁路桥后面。", "en": "His friend, the postman Joseph Roulin, lived just beyond the second railway bridge." } },
+    "sky":        { "title": { "zh": "蓝天", "en": "The sky" },
+                    "text": { "zh": "梵高在给提奥的信中写道，阳光下的黄房子，配上无比清新的蓝天，\"太了不起了\"。", "en": "Van Gogh wrote to Theo that the yellow houses in the sunlight, against the incomparably fresh blue, were \"tremendous\"." } },
+    "ground":     { "title": { "zh": "黄色的地面", "en": "Yellow ground" },
+                    "text": { "zh": "不只是房子，梵高说，连整个地面也是黄色的。", "en": "Not only the houses: Van Gogh said the whole ground was yellow too." } },
+    "title":      { "title": { "zh": "画的名字", "en": "The title" },
+                    "text": { "zh": "梵高自己把这幅画叫作《街道》，因为他画的不只是房子，而是他每天生活的这一片街区。", "en": "Van Gogh called this painting \"The Street\": it shows not just his house, but the neighbourhood he lived in every day." } }
+  },
+
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      { "image": "images/yellow-house.jpg", "alt": { "zh": "梵高《黄房子（街道）》1888", "en": "Vincent van Gogh, The Yellow House (The Street), 1888" },
+        "caption": { "zh": "1888年9月 · 阿姆斯特丹梵高博物馆", "en": "September 1888 · Van Gogh Museum, Amsterdam" },
+        "kicker": "ACT I", "title": { "zh": "第一幕 · 搬进来", "en": "Moving in" },
+        "text": { "zh": "1888年5月，梵高在阿尔勒拉马丁广场租下黄房子的四个房间。他终于有了一个地方，不仅能画画，还能请朋友来住。", "en": "In May 1888, Van Gogh rented four rooms in the Yellow House on Place Lamartine in Arles. At last he had a place to paint, and to invite friends to stay." } },
+      { "kicker": "ACT II", "title": { "zh": "第二幕 · 画家之家", "en": "A house for artists" },
+        "text": { "zh": "他想把这里变成一座画家之家，让志同道合的画家一起生活和创作。那年秋天，高更来了，在这里短暂住过一段时间。", "en": "He hoped to turn it into a house for artists, where like-minded painters could live and work together. That autumn, Gauguin came and stayed here for a short time." } },
+      { "kicker": "ACT III", "title": { "zh": "第三幕 · 消失的房子", "en": "The house that disappeared" },
+        "text": { "zh": "黄房子今天已经不在了。没有了房子的广场，看起来几乎和当年一样。", "en": "The Yellow House no longer exists. Without it, the square looks almost the same as it did then." } }
+    ],
+    "final": { "zh": "房子不在了，画还在。", "en": "The house is gone. The painting remains." },
+    "versions": [
+      { "image": "images/yellow-house.jpg", "short": { "zh": "1888 · 阿姆斯特丹", "en": "1888 · Amsterdam" }, "caption": { "zh": "1888年9月 · 阿姆斯特丹梵高博物馆", "en": "September 1888 · Van Gogh Museum, Amsterdam" } }
+    ],
+    "museums": ["van-gogh-museum"]
+  },
+
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸核对后填写。",
+    "artist":     { "zh": "文森特·梵高（1853–1890）", "en": "Vincent van Gogh (1853–1890)" },
+    "title":      { "zh": "黄房子（街道）", "en": "The Yellow House (The Street)" },
+    "date":       { "zh": "1888年9月，阿尔勒", "en": "September 1888, Arles" },
+    "medium":     { "zh": "布面油画", "en": "Oil on canvas" },
+    "dimensions": { "zh": "", "en": "" },
+    "collection": { "zh": "阿姆斯特丹梵高博物馆", "en": "Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)" },
+    "url": "https://www.vangoghmuseum.nl/en/collection/s0032V1962"
+  },
+
+  "zoom": { "image": "images/yellow-house.jpg" },
+
+  "reading": {
+    "items": [
+      { "title": { "zh": "梵高博物馆作品页", "en": "Van Gogh Museum: artwork page" }, "url": "https://www.vangoghmuseum.nl/en/collection/s0032V1962" },
+      { "title": { "zh": "梵高致提奥，约1888年9月29日", "en": "Van Gogh to Theo, c. 29 September 1888" }, "url": "http://www.vangoghletters.org/vg/letters/let691/letter.html" }
+    ]
+  },
+
+  "audioGuide": { "zh": "", "en": "" }
+}

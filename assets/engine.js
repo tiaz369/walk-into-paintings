@@ -9,9 +9,10 @@
 // 这个文件只负责“怎么做”，不放任何某一幅画的文字。
 // =====================================================================
 import * as THREE from 'three';
-import { bi, ui, textOf, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, loadRegistry, sceneCard, ROOT } from './site.js';
+import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, ROOT } from './site.js';
 
 export async function startScene(sceneUrl) {
+  removeStatic();
   const S = await fetch(sceneUrl).then(r => r.json());
   const R = await loadRegistry().catch(() => null);
   const meta = R && R.sceneById[S.id];
@@ -28,12 +29,36 @@ export async function startScene(sceneUrl) {
 function buildDOM(S, R, meta) {
   const P = S.painting, L = S.label, E = S.ending;
   const labelLine = { zh: [L.title.zh, L.artist.zh, L.date.zh, L.museum.zh].join(' · '), en: [L.title.en, L.artist.en, L.date.en, L.museum.en].join(' · ') };
+  const imgLine = imageSourceHTML(L.source);   // 图片：… / Image: …
+  const missing = file => ui(`（找不到 ${file}）`, `(Image not found: ${file})`);
+  const TBA = `<span class="tba">${ui('待补充', 'To be added')}</span>`;
+
+  // 作品档案表：画家（生卒年）、画名、年份、材质、尺寸、收藏地、博物馆作品页
+  const REC = [['artist', '画家（生卒年）', 'Artist (dates)'], ['title', '画名', 'Title'], ['date', '年份', 'Date'],
+    ['medium', '材质', 'Medium'], ['dimensions', '尺寸', 'Dimensions'], ['collection', '收藏地', 'Collection'], ['url', '博物馆作品页', 'Museum page']];
+  // 全部格子都空着时先不显示（等 Tia 提供数据）
+  const hasRecord = S.record && REC.some(([k]) => k === 'url' ? S.record.url : S.record[k] && (S.record[k].zh || S.record[k].en));
+  const recordHTML = () => !hasRecord ? '' : `<table class="record">${REC.map(([k, zh, en]) => {
+    const v = S.record[k];
+    const val = k === 'url' ? (v ? `<a href="${v}" target="_blank" rel="noopener">${ui('打开', 'Open')} ↗</a>` : TBA)
+      : (v && (v.zh || v.en) ? bi(v, ' / ') : TBA);
+    return `<tr><th>${ui(zh, en)}</th><td>${val}</td></tr>`;
+  }).join('')}</table>`;
+
+  // 延伸阅读与来源（页面最底部）
+  const readingItems = ((S.reading && S.reading.items) || []).filter(it => it.url && it.title && (it.title.zh || it.title.en));
+  const readingHTML = !S.reading ? '' : `<section class="reading">
+      <div class="section-title">${ui('延伸阅读与来源', 'Further reading and sources')}</div>
+      ${readingItems.length ? `<ul>${readingItems.map(it => `<li><a href="${it.url}" target="_blank" rel="noopener">${bi(it.title, ' / ')}</a> ↗</li>`).join('')}</ul>`
+        : `<p class="soon">${ui('即将补充', 'Coming soon')}</p>`}
+    </section>`;
+
   const actHTML = (a, i) => `
     <section class="act" id="act${i + 1}">
-      <img class="reveal" src="${a.image}" alt="${a.alt || ''}" />
+      ${a.image ? `<img class="reveal" src="${a.image}" ${altAttr(a.alt || '')} />` : ''}
       <p class="act-cap reveal">${a.caption ? `<span class="zh">${a.caption.zh}</span><span class="en">${a.caption.en}</span>` : ''}</p>
       <div class="act-text reveal">
-        <h3><small>${a.kicker || ''}</small>${a.title.en ? bi(a.title) : `<span class="zh">${a.title.zh}</span>`}</h3>
+        <h3><small>${a.kicker || ''}</small>${bi(a.title)}</h3>
         <p class="zh">${a.text.zh}</p>
         <p class="en">${a.text.en}</p>
       </div>
@@ -54,13 +79,15 @@ function buildDOM(S, R, meta) {
 
   document.body.insertAdjacentHTML('beforeend', `
   <div class="grain"></div>
-  <img id="vpOverlay" src="${P.image}" alt="" />
+  <img id="vpOverlay" src="${P.image}" ${altAttr(P.alt || '')} />
 
   <div id="intro">
-    <img id="introImg" src="${P.image}" alt="${P.alt || ''}" />
-    <div id="introMissing" class="hidden">（找不到 ${P.image}）</div>
-    <button id="enter" class="btn primary"><span class="zh">${S.enter.zh}</span><span class="en">${S.enter.en}</span></button>
-    <div id="introInfo" class="panel"><div class="lbl">${bi(labelLine, ' / ')}</div>${creditHTML()}</div>
+    <img id="introImg" src="${P.image}" ${altAttr(P.alt || '')} />
+    <div id="introMissing" class="hidden">${missing(P.image)}</div>
+    <div id="introBottom">
+      <button id="enter" class="btn primary"><span class="zh">${S.enter.zh}</span><span class="en">${S.enter.en}</span></button>
+      <div id="introInfo" class="panel"><div class="lbl">${bi(labelLine, ' / ')}</div><div>${imgLine}</div></div>
+    </div>
   </div>
   <a id="sceneHome" href="${ROOT}">← ${ui('走进名画', 'Walk into Paintings')}</a>
 
@@ -75,11 +102,11 @@ function buildDOM(S, R, meta) {
     <a class="btn" href="${ROOT}">← ${ui('走进名画', 'Home')}</a>
     <button class="btn" id="compareBtn">${ui('对照原画', 'Original painting')}</button>
     <button class="btn" id="shotBtn">${ui('拍一张', 'Snapshot')}</button>
-    <div class="seg" id="modeSwitch">
+    <div class="seg${S.projection === false ? ' hidden' : ''}" id="modeSwitch">
       <button data-mode="paint" class="on">${ui('原画质感', 'Painted')}</button>
       <button data-mode="flat">${ui('简化色块', 'Flat colour')}</button>
     </div>
-    ${S.exclusive && S.exclusive.type === 'wallFade' ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
+    ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
       `<button data-opt="${i}" class="${i === 0 ? 'on' : ''}">${ui(o.label.zh, o.label.en)}</button>`).join('')}</div>` : ''}
   </div>
 
@@ -87,17 +114,20 @@ function buildDOM(S, R, meta) {
     <div id="progress" class="panel"></div>
     <button class="btn" id="soundBtn"></button>
     <div id="leftHint" class="panel hidden"></div>
+    <button class="btn hidden" id="audioBtn"></button>
     <button class="btn primary hidden" id="endBtn">${ui('进入结尾', 'To the ending')} →</button>
   </div>
 
   <div class="popup panel" id="compare">
     <button class="close" data-close="compare" aria-label="Close">×</button>
-    <img src="${P.image}" alt="${P.alt || ''}" />
-    <p>${bi(labelLine, ' / ')}</p>
+    <img src="${P.image}" ${altAttr(P.alt || '')} data-zoom="${(S.zoom && S.zoom.image) || P.image}" class="zoomable" />
+    <p>${bi(labelLine, ' / ')}<br><small>${imgLine}</small></p>
+    <p><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button></p>
+    ${hasRecord ? `<details class="rec-box"><summary>${ui('作品档案', 'Artwork record')}</summary>${recordHTML()}</details>` : ''}
   </div>
   <div class="popup panel" id="shot">
     <button class="close" data-close="shot" aria-label="Close">×</button>
-    <img id="shotImg" alt="" />
+    <img id="shotImg" ${altAttr({ zh: '你拍下的画面', en: 'Your snapshot' })} />
     <p><a id="shotSave" download="${S.id}.png">${ui('保存图片', 'Save image')}</a><br>${ui('手机上也可以长按图片保存', 'On phones, long-press the image to save')}</p>
   </div>
   <div id="flash"></div>
@@ -110,6 +140,15 @@ function buildDOM(S, R, meta) {
     <p class="en" id="cardEn"></p>
   </div>
 
+  <div id="zoom" class="hidden" role="dialog" aria-label="Zoom">
+    <div id="zoomStage"><img id="zoomImg" ${altAttr(P.alt || '')} draggable="false" /></div>
+    <button class="close" id="zoomClose" aria-label="Close">×</button>
+    <div id="zoomBar" class="panel">
+      <button id="zoomOut" aria-label="Zoom out">−</button><button id="zoomReset">${ui('还原', 'Reset')}</button><button id="zoomIn" aria-label="Zoom in">+</button>
+    </div>
+    <div id="zoomHint" class="panel">${ui('双指或滚轮放大，拖动查看细节', 'Pinch or scroll to zoom, drag to explore')}</div>
+  </div>
+
   <div id="joy"><div id="knob"></div></div>
   <div id="langSwitch">${langSwitchHTML()}</div>
 
@@ -118,23 +157,27 @@ function buildDOM(S, R, meta) {
     <section class="act final" id="actEnd">
       <h2 class="reveal"><span class="zh">${E.final.zh}</span><small class="en">${E.final.en}</small></h2>
       <div class="versions" id="versions"></div>
-      <div class="section-title">${ui('找不同', 'Spot the difference')}<small class="en">Compare two versions — drag left and right</small></div>
+      ${E.versions.length > 1 ? `<div class="section-title">${ui('找不同', 'Spot the difference')}<small class="en">Compare two versions — drag left and right</small></div>
       <div class="cmp-pick"><select id="cmpA" aria-label="A"></select><span>↔</span><select id="cmpB" aria-label="B"></select></div>
       <div id="cmp">
-        <img id="cmpImgA" alt="" onerror="this.style.visibility='hidden'" onload="this.style.visibility='visible'" />
-        <img id="cmpImgB" alt="" onerror="this.style.visibility='hidden'" onload="this.style.visibility='visible'" />
+        <img id="cmpImgA" ${altAttr({ zh: '版本 A', en: 'Version A' })} onerror="this.style.visibility='hidden'" onload="this.style.visibility='visible'" />
+        <img id="cmpImgB" ${altAttr({ zh: '版本 B', en: 'Version B' })} onerror="this.style.visibility='hidden'" onload="this.style.visibility='visible'" />
         <div id="cmpLine"></div>
         <span class="cmp-tag" id="cmpTagA" style="left:8px"></span>
         <span class="cmp-tag" id="cmpTagB" style="right:8px"></span>
-      </div>
-      <div class="section-title">${ui('去看真迹', 'See the real paintings')}<small class="en">See the real paintings</small></div>
+      </div>` : ''}
+      ${hasRecord ? `<div class="section-title">${ui('作品档案', 'Artwork record')}<small class="en-sub">Artwork record</small></div>${recordHTML()}` : ''}
+      <p class="zoom-row"><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button></p>
+      <div class="section-title">${ui('去看真迹', 'See the real paintings')}<small class="en-sub">See the real paintings</small></div>
       <div class="links">${museumLinks}</div>
       ${nextHTML}
       <div class="end-actions">
+        ${E.exit && (!E.exit.scene || (R && R.sceneById[E.exit.scene] && R.sceneById[E.exit.scene].status === 'live')) ? `<a class="btn primary" href="${E.exit.href}">${ui(E.exit.label.zh, E.exit.label.en)} →</a>` : ''}
         <button class="btn" id="backRoom">← ${ui('回到房间', 'Back to the room')}</button>
         <a class="btn" href="${ROOT}">${ui('更多名画', 'More paintings')} →</a>
       </div>
-      <div class="credit">${creditHTML()}</div>
+      ${readingHTML}
+      <div class="credit">${imgLine}<br>${creditHTML()}</div>
     </section>
   </div>`);
 }
@@ -156,12 +199,14 @@ function run(S, R, meta) {
   document.body.prepend(renderer.domElement);
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(C.line);
-  const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, 50);
+  const OUT = S.room.kind === 'outdoor';   // 户外场景（广场、街道）：没有墙和天花板，有天空
+  const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, OUT ? 400 : 50);
 
   // ---------- 房间形状 ----------
   const RM = S.room, VIEW = { ...S.viewpoint, aspect: S.painting.width / S.painting.height };
   const H = RM.height, FRONT = RM.front, L = RM.left;
-  const BL = { x: RM.backLeft[0], z: RM.backLeft[1] }, BR = { x: RM.backRight[0], z: RM.backRight[1] }, RF = { x: RM.rightFront[0], z: RM.rightFront[1] };
+  const P2 = (a, d) => ({ x: (a || d)[0], z: (a || d)[1] });
+  const BL = P2(RM.backLeft, [-1, -2]), BR = P2(RM.backRight, [1, -2]), RF = P2(RM.rightFront, [1, 1]);
   const backZ  = x => BL.z + (x - BL.x) / (BR.x - BL.x) * (BR.z - BL.z);
   const rightX = z => BR.x + (z - BR.z) / (RF.z - BR.z) * (RF.x - BR.x);
   const BACK_ROT  = -Math.atan2(BR.z - BL.z, BR.x - BL.x);
@@ -207,6 +252,7 @@ function run(S, R, meta) {
     wall: strokeCanvas((g, s) => fill(g, s, 260, () => ({ x: rnd(0, s), y: rnd(0, s), a: rnd(1.0, 1.9), len: rnd(18, 34), w: rnd(4, 8), shade: shade(215, 225), alpha: rnd(0.2, 0.4) }))),
     wood: strokeCanvas((g, s) => fill(g, s, 140, () => ({ x: rnd(0, s), y: rnd(0, s), a: rnd(-0.08, 0.08), len: rnd(50, 110), w: rnd(3, 7), shade: shade(200, 220), alpha: rnd(0.3, 0.5) }))),
     cloth: strokeCanvas((g, s) => fill(g, s, 220, () => ({ x: rnd(0, s), y: rnd(0, s), a: Math.random() < 0.5 ? rnd(0.5, 0.9) : rnd(2.2, 2.6), len: rnd(12, 24), w: rnd(4, 7), shade: shade(210, 225), alpha: rnd(0.25, 0.45) }))),
+    ground: strokeCanvas((g, s) => fill(g, s, 200, () => ({ x: rnd(0, s), y: rnd(0, s), a: rnd(-0.4, 0.4), len: rnd(20, 50), w: rnd(4, 8), shade: shade(200, 220), alpha: rnd(0.25, 0.45) }))),
     floor: strokeCanvas((g, s) => {
       fill(g, s, 160, () => ({ x: rnd(0, s), y: rnd(0, s), a: rnd(1.45, 1.7), len: rnd(40, 90), w: rnd(3, 6), shade: shade(205, 225), alpha: rnd(0.3, 0.5) }));
       g.globalAlpha = 0.55; g.strokeStyle = '#7fae86'; g.lineWidth = 4;
@@ -247,26 +293,37 @@ function run(S, R, meta) {
     const m = new THREE.Mesh(geo, mat); if (card) m.userData.card = card; scene.add(outline(m)); return m;
   }
 
-  // ---------- 地板、墙、天花板 ----------
-  const plan = new THREE.Shape();
-  plan.moveTo(L, -FRONT); plan.lineTo(RF.x, -RF.z); plan.lineTo(BR.x, -BR.z); plan.lineTo(BL.x, -BL.z); plan.closePath();
-  const floor = new THREE.Mesh(new THREE.ShapeGeometry(plan), paint(C.floor, 'floor'));
-  floor.rotation.x = -Math.PI / 2; floor.userData.card = 'floor'; scene.add(floor);
-  const ceil = new THREE.Mesh(new THREE.ShapeGeometry(plan), new THREE.MeshBasicMaterial({ color: C.ceiling, map: TEX.wall, side: THREE.DoubleSide }));
-  ceil.rotation.x = -Math.PI / 2; ceil.position.y = H; scene.add(ceil);
-
+  // ---------- 地板、墙、天花板（室内）/ 地面和天空（户外） ----------
   const fadeOpts = S.exclusive && S.exclusive.type === 'wallFade' ? S.exclusive.options : [{ color: '#cccccc', tint: 0 }];
   const wallMat = new THREE.MeshToonMaterial({ color: fadeOpts[0].color, gradientMap: gradient, map: TEX.wall });
-  function wall(x1, z1, x2, z2) {
-    const len = Math.hypot(x2 - x1, z2 - z1), geo = new THREE.PlaneGeometry(len, H), uv = geo.attributes.uv;
-    for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * len, uv.getY(i) * H);
-    const m = new THREE.Mesh(geo, wallMat);
-    m.position.set((x1 + x2) / 2, H / 2, (z1 + z2) / 2); m.rotation.y = -Math.atan2(z2 - z1, x2 - x1);
-    m.userData.card = 'wall'; m.userData.isWall = true; scene.add(m);
-    box(len, 0.03, 0.03, C.line, 0, -H / 2 + 0.015, 0.015, m);
+  let ceil = null;
+  if (!OUT) {
+    const plan = new THREE.Shape();
+    plan.moveTo(L, -FRONT); plan.lineTo(RF.x, -RF.z); plan.lineTo(BR.x, -BR.z); plan.lineTo(BL.x, -BL.z); plan.closePath();
+    const floor = new THREE.Mesh(new THREE.ShapeGeometry(plan), paint(C.floor, 'floor'));
+    floor.rotation.x = -Math.PI / 2; floor.userData.card = 'floor'; scene.add(floor);
+    ceil = new THREE.Mesh(new THREE.ShapeGeometry(plan), new THREE.MeshBasicMaterial({ color: C.ceiling, map: TEX.wall, side: THREE.DoubleSide }));
+    ceil.rotation.x = -Math.PI / 2; ceil.position.y = H; scene.add(ceil);
+
+    function wall(x1, z1, x2, z2) {
+      const len = Math.hypot(x2 - x1, z2 - z1), geo = new THREE.PlaneGeometry(len, H), uv = geo.attributes.uv;
+      for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * len, uv.getY(i) * H);
+      const m = new THREE.Mesh(geo, wallMat);
+      m.position.set((x1 + x2) / 2, H / 2, (z1 + z2) / 2); m.rotation.y = -Math.atan2(z2 - z1, x2 - x1);
+      m.userData.card = 'wall'; m.userData.isWall = true; scene.add(m);
+      box(len, 0.03, 0.03, C.line, 0, -H / 2 + 0.015, 0.015, m);
+    }
+    wall(BL.x, BL.z, BR.x, BR.z); wall(BR.x, BR.z, RF.x, RF.z); wall(RF.x, RF.z, L, FRONT); wall(L, FRONT, BL.x, BL.z);
+    for (const p of [BL, BR, RF, { x: L, z: FRONT }]) box(0.03, H, 0.03, C.line, p.x, H / 2, p.z);
+  } else {
+    const G = RM.ground;   // [x0, x1, z0, z1]
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(G[1] - G[0], G[3] - G[2]), paint(C.ground, 'ground'));
+    ground.material.map.repeat.set((G[1] - G[0]) / 4, (G[3] - G[2]) / 4);
+    ground.rotation.x = -Math.PI / 2; ground.position.set((G[0] + G[1]) / 2, 0, (G[2] + G[3]) / 2);
+    ground.userData.card = RM.groundCard || null; scene.add(ground);
+    const sky = new THREE.Mesh(new THREE.SphereGeometry(RM.skyRadius || 150, 32, 16), new THREE.MeshBasicMaterial({ color: C.sky, side: THREE.BackSide }));
+    sky.userData.card = RM.skyCard || null; sky.userData.isSky = true; scene.add(sky);
   }
-  wall(BL.x, BL.z, BR.x, BR.z); wall(BR.x, BR.z, RF.x, RF.z); wall(RF.x, RF.z, L, FRONT); wall(L, FRONT, BL.x, BL.z);
-  for (const p of [BL, BR, RF, { x: L, z: FRONT }]) box(0.03, H, 0.03, C.line, p.x, H / 2, p.z);
 
   let cornerHit = null;
   if (RM.cornerHotspot) {
@@ -350,13 +407,94 @@ function run(S, R, meta) {
       blocks.push([tcx - 0.45, tcx + 0.45, tcz - 0.45, tcz + 0.45]);
     }
   };
+  // ---------- 户外用的物体：房子、树、铁路桥、街道、发光入口 ----------
+  const named = {};   // 有 id 的物体（独家发现里的“淡出”会用到）
+  const portals = [];
+  Object.assign(BUILD, {
+    // 一栋房子：x、z 是正面中间的位置，w 宽、d 深、h 高；windows 是正面（front）或右侧（side）上的窗和门
+    building(o) {
+      const g = group(o.x, 0, o.z, o.rot || 0, o.card);
+      box(o.w, o.h, o.d, o.color, 0, o.h / 2, -o.d / 2, g, 'wall');
+      if (o.roof) box(o.w + 0.3, 0.35, o.d + 0.3, o.roof, 0, o.h + 0.17, -o.d / 2, g);
+      for (const wd of o.windows || []) {
+        const side = wd.face === 'side', depth = 0.12;
+        const b = side ? box(depth, wd.h, wd.w, wd.color, o.w / 2 + depth / 2 - 0.04, wd.y, -wd.x, g)
+                       : box(wd.w, wd.h, depth, wd.color, wd.x, wd.y, depth / 2 - 0.04, g);
+        if (wd.card) b.userData.card = wd.card;
+        if (wd.portal) { b.userData.portal = wd.portal; portals.push({ mesh: b, ...wd.portal }); }
+      }
+      for (const [w, h, d, color, x, y, z, tex] of o.boxes || []) box(w, h, d, color, x, y, z, g, tex || 'wood');
+      if (o.id) named[o.id] = g;
+      if (o.solid !== false) {
+        const c = Math.cos(o.rot || 0), sn = Math.sin(o.rot || 0), pts = [[-o.w / 2, 0], [o.w / 2, 0], [-o.w / 2, -o.d], [o.w / 2, -o.d]].map(([px, pz]) => [o.x + px * c + pz * sn, o.z - px * sn + pz * c]);
+        blocks.push([Math.min(...pts.map(p => p[0])), Math.max(...pts.map(p => p[0])), Math.min(...pts.map(p => p[1])), Math.max(...pts.map(p => p[1]))]);
+      }
+    },
+    tree(o) {
+      const g = group(o.x, 0, o.z, 0, o.card);
+      cyl(0.18, 0.25, o.h * 0.5, C.trunk || '#6b4a2e', 0, o.h * 0.25, 0, g);
+      const m = new THREE.Mesh(new THREE.IcosahedronGeometry(o.r, 1), paint(col(o.color || 'leaves'), 'cloth'));
+      m.position.y = o.h * 0.5 + o.r * 0.7; g.add(outline(m));
+      blocks.push([o.x - 0.4, o.x + 0.4, o.z - 0.4, o.z + 0.4]);
+    },
+    // 铁路桥：从 x0 到 x1 横跨，桥面高 y，在 z 的位置
+    bridge(o) {
+      const g = group(0, 0, o.z, 0, o.card), span = o.x1 - o.x0;
+      box(span, 0.8, 1.6, o.color, (o.x0 + o.x1) / 2, o.y + 0.4, 0, g);
+      for (const t of o.piers || [0, 1]) box(1.0, o.y, 1.4, o.color, o.x0 + span * t, o.y / 2, 0, g);
+      box(span, 0.15, 0.1, C.line, (o.x0 + o.x1) / 2, o.y + 0.9, 0.75, g);
+    },
+    // 街道：地上的一块长条（可以点）
+    road(o) {
+      const m = new THREE.Mesh(new THREE.PlaneGeometry(o.x1 - o.x0, o.z1 - o.z0), paint(col(o.color), 'ground'));
+      m.rotation.x = -Math.PI / 2; m.position.set((o.x0 + o.x1) / 2, 0.01, (o.z0 + o.z1) / 2); m.userData.card = o.card; scene.add(m);
+    },
+    boxes(o) {
+      const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card);
+      for (const [w, h, d, color, x, y, z, tex] of o.boxes) box(w, h, d, color, x, y, z, g, tex || 'wood');
+      if (o.id) named[o.id] = g;
+    }
+  });
   for (const o of S.objects) { if (BUILD[o.type]) BUILD[o.type](o); else console.warn('unknown object type', o.type); }
+
+  // 发光入口：门上的光 + 上方的文字牌，点一下去另一个场景
+  function labelSprite(text2) {
+    const cv = document.createElement('canvas'); cv.width = 512; cv.height = 128;
+    const g = cv.getContext('2d');
+    g.fillStyle = 'rgba(28,28,30,.72)'; g.beginPath(); g.roundRect(4, 4, 504, 120, 60); g.fill();
+    g.fillStyle = '#fff3b0'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    if (text2.length === 1) { g.font = '500 44px sans-serif'; g.fillText(text2[0], 256, 66); }
+    else { g.font = '500 38px sans-serif'; g.fillText(text2[0], 256, 44); g.font = '30px sans-serif'; g.fillText(text2[1], 256, 92); }
+    const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t;
+  }
+  const portalLabelText = pt => lang === 'en' ? [pt.label.en] : lang === 'zh' ? [pt.label.zh] : [pt.label.zh, pt.label.en];
+  scene.updateMatrixWorld(true);
+  for (const pt of portals) {
+    pt.mesh.material = new THREE.MeshBasicMaterial({ color: '#ffe27a', transparent: true, opacity: 0.9 });
+    pt.mesh.userData.noPaint = true;
+    const wp = new THREE.Vector3(); pt.mesh.getWorldPosition(wp);
+    pt.sprite = new THREE.Sprite(new THREE.SpriteMaterial({ map: labelSprite(portalLabelText(pt)), depthTest: false, transparent: true, sizeAttenuation: false }));
+    pt.sprite.scale.set(0.3, 0.075, 1);   // 不管远近，文字牌在屏幕上一样大
+    pt.sprite.position.set(wp.x, wp.y + 1.9, wp.z + 0.3); pt.sprite.userData.noPaint = true; pt.sprite.userData.portal = pt.mesh.userData.portal;
+    scene.add(pt.sprite);
+  }
+  onLang(() => portals.forEach(pt => { pt.sprite.material.map.dispose(); pt.sprite.material.map = labelSprite(portalLabelText(pt)); }));
+  // 独家发现“淡出”：把指定的物体（比如黄房子）慢慢变透明
+  const fadeObj = S.exclusive && S.exclusive.type === 'fadeObject' ? S.exclusive : null;
+  const fadeMeshes = [];
+  let fadeTarget = 0, fadeNow = 0;
+  if (fadeObj) for (const id of fadeObj.targets) named[id] && named[id].traverse(o => {
+    if (!o.material) return;
+    o.material = o.material.clone(); o.material.transparent = true; fadeMeshes.push(o);
+  });
+  function goPortal(pt) { const f = $('flash'); f.style.transition = 'opacity .6s'; f.style.opacity = 1; setTimeout(() => { location.href = pt.href; }, 600); }
 
   // ---------- 柔和的光（简化色块模式用） ----------
   scene.add(new THREE.HemisphereLight('#fff4d6', '#b5533c', 1.6));
   scene.add(new THREE.AmbientLight('#ffffff', 0.6));
   const sun = new THREE.DirectionalLight('#fff1c4', 1.2);
-  sun.position.set(-0.3, 2.2, BL.z - 2); sun.target.position.set(0.5, 0, -1); scene.add(sun, sun.target);
+  if (OUT) sun.position.set(-30, 60, 20); else sun.position.set(-0.3, 2.2, BL.z - 2);
+  sun.target.position.set(0.5, 0, -1); scene.add(sun, sun.target);
 
   // ---------- 画家视角点：地上的发光圆点 ----------
   const vpRing = new THREE.Mesh(new THREE.RingGeometry(0.2, 0.3, 48), new THREE.MeshBasicMaterial({ color: '#ffe27a', transparent: true, opacity: 0.85, depthWrite: false }));
@@ -385,7 +523,7 @@ function run(S, R, meta) {
   const projFrag = `
     uniform sampler2D uPaint; uniform sampler2D uDepth; uniform sampler2D uMap;
     uniform mat4 uProjVP; uniform vec3 uProjPos; uniform float uNear; uniform float uFar;
-    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble;
+    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha;
     varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv;
     float linDepth(float d) { float z = d * 2.0 - 1.0; return 2.0 * uNear * uFar / (uFar + uNear - z * (uFar - uNear)); }
     void main() {
@@ -405,7 +543,7 @@ function run(S, R, meta) {
         float blueish = smoothstep(0.0, 0.12, col.b - col.r);
         col = mix(col, vec3(min(col.r + 0.28 * col.b, 1.0), col.g * 0.88, col.b), uViolet * blueish);
       }
-      gl_FragColor = vec4(col, 1.0);
+      gl_FragColor = vec4(col, uAlpha);
       #include <colorspace_fragment>
     }`;
   const white = new THREE.DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1); white.needsUpdate = true;
@@ -416,21 +554,22 @@ function run(S, R, meta) {
       const map = toon.map || white;
       projCache.set(key, new THREE.ShaderMaterial({
         uniforms: { ...projUniforms, uMap: { value: map }, uRepeat: { value: map.repeat ? map.repeat.clone() : new THREE.Vector2(1, 1) },
-                    uBase: { value: toon.color.clone() }, uWall: { value: isWall ? 1 : 0 }, uDouble: { value: doubleSide ? 1 : 0 } },
-        vertexShader: projVert, fragmentShader: projFrag, side: doubleSide ? THREE.DoubleSide : THREE.FrontSide
+                    uBase: { value: toon.color.clone() }, uWall: { value: isWall ? 1 : 0 }, uDouble: { value: doubleSide ? 1 : 0 }, uAlpha: { value: 1 } },
+        vertexShader: projVert, fragmentShader: projFrag, side: doubleSide ? THREE.DoubleSide : THREE.FrontSide, transparent: !!toon.transparent
       }));
     }
     return projCache.get(key);
   }
   const solids = [];
   scene.traverse(o => {
-    if (!o.isMesh || o.userData.noPaint) return;
+    if (!o.isMesh || o.userData.noPaint || o.userData.isSky) return;
     o.userData.flatMat = o.material;
     o.userData.paintMat = projMaterial(o.material, !!o.userData.isWall, o === ceil);
     solids.push(o);
   });
-  (function renderProjectorDepth() {   // 从投影仪的位置拍一次“深度图”，判断哪些表面被挡住（只拍一次）
-    const hidden = [cornerHit, vpRing, vpDot, ...outlines].filter(Boolean);
+  const PROJ = S.projection !== false;   // 原画投影：画家视角和 3D 形状对准以后才打开
+  if (PROJ) (function renderProjectorDepth() {   // 从投影仪的位置拍一次“深度图”，判断哪些表面被挡住（只拍一次）
+    const hidden = [cornerHit, vpRing, vpDot, ...outlines, ...portals.map(p => p.sprite)].filter(Boolean);
     hidden.forEach(o => o.visible = false);
     scene.overrideMaterial = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
     renderer.setRenderTarget(depthRT); renderer.render(scene, projector); renderer.setRenderTarget(null);
@@ -442,7 +581,7 @@ function run(S, R, meta) {
     for (const l of outlines) l.visible = m === 'flat';
     document.querySelectorAll('#modeSwitch button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
   }
-  setMode('paint');
+  setMode(PROJ ? 'paint' : 'flat');
   document.querySelectorAll('#modeSwitch button').forEach(b => b.onclick = () => setMode(b.dataset.mode));
 
   // ---------- 第一人称：走动和转视角 ----------
@@ -454,7 +593,8 @@ function run(S, R, meta) {
   window.addEventListener('blur', () => { for (const k in keys) keys[k] = false; });
   function blocked(x, z) {
     const r = player.r;
-    if (x < L + r || x > rightX(z) - r || z > FRONT - r || z < backZ(x) + r) return true;
+    if (OUT) { const b = RM.bounds; if (x < b[0] + r || x > b[1] - r || z < b[2] + r || z > b[3] - r) return true; }
+    else if (x < L + r || x > rightX(z) - r || z > FRONT - r || z < backZ(x) + r) return true;
     for (const [x0, x1, z0, z1] of blocks) if (x > x0 - r && x < x1 + r && z > z0 - r && z < z1 + r) return true;
     return false;
   }
@@ -478,8 +618,10 @@ function run(S, R, meta) {
   const raycaster = new THREE.Raycaster(), card = $('card');
   function pick(cx, cy) {
     raycaster.setFromCamera(new THREE.Vector2(cx / window.innerWidth * 2 - 1, -(cy / window.innerHeight) * 2 + 1), camera);
-    const hit = raycaster.intersectObjects(scene.children, true).find(h => h.object.isMesh && h.object !== vpRing && h.object !== vpDot);
+    const shown = o => { for (; o; o = o.parent) if (!o.visible) return false; return true; };
+    const hit = raycaster.intersectObjects(scene.children, true).find(h => (h.object.isMesh || h.object.isSprite) && h.object !== vpRing && h.object !== vpDot && shown(h.object) && !(h.object.userData.fade > 0.5));
     let obj = hit && hit.object;
+    if (obj && obj.userData.portal) { goPortal(obj.userData.portal); return; }
     while (obj && !obj.userData.card) obj = obj.parent;
     if (obj && S.cards[obj.userData.card]) showCard(obj.userData.card); else card.style.display = 'none';
   }
@@ -510,19 +652,21 @@ function run(S, R, meta) {
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => togglePopup(b.dataset.close, false));
   // 图片真的加载失败时，才换成“找不到”的提示
   function onMissing(img, text, cls = 'missing') {
-    const fail = () => { if (!img.isConnected) return; const d = document.createElement('div'); d.className = cls; d.textContent = text; img.replaceWith(d); };
+    const fail = () => { if (!img.isConnected) return; const d = document.createElement('div'); d.className = cls; d.innerHTML = text; img.replaceWith(d); };
     img.addEventListener('error', fail, { once: true });
     if (img.loading !== 'lazy' && img.complete && img.getAttribute('src') && img.naturalWidth === 0) fail();
   }
-  onMissing($('compare').querySelector('img'), `（找不到 ${S.painting.image}）`);
-  document.querySelectorAll('.act img').forEach(img => onMissing(img, `（找不到 ${img.getAttribute('src')}）`, 'ph reveal'));
+  const missing = file => ui(`（找不到 ${file}）`, `(Image not found: ${file})`);
+  onMissing($('compare').querySelector('img'), missing(S.painting.image));
+  document.querySelectorAll('.act img').forEach(img => onMissing(img, missing(img.getAttribute('src')), 'ph reveal'));
 
   // ---------- 独家发现：褪色开关 ----------
   const wallTarget = new THREE.Color(fadeOpts[0].color);
   let violetTarget = fadeOpts[0].tint || 0;
   document.querySelectorAll('#wallSwitch button').forEach(b => b.onclick = () => {
     document.querySelectorAll('#wallSwitch button').forEach(x => x.classList.toggle('on', x === b));
-    const o = fadeOpts[+b.dataset.opt]; wallTarget.set(o.color); violetTarget = o.tint || 0;
+    const o = S.exclusive.options[+b.dataset.opt];
+    if (fadeObj) fadeTarget = o.fade || 0; else { wallTarget.set(o.color); violetTarget = o.tint || 0; }
   });
 
   // ---------- 拍一张 ----------
@@ -571,6 +715,84 @@ function run(S, R, meta) {
   soundLabel();
   if (S.sound) $('soundBtn').onclick = () => setSound(!soundOn); else $('soundBtn').classList.add('hidden');
   document.addEventListener('visibilitychange', () => { if (actx && soundOn) document.hidden ? actx.suspend() : actx.resume(); });
+
+  // ---------- 语音导览（scene.json 的 audioGuide 填了录音文件才显示按钮） ----------
+  const AG = S.audioGuide || {};
+  let guide = null;
+  const guideSrc = () => (lang === 'en' ? (AG.en || AG.zh) : (AG.zh || AG.en)) || '';
+  const guideLabel = () => {
+    const playing = guide && !guide.paused;
+    $('audioBtn').innerHTML = playing ? ui('❚❚ 暂停导览', '❚❚ Pause guide') : ui('▶ 语音导览', '▶ Audio guide');
+  };
+  if (AG.zh || AG.en) {
+    $('audioBtn').classList.remove('hidden');
+    $('audioBtn').onclick = () => {
+      const src = guideSrc();
+      if (!guide || guide.dataset.src !== src) {
+        if (guide) guide.pause();
+        guide = new Audio(src); guide.dataset.src = src;
+        guide.onended = guide.onpause = guide.onplay = guideLabel;
+      }
+      guide.paused ? guide.play() : guide.pause();
+    };
+  }
+  guideLabel();
+
+  // ---------- 细节放大：双指 / 滚轮放大，拖动查看 ----------
+  const zoom = $('zoom'), zStage = $('zoomStage'), zImg = $('zoomImg'), Z_MAX = 6;
+  let zs = 1, zx = 0, zy = 0, zbw = 0, zbh = 0, zWasWalking = false, lastTap = 0;
+  const zPtrs = new Map();
+  let zPrev = null;   // 上一次两指的距离和中点
+  function zFit() {
+    const W = zStage.clientWidth, Hh = zStage.clientHeight, a = (zImg.naturalWidth || 4) / (zImg.naturalHeight || 3);
+    if (W / Hh > a) { zbh = Hh; zbw = Hh * a; } else { zbw = W; zbh = W / a; }
+    zImg.style.width = zbw + 'px'; zImg.style.height = zbh + 'px';
+  }
+  function zApply() {   // 不让图片被拖出画面
+    const W = zStage.clientWidth, Hh = zStage.clientHeight, w = zbw * zs, h = zbh * zs;
+    zx = w <= W ? (W - w) / 2 : Math.min(0, Math.max(W - w, zx));
+    zy = h <= Hh ? (Hh - h) / 2 : Math.min(0, Math.max(Hh - h, zy));
+    zImg.style.transform = `translate(${zx}px, ${zy}px) scale(${zs})`;
+  }
+  function zoomAt(ns, cx, cy) {   // 以手指 / 鼠标所在的点为中心放大
+    ns = Math.max(1, Math.min(Z_MAX, ns));
+    const r = zStage.getBoundingClientRect(), px = cx - r.left, py = cy - r.top;
+    zx = px - (px - zx) * ns / zs; zy = py - (py - zy) * ns / zs; zs = ns; zApply();
+  }
+  function zReset() { zFit(); zs = 1; zApply(); }
+  const zCenter = () => { const r = zStage.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; };
+  function openZoom(src) {
+    zWasWalking = walking; walking = false; for (const k in keys) keys[k] = false;
+    zoom.classList.remove('hidden');
+    if (zImg.getAttribute('src') !== src) { zImg.onload = zReset; zImg.src = src; }
+    zReset();
+  }
+  function closeZoom() { zoom.classList.add('hidden'); zPtrs.clear(); walking = zWasWalking; }
+  document.addEventListener('click', e => { const t = e.target.closest('[data-zoom]'); if (t) openZoom(t.dataset.zoom); });
+  $('zoomClose').onclick = closeZoom;
+  $('zoomIn').onclick = () => zoomAt(zs * 1.6, ...zCenter());
+  $('zoomOut').onclick = () => zoomAt(zs / 1.6, ...zCenter());
+  $('zoomReset').onclick = zReset;
+  window.addEventListener('keydown', e => { if (e.key === 'Escape' && !zoom.classList.contains('hidden')) closeZoom(); });
+  zStage.addEventListener('wheel', e => { e.preventDefault(); zoomAt(zs * Math.exp(-e.deltaY * 0.0015), e.clientX, e.clientY); }, { passive: false });
+  zStage.addEventListener('pointerdown', e => {
+    zStage.setPointerCapture(e.pointerId); zPtrs.set(e.pointerId, { x: e.clientX, y: e.clientY }); zPrev = null;
+    const now = performance.now();   // 双击 / 双击屏幕：放大或还原
+    if (zPtrs.size === 1 && now - lastTap < 300) { zs > 1.05 ? zReset() : zoomAt(2.5, e.clientX, e.clientY); lastTap = 0; } else lastTap = now;
+  });
+  zStage.addEventListener('pointermove', e => {
+    const p = zPtrs.get(e.pointerId); if (!p) return;
+    if (zPtrs.size === 1) { zx += e.clientX - p.x; zy += e.clientY - p.y; zApply(); }
+    p.x = e.clientX; p.y = e.clientY;
+    if (zPtrs.size === 2) {
+      const [a, b] = [...zPtrs.values()];
+      const d = Math.hypot(a.x - b.x, a.y - b.y), mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      if (zPrev) { zx += mx - zPrev.mx; zy += my - zPrev.my; zoomAt(zs * d / zPrev.d, mx, my); }
+      zPrev = { d, mx, my };
+    }
+  });
+  const zUp = e => { zPtrs.delete(e.pointerId); zPrev = null; };
+  zStage.addEventListener('pointerup', zUp); zStage.addEventListener('pointercancel', zUp);
 
   // ---------- 手机摇杆 ----------
   const joy = $('joy'), knob = $('knob'), joyMove = { x: 0, y: 0 };
@@ -626,33 +848,38 @@ function run(S, R, meta) {
   const gallery = $('gallery'), E = S.ending;
   for (const v of E.versions) {
     const fig = document.createElement('figure'), img = document.createElement('img');
-    img.src = v.image; img.alt = textOf(v.caption, 'zh'); img.loading = 'lazy';
-    onMissing(img, `（找不到 ${v.image}）`, 'ph');
+    img.src = v.image; img.loading = 'lazy'; img.className = 'zoomable'; img.dataset.zoom = v.image;
+    img.dataset.altZh = textOf(v.caption, 'zh'); img.dataset.altEn = textOf(v.caption, 'en'); img.alt = textOf(v.caption, lang);
+    onMissing(img, missing(v.image), 'ph');
     const cap = document.createElement('figcaption'); cap.innerHTML = bi(v.caption, ' / ');
     fig.append(img, cap); $('versions').append(fig);
   }
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('seen'); }), { root: gallery, threshold: 0.25 });
   document.querySelectorAll('.act').forEach(a => io.observe(a));
   document.querySelectorAll('.next').forEach(b => b.onclick = () => $(b.dataset.next).scrollIntoView({ behavior: 'smooth' }));
-  const cmp = $('cmp'), imgA = $('cmpImgA'), imgB = $('cmpImgB'), line = $('cmpLine');
-  E.versions.forEach((v, i) => { $('cmpA').add(new Option('', i)); $('cmpB').add(new Option('', i)); });
-  $('cmpA').value = 0; $('cmpB').value = Math.min(1, E.versions.length - 1);
-  function setCmpImages() {
-    const a = E.versions[$('cmpA').value], b = E.versions[$('cmpB').value];
-    imgA.src = a.image; $('cmpTagA').textContent = textOf(a.short, lang);
-    imgB.src = b.image; $('cmpTagB').textContent = textOf(b.short, lang);
-    document.querySelectorAll('#cmpA option, #cmpB option').forEach(o => o.textContent = textOf(E.versions[o.value].short, lang));
+  const cmp = $('cmp');   // 只有一个版本时没有“找不同”
+  let setCmpImages = () => {};
+  if (cmp) {
+    E.versions.forEach((v, i) => { $('cmpA').add(new Option('', i)); $('cmpB').add(new Option('', i)); });
+    $('cmpA').value = 0; $('cmpB').value = Math.min(1, E.versions.length - 1);
+    const imgA = $('cmpImgA'), imgB = $('cmpImgB'), line = $('cmpLine');
+    setCmpImages = () => {
+      const a = E.versions[$('cmpA').value], b = E.versions[$('cmpB').value];
+      imgA.src = a.image; $('cmpTagA').textContent = textOf(a.short, lang);
+      imgB.src = b.image; $('cmpTagB').textContent = textOf(b.short, lang);
+      document.querySelectorAll('#cmpA option, #cmpB option').forEach(o => o.textContent = textOf(E.versions[o.value].short, lang));
+    };
+    $('cmpA').onchange = $('cmpB').onchange = setCmpImages;
+    function setCmp(pct) { pct = Math.max(0, Math.min(100, pct)); imgB.style.clipPath = `inset(0 0 0 ${pct}%)`; line.style.left = pct + '%'; }
+    let cmpDrag = false;
+    const cmpAt = e => { const r = cmp.getBoundingClientRect(); setCmp((e.clientX - r.left) / r.width * 100); };
+    cmp.addEventListener('pointerdown', e => { cmpDrag = true; cmp.setPointerCapture(e.pointerId); cmpAt(e); });
+    cmp.addEventListener('pointermove', e => { if (cmpDrag) cmpAt(e); });
+    cmp.addEventListener('pointerup', () => { cmpDrag = false; });
+    cmp.addEventListener('pointercancel', () => { cmpDrag = false; });
+    setCmpImages(); setCmp(50);
   }
-  $('cmpA').onchange = $('cmpB').onchange = setCmpImages;
-  function setCmp(pct) { pct = Math.max(0, Math.min(100, pct)); imgB.style.clipPath = `inset(0 0 0 ${pct}%)`; line.style.left = pct + '%'; }
-  let cmpDrag = false;
-  const cmpAt = e => { const r = cmp.getBoundingClientRect(); setCmp((e.clientX - r.left) / r.width * 100); };
-  cmp.addEventListener('pointerdown', e => { cmpDrag = true; cmp.setPointerCapture(e.pointerId); cmpAt(e); });
-  cmp.addEventListener('pointermove', e => { if (cmpDrag) cmpAt(e); });
-  cmp.addEventListener('pointerup', () => { cmpDrag = false; });
-  cmp.addEventListener('pointercancel', () => { cmpDrag = false; });
-  setCmpImages(); setCmp(50);
-  onLang(() => { updateProgress(); setCmpImages(); soundLabel(); });
+  onLang(() => { updateProgress(); setCmpImages(); soundLabel(); guideLabel(); });
   updateProgress();
 
   $('endBtn').onclick = () => {
@@ -704,6 +931,17 @@ function run(S, R, meta) {
     const pulse = 0.55 + 0.35 * Math.sin(performance.now() / 600);   // 圆点慢慢呼吸
     vpRing.material.opacity = pulse; vpDot.material.opacity = pulse * 0.4;
     wallMat.color.lerp(wallTarget, 1 - Math.exp(-dt * 4));
+    if (fadeObj && Math.abs(fadeTarget - fadeNow) > 0.001) {   // 慢慢淡出 / 淡入（约 2 秒）
+      fadeNow += Math.sign(fadeTarget - fadeNow) * Math.min(Math.abs(fadeTarget - fadeNow), dt / 2);
+      for (const m of fadeMeshes) {
+        m.material.opacity = 1 - fadeNow; m.material.depthWrite = fadeNow < 0.05; m.userData.fade = fadeNow; m.visible = fadeNow < 0.99;
+        if (m.userData.paintMat) m.userData.paintMat.uniforms.uAlpha.value = 1 - fadeNow;
+      }
+    }
+    for (const pt of portals) {   // 入口慢慢呼吸；房子淡出时，入口也一起消失
+      const f = pt.mesh.userData.fade || 0;
+      pt.mesh.material.opacity = (0.55 + 0.4 * Math.sin(performance.now() / 500)) * (1 - f); pt.sprite.visible = f < 0.5;
+    }
     projUniforms.uViolet.value += (violetTarget - projUniforms.uViolet.value) * (1 - Math.exp(-dt * 4));
     camera.position.set(player.x, player.eye, player.z);
     camera.rotation.set(player.pitch, -player.yaw, 0, 'YXZ');
@@ -711,10 +949,11 @@ function run(S, R, meta) {
   }
   loop();
   // 测试用：地址后面加 ?debug 时，可以在控制台里移动位置（普通访问不受影响）
-  if (location.search.includes('debug')) window.__room = { player, setMode, leaveView, showCard };
+  if (location.search.includes("debug")) window.__room = { player, setMode, leaveView, showCard, portals, camera };
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
     placeRect(introImg); if (view === 'aligned') placeRect(vpOverlay);
+    if (!zoom.classList.contains('hidden')) zReset();
   });
 }
