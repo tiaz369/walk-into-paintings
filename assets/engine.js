@@ -13,7 +13,7 @@ import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwi
 
 export async function startScene(sceneUrl) {
   removeStatic();
-  const S = await fetch(sceneUrl).then(r => r.json());
+  const S = await fetch(sceneUrl, { cache: 'no-cache' }).then(r => r.json());   // 每次都先确认有没有更新（不用等缓存过期）
   const R = await loadRegistry().catch(() => null);
   const meta = R && R.sceneById[S.id];
   // 还没开放的场景：先显示“即将开放”（地址后面加 ?preview 可以预览）
