@@ -116,19 +116,19 @@ function prepare(R) {
 }
 export const sceneUrl = s => ROOT + s.path;
 
-// 场景卡片：已上线的可以点进去；还没做的显示“即将上线”
+// 场景卡片：已上线的可以点进去；还没做的显示“即将开放”
 export function sceneCard(R, s) {
   const artist = R.artistById[s.artist], museum = R.museumById[s.museum];
   const meta = [artist && bi(artist.name), bi(s.year)].filter(Boolean).join(' · ');
   const live = s.status === 'live';
   const pic = live && s.cover
     ? `<img src="${ROOT + s.cover}" ${altAttr(s.title)} loading="lazy" />`
-    : `<span class="soon">${ui('即将上线', 'Coming soon')}</span>`;
+    : `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
   const inner = `<div class="pic">${pic}</div><div class="name">${bi(s.title)}</div>
     <div class="meta">${meta}</div>${museum ? `<div class="meta">${bi(museum.name)}</div>` : ''}`;
   return live ? `<a class="card" href="${sceneUrl(s)}">${inner}</a>` : `<div class="card is-soon">${inner}</div>`;
 }
-export const cardsHTML = (R, list) => list.length ? `<div class="cards">${list.map(s => sceneCard(R, s)).join('')}</div>` : `<p class="soon">${ui('即将上线', 'Coming soon')}</p>`;
+export const cardsHTML = (R, list) => list.length ? `<div class="cards">${list.map(s => sceneCard(R, s)).join('')}</div>` : `<p class="soon">${ui('即将开放', 'Coming soon')}</p>`;
 
 // ---------- 页眉、页脚 ----------
 const NAV = [
@@ -167,20 +167,23 @@ export function mapSVG(R, { width = 800, height = 520, small = false } = {}) {
     const live = scenes.some(s => s.status === 'live');
     const cx = x(p.lon), cy = y(p.lat);
     dots += `<a href="${ROOT}map/#${p.id}"><circle class="${live ? 'dot' : 'dot-soon'}" cx="${cx}" cy="${cy}" r="${small ? 5 : 7}"/>
-      <text x="${cx + 10}" y="${cy + 4}">${esc(textOf(p.name, lang))} · ${scenes.length}</text></a>`;
+      <text x="${cx + 10}" y="${cy + 4}">${esc(textOf(p.name, lang))}</text></a>`;
   }
   return `<svg class="map" viewBox="0 0 ${width} ${height}" role="img" aria-label="Map">${g}${dots}</svg>
-    <div class="map-note">${ui('示意图：按经纬度标出位置，以后会换成真正的地图。', 'Schematic: places plotted by latitude and longitude. A full map will come later.')}</div>`;
+    <div class="map-note">${ui('示意图：按经纬度标出画作诞生的城市。', 'Schematic map: places plotted by latitude and longitude.')}</div>`;
 }
 
 // =====================================================================
 // 各个页面的内容（首页、系列页、五种浏览页、关于）
 // 页面文件只写一行：renderPage('home') 之类，内容都从登记表里来。
 // =====================================================================
-const SOON = () => `<span class="soon">${ui('即将上线', 'Coming soon')}</span>`;
-const countLine = (list) => {
-  const live = list.filter(s => s.status === 'live').length;
-  return `<span class="zh">已完成 ${live} / ${list.length} 个场景</span><span class="en"><span class="zh"> · </span>${live} of ${list.length} scenes ready</span>`;
+const SOON = () => `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
+// 系列的状态：有作品时“现在开放：… · 下一站：…”，还没有作品时“即将开放”（不显示数字）
+const openLine = (list) => {
+  const live = list.filter(s => s.status === 'live'), next = list.find(s => s.status !== 'live');
+  if (!live.length) return ui('即将开放', 'Coming soon');
+  const part = (lang, open, nextWord, join) => `${open}${live.map(s => textOf(s.title, lang)).join(join)}` + (next ? ` · ${nextWord}${textOf(next.title, lang)}` : '');
+  return bi({ zh: part('zh', '现在开放：', '下一站：', '、'), en: part('en', 'Now open: ', 'Next: ', ', ') }, ' / ');
 };
 const scenesOf = (R, key, id) => R.scenes.filter(s => Array.isArray(s[key]) ? s[key].includes(id) : s[key] === id);
 const labelOf = (R, s) => {   // 展签：画名 · 画家 · 年份 · 收藏地
@@ -231,7 +234,7 @@ const PAGES = {
         <div class="series">${R.collections.map(c => `
           <a href="${ROOT}collections/${c.id}/" data-series="${c.accent || ''}">
             <div class="name">${bi(c.name)}</div><div class="desc">${bi(c.desc)}</div>
-            <div class="count">${countLine(scenesOf(R, 'collection', c.id))}</div></a>`).join('')}
+            <div class="count">${openLine(c.order.map(x => R.sceneById[x]).filter(Boolean))}</div></a>`).join('')}
         </div>
       </section>
 
@@ -247,7 +250,7 @@ const PAGES = {
 
       <section class="section wrap" id="about-preview">
         <h2>${ui('关于这个项目', 'About this project')}</h2>
-        ${ABOUT.intro.map(p => para(p, 'lead')).join('')}
+        ${para(ABOUT.home, 'lead')}
         <a class="btn" href="${ROOT}about/">${ui('关于', 'About')} →</a>
       </section>`;
     onLang(() => { const m = document.getElementById('mapBox'); if (m) m.innerHTML = mapSVG(R, { small: true }); });
@@ -260,7 +263,7 @@ const PAGES = {
     const list = c.order.map(x => R.sceneById[x]).filter(Boolean);
     main.innerHTML = `
       <div class="wrap page-title"><h1>${bi(c.name)}<small class="sub">${bi(c.desc)}</small></h1>
-        <p class="soon" style="margin-top:12px">${countLine(list)}</p></div>
+        <p class="soon" style="margin-top:12px">${openLine(list)}</p></div>
       <section class="section wrap">${cardsHTML(R, list)}</section>`;
   },
 
@@ -270,7 +273,7 @@ const PAGES = {
     if (a) {
       main.innerHTML = `<div class="wrap page-title"><h1>${bi(a.name)}</h1></div>
         <section class="section wrap">
-          <p class="lead">${a.bio ? bi(a.bio) : ui('画家简介即将补充', 'Biography coming soon')}</p>
+          ${a.bio ? `<p class="lead">${bi(a.bio)}</p>` : ''}
           ${cardsHTML(R, scenesOf(R, 'artist', a.id))}
           <p style="margin-top:28px"><a class="btn" href="${ROOT}artists/">← ${ui('所有画家', 'All artists')}</a></p></section>`;
       return;
@@ -278,7 +281,7 @@ const PAGES = {
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按画家', 'By artist')}</h1></div>
       <section class="section wrap">${R.artists.map(a => `
         <div class="group"><h3><a href="?id=${a.id}" style="text-decoration:none">${bi(a.name)}</a></h3>
-        <p class="note">${countLine(scenesOf(R, 'artist', a.id))}</p>${cardsHTML(R, scenesOf(R, 'artist', a.id))}</div>`).join('')}</section>`;
+        ${cardsHTML(R, scenesOf(R, 'artist', a.id))}</div>`).join('')}</section>`;
   },
 
   // ---------- 按主题 ----------
@@ -303,7 +306,7 @@ const PAGES = {
   map(R, main) {
     const draw = () => {
       main.innerHTML = `<div class="wrap page-title"><h1>${ui('地图', 'Map')}</h1>
-        <p class="lead">${ui('地图上标出画作诞生的城市。实心圆点：已上线；空心圆点：即将上线。', 'Cities where the paintings were made. Filled dot: open; outline: coming soon.')}</p></div>
+        <p class="lead">${ui('地图上标出画作诞生的城市。实心圆点：已开放；空心圆点：即将开放。', 'Cities where the paintings were made. Filled dot: open; outline: coming soon.')}</p></div>
         <section class="wrap">${mapSVG(R)}</section>
         <section class="section wrap">${R.places.map(pl => {
           const list = scenesOf(R, 'place', pl.id);
@@ -315,7 +318,7 @@ const PAGES = {
 
   // ---------- 按博物馆（?id= 打开某一家） ----------
   museums(R, main) {
-    const visit = m => m.url ? `<a class="btn" href="${m.url}" target="_blank" rel="noopener">${ui('参观官网', 'Visit website')} ↗</a>` : `<span class="soon">${ui('参观链接即将补充', 'Visit link coming soon')}</span>`;
+    const visit = m => m.url ? `<a class="btn" href="${m.url}" target="_blank" rel="noopener">${ui('参观官网', 'Visit website')} ↗</a>` : '';
     const id = param('id'), one = id && R.museumById[id];
     const list = one ? [one] : R.museums;
     main.innerHTML = `<div class="wrap page-title"><h1>${one ? bi(one.name) : ui('按博物馆', 'By museum')}</h1></div>
@@ -333,7 +336,7 @@ const PAGES = {
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('找不到这一页', 'Page not found')}</h1></div>
       <section class="section wrap"><p class="lead">${ui('这个网址没有内容。也许画搬家了？', 'There is nothing at this address. Perhaps the painting has moved?')}</p>
         <a class="btn primary" href="${ROOT}">${ui('回到走进名画', 'Back to Walk into Paintings')}</a></section>
-      <section class="section wrap"><h2>${ui('已上线的场景', 'Open now')}</h2>${cardsHTML(R, R.live)}</section>`;
+      <section class="section wrap"><h2>${ui('现在开放', 'Now open')}</h2>${cardsHTML(R, R.live)}</section>`;
   },
 
   about(R, main) {

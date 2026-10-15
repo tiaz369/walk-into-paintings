@@ -50,8 +50,8 @@ def scene_line(s):
     return ' · '.join(x for x in [both(s['title']), a and both(a['name']), both(s['year']), m and both(m['name'])] if x)
 def scene_li(s, up):
     if s['status'] == 'live': return f'<li><a href="{up}{s["path"]}">{e(scene_line(s))}</a></li>'
-    return f'<li>{e(scene_line(s))} — 即将上线 / Coming soon</li>'
-def scene_list(lst, up): return '<ul>' + ''.join(scene_li(s, up) for s in lst) + '</ul>' if lst else '<p>即将上线 / Coming soon</p>'
+    return f'<li>{e(scene_line(s))} — 即将开放 / Coming soon</li>'
+def scene_list(lst, up): return '<ul>' + ''.join(scene_li(s, up) for s in lst) + '</ul>' if lst else '<p>即将开放 / Coming soon</p>'
 def of(key, id_): return [s for s in R['scenes'] if (id_ in s[key] if isinstance(s.get(key), list) else s.get(key) == id_)]
 
 ABOUT = json.load(open(os.path.join(ROOT, 'data/about.json'), encoding='utf-8'))
@@ -149,7 +149,7 @@ s = f'''      <h1>{bi(NAME)}</h1>
       <h2>系列 · Collections</h2>
       {''.join(f'<h3><a href="collections/{c["id"]}/">{e(both(c["name"]))}</a></h3><p>{e(both(c["desc"]))}</p>{scene_list([SCENES[x] for x in c["order"] if x in SCENES], "")}' for c in R['collections'])}
       <h2>关于这个项目 · About this project</h2>
-      {''.join(para(p) for p in ABOUT['intro'])}
+      {para(ABOUT['home'])}
       <p><a href="about/">关于 · About</a></p>'''
 PAGES.append(page('', '走进名画 · Walk into Paintings', DESC, s, site_script('', 'home')))
 
@@ -187,11 +187,11 @@ for meta in BUILT:
     rec = S.get('record')
     rec_html = ''
     if rec and any(both(v) for k, v in rec.items() if not k.startswith('_')):
-        rows = ''.join(f'<tr><th>{zh} · {en}</th><td>{e(both(rec.get(k), " / ")) or "待补充 / To be added"}</td></tr>' for k, zh, en in REC)
-        rows += f'<tr><th>博物馆作品页 · Museum page</th><td>' + (f'<a href="{e(rec["url"])}">{e(rec["url"])}</a>' if rec.get('url') else '待补充 / To be added') + '</td></tr>'
+        rows = ''.join(f'<tr><th>{zh} · {en}</th><td>{e(both(rec.get(k), " / "))}</td></tr>' for k, zh, en in REC if both(rec.get(k)))   # 空着的行不写
+        if rec.get('url'): rows += f'<tr><th>博物馆作品页 · Museum page</th><td><a href="{e(rec["url"])}">{e(rec["url"])}</a></td></tr>'
         rec_html = f'<h2>作品档案 · Artwork record</h2><table>{rows}</table>'
     items = [i for i in (S.get('reading') or {}).get('items', []) if i.get('url')]
-    reading = '<h2>延伸阅读与来源 · Further reading and sources</h2>' + ('<ul>' + ''.join(f'<li><a href="{e(i["url"])}">{e(both(i["title"], " / "))}</a></li>' for i in items) + '</ul>' if items else '<p>即将补充 / Coming soon</p>')
+    reading = ('<h2>延伸阅读与来源 · Further reading and sources</h2><ul>' + ''.join(f'<li><a href="{e(i["url"])}">{e(both(i["title"], " / "))}</a></li>' for i in items) + '</ul>') if items else ''
     museums = ''.join(f'<li><a href="{e(MUSEUMS[m]["url"])}">{e(both(MUSEUMS[m]["name"]))}</a></li>' for m in E.get('museums', []) if m in MUSEUMS and MUSEUMS[m].get('url'))
     s = f'''      <h1>{bi(L["title"])}</h1>
       <p>{e(labelline)}</p>

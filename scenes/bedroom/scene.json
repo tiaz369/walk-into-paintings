@@ -143,7 +143,7 @@
   },
 
   "record": {
-    "_说明": "作品档案表：Tia 核对后填写。空着的格子会显示“待补充 / To be added”。url 是博物馆作品页的网址。",
+    "_说明": "作品档案表：Tia 核对后填写。空着的格子不显示；全部空着时整张表不显示。url 是博物馆作品页的网址。",
     "artist":     { "zh": "", "en": "" },
     "title":      { "zh": "", "en": "" },
     "date":       { "zh": "", "en": "" },
@@ -159,7 +159,7 @@
   },
 
   "reading": {
-    "_说明": "延伸阅读与来源（页面最底部）。每条写 title（中英文）和 url。还没填的时候显示“即将补充”。",
+    "_说明": "延伸阅读与来源（页面最底部）。每条写 title（中英文）和 url。没有链接时这一块不显示。",
     "items": [
       { "title": { "zh": "梵高博物馆作品页", "en": "Van Gogh Museum: artwork page" }, "url": "https://vangoghmuseum.nl/en/collection/s0047v1962" },
       { "title": { "zh": "芝加哥艺术博物馆作品页", "en": "Art Institute of Chicago: artwork page" }, "url": "https://www.artic.edu/artworks/28560/the-bedroom" },
