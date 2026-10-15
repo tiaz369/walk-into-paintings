@@ -36,6 +36,8 @@ function buildDOM(S, R, meta) {
   const P = S.painting, L = S.label, E = S.ending;
   const labelLine = { zh: [L.title.zh, L.artist.zh, L.date.zh, L.museum.zh].join(' · '), en: [L.title.en, L.artist.en, L.date.en, L.museum.en].join(' · ') };
   const imgLine = imageSourceHTML(L.source);   // 图片：… / Image: …
+  // 个别图片有自己的来源说明（比如奥赛的照片），页面底部也一起列出
+  const extraCredits = [...new Map([...E.acts, ...E.versions].filter(x => x.credit).map(x => [x.credit.zh, bi(x.credit, ' / ')])).values()];
   const missing = file => ui(`（找不到 ${file}）`, `(Image not found: ${file})`);
 
   // 作品档案表：画家（生卒年）、画名、年份、材质、尺寸、收藏地、博物馆作品页
@@ -62,7 +64,7 @@ function buildDOM(S, R, meta) {
     <section class="act" id="act${i + 1}">
       ${a.image ? `<img class="reveal" src="${a.image}" ${altAttr(a.alt || '')} />`
         : a.link ? `<a class="btn reveal" href="${a.link.href}" target="_blank" rel="noopener">${ui(a.link.label.zh, a.link.label.en)} ↗</a>` : ''}
-      <p class="act-cap reveal">${a.caption ? `<span class="zh">${a.caption.zh}</span><span class="en">${a.caption.en}</span>` : ''}</p>
+      <p class="act-cap reveal">${a.caption ? `<span class="zh">${a.caption.zh}</span><span class="en">${a.caption.en}</span>` : ''}${a.credit ? `<small class="img-credit">${bi(a.credit, ' / ')}</small>` : ''}</p>
       <div class="act-text reveal">
         <h3><small>${a.kicker || ''}</small>${bi(a.title)}</h3>
         <p class="zh">${a.text.zh}</p>
@@ -107,7 +109,7 @@ function buildDOM(S, R, meta) {
   <div id="tools" class="ui">
     <a class="btn" href="${ROOT}">← ${ui('走进名画', 'Home')}</a>
     <button class="btn" id="compareBtn">${ui('对照原画', 'Original painting')}</button>
-    <button class="btn" id="shotBtn">${ui('拍一张', 'Snapshot')}</button>
+    <button class="btn" id="shotBtn">📷 ${ui('拍一张', 'Snapshot')}</button>
     <div class="seg${S.projection === false ? ' hidden' : ''}" id="modeSwitch">
       <button data-mode="paint" class="on">${ui('原画质感', 'Painted')}</button>
       <button data-mode="flat">${ui('简笔画', 'Simple view')}</button>
@@ -183,7 +185,7 @@ function buildDOM(S, R, meta) {
         <a class="btn" href="${ROOT}">${ui('更多名画', 'More paintings')} →</a>
       </div>
       ${readingHTML}
-      <div class="credit">${imgLine}<br>${creditHTML()}</div>
+      <div class="credit">${[imgLine, ...extraCredits].join('<br>')}<br>${creditHTML()}</div>
     </section>
   </div>`);
 }
@@ -687,7 +689,7 @@ function run(S, R, meta) {
 
   // ---------- 声音：用代码现场合成（默认静音，无版权问题） ----------
   let actx = null, master = null, soundOn = false, birdTimer = null;
-  const soundLabel = () => { $('soundBtn').innerHTML = ui(soundOn ? '声音：开' : '声音：关', soundOn ? 'Sound: on' : 'Sound: off'); };
+  const soundLabel = () => { $('soundBtn').innerHTML = (soundOn ? '🔊 ' : '🔇 ') + ui(soundOn ? '声音：开' : '声音：关', soundOn ? 'Sound: on' : 'Sound: off'); };
   function setupAudio() {
     actx = new (window.AudioContext || window.webkitAudioContext)();
     master = actx.createGain(); master.gain.value = 0; master.connect(actx.destination);
@@ -862,7 +864,7 @@ function run(S, R, meta) {
     img.src = v.image; img.loading = 'lazy'; img.className = 'zoomable'; img.dataset.zoom = v.image;
     img.dataset.altZh = textOf(v.caption, 'zh'); img.dataset.altEn = textOf(v.caption, 'en'); img.alt = textOf(v.caption, lang);
     onMissing(img, missing(v.image), 'ph');
-    const cap = document.createElement('figcaption'); cap.innerHTML = bi(v.caption, ' / ');
+    const cap = document.createElement('figcaption'); cap.innerHTML = bi(v.caption, ' / ') + (v.credit ? `<br><small class="img-credit">${bi(v.credit, ' / ')}</small>` : '');
     fig.append(img, cap); $('versions').append(fig);
   }
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('seen'); }), { root: gallery, threshold: 0.25 });
