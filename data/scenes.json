@@ -1,0 +1,76 @@
+{
+  "_说明": "所有场景的登记表。首页、系列页、各种浏览页和地图都读这里。新增场景时在 scenes 里加一条；status 为 live 表示已上线，soon 表示即将上线。名称、年份、收藏地来自网站蓝图的内容路线图，上线前请再核对。en 为空的地方还缺英文，填上后英文模式就会显示。",
+
+  "collections": [
+    { "id": "arles", "name": { "zh": "梵高在阿尔勒", "en": "" }, "desc": { "zh": "1888年，等待高更的那段日子", "en": "" }, "accent": "arles", "order": ["bedroom", "yellow-house", "night-cafe", "cafe-terrace", "starry-night-rhone", "sunflowers"] },
+    { "id": "delft", "name": { "zh": "维米尔的代尔夫特", "en": "" }, "desc": { "zh": "安静的室内和光", "en": "" }, "accent": "delft", "order": ["milkmaid", "woman-reading-letter", "little-street", "girl-pearl-earring"] },
+    { "id": "national-gallery", "name": { "zh": "伦敦国家美术馆", "en": "" }, "desc": { "zh": "在伦敦就能看到真迹的名画", "en": "" }, "accent": "", "order": ["arnolfini", "water-lily-pond", "bathers-asnieres"] },
+    { "id": "stage", "name": { "zh": "舞台与排练", "en": "" }, "desc": { "zh": "德加的芭蕾世界", "en": "" }, "accent": "", "order": ["dance-class"] }
+  ],
+
+  "artists": [
+    { "id": "van-gogh", "name": { "zh": "梵高", "en": "Vincent van Gogh" }, "bio": null },
+    { "id": "vermeer",  "name": { "zh": "维米尔", "en": "Johannes Vermeer" }, "bio": null },
+    { "id": "van-eyck", "name": { "zh": "扬·凡·艾克", "en": "Jan van Eyck" }, "bio": null },
+    { "id": "monet",    "name": { "zh": "莫奈", "en": "Claude Monet" }, "bio": null },
+    { "id": "seurat",   "name": { "zh": "修拉", "en": "Georges Seurat" }, "bio": null },
+    { "id": "degas",    "name": { "zh": "德加", "en": "Edgar Degas" }, "bio": null }
+  ],
+
+  "museums": [
+    { "id": "van-gogh-museum",  "name": { "zh": "阿姆斯特丹梵高博物馆", "en": "Van Gogh Museum, Amsterdam" }, "url": "https://www.vangoghmuseum.nl" },
+    { "id": "art-institute-chicago", "name": { "zh": "芝加哥艺术博物馆", "en": "Art Institute of Chicago" }, "url": "https://www.artic.edu" },
+    { "id": "orsay",            "name": { "zh": "巴黎奥赛博物馆", "en": "Musée d'Orsay, Paris" }, "url": "https://www.musee-orsay.fr" },
+    { "id": "yale",             "name": { "zh": "耶鲁大学美术馆", "en": "" }, "url": "" },
+    { "id": "kroller-muller",   "name": { "zh": "荷兰克勒勒-米勒博物馆", "en": "" }, "url": "" },
+    { "id": "national-gallery", "name": { "zh": "伦敦国家美术馆", "en": "" }, "url": "" },
+    { "id": "rijksmuseum",      "name": { "zh": "阿姆斯特丹荷兰国立博物馆", "en": "" }, "url": "" },
+    { "id": "mauritshuis",      "name": { "zh": "海牙莫瑞泰斯皇家美术馆", "en": "" }, "url": "" },
+    { "id": "met",              "name": { "zh": "纽约大都会艺术博物馆", "en": "" }, "url": "" }
+  ],
+
+  "themes": [
+    { "id": "rooms",    "name": { "zh": "房间", "en": "Rooms" } },
+    { "id": "windows",  "name": { "zh": "窗户", "en": "Windows" } },
+    { "id": "cafes",    "name": { "zh": "咖啡馆", "en": "Cafés" } },
+    { "id": "gardens",  "name": { "zh": "花园", "en": "Gardens" } },
+    { "id": "jewellery","name": { "zh": "首饰", "en": "Jewellery" } },
+    { "id": "children", "name": { "zh": "孩子", "en": "Children" } }
+  ],
+
+  "periods": [
+    { "id": "dutch-golden-age",   "name": { "zh": "荷兰黄金时代", "en": "Dutch Golden Age" } },
+    { "id": "impressionism",      "name": { "zh": "印象派", "en": "Impressionism" } },
+    { "id": "post-impressionism", "name": { "zh": "后印象派", "en": "Post-Impressionism" } }
+  ],
+
+  "places": [
+    { "id": "arles",  "name": { "zh": "阿尔勒", "en": "Arles" },  "lat": 43.677, "lon": 4.631 },
+    { "id": "paris",  "name": { "zh": "巴黎", "en": "Paris" },   "lat": 48.857, "lon": 2.352 },
+    { "id": "delft",  "name": { "zh": "代尔夫特", "en": "Delft" }, "lat": 52.012, "lon": 4.357 },
+    { "id": "london", "name": { "zh": "伦敦", "en": "London" },  "lat": 51.507, "lon": -0.128 }
+  ],
+
+  "scenes": [
+    {
+      "id": "bedroom", "status": "live", "path": "scenes/bedroom/", "cover": "scenes/bedroom/images/v1888.jpg",
+      "title": { "zh": "阿尔勒的卧室", "en": "The Bedroom" },
+      "tagline": { "zh": "一间等人的房间。", "en": "A room that waited." },
+      "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles",
+      "version": "full", "place": "arles", "themes": ["rooms"], "period": null, "added": "2026-10-15"
+    },
+    { "id": "yellow-house",        "status": "soon", "week": 1,  "title": { "zh": "黄房子", "en": "" },          "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles", "version": "full",  "place": "arles", "themes": [], "period": null },
+    { "id": "night-cafe",          "status": "soon", "week": 2,  "title": { "zh": "夜间咖啡馆", "en": "" },      "artist": "van-gogh", "year": "1888", "museum": "yale", "collection": "arles", "version": "full",  "place": "arles", "themes": [], "period": null },
+    { "id": "cafe-terrace",        "status": "soon", "week": 3,  "title": { "zh": "夜晚露天咖啡座", "en": "" },  "artist": "van-gogh", "year": "1888", "museum": "kroller-muller", "collection": "arles", "version": "full",  "place": "arles", "themes": [], "period": null },
+    { "id": "starry-night-rhone",  "status": "soon", "week": 3,  "title": { "zh": "罗纳河上的星夜", "en": "" },  "artist": "van-gogh", "year": "1888", "museum": "orsay", "collection": "arles", "version": "light", "place": "arles", "themes": [], "period": null },
+    { "id": "sunflowers",          "status": "soon", "week": 4,  "title": { "zh": "向日葵", "en": "" },          "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles", "version": "light", "place": "arles", "themes": [], "period": null },
+    { "id": "milkmaid",            "status": "soon", "week": 5,  "title": { "zh": "倒牛奶的女仆", "en": "" },    "artist": "vermeer", "year": "约1660", "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": "delft", "themes": [], "period": null },
+    { "id": "woman-reading-letter","status": "soon", "week": 6,  "title": { "zh": "读信的蓝衣女子", "en": "" },  "artist": "vermeer", "year": "约1663", "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": "delft", "themes": [], "period": null },
+    { "id": "little-street",       "status": "soon", "week": 7,  "title": { "zh": "小街", "en": "" },            "artist": "vermeer", "year": "约1658", "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": "delft", "themes": [], "period": null },
+    { "id": "girl-pearl-earring",  "status": "soon", "week": 7,  "title": { "zh": "戴珍珠耳环的少女", "en": "" }, "artist": "vermeer", "year": "约1665", "museum": "mauritshuis", "collection": "delft", "version": "light", "place": "delft", "themes": [], "period": null },
+    { "id": "arnolfini",           "status": "soon", "week": 8,  "title": { "zh": "阿尔诺芬尼夫妇像", "en": "" }, "artist": "van-eyck", "year": "1434", "museum": "national-gallery", "collection": "national-gallery", "version": "full",  "place": null, "themes": [], "period": null },
+    { "id": "water-lily-pond",     "status": "soon", "week": 9,  "title": { "zh": "睡莲池", "en": "" },          "artist": "monet", "year": "1899", "museum": "national-gallery", "collection": "national-gallery", "version": "full",  "place": null, "themes": [], "period": null },
+    { "id": "bathers-asnieres",    "status": "soon", "week": 10, "title": { "zh": "阿涅尔的浴场", "en": "" },    "artist": "seurat", "year": "1884", "museum": "national-gallery", "collection": "national-gallery", "version": "light", "place": null, "themes": [], "period": null },
+    { "id": "dance-class",         "status": "soon", "week": 11, "title": { "zh": "舞蹈课", "en": "" },          "artist": "degas", "year": "1874", "museum": "met", "collection": "stage", "version": "full",  "place": null, "themes": [], "period": null }
+  ]
+}
