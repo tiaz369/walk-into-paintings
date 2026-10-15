@@ -33,7 +33,7 @@
 |---|---|---|
 | images/v1888.jpg | （待填写） | （待填写） |
 | images/v1889-chicago.jpg | （待填写） | （待填写） |
-| images/v1889-orsay.jpg | （待填写；上传时附带的说明写着 “© Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt”，请确认授权） | （待填写） |
+| （奥赛版不放图片） | 照片版权属于奥赛博物馆（© Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt），结尾改为链接到 https://www.musee-orsay.fr/en/artworks/la-chambre-de-van-gogh-arles-746 | — |
 | images/crops/*.jpg | 从 images/v1888.jpg 裁剪 | 同 v1888.jpg |
 
 ## 声音

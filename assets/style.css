@@ -250,6 +250,7 @@ body.scene canvas { display: block; touch-action: none; }
 .act .act-cap span { display: block; }
 .act-text { max-width: 680px; text-align: center; }
 .act h3 { margin: 0 0 10px; font-size: 30px; }
+body.lang-both .act h3 > .en { display: block; font-size: .62em; color: var(--muted); font-style: italic; margin-top: 4px; }   /* 幕标题：英文换行 */
 .act h3 small { display: block; font-family: var(--sans); font-size: 11px; color: var(--muted); letter-spacing: .2em; margin-bottom: 2px; }
 .act p { margin: 0 0 10px; line-height: 1.85; font-size: 15px; }
 .act p.en { color: var(--muted); font-size: 14px; }
@@ -264,6 +265,7 @@ body.scene canvas { display: block; touch-action: none; }
 .versions { display: flex; gap: 24px; width: min(1100px, 100%); }
 .versions figure { flex: 1; margin: 0; }
 .versions img, .versions .ph { width: 100%; aspect-ratio: 5 / 4; object-fit: contain; background: var(--paper-2); display: block; }
+.versions .ext { text-decoration: none; padding: 16px; line-height: 1.6; }
 .versions figcaption { font-size: 12px; line-height: 1.6; padding-top: 8px; color: var(--muted); }
 .section-title { text-align: center; margin: 40px 0 4px; font-family: var(--serif); font-size: 26px; }
 .section-title small { display: block; font-family: var(--sans); font-size: 13px; color: var(--muted); }
