@@ -248,6 +248,8 @@ body.scene canvas { display: block; touch-action: none; }
 .ph { aspect-ratio: 5 / 4; background: var(--paper-2); color: var(--muted); display: flex; align-items: center; justify-content: center; font-size: 13px; text-align: center; }
 .act .act-cap { margin: -6px 0 0; font-size: 12px; line-height: 1.6; color: var(--muted); text-align: center; }
 .act .act-cap span { display: block; }
+.act .act-cap .sep { display: none !important; }
+.img-credit { display: block; font-size: 11px; color: var(--muted); opacity: .85; margin-top: 2px; }
 .act-text { max-width: 680px; text-align: center; }
 .act h3 { margin: 0 0 10px; font-size: 30px; }
 body.lang-both .act h3 > .en { display: block; font-size: .62em; color: var(--muted); font-style: italic; margin-top: 4px; }   /* 幕标题：英文换行 */
