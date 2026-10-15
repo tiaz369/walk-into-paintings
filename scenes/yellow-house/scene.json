@@ -130,7 +130,7 @@
   },
 
   "record": {
-    "_说明": "作品档案表：Tia 提供。尺寸核对后填写。",
+    "_说明": "作品档案表：Tia 提供。尺寸核对后填写（空着时这一行不显示）。",
     "artist":     { "zh": "文森特·梵高（1853–1890）", "en": "Vincent van Gogh (1853–1890)" },
     "title":      { "zh": "黄房子（街道）", "en": "The Yellow House (The Street)" },
     "date":       { "zh": "1888年9月，阿尔勒", "en": "September 1888, Arles" },

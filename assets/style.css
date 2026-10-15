@@ -48,10 +48,10 @@ body.lang-en .zh { display: none !important; }
 body:not(.lang-en) .en-ui { display: none !important; }
 body:not(.lang-both) .en-sub { display: none !important; }   /* 只在双语时出现的英文小字 */
 .credit-line { display: block; }
-.tba { color: var(--muted); font-style: italic; }
 /* 标题、卡片名：双语时英文换行显示，更小、更淡 */
 :is(h1, h3, .card .name, .series .name, .ways .name, .group h3) .sep { display: none; }
-body.lang-both :is(h1, .card .name, .series .name, .ways .name, .group h3) > .en { display: block; font-size: .62em; color: var(--muted); font-style: italic; margin-top: 2px; }
+body.lang-both h1 small.sub > .en { display: block; }   /* 系列页副标题：英文换行 */
+body.lang-both :is(h1, .card .name, .series .name, .ways .name, .group h3, .group h3 > a) > .en { display: block; font-size: .62em; color: var(--muted); font-style: italic; margin-top: 2px; }
 
 /* ---------- 按钮：线条细、数量少、用文字 ---------- */
 .btn {

@@ -1,5 +1,9 @@
 {
-  "_说明": "关于页的文字（Tia 提供，原文照录）。首页“关于这个项目”用 intro。label 是段首加粗的小标题。",
+  "_说明": "关于页的文字（Tia 提供，原文照录）。首页“关于这个项目”用 home；关于页用 intro、me、principles。label 是段首加粗的小标题。",
+  "home": {
+    "zh": "走进名画，是一座可以走进去的线上美术馆。在画里走一走，发现细节，听听画背后的故事，然后去博物馆看看真迹。",
+    "en": "An online gallery you can step inside. Walk into a painting, discover its details, hear its story, then go and see the real thing."
+  },
   "intro": [
     {
       "zh": "走进名画是一座可以走进去的线上美术馆。每一幅名画都被做成一个可以探索的空间：走进画里，发现细节，听它背后的故事，最后去博物馆看真迹。",

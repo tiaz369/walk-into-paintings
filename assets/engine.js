@@ -31,26 +31,25 @@ function buildDOM(S, R, meta) {
   const labelLine = { zh: [L.title.zh, L.artist.zh, L.date.zh, L.museum.zh].join(' · '), en: [L.title.en, L.artist.en, L.date.en, L.museum.en].join(' · ') };
   const imgLine = imageSourceHTML(L.source);   // 图片：… / Image: …
   const missing = file => ui(`（找不到 ${file}）`, `(Image not found: ${file})`);
-  const TBA = `<span class="tba">${ui('待补充', 'To be added')}</span>`;
 
   // 作品档案表：画家（生卒年）、画名、年份、材质、尺寸、收藏地、博物馆作品页
   const REC = [['artist', '画家（生卒年）', 'Artist (dates)'], ['title', '画名', 'Title'], ['date', '年份', 'Date'],
     ['medium', '材质', 'Medium'], ['dimensions', '尺寸', 'Dimensions'], ['collection', '收藏地', 'Collection'], ['url', '博物馆作品页', 'Museum page']];
   // 全部格子都空着时先不显示（等 Tia 提供数据）
   const hasRecord = S.record && REC.some(([k]) => k === 'url' ? S.record.url : S.record[k] && (S.record[k].zh || S.record[k].en));
+  // 只显示已经有内容的行（空着的格子不显示）
   const recordHTML = () => !hasRecord ? '' : `<table class="record">${REC.map(([k, zh, en]) => {
     const v = S.record[k];
-    const val = k === 'url' ? (v ? `<a href="${v}" target="_blank" rel="noopener">${ui('打开', 'Open')} ↗</a>` : TBA)
-      : (v && (v.zh || v.en) ? bi(v, ' / ') : TBA);
-    return `<tr><th>${ui(zh, en)}</th><td>${val}</td></tr>`;
+    const val = k === 'url' ? (v ? `<a href="${v}" target="_blank" rel="noopener">${ui('打开', 'Open')} ↗</a>` : '')
+      : (v && (v.zh || v.en) ? bi(v, ' / ') : '');
+    return val ? `<tr><th>${ui(zh, en)}</th><td>${val}</td></tr>` : '';
   }).join('')}</table>`;
 
   // 延伸阅读与来源（页面最底部）
   const readingItems = ((S.reading && S.reading.items) || []).filter(it => it.url && it.title && (it.title.zh || it.title.en));
-  const readingHTML = !S.reading ? '' : `<section class="reading">
+  const readingHTML = !readingItems.length ? '' : `<section class="reading">
       <div class="section-title">${ui('延伸阅读与来源', 'Further reading and sources')}</div>
-      ${readingItems.length ? `<ul>${readingItems.map(it => `<li><a href="${it.url}" target="_blank" rel="noopener">${bi(it.title, ' / ')}</a> ↗</li>`).join('')}</ul>`
-        : `<p class="soon">${ui('即将补充', 'Coming soon')}</p>`}
+      <ul>${readingItems.map(it => `<li><a href="${it.url}" target="_blank" rel="noopener">${bi(it.title, ' / ')}</a> ↗</li>`).join('')}</ul>
     </section>`;
 
   const actHTML = (a, i) => `
@@ -67,7 +66,7 @@ function buildDOM(S, R, meta) {
   const museumLinks = (E.museums || []).map(id => R && R.museumById[id]).filter(m => m && m.url)
     .map(m => `<a class="btn" href="${m.url}" target="_blank" rel="noopener">${bi(m.name, ' · ')}</a>`).join('');
 
-  // 下一个场景：同一系列里的下一幅（还没做的显示“即将上线”）
+  // 下一个场景：同一系列里的下一幅（还没做的显示“即将开放”）
   let nextHTML = '';
   if (R && meta) {
     const col = R.collectionById[meta.collection];
