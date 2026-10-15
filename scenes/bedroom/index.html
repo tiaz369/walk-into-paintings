@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>阿尔勒的卧室 · 走进名画 | The Bedroom · Walk into Paintings</title>
+  <meta name="description" content="在浏览器里走进梵高1888年的《阿尔勒的卧室》。Walk into Van Gogh's 1888 Bedroom in Arles." />
+  <link rel="canonical" href="https://tiaz369.github.io/walk-into-paintings/scenes/bedroom/" />
+
+  <!-- 社交分享预览（爬虫不运行 JavaScript，所以写在这里） -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="走进名画 · Walk into Paintings" />
+  <meta property="og:url" content="https://tiaz369.github.io/walk-into-paintings/scenes/bedroom/" />
+  <meta property="og:title" content="走进梵高《阿尔勒的卧室》 · Walk into Van Gogh's Bedroom" />
+  <meta property="og:description" content="3D 房间、物品介绍、三个版本对比。A 3D room, clickable notes, and the three versions side by side." />
+  <meta property="og:image" content="https://tiaz369.github.io/walk-into-paintings/scenes/bedroom/images/v1888.jpg" />
+  <meta property="og:image:width" content="1800" />
+  <meta property="og:image:height" content="1426" />
+  <meta property="og:image:alt" content="梵高《阿尔勒的卧室》1888 · Van Gogh, The Bedroom, 1888" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="走进梵高《阿尔勒的卧室》 · Walk into Van Gogh's Bedroom" />
+  <meta name="twitter:description" content="3D 房间、物品介绍、三个版本对比。A 3D room, clickable notes, and the three versions side by side." />
+  <meta name="twitter:image" content="https://tiaz369.github.io/walk-into-paintings/scenes/bedroom/images/v1888.jpg" />
+  <meta name="twitter:image:alt" content="梵高《阿尔勒的卧室》1888 · Van Gogh, The Bedroom, 1888" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="../../assets/style.css" />
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
+</head>
+<body class="lang-both">
+  <!-- 这个场景的内容全部在 scene.json；3D 和互动功能在 assets/engine.js -->
+  <script type="module">
+    import { startScene } from '../../assets/engine.js';
+    startScene('scene.json');
+  </script>
+</body>
+</html>
