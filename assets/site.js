@@ -104,7 +104,7 @@ if (GOATCOUNTER && !location.hostname.match(/^(localhost|127\.)/)) {
 // ---------- 登记表 ----------
 let registryPromise = null;
 export function loadRegistry() {
-  if (!registryPromise) registryPromise = fetch(ROOT + 'data/scenes.json').then(r => r.json()).then(prepare);
+  if (!registryPromise) registryPromise = fetch(ROOT + 'data/scenes.json', { cache: 'no-cache' }).then(r => r.json()).then(prepare);
   return registryPromise;
 }
 function prepare(R) {
@@ -356,7 +356,7 @@ export async function renderPage(kind, opts = {}) {
   chrome(opts.nav ?? (kind === 'home' ? '' : kind === 'collection' ? null : kind + '/'));
   document.querySelector('footer').before(main);
   try {
-    const [R, about] = await Promise.all([loadRegistry(), fetch(ROOT + 'data/about.json').then(r => r.json())]);
+    const [R, about] = await Promise.all([loadRegistry(), fetch(ROOT + 'data/about.json', { cache: 'no-cache' }).then(r => r.json())]);
     ABOUT = about;
     PAGES[kind](R, main, opts);
   } catch (e) {
