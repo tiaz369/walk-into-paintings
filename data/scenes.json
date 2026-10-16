@@ -9,7 +9,8 @@
   ],
 
   "artists": [
-    { "id": "van-gogh", "name": { "zh": "梵高", "en": "Vincent van Gogh" }, "bio": null },
+    { "id": "van-gogh", "name": { "zh": "梵高", "en": "Vincent van Gogh" },
+      "bio": {"zh": "文森特·梵高（1853–1890），荷兰画家。他将近27岁才开始画画，短短十年留下了大量作品。1888年他来到法国南部的阿尔勒，在那里画出了许多最著名的画。", "en": "Vincent van Gogh (1853–1890) was a Dutch painter. He began painting at around 27 and left a huge body of work in just ten years. In 1888 he moved to Arles in the south of France, where he painted many of his best-known works."} },
     { "id": "vermeer",  "name": { "zh": "维米尔", "en": "Johannes Vermeer" }, "bio": null },
     { "id": "van-eyck", "name": { "zh": "扬·凡·艾克", "en": "Jan van Eyck" }, "bio": null },
     { "id": "monet",    "name": { "zh": "莫奈", "en": "Claude Monet" }, "bio": null },
@@ -21,7 +22,7 @@
     { "id": "van-gogh-museum",  "name": { "zh": "阿姆斯特丹梵高博物馆", "en": "Van Gogh Museum, Amsterdam" }, "url": "https://www.vangoghmuseum.nl" },
     { "id": "art-institute-chicago", "name": { "zh": "芝加哥艺术博物馆", "en": "Art Institute of Chicago" }, "url": "https://www.artic.edu" },
     { "id": "orsay",            "name": { "zh": "巴黎奥赛博物馆", "en": "Musée d'Orsay, Paris" }, "url": "https://www.musee-orsay.fr" },
-    { "id": "yale",             "name": { "zh": "耶鲁大学美术馆", "en": "Yale University Art Gallery" }, "url": "" },
+    { "id": "yale",             "name": { "zh": "耶鲁大学美术馆", "en": "Yale University Art Gallery" }, "url": "https://artgallery.yale.edu" },
     { "id": "kroller-muller",   "name": { "zh": "荷兰克勒勒-米勒博物馆", "en": "Kröller-Müller Museum" }, "url": "" },
     { "id": "national-gallery", "name": { "zh": "伦敦国家美术馆", "en": "The National Gallery, London" }, "url": "" },
     { "id": "rijksmuseum",      "name": { "zh": "阿姆斯特丹荷兰国立博物馆", "en": "Rijksmuseum, Amsterdam" }, "url": "" },
@@ -31,6 +32,7 @@
 
   "themes": [
     { "id": "rooms",    "name": { "zh": "房间", "en": "Rooms" } },
+    { "id": "night",    "name": { "zh": "夜晚", "en": "Night" } },
     { "id": "windows",  "name": { "zh": "窗户", "en": "Windows" } },
     { "id": "cafes",    "name": { "zh": "咖啡馆", "en": "Cafés" } },
     { "id": "gardens",  "name": { "zh": "花园", "en": "Gardens" } },
@@ -68,7 +70,13 @@
       "version": "full", "place": "arles", "themes": ["houses-streets"], "period": "post-impressionism", "added": "2026-10-15",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
-    { "id": "night-cafe",          "status": "soon", "week": 2,  "title": { "zh": "夜间咖啡馆", "en": "The Night Café" },      "artist": "van-gogh", "year": "1888", "museum": "yale", "collection": "arles", "version": "full",  "place": "arles", "themes": [], "period": null },
+    {
+      "_说明": "原画 images/night-cafe.jpg 上传并对准后，把 status 改成 live", "id": "night-cafe", "status": "soon", "week": 2, "path": "scenes/night-cafe/", "cover": "scenes/night-cafe/images/night-cafe.jpg",
+      "title": { "zh": "夜间咖啡馆", "en": "The Night Café" },
+      "artist": "van-gogh", "year": "1888", "museum": "yale", "collection": "arles",
+      "version": "full", "place": "arles", "themes": ["night", "cafes", "rooms"], "period": "post-impressionism", "added": "2026-10-16",
+      "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
+    },
     { "id": "cafe-terrace",        "status": "soon", "week": 3,  "title": { "zh": "夜晚露天咖啡座", "en": "Café Terrace at Night" },  "artist": "van-gogh", "year": "1888", "museum": "kroller-muller", "collection": "arles", "version": "full",  "place": "arles", "themes": [], "period": null },
     { "id": "starry-night-rhone",  "status": "soon", "week": 3,  "title": { "zh": "罗纳河上的星夜", "en": "Starry Night over the Rhône" },  "artist": "van-gogh", "year": "1888", "museum": "orsay", "collection": "arles", "version": "light", "place": "arles", "themes": [], "period": null },
     { "id": "sunflowers",          "status": "soon", "week": 4,  "title": { "zh": "向日葵", "en": "Sunflowers" },          "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles", "version": "light", "place": "arles", "themes": [], "period": null },

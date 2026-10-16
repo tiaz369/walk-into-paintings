@@ -174,7 +174,7 @@ PAGES.append(page('about/', T('关于', 'About'), t(ABOUT['intro'][0]) + ' ' + t
 
 # ---------- 场景页 ----------
 REC = [('artist', '画家（生卒年）', 'Artist (dates)'), ('title', '画名', 'Title'), ('date', '年份', 'Date'), ('medium', '材质', 'Medium'),
-       ('dimensions', '尺寸', 'Dimensions'), ('collection', '收藏地', 'Collection')]
+       ('dimensions', '尺寸', 'Dimensions'), ('collection', '收藏地', 'Collection'), ('creditLine', '来源说明', 'Credit line')]
 for meta in BUILT:
     S = SCENE_DATA[meta['id']]
     L, E, up = S['label'], S['ending'], '../../'
@@ -192,6 +192,8 @@ for meta in BUILT:
         rec_html = f'<h2>作品档案 · Artwork record</h2><table>{rows}</table>'
     items = [i for i in (S.get('reading') or {}).get('items', []) if i.get('url')]
     reading = ('<h2>延伸阅读与来源 · Further reading and sources</h2><ul>' + ''.join(f'<li><a href="{e(i["url"])}">{e(both(i["title"], " / "))}</a></li>' for i in items) + '</ul>') if items else ''
+    A = ARTISTS.get(meta['artist'])
+    artist_html = f'<h2>关于画家 · About the artist</h2>{bi(A["bio"], "p")}<p><a href="{up}artists/?id={A["id"]}">更多{e(A["name"]["zh"])}的画 · More by {e(A["name"]["en"])}</a></p>' if A and A.get('bio') else ''
     museums = ''.join(f'<li><a href="{e(MUSEUMS[m]["url"])}">{e(both(MUSEUMS[m]["name"]))}</a></li>' for m in E.get('museums', []) if m in MUSEUMS and MUSEUMS[m].get('url'))
     s = f'''      <h1>{bi(L["title"])}</h1>
       <p>{e(labelline)}</p>
@@ -203,6 +205,7 @@ for meta in BUILT:
       {acts}
       <p><strong>{bi(E["final"])}</strong></p>
       {rec_html}
+      {artist_html}
       <h2>去看真迹 · See the real painting</h2>
       <ul>{museums}</ul>
       {reading}'''
