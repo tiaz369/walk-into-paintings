@@ -102,7 +102,7 @@
       { "kicker": "ACT II", "title": { "zh": "第二幕 · 一个危险的地方", "en": "A dangerous place" },
         "text": { "zh": "他在信里说，想用这幅画表达：咖啡馆是一个可能让人毁掉自己、发疯或犯罪的地方。", "en": "He wrote that he wanted to show the café as a place where one can ruin oneself, go mad or commit a crime." } },
       { "kicker": "ACT III", "title": { "zh": "第三幕 · 远行", "en": "A long journey" },
-        "text": { "zh": "这幅画后来到了俄罗斯，属于收藏家莫罗佐夫；1918年被收归国有。之后它辗转来到美国，留给了耶鲁大学。2014年，法院裁定它继续留在耶鲁。", "en": "The painting later went to Russia, to the collector Morozov, and was nationalised in 1918. It then made its way to America and was left to Yale. In 2014, a court ruled it would stay there." } }
+        "text": { "zh": "这幅画后来到了俄罗斯，属于收藏家莫罗佐夫，1918年被收归国有。之后它辗转来到美国，留给了耶鲁大学。2014年，法院裁定它继续留在耶鲁。", "en": "The painting later went to Russia, to the collector Morozov, and was nationalised in 1918. It then made its way to America and was left to Yale. In 2014, a court ruled it would stay there." } }
     ],
     "final": { "zh": "一个通宵的房间，走了很远的路。", "en": "A room that stayed up all night, and travelled far." },
     "versions": [
@@ -119,7 +119,7 @@
     "date":       { "zh": "1888年9月，阿尔勒", "en": "September 1888, Arles" },
     "medium":     { "zh": "布面油画", "en": "Oil on canvas" },
     "dimensions": { "zh": "72.4 × 92.1 cm", "en": "72.4 × 92.1 cm" },
-    "collection": { "zh": "耶鲁大学美术馆，纽黑文", "en": "Yale University Art Gallery, New Haven" },
+    "collection": { "zh": "耶鲁大学美术馆，美国纽黑文", "en": "Yale University Art Gallery, New Haven" },
     "creditLine": { "zh": "Bequest of Stephen Carlton Clark, B.A. 1903", "en": "Bequest of Stephen Carlton Clark, B.A. 1903" },
     "url": ""
   },
@@ -128,7 +128,7 @@
 
   "reading": {
     "items": [
-      { "title": { "zh": "梵高书信：致提奥，1888年8月、9月", "en": "Van Gogh's letters to Theo, August and September 1888" }, "url": "https://www.vangoghletters.org" },
+      { "title": { "zh": "梵高书信：致提奥，1888年8–9月", "en": "Van Gogh's letters to Theo, August–September 1888" }, "url": "https://www.vangoghletters.org" },
       { "title": { "zh": "《基督教科学箴言报》：耶鲁为何能保留这幅画（2014）", "en": "The Christian Science Monitor: why Yale can keep the painting (2014)" }, "url": "https://www.csmonitor.com/layout/set/amphtml/USA/Latest-News-Wires/2014/0322/Van-Gogh-painting-Why-Yale-can-keep-120-million-painting" }
     ]
   },
