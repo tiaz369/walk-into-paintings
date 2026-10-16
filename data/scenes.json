@@ -23,7 +23,7 @@
     { "id": "art-institute-chicago", "name": { "zh": "芝加哥艺术博物馆", "en": "Art Institute of Chicago" }, "url": "https://www.artic.edu" },
     { "id": "orsay",            "name": { "zh": "巴黎奥赛博物馆", "en": "Musée d'Orsay, Paris" }, "url": "https://www.musee-orsay.fr" },
     { "id": "yale",             "name": { "zh": "耶鲁大学美术馆", "en": "Yale University Art Gallery" }, "url": "https://artgallery.yale.edu" },
-    { "id": "kroller-muller",   "name": { "zh": "荷兰克勒勒-米勒博物馆", "en": "Kröller-Müller Museum" }, "url": "" },
+    { "id": "kroller-muller",   "name": { "zh": "荷兰克勒勒-米勒博物馆", "en": "Kröller-Müller Museum" }, "url": "https://krollermuller.nl" },
     { "id": "national-gallery", "name": { "zh": "伦敦国家美术馆", "en": "The National Gallery, London" }, "url": "" },
     { "id": "rijksmuseum",      "name": { "zh": "阿姆斯特丹荷兰国立博物馆", "en": "Rijksmuseum, Amsterdam" }, "url": "" },
     { "id": "mauritshuis",      "name": { "zh": "海牙莫瑞泰斯皇家美术馆", "en": "Mauritshuis, The Hague" }, "url": "" },
@@ -77,7 +77,13 @@
       "version": "full", "place": "arles", "themes": ["night", "cafes", "rooms"], "period": "post-impressionism", "added": "2026-10-16",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
-    { "id": "cafe-terrace",        "status": "soon", "week": 3,  "title": { "zh": "夜晚露天咖啡座", "en": "Café Terrace at Night" },  "artist": "van-gogh", "year": "1888", "museum": "kroller-muller", "collection": "arles", "version": "full",  "place": "arles", "themes": [], "period": null },
+    {
+      "_说明": "原画 images/cafe-terrace.jpg 上传并对准后，把 status 改成 live", "id": "cafe-terrace", "status": "soon", "week": 3, "path": "scenes/cafe-terrace/", "cover": "scenes/cafe-terrace/images/cafe-terrace.jpg",
+      "title": { "zh": "夜晚露天咖啡座", "en": "Café Terrace at Night" },
+      "artist": "van-gogh", "year": "1888", "museum": "kroller-muller", "collection": "arles",
+      "version": "full", "place": "arles", "themes": ["night", "cafes", "houses-streets"], "period": "post-impressionism", "added": "2026-10-16",
+      "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
+    },
     { "id": "starry-night-rhone",  "status": "soon", "week": 3,  "title": { "zh": "罗纳河上的星夜", "en": "Starry Night over the Rhône" },  "artist": "van-gogh", "year": "1888", "museum": "orsay", "collection": "arles", "version": "light", "place": "arles", "themes": [], "period": null },
     { "id": "sunflowers",          "status": "soon", "week": 4,  "title": { "zh": "向日葵", "en": "Sunflowers" },          "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles", "version": "light", "place": "arles", "themes": [], "period": null },
     { "id": "milkmaid",            "status": "soon", "week": 5,  "title": { "zh": "倒牛奶的女仆", "en": "The Milkmaid" },    "artist": "vermeer", "year": { "zh": "约1660", "en": "c. 1660" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": "delft", "themes": [], "period": null },

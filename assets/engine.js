@@ -154,6 +154,7 @@ function buildDOM(S, R, meta) {
     <div class="en-title" id="cardTitleEn"></div>
     <p id="cardZh" class="zh"></p>
     <p class="en" id="cardEn"></p>
+    <p id="cardLinkP" class="hidden"><a id="cardLink" class="btn"></a></p>
   </div>
 
   <div id="zoom" class="hidden" role="dialog" aria-label="Zoom">
@@ -678,6 +679,24 @@ function run(S, R, meta) {
     document.querySelectorAll('#modeSwitch button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
   }
   setMode(PROJ ? 'paint' : 'flat');
+
+  // ---------- 独家发现“星空连线”：点夜空，画里的星星之间连出线 ----------
+  // stars 写的是星星在原画上的位置（0–1：从左到右、从上到下），从画家视角投到天空上
+  const constObj = S.exclusive && S.exclusive.type === 'constellation' ? S.exclusive : null;
+  let constGroup = null;
+  if (constObj) {
+    constGroup = new THREE.Group(); constGroup.visible = false; constGroup.userData.card = constObj.card;
+    const R = (RM.skyRadius || 150) * 0.9;
+    const pts = constObj.stars.map(([fx, fy]) => {
+      const d = new THREE.Vector3(fx * 2 - 1, 1 - fy * 2, 0.5).unproject(projector).sub(projector.position).normalize();
+      return projector.position.clone().addScaledVector(d, R);
+    });
+    const starMat = new THREE.SpriteMaterial({ map: haloTex(), color: '#fff6c8', transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+    for (const p of pts) { const st = new THREE.Sprite(starMat); st.position.copy(p); st.scale.set(R * 0.035, R * 0.035, 1); constGroup.add(st); }
+    const lineGeo = new THREE.BufferGeometry().setFromPoints(constObj.lines.flatMap(([a, b]) => [pts[a], pts[b]]));
+    constGroup.add(new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: '#fff3b0', transparent: true, opacity: 0.85, depthWrite: false })));
+    scene.add(constGroup);
+  }
   document.querySelectorAll('#modeSwitch button').forEach(b => b.onclick = () => setMode(b.dataset.mode));
 
   // ---------- 第一人称：走动和转视角 ----------
@@ -733,6 +752,10 @@ function run(S, R, meta) {
     const t = S.cards[key];
     $('cardTitle').textContent = t.title.zh; $('cardTitleEn').textContent = t.title.en;
     $('cardZh').textContent = t.text.zh; $('cardEn').textContent = t.text.en;
+    // 卡片里的链接（比如“去卧室看博赫的画像”）
+    $('cardLinkP').classList.toggle('hidden', !t.link);
+    if (t.link) { $('cardLink').href = t.link.href; $('cardLink').innerHTML = ui(t.link.label.zh, t.link.label.en) + ' →'; }
+    if (constGroup && key === constObj.card) constGroup.visible = true;   // 星空连线
     card.style.display = 'block';
     found.add(key); updateProgress();
   }
