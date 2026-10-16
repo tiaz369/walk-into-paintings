@@ -16,7 +16,7 @@ const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '
 export function bi(o, sep = ' · ') {
   if (o == null) return '';
   if (typeof o === 'string') return esc(o);
-  if (o.zh && o.en) return `<span class="zh">${esc(o.zh)}</span><span class="en"><span class="zh sep">${sep}</span>${esc(o.en)}</span>`;
+  if (o.zh && o.en && o.zh !== o.en) return `<span class="zh">${esc(o.zh)}</span><span class="en"><span class="zh sep">${sep}</span>${esc(o.en)}</span>`;
   return esc(o.zh || o.en || '');
 }
 // 界面上的短标签：中文/双语 显示中文，EN 显示英文

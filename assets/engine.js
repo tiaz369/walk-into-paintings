@@ -42,7 +42,7 @@ function buildDOM(S, R, meta) {
 
   // 作品档案表：画家（生卒年）、画名、年份、材质、尺寸、收藏地、博物馆作品页
   const REC = [['artist', '画家（生卒年）', 'Artist (dates)'], ['title', '画名', 'Title'], ['date', '年份', 'Date'],
-    ['medium', '材质', 'Medium'], ['dimensions', '尺寸', 'Dimensions'], ['collection', '收藏地', 'Collection'], ['url', '博物馆作品页', 'Museum page']];
+    ['medium', '材质', 'Medium'], ['dimensions', '尺寸', 'Dimensions'], ['collection', '收藏地', 'Collection'], ['creditLine', '来源说明', 'Credit line'], ['url', '博物馆作品页', 'Museum page']];
   // 全部格子都空着时先不显示（等 Tia 提供数据）
   const hasRecord = S.record && REC.some(([k]) => k === 'url' ? S.record.url : S.record[k] && (S.record[k].zh || S.record[k].en));
   // 只显示已经有内容的行（空着的格子不显示）
@@ -72,6 +72,13 @@ function buildDOM(S, R, meta) {
       </div>
       <button class="btn reveal next" data-next="${i + 1 < E.acts.length ? 'act' + (i + 2) : 'actEnd'}">${ui('下一幕', 'Next')} ↓</button>
     </section>`;
+  // 关于画家：登记表里的画家简介（每个场景都一样），链接到画家页
+  const artist = R && meta && R.artistById[meta.artist];
+  const artistHTML = artist && artist.bio ? `<section class="artist-bio">
+      <div class="section-title">${ui('关于画家', 'About the artist')}</div>
+      <p><span class="zh">${artist.bio.zh}</span><span class="en">${artist.bio.en}</span></p>
+      <p><a class="btn" href="${ROOT}artists/?id=${artist.id}">${ui('更多' + artist.name.zh + '的画', 'More by ' + artist.name.en)} →</a></p>
+    </section>` : '';
   const museumLinks = (E.museums || []).map(id => R && R.museumById[id]).filter(m => m && m.url)
     .map(m => `<a class="btn" href="${m.url}" target="_blank" rel="noopener">${bi(m.name, ' · ')}</a>`).join('');
 
@@ -139,6 +146,7 @@ function buildDOM(S, R, meta) {
     <p><a id="shotSave" download="${S.id}.png">${ui('保存图片', 'Save image')}</a><br>${ui('手机上也可以长按图片保存', 'On phones, long-press the image to save')}</p>
   </div>
   <div id="flash"></div>
+  <div id="toast" class="panel" role="status"></div>
 
   <div id="card" class="panel">
     <button class="close" id="cardClose" aria-label="Close">×</button>
@@ -176,6 +184,7 @@ function buildDOM(S, R, meta) {
       </div>` : ''}
       ${hasRecord ? `<div class="section-title">${ui('作品档案', 'Artwork record')}<small class="en-sub">Artwork record</small></div>${recordHTML()}` : ''}
       <p class="zoom-row"><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button></p>
+      ${artistHTML}
       <div class="section-title">${ui('去看真迹', 'See the real paintings')}<small class="en-sub">See the real paintings</small></div>
       <div class="links">${museumLinks}</div>
       ${nextHTML}
@@ -301,15 +310,27 @@ function run(S, R, meta) {
     const m = new THREE.Mesh(geo, mat); if (card) m.userData.card = card; scene.add(outline(m)); return m;
   }
 
+  // 灯的光晕（一张柔和的圆形渐变图，所有灯共用）
+  const halos = [];
+  let _halo = null;
+  function haloTex() {
+    if (_halo) return _halo;
+    const cv = document.createElement('canvas'); cv.width = cv.height = 128;
+    const g = cv.getContext('2d'), gr = g.createRadialGradient(64, 64, 4, 64, 64, 64);
+    gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(0.35, 'rgba(255,255,255,.45)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
+    g.fillStyle = gr; g.fillRect(0, 0, 128, 128);
+    return (_halo = new THREE.CanvasTexture(cv));
+  }
+
   // ---------- 地板、墙、天花板（室内）/ 地面和天空（户外） ----------
-  const fadeOpts = S.exclusive && S.exclusive.type === 'wallFade' ? S.exclusive.options : [{ color: '#cccccc', tint: 0 }];
+  const fadeOpts = S.exclusive && S.exclusive.type === 'wallFade' ? S.exclusive.options : [{ color: C.wall || '#cccccc', tint: 0 }];
   const wallMat = new THREE.MeshToonMaterial({ color: fadeOpts[0].color, gradientMap: gradient, map: TEX.wall });
   let ceil = null;
   if (!OUT) {
     const plan = new THREE.Shape();
     plan.moveTo(L, -FRONT); plan.lineTo(RF.x, -RF.z); plan.lineTo(BR.x, -BR.z); plan.lineTo(BL.x, -BL.z); plan.closePath();
-    const floor = new THREE.Mesh(new THREE.ShapeGeometry(plan), paint(C.floor, 'floor'));
-    floor.rotation.x = -Math.PI / 2; floor.userData.card = 'floor'; scene.add(floor);
+    const floor = new THREE.Mesh(new THREE.ShapeGeometry(plan), paint(C.floor, RM.floorTex || 'floor'));
+    floor.rotation.x = -Math.PI / 2; floor.userData.card = RM.floorCard ?? 'floor'; scene.add(floor);
     ceil = new THREE.Mesh(new THREE.ShapeGeometry(plan), new THREE.MeshBasicMaterial({ color: C.ceiling, map: TEX.wall, side: THREE.DoubleSide }));
     ceil.rotation.x = -Math.PI / 2; ceil.position.y = H; scene.add(ceil);
 
@@ -318,7 +339,7 @@ function run(S, R, meta) {
       for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * len, uv.getY(i) * H);
       const m = new THREE.Mesh(geo, wallMat);
       m.position.set((x1 + x2) / 2, H / 2, (z1 + z2) / 2); m.rotation.y = -Math.atan2(z2 - z1, x2 - x1);
-      m.userData.card = 'wall'; m.userData.isWall = true; scene.add(m);
+      m.userData.card = RM.wallCard ?? 'wall'; m.userData.isWall = true; scene.add(m);
       box(len, 0.03, 0.03, C.line, 0, -H / 2 + 0.015, 0.015, m);
     }
     wall(BL.x, BL.z, BR.x, BR.z); wall(BR.x, BR.z, RF.x, RF.z); wall(RF.x, RF.z, L, FRONT); wall(L, FRONT, BL.x, BL.z);
@@ -362,12 +383,13 @@ function run(S, R, meta) {
     wallBoxes(o) {
       const f = wallFrame(o.wall, o.x, o.z), g = group(f.pos[0], o.y, f.pos[1], f.rot, o.card);
       for (const [w, h, d, color, x, y, z, tex] of o.boxes) box(w, h, d, color, x, y, z, g, tex || 'wood');
+      if (o.id) named[o.id] = g;
     },
     door(o) {
       const f = wallFrame(o.wall, 0, o.z), g = group(f.pos[0], 0, f.pos[1], f.rot, o.card), w = o.width, h = o.height;
       box(w, h, 0.05, C.door, 0, h / 2, 0, g);
-      box(w * 0.75, h * 0.38, 0.02, '#9a7dbd', 0, h * 0.7, 0.035, g);
-      box(w * 0.75, h * 0.34, 0.02, '#9a7dbd', 0, h * 0.27, 0.035, g);
+      box(w * 0.75, h * 0.38, 0.02, C.doorPanel || '#9a7dbd', 0, h * 0.7, 0.035, g);
+      box(w * 0.75, h * 0.34, 0.02, C.doorPanel || '#9a7dbd', 0, h * 0.27, 0.035, g);
       cyl(0.03, 0.03, 0.06, C.line, w * 0.38, h * 0.48, 0.06, g).rotation.x = Math.PI / 2;
       box(w + 0.1, 0.06, 0.07, C.line, 0, h + 0.03, 0, g);
     },
@@ -418,6 +440,8 @@ function run(S, R, meta) {
   // ---------- 户外用的物体：房子、树、铁路桥、街道、发光入口 ----------
   const named = {};   // 有 id 的物体（独家发现里的“淡出”会用到）
   const portals = [];
+  // 入口通往的场景还没开放时，不显示入口
+  const portalOpen = pt => !pt.scene || (R && R.sceneById[pt.scene] && R.sceneById[pt.scene].status === 'live');
   Object.assign(BUILD, {
     // 一栋房子：x、z 是正面中间的位置，w 宽、d 深、h 高；windows 是正面（front）或右侧（side）上的窗和门
     building(o) {
@@ -429,7 +453,7 @@ function run(S, R, meta) {
         const b = side ? box(depth, wd.h, wd.w, wd.color, o.w / 2 + depth / 2 - 0.04, wd.y, -wd.x, g)
                        : box(wd.w, wd.h, depth, wd.color, wd.x, wd.y, depth / 2 - 0.04, g);
         if (wd.card) b.userData.card = wd.card;
-        if (wd.portal) { b.userData.portal = wd.portal; portals.push({ mesh: b, ...wd.portal }); }
+        if (wd.portal && portalOpen(wd.portal)) { b.userData.portal = wd.portal; portals.push({ mesh: b, ...wd.portal }); }
       }
       for (const [w, h, d, color, x, y, z, tex] of o.boxes || []) box(w, h, d, color, x, y, z, g, tex || 'wood');
       if (o.id) named[o.id] = g;
@@ -456,6 +480,61 @@ function run(S, R, meta) {
     road(o) {
       const m = new THREE.Mesh(new THREE.PlaneGeometry(o.x1 - o.x0, o.z1 - o.z0), paint(col(o.color), 'ground'));
       m.rotation.x = -Math.PI / 2; m.position.set((o.x0 + o.x1) / 2, 0.01, (o.z0 + o.z1) / 2); m.userData.card = o.card; scene.add(m);
+    },
+    // 吊灯：灯罩 + 发光的灯泡 + 一圈光晕（光晕在“天亮了”时慢慢变淡）
+    lamp(o) {
+      const g = group(o.x, o.y, o.z, 0, o.card);
+      cyl(0.01, 0.01, o.cord || 0.6, C.line, 0, (o.cord || 0.6) / 2 + 0.15, 0, g);
+      cyl(0.08, 0.22, 0.14, col(o.shade || 'lampShade'), 0, 0.08, 0, g);
+      const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.09, 16, 12), new THREE.MeshBasicMaterial({ color: col(o.light || 'lampLight') }));
+      bulb.userData.noPaint = true; g.add(bulb);
+      const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: haloTex(), color: col(o.light || 'lampLight'), transparent: true, opacity: 0.55, depthWrite: false, blending: THREE.AdditiveBlending }));
+      halo.scale.set(o.halo || 1.4, o.halo || 1.4, 1); halo.userData.noPaint = true; g.add(halo); halos.push(halo);
+    },
+    // 台球桌：绿色台面 + 木框 + 四条腿
+    billiard(o) {
+      const g = group(o.x, 0, o.z, o.rot || 0, o.card), w = o.w || 1.3, l = o.l || 2.5;
+      box(w, 0.06, l, col(o.felt || 'felt'), 0, 0.8, 0, g, 'cloth');
+      for (const s of [-1, 1]) { box(0.12, 0.14, l + 0.24, C.wood, s * (w / 2 + 0.06), 0.82, 0, g); box(w + 0.24, 0.14, 0.12, C.wood, 0, 0.82, s * (l / 2 + 0.06), g); }
+      box(w, 0.18, l, C.wood, 0, 0.66, 0, g);
+      for (const [x, z] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) box(0.1, 0.6, 0.1, C.wood, x * (w / 2 - 0.05), 0.3, z * (l / 2 - 0.05), g);
+      const c = Math.cos(o.rot || 0), sn = Math.sin(o.rot || 0), r = Math.max(w, l) / 2 * Math.max(Math.abs(c), Math.abs(sn)) + 0.3;
+      blocks.push([o.x - r, o.x + r, o.z - r, o.z + r]);
+    },
+    // 小圆桌（可以带几把简单的椅子）
+    roundTable(o) {
+      const g = group(o.x, 0, o.z, o.rot || 0, o.card), r = o.r || 0.4;
+      cyl(r, r, 0.04, col(o.color || 'tableTop'), 0, 0.74, 0, g);
+      cyl(0.04, 0.04, 0.72, C.line, 0, 0.36, 0, g);
+      for (const a of o.chairs || []) {
+        const cx = Math.sin(a) * (r + 0.32), cz = Math.cos(a) * (r + 0.32), ch = group(cx, 0, cz, a, null, g);
+        box(0.4, 0.04, 0.4, C.wood, 0, 0.45, 0, ch); box(0.4, 0.45, 0.04, C.wood, 0, 0.7, 0.18, ch);
+        for (const [x, z] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) box(0.03, 0.45, 0.03, C.wood, x * 0.17, 0.22, z * 0.17, ch);
+      }
+      blocks.push([o.x - r - 0.3, o.x + r + 0.3, o.z - r - 0.3, o.z + r + 0.3]);
+    },
+    // 简单的人形：站着（standing）、坐着（sitting）、趴在桌上（slumped）
+    figure(o) {
+      const g = group(o.x, 0, o.z, o.rot || 0, o.card), c = col(o.color || 'coat');
+      if (o.pose === 'standing') {
+        cyl(0.2, 0.24, 1.1, c, 0, 0.95, 0, g); cyl(0.09, 0.09, 0.5, col(o.legs || 'trousers'), -0.08, 0.25, 0, g); cyl(0.09, 0.09, 0.5, col(o.legs || 'trousers'), 0.08, 0.25, 0, g);
+        const h = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 12), paint(col('skin'))); h.position.y = 1.65; g.add(outline(h));
+      } else {
+        cyl(0.18, 0.22, 0.55, c, 0, 0.72, 0, g).rotation.x = o.pose === 'slumped' ? -0.9 : -0.1;
+        const h = new THREE.Mesh(new THREE.SphereGeometry(0.12, 16, 12), paint(col(o.hat || 'skin')));
+        h.position.set(0, o.pose === 'slumped' ? 0.86 : 1.12, o.pose === 'slumped' ? -0.32 : -0.02); g.add(outline(h));
+        box(0.4, 0.04, 0.4, C.wood, 0, 0.45, 0.05, g);
+      }
+      blocks.push([o.x - 0.35, o.x + 0.35, o.z - 0.35, o.z + 0.35]);
+    },
+    // 墙上或空地上的一扇门，点一下去另一个场景（portal）
+    portalDoor(o) {
+      const g = group(o.x, 0, o.z, o.rot || 0, null);
+      const W = o.w || 1, Hd = o.h || 2.2;   // 门框：两边和上面三根细条（不挡在发光的门后面）
+      for (const s of [-1, 1]) box(0.08, Hd + 0.08, 0.08, C.line, s * (W / 2 + 0.04), (Hd + 0.08) / 2, 0.02, g);
+      box(W + 0.16, 0.08, 0.08, C.line, 0, Hd + 0.04, 0.02, g);
+      const d = box(W, Hd, 0.04, '#ffffff', 0, Hd / 2, 0.02, g);
+      if (portalOpen(o.portal)) { d.userData.portal = o.portal; portals.push({ mesh: d, ...o.portal }); } else g.visible = false;
     },
     boxes(o) {
       const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card);
@@ -495,10 +574,16 @@ function run(S, R, meta) {
     if (!o.material) return;
     o.material = o.material.clone(); o.material.transparent = true; fadeMeshes.push(o);
   });
+  // 独家发现“天亮了”：在场景里待得越久，灯光和窗外慢慢从深夜变成清晨
+  const dawnObj = S.exclusive && S.exclusive.type === 'dawn' ? S.exclusive : null;
+  const dawnGlass = [];
+  let dawnTime = 0, dawn = 0, dawnShown = false;
+  if (dawnObj) for (const id of dawnObj.glass || []) named[id] && named[id].traverse(o => { if (o.isMesh) { o.material = o.material.clone(); o.userData.noPaint = true; dawnGlass.push(o); } });
+  const nightHemi = new THREE.Color('#ffe2a0'), dawnHemi = new THREE.Color('#dfe8f5'), nightGlass = new THREE.Color(dawnObj ? col(dawnObj.night || '#0d1633') : '#000'), dawnGlassC = new THREE.Color(dawnObj ? col(dawnObj.day || '#d6e2f0') : '#000');
   function goPortal(pt) { const f = $('flash'); f.style.transition = 'opacity .6s'; f.style.opacity = 1; setTimeout(() => { location.href = pt.href; }, 600); }
 
   // ---------- 柔和的光（简化色块模式用） ----------
-  scene.add(new THREE.HemisphereLight('#fff4d6', '#b5533c', 1.6));
+  const hemi = new THREE.HemisphereLight('#fff4d6', '#b5533c', 1.6); scene.add(hemi);
   scene.add(new THREE.AmbientLight('#ffffff', 0.6));
   const sun = new THREE.DirectionalLight('#fff1c4', 1.2);
   if (OUT) sun.position.set(-30, 60, 20); else sun.position.set(-0.3, 2.2, BL.z - 2);
@@ -523,7 +608,7 @@ function run(S, R, meta) {
   const projUniforms = {
     uPaint: { value: paintingTex }, uDepth: { value: depthRT.depthTexture },
     uProjVP: { value: new THREE.Matrix4().multiplyMatrices(projector.projectionMatrix, projector.matrixWorldInverse) },
-    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }
+    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 }
   };
   const projVert = `
     varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv; uniform vec2 uRepeat;
@@ -531,7 +616,7 @@ function run(S, R, meta) {
   const projFrag = `
     uniform sampler2D uPaint; uniform sampler2D uDepth; uniform sampler2D uMap;
     uniform mat4 uProjVP; uniform vec3 uProjPos; uniform float uNear; uniform float uFar;
-    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky;
+    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn;
     varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv;
     float linDepth(float d) { float z = d * 2.0 - 1.0; return 2.0 * uNear * uFar / (uFar + uNear - z * (uFar - uNear)); }
     void main() {
@@ -549,6 +634,7 @@ function run(S, R, meta) {
           else if (uSky > 0.5) col = mix(col, texture2D(uPaint, vec2(uv.x, 0.9)).rgb, edge);   // 天空被房子挡住的地方：用同一列画里天空的颜色
         }
       }
+      col = mix(col, col * vec3(0.8, 0.92, 1.1) + vec3(0.05, 0.06, 0.09), uDawn);   // 天亮了：灯光变淡、偏冷的晨光
       if (uWall > 0.5) {   // 褪色开关：把墙上偏蓝的颜色加回一点红色
         float blueish = smoothstep(0.0, 0.12, col.b - col.r);
         col = mix(col, vec3(min(col.r + 0.28 * col.b, 1.0), col.g * 0.88, col.b), uViolet * blueish);
@@ -579,7 +665,7 @@ function run(S, R, meta) {
   });
   const PROJ = S.projection !== false;   // 原画投影：画家视角和 3D 形状对准以后才打开
   if (PROJ) (function renderProjectorDepth() {   // 从投影仪的位置拍一次“深度图”，判断哪些表面被挡住（只拍一次）
-    const hidden = [cornerHit, vpRing, vpDot, ...outlines, ...portals.map(p => p.sprite)].filter(Boolean);
+    const hidden = [cornerHit, vpRing, vpDot, ...outlines, ...portals.map(p => p.sprite), ...halos].filter(Boolean);
     hidden.forEach(o => o.visible = false);
     scene.overrideMaterial = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
     renderer.setRenderTarget(depthRT); renderer.render(scene, projector); renderer.setRenderTarget(null);
@@ -678,6 +764,13 @@ function run(S, R, meta) {
     const o = S.exclusive.options[+b.dataset.opt];
     if (fadeObj) fadeTarget = o.fade || 0; else { wallTarget.set(o.color); violetTarget = o.tint || 0; }
   });
+
+  // ---------- 小提示条（几秒后自动消失） ----------
+  function showToast(m) {
+    if (!m) return;
+    const t = $('toast'); t.innerHTML = `<span class="zh">${m.zh}</span><span class="en">${m.en}</span>`;
+    t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 10000);
+  }
 
   // ---------- 拍一张 ----------
   $('shotBtn').onclick = () => {
@@ -959,13 +1052,22 @@ function run(S, R, meta) {
       pt.mesh.material.opacity = (0.55 + 0.4 * Math.sin(performance.now() / 500)) * (1 - f); pt.sprite.visible = f < 0.5;
     }
     projUniforms.uViolet.value += (violetTarget - projUniforms.uViolet.value) * (1 - Math.exp(-dt * 4));
+    if (dawnObj && walking) {   // 天亮了：待够 start 秒后，用 duration 秒慢慢变成清晨
+      dawnTime += dt;
+      dawn = Math.max(0, Math.min(1, (dawnTime - (dawnObj.start ?? 20)) / (dawnObj.duration ?? 120)));
+      projUniforms.uDawn.value = dawn;
+      hemi.color.copy(nightHemi).lerp(dawnHemi, dawn);
+      for (const h of halos) h.material.opacity = 0.55 * (1 - 0.85 * dawn);
+      for (const m of dawnGlass) m.material.color.copy(nightGlass).lerp(dawnGlassC, dawn);
+      if (dawn >= 1 && !dawnShown) { dawnShown = true; showToast(dawnObj.message); }
+    }
     camera.position.set(player.x, player.eye, player.z);
     camera.rotation.set(player.pitch, -player.yaw, 0, 'YXZ');
     renderer.render(scene, camera);
   }
   loop();
   // 测试用：地址后面加 ?debug 时，可以在控制台里移动位置（普通访问不受影响）
-  if (location.search.includes("debug")) window.__room = { player, setMode, leaveView, showCard, portals, camera };
+  if (location.search.includes("debug")) window.__room = { player, setMode, leaveView, showCard, portals, camera, skipTime: s => { dawnTime += s; } };
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);

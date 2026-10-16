@@ -295,6 +295,35 @@
       "x1": 50,
       "y": 4.2,
       "color": "bridge"
+    },
+    {
+      "type": "building",
+      "x": -10.6,
+      "z": -2,
+      "w": 4,
+      "d": 4,
+      "h": 4.2,
+      "rot": 1.5708,
+      "color": "#e0c27a",
+      "roof": "#b8724a",
+      "windows": [
+        {
+          "face": "front",
+          "x": 0,
+          "y": 1.15,
+          "w": 1.0,
+          "h": 2.3,
+          "color": "#3b6a46",
+          "portal": {
+            "scene": "night-cafe",
+            "href": "../night-cafe/",
+            "label": {
+              "zh": "穿过广场，去咖啡馆",
+              "en": "Cross the square to the café"
+            }
+          }
+        }
+      ]
     }
   ],
   "cards": {
@@ -424,7 +453,16 @@
     ],
     "museums": [
       "van-gogh-museum"
-    ]
+    ],
+    "exit": {
+      "_说明": "结尾的按钮：去夜间咖啡馆（咖啡馆开放后才显示）",
+      "scene": "night-cafe",
+      "label": {
+        "zh": "穿过广场，去咖啡馆",
+        "en": "Cross the square to the café"
+      },
+      "href": "../night-cafe/"
+    }
   },
   "record": {
     "_说明": "作品档案表：Tia 提供。尺寸核对后填写（空着时这一行不显示）。",
