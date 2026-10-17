@@ -537,6 +537,12 @@ function run(S, R, meta) {
       const d = box(W, Hd, 0.04, '#ffffff', 0, Hd / 2, 0.02, g);
       if (portalOpen(o.portal)) { d.userData.portal = o.portal; portals.push({ mesh: d, ...o.portal }); } else g.visible = false;
     },
+    // 一块平面（四个角：左上、左下、右下、右上，世界坐标），两面都能看见，比如雨棚、墙面
+    surface(o) {
+      const m = quad(o.pts, paint(col(o.color), o.tex || 'wall').clone(), o.card, 0);
+      m.material.side = THREE.DoubleSide; m.userData.double = true;
+      if (o.id) named[o.id] = m;
+    },
     boxes(o) {
       const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card);
       for (const [w, h, d, color, x, y, z, tex] of o.boxes) box(w, h, d, color, x, y, z, g, tex || 'wood');
@@ -661,7 +667,7 @@ function run(S, R, meta) {
   scene.traverse(o => {
     if (!o.isMesh || o.userData.noPaint) return;
     o.userData.flatMat = o.material;
-    o.userData.paintMat = projMaterial(o.material, !!o.userData.isWall, o === ceil || !!o.userData.isSky, !!o.userData.isSky);   // 天花板和天空从里面看
+    o.userData.paintMat = projMaterial(o.material, !!o.userData.isWall, o === ceil || !!o.userData.isSky || !!o.userData.double, !!o.userData.isSky);   // 天花板和天空从里面看
     solids.push(o);
   });
   const PROJ = S.projection !== false;   // 原画投影：画家视角和 3D 形状对准以后才打开
