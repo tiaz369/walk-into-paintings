@@ -1,137 +1,590 @@
 {
   "_说明": "夜间咖啡馆场景的全部内容。所有事实文字由 Tia 提供。家具的位置是按原画大致摆的；原画上传后会再对准（对准后把 projection 改成 true）。",
-
   "id": "night-cafe",
-  "painting": { "image": "images/night-cafe.jpg", "width": 1800, "height": 1410, "alt": { "zh": "梵高《夜间咖啡馆》1888", "en": "Vincent van Gogh, The Night Café, 1888" } },
+  "painting": {
+    "image": "images/night-cafe.jpg",
+    "width": 1800,
+    "height": 1410,
+    "alt": {
+      "zh": "梵高《夜间咖啡馆》1888",
+      "en": "Vincent van Gogh, The Night Café, 1888"
+    }
+  },
   "projection": false,
-
   "label": {
     "_说明": "展签：画名、画家、年份、收藏地",
-    "title":  { "zh": "夜间咖啡馆", "en": "The Night Café" },
-    "artist": { "zh": "梵高", "en": "Vincent van Gogh" },
-    "date":   { "zh": "1888年9月", "en": "September 1888" },
-    "museum": { "zh": "耶鲁大学美术馆", "en": "Yale University Art Gallery" },
+    "title": {
+      "zh": "夜间咖啡馆",
+      "en": "The Night Café"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1888年9月",
+      "en": "September 1888"
+    },
+    "museum": {
+      "zh": "耶鲁大学美术馆",
+      "en": "Yale University Art Gallery"
+    },
     "_图片来源": "会显示成“图片：… / Image: …”",
-    "source": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
   },
-
-  "enter": { "zh": "走进画里", "en": "Step into the painting" },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
   "hint": {
     "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下灯、墙、台球桌、客人看介绍 · 地上发光的圆点 = 梵高视角",
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the lamps, walls, billiard table or customers to learn more · The glowing circle = Van Gogh's viewpoint"
   },
-
   "viewpoint": {
     "_说明": "画家视角：站在咖啡馆门口附近、略高的位置往里看。原画上传后会重新对准。",
-    "x": 0.4, "z": 0, "eye": 1.9, "yaw": 0.05, "pitch": -0.28, "fov": 55,
-    "text": { "zh": "从这里看，就是画里的样子。", "en": "From here, you see what the painting sees." }
+    "x": 0.4,
+    "z": 0,
+    "eye": 1.9,
+    "yaw": 0.05,
+    "pitch": -0.28,
+    "fov": 55,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
   },
-
   "exclusive": {
     "_说明": "独家发现“天亮了”：进入房间 start 秒后，用 duration 秒慢慢从深夜变成清晨（灯光变淡、窗外变亮），最后显示 message",
-    "type": "dawn", "start": 20, "duration": 120,
-    "glass": ["dawn-window", "dawn-door"], "night": "#0d1633", "day": "#d6e2f0",
-    "message": { "zh": "他白天睡觉，夜里画画。", "en": "He slept by day and painted by night." }
+    "type": "dawn",
+    "start": 20,
+    "duration": 120,
+    "glass": [
+      "dawn-window",
+      "dawn-door"
+    ],
+    "night": "#0d1633",
+    "day": "#d6e2f0",
+    "message": {
+      "zh": "他白天睡觉，夜里画画。",
+      "en": "He slept by day and painted by night."
+    }
   },
-
   "sound": null,
-
   "colors": {
-    "line": "#2b2420", "floor": "#d9b84a", "wall": "#b8302b", "ceiling": "#3f7a4e",
-    "wood": "#8a5a32", "felt": "#3d7a45", "tableTop": "#c9b27a", "lampShade": "#c7a640", "lampLight": "#f4e27a",
-    "coat": "#3a3f5c", "trousers": "#2c2a33", "skin": "#e0b48c", "white": "#eee8d8", "bar": "#9a6a3a", "curtain": "#d6a24a", "clock": "#e9dcb0", "door": "#d6a24a", "doorPanel": "#c08a3a", "glass": "#0d1633"
+    "line": "#2b2420",
+    "floor": "#d9b84a",
+    "wall": "#b8302b",
+    "ceiling": "#3f7a4e",
+    "wood": "#8a5a32",
+    "felt": "#3d7a45",
+    "tableTop": "#c9b27a",
+    "lampShade": "#c7a640",
+    "lampLight": "#f4e27a",
+    "coat": "#3a3f5c",
+    "trousers": "#2c2a33",
+    "skin": "#e0b48c",
+    "white": "#eee8d8",
+    "bar": "#9a6a3a",
+    "curtain": "#d6a24a",
+    "clock": "#e9dcb0",
+    "door": "#d6a24a",
+    "doorPanel": "#c08a3a",
+    "glass": "#0d1633"
   },
-
   "room": {
     "_说明": "房间形状（米）：左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront",
-    "height": 4.4, "front": 1.6, "left": -4.6,
-    "backLeft": [-4.6, -11.5], "backRight": [4.8, -12.0], "rightFront": [4.8, 1.6],
-    "floorTex": "ground", "floorCard": null, "wallCard": "colours"
+    "height": 4.4,
+    "front": 1.6,
+    "left": -4.6,
+    "backLeft": [
+      -4.6,
+      -11.5
+    ],
+    "backRight": [
+      4.8,
+      -12.0
+    ],
+    "rightFront": [
+      4.8,
+      1.6
+    ],
+    "floorTex": "ground",
+    "floorCard": null,
+    "wallCard": "colours"
   },
-
   "objects": [
-    { "type": "lamp", "card": "lamps", "x": -1.8, "y": 3.3, "z": -3.6, "halo": 1.6 },
-    { "type": "lamp", "card": "lamps", "x":  1.9, "y": 3.3, "z": -3.9, "halo": 1.6 },
-    { "type": "lamp", "card": "lamps", "x": -1.4, "y": 3.4, "z": -7.8, "halo": 1.4 },
-    { "type": "lamp", "card": "lamps", "x":  1.6, "y": 3.4, "z": -8.1, "halo": 1.4 },
-
-    { "type": "billiard", "card": "billiard", "x": 0.3, "z": -5.6, "rot": 0.35 },
-
-    { "type": "roundTable", "x": -3.7, "z": -2.6, "chairs": [1.57, 3.14] },
-    { "type": "roundTable", "x": -3.7, "z": -5.4, "chairs": [1.57] },
-    { "type": "roundTable", "x": -3.7, "z": -8.4, "chairs": [1.57, 0] },
-    { "type": "roundTable", "x":  3.9, "z": -3.4, "chairs": [-1.57, 3.14] },
-    { "type": "roundTable", "x":  3.9, "z": -6.6, "chairs": [-1.57] },
-
-    { "type": "figure", "card": "slumped", "pose": "slumped", "x": -3.05, "z": -5.4, "rot": 1.57, "color": "coat" },
-    { "type": "figure", "card": "slumped", "pose": "slumped", "x": -3.05, "z": -8.4, "rot": 1.57, "color": "#5a4a3a" },
-    { "type": "figure", "card": "slumped", "pose": "slumped", "x":  3.25, "z": -6.6, "rot": -1.57, "color": "#4a5560" },
-    { "type": "figure", "card": "owner", "pose": "standing", "x": 1.7, "z": -6.6, "rot": 0.2, "color": "white" },
-
-    { "type": "boxes", "x": 2.6, "z": -11.1, "boxes": [[3.2, 1.1, 0.6, "bar", 0, 0.55, 0], [3.3, 0.06, 0.7, "wood", 0, 1.13, 0]] },
-    { "type": "door", "wall": "back", "z": -11.7, "width": 1.6, "height": 2.6 },
-    { "type": "wallBoxes", "card": "nights", "wall": "back", "x": 0, "y": 3.4, "z": -11.7, "boxes": [[0.7, 0.7, 0.06, "clock", 0, 0, 0.03], [0.04, 0.26, 0.02, "line", 0, 0.08, 0.07], [0.2, 0.04, 0.02, "line", 0.08, 0, 0.07]] },
-    { "type": "wallBoxes", "id": "dawn-window", "wall": "left", "x": 0, "y": 2.2, "z": -1.0, "boxes": [[1.2, 1.6, 0.06, "line", 0, 0, 0], [1.0, 1.4, 0.04, "#0d1633", 0, 0, 0.04]] },
-    { "type": "portalDoor", "x": -2.2, "z": 1.55, "rot": 3.1416, "w": 1.1, "h": 2.3,
-      "portal": { "scene": "yellow-house", "href": "../yellow-house/", "label": { "zh": "回到黄房子", "en": "Back to the Yellow House" } } },
-    { "type": "wallBoxes", "id": "dawn-door", "wall": "left", "x": 0, "y": 2.2, "z": -4.4, "boxes": [[1.2, 1.6, 0.06, "line", 0, 0, 0], [1.0, 1.4, 0.04, "#0d1633", 0, 0, 0.04]] }
+    {
+      "type": "lamp",
+      "card": "lamps",
+      "x": -1.8,
+      "y": 3.3,
+      "z": -3.6,
+      "halo": 1.6
+    },
+    {
+      "type": "lamp",
+      "card": "lamps",
+      "x": 1.9,
+      "y": 3.3,
+      "z": -3.9,
+      "halo": 1.6
+    },
+    {
+      "type": "lamp",
+      "card": "lamps",
+      "x": -1.4,
+      "y": 3.4,
+      "z": -7.8,
+      "halo": 1.4
+    },
+    {
+      "type": "lamp",
+      "card": "lamps",
+      "x": 1.6,
+      "y": 3.4,
+      "z": -8.1,
+      "halo": 1.4
+    },
+    {
+      "type": "billiard",
+      "card": "billiard",
+      "x": 0.3,
+      "z": -5.6,
+      "rot": 0.35
+    },
+    {
+      "type": "roundTable",
+      "x": -3.7,
+      "z": -2.6,
+      "chairs": [
+        1.57,
+        3.14
+      ]
+    },
+    {
+      "type": "roundTable",
+      "x": -3.7,
+      "z": -5.4,
+      "chairs": [
+        1.57
+      ]
+    },
+    {
+      "type": "roundTable",
+      "x": -3.7,
+      "z": -8.4,
+      "chairs": [
+        1.57,
+        0
+      ]
+    },
+    {
+      "type": "roundTable",
+      "x": 3.9,
+      "z": -3.4,
+      "chairs": [
+        -1.57,
+        3.14
+      ]
+    },
+    {
+      "type": "roundTable",
+      "x": 3.9,
+      "z": -6.6,
+      "chairs": [
+        -1.57
+      ]
+    },
+    {
+      "type": "figure",
+      "card": "slumped",
+      "pose": "slumped",
+      "x": -3.05,
+      "z": -5.4,
+      "rot": 1.57,
+      "color": "coat"
+    },
+    {
+      "type": "figure",
+      "card": "slumped",
+      "pose": "slumped",
+      "x": -3.05,
+      "z": -8.4,
+      "rot": 1.57,
+      "color": "#5a4a3a"
+    },
+    {
+      "type": "figure",
+      "card": "slumped",
+      "pose": "slumped",
+      "x": 3.25,
+      "z": -6.6,
+      "rot": -1.57,
+      "color": "#4a5560"
+    },
+    {
+      "type": "figure",
+      "card": "owner",
+      "pose": "standing",
+      "x": 1.7,
+      "z": -6.6,
+      "rot": 0.2,
+      "color": "white"
+    },
+    {
+      "type": "boxes",
+      "x": 2.6,
+      "z": -11.1,
+      "boxes": [
+        [
+          3.2,
+          1.1,
+          0.6,
+          "bar",
+          0,
+          0.55,
+          0
+        ],
+        [
+          3.3,
+          0.06,
+          0.7,
+          "wood",
+          0,
+          1.13,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "door",
+      "wall": "back",
+      "z": -11.7,
+      "width": 1.6,
+      "height": 2.6
+    },
+    {
+      "type": "wallBoxes",
+      "card": "nights",
+      "wall": "back",
+      "x": 0,
+      "y": 3.4,
+      "z": -11.7,
+      "boxes": [
+        [
+          0.7,
+          0.7,
+          0.06,
+          "clock",
+          0,
+          0,
+          0.03
+        ],
+        [
+          0.04,
+          0.26,
+          0.02,
+          "line",
+          0,
+          0.08,
+          0.07
+        ],
+        [
+          0.2,
+          0.04,
+          0.02,
+          "line",
+          0.08,
+          0,
+          0.07
+        ]
+      ]
+    },
+    {
+      "type": "wallBoxes",
+      "id": "dawn-window",
+      "wall": "left",
+      "x": 0,
+      "y": 2.2,
+      "z": -1.0,
+      "boxes": [
+        [
+          1.2,
+          1.6,
+          0.06,
+          "line",
+          0,
+          0,
+          0
+        ],
+        [
+          1.0,
+          1.4,
+          0.04,
+          "#0d1633",
+          0,
+          0,
+          0.04
+        ]
+      ]
+    },
+    {
+      "type": "portalDoor",
+      "x": -2.2,
+      "z": 1.55,
+      "rot": 3.1416,
+      "w": 1.1,
+      "h": 2.3,
+      "portal": {
+        "scene": "yellow-house",
+        "href": "../yellow-house/",
+        "label": {
+          "zh": "回到黄房子",
+          "en": "Back to the Yellow House"
+        }
+      }
+    },
+    {
+      "type": "wallBoxes",
+      "id": "dawn-door",
+      "wall": "left",
+      "x": 0,
+      "y": 2.2,
+      "z": -4.4,
+      "boxes": [
+        [
+          1.2,
+          1.6,
+          0.06,
+          "line",
+          0,
+          0,
+          0
+        ],
+        [
+          1.0,
+          1.4,
+          0.04,
+          "#0d1633",
+          0,
+          0,
+          0.04
+        ]
+      ]
+    },
+    {
+      "type": "portalDoor",
+      "x": 2.2,
+      "z": 1.55,
+      "rot": 3.1416,
+      "w": 1.1,
+      "h": 2.3,
+      "portal": {
+        "scene": "cafe-terrace",
+        "href": "../cafe-terrace/",
+        "label": {
+          "zh": "走进城里，去论坛广场",
+          "en": "Walk into town, to Place du Forum"
+        }
+      }
+    }
   ],
-
   "cards": {
-    "lamps":    { "title": { "zh": "煤气灯", "en": "Gas lamps" },
-                  "text": { "zh": "梵高在信里写，他要在晚上、在煤气灯下画这间咖啡馆。", "en": "Van Gogh wrote that he would paint the café in the evening, by gas light." } },
-    "colours":  { "title": { "zh": "红与绿", "en": "Red and green" },
-                  "text": { "zh": "红墙和绿天花板不是写实，而是他特意选的颜色，用来表现人类\"可怕的激情\"。", "en": "The red walls and green ceiling are not realistic. He chose them to express the \"terrible passions of humanity\"." } },
-    "billiard": { "title": { "zh": "台球桌", "en": "Billiard table" },
-                  "text": { "zh": "房间正中央是一张台球桌，旁边投下长长的影子。", "en": "A billiard table stands in the middle of the room, casting a long shadow." } },
-    "slumped":  { "title": { "zh": "趴着的客人", "en": "Slumped figures" },
-                  "text": { "zh": "角落里的客人趴在桌上。这是一家通宵营业的咖啡馆，没钱住旅馆的人会来这里过夜。", "en": "Customers slump over the tables. This café stayed open all night, and people with nowhere to sleep came here." } },
-    "owner":    { "title": { "zh": "站着的人", "en": "The standing man" },
-                  "text": { "zh": "画中站着的那位，据说就是咖啡馆的老板。", "en": "The standing figure is said to be the café's owner." } },
-    "nights":   { "title": { "zh": "三个通宵", "en": "Three nights" },
-                  "text": { "zh": "梵高连续三个晚上通宵作画，白天睡觉。", "en": "Van Gogh stayed up for three nights in a row to paint this, sleeping during the day." } }
+    "lamps": {
+      "title": {
+        "zh": "煤气灯",
+        "en": "Gas lamps"
+      },
+      "text": {
+        "zh": "梵高在信里写，他要在晚上、在煤气灯下画这间咖啡馆。",
+        "en": "Van Gogh wrote that he would paint the café in the evening, by gas light."
+      }
+    },
+    "colours": {
+      "title": {
+        "zh": "红与绿",
+        "en": "Red and green"
+      },
+      "text": {
+        "zh": "红墙和绿天花板不是写实，而是他特意选的颜色，用来表现人类\"可怕的激情\"。",
+        "en": "The red walls and green ceiling are not realistic. He chose them to express the \"terrible passions of humanity\"."
+      }
+    },
+    "billiard": {
+      "title": {
+        "zh": "台球桌",
+        "en": "Billiard table"
+      },
+      "text": {
+        "zh": "房间正中央是一张台球桌，旁边投下长长的影子。",
+        "en": "A billiard table stands in the middle of the room, casting a long shadow."
+      }
+    },
+    "slumped": {
+      "title": {
+        "zh": "趴着的客人",
+        "en": "Slumped figures"
+      },
+      "text": {
+        "zh": "角落里的客人趴在桌上。这是一家通宵营业的咖啡馆，没钱住旅馆的人会来这里过夜。",
+        "en": "Customers slump over the tables. This café stayed open all night, and people with nowhere to sleep came here."
+      }
+    },
+    "owner": {
+      "title": {
+        "zh": "站着的人",
+        "en": "The standing man"
+      },
+      "text": {
+        "zh": "画中站着的那位，据说就是咖啡馆的老板。",
+        "en": "The standing figure is said to be the café's owner."
+      }
+    },
+    "nights": {
+      "title": {
+        "zh": "三个通宵",
+        "en": "Three nights"
+      },
+      "text": {
+        "zh": "梵高连续三个晚上通宵作画，白天睡觉。",
+        "en": "Van Gogh stayed up for three nights in a row to paint this, sleeping during the day."
+      }
+    }
   },
-
   "ending": {
     "unlockAfter": 3,
     "acts": [
-      { "image": "images/night-cafe.jpg", "alt": { "zh": "梵高《夜间咖啡馆》1888", "en": "Vincent van Gogh, The Night Café, 1888" },
-        "caption": { "zh": "1888年9月 · 耶鲁大学美术馆", "en": "September 1888 · Yale University Art Gallery" },
-        "kicker": "ACT I", "title": { "zh": "第一幕 · 三个通宵", "en": "Three nights" },
-        "text": { "zh": "1888年9月初，梵高在拉马丁广场的这家通宵咖啡馆里，连续三个晚上作画，白天睡觉。", "en": "In early September 1888, Van Gogh painted for three nights in a row in this all-night café on Place Lamartine, sleeping by day." } },
-      { "kicker": "ACT II", "title": { "zh": "第二幕 · 一个危险的地方", "en": "A dangerous place" },
-        "text": { "zh": "他在信里说，想用这幅画表达：咖啡馆是一个可能让人毁掉自己、发疯或犯罪的地方。", "en": "He wrote that he wanted to show the café as a place where one can ruin oneself, go mad or commit a crime." } },
-      { "kicker": "ACT III", "title": { "zh": "第三幕 · 远行", "en": "A long journey" },
-        "text": { "zh": "这幅画后来到了俄罗斯，属于收藏家莫罗佐夫；1918年被收归国有。之后它辗转来到美国，留给了耶鲁大学。2014年，法院裁定它继续留在耶鲁。", "en": "The painting later went to Russia, to the collector Morozov, and was nationalised in 1918. It then made its way to America and was left to Yale. In 2014, a court ruled it would stay there." } }
+      {
+        "image": "images/night-cafe.jpg",
+        "alt": {
+          "zh": "梵高《夜间咖啡馆》1888",
+          "en": "Vincent van Gogh, The Night Café, 1888"
+        },
+        "caption": {
+          "zh": "1888年9月 · 耶鲁大学美术馆",
+          "en": "September 1888 · Yale University Art Gallery"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 三个通宵",
+          "en": "Three nights"
+        },
+        "text": {
+          "zh": "1888年9月初，梵高在拉马丁广场的这家通宵咖啡馆里，连续三个晚上作画，白天睡觉。",
+          "en": "In early September 1888, Van Gogh painted for three nights in a row in this all-night café on Place Lamartine, sleeping by day."
+        }
+      },
+      {
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 一个危险的地方",
+          "en": "A dangerous place"
+        },
+        "text": {
+          "zh": "他在信里说，想用这幅画表达：咖啡馆是一个可能让人毁掉自己、发疯或犯罪的地方。",
+          "en": "He wrote that he wanted to show the café as a place where one can ruin oneself, go mad or commit a crime."
+        }
+      },
+      {
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 远行",
+          "en": "A long journey"
+        },
+        "text": {
+          "zh": "这幅画后来到了俄罗斯，属于收藏家莫罗佐夫，1918年被收归国有。之后它辗转来到美国，留给了耶鲁大学。2014年，法院裁定它继续留在耶鲁。",
+          "en": "The painting later went to Russia, to the collector Morozov, and was nationalised in 1918. It then made its way to America and was left to Yale. In 2014, a court ruled it would stay there."
+        }
+      }
     ],
-    "final": { "zh": "一个通宵的房间，走了很远的路。", "en": "A room that stayed up all night, and travelled far." },
+    "final": {
+      "zh": "一个通宵的房间，走了很远的路。",
+      "en": "A room that stayed up all night, and travelled far."
+    },
     "versions": [
-      { "image": "images/night-cafe.jpg", "short": { "zh": "1888 · 纽黑文", "en": "1888 · New Haven" }, "caption": { "zh": "1888年9月 · 耶鲁大学美术馆", "en": "September 1888 · Yale University Art Gallery" } }
+      {
+        "image": "images/night-cafe.jpg",
+        "short": {
+          "zh": "1888 · 纽黑文",
+          "en": "1888 · New Haven"
+        },
+        "caption": {
+          "zh": "1888年9月 · 耶鲁大学美术馆",
+          "en": "September 1888 · Yale University Art Gallery"
+        }
+      }
     ],
-    "museums": ["yale"],
-    "exit": { "_说明": "结尾的按钮：回到黄房子", "scene": "yellow-house", "label": { "zh": "回到黄房子", "en": "Back to the Yellow House" }, "href": "../yellow-house/" }
+    "museums": [
+      "yale"
+    ],
+    "exit": {
+      "_说明": "结尾的按钮：回到黄房子",
+      "scene": "yellow-house",
+      "label": {
+        "zh": "回到黄房子",
+        "en": "Back to the Yellow House"
+      },
+      "href": "../yellow-house/"
+    }
   },
-
   "record": {
-    "_说明": "作品档案表：Tia 提供。作品页网址稍后提供。空着的行不显示。",
-    "artist":     { "zh": "文森特·梵高（1853–1890）", "en": "Vincent van Gogh (1853–1890)" },
-    "title":      { "zh": "夜间咖啡馆", "en": "The Night Café (Le Café de nuit)" },
-    "date":       { "zh": "1888年9月，阿尔勒", "en": "September 1888, Arles" },
-    "medium":     { "zh": "布面油画", "en": "Oil on canvas" },
-    "dimensions": { "zh": "72.4 × 92.1 cm", "en": "72.4 × 92.1 cm" },
-    "collection": { "zh": "耶鲁大学美术馆，纽黑文", "en": "Yale University Art Gallery, New Haven" },
-    "creditLine": { "zh": "Bequest of Stephen Carlton Clark, B.A. 1903", "en": "Bequest of Stephen Carlton Clark, B.A. 1903" },
-    "url": ""
+    "_说明": "作品档案表：Tia 提供。作品页网址由 Claude 查到，请 Tia 核对。空着的行不显示。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "夜间咖啡馆",
+      "en": "The Night Café (Le Café de nuit)"
+    },
+    "date": {
+      "zh": "1888年9月，阿尔勒",
+      "en": "September 1888, Arles"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "72.4 × 92.1 cm",
+      "en": "72.4 × 92.1 cm"
+    },
+    "collection": {
+      "zh": "耶鲁大学美术馆，美国纽黑文",
+      "en": "Yale University Art Gallery, New Haven"
+    },
+    "creditLine": {
+      "zh": "Bequest of Stephen Carlton Clark, B.A. 1903",
+      "en": "Bequest of Stephen Carlton Clark, B.A. 1903"
+    },
+    "url": "https://artgallery.yale.edu/collections/objects/12507"
   },
-
-  "zoom": { "image": "images/night-cafe.jpg" },
-
+  "zoom": {
+    "image": "images/night-cafe.jpg"
+  },
   "reading": {
     "items": [
-      { "title": { "zh": "梵高书信：致提奥，1888年8月、9月", "en": "Van Gogh's letters to Theo, August and September 1888" }, "url": "https://www.vangoghletters.org" },
-      { "title": { "zh": "《基督教科学箴言报》：耶鲁为何能保留这幅画（2014）", "en": "The Christian Science Monitor: why Yale can keep the painting (2014)" }, "url": "https://www.csmonitor.com/layout/set/amphtml/USA/Latest-News-Wires/2014/0322/Van-Gogh-painting-Why-Yale-can-keep-120-million-painting" }
+      {
+        "title": {
+          "zh": "梵高书信：致提奥，1888年8–9月",
+          "en": "Van Gogh's letters to Theo, August–September 1888"
+        },
+        "url": "https://www.vangoghletters.org"
+      },
+      {
+        "title": {
+          "zh": "《基督教科学箴言报》：耶鲁为何能保留这幅画（2014）",
+          "en": "The Christian Science Monitor: why Yale can keep the painting (2014)"
+        },
+        "url": "https://www.csmonitor.com/layout/set/amphtml/USA/Latest-News-Wires/2014/0322/Van-Gogh-painting-Why-Yale-can-keep-120-million-painting"
+      }
     ]
   },
-
-  "audioGuide": { "zh": "", "en": "" }
+  "audioGuide": {
+    "zh": "",
+    "en": ""
+  }
 }

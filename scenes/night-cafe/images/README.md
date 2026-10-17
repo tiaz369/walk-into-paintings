@@ -2,5 +2,6 @@
 
 请把原画放进这个文件夹，文件名改成 `night-cafe.jpg`：
 
-- 来源：Wikimedia Commons，"Vincent Willem van Gogh 076.jpg"（梵高《夜间咖啡馆》，耶鲁大学美术馆藏）
+- 来源：Wikimedia Commons，搜索 "The Night Café Van Gogh Yale"，下载耶鲁大学美术馆藏版本（横幅，室内：红墙、绿天花板、台球桌）
+- 注意：不是《夜晚露天咖啡座》（室外、星空，荷兰克勒勒-米勒博物馆藏）
 - 宽度 1800–2400 像素左右最好
