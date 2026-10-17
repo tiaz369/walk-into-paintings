@@ -78,7 +78,7 @@
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
-      "_说明": "原画 images/cafe-terrace.jpg 上传并对准后，把 status 改成 live", "id": "cafe-terrace", "status": "soon", "week": 3, "path": "scenes/cafe-terrace/", "cover": "scenes/cafe-terrace/images/cafe-terrace.jpg",
+      "id": "cafe-terrace", "status": "live", "week": 3, "path": "scenes/cafe-terrace/", "cover": "scenes/cafe-terrace/images/cafe-terrace.jpg",
       "title": { "zh": "夜晚露天咖啡座", "en": "Café Terrace at Night" },
       "artist": "van-gogh", "year": "1888", "museum": "kroller-muller", "collection": "arles",
       "version": "full", "place": "arles", "themes": ["night", "cafes", "houses-streets"], "period": "post-impressionism", "added": "2026-10-16",
