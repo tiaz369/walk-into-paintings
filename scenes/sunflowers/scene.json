@@ -342,7 +342,7 @@
     }
   },
   "record": {
-    "_说明": "作品档案表：Tia 提供。空着的行不显示。作品页 url 等 Tia 提供。",
+    "_说明": "作品档案表：Tia 提供。空着的行不显示。",
     "artist": {
       "zh": "文森特·梵高（1853–1890）",
       "en": "Vincent van Gogh (1853–1890)"
@@ -367,7 +367,7 @@
       "zh": "伦敦国家美术馆（1924年购得）",
       "en": "The National Gallery, London (bought in 1924)"
     },
-    "url": ""
+    "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-sunflowers"
   },
   "zoom": {
     "image": "images/sunflowers.jpg"

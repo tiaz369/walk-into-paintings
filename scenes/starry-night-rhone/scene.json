@@ -1754,7 +1754,7 @@
     }
   },
   "record": {
-    "_说明": "作品档案表：Tia 提供。空着的行不显示。作品页 url 等 Tia 提供。",
+    "_说明": "作品档案表：Tia 提供。空着的行不显示。",
     "artist": {
       "zh": "文森特·梵高（1853–1890）",
       "en": "Vincent van Gogh (1853–1890)"
@@ -1779,7 +1779,7 @@
       "zh": "巴黎奥赛博物馆",
       "en": "Musée d'Orsay, Paris"
     },
-    "url": ""
+    "url": "https://www.musee-orsay.fr/en/artworks/la-nuit-etoilee-78696"
   },
   "zoom": {
     "image": "images/starry-night-rhone.jpg"

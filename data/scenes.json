@@ -118,6 +118,7 @@
       "title": { "zh": "罗纳河上的星夜", "en": "Starry Night over the Rhône" },
       "artist": "van-gogh", "year": "1888", "museum": "orsay", "collection": "arles",
       "version": "full", "place": "arles", "themes": ["night", "water"], "period": "post-impressionism", "added": "2026-10-18",
+      "url": "https://www.musee-orsay.fr/en/artworks/la-nuit-etoilee-78696",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
@@ -126,6 +127,7 @@
       "title": { "zh": "向日葵", "en": "Sunflowers" },
       "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles",
       "version": "light", "place": "arles", "themes": ["gardens", "london"], "period": "post-impressionism", "added": "2026-10-18",
+      "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-sunflowers",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     { "id": "milkmaid",            "status": "soon", "week": 5,  "title": { "zh": "倒牛奶的女仆", "en": "The Milkmaid" },    "artist": "vermeer", "year": { "zh": "约1660", "en": "c. 1660" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": null, "themes": [], "period": null },
