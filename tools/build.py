@@ -22,8 +22,10 @@ FONTS = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0
 THREE = 'assets/vendor/three.module.js'   # three.js 0.160.0，放在自己的仓库里（不依赖外部 CDN，中国大陆也能打开）
 
 R = json.load(open(os.path.join(ROOT, 'data/scenes.json'), encoding='utf-8'))
+R['scenes'] = [s for s in R['scenes'] if s['status'] != 'planned']   # 计划中的作品：暂不在页面显示
 by = lambda k: {x['id']: x for x in R[k]}
 ARTISTS, MUSEUMS, COLS, THEMES, PERIODS, PLACES, SCENES = by('artists'), by('museums'), by('collections'), by('themes'), by('periods'), by('places'), by('scenes')
+SOON_MAX = 3   # 画家页、博物馆页最多列几个即将开放的作品
 LIVE = [s for s in R['scenes'] if s['status'] == 'live']
 BUILT = [s for s in R['scenes'] if s.get('path') and os.path.exists(os.path.join(ROOT, s['path'], 'scene.json'))]   # 有文件夹的场景（包括还没上线的）
 SCENE_DATA = {s['id']: json.load(open(os.path.join(ROOT, s['path'], 'scene.json'), encoding='utf-8')) for s in BUILT}
@@ -45,13 +47,24 @@ def bi(o, tag='span', cls=''):   # 双语 HTML，各自标上语言
     if en and en != zh: out += f' <{tag} lang="en"{c}>{e(en)}</{tag}>'
     return out
 
-def scene_line(s):
+def scene_line(s, hide=(), title=None, year=None):   # hide：这一页已经写了的画家 / 博物馆，不再重复
     a, m = ARTISTS.get(s['artist']), MUSEUMS.get(s['museum'])
-    return ' · '.join(x for x in [both(s['title']), a and both(a['name']), both(s['year']), m and both(m['name'])] if x)
-def scene_li(s, up):
-    if s['status'] == 'live': return f'<li><a href="{up}{s["path"]}">{e(scene_line(s))}</a></li>'
-    return f'<li>{e(scene_line(s))} — 即将开放 / Coming soon</li>'
-def scene_list(lst, up): return '<ul>' + ''.join(scene_li(s, up) for s in lst) + '</ul>' if lst else '<p>即将开放 / Coming soon</p>'
+    return ' · '.join(x for x in [both(title or s['title']), 'artist' not in hide and a and both(a['name']), both(year or s['year']), 'museum' not in hide and m and both(m['name'])] if x)
+def scene_li(s, up, hide=(), title=None, url=None, year=None):
+    work = f' · <a href="{e(url)}">官网作品页 · Museum page</a>' if url else ''
+    if s['status'] == 'live': return f'<li><a href="{up}{s["path"]}">{e(scene_line(s, hide, title, year))}</a>{work}</li>'
+    return f'<li>{e(scene_line(s, hide, title, year))} — 即将开放 / Coming soon{work}</li>'
+def scene_list(lst, up, hide=()): return '<ul>' + ''.join(scene_li(s, up, hide) for s in lst) + '</ul>' if lst else '<p>即将开放 / Coming soon</p>'
+def cap_soon(lst, key=lambda x: x):   # 已开放的都列出；即将开放的最多 SOON_MAX 个
+    n, out = 0, []
+    for x in lst:
+        if key(x)['status'] == 'live': out.append(x)
+        elif n < SOON_MAX: out.append(x); n += 1
+    return out
+def museum_items(mid):   # 收藏在这里的场景 + 收藏在这里的其他版本
+    own = [(s, None, s.get('url'), None) for s in R['scenes'] if s['museum'] == mid]
+    also = [(s, v['title'], v.get('url'), v.get('year')) for s in R['scenes'] for v in s.get('alsoAt', []) if v['museum'] == mid]
+    return sorted(own + also, key=lambda x: x[0]['status'] != 'live')
 def of(key, id_): return [s for s in R['scenes'] if (id_ in s[key] if isinstance(s.get(key), list) else s.get(key) == id_)]
 
 ABOUT = json.load(open(os.path.join(ROOT, 'data/about.json'), encoding='utf-8'))
@@ -163,11 +176,18 @@ for c in R['collections']:
 # ---------- 浏览页 ----------
 def groups(items, key, up, name='name'):
     return ''.join(f'<h2 id="{x["id"]}">{e(both(x[name]))}</h2>{scene_list(of(key, x["id"]), up)}' for x in items)
-PAGES.append(page('artists/', T('画家', 'Artists'), '按画家浏览 · Browse by artist', '      <h1>按画家 · By artist</h1>\n      ' + groups(R['artists'], 'artist', '../'), site_script('../', 'artists')))
+arts = ''.join(f'<h2 id="{a["id"]}">{e(both(a["name"]))}</h2>{scene_list(cap_soon(of("artist", a["id"])), "../", ("artist",))}' for a in R['artists'] if of('artist', a['id']))
+PAGES.append(page('artists/', T('画家', 'Artists'), '按画家浏览 · Browse by artist', '      <h1>按画家 · By artist</h1>\n      ' + arts, site_script('../', 'artists')))
 PAGES.append(page('themes/', T('主题', 'Themes'), '按主题浏览 · Browse by theme', '      <h1>按主题 · By theme</h1>\n      ' + groups(R['themes'], 'themes', '../'), site_script('../', 'themes')))
 PAGES.append(page('periods/', T('时期', 'Periods'), '按时期浏览 · Browse by period', '      <h1>按时期 · By period</h1>\n      ' + groups(R['periods'], 'period', '../'), site_script('../', 'periods')))
-PAGES.append(page('map/', T('地图', 'Map'), '画作诞生的城市 · Cities where the paintings were made', '      <h1>地图 · Map</h1>\n      ' + groups(R['places'], 'place', '../'), site_script('../', 'map')))
-mus = ''.join(f'<h2 id="{m["id"]}">{e(both(m["name"]))}</h2>' + (f'<p><a href="{e(m["url"])}">参观官网 · Visit website</a></p>' if m.get('url') else '') + scene_list(of('museum', m['id']), '../') for m in R['museums'])
+def ul(items): return '<ul>' + ''.join(scene_li(s, '../', ('museum',), title, url, year) for s, title, url, year in items) + '</ul>'
+painted = ''.join(f'<h3 id="{p["id"]}">{e(both(p["name"]))}</h3>{scene_list(of("place", p["id"]), "../")}' for p in R['places'] if of('place', p['id']))
+now = ''
+for c in R.get('cities', []):
+    ms = [m for m in R['museums'] if m.get('city') == c['id'] and museum_items(m['id'])]
+    if ms: now += f'<h3 id="{c["id"]}">{e(both(c["name"]))}</h3>' + ''.join(f'<p>{e(both(m["name"]))}</p>{ul(cap_soon(museum_items(m["id"]), lambda x: x[0]))}' for m in ms)
+PAGES.append(page('map/', T('地图', 'Map'), '画在哪里、现在在哪里 · Where the paintings were made, and where they are now', '      <h1>地图 · Map</h1>\n      <h2>画在哪里 · Where it was painted</h2>' + painted + '<h2>现在在哪里 · Where it is now</h2>' + now, site_script('../', 'map')))
+mus = ''.join(f'<h2 id="{m["id"]}">{e(both(m["name"]))}</h2>' + (f'<p><a href="{e(m["url"])}">参观官网 · Visit website</a></p>' if m.get('url') else '') + ul(cap_soon(museum_items(m['id']), lambda x: x[0])) for m in R['museums'] if museum_items(m['id']))
 PAGES.append(page('museums/', T('博物馆', 'Museums'), '按博物馆浏览：去哪里看真迹 · Browse by museum: where to see the real paintings', '      <h1>按博物馆 · By museum</h1>\n      ' + mus, site_script('../', 'museums')))
 PAGES.append(page('about/', T('关于', 'About'), t(ABOUT['intro'][0]) + ' ' + t(ABOUT['intro'][0], 'en'),
                   '      <h1>关于 · About</h1>\n      ' + ''.join(para(p) for p in ABOUT['intro']) + para(ABOUT['me']) + para(ABOUT['principles']), site_script('../', 'about')))
@@ -209,7 +229,8 @@ for meta in BUILT:
       <h2>去看真迹 · See the real painting</h2>
       <ul>{museums}</ul>
       {reading}'''
-    script = "    import { startScene } from '../../assets/engine.js';\n    startScene('scene.json');"
+    script = ("    import { startLight } from '../../assets/light.js';\n    startLight('scene.json');" if S.get('kind') == 'light'   # 轻量版：分层景深
+              else "    import { startScene } from '../../assets/engine.js';\n    startScene('scene.json');")
     path = page(meta['path'], title, desc, s, script, image=meta.get('cover') or (meta['path'] + S['painting']['image']), image_alt=alt, scene=True, noindex=meta['status'] != 'live')
     if meta['status'] == 'live': PAGES.append(path)   # 还没上线的场景不放进 sitemap
 

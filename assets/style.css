@@ -327,3 +327,45 @@ body.lang-both .act h3 > .en { display: block; font-size: .62em; color: var(--mu
 #toast { position: fixed; left: 50%; top: 22%; transform: translateX(-50%); z-index: 9; padding: 12px 18px; text-align: center; font-family: var(--serif); font-size: 19px; line-height: 1.5; max-width: calc(100% - 32px); opacity: 0; pointer-events: none; transition: opacity 1.6s; }
 #toast.show { opacity: 1; }
 #toast .en { display: block; font-size: 15px; color: var(--muted); font-style: italic; }
+
+/* 独家发现“两个星夜”：两幅画左右对比（两幅画比例接近，用 cover 对齐） */
+#twin { width: min(760px, calc(100% - 32px)); }
+#twin h3 { margin: 6px 0 10px; font-weight: 500; }
+.twin-cmp { position: relative; width: 100%; aspect-ratio: 92 / 73; overflow: hidden; border-radius: 4px; touch-action: pan-y; cursor: ew-resize; user-select: none; background: var(--paper-2); }
+.popup .twin-cmp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }
+.twin-line { position: absolute; top: 0; bottom: 0; width: 2px; background: #f5f0e6; transform: translateX(-50%); pointer-events: none; }
+.twin-line::after { content: '◀ ▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #f5f0e6; color: #22201c; font-size: 11px; padding: 5px 8px; border-radius: 14px; white-space: nowrap; }
+.twin-caps { display: flex; justify-content: space-between; gap: 12px; text-align: left; }
+.twin-caps span:last-child { text-align: right; }
+
+/* ---------- 轻量版（分层景深）：静物画 ---------- */
+.light #stageWrap { position: fixed; inset: 0; overflow: hidden; touch-action: none; background: var(--paper); }
+.light #stage { position: absolute; overflow: hidden; will-change: transform; }
+.light .layer { position: absolute; inset: 0; will-change: transform; }
+.light .layer img { width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none; }
+.light #stage { box-shadow: 0 18px 50px rgba(0, 0, 0, .28); }
+.light #spots { position: absolute; inset: 0; }
+.spot { position: absolute; width: 26px; height: 26px; padding: 0; border: 2px solid #fff8dc; border-radius: 50%; background: rgba(255, 236, 160, .55); cursor: pointer;
+  box-shadow: 0 0 0 0 rgba(255, 236, 160, .7); animation: spotPulse 2.4s ease-out infinite; }
+.spot.seen { background: rgba(255, 255, 255, .25); animation: none; }
+@keyframes spotPulse { 0% { box-shadow: 0 0 0 0 rgba(255, 236, 160, .7); } 100% { box-shadow: 0 0 0 16px rgba(255, 236, 160, 0); } }
+.light #hint { pointer-events: none; }
+#where { width: min(720px, calc(100% - 32px)); }
+#where h3 { margin: 6px 0 10px; font-weight: 500; }
+.world { width: 100%; height: auto; display: block; background: var(--paper-2); border-radius: 4px; }
+.world .land { fill: var(--muted); opacity: .35; }
+.world .dot { fill: #e0a526; stroke: #fff; stroke-width: 2; }
+.world text { font-size: 18px; fill: var(--ink); }
+.where-list { text-align: left; font-size: 13px; margin: 10px 8px 0 28px; }
+#where .soon { color: var(--muted); }
+.final .final-by { display: block; margin-top: 10px; font-size: 15px; font-style: normal; color: var(--muted); }
+
+/* 地图：陆地轮廓、两层切换、每块地图的名字 */
+.map .land { fill: var(--muted); opacity: .22; }
+.map .panel-name { fill: var(--muted); font-size: 12px; letter-spacing: .04em; }
+.map-layers { margin-top: 14px; }
+/* 卡片下面的“官网作品页”和图片来源 */
+.card-wrap { display: flex; flex-direction: column; gap: 4px; }
+.card-wrap .work-link { font-size: 13px; color: var(--muted); }
+.card-wrap .img-credit { font-size: 11px; color: var(--muted); line-height: 1.5; }
+.map-layers button { font-size: 14px; padding: 7px 14px; }

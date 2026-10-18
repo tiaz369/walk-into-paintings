@@ -5,6 +5,7 @@
 //   - 读取 data/scenes.json 登记表，画出场景卡片
 // 场景页（3D）也会用这里的语言和配色切换。
 // =====================================================================
+import { LAND } from './world-land.js';   // 地图的陆地轮廓
 
 // 网站根目录（不管网站放在哪个网址下面都能找到）
 export const ROOT = new URL('../', import.meta.url).href;
@@ -109,6 +110,9 @@ export function loadRegistry() {
 }
 function prepare(R) {
   const byId = list => Object.fromEntries(list.map(x => [x.id, x]));
+  R.allScenes = R.scenes;
+  R.scenes = R.scenes.filter(s => s.status !== 'planned');   // 计划中的作品：暂不在页面显示
+  R.cityById = byId(R.cities || []);
   R.sceneById = byId(R.scenes); R.artistById = byId(R.artists); R.museumById = byId(R.museums);
   R.collectionById = byId(R.collections); R.themeById = byId(R.themes); R.periodById = byId(R.periods); R.placeById = byId(R.places);
   R.live = R.scenes.filter(s => s.status === 'live');
@@ -117,18 +121,27 @@ function prepare(R) {
 export const sceneUrl = s => ROOT + s.path;
 
 // 场景卡片：已上线的可以点进去；还没做的显示“即将开放”
-export function sceneCard(R, s) {
-  const artist = R.artistById[s.artist], museum = R.museumById[s.museum];
-  const meta = [artist && bi(artist.name), bi(s.year)].filter(Boolean).join(' · ');
-  const live = s.status === 'live';
-  const pic = live && s.cover
-    ? `<img src="${ROOT + s.cover}" ${altAttr(s.title)} loading="lazy" />`
+// opts：hideArtist / hideMuseum 不写画家 / 博物馆；title、cover 换成别的版本；workLink 在卡片下面加“官网作品页”
+export function sceneCard(R, s, opts = {}) {
+  const artist = !opts.hideArtist && R.artistById[s.artist], museum = !opts.hideMuseum && R.museumById[opts.museum || s.museum];
+  const meta = [artist && bi(artist.name), bi(opts.year || s.year)].filter(Boolean).join(' · ');
+  const live = s.status === 'live', title = opts.title || s.title, cover = opts.cover || s.cover;
+  const pic = live && cover
+    ? `<img src="${ROOT + cover}" ${altAttr(title)} loading="lazy" />`
     : `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
-  const inner = `<div class="pic">${pic}</div><div class="name">${bi(s.title)}</div>
+  const inner = `<div class="pic">${pic}</div><div class="name">${bi(title)}</div>
     <div class="meta">${meta}</div>${museum ? `<div class="meta">${bi(museum.name)}</div>` : ''}`;
-  return live ? `<a class="card" href="${sceneUrl(s)}">${inner}</a>` : `<div class="card is-soon">${inner}</div>`;
+  const card = live ? `<a class="card" href="${sceneUrl(s)}">${inner}</a>` : `<div class="card is-soon">${inner}</div>`;
+  const url = opts.workLink && (opts.url ?? s.url);
+  const below = (url ? `<a class="work-link" href="${url}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '')
+    + (opts.credit ? `<small class="img-credit">${bi(opts.credit, ' / ')}</small>` : '');
+  return below ? `<div class="card-wrap">${card}${below}</div>` : card;
 }
-export const cardsHTML = (R, list) => list.length ? `<div class="cards">${list.map(s => sceneCard(R, s)).join('')}</div>` : `<p class="soon">${ui('即将开放', 'Coming soon')}</p>`;
+// items：场景，或 { s: 场景, opts: {...} }
+export const cardsHTML = (R, list, opts = {}) => list.length ? `<div class="cards">${list.map(x => x.s ? sceneCard(R, x.s, { ...opts, ...x.opts }) : sceneCard(R, x, opts)).join('')}</div>` : `<p class="soon">${ui('即将开放', 'Coming soon')}</p>`;
+// 即将开放的作品最多显示几个（画家页、博物馆页）
+export const SOON_MAX = 3;
+const capSoon = list => { let n = 0; return list.filter(x => ((x.s || x).status === 'live') || n++ < SOON_MAX); };
 
 // ---------- 页眉、页脚 ----------
 const NAV = [
@@ -151,26 +164,48 @@ export function chrome(active) {
   wirePrefs();
 }
 
-// ---------- 小地图（只标出画作诞生的城市） ----------
-// 用经纬度直接换算位置；以后可以换成真正的地图
-export function mapSVG(R, { width = 800, height = 520, small = false } = {}) {
-  const box = { w: -7, e: 13, s: 41.5, n: 55.5 };   // 西欧的大致范围
-  const x = lon => (lon - box.w) / (box.e - box.w) * width;
-  const y = lat => (box.n - lat) / (box.n - box.s) * height;
-  let g = '';
-  for (let lon = -5; lon <= 12; lon += 5) g += `<line class="grid" x1="${x(lon)}" y1="0" x2="${x(lon)}" y2="${height}"/>`;
-  for (let lat = 45; lat <= 55; lat += 5) g += `<line class="grid" x1="0" y1="${y(lat)}" x2="${width}" y2="${y(lat)}"/>`;
-  let dots = '';
-  for (const p of R.places) {
-    const scenes = R.scenes.filter(s => s.place === p.id);
-    if (!scenes.length) continue;
-    const live = scenes.some(s => s.status === 'live');
-    const cx = x(p.lon), cy = y(p.lat);
-    dots += `<a href="${ROOT}map/#${p.id}"><circle class="${live ? 'dot' : 'dot-soon'}" cx="${cx}" cy="${cy}" r="${small ? 5 : 7}"/>
-      <text x="${cx + 10}" y="${cy + 4}">${esc(textOf(p.name, lang))}</text></a>`;
+// ---------- 地图：两层（画在哪里 / 现在在哪里） ----------
+// 陆地轮廓来自 Natural Earth（assets/world-land.js）。每一块地图按经纬度范围 box 画出来，
+// 东西方向按纬度稍微压扁一点，看起来不会太宽。
+const MAP_BOXES = {
+  painted: [{ box: { w: -5, e: 12, s: 42, n: 52.8 } }],
+  now: [{ box: { w: -90, e: -70, s: 36.5, n: 44.5 }, name: { zh: '北美', en: 'North America' } },
+        { box: { w: -2.5, e: 8, s: 47.3, n: 53.8 }, name: { zh: '欧洲', en: 'Europe' } }]
+};
+// 一层地图上的圆点：画在哪里 = 场景的 place；现在在哪里 = 博物馆所在的城市
+function mapDots(R, layer) {
+  if (layer === 'painted') return R.places.map(p => {
+    const list = R.scenes.filter(s => s.place === p.id);
+    return list.length && { id: p.id, name: p.name, lat: p.lat, lon: p.lon, label: p.label, live: list.some(s => s.status === 'live') };
+  }).filter(Boolean);
+  return (R.cities || []).map(c => {
+    const list = museumsIn(R, c.id).flatMap(m => museumItems(R, m.id));
+    return list.length && { id: c.id, name: c.name, lat: c.lat, lon: c.lon, label: c.label, live: list.some(x => (x.s || x).status === 'live') };
+  }).filter(Boolean);
+}
+export function mapSVG(R, { layer = 'painted', small = false } = {}) {
+  const H = layer === 'painted' ? 460 : 300, GAP = 14;
+  const dots = mapDots(R, layer);
+  let x0 = 0, body = '';
+  for (const P of MAP_BOXES[layer]) {
+    const b = P.box, py = H / (b.n - b.s), px = py * Math.min(1, Math.cos((b.n + b.s) / 2 * Math.PI / 180) * 1.3), w = px * (b.e - b.w);
+    const vx = (b.w + 180) / 360 * LAND.w, vy = (LAND.north - b.n) / 360 * LAND.w, vw = (b.e - b.w) / 360 * LAND.w, vh = (b.n - b.s) / 360 * LAND.w;
+    body += `<svg x="${x0}" y="0" width="${w}" height="${H}" viewBox="${vx} ${vy} ${vw} ${vh}" preserveAspectRatio="none"><path class="land" d="${LAND.d}"/></svg>`;
+    if (P.name) body += `<text class="panel-name" x="${x0 + 10}" y="22">${esc(textOf(P.name, lang))}</text>`;
+    if (x0) body += `<line class="grid" x1="${x0 - GAP / 2}" y1="0" x2="${x0 - GAP / 2}" y2="${H}"/>`;
+    for (const d of dots) {
+      if (d.lon < b.w || d.lon > b.e || d.lat < b.s || d.lat > b.n) continue;
+      const cx = x0 + (d.lon - b.w) * px, cy = (b.n - d.lat) * py;
+      const [tx, ty, anchor] = { l: [cx - 10, cy + 4, 'end'], t: [cx, cy - 11, 'middle'], b: [cx, cy + 19, 'middle'] }[d.label] || [cx + 10, cy + 4, 'start'];
+      body += `<a href="${ROOT}map/?layer=${layer}#${d.id}"><circle class="${d.live ? 'dot' : 'dot-soon'}" cx="${cx}" cy="${cy}" r="${small ? 5 : 6}"/>
+        <text x="${tx}" y="${ty}" text-anchor="${anchor}">${esc(textOf(d.name, lang))}</text></a>`;
+    }
+    x0 += w + GAP;
   }
-  return `<svg class="map" viewBox="0 0 ${width} ${height}" role="img" aria-label="Map">${g}${dots}</svg>
-    <div class="map-note">${ui('示意图：按经纬度标出画作诞生的城市。', 'Schematic map: places plotted by latitude and longitude.')}</div>`;
+  const note = layer === 'painted' ? ui('示意图：按经纬度标出画作诞生的城市。', 'Schematic map: places where the paintings were made, plotted by latitude and longitude.')
+    : ui('示意图：按经纬度标出收藏这些画的博物馆所在的城市。', 'Schematic map: cities of the museums that hold the paintings, plotted by latitude and longitude.');
+  return `<svg class="map" viewBox="0 0 ${x0 - GAP} ${H}" role="img" aria-label="Map">${body}</svg>
+    <div class="map-note">${note} ${ui('陆地轮廓：Natural Earth（公有领域）。', 'Coastlines: Natural Earth (public domain).')}</div>`;
 }
 
 // =====================================================================
@@ -186,6 +221,14 @@ const openLine = (list) => {
   return bi({ zh: part('zh', '现在开放：', '下一站：', '、'), en: part('en', 'Now open: ', 'Next: ', ', ') }, ' / ');
 };
 const scenesOf = (R, key, id) => R.scenes.filter(s => Array.isArray(s[key]) ? s[key].includes(id) : s[key] === id);
+// 一家博物馆页面上的作品：收藏在这里的场景 + 收藏在这里的其他版本（比如芝加哥的1889年版卧室，链接到卧室场景）
+function museumItems(R, id) {
+  const own = scenesOf(R, 'museum', id).map(s => ({ s, opts: {} }));
+  const also = R.scenes.flatMap(s => (s.alsoAt || []).filter(v => v.museum === id)
+    .map(v => ({ s, opts: { title: v.title, year: v.year, cover: v.cover, url: v.url, credit: v.credit, museum: v.museum } })));
+  return [...own, ...also].sort((a, b) => (a.s.status === 'live' ? 0 : 1) - (b.s.status === 'live' ? 0 : 1));
+}
+const museumsIn = (R, cityId) => R.museums.filter(m => m.city === cityId);
 const labelOf = (R, s) => {   // 展签：画名 · 画家 · 年份 · 收藏地
   const a = R.artistById[s.artist], m = R.museumById[s.museum];
   return [bi(s.title), a && bi(a.name), bi(s.year), m && bi(m.name)].filter(Boolean).join(' · ');
@@ -195,9 +238,9 @@ const param = k => new URLSearchParams(location.search).get(k);
 // 五种浏览方式（例子是网站蓝图里的）
 const WAYS = [
   { path: 'artists/', name: { zh: '按画家', en: 'By artist' }, ex: { zh: '梵高、维米尔、莫奈、德加', en: 'Van Gogh, Vermeer, Monet, Degas' } },
-  { path: 'themes/',  name: { zh: '按主题', en: 'By theme' },  ex: { zh: '房间、窗户、咖啡馆、花园、首饰、孩子', en: 'Rooms, windows, cafés, gardens, jewellery, children' } },
+  { path: 'themes/',  name: { zh: '按主题', en: 'By theme' },  ex: { zh: '房间、窗户、咖啡馆、花与花园、首饰、孩子', en: 'Rooms, windows, cafés, flowers and gardens, jewellery, children' } },
   { path: 'periods/', name: { zh: '按时期', en: 'By period' }, ex: { zh: '荷兰黄金时代、印象派、后印象派', en: 'Dutch Golden Age, Impressionism, Post-Impressionism' } },
-  { path: 'map/',     name: { zh: '按地图', en: 'By map' },    ex: { zh: '阿尔勒、巴黎、代尔夫特、伦敦', en: 'Arles, Paris, Delft, London' } },
+  { path: 'map/',     name: { zh: '按地图', en: 'By map' },    ex: { zh: '画在哪里、现在在哪里', en: 'Where it was painted, where it is now' } },
   { path: 'museums/', name: { zh: '按博物馆', en: 'By museum' }, ex: { zh: '梵高博物馆、荷兰国立博物馆、伦敦国家美术馆', en: 'Van Gogh Museum, Rijksmuseum, National Gallery' } }
 ];
 
@@ -274,14 +317,14 @@ const PAGES = {
       main.innerHTML = `<div class="wrap page-title"><h1>${bi(a.name)}</h1></div>
         <section class="section wrap">
           ${a.bio ? `<p class="lead">${bi(a.bio)}</p>` : ''}
-          ${cardsHTML(R, scenesOf(R, 'artist', a.id))}
+          ${cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true })}
           <p style="margin-top:28px"><a class="btn" href="${ROOT}artists/">← ${ui('所有画家', 'All artists')}</a></p></section>`;
       return;
     }
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按画家', 'By artist')}</h1></div>
-      <section class="section wrap">${R.artists.map(a => `
+      <section class="section wrap">${R.artists.filter(a => scenesOf(R, 'artist', a.id).length).map(a => `
         <div class="group"><h3><a href="?id=${a.id}" style="text-decoration:none">${bi(a.name)}</a></h3>
-        ${cardsHTML(R, scenesOf(R, 'artist', a.id))}</div>`).join('')}</section>`;
+        ${cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true })}</div>`).join('')}</section>`;
   },
 
   // ---------- 按主题 ----------
@@ -304,14 +347,24 @@ const PAGES = {
 
   // ---------- 地图：标出画作诞生地 ----------
   map(R, main) {
+    let layer = param('layer') === 'now' ? 'now' : 'painted';
+    const LAYERS = [['painted', '画在哪里', 'Where it was painted'], ['now', '现在在哪里', 'Where it is now']];
     const draw = () => {
+      const groups = layer === 'painted'
+        ? R.places.map(pl => { const list = scenesOf(R, 'place', pl.id); return list.length ? `<div class="group" id="${pl.id}"><h3>${bi(pl.name)}</h3>${cardsHTML(R, list)}</div>` : ''; }).join('')
+        : (R.cities || []).map(c => {
+            const ms = museumsIn(R, c.id).filter(m => museumItems(R, m.id).length);
+            return ms.length ? `<div class="group" id="${c.id}"><h3>${bi(c.name)}</h3>${ms.map(m => `<p class="note"><a href="${ROOT}museums/?id=${m.id}">${bi(m.name)}</a></p>${cardsHTML(R, capSoon(museumItems(R, m.id)), { hideMuseum: true })}`).join('')}</div>` : '';
+          }).join('');
       main.innerHTML = `<div class="wrap page-title"><h1>${ui('地图', 'Map')}</h1>
-        <p class="lead">${ui('地图上标出画作诞生的城市。实心圆点：已开放；空心圆点：即将开放。', 'Cities where the paintings were made. Filled dot: open; outline: coming soon.')}</p></div>
-        <section class="wrap">${mapSVG(R)}</section>
-        <section class="section wrap">${R.places.map(pl => {
-          const list = scenesOf(R, 'place', pl.id);
-          return `<div class="group" id="${pl.id}"><h3>${bi(pl.name)}</h3>${list.length ? cardsHTML(R, list) : SOON()}</div>`;
-        }).join('')}</section>`;
+        <div class="seg map-layers" role="group" aria-label="Map layer">${LAYERS.map(([k, zh, en]) => `<button data-layer="${k}" class="${k === layer ? 'on' : ''}">${ui(zh, en)}</button>`).join('')}</div>
+        <p class="lead">${layer === 'painted' ? ui('画作诞生的城市。实心圆点：已开放；空心圆点：即将开放。', 'Cities where the paintings were made. Filled dot: open; outline: coming soon.')
+          : ui('这些画现在收藏在哪里。实心圆点：已开放；空心圆点：即将开放。', 'Where the paintings are now. Filled dot: open; outline: coming soon.')}</p></div>
+        <section class="wrap">${mapSVG(R, { layer })}</section>
+        <section class="section wrap">${groups || SOON()}</section>`;
+      main.querySelectorAll('[data-layer]').forEach(b => b.onclick = () => {
+        layer = b.dataset.layer; history.replaceState(null, '', layer === 'now' ? '?layer=now' : location.pathname); draw();
+      });
     };
     draw(); onLang(draw);
   },
@@ -320,12 +373,12 @@ const PAGES = {
   museums(R, main) {
     const visit = m => m.url ? `<a class="btn" href="${m.url}" target="_blank" rel="noopener">${ui('参观官网', 'Visit website')} ↗</a>` : '';
     const id = param('id'), one = id && R.museumById[id];
-    const list = one ? [one] : R.museums;
+    const list = one ? [one] : R.museums.filter(m => museumItems(R, m.id).length);   // 还没有作品的博物馆先不列
     main.innerHTML = `<div class="wrap page-title"><h1>${one ? bi(one.name) : ui('按博物馆', 'By museum')}</h1></div>
       <section class="section wrap">${list.map(m => {
-        const sc = scenesOf(R, 'museum', m.id);
+        const sc = museumItems(R, m.id);
         return `<div class="group" id="${m.id}">${one ? '' : `<h3><a href="?id=${m.id}" style="text-decoration:none">${bi(m.name)}</a></h3>`}
-          <p class="note">${visit(m)}</p>${sc.length ? cardsHTML(R, sc) : SOON()}</div>`;
+          <p class="note">${visit(m)}</p>${sc.length ? cardsHTML(R, capSoon(sc), { hideMuseum: true, workLink: true }) : SOON()}</div>`;
       }).join('')}
       ${one ? `<p style="margin-top:28px"><a class="btn" href="${ROOT}museums/">← ${ui('所有博物馆', 'All museums')}</a></p>` : ''}</section>`;
   },

@@ -60,6 +60,9 @@ function buildDOM(S, R, meta) {
       <ul>${readingItems.map(it => `<li><a href="${it.url}" target="_blank" rel="noopener">${bi(it.title, ' / ')}</a> ↗</li>`).join('')}</ul>
     </section>`;
 
+  const isLive = id => !id || !!(R && R.sceneById[id] && R.sceneById[id].status === 'live');
+  // 站内链接按钮（比如“去看《夜晚露天咖啡座》”），目标场景开放后才显示
+  const moreHTML = m => m && isLive(m.scene) ? `<p><a class="btn" href="${m.href}">${ui(m.label.zh, m.label.en)} →</a></p>` : '';
   const actHTML = (a, i) => `
     <section class="act" id="act${i + 1}">
       ${a.image ? `<img class="reveal" src="${a.image}" ${altAttr(a.alt || '')} />`
@@ -69,6 +72,7 @@ function buildDOM(S, R, meta) {
         <h3><small>${a.kicker || ''}</small>${bi(a.title)}</h3>
         <p class="zh">${a.text.zh}</p>
         <p class="en">${a.text.en}</p>
+        ${moreHTML(a.more)}
       </div>
       <button class="btn reveal next" data-next="${i + 1 < E.acts.length ? 'act' + (i + 2) : 'actEnd'}">${ui('下一幕', 'Next')} ↓</button>
     </section>`;
@@ -121,6 +125,7 @@ function buildDOM(S, R, meta) {
       <button data-mode="paint" class="on">${ui('原画质感', 'Painted')}</button>
       <button data-mode="flat">${ui('简笔画', 'Simple view')}</button>
     </div>
+    ${S.exclusive && S.exclusive.type === 'compare' ? `<button class="btn" id="twinBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
       `<button data-opt="${i}" class="${i === 0 ? 'on' : ''}">${ui(o.label.zh, o.label.en)}</button>`).join('')}</div>` : ''}
   </div>
@@ -140,6 +145,17 @@ function buildDOM(S, R, meta) {
     <p><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button></p>
     ${hasRecord ? `<details class="rec-box"><summary>${ui('作品档案', 'Artwork record')}</summary>${recordHTML()}</details>` : ''}
   </div>
+  ${S.exclusive && S.exclusive.type === 'compare' ? `<div class="popup panel" id="twin">
+    <button class="close" data-close="twin" aria-label="Close">×</button>
+    <h3>${bi(S.exclusive.label)}</h3>
+    <div class="twin-cmp" id="twinCmp">
+      <img id="twinA" src="${S.exclusive.left.image}" ${altAttr(S.exclusive.left.caption)} />
+      <img id="twinB" src="${S.exclusive.right.image}" ${altAttr(S.exclusive.right.caption)} />
+      <div class="twin-line" id="twinLine"></div>
+    </div>
+    <p class="twin-caps"><span>← ${bi(S.exclusive.left.caption, ' / ')}</span><span>${bi(S.exclusive.right.caption, ' / ')} →</span></p>
+    <p><small>${ui('左右拖动对比', 'Drag left and right to compare')}${S.exclusive.right.credit ? ' · ' + bi(S.exclusive.right.credit, ' / ') : ''}</small></p>
+  </div>` : ''}
   <div class="popup panel" id="shot">
     <button class="close" data-close="shot" aria-label="Close">×</button>
     <img id="shotImg" ${altAttr({ zh: '你拍下的画面', en: 'Your snapshot' })} />
@@ -190,7 +206,7 @@ function buildDOM(S, R, meta) {
       <div class="links">${museumLinks}</div>
       ${nextHTML}
       <div class="end-actions">
-        ${E.exit && (!E.exit.scene || (R && R.sceneById[E.exit.scene] && R.sceneById[E.exit.scene].status === 'live')) ? `<a class="btn primary" href="${E.exit.href}">${ui(E.exit.label.zh, E.exit.label.en)} →</a>` : ''}
+        ${[].concat(E.exit || []).filter(x => isLive(x.scene)).map(x => `<a class="btn primary" href="${x.href}">${ui(x.label.zh, x.label.en)} →</a>`).join('')}
         <button class="btn" id="backRoom">← ${ui('回到房间', 'Back to the room')}</button>
         <a class="btn" href="${ROOT}">${ui('更多名画', 'More paintings')} →</a>
       </div>
@@ -446,7 +462,7 @@ function run(S, R, meta) {
   Object.assign(BUILD, {
     // 一栋房子：x、z 是正面中间的位置，w 宽、d 深、h 高；windows 是正面（front）或右侧（side）上的窗和门
     building(o) {
-      const g = group(o.x, 0, o.z, o.rot || 0, o.card);
+      const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card);
       box(o.w, o.h, o.d, o.color, 0, o.h / 2, -o.d / 2, g, 'wall');
       if (o.roof) box(o.w + 0.3, 0.35, o.d + 0.3, o.roof, 0, o.h + 0.17, -o.d / 2, g);
       for (const wd of o.windows || []) {
@@ -516,7 +532,7 @@ function run(S, R, meta) {
     },
     // 简单的人形：站着（standing）、坐着（sitting）、趴在桌上（slumped）
     figure(o) {
-      const g = group(o.x, 0, o.z, o.rot || 0, o.card), c = col(o.color || 'coat');
+      const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card), c = col(o.color || 'coat');
       if (o.pose === 'standing') {
         cyl(0.2, 0.24, 1.1, c, 0, 0.95, 0, g); cyl(0.09, 0.09, 0.5, col(o.legs || 'trousers'), -0.08, 0.25, 0, g); cyl(0.09, 0.09, 0.5, col(o.legs || 'trousers'), 0.08, 0.25, 0, g);
         const h = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 12), paint(col('skin'))); h.position.y = 1.65; g.add(outline(h));
@@ -605,7 +621,7 @@ function run(S, R, meta) {
   scene.add(vpRing, vpDot);
 
   // ---------- 投影贴图：把原画从画家视角“投”到墙、地板和家具上 ----------
-  const projector = new THREE.PerspectiveCamera(VIEW.fov, VIEW.aspect, 0.3, OUT ? 220 : 14);   // 户外看得更远
+  const projector = new THREE.PerspectiveCamera(VIEW.fov, VIEW.aspect, 0.3, OUT ? (RM.projectFar || 220) : 14);   // 户外看得更远
   projector.position.set(VIEW.x, VIEW.eye, VIEW.z);
   projector.rotation.set(VIEW.pitch, -VIEW.yaw, 0, 'YXZ');
   projector.updateMatrixWorld(); projector.updateProjectionMatrix();
@@ -703,6 +719,17 @@ function run(S, R, meta) {
     constGroup.add(new THREE.LineSegments(lineGeo, new THREE.LineBasicMaterial({ color: '#fff3b0', transparent: true, opacity: 0.85, depthWrite: false })));
     scene.add(constGroup);
   }
+  // ---------- 天上的星星（一直亮着，点一下看卡片）：位置同样写成原画上的 0–1 ----------
+  if (S.skyStars) {
+    const SR = (RM.skyRadius || 150) * 0.9, sg = new THREE.Group();
+    const sm = new THREE.SpriteMaterial({ map: haloTex(), color: S.skyStars.color || '#fff3b0', transparent: true, depthWrite: false, blending: THREE.AdditiveBlending });
+    for (const [fx, fy, sz] of S.skyStars.stars) {
+      const d = new THREE.Vector3(fx * 2 - 1, 1 - fy * 2, 0.5).unproject(projector).sub(projector.position).normalize();
+      const st = new THREE.Sprite(sm); st.position.copy(projector.position).addScaledVector(d, SR);
+      st.scale.set(SR * (sz || 0.05), SR * (sz || 0.05), 1); st.userData.noPaint = true; sg.add(st);
+    }
+    sg.userData.card = S.skyStars.card; scene.add(sg);
+  }
   document.querySelectorAll('#modeSwitch button').forEach(b => b.onclick = () => setMode(b.dataset.mode));
 
   // ---------- 第一人称：走动和转视角 ----------
@@ -759,7 +786,8 @@ function run(S, R, meta) {
     $('cardTitle').textContent = t.title.zh; $('cardTitleEn').textContent = t.title.en;
     $('cardZh').textContent = t.text.zh; $('cardEn').textContent = t.text.en;
     // 卡片里的链接（比如“去卧室看博赫的画像”）
-    $('cardLinkP').classList.toggle('hidden', !t.link);
+    const linkOn = t.link && (!t.link.scene || (R && R.sceneById[t.link.scene] && R.sceneById[t.link.scene].status === 'live'));
+    $('cardLinkP').classList.toggle('hidden', !linkOn);
     if (t.link) { $('cardLink').href = t.link.href; $('cardLink').innerHTML = ui(t.link.label.zh, t.link.label.en) + ' →'; }
     if (constGroup && key === constObj.card) constGroup.visible = true;   // 星空连线
     card.style.display = 'block';
@@ -769,11 +797,23 @@ function run(S, R, meta) {
 
   // ---------- 弹窗 ----------
   const popups = { compare: $('compare'), shot: $('shot') };
+  if ($('twin')) popups.twin = $('twin');
   function togglePopup(name, show) {
     for (const k in popups) if (k !== name) popups[k].style.display = 'none';
     const el = popups[name]; el.style.display = (show ?? el.style.display !== 'block') ? 'block' : 'none';
   }
   $('compareBtn').onclick = () => togglePopup('compare');
+  if ($('twin')) {   // 独家发现“两个星夜”：拖动分界线
+    const tc = $('twinCmp'), tB = $('twinB'), tL = $('twinLine');
+    const setTwin = pct => { pct = Math.max(0, Math.min(100, pct)); tB.style.clipPath = `inset(0 0 0 ${pct}%)`; tL.style.left = pct + '%'; };
+    let td = false;
+    const tAt = e => { const r = tc.getBoundingClientRect(); setTwin((e.clientX - r.left) / r.width * 100); };
+    tc.addEventListener('pointerdown', e => { td = true; tc.setPointerCapture(e.pointerId); tAt(e); });
+    tc.addEventListener('pointermove', e => { if (td) tAt(e); });
+    tc.addEventListener('pointerup', () => { td = false; }); tc.addEventListener('pointercancel', () => { td = false; });
+    setTwin(50);
+    $('twinBtn').onclick = () => togglePopup('twin');
+  }
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => togglePopup(b.dataset.close, false));
   // 图片真的加载失败时，才换成“找不到”的提示
   function onMissing(img, text, cls = 'missing') {
@@ -1022,7 +1062,7 @@ function run(S, R, meta) {
 
   $('endBtn').onclick = () => {
     walking = false; for (const k in keys) keys[k] = false;
-    card.style.display = 'none'; togglePopup('compare', false); togglePopup('shot', false); leaveView();
+    card.style.display = 'none'; for (const k in popups) togglePopup(k, false); leaveView();
     gallery.style.display = 'block';
     gallery.style.scrollBehavior = 'auto'; gallery.scrollTop = 0; gallery.style.scrollBehavior = '';
     requestAnimationFrame(() => gallery.classList.add('show'));

@@ -446,6 +446,22 @@
           -0.02
         ]
       ]
+    },
+    {
+      "type": "portalDoor",
+      "x": 3.4,
+      "z": 2.7,
+      "rot": 3.1416,
+      "w": 1.1,
+      "h": 2.3,
+      "portal": {
+        "scene": "starry-night-rhone",
+        "href": "../starry-night-rhone/",
+        "label": {
+          "zh": "走到河边",
+          "en": "Walk to the river"
+        }
+      }
     }
   ],
   "cards": {

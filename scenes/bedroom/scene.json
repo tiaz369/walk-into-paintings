@@ -140,7 +140,10 @@
       { "image": "images/v1889-orsay.jpg",   "short": { "zh": "1889 · 巴黎", "en": "1889 · Paris" }, "credit": { "zh": "图片：© Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt（经 Wikimedia Commons）", "en": "Image: © Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt (via Wikimedia Commons)" },       "caption": { "zh": "1889年 · 巴黎奥赛博物馆", "en": "1889 · Musée d'Orsay, Paris" } }
     ],
     "museums": ["van-gogh-museum", "art-institute-chicago", "orsay"],
-    "exit": { "_说明": "结尾的“走出门”按钮：去黄房子（黄房子上线后才显示）", "scene": "yellow-house", "label": { "zh": "走出门", "en": "Step outside" }, "href": "../yellow-house/" }
+    "exit": [
+      { "_说明": "结尾的“走出门”按钮：去黄房子（黄房子上线后才显示）", "scene": "yellow-house", "label": { "zh": "走出门", "en": "Step outside" }, "href": "../yellow-house/" },
+      { "_说明": "去向日葵（向日葵上线后才显示）", "scene": "sunflowers", "label": { "zh": "去看高更房间里的画", "en": "See the paintings for Gauguin's room" }, "href": "../sunflowers/" }
+    ]
   },
 
   "record": {
