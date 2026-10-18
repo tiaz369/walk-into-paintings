@@ -369,3 +369,5 @@ body.lang-both .act h3 > .en { display: block; font-size: .62em; color: var(--mu
 .card-wrap .work-link { font-size: 13px; color: var(--muted); }
 .card-wrap .img-credit { font-size: 11px; color: var(--muted); line-height: 1.5; }
 .map-layers button { font-size: 14px; padding: 7px 14px; }
+.later { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); line-height: 1.9; }
+.later a { color: inherit; }

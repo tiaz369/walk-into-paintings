@@ -1,5 +1,5 @@
 {
-  "_说明": "所有场景的登记表。首页、系列页、各种浏览页和地图都读这里。新增场景时在 scenes 里加一条；status 为 live 表示已上线，soon 表示即将上线，planned 表示计划中（不在页面显示）。url 是博物馆官网的作品页。名称、年份、收藏地来自网站蓝图的内容路线图，上线前请再核对。英文由 Claude 补写，请 Tia 核对。year 可以写成 {zh: 约1660, en: c. 1660} 这样可以分别显示中英文。imageSource 是首页大图下面显示的图片来源。",
+  "_说明": "所有场景的登记表。首页、系列页、各种浏览页和地图都读这里。新增场景时在 scenes 里加一条；status 为 live 表示已上线，soon 表示即将上线，planned 表示计划中（不在页面显示）。artworkUrl 是博物馆官网的作品页（不知道的留空）。名称、年份、收藏地来自网站蓝图的内容路线图，上线前请再核对。英文由 Claude 补写，请 Tia 核对。year 可以写成 {zh: 约1660, en: c. 1660} 这样可以分别显示中英文。imageSource 是首页大图下面显示的图片来源。",
 
   "collections": [
     { "id": "arles", "name": { "zh": "梵高在阿尔勒", "en": "Van Gogh in Arles" }, "desc": { "zh": "1888年，等待高更的那段日子", "en": "1888: the days of waiting for Gauguin" }, "accent": "arles", "order": ["bedroom", "yellow-house", "night-cafe", "cafe-terrace", "starry-night-rhone", "sunflowers"] },
@@ -9,16 +9,16 @@
   ],
 
   "artists": [
-    { "id": "van-gogh", "name": { "zh": "梵高", "en": "Vincent van Gogh" },
+    { "id": "van-gogh", "name": { "zh": "梵高", "en": "Vincent van Gogh" }, "dates": { "zh": "1853–1890", "en": "1853–1890" },
       "bio": {"zh": "文森特·梵高（1853–1890），荷兰画家。他将近27岁才开始画画，短短十年留下了大量作品。1888年他来到法国南部的阿尔勒，在那里画出了许多最著名的画。", "en": "Vincent van Gogh (1853–1890) was a Dutch painter. He began painting at around 27 and left a huge body of work in just ten years. In 1888 he moved to Arles in the south of France, where he painted many of his best-known works."} },
-    { "id": "vermeer",  "name": { "zh": "维米尔", "en": "Johannes Vermeer" }, "bio": null },
-    { "id": "van-eyck", "name": { "zh": "扬·凡·艾克", "en": "Jan van Eyck" }, "bio": null },
-    { "id": "monet",    "name": { "zh": "莫奈", "en": "Claude Monet" }, "bio": null },
-    { "id": "seurat",   "name": { "zh": "修拉", "en": "Georges Seurat" }, "bio": null },
-    { "id": "degas",    "name": { "zh": "德加", "en": "Edgar Degas" }, "bio": null },
-    { "id": "renoir",   "name": { "zh": "雷诺阿", "en": "Pierre-Auguste Renoir" }, "bio": null },
-    { "id": "caillebotte", "name": { "zh": "卡耶博特", "en": "Gustave Caillebotte" }, "bio": null },
-    { "id": "manet",    "name": { "zh": "马奈", "en": "Édouard Manet" }, "bio": null }
+    { "id": "vermeer",  "name": { "zh": "维米尔", "en": "Johannes Vermeer" }, "dates": { "zh": "1632–1675", "en": "1632–1675" }, "bio": null },
+    { "id": "van-eyck", "name": { "zh": "扬·凡·艾克", "en": "Jan van Eyck" }, "dates": { "zh": "约1390–1441", "en": "c. 1390–1441" }, "bio": null },
+    { "id": "monet",    "name": { "zh": "莫奈", "en": "Claude Monet" }, "dates": { "zh": "1840–1926", "en": "1840–1926" }, "bio": null },
+    { "id": "seurat",   "name": { "zh": "修拉", "en": "Georges Seurat" }, "dates": { "zh": "1859–1891", "en": "1859–1891" }, "bio": null },
+    { "id": "degas",    "name": { "zh": "德加", "en": "Edgar Degas" }, "dates": { "zh": "1834–1917", "en": "1834–1917" }, "bio": null },
+    { "id": "renoir",   "name": { "zh": "雷诺阿", "en": "Pierre-Auguste Renoir" }, "dates": { "zh": "1841–1919", "en": "1841–1919" }, "bio": null },
+    { "id": "caillebotte", "name": { "zh": "卡耶博特", "en": "Gustave Caillebotte" }, "dates": { "zh": "1848–1894", "en": "1848–1894" }, "bio": null },
+    { "id": "manet",    "name": { "zh": "马奈", "en": "Édouard Manet" }, "dates": { "zh": "1832–1883", "en": "1832–1883" }, "bio": null }
   ],
 
   "museums": [
@@ -47,8 +47,11 @@
     { "id": "children", "name": { "zh": "孩子", "en": "Children" } },
     { "id": "houses-streets", "name": { "zh": "房子与街道", "en": "Houses and streets" } },
     { "id": "water",    "name": { "zh": "水", "en": "Water" } },
-    { "id": "umbrellas", "name": { "zh": "雨伞与阳伞", "en": "Umbrellas and parasols" } },
-    { "id": "london",   "name": { "zh": "在伦敦看真迹", "en": "See the real paintings in London" } }
+    { "id": "umbrellas", "name": { "zh": "雨伞与阳伞", "en": "Umbrellas & Parasols" } },
+    { "id": "streets",  "name": { "zh": "街道", "en": "Streets" } },
+    { "id": "city-stations", "name": { "zh": "城市与车站", "en": "City & Stations" } },
+    { "id": "london",   "name": { "zh": "在伦敦看真迹", "en": "See them in London" } },
+    { "id": "dance",    "name": { "zh": "舞蹈", "en": "Dance" } }
   ],
 
   "periods": [
@@ -82,11 +85,11 @@
       "tagline": { "zh": "一间等人的房间。", "en": "A room that waited." },
       "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles",
       "version": "full", "place": "arles", "themes": ["rooms"], "period": null, "added": "2026-10-15",
-      "url": "https://www.vangoghmuseum.nl/en/collection/s0047V1962",
+      "artworkUrl": "https://www.vangoghmuseum.nl/en/collection/s0047V1962",
       "_alsoAt说明": "同一幅画的其他版本，收藏在别的博物馆：在那家博物馆的页面上列出来，链接到这个场景",
       "alsoAt": [
-        { "museum": "art-institute-chicago", "title": { "zh": "阿尔勒的卧室（1889年9月版）", "en": "The Bedroom (September 1889 version)" }, "year": "1889", "url": "https://www.artic.edu/artworks/28560/the-bedroom", "cover": "scenes/bedroom/images/v1889-chicago.jpg" },
-        { "museum": "orsay", "title": { "zh": "阿尔勒的卧室（1889年小幅版）", "en": "The Bedroom (smaller 1889 version)" }, "year": "1889", "url": "", "cover": "scenes/bedroom/images/v1889-orsay.jpg",
+        { "museum": "art-institute-chicago", "title": { "zh": "阿尔勒的卧室（1889年9月版）", "en": "The Bedroom (September 1889 version)" }, "year": "1889", "artworkUrl": "https://www.artic.edu/artworks/28560/the-bedroom", "cover": "scenes/bedroom/images/v1889-chicago.jpg" },
+        { "museum": "orsay", "title": { "zh": "阿尔勒的卧室（1889年小幅版）", "en": "The Bedroom (smaller 1889 version)" }, "year": "1889", "artworkUrl": "", "cover": "scenes/bedroom/images/v1889-orsay.jpg",
           "credit": { "zh": "图片：© Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt（经 Wikimedia Commons）", "en": "Image: © Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt (via Wikimedia Commons)" } }
       ],
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
@@ -96,7 +99,7 @@
       "title": { "zh": "黄房子", "en": "The Yellow House" },
       "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles",
       "version": "full", "place": "arles", "themes": ["houses-streets"], "period": "post-impressionism", "added": "2026-10-15",
-      "url": "https://www.vangoghmuseum.nl/en/collection/s0032V1962",
+      "artworkUrl": "https://www.vangoghmuseum.nl/en/collection/s0032V1962",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
@@ -118,7 +121,7 @@
       "title": { "zh": "罗纳河上的星夜", "en": "Starry Night over the Rhône" },
       "artist": "van-gogh", "year": "1888", "museum": "orsay", "collection": "arles",
       "version": "full", "place": "arles", "themes": ["night", "water"], "period": "post-impressionism", "added": "2026-10-18",
-      "url": "https://www.musee-orsay.fr/en/artworks/la-nuit-etoilee-78696",
+      "artworkUrl": "https://www.musee-orsay.fr/en/artworks/la-nuit-etoilee-78696",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
@@ -127,7 +130,7 @@
       "title": { "zh": "向日葵", "en": "Sunflowers" },
       "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles",
       "version": "light", "place": "arles", "themes": ["gardens", "london"], "period": "post-impressionism", "added": "2026-10-18",
-      "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-sunflowers",
+      "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-sunflowers",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     { "id": "milkmaid",            "status": "soon", "week": 5,  "title": { "zh": "倒牛奶的女仆", "en": "The Milkmaid" },    "artist": "vermeer", "year": { "zh": "约1660", "en": "c. 1660" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": null, "themes": [], "period": null },
@@ -138,18 +141,18 @@
     { "id": "water-lily-pond",     "status": "soon", "week": 9,  "title": { "zh": "睡莲池", "en": "The Water-Lily Pond" },          "artist": "monet", "year": "1899", "museum": "national-gallery", "collection": "national-gallery", "version": "full",  "place": null, "themes": ["london"], "period": null },
     { "id": "bathers-asnieres",    "status": "soon", "week": 10, "title": { "zh": "阿涅尔的浴场", "en": "Bathers at Asnières" },    "artist": "seurat", "year": "1884", "museum": "national-gallery", "collection": "national-gallery", "version": "light", "place": null, "themes": ["london"], "period": null },
     { "id": "dance-class",         "status": "soon", "week": 11, "title": { "zh": "舞蹈课", "en": "The Dance Class" },          "artist": "degas", "year": "1874", "museum": "met", "collection": "stage", "version": "full",  "place": null, "themes": [], "period": null },
-    { "id": "renoir-umbrellas", "status": "planned", "title": { "zh": "伞", "en": "The Umbrellas" }, "artist": "renoir", "year": { "zh": "约1881–86", "en": "c. 1881–86" }, "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": ["umbrellas", "london"], "period": null, "url": "" },
-    { "id": "renoir-moulin-galette", "status": "planned", "title": { "zh": "煎饼磨坊的舞会", "en": "Bal du moulin de la Galette" }, "artist": "renoir", "year": "1876", "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
-    { "id": "caillebotte-paris-street", "status": "planned", "title": { "zh": "巴黎街道，雨天", "en": "Paris Street; Rainy Day" }, "artist": "caillebotte", "year": "1877", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": ["umbrellas"], "period": null, "url": "" },
-    { "id": "manet-folies-bergere", "status": "planned", "title": { "zh": "女神游乐厅的吧台", "en": "A Bar at the Folies-Bergère" }, "artist": "manet", "year": "1882", "museum": "courtauld", "collection": null, "version": null, "place": null, "themes": ["london"], "period": null, "url": "" },
-    { "id": "van-gogh-chair", "status": "planned", "title": { "zh": "梵高的椅子", "en": "Van Gogh's Chair" }, "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": ["london"], "period": null, "url": "" },
-    { "id": "gauguin-chair", "status": "planned", "title": { "zh": "高更的椅子", "en": "Gauguin's Chair" }, "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
-    { "id": "starry-night", "status": "planned", "title": { "zh": "星夜", "en": "The Starry Night" }, "artist": "van-gogh", "year": "1889", "museum": "moma", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
-    { "id": "impression-sunrise", "status": "planned", "title": { "zh": "日出·印象", "en": "Impression, Sunrise" }, "artist": "monet", "year": "1872", "museum": "marmottan", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
-    { "id": "gare-saint-lazare", "status": "planned", "title": { "zh": "圣拉扎尔火车站", "en": "The Gare Saint-Lazare" }, "artist": "monet", "year": "1877", "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
-    { "id": "woman-parasol", "status": "planned", "title": { "zh": "撑阳伞的女人", "en": "Woman with a Parasol" }, "artist": "monet", "year": "1875", "museum": "nga-washington", "collection": null, "version": null, "place": null, "themes": ["umbrellas"], "period": null, "url": "" },
-    { "id": "absinthe", "status": "planned", "title": { "zh": "苦艾酒", "en": "In a Café (L'Absinthe)" }, "artist": "degas", "year": { "zh": "约1875–76", "en": "c. 1875–76" }, "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
-    { "id": "grande-jatte", "status": "planned", "title": { "zh": "大碗岛的星期天下午", "en": "A Sunday on La Grande Jatte" }, "artist": "seurat", "year": "1884–86", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
-    { "id": "view-of-delft", "status": "planned", "title": { "zh": "代尔夫特一景", "en": "View of Delft" }, "artist": "vermeer", "year": { "zh": "约1660–61", "en": "c. 1660–61" }, "museum": "mauritshuis", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" }
+    { "id": "renoir-umbrellas", "status": "planned", "title": { "zh": "伞", "en": "The Umbrellas" }, "artist": "renoir", "year": {"zh": "约1881–86", "en": "c. 1881–86"}, "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": ["umbrellas", "streets", "london"], "period": "impressionism", "artworkUrl": "" },
+    { "id": "renoir-moulin-galette", "status": "planned", "title": { "zh": "煎饼磨坊的舞会", "en": "Dance at Le Moulin de la Galette" }, "artist": "renoir", "year": "1876", "museum": "orsay", "collection": null, "version": null, "place": null, "themes": ["dance"], "period": "impressionism", "artworkUrl": "" },
+    { "id": "caillebotte-paris-street", "status": "planned", "title": { "zh": "巴黎街道，雨天", "en": "Paris Street; Rainy Day" }, "artist": "caillebotte", "year": "1877", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": ["umbrellas", "streets"], "period": "impressionism", "artworkUrl": "" },
+    { "id": "manet-folies-bergere", "status": "planned", "title": { "zh": "女神游乐厅的吧台", "en": "A Bar at the Folies-Bergère" }, "artist": "manet", "year": "1882", "museum": "courtauld", "collection": null, "version": null, "place": null, "themes": ["cafes", "london"], "period": "impressionism", "artworkUrl": "" },
+    { "id": "van-gogh-chair", "status": "planned", "title": { "zh": "梵高的椅子", "en": "Van Gogh's Chair" }, "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles", "version": null, "place": null, "themes": ["rooms", "london"], "period": "post-impressionism", "artworkUrl": "" },
+    { "id": "gauguin-chair", "status": "planned", "title": { "zh": "高更的椅子", "en": "Gauguin's Chair" }, "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles", "version": null, "place": null, "themes": ["rooms"], "period": "post-impressionism", "artworkUrl": "" },
+    { "id": "starry-night", "status": "planned", "title": { "zh": "星夜", "en": "The Starry Night" }, "artist": "van-gogh", "year": "1889", "museum": "moma", "collection": null, "version": null, "place": null, "themes": ["night"], "period": "post-impressionism", "artworkUrl": "" },
+    { "id": "impression-sunrise", "status": "planned", "title": { "zh": "日出·印象", "en": "Impression, Sunrise" }, "artist": "monet", "year": "1872", "museum": "marmottan", "collection": null, "version": null, "place": null, "themes": ["water"], "period": "impressionism", "artworkUrl": "" },
+    { "id": "gare-saint-lazare", "status": "planned", "title": { "zh": "圣拉扎尔火车站", "en": "The Gare Saint-Lazare" }, "artist": "monet", "year": "1877", "museum": "orsay", "collection": null, "version": null, "place": null, "themes": ["city-stations"], "period": "impressionism", "artworkUrl": "" },
+    { "id": "woman-parasol", "status": "planned", "title": { "zh": "撑阳伞的女人", "en": "Woman with a Parasol – Madame Monet and Her Son" }, "artist": "monet", "year": "1875", "museum": "nga-washington", "collection": null, "version": null, "place": null, "themes": ["umbrellas"], "period": "impressionism", "artworkUrl": "" },
+    { "id": "absinthe", "status": "planned", "title": { "zh": "苦艾酒", "en": "In a Café (The Absinthe Drinker)" }, "artist": "degas", "year": {"zh": "约1875–76", "en": "c. 1875–76"}, "museum": "orsay", "collection": null, "version": null, "place": null, "themes": ["cafes"], "period": "impressionism", "artworkUrl": "" },
+    { "id": "grande-jatte", "status": "planned", "title": { "zh": "大碗岛的星期天下午", "en": "A Sunday on La Grande Jatte — 1884" }, "artist": "seurat", "year": "1884–86", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": ["water", "gardens"], "period": "post-impressionism", "artworkUrl": "" },
+    { "id": "view-of-delft", "status": "planned", "title": { "zh": "代尔夫特一景", "en": "View of Delft" }, "artist": "vermeer", "year": {"zh": "约1660–61", "en": "c. 1660–61"}, "museum": "mauritshuis", "collection": null, "version": null, "place": null, "themes": ["water", "city-stations"], "period": "dutch-golden-age", "artworkUrl": "" }
   ]
 }
