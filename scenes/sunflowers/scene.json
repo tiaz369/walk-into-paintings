@@ -203,16 +203,151 @@
       "x": 0.06,
       "y": 0.62,
       "layer": 0
+    },
+    "gauguinPortrait": {
+      "x": 0.93,
+      "y": 0.45,
+      "layer": 0
     }
   },
   "exclusive": {
-    "_说明": "独家发现“向日葵在哪里”：世界地图。places 等 Tia 核对后提供，每项写 {name:{zh,en}, lat, lon, note:{zh,en}}。",
+    "_说明": "独家发现“向日葵在哪里”：世界地图上的七幅向日葵。名单和坐标由 Tia 提供（坐标是近似值，只用来标点）。lat 为 null 的不标点。kind：here 本场景这一幅，gone 已毁。label 是编号写在圆点的哪一边：l 左、t 上、b 下，默认右边。",
     "type": "map",
     "label": {
       "zh": "向日葵在哪里",
       "en": "Where are the sunflowers?"
     },
-    "places": []
+    "title": {
+      "zh": "七幅向日葵",
+      "en": "The Seven Sunflowers"
+    },
+    "intro": {
+      "zh": "梵高在1888–1889年间画了七幅花瓶里的向日葵：四幅画于1888年8月，三幅是之后的复制品。",
+      "en": "Van Gogh painted seven Sunflowers in a vase in 1888–89: four in August 1888, and three later repetitions."
+    },
+    "box": {
+      "w": -95,
+      "e": 150,
+      "s": 22,
+      "n": 62
+    },
+    "places": [
+      {
+        "date": {
+          "zh": "1888年8月",
+          "en": "August 1888"
+        },
+        "name": {
+          "zh": "伦敦国家美术馆",
+          "en": "The National Gallery, London"
+        },
+        "lat": 51.5089,
+        "lon": -0.1283,
+        "kind": "here",
+        "label": "l",
+        "note": {
+          "zh": "公开展出（本场景这一幅）",
+          "en": "On public display (the painting in this scene)"
+        }
+      },
+      {
+        "date": {
+          "zh": "1888年8月",
+          "en": "August 1888"
+        },
+        "name": {
+          "zh": "慕尼黑新绘画陈列馆",
+          "en": "Neue Pinakothek, Munich"
+        },
+        "lat": 48.15,
+        "lon": 11.5717,
+        "label": "b",
+        "note": {
+          "zh": "公开展出",
+          "en": "On public display"
+        }
+      },
+      {
+        "date": {
+          "zh": "1888年8月",
+          "en": "August 1888"
+        },
+        "name": {
+          "zh": "私人收藏",
+          "en": "Private collection"
+        },
+        "lat": null,
+        "lon": null,
+        "note": {
+          "zh": "几代人未公开展出",
+          "en": "Not shown in public for generations"
+        }
+      },
+      {
+        "date": {
+          "zh": "1888年8月",
+          "en": "August 1888"
+        },
+        "name": {
+          "zh": "已毁：日本芦屋，1945年8月6日空袭",
+          "en": "Destroyed: Ashiya, Japan, air raid on 6 August 1945"
+        },
+        "lat": 34.727,
+        "lon": 135.304,
+        "kind": "gone",
+        "label": "b"
+      },
+      {
+        "date": {
+          "zh": "1888年底–1889年初",
+          "en": "Late 1888–early 1889"
+        },
+        "name": {
+          "zh": "东京SOMPO美术馆",
+          "en": "Sompo Museum of Art, Tokyo"
+        },
+        "lat": 35.6927,
+        "lon": 139.6957,
+        "label": "t",
+        "note": {
+          "zh": "公开展出",
+          "en": "On public display"
+        }
+      },
+      {
+        "date": {
+          "zh": "1889年1月",
+          "en": "January 1889"
+        },
+        "name": {
+          "zh": "费城艺术博物馆",
+          "en": "Philadelphia Museum of Art"
+        },
+        "lat": 39.9656,
+        "lon": -75.181,
+        "note": {
+          "zh": "公开展出",
+          "en": "On public display"
+        }
+      },
+      {
+        "date": {
+          "zh": "1889年1月",
+          "en": "January 1889"
+        },
+        "name": {
+          "zh": "阿姆斯特丹梵高博物馆",
+          "en": "Van Gogh Museum, Amsterdam"
+        },
+        "lat": 52.3584,
+        "lon": 4.8811,
+        "label": "t",
+        "note": {
+          "zh": "公开展出",
+          "en": "On public display"
+        }
+      }
+    ]
   },
   "cards": {
     "yellow": {
@@ -273,6 +408,16 @@
       "text": {
         "zh": "高更很喜欢这幅画，称赞它完美体现了梵高的风格。",
         "en": "Gauguin admired it, praising it as a perfect example of Van Gogh's style."
+      }
+    },
+    "gauguinPortrait": {
+      "title": {
+        "zh": "高更画梵高",
+        "en": "Gauguin's portrait"
+      },
+      "text": {
+        "zh": "和梵高同住时，高更画了一幅《画向日葵的梵高》，现藏阿姆斯特丹梵高博物馆。",
+        "en": "While living with Van Gogh, Gauguin painted \"Van Gogh Painting Sunflowers\", now in the Van Gogh Museum, Amsterdam."
       }
     }
   },
@@ -387,6 +532,13 @@
           "en": "National Gallery of Australia: The seven Sunflowers"
         },
         "url": "https://nga.gov.au/stories-ideas/the-seven-sunflowers"
+      },
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：向日葵",
+          "en": "The National Gallery: Sunflowers"
+        },
+        "url": "https://data.ng.ac.uk/0GE6-0001-0000-0000"
       }
     ]
   }

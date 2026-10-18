@@ -354,7 +354,7 @@ body.lang-both .act h3 > .en { display: block; font-size: .62em; color: var(--mu
 #where h3 { margin: 6px 0 10px; font-weight: 500; }
 .world { width: 100%; height: auto; display: block; background: var(--paper-2); border-radius: 4px; }
 .world .land { fill: var(--muted); opacity: .35; }
-.world .dot { fill: #e0a526; stroke: #fff; stroke-width: 2; }
+.world .dot { fill: #e0a526; stroke: #fff; }
 .world text { font-size: 18px; fill: var(--ink); }
 .where-list { text-align: left; font-size: 13px; margin: 10px 8px 0 28px; }
 #where .soon { color: var(--muted); }
@@ -371,3 +371,10 @@ body.lang-both .act h3 > .en { display: block; font-size: .62em; color: var(--mu
 .map-layers button { font-size: 14px; padding: 7px 14px; }
 .later { margin-top: 28px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); line-height: 1.9; }
 .later a { color: inherit; }
+.world .dot.here { fill: #c0392b; }
+.world .dot.gone { fill: none; stroke: var(--muted); }
+.where-intro { font-size: 13px; color: var(--muted); }
+.where-list li { margin: 4px 0; }
+.where-list li.here b { color: #c0392b; }
+.where-list li.gone { color: var(--muted); }
+body.lang-both :is(#where, #twin) h3 > .en { display: block; font-size: .8em; color: var(--muted); font-style: italic; }
