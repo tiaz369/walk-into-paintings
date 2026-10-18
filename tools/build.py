@@ -187,7 +187,8 @@ live_in = lambda tid: any(x['status'] == 'live' for x in of('themes', tid))
 ths = ''.join(f'<h2 id="{x["id"]}">{e(both(x["name"]))}</h2>{scene_list(cap_soon(of("themes", x["id"])), "../")}' for x in R['themes'] if live_in(x['id']))
 ths += later([e(both(x['name'])) for x in R['themes'] if not live_in(x['id'])])
 PAGES.append(page('themes/', T('主题', 'Themes'), '按主题浏览 · Browse by theme', '      <h1>按主题 · By theme</h1>\n      ' + ths, site_script('../', 'themes')))
-PAGES.append(page('periods/', T('时期', 'Periods'), '按时期浏览 · Browse by period', '      <h1>按时期 · By period</h1>\n      ' + groups(R['periods'], 'period', '../'), site_script('../', 'periods')))
+pers = ''.join(f'<h2 id="{x["id"]}">{e(both(x["name"]))}</h2>{scene_list(cap_soon(of("period", x["id"])), "../")}' for x in R['periods'])
+PAGES.append(page('periods/', T('时期', 'Periods'), '按时期浏览 · Browse by period', '      <h1>按时期 · By period</h1>\n      ' + pers, site_script('../', 'periods')))
 def ul(items): return '<ul>' + ''.join(scene_li(s, '../', ('museum',), title, url, year) for s, title, url, year in items) + '</ul>'
 painted = ''.join(f'<h3 id="{p["id"]}">{e(both(p["name"]))}</h3>{scene_list(of("place", p["id"]), "../")}' for p in R['places'] if of('place', p['id']))
 now = ''
