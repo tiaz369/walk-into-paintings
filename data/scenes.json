@@ -48,7 +48,7 @@
     { "id": "houses-streets", "name": { "zh": "房子与街道", "en": "Houses and streets" } },
     { "id": "water",    "name": { "zh": "水", "en": "Water" } },
     { "id": "umbrellas", "name": { "zh": "雨伞与阳伞", "en": "Umbrellas and parasols" } },
-    { "id": "london",   "name": { "zh": "在伦敦看真迹", "en": "See them in London" } }
+    { "id": "london",   "name": { "zh": "在伦敦看真迹", "en": "See the real paintings in London" } }
   ],
 
   "periods": [
@@ -148,7 +148,7 @@
     { "id": "impression-sunrise", "status": "planned", "title": { "zh": "日出·印象", "en": "Impression, Sunrise" }, "artist": "monet", "year": "1872", "museum": "marmottan", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
     { "id": "gare-saint-lazare", "status": "planned", "title": { "zh": "圣拉扎尔火车站", "en": "The Gare Saint-Lazare" }, "artist": "monet", "year": "1877", "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
     { "id": "woman-parasol", "status": "planned", "title": { "zh": "撑阳伞的女人", "en": "Woman with a Parasol" }, "artist": "monet", "year": "1875", "museum": "nga-washington", "collection": null, "version": null, "place": null, "themes": ["umbrellas"], "period": null, "url": "" },
-    { "id": "absinthe", "status": "planned", "title": { "zh": "苦艾酒", "en": "L'Absinthe" }, "artist": "degas", "year": { "zh": "约1875–76", "en": "c. 1875–76" }, "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
+    { "id": "absinthe", "status": "planned", "title": { "zh": "苦艾酒", "en": "In a Café (L'Absinthe)" }, "artist": "degas", "year": { "zh": "约1875–76", "en": "c. 1875–76" }, "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
     { "id": "grande-jatte", "status": "planned", "title": { "zh": "大碗岛的星期天下午", "en": "A Sunday on La Grande Jatte" }, "artist": "seurat", "year": "1884–86", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" },
     { "id": "view-of-delft", "status": "planned", "title": { "zh": "代尔夫特一景", "en": "View of Delft" }, "artist": "vermeer", "year": { "zh": "约1660–61", "en": "c. 1660–61" }, "museum": "mauritshuis", "collection": null, "version": null, "place": null, "themes": [], "period": null, "url": "" }
   ]

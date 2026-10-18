@@ -40,7 +40,7 @@
   },
   "hint": {
     "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下夜空、星星、河面、河边的人看介绍 · 转身看看画架 · 点“两个星夜”对比两幅画 · 地上发光的圆点 = 梵高视角",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the sky, the stars, the river or the couple to learn more · Turn around to find the easel · Tap “Two starry nights” to compare two paintings · The glowing circle = Van Gogh's viewpoint"
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the sky, the stars, the river or the couple to learn more · Turn around to find the easel · Tap “Two Starry Nights” to compare two paintings · The glowing circle = Van Gogh's viewpoint"
   },
   "viewpoint": {
     "_说明": "画家视角：站在码头边上，看着对岸的灯火。数字是照着 images/starry-night-rhone.jpg 算出来的（视平线在画面 43% 的高度）。",
@@ -60,7 +60,7 @@
     "type": "compare",
     "label": {
       "zh": "两个星夜",
-      "en": "Two starry nights"
+      "en": "Two Starry Nights"
     },
     "left": {
       "image": "images/starry-night-rhone.jpg",
@@ -1715,7 +1715,7 @@
         "kicker": "ACT III",
         "title": {
           "zh": "第三幕 · 另一个星夜",
-          "en": "Another starry night"
+          "en": "Another Starry Night"
         },
         "text": {
           "zh": "几个月后，他住进圣雷米的疗养院，又画了一幅《星夜》，现藏纽约现代艺术博物馆。那一幅翻涌不安，这一幅却安静温柔。",
