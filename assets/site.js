@@ -124,15 +124,18 @@ export const sceneUrl = s => ROOT + s.path;
 // opts：hideArtist / hideMuseum 不写画家 / 博物馆；title、cover 换成别的版本；workLink 在卡片下面加“官网作品页”
 export function sceneCard(R, s, opts = {}) {
   const artist = !opts.hideArtist && R.artistById[s.artist], museum = !opts.hideMuseum && R.museumById[opts.museum || s.museum];
-  const meta = [artist && bi(artist.name), bi(opts.year || s.year)].filter(Boolean).join(' · ');
+  // 画家页：年份 · 收藏地；博物馆页：年份 · 画家；其他页面：画家 · 年份，下一行收藏地
+  const short = opts.hideArtist || opts.hideMuseum;
+  const meta = short ? [bi(opts.year || s.year), artist && bi(artist.name), museum && bi(museum.name)].filter(Boolean).join(' · ')
+    : [artist && bi(artist.name), bi(opts.year || s.year)].filter(Boolean).join(' · ');
   const live = s.status === 'live', title = opts.title || s.title, cover = opts.cover || s.cover;
   const pic = live && cover
     ? `<img src="${ROOT + cover}" ${altAttr(title)} loading="lazy" />`
     : `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
   const inner = `<div class="pic">${pic}</div><div class="name">${bi(title)}</div>
-    <div class="meta">${meta}</div>${museum ? `<div class="meta">${bi(museum.name)}</div>` : ''}`;
+    <div class="meta">${meta}</div>${museum && !short ? `<div class="meta">${bi(museum.name)}</div>` : ''}`;
   const card = live ? `<a class="card" href="${sceneUrl(s)}">${inner}</a>` : `<div class="card is-soon">${inner}</div>`;
-  const url = opts.workLink && (opts.url ?? s.url);
+  const url = opts.workLink && (opts.artworkUrl ?? s.artworkUrl);
   const below = (url ? `<a class="work-link" href="${url}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '')
     + (opts.credit ? `<small class="img-credit">${bi(opts.credit, ' / ')}</small>` : '');
   return below ? `<div class="card-wrap">${card}${below}</div>` : card;
@@ -225,10 +228,13 @@ const scenesOf = (R, key, id) => R.scenes.filter(s => Array.isArray(s[key]) ? s[
 function museumItems(R, id) {
   const own = scenesOf(R, 'museum', id).map(s => ({ s, opts: {} }));
   const also = R.scenes.flatMap(s => (s.alsoAt || []).filter(v => v.museum === id)
-    .map(v => ({ s, opts: { title: v.title, year: v.year, cover: v.cover, url: v.url, credit: v.credit, museum: v.museum } })));
+    .map(v => ({ s, opts: { title: v.title, year: v.year, cover: v.cover, artworkUrl: v.artworkUrl, credit: v.credit, museum: v.museum } })));
   return [...own, ...also].sort((a, b) => (a.s.status === 'live' ? 0 : 1) - (b.s.status === 'live' ? 0 : 1));
 }
 const museumsIn = (R, cityId) => R.museums.filter(m => m.city === cityId);
+// 页面底部一行小字：还没有作品可以显示的画家 / 博物馆 / 主题
+const laterLine = items => items.length ? `<p class="later">${ui('即将推出：', 'Coming soon: ')}${items.join(' · ')}</p>` : '';
+const artistName = a => bi({ zh: a.name.zh + (a.dates ? `（${a.dates.zh}）` : ''), en: a.name.en + (a.dates ? ` (${a.dates.en})` : '') });
 const labelOf = (R, s) => {   // 展签：画名 · 画家 · 年份 · 收藏地
   const a = R.artistById[s.artist], m = R.museumById[s.museum];
   return [bi(s.title), a && bi(a.name), bi(s.year), m && bi(m.name)].filter(Boolean).join(' · ');
@@ -314,7 +320,7 @@ const PAGES = {
   artists(R, main) {
     const id = param('id'), a = id && R.artistById[id];
     if (a) {
-      main.innerHTML = `<div class="wrap page-title"><h1>${bi(a.name)}</h1></div>
+      main.innerHTML = `<div class="wrap page-title"><h1>${bi(a.name)}${a.dates ? `<small class="sub">${bi(a.dates)}</small>` : ''}</h1></div>
         <section class="section wrap">
           ${a.bio ? `<p class="lead">${bi(a.bio)}</p>` : ''}
           ${cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true })}
@@ -323,17 +329,17 @@ const PAGES = {
     }
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按画家', 'By artist')}</h1></div>
       <section class="section wrap">${R.artists.filter(a => scenesOf(R, 'artist', a.id).length).map(a => `
-        <div class="group"><h3><a href="?id=${a.id}" style="text-decoration:none">${bi(a.name)}</a></h3>
-        ${cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true })}</div>`).join('')}</section>`;
+        <div class="group"><h3><a href="?id=${a.id}" style="text-decoration:none">${artistName(a)}</a></h3>
+        ${cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true })}</div>`).join('')}
+        ${laterLine(R.artists.filter(a => !scenesOf(R, 'artist', a.id).length).map(artistName))}</section>`;
   },
 
   // ---------- 按主题 ----------
   themes(R, main) {
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按主题', 'By theme')}</h1></div>
-      <section class="section wrap">${R.themes.map(t => {
-        const list = scenesOf(R, 'themes', t.id);
-        return `<div class="group" id="${t.id}"><h3>${bi(t.name)}</h3>${list.length ? cardsHTML(R, list) : SOON()}</div>`;
-      }).join('')}</section>`;
+      <section class="section wrap">${R.themes.filter(t => scenesOf(R, 'themes', t.id).some(s => s.status === 'live')).map(t =>
+        `<div class="group" id="${t.id}"><h3>${bi(t.name)}</h3>${cardsHTML(R, capSoon(scenesOf(R, 'themes', t.id)))}</div>`).join('')}
+        ${laterLine(R.themes.filter(t => !scenesOf(R, 'themes', t.id).some(s => s.status === 'live')).map(t => bi(t.name)))}</section>`;
   },
 
   // ---------- 按时期：一条时间轴 ----------
@@ -380,7 +386,8 @@ const PAGES = {
         return `<div class="group" id="${m.id}">${one ? '' : `<h3><a href="?id=${m.id}" style="text-decoration:none">${bi(m.name)}</a></h3>`}
           <p class="note">${visit(m)}</p>${sc.length ? cardsHTML(R, capSoon(sc), { hideMuseum: true, workLink: true }) : SOON()}</div>`;
       }).join('')}
-      ${one ? `<p style="margin-top:28px"><a class="btn" href="${ROOT}museums/">← ${ui('所有博物馆', 'All museums')}</a></p>` : ''}</section>`;
+      ${one ? `<p style="margin-top:28px"><a class="btn" href="${ROOT}museums/">← ${ui('所有博物馆', 'All museums')}</a></p>`
+        : laterLine(R.museums.filter(m => !museumItems(R, m.id).length).map(m => m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${bi(m.name)} ↗</a>` : bi(m.name)))}</section>`;
   },
 
   // ---------- 关于（文字来自 Tia，见上面的 ABOUT） ----------

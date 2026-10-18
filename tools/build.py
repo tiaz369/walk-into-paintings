@@ -49,7 +49,9 @@ def bi(o, tag='span', cls=''):   # 双语 HTML，各自标上语言
 
 def scene_line(s, hide=(), title=None, year=None):   # hide：这一页已经写了的画家 / 博物馆，不再重复
     a, m = ARTISTS.get(s['artist']), MUSEUMS.get(s['museum'])
-    return ' · '.join(x for x in [both(title or s['title']), 'artist' not in hide and a and both(a['name']), both(year or s['year']), 'museum' not in hide and m and both(m['name'])] if x)
+    if hide:   # 画家页 / 博物馆页：作品名 · 年份 · 收藏地或画家
+        return ' · '.join(x for x in [both(title or s['title']), both(year or s['year']), 'artist' not in hide and a and both(a['name']), 'museum' not in hide and m and both(m['name'])] if x)
+    return ' · '.join(x for x in [both(title or s['title']), a and both(a['name']), both(year or s['year']), m and both(m['name'])] if x)
 def scene_li(s, up, hide=(), title=None, url=None, year=None):
     work = f' · <a href="{e(url)}">官网作品页 · Museum page</a>' if url else ''
     if s['status'] == 'live': return f'<li><a href="{up}{s["path"]}">{e(scene_line(s, hide, title, year))}</a>{work}</li>'
@@ -62,8 +64,8 @@ def cap_soon(lst, key=lambda x: x):   # 已开放的都列出；即将开放的�
         elif n < SOON_MAX: out.append(x); n += 1
     return out
 def museum_items(mid):   # 收藏在这里的场景 + 收藏在这里的其他版本
-    own = [(s, None, s.get('url'), None) for s in R['scenes'] if s['museum'] == mid]
-    also = [(s, v['title'], v.get('url'), v.get('year')) for s in R['scenes'] for v in s.get('alsoAt', []) if v['museum'] == mid]
+    own = [(s, None, s.get('artworkUrl'), None) for s in R['scenes'] if s['museum'] == mid]
+    also = [(s, v['title'], v.get('artworkUrl'), v.get('year')) for s in R['scenes'] for v in s.get('alsoAt', []) if v['museum'] == mid]
     return sorted(own + also, key=lambda x: x[0]['status'] != 'live')
 def of(key, id_): return [s for s in R['scenes'] if (id_ in s[key] if isinstance(s.get(key), list) else s.get(key) == id_)]
 
@@ -176,9 +178,15 @@ for c in R['collections']:
 # ---------- 浏览页 ----------
 def groups(items, key, up, name='name'):
     return ''.join(f'<h2 id="{x["id"]}">{e(both(x[name]))}</h2>{scene_list(of(key, x["id"]), up)}' for x in items)
-arts = ''.join(f'<h2 id="{a["id"]}">{e(both(a["name"]))}</h2>{scene_list(cap_soon(of("artist", a["id"])), "../", ("artist",))}' for a in R['artists'] if of('artist', a['id']))
+def later(names): return f'<p>即将推出 · Coming soon: {" · ".join(names)}</p>' if names else ''   # 还没有作品可以显示的
+def aname(a): return both(a['name']) + (f'（{both(a["dates"], " / ")}）' if a.get('dates') else '')
+arts = ''.join(f'<h2 id="{a["id"]}">{e(aname(a))}</h2>{scene_list(cap_soon(of("artist", a["id"])), "../", ("artist",))}' for a in R['artists'] if of('artist', a['id']))
+arts += later([e(aname(a)) for a in R['artists'] if not of('artist', a['id'])])
 PAGES.append(page('artists/', T('画家', 'Artists'), '按画家浏览 · Browse by artist', '      <h1>按画家 · By artist</h1>\n      ' + arts, site_script('../', 'artists')))
-PAGES.append(page('themes/', T('主题', 'Themes'), '按主题浏览 · Browse by theme', '      <h1>按主题 · By theme</h1>\n      ' + groups(R['themes'], 'themes', '../'), site_script('../', 'themes')))
+live_in = lambda tid: any(x['status'] == 'live' for x in of('themes', tid))
+ths = ''.join(f'<h2 id="{x["id"]}">{e(both(x["name"]))}</h2>{scene_list(cap_soon(of("themes", x["id"])), "../")}' for x in R['themes'] if live_in(x['id']))
+ths += later([e(both(x['name'])) for x in R['themes'] if not live_in(x['id'])])
+PAGES.append(page('themes/', T('主题', 'Themes'), '按主题浏览 · Browse by theme', '      <h1>按主题 · By theme</h1>\n      ' + ths, site_script('../', 'themes')))
 PAGES.append(page('periods/', T('时期', 'Periods'), '按时期浏览 · Browse by period', '      <h1>按时期 · By period</h1>\n      ' + groups(R['periods'], 'period', '../'), site_script('../', 'periods')))
 def ul(items): return '<ul>' + ''.join(scene_li(s, '../', ('museum',), title, url, year) for s, title, url, year in items) + '</ul>'
 painted = ''.join(f'<h3 id="{p["id"]}">{e(both(p["name"]))}</h3>{scene_list(of("place", p["id"]), "../")}' for p in R['places'] if of('place', p['id']))
@@ -188,6 +196,7 @@ for c in R.get('cities', []):
     if ms: now += f'<h3 id="{c["id"]}">{e(both(c["name"]))}</h3>' + ''.join(f'<p>{e(both(m["name"]))}</p>{ul(cap_soon(museum_items(m["id"]), lambda x: x[0]))}' for m in ms)
 PAGES.append(page('map/', T('地图', 'Map'), '画在哪里、现在在哪里 · Where the paintings were made, and where they are now', '      <h1>地图 · Map</h1>\n      <h2>画在哪里 · Where it was painted</h2>' + painted + '<h2>现在在哪里 · Where it is now</h2>' + now, site_script('../', 'map')))
 mus = ''.join(f'<h2 id="{m["id"]}">{e(both(m["name"]))}</h2>' + (f'<p><a href="{e(m["url"])}">参观官网 · Visit website</a></p>' if m.get('url') else '') + ul(cap_soon(museum_items(m['id']), lambda x: x[0])) for m in R['museums'] if museum_items(m['id']))
+mus += later([f'<a href="{e(m["url"])}">{e(both(m["name"]))}</a>' if m.get('url') else e(both(m['name'])) for m in R['museums'] if not museum_items(m['id'])])
 PAGES.append(page('museums/', T('博物馆', 'Museums'), '按博物馆浏览：去哪里看真迹 · Browse by museum: where to see the real paintings', '      <h1>按博物馆 · By museum</h1>\n      ' + mus, site_script('../', 'museums')))
 PAGES.append(page('about/', T('关于', 'About'), t(ABOUT['intro'][0]) + ' ' + t(ABOUT['intro'][0], 'en'),
                   '      <h1>关于 · About</h1>\n      ' + ''.join(para(p) for p in ABOUT['intro']) + para(ABOUT['me']) + para(ABOUT['principles']), site_script('../', 'about')))
