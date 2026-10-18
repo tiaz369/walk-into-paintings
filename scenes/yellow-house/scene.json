@@ -420,6 +420,14 @@
         "text": {
           "zh": "他想把这里变成一座画家之家，让志同道合的画家一起生活和创作。那年秋天，高更来了，在这里短暂住过一段时间。",
           "en": "He hoped to turn it into a house for artists, where like-minded painters could live and work together. That autumn, Gauguin came and stayed here for a short time."
+        },
+        "more": {
+          "scene": "sunflowers",
+          "href": "../sunflowers/",
+          "label": {
+            "zh": "去看高更房间里的画",
+            "en": "See the paintings for Gauguin's room"
+          }
         }
       },
       {

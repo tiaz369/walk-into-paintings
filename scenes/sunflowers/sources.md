@@ -5,7 +5,7 @@
 - 维基百科：https://en.wikipedia.org/wiki/Sunflowers_(Van_Gogh_series)
 - 澳大利亚国家美术馆：https://nga.gov.au/stories-ideas/the-seven-sunflowers
 - Tia 参考：https://nigelip.com/2014/04/22/national-gallery-sunflowers/
-- 作品页：等 Tia 提供
+- 作品页：https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-sunflowers
 - 图片：Wikimedia Commons，公有领域
 
 ## Tia 整理的资料
