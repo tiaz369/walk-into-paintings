@@ -359,3 +359,13 @@ body.lang-both .act h3 > .en { display: block; font-size: .62em; color: var(--mu
 .where-list { text-align: left; font-size: 13px; margin: 10px 8px 0 28px; }
 #where .soon { color: var(--muted); }
 .final .final-by { display: block; margin-top: 10px; font-size: 15px; font-style: normal; color: var(--muted); }
+
+/* 地图：陆地轮廓、两层切换、每块地图的名字 */
+.map .land { fill: var(--muted); opacity: .22; }
+.map .panel-name { fill: var(--muted); font-size: 12px; letter-spacing: .04em; }
+.map-layers { margin-top: 14px; }
+/* 卡片下面的“官网作品页”和图片来源 */
+.card-wrap { display: flex; flex-direction: column; gap: 4px; }
+.card-wrap .work-link { font-size: 13px; color: var(--muted); }
+.card-wrap .img-credit { font-size: 11px; color: var(--muted); line-height: 1.5; }
+.map-layers button { font-size: 14px; padding: 7px 14px; }
