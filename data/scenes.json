@@ -24,7 +24,7 @@
     { "id": "orsay",            "name": { "zh": "巴黎奥赛博物馆", "en": "Musée d'Orsay, Paris" }, "url": "https://www.musee-orsay.fr" },
     { "id": "yale",             "name": { "zh": "耶鲁大学美术馆", "en": "Yale University Art Gallery" }, "url": "https://artgallery.yale.edu" },
     { "id": "kroller-muller",   "name": { "zh": "荷兰克勒勒-米勒博物馆", "en": "Kröller-Müller Museum" }, "url": "https://krollermuller.nl" },
-    { "id": "national-gallery", "name": { "zh": "伦敦国家美术馆", "en": "The National Gallery, London" }, "url": "" },
+    { "id": "national-gallery", "name": { "zh": "伦敦国家美术馆", "en": "The National Gallery, London" }, "url": "https://www.nationalgallery.org.uk" },
     { "id": "rijksmuseum",      "name": { "zh": "阿姆斯特丹荷兰国立博物馆", "en": "Rijksmuseum, Amsterdam" }, "url": "" },
     { "id": "mauritshuis",      "name": { "zh": "海牙莫瑞泰斯皇家美术馆", "en": "Mauritshuis, The Hague" }, "url": "" },
     { "id": "met",              "name": { "zh": "纽约大都会艺术博物馆", "en": "The Metropolitan Museum of Art, New York" }, "url": "" }
@@ -35,10 +35,11 @@
     { "id": "night",    "name": { "zh": "夜晚", "en": "Night" } },
     { "id": "windows",  "name": { "zh": "窗户", "en": "Windows" } },
     { "id": "cafes",    "name": { "zh": "咖啡馆", "en": "Cafés" } },
-    { "id": "gardens",  "name": { "zh": "花园", "en": "Gardens" } },
+    { "id": "gardens",  "name": { "zh": "花与花园", "en": "Flowers and gardens" } },
     { "id": "jewellery","name": { "zh": "首饰", "en": "Jewellery" } },
     { "id": "children", "name": { "zh": "孩子", "en": "Children" } },
-    { "id": "houses-streets", "name": { "zh": "房子与街道", "en": "Houses and streets" } }
+    { "id": "houses-streets", "name": { "zh": "房子与街道", "en": "Houses and streets" } },
+    { "id": "water",    "name": { "zh": "水", "en": "Water" } }
   ],
 
   "periods": [
@@ -84,8 +85,22 @@
       "version": "full", "place": "arles", "themes": ["night", "cafes", "houses-streets"], "period": "post-impressionism", "added": "2026-10-16",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
-    { "id": "starry-night-rhone",  "status": "soon", "week": 3,  "title": { "zh": "罗纳河上的星夜", "en": "Starry Night over the Rhône" },  "artist": "van-gogh", "year": "1888", "museum": "orsay", "collection": "arles", "version": "light", "place": "arles", "themes": [], "period": null },
-    { "id": "sunflowers",          "status": "soon", "week": 4,  "title": { "zh": "向日葵", "en": "Sunflowers" },          "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles", "version": "light", "place": "arles", "themes": [], "period": null },
+    {
+      "_说明": "原画 images/starry-night-rhone.jpg 上传并对准后，把 status 改成 live",
+      "id": "starry-night-rhone", "status": "soon", "week": 3, "path": "scenes/starry-night-rhone/", "cover": "scenes/starry-night-rhone/images/starry-night-rhone.jpg",
+      "title": { "zh": "罗纳河上的星夜", "en": "Starry Night over the Rhône" },
+      "artist": "van-gogh", "year": "1888", "museum": "orsay", "collection": "arles",
+      "version": "full", "place": "arles", "themes": ["night", "water"], "period": "post-impressionism", "added": "2026-10-18",
+      "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
+    },
+    {
+      "_说明": "轻量版（分层景深，不能走动）。原画 images/sunflowers.jpg 上传并分好层后，把 status 改成 live",
+      "id": "sunflowers", "status": "soon", "week": 4, "path": "scenes/sunflowers/", "cover": "scenes/sunflowers/images/sunflowers.jpg",
+      "title": { "zh": "向日葵", "en": "Sunflowers" },
+      "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles",
+      "version": "light", "place": "arles", "themes": ["gardens"], "period": "post-impressionism", "added": "2026-10-18",
+      "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
+    },
     { "id": "milkmaid",            "status": "soon", "week": 5,  "title": { "zh": "倒牛奶的女仆", "en": "The Milkmaid" },    "artist": "vermeer", "year": { "zh": "约1660", "en": "c. 1660" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": "delft", "themes": [], "period": null },
     { "id": "woman-reading-letter","status": "soon", "week": 6,  "title": { "zh": "读信的蓝衣女子", "en": "Woman in Blue Reading a Letter" },  "artist": "vermeer", "year": { "zh": "约1663", "en": "c. 1663" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": "delft", "themes": [], "period": null },
     { "id": "little-street",       "status": "soon", "week": 7,  "title": { "zh": "小街", "en": "The Little Street" },            "artist": "vermeer", "year": { "zh": "约1658", "en": "c. 1658" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": "delft", "themes": [], "period": null },

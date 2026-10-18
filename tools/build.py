@@ -209,7 +209,8 @@ for meta in BUILT:
       <h2>去看真迹 · See the real painting</h2>
       <ul>{museums}</ul>
       {reading}'''
-    script = "    import { startScene } from '../../assets/engine.js';\n    startScene('scene.json');"
+    script = ("    import { startLight } from '../../assets/light.js';\n    startLight('scene.json');" if S.get('kind') == 'light'   # 轻量版：分层景深
+              else "    import { startScene } from '../../assets/engine.js';\n    startScene('scene.json');")
     path = page(meta['path'], title, desc, s, script, image=meta.get('cover') or (meta['path'] + S['painting']['image']), image_alt=alt, scene=True, noindex=meta['status'] != 'live')
     if meta['status'] == 'live': PAGES.append(path)   # 还没上线的场景不放进 sitemap
 

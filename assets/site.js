@@ -195,7 +195,7 @@ const param = k => new URLSearchParams(location.search).get(k);
 // 五种浏览方式（例子是网站蓝图里的）
 const WAYS = [
   { path: 'artists/', name: { zh: '按画家', en: 'By artist' }, ex: { zh: '梵高、维米尔、莫奈、德加', en: 'Van Gogh, Vermeer, Monet, Degas' } },
-  { path: 'themes/',  name: { zh: '按主题', en: 'By theme' },  ex: { zh: '房间、窗户、咖啡馆、花园、首饰、孩子', en: 'Rooms, windows, cafés, gardens, jewellery, children' } },
+  { path: 'themes/',  name: { zh: '按主题', en: 'By theme' },  ex: { zh: '房间、窗户、咖啡馆、花与花园、首饰、孩子', en: 'Rooms, windows, cafés, flowers and gardens, jewellery, children' } },
   { path: 'periods/', name: { zh: '按时期', en: 'By period' }, ex: { zh: '荷兰黄金时代、印象派、后印象派', en: 'Dutch Golden Age, Impressionism, Post-Impressionism' } },
   { path: 'map/',     name: { zh: '按地图', en: 'By map' },    ex: { zh: '阿尔勒、巴黎、代尔夫特、伦敦', en: 'Arles, Paris, Delft, London' } },
   { path: 'museums/', name: { zh: '按博物馆', en: 'By museum' }, ex: { zh: '梵高博物馆、荷兰国立博物馆、伦敦国家美术馆', en: 'Van Gogh Museum, Rijksmuseum, National Gallery' } }

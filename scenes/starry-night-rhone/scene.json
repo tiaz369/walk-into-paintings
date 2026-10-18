@@ -1,0 +1,1193 @@
+{
+  "_说明": "罗纳河上的星夜场景的全部内容。所有事实文字由 Tia 提供。河岸、河面、对岸灯火和星星的位置是先按原画大致摆的；原画 images/starry-night-rhone.jpg 上传后会照着原画重新算准，然后打开 projection。",
+  "id": "starry-night-rhone",
+  "painting": {
+    "image": "images/starry-night-rhone.jpg",
+    "width": 1920,
+    "height": 1513,
+    "alt": {
+      "zh": "梵高《罗纳河上的星夜》1888",
+      "en": "Vincent van Gogh, Starry Night over the Rhône, 1888"
+    }
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "罗纳河上的星夜",
+      "en": "Starry Night over the Rhône"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1888年9月",
+      "en": "September 1888"
+    },
+    "museum": {
+      "zh": "巴黎奥赛博物馆",
+      "en": "Musée d'Orsay, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下夜空、星星、河面、河边的人看介绍 · 转身看看画架 · 点“两个星夜”对比两幅画 · 地上发光的圆点 = 梵高视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the sky, the stars, the river or the couple to learn more · Turn around to find the easel · Tap “Two starry nights” to compare two paintings · The glowing circle = Van Gogh's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：站在罗纳河岸边，看着对岸的灯火。原画上传后会重新对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.7,
+    "yaw": 0,
+    "pitch": 0.05,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“两个星夜”：工具栏上的按钮，打开左右对比滑块。两张图都放在 images/ 里。",
+    "type": "compare",
+    "label": {
+      "zh": "两个星夜",
+      "en": "Two starry nights"
+    },
+    "left": {
+      "image": "images/starry-night-rhone.jpg",
+      "caption": {
+        "zh": "罗纳河上的星夜（1888）",
+        "en": "Starry Night over the Rhône (1888)"
+      }
+    },
+    "right": {
+      "image": "images/starry-night-1889.jpg",
+      "caption": {
+        "zh": "星夜（1889，纽约现代艺术博物馆）",
+        "en": "The Starry Night (1889, MoMA, New York)"
+      },
+      "credit": {
+        "zh": "《星夜》图片：Wikimedia Commons（Google Art Project），公有领域",
+        "en": "The Starry Night image: Wikimedia Commons (Google Art Project), public domain"
+      }
+    }
+  },
+  "skyStars": {
+    "_说明": "天上的星星：位置是原画上的 0–1（从左到右、从上到下），第三个数是大小。原画上传后照着画重新找。",
+    "card": "stars",
+    "stars": [
+      [
+        0.36,
+        0.2,
+        0.05
+      ],
+      [
+        0.43,
+        0.15,
+        0.05
+      ],
+      [
+        0.5,
+        0.14,
+        0.05
+      ],
+      [
+        0.56,
+        0.19,
+        0.05
+      ],
+      [
+        0.62,
+        0.16,
+        0.05
+      ],
+      [
+        0.69,
+        0.11,
+        0.05
+      ],
+      [
+        0.74,
+        0.22,
+        0.05
+      ],
+      [
+        0.15,
+        0.28,
+        0.035
+      ],
+      [
+        0.25,
+        0.09,
+        0.035
+      ],
+      [
+        0.85,
+        0.33,
+        0.035
+      ],
+      [
+        0.91,
+        0.1,
+        0.035
+      ]
+    ]
+  },
+  "sound": null,
+  "colors": {
+    "line": "#1a1c2c",
+    "ground": "#5f7f86",
+    "sky": "#1b2d6b",
+    "water": "#20397a",
+    "blueFar": "#25306a",
+    "lit": "#f0a02a",
+    "lampShade": "#2b2b30",
+    "lampLight": "#f6b24a",
+    "boat": "#3d5a8a",
+    "boat2": "#7a8a4a",
+    "wood": "#7a5a3a",
+    "canvas": "#efe6cc",
+    "coat": "#2e3550",
+    "dress": "#b88a3a",
+    "trousers": "#2a2a33",
+    "skin": "#e0b48c"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（只在近岸），都写 [x最小, x最大, z最小, z最大]，单位是米。河面从 z=-4 到 z=-62。",
+    "kind": "outdoor",
+    "ground": [
+      -90,
+      90,
+      -140,
+      30
+    ],
+    "bounds": [
+      -8,
+      8,
+      -3.5,
+      3.6
+    ],
+    "groundCard": null,
+    "skyCard": "blues",
+    "skyRadius": 170
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          -90,
+          0.02,
+          -62
+        ],
+        [
+          -90,
+          0.02,
+          -4
+        ],
+        [
+          90,
+          0.02,
+          -4
+        ],
+        [
+          90,
+          0.02,
+          -62
+        ]
+      ],
+      "color": "water",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": -46,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          -46.4,
+          0.04,
+          -61.5
+        ],
+        [
+          -46.9,
+          0.04,
+          -20.287769491985365
+        ],
+        [
+          -45.1,
+          0.04,
+          -20.287769491985365
+        ],
+        [
+          -45.6,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": -37,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          -37.4,
+          0.04,
+          -61.5
+        ],
+        [
+          -37.9,
+          0.04,
+          -18.14783419330687
+        ],
+        [
+          -36.1,
+          0.04,
+          -18.14783419330687
+        ],
+        [
+          -36.6,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": -29,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          -29.4,
+          0.04,
+          -61.5
+        ],
+        [
+          -29.9,
+          0.04,
+          -17.18651581981746
+        ],
+        [
+          -28.1,
+          0.04,
+          -17.18651581981746
+        ],
+        [
+          -28.6,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": -22,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          -22.4,
+          0.04,
+          -61.5
+        ],
+        [
+          -22.9,
+          0.04,
+          -14.53589489201309
+        ],
+        [
+          -21.1,
+          0.04,
+          -14.53589489201309
+        ],
+        [
+          -21.6,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": -15,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          -15.4,
+          0.04,
+          -61.5
+        ],
+        [
+          -15.9,
+          0.04,
+          -18.181825654681248
+        ],
+        [
+          -14.1,
+          0.04,
+          -18.181825654681248
+        ],
+        [
+          -14.6,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": -8,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          -8.4,
+          0.04,
+          -61.5
+        ],
+        [
+          -8.9,
+          0.04,
+          -14.898150060022495
+        ],
+        [
+          -7.1,
+          0.04,
+          -14.898150060022495
+        ],
+        [
+          -7.6,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": -2,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          -2.4,
+          0.04,
+          -61.5
+        ],
+        [
+          -2.9,
+          0.04,
+          -30.977905890894935
+        ],
+        [
+          -1.1,
+          0.04,
+          -30.977905890894935
+        ],
+        [
+          -1.6,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": 4,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          3.6,
+          0.04,
+          -61.5
+        ],
+        [
+          3.1,
+          0.04,
+          -23.118792221194106
+        ],
+        [
+          4.9,
+          0.04,
+          -23.118792221194106
+        ],
+        [
+          4.4,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": 10,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          9.6,
+          0.04,
+          -61.5
+        ],
+        [
+          9.1,
+          0.04,
+          -14.519579094030355
+        ],
+        [
+          10.9,
+          0.04,
+          -14.519579094030355
+        ],
+        [
+          10.4,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": 16,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          15.6,
+          0.04,
+          -61.5
+        ],
+        [
+          15.1,
+          0.04,
+          -19.818458043535365
+        ],
+        [
+          16.9,
+          0.04,
+          -19.818458043535365
+        ],
+        [
+          16.4,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": 23,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          22.6,
+          0.04,
+          -61.5
+        ],
+        [
+          22.1,
+          0.04,
+          -15.283791148488788
+        ],
+        [
+          23.9,
+          0.04,
+          -15.283791148488788
+        ],
+        [
+          23.4,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "lamp",
+      "card": "lights",
+      "x": 31,
+      "y": 2.2,
+      "z": -62.6,
+      "halo": 4.2,
+      "cord": 0.3
+    },
+    {
+      "type": "surface",
+      "card": "lights",
+      "pts": [
+        [
+          30.6,
+          0.04,
+          -61.5
+        ],
+        [
+          30.1,
+          0.04,
+          -29.462292636243404
+        ],
+        [
+          31.9,
+          0.04,
+          -29.462292636243404
+        ],
+        [
+          31.4,
+          0.04,
+          -61.5
+        ]
+      ],
+      "color": "lit",
+      "tex": "ground"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": -55.8,
+      "z": -64,
+      "w": 8.3,
+      "d": 6,
+      "h": 4.4,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": -47.9,
+      "z": -64,
+      "w": 5.6,
+      "d": 6,
+      "h": 3.5,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": -40.2,
+      "z": -64,
+      "w": 7.1,
+      "d": 6,
+      "h": 4.7,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": -33.1,
+      "z": -64,
+      "w": 5.3,
+      "d": 6,
+      "h": 4.8,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": -26.4,
+      "z": -64,
+      "w": 6.2,
+      "d": 6,
+      "h": 2.6,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": -18.6,
+      "z": -64,
+      "w": 6.9,
+      "d": 6,
+      "h": 3.4,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": -9.9,
+      "z": -64,
+      "w": 7.9,
+      "d": 6,
+      "h": 3.6,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": -1.3,
+      "z": -64,
+      "w": 8.2,
+      "d": 6,
+      "h": 6.2,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": 8.5,
+      "z": -64,
+      "w": 8.5,
+      "d": 6,
+      "h": 5.6,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": 15.9,
+      "z": -64,
+      "w": 5.9,
+      "d": 6,
+      "h": 3.1,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": 23.2,
+      "z": -64,
+      "w": 7.5,
+      "d": 6,
+      "h": 5.7,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": 31.0,
+      "z": -64,
+      "w": 6.5,
+      "d": 6,
+      "h": 3.1,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": 38.8,
+      "z": -64,
+      "w": 7.3,
+      "d": 6,
+      "h": 5.0,
+      "color": "blueFar"
+    },
+    {
+      "type": "building",
+      "card": "blues",
+      "x": 47.9,
+      "z": -64,
+      "w": 8.7,
+      "d": 6,
+      "h": 3.0,
+      "color": "blueFar"
+    },
+    {
+      "type": "boxes",
+      "x": -4.2,
+      "z": -4.6,
+      "rot": 0.35,
+      "boxes": [
+        [
+          1.2,
+          0.35,
+          3.2,
+          "boat",
+          0,
+          0.18,
+          0
+        ],
+        [
+          1.0,
+          0.05,
+          2.9,
+          "wood",
+          0,
+          0.37,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "x": -6.3,
+      "z": -5.0,
+      "rot": 0.2,
+      "boxes": [
+        [
+          1.1,
+          0.35,
+          3.0,
+          "boat2",
+          0,
+          0.18,
+          0
+        ],
+        [
+          0.9,
+          0.05,
+          2.7,
+          "wood",
+          0,
+          0.37,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "card": "lovers",
+      "pose": "standing",
+      "x": 3.0,
+      "z": -2.4,
+      "rot": 0.3,
+      "color": "coat"
+    },
+    {
+      "type": "figure",
+      "card": "lovers",
+      "pose": "standing",
+      "x": 3.45,
+      "z": -2.5,
+      "rot": 0.3,
+      "color": "dress"
+    },
+    {
+      "type": "boxes",
+      "card": "atnight",
+      "x": 0.8,
+      "z": 1.8,
+      "rot": 2.8,
+      "boxes": [
+        [
+          0.05,
+          1.6,
+          0.05,
+          "wood",
+          -0.3,
+          0.8,
+          0
+        ],
+        [
+          0.05,
+          1.6,
+          0.05,
+          "wood",
+          0.3,
+          0.8,
+          0
+        ],
+        [
+          0.05,
+          1.7,
+          0.05,
+          "wood",
+          0,
+          0.85,
+          0.35
+        ],
+        [
+          0.7,
+          0.55,
+          0.04,
+          "canvas",
+          0,
+          1.3,
+          -0.03
+        ],
+        [
+          0.8,
+          0.05,
+          0.08,
+          "wood",
+          0,
+          1.0,
+          -0.02
+        ]
+      ]
+    },
+    {
+      "type": "lamp",
+      "card": "atnight",
+      "x": 1.5,
+      "y": 2.2,
+      "z": 2.0,
+      "halo": 1.2,
+      "cord": 0.3
+    },
+    {
+      "type": "boxes",
+      "card": "longwish",
+      "x": -0.5,
+      "z": 1.7,
+      "rot": 0.3,
+      "boxes": [
+        [
+          0.4,
+          0.45,
+          0.4,
+          "wood",
+          0,
+          0.225,
+          0
+        ],
+        [
+          0.22,
+          0.012,
+          0.3,
+          "canvas",
+          0,
+          0.456,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "portalDoor",
+      "x": -3.2,
+      "z": 3.2,
+      "rot": 3.1416,
+      "w": 1.1,
+      "h": 2.3,
+      "portal": {
+        "scene": "cafe-terrace",
+        "href": "../cafe-terrace/",
+        "label": {
+          "zh": "回到夜晚露天咖啡座",
+          "en": "Back to Café Terrace at Night"
+        }
+      }
+    }
+  ],
+  "cards": {
+    "blues": {
+      "title": {
+        "zh": "三种蓝",
+        "en": "Three blues"
+      },
+      "text": {
+        "zh": "画夜晚，他不用黑色，而是用了普鲁士蓝、群青和钴蓝。",
+        "en": "To paint the night, he used not black but Prussian blue, ultramarine and cobalt."
+      }
+    },
+    "lights": {
+      "title": {
+        "zh": "水中的灯光",
+        "en": "Lights on the water"
+      },
+      "text": {
+        "zh": "城里的煤气灯是强烈的橙色，倒映在罗纳河的水面上。",
+        "en": "The city's gaslights glow an intense orange, reflected in the Rhône."
+      }
+    },
+    "stars": {
+      "title": {
+        "zh": "星星",
+        "en": "The stars"
+      },
+      "text": {
+        "zh": "星星像宝石一样闪烁。",
+        "en": "The stars sparkle like gemstones."
+      }
+    },
+    "lovers": {
+      "title": {
+        "zh": "河边的恋人",
+        "en": "The lovers"
+      },
+      "text": {
+        "zh": "画面下方有一对散步的恋人，让这片星夜显得安静而温柔。",
+        "en": "A couple strolls at the bottom of the painting, making this starry night calm and tender."
+      }
+    },
+    "longwish": {
+      "title": {
+        "zh": "念念不忘",
+        "en": "A long wish"
+      },
+      "text": {
+        "zh": "早在1888年4月，他就写信说：\"我需要一个星夜。\"",
+        "en": "As early as April 1888, he wrote: \"I need a starry night.\""
+      },
+      "link": {
+        "scene": "cafe-terrace",
+        "href": "../cafe-terrace/",
+        "label": {
+          "zh": "去看《夜晚露天咖啡座》",
+          "en": "See Café Terrace at Night"
+        }
+      }
+    },
+    "atnight": {
+      "title": {
+        "zh": "在夜里画",
+        "en": "Painted at night"
+      },
+      "text": {
+        "zh": "他告诉提奥，终于画出了星空，而且真的是在夜里、在煤气灯下画的。",
+        "en": "He told Theo he had painted the starry sky at last, actually at night, under a gas lamp."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/starry-night-rhone.jpg",
+        "alt": {
+          "zh": "梵高《罗纳河上的星夜》1888",
+          "en": "Vincent van Gogh, Starry Night over the Rhône, 1888"
+        },
+        "caption": {
+          "zh": "1888年9月 · 巴黎奥赛博物馆",
+          "en": "September 1888 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 念念不忘",
+          "en": "A long wish"
+        },
+        "text": {
+          "zh": "1888年2月来到阿尔勒后，梵高一直想画夜晚。4月，他写信说需要一个星夜；6月，他又说这幅画一直萦绕在心头。",
+          "en": "After arriving in Arles in February 1888, Van Gogh kept thinking about painting the night. In April he wrote that he needed a starry night; in June, that the painting kept haunting him."
+        }
+      },
+      {
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 终于画出星空",
+          "en": "At last, the starry sky"
+        },
+        "text": {
+          "zh": "他先在《夜晚露天咖啡座》里画了一角夜空。九月底，他来到罗纳河边，画下了整片星空。",
+          "en": "He first painted a corner of night sky in Café Terrace at Night. At the end of September, by the Rhône, he painted the whole starry sky."
+        },
+        "more": {
+          "scene": "cafe-terrace",
+          "href": "../cafe-terrace/",
+          "label": {
+            "zh": "去看《夜晚露天咖啡座》",
+            "en": "See Café Terrace at Night"
+          }
+        }
+      },
+      {
+        "image": "images/starry-night-1889.jpg",
+        "alt": {
+          "zh": "梵高《星夜》1889",
+          "en": "Vincent van Gogh, The Starry Night, 1889"
+        },
+        "caption": {
+          "zh": "1889 · 纽约现代艺术博物馆",
+          "en": "1889 · MoMA, New York"
+        },
+        "credit": {
+          "zh": "《星夜》图片：Wikimedia Commons（Google Art Project），公有领域",
+          "en": "The Starry Night image: Wikimedia Commons (Google Art Project), public domain"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 另一个星夜",
+          "en": "Another starry night"
+        },
+        "text": {
+          "zh": "几个月后，他住进圣雷米的疗养院，又画了一幅《星夜》，现藏纽约现代艺术博物馆。那一幅翻涌不安，这一幅却安静温柔。",
+          "en": "A few months later, in the asylum at Saint-Rémy, he painted another Starry Night, now at MoMA in New York. That one is turbulent; this one is calm."
+        }
+      }
+    ],
+    "final": {
+      "zh": "他终于画出了星空。",
+      "en": "At last, he painted the starry sky."
+    },
+    "versions": [
+      {
+        "image": "images/starry-night-rhone.jpg",
+        "short": {
+          "zh": "1888 · 巴黎",
+          "en": "1888 · Paris"
+        },
+        "caption": {
+          "zh": "1888年9月 · 巴黎奥赛博物馆",
+          "en": "September 1888 · Musée d'Orsay, Paris"
+        }
+      }
+    ],
+    "museums": [
+      "orsay"
+    ],
+    "exit": {
+      "_说明": "结尾的按钮：回到露天咖啡座",
+      "scene": "cafe-terrace",
+      "label": {
+        "zh": "回到夜晚露天咖啡座",
+        "en": "Back to Café Terrace at Night"
+      },
+      "href": "../cafe-terrace/"
+    }
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。空着的行不显示。作品页 url 等 Tia 提供。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "罗纳河上的星夜",
+      "en": "Starry Night over the Rhône (La Nuit étoilée)"
+    },
+    "date": {
+      "zh": "1888年9月，阿尔勒",
+      "en": "September 1888, Arles"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "72.5 × 92 cm",
+      "en": "72.5 × 92 cm"
+    },
+    "collection": {
+      "zh": "巴黎奥赛博物馆",
+      "en": "Musée d'Orsay, Paris"
+    },
+    "url": ""
+  },
+  "zoom": {
+    "image": "images/starry-night-rhone.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "Daily Art：罗纳河上的星夜",
+          "en": "Daily Art: Starry Night over the Rhône"
+        },
+        "url": "https://getdailyart.com/en/22515/vincent-van-gogh/starry-night-over-the-rhone"
+      },
+      {
+        "title": {
+          "zh": "梵高书信：第691封",
+          "en": "Van Gogh's letters: letter 691"
+        },
+        "url": "http://vangoghletters.org/vg/letters/let691/letter.html"
+      }
+    ]
+  },
+  "audioGuide": {
+    "zh": "",
+    "en": ""
+  }
+}
