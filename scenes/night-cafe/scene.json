@@ -3,14 +3,14 @@
   "id": "night-cafe",
   "painting": {
     "image": "images/night-cafe.jpg",
-    "width": 1800,
-    "height": 1410,
+    "width": 1920,
+    "height": 1516,
     "alt": {
       "zh": "梵高《夜间咖啡馆》1888",
       "en": "Vincent van Gogh, The Night Café, 1888"
     }
   },
-  "projection": false,
+  "projection": true,
   "label": {
     "_说明": "展签：画名、画家、年份、收藏地",
     "title": {
@@ -44,13 +44,12 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the lamps, walls, billiard table or customers to learn more · The glowing circle = Van Gogh's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：站在咖啡馆门口附近、略高的位置往里看。原画上传后会重新对准。",
-    "x": 0.4,
+    "x": 0,
     "z": 0,
-    "eye": 1.9,
-    "yaw": 0.05,
-    "pitch": -0.28,
-    "fov": 55,
+    "eye": 1.65,
+    "yaw": 0.326,
+    "pitch": -0.2502,
+    "fov": 63.04,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -96,19 +95,19 @@
   },
   "room": {
     "_说明": "房间形状（米）：左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront",
-    "height": 4.4,
+    "height": 3.75,
     "front": 1.6,
-    "left": -4.6,
+    "left": -2.3,
     "backLeft": [
-      -4.6,
-      -11.5
+      -2.3,
+      -8.4
     ],
     "backRight": [
-      4.8,
-      -12.0
+      4.4,
+      -8.4
     ],
     "rightFront": [
-      4.8,
+      4.4,
       1.6
     ],
     "floorTex": "ground",
@@ -119,142 +118,177 @@
     {
       "type": "lamp",
       "card": "lamps",
-      "x": -1.8,
-      "y": 3.3,
-      "z": -3.6,
-      "halo": 1.6
+      "x": -0.88,
+      "y": 2.45,
+      "z": -7.9,
+      "halo": 1.3,
+      "cord": 0.6
     },
     {
       "type": "lamp",
       "card": "lamps",
-      "x": 1.9,
-      "y": 3.3,
-      "z": -3.9,
-      "halo": 1.6
+      "x": 3.0,
+      "y": 2.6,
+      "z": -7.2,
+      "halo": 1.5,
+      "cord": 1.0
     },
     {
       "type": "lamp",
       "card": "lamps",
-      "x": -1.4,
-      "y": 3.4,
-      "z": -7.8,
-      "halo": 1.4
-    },
-    {
-      "type": "lamp",
-      "card": "lamps",
-      "x": 1.6,
-      "y": 3.4,
-      "z": -8.1,
-      "halo": 1.4
+      "x": 3.5,
+      "y": 2.3,
+      "z": -3.1,
+      "halo": 1.5,
+      "cord": 1.3
     },
     {
       "type": "billiard",
       "card": "billiard",
-      "x": 0.3,
-      "z": -5.6,
-      "rot": 0.35
+      "x": 1.2,
+      "z": -3.4,
+      "rot": 0.09,
+      "w": 0.85,
+      "l": 2.35
     },
     {
       "type": "roundTable",
-      "x": -3.7,
-      "z": -2.6,
+      "x": -1.05,
+      "z": -5.5,
+      "r": 0.4,
+      "chairs": []
+    },
+    {
+      "type": "roundTable",
+      "x": -1.0,
+      "z": -3.3,
+      "r": 0.45,
       "chairs": [
-        1.57,
         3.14
       ]
     },
     {
       "type": "roundTable",
-      "x": -3.7,
-      "z": -5.4,
+      "x": -1.1,
+      "z": -2.1,
+      "r": 0.45,
       "chairs": [
         1.57
       ]
     },
     {
       "type": "roundTable",
-      "x": -3.7,
-      "z": -8.4,
+      "x": 0.0,
+      "z": -6.9,
+      "r": 0.32,
+      "chairs": []
+    },
+    {
+      "type": "roundTable",
+      "x": 2.6,
+      "z": -4.8,
+      "r": 0.38,
       "chairs": [
-        1.57,
         0
       ]
     },
     {
       "type": "roundTable",
-      "x": 3.9,
-      "z": -3.4,
-      "chairs": [
-        -1.57,
-        3.14
-      ]
+      "x": 2.3,
+      "z": -2.5,
+      "r": 0.36,
+      "chairs": []
     },
     {
       "type": "roundTable",
-      "x": 3.9,
-      "z": -6.6,
-      "chairs": [
-        -1.57
-      ]
+      "x": 3.3,
+      "z": -2.2,
+      "r": 0.4,
+      "chairs": []
+    },
+    {
+      "type": "roundTable",
+      "x": 3.8,
+      "z": -7.4,
+      "r": 0.4,
+      "chairs": [],
+      "color": "#b33a3a"
     },
     {
       "type": "figure",
       "card": "slumped",
       "pose": "slumped",
-      "x": -3.05,
-      "z": -5.4,
-      "rot": 1.57,
+      "x": -1.7,
+      "z": -5.5,
+      "rot": -1.57,
       "color": "coat"
     },
     {
       "type": "figure",
       "card": "slumped",
-      "pose": "slumped",
-      "x": -3.05,
-      "z": -8.4,
-      "rot": 1.57,
+      "pose": "sitting",
+      "x": -0.25,
+      "z": -7.25,
+      "rot": 3.14,
       "color": "#5a4a3a"
+    },
+    {
+      "type": "figure",
+      "card": "slumped",
+      "pose": "sitting",
+      "x": 0.35,
+      "z": -7.3,
+      "rot": 3.14,
+      "color": "#7a4a30"
     },
     {
       "type": "figure",
       "card": "slumped",
       "pose": "slumped",
       "x": 3.25,
-      "z": -6.6,
-      "rot": -1.57,
+      "z": -2.8,
+      "rot": 3.14,
       "color": "#4a5560"
+    },
+    {
+      "type": "figure",
+      "card": "slumped",
+      "pose": "slumped",
+      "x": 3.95,
+      "z": -2.2,
+      "rot": 1.57,
+      "color": "#6a5a44"
     },
     {
       "type": "figure",
       "card": "owner",
       "pose": "standing",
-      "x": 1.7,
-      "z": -6.6,
-      "rot": 0.2,
+      "x": 3.05,
+      "z": -4.4,
+      "rot": 3.14,
       "color": "white"
     },
     {
       "type": "boxes",
-      "x": 2.6,
-      "z": -11.1,
+      "x": 1.28,
+      "z": -6.95,
       "boxes": [
         [
-          3.2,
-          1.1,
-          0.6,
+          1.7,
+          1.2,
+          0.5,
           "bar",
           0,
-          0.55,
+          0.6,
           0
         ],
         [
-          3.3,
+          1.8,
           0.06,
-          0.7,
+          0.6,
           "wood",
           0,
-          1.13,
+          1.23,
           0
         ]
       ]
@@ -262,21 +296,21 @@
     {
       "type": "door",
       "wall": "back",
-      "z": -11.7,
-      "width": 1.6,
-      "height": 2.6
+      "z": -8.4,
+      "width": 1.0,
+      "height": 2.0
     },
     {
       "type": "wallBoxes",
       "card": "nights",
       "wall": "back",
-      "x": 0,
-      "y": 3.4,
-      "z": -11.7,
+      "x": 0.8,
+      "y": 3.05,
+      "z": -8.4,
       "boxes": [
         [
-          0.7,
-          0.7,
+          0.6,
+          0.6,
           0.06,
           "clock",
           0,
@@ -285,19 +319,19 @@
         ],
         [
           0.04,
-          0.26,
+          0.22,
           0.02,
           "line",
           0,
-          0.08,
+          0.07,
           0.07
         ],
         [
-          0.2,
+          0.18,
           0.04,
           0.02,
           "line",
-          0.08,
+          0.07,
           0,
           0.07
         ]
@@ -333,7 +367,7 @@
     },
     {
       "type": "portalDoor",
-      "x": -2.2,
+      "x": -1.1,
       "z": 1.55,
       "rot": 3.1416,
       "w": 1.1,

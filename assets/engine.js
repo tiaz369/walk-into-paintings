@@ -557,8 +557,8 @@ function run(S, R, meta) {
     const g = cv.getContext('2d');
     g.fillStyle = 'rgba(28,28,30,.72)'; g.beginPath(); g.roundRect(4, 4, 504, 120, 60); g.fill();
     g.fillStyle = '#fff3b0'; g.textAlign = 'center'; g.textBaseline = 'middle';
-    if (text2.length === 1) { g.font = '500 44px sans-serif'; g.fillText(text2[0], 256, 66); }
-    else { g.font = '500 38px sans-serif'; g.fillText(text2[0], 256, 44); g.font = '30px sans-serif'; g.fillText(text2[1], 256, 92); }
+    if (text2.length === 1) { g.font = '500 44px sans-serif'; g.fillText(text2[0], 256, 66, 460); }
+    else { g.font = '500 38px sans-serif'; g.fillText(text2[0], 256, 44, 460); g.font = '30px sans-serif'; g.fillText(text2[1], 256, 92, 460); }
     const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; return t;
   }
   const portalLabelText = pt => lang === 'en' ? [pt.label.en] : lang === 'zh' ? [pt.label.zh] : [pt.label.zh, pt.label.en];
