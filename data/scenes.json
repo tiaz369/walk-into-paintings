@@ -114,19 +114,18 @@
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
-      "_说明": "原画 images/starry-night-rhone.jpg 上传并对准后，把 status 改成 live",
-      "id": "starry-night-rhone", "status": "soon", "week": 3, "path": "scenes/starry-night-rhone/", "cover": "scenes/starry-night-rhone/images/starry-night-rhone.jpg",
+      "id": "starry-night-rhone", "status": "live", "week": 3, "path": "scenes/starry-night-rhone/", "cover": "scenes/starry-night-rhone/images/starry-night-rhone.jpg",
       "title": { "zh": "罗纳河上的星夜", "en": "Starry Night over the Rhône" },
       "artist": "van-gogh", "year": "1888", "museum": "orsay", "collection": "arles",
-      "version": "full", "place": null, "themes": ["night", "water"], "period": "post-impressionism", "added": "2026-10-18",
+      "version": "full", "place": "arles", "themes": ["night", "water"], "period": "post-impressionism", "added": "2026-10-18",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
-      "_说明": "轻量版（分层景深，不能走动）。原画 images/sunflowers.jpg 上传并分好层后，把 status 改成 live",
-      "id": "sunflowers", "status": "soon", "week": 4, "path": "scenes/sunflowers/", "cover": "scenes/sunflowers/images/sunflowers.jpg",
+      "_说明": "轻量版（分层景深，不能走动）",
+      "id": "sunflowers", "status": "live", "week": 4, "path": "scenes/sunflowers/", "cover": "scenes/sunflowers/images/sunflowers.jpg",
       "title": { "zh": "向日葵", "en": "Sunflowers" },
       "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles",
-      "version": "light", "place": null, "themes": ["gardens", "london"], "period": "post-impressionism", "added": "2026-10-18",
+      "version": "light", "place": "arles", "themes": ["gardens", "london"], "period": "post-impressionism", "added": "2026-10-18",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     { "id": "milkmaid",            "status": "soon", "week": 5,  "title": { "zh": "倒牛奶的女仆", "en": "The Milkmaid" },    "artist": "vermeer", "year": { "zh": "约1660", "en": "c. 1660" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": null, "themes": [], "period": null },

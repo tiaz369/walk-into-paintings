@@ -462,7 +462,7 @@ function run(S, R, meta) {
   Object.assign(BUILD, {
     // 一栋房子：x、z 是正面中间的位置，w 宽、d 深、h 高；windows 是正面（front）或右侧（side）上的窗和门
     building(o) {
-      const g = group(o.x, 0, o.z, o.rot || 0, o.card);
+      const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card);
       box(o.w, o.h, o.d, o.color, 0, o.h / 2, -o.d / 2, g, 'wall');
       if (o.roof) box(o.w + 0.3, 0.35, o.d + 0.3, o.roof, 0, o.h + 0.17, -o.d / 2, g);
       for (const wd of o.windows || []) {
@@ -532,7 +532,7 @@ function run(S, R, meta) {
     },
     // 简单的人形：站着（standing）、坐着（sitting）、趴在桌上（slumped）
     figure(o) {
-      const g = group(o.x, 0, o.z, o.rot || 0, o.card), c = col(o.color || 'coat');
+      const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card), c = col(o.color || 'coat');
       if (o.pose === 'standing') {
         cyl(0.2, 0.24, 1.1, c, 0, 0.95, 0, g); cyl(0.09, 0.09, 0.5, col(o.legs || 'trousers'), -0.08, 0.25, 0, g); cyl(0.09, 0.09, 0.5, col(o.legs || 'trousers'), 0.08, 0.25, 0, g);
         const h = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 12), paint(col('skin'))); h.position.y = 1.65; g.add(outline(h));
@@ -621,7 +621,7 @@ function run(S, R, meta) {
   scene.add(vpRing, vpDot);
 
   // ---------- 投影贴图：把原画从画家视角“投”到墙、地板和家具上 ----------
-  const projector = new THREE.PerspectiveCamera(VIEW.fov, VIEW.aspect, 0.3, OUT ? 220 : 14);   // 户外看得更远
+  const projector = new THREE.PerspectiveCamera(VIEW.fov, VIEW.aspect, 0.3, OUT ? (RM.projectFar || 220) : 14);   // 户外看得更远
   projector.position.set(VIEW.x, VIEW.eye, VIEW.z);
   projector.rotation.set(VIEW.pitch, -VIEW.yaw, 0, 'YXZ');
   projector.updateMatrixWorld(); projector.updateProjectionMatrix();
