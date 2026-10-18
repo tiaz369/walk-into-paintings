@@ -324,6 +324,23 @@
           }
         }
       ]
+    },
+    {
+      "type": "portalDoor",
+      "x": 0.04,
+      "z": -15.73,
+      "rot": -0.316,
+      "w": 0.9,
+      "h": 2.1,
+      "_": "黄房子正面，椅子场景开放后才显示",
+      "portal": {
+        "scene": "vangogh-chair",
+        "href": "../vangogh-chair/",
+        "label": {
+          "zh": "梵高的椅子",
+          "en": "Van Gogh's Chair"
+        }
+      }
     }
   ],
   "cards": {

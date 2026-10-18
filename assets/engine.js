@@ -125,6 +125,7 @@ function buildDOM(S, R, meta) {
       <button data-mode="paint" class="on">${ui('原画质感', 'Painted')}</button>
       <button data-mode="flat">${ui('简笔画', 'Simple view')}</button>
     </div>
+    ${S.exclusive && S.exclusive.type === 'pair' ? `<button class="btn" id="pairBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'compare' ? `<button class="btn" id="twinBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
       `<button data-opt="${i}" class="${i === 0 ? 'on' : ''}">${ui(o.label.zh, o.label.en)}</button>`).join('')}</div>` : ''}
@@ -155,6 +156,15 @@ function buildDOM(S, R, meta) {
     </div>
     <p class="twin-caps"><span>← ${bi(S.exclusive.left.caption, ' / ')}</span><span>${bi(S.exclusive.right.caption, ' / ')} →</span></p>
     <p><small>${ui('左右拖动对比', 'Drag left and right to compare')}${S.exclusive.right.credit ? ' · ' + bi(S.exclusive.right.credit, ' / ') : ''}</small></p>
+  </div>` : ''}
+  ${S.exclusive && S.exclusive.type === 'pair' ? `<div class="popup panel" id="pair">
+    <button class="close" data-close="pair" aria-label="Close">×</button>
+    <h3>${bi(S.exclusive.label)}</h3>
+    <div class="seg pair-modes">${S.exclusive.modes.map(m => `<button data-pair="${m.id}">${ui(m.label.zh, m.label.en)}</button>`).join('')}</div>
+    <div class="pair-imgs">${[S.exclusive.left, S.exclusive.right].map(x => `<figure data-mode="${x.mode}">
+      <img src="${x.image}" ${altAttr(x.caption)} /><figcaption>${bi(x.caption, ' / ')}</figcaption></figure>`).join('')}</div>
+    ${S.exclusive.note ? `<p>${bi(S.exclusive.note, ' / ')}</p>` : ''}
+    ${S.exclusive.credit ? `<p><small>${bi(S.exclusive.credit, ' / ')}</small></p>` : ''}
   </div>` : ''}
   <div class="popup panel" id="shot">
     <button class="close" data-close="shot" aria-label="Close">×</button>
@@ -798,6 +808,15 @@ function run(S, R, meta) {
   // ---------- 弹窗 ----------
   const popups = { compare: $('compare'), shot: $('shot') };
   if ($('twin')) popups.twin = $('twin');
+  if ($('pair')) {   // 独家发现“两把椅子面对面”：白天 / 夜晚，点一下突出其中一幅
+    popups.pair = $('pair');
+    $('pairBtn').onclick = () => togglePopup('pair');
+    document.querySelectorAll('[data-pair]').forEach(b => b.onclick = () => {
+      const on = !b.classList.contains('on');
+      document.querySelectorAll('[data-pair]').forEach(x => x.classList.toggle('on', on && x === b));
+      document.querySelectorAll('.pair-imgs figure').forEach(f => f.classList.toggle('dim', on && f.dataset.mode !== b.dataset.pair));
+    });
+  }
   function togglePopup(name, show) {
     for (const k in popups) if (k !== name) popups[k].style.display = 'none';
     const el = popups[name]; el.style.display = (show ?? el.style.display !== 'block') ? 'block' : 'none';

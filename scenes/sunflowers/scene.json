@@ -476,15 +476,25 @@
     "museums": [
       "national-gallery"
     ],
-    "exit": {
-      "_说明": "结尾的按钮：回到卧室",
-      "scene": "bedroom",
-      "label": {
-        "zh": "回到卧室",
-        "en": "Back to the bedroom"
+    "exit": [
+      {
+        "_说明": "结尾的按钮：回到卧室",
+        "scene": "bedroom",
+        "label": {
+          "zh": "回到卧室",
+          "en": "Back to the bedroom"
+        },
+        "href": "../bedroom/"
       },
-      "href": "../bedroom/"
-    }
+      {
+        "scene": "vangogh-chair",
+        "href": "../vangogh-chair/",
+        "label": {
+          "zh": "梵高的椅子",
+          "en": "Van Gogh's Chair"
+        }
+      }
+    ]
   },
   "record": {
     "_说明": "作品档案表：Tia 提供。空着的行不显示。",

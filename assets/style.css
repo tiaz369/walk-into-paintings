@@ -378,3 +378,13 @@ body.lang-both .act h3 > .en { display: block; font-size: .62em; color: var(--mu
 .where-list li.here b { color: #c0392b; }
 .where-list li.gone { color: var(--muted); }
 body.lang-both :is(#where, #twin) h3 > .en { display: block; font-size: .8em; color: var(--muted); font-style: italic; }
+
+/* 独家发现“两把椅子面对面”：两幅画并排，白天 / 夜晚切换 */
+#pair { width: min(760px, calc(100% - 32px)); }
+#pair h3 { margin: 6px 0 10px; font-weight: 500; }
+body.lang-both #pair h3 > .en { display: block; font-size: .8em; color: var(--muted); font-style: italic; }
+.pair-modes { margin-bottom: 10px; }
+.pair-imgs { display: flex; gap: 10px; }
+.pair-imgs figure { flex: 1; margin: 0; transition: opacity .6s, filter .6s; }
+.pair-imgs figure.dim { opacity: .35; filter: grayscale(.6); }
+.pair-imgs figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
