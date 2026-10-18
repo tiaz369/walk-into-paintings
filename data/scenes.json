@@ -71,7 +71,7 @@
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
-      "_说明": "原画 images/night-cafe.jpg 上传并对准后，把 status 改成 live", "id": "night-cafe", "status": "soon", "week": 2, "path": "scenes/night-cafe/", "cover": "scenes/night-cafe/images/night-cafe.jpg",
+      "id": "night-cafe", "status": "live", "week": 2, "path": "scenes/night-cafe/", "cover": "scenes/night-cafe/images/night-cafe.jpg",
       "title": { "zh": "夜间咖啡馆", "en": "The Night Café" },
       "artist": "van-gogh", "year": "1888", "museum": "yale", "collection": "arles",
       "version": "full", "place": "arles", "themes": ["night", "cafes", "rooms"], "period": "post-impressionism", "added": "2026-10-16",
