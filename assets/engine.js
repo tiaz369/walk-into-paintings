@@ -307,6 +307,7 @@ function run(S, R, meta) {
   };
   // 场景自己的贴图（比如从原画里剪下来的地砖、墙面）：textures 写 { 名字: { image, size（米） } }
   for (const [name, t] of Object.entries(S.textures || {})) {
+    if (!t || !t.image) continue;   // 跳过说明文字（"_说明"）
     const tx = new THREE.TextureLoader().load(t.image); tx.colorSpace = THREE.SRGBColorSpace;
     tx.wrapS = tx.wrapT = THREE.MirroredRepeatWrapping; tx.repeat.set(1 / (t.size || 1), 1 / (t.size || 1)); TEX[name] = tx;
   }
