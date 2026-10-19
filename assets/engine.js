@@ -303,6 +303,11 @@ function run(S, R, meta) {
       for (const x of [40, 130, 210]) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x + 6, s); g.stroke(); }
     })
   };
+  // 场景自己的贴图（比如从原画里剪下来的地砖、墙面）：textures 写 { 名字: { image, size（米） } }
+  for (const [name, t] of Object.entries(S.textures || {})) {
+    const tx = new THREE.TextureLoader().load(t.image); tx.colorSpace = THREE.SRGBColorSpace;
+    tx.wrapS = tx.wrapT = THREE.MirroredRepeatWrapping; tx.repeat.set(1 / (t.size || 1), 1 / (t.size || 1)); TEX[name] = tx;
+  }
   const gradient = new THREE.DataTexture(new Uint8Array([90, 170, 255]), 3, 1, THREE.RedFormat);
   gradient.minFilter = gradient.magFilter = THREE.NearestFilter; gradient.needsUpdate = true;
   const matCache = {};
@@ -351,7 +356,7 @@ function run(S, R, meta) {
 
   // ---------- 地板、墙、天花板（室内）/ 地面和天空（户外） ----------
   const fadeOpts = S.exclusive && S.exclusive.type === 'wallFade' ? S.exclusive.options : [{ color: C.wall || '#cccccc', tint: 0 }];
-  const wallMat = new THREE.MeshToonMaterial({ color: fadeOpts[0].color, gradientMap: gradient, map: TEX.wall });
+  const wallMat = new THREE.MeshToonMaterial({ color: fadeOpts[0].color, gradientMap: gradient, map: TEX[RM.wallTex || 'wall'] });
   let ceil = null;
   if (!OUT) {
     const plan = new THREE.Shape();
@@ -414,9 +419,9 @@ function run(S, R, meta) {
     },
     door(o) {
       const f = wallFrame(o.wall, o.x || 0, o.z), g = group(f.pos[0], 0, f.pos[1], f.rot, o.card), w = o.width, h = o.height;   // 后墙上的门可以用 x 指定位置
-      box(w, h, 0.05, C.door, 0, h / 2, 0, g);
-      box(w * 0.75, h * 0.38, 0.02, C.doorPanel || '#9a7dbd', 0, h * 0.7, 0.035, g);
-      box(w * 0.75, h * 0.34, 0.02, C.doorPanel || '#9a7dbd', 0, h * 0.27, 0.035, g);
+      box(w, h, 0.05, C.door, 0, h / 2, 0, g, o.tex || 'wood');
+      if (!o.plain) box(w * 0.75, h * 0.38, 0.02, C.doorPanel || '#9a7dbd', 0, h * 0.7, 0.035, g);
+      if (!o.plain) box(w * 0.75, h * 0.34, 0.02, C.doorPanel || '#9a7dbd', 0, h * 0.27, 0.035, g);
       cyl(0.03, 0.03, 0.06, C.line, w * 0.38, h * 0.48, 0.06, g).rotation.x = Math.PI / 2;
       box(w + 0.1, 0.06, 0.07, C.line, 0, h + 0.03, 0, g);
     },
@@ -683,7 +688,7 @@ function run(S, R, meta) {
       const map = toon.map || white;
       projCache.set(key, new THREE.ShaderMaterial({
         uniforms: { ...projUniforms, uMap: { value: map }, uRepeat: { value: map.repeat ? map.repeat.clone() : new THREE.Vector2(1, 1) },
-                    uBase: { value: toon.color.clone() }, uWall: { value: isWall ? 1 : 0 }, uDouble: { value: doubleSide ? 1 : 0 }, uAlpha: { value: 1 }, uEdge: { value: OUT ? 1 : 0 }, uSky: { value: isSky ? 1 : 0 } },
+                    uBase: { value: toon.color.clone() }, uWall: { value: isWall ? 1 : 0 }, uDouble: { value: doubleSide ? 1 : 0 }, uAlpha: { value: 1 }, uEdge: { value: OUT || S.softEdge ? 1 : 0 }, uSky: { value: isSky ? 1 : 0 } },
         vertexShader: projVert, fragmentShader: projFrag, side: doubleSide ? THREE.DoubleSide : THREE.FrontSide, transparent: !!toon.transparent
       }));
     }
