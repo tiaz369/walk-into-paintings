@@ -1,5 +1,5 @@
 {
-  "_说明": "所有场景的登记表。首页、系列页、各种浏览页和地图都读这里。新增场景时在 scenes 里加一条；status 为 live 表示已上线，soon 表示即将上线，planned 表示计划中（不在页面显示）。artworkUrl 是博物馆官网的作品页（不知道的留空）。名称、年份、收藏地来自网站蓝图的内容路线图，上线前请再核对。英文由 Claude 补写，请 Tia 核对。year 可以写成 {zh: 约1660, en: c. 1660} 这样可以分别显示中英文。imageSource 是首页大图下面显示的图片来源。",
+  "_说明": "所有场景的登记表。首页、系列页、各种浏览页和地图都读这里。新增场景时在 scenes 里加一条；status 为 live 表示已上线，soon 表示即将上线，planned 表示计划中（不在页面显示；画家也可以写 status: planned）。收藏地和英文名由 Claude 先填，Tia 稍后核对。artworkUrl 是博物馆官网的作品页（不知道的留空）。名称、年份、收藏地来自网站蓝图的内容路线图，上线前请再核对。英文由 Claude 补写，请 Tia 核对。year 可以写成 {zh: 约1660, en: c. 1660} 这样可以分别显示中英文。imageSource 是首页大图下面显示的图片来源。",
 
   "collections": [
     { "id": "arles", "name": { "zh": "梵高在阿尔勒", "en": "Van Gogh in Arles" }, "desc": { "zh": "1888年，等待高更的那段日子", "en": "1888: the days of waiting for Gauguin" }, "accent": "arles", "order": ["bedroom", "yellow-house", "night-cafe", "cafe-terrace", "starry-night-rhone", "sunflowers", "vangogh-chair"] },
@@ -18,7 +18,11 @@
     { "id": "degas",    "name": { "zh": "德加", "en": "Edgar Degas" }, "dates": { "zh": "1834–1917", "en": "1834–1917" }, "bio": null },
     { "id": "renoir",   "name": { "zh": "雷诺阿", "en": "Pierre-Auguste Renoir" }, "dates": { "zh": "1841–1919", "en": "1841–1919" }, "bio": null },
     { "id": "caillebotte", "name": { "zh": "卡耶博特", "en": "Gustave Caillebotte" }, "dates": { "zh": "1848–1894", "en": "1848–1894" }, "bio": null },
-    { "id": "manet",    "name": { "zh": "马奈", "en": "Édouard Manet" }, "dates": { "zh": "1832–1883", "en": "1832–1883" }, "bio": null }
+    { "id": "manet",    "name": { "zh": "马奈", "en": "Édouard Manet" }, "dates": { "zh": "1832–1883", "en": "1832–1883" }, "bio": null },
+    { "id": "turner", "status": "planned", "name": { "zh": "特纳", "en": "J.M.W. Turner" }, "dates": { "zh": "1775–1851", "en": "1775–1851" }, "bio": null },
+    { "id": "constable", "status": "planned", "name": { "zh": "康斯太布尔", "en": "John Constable" }, "dates": { "zh": "1776–1837", "en": "1776–1837" }, "bio": null },
+    { "id": "klimt", "status": "planned", "name": { "zh": "克里姆特", "en": "Gustav Klimt" }, "dates": { "zh": "1862–1918", "en": "1862–1918" }, "bio": null },
+    { "id": "hokusai", "status": "planned", "name": { "zh": "葛饰北斋", "en": "Katsushika Hokusai" }, "dates": { "zh": "1760–1849", "en": "1760–1849" }, "bio": null }
   ],
 
   "museums": [
@@ -34,7 +38,12 @@
     { "id": "courtauld",        "name": { "zh": "伦敦考陶尔德美术馆", "en": "The Courtauld Gallery, London" }, "url": "https://courtauld.ac.uk", "city": "london", "lat": 51.511, "lon": -0.1172 },
     { "id": "moma",             "name": { "zh": "纽约现代艺术博物馆", "en": "The Museum of Modern Art (MoMA), New York" }, "url": "https://www.moma.org", "city": "new-york", "lat": 40.7614, "lon": -73.9776 },
     { "id": "marmottan",        "name": { "zh": "玛摩丹·莫奈美术馆", "en": "Musée Marmottan Monet, Paris" }, "url": "https://www.marmottan.fr", "city": "paris", "lat": 48.8597, "lon": 2.2674 },
-    { "id": "nga-washington",   "name": { "zh": "华盛顿国家美术馆", "en": "National Gallery of Art, Washington" }, "url": "https://www.nga.gov", "city": "washington", "lat": 38.8913, "lon": -77.0199 }
+    { "id": "nga-washington",   "name": { "zh": "华盛顿国家美术馆", "en": "National Gallery of Art, Washington" }, "url": "https://www.nga.gov", "city": "washington", "lat": 38.8913, "lon": -77.0199 },
+    { "id": "phillips",         "name": { "zh": "菲利普斯收藏馆", "en": "The Phillips Collection, Washington" }, "url": "" },
+    { "id": "orangerie",        "name": { "zh": "橘园美术馆", "en": "Musée de l'Orangerie, Paris" }, "url": "" },
+    { "id": "khm",              "name": { "zh": "维也纳艺术史博物馆", "en": "Kunsthistorisches Museum, Vienna" }, "url": "" },
+    { "id": "belvedere",        "name": { "zh": "维也纳美景宫", "en": "Belvedere, Vienna" }, "url": "" },
+    { "id": "british-museum",   "name": { "zh": "大英博物馆", "en": "The British Museum, London" }, "url": "" }
   ],
 
   "themes": [
@@ -160,6 +169,30 @@
     { "id": "woman-parasol", "status": "planned", "title": { "zh": "撑阳伞的女人", "en": "Woman with a Parasol – Madame Monet and Her Son" }, "artist": "monet", "year": "1875", "museum": "nga-washington", "collection": null, "version": null, "place": null, "themes": ["umbrellas"], "period": "impressionism", "artworkUrl": "" },
     { "id": "absinthe", "status": "planned", "title": { "zh": "苦艾酒", "en": "In a Café (The Absinthe Drinker)" }, "artist": "degas", "year": {"zh": "约1875–76", "en": "c. 1875–76"}, "museum": "orsay", "collection": null, "version": null, "place": null, "themes": ["cafes"], "period": "impressionism", "artworkUrl": "" },
     { "id": "grande-jatte", "status": "planned", "title": { "zh": "大碗岛的星期天下午", "en": "A Sunday on La Grande Jatte — 1884" }, "artist": "seurat", "year": "1884–86", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": ["water", "gardens"], "period": "post-impressionism", "artworkUrl": "" },
-    { "id": "view-of-delft", "status": "planned", "title": { "zh": "代尔夫特一景", "en": "View of Delft" }, "artist": "vermeer", "year": {"zh": "约1660–61", "en": "c. 1660–61"}, "museum": "mauritshuis", "collection": null, "version": null, "place": null, "themes": ["water", "city-stations"], "period": "dutch-golden-age", "artworkUrl": "" }
+    { "id": "view-of-delft", "status": "planned", "title": { "zh": "代尔夫特一景", "en": "View of Delft" }, "artist": "vermeer", "year": {"zh": "约1660–61", "en": "c. 1660–61"}, "museum": "mauritshuis", "collection": null, "version": null, "place": null, "themes": ["water", "city-stations"], "period": "dutch-golden-age", "artworkUrl": "" },
+    { "id": "wheatfield-cypresses", "status": "planned", "title": { "zh": "麦田与柏树", "en": "A Wheatfield, with Cypresses" }, "artist": "van-gogh", "year": "1889", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "long-grass-butterflies", "status": "planned", "title": { "zh": "长草与蝴蝶", "en": "Long Grass with Butterflies" }, "artist": "van-gogh", "year": "1890", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "two-crabs", "status": "planned", "title": { "zh": "两只螃蟹", "en": "Two Crabs" }, "artist": "van-gogh", "year": "1889", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "farms-near-auvers", "status": "planned", "title": { "zh": "奥维尔附近的农场", "en": "Farms near Auvers" }, "artist": "van-gogh", "year": "1890", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "almond-blossom", "status": "planned", "title": { "zh": "杏花", "en": "Almond Blossom" }, "artist": "van-gogh", "year": "1890", "museum": "van-gogh-museum", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "dance-class-orsay", "status": "planned", "title": { "zh": "舞蹈课", "en": "The Dance Class" }, "artist": "degas", "year": {"zh": "约1873–76", "en": "c. 1873–76"}, "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "the-star", "status": "planned", "title": { "zh": "明星", "en": "The Star" }, "artist": "degas", "year": {"zh": "约1876–78", "en": "c. 1876–78"}, "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "ballet-rehearsal-stage", "status": "planned", "title": { "zh": "舞台上的芭蕾排练", "en": "Ballet Rehearsal on Stage" }, "artist": "degas", "year": "1874", "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "two-dancers-stage", "status": "planned", "title": { "zh": "舞台上的两位舞者", "en": "Two Dancers on a Stage" }, "artist": "degas", "year": "1874", "museum": "courtauld", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "combing-hair", "status": "planned", "title": { "zh": "梳头", "en": "Combing the Hair" }, "artist": "degas", "year": {"zh": "约1896", "en": "c. 1896"}, "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "la-loge", "status": "planned", "title": { "zh": "包厢", "en": "La Loge (The Theatre Box)" }, "artist": "renoir", "year": "1874", "museum": "courtauld", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "boating-party", "status": "planned", "title": { "zh": "游艇上的午宴", "en": "Luncheon of the Boating Party" }, "artist": "renoir", "year": "1880–81", "museum": "phillips", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "two-sisters", "status": "planned", "title": { "zh": "两姐妹", "en": "Two Sisters (On the Terrace)" }, "artist": "renoir", "year": "1881", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "water-lilies-orangerie", "status": "planned", "title": { "zh": "睡莲", "en": "Water Lilies" }, "artist": "monet", "year": "", "museum": "orangerie", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "the-magpie", "status": "planned", "title": { "zh": "喜鹊", "en": "The Magpie" }, "artist": "monet", "year": "1868–69", "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "young-woman-standing-virginal", "status": "planned", "title": { "zh": "站在维金纳琴前的年轻女子", "en": "A Young Woman standing at a Virginal" }, "artist": "vermeer", "year": "", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "young-woman-seated-virginal", "status": "planned", "title": { "zh": "坐在维金纳琴前的年轻女子", "en": "A Young Woman seated at a Virginal" }, "artist": "vermeer", "year": "", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "art-of-painting", "status": "planned", "title": { "zh": "绘画艺术", "en": "The Art of Painting" }, "artist": "vermeer", "year": "", "museum": "khm", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "the-circus", "status": "planned", "title": { "zh": "马戏团", "en": "The Circus" }, "artist": "seurat", "year": "1891", "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "man-red-turban", "status": "planned", "title": { "zh": "戴红头巾的男子", "en": "Portrait of a Man (Man in a Red Turban)" }, "artist": "van-eyck", "year": "1433", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "fighting-temeraire", "status": "planned", "title": { "zh": "被拖去解体的战舰无畏号", "en": "The Fighting Temeraire" }, "artist": "turner", "year": "", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "hay-wain", "status": "planned", "title": { "zh": "干草车", "en": "The Hay Wain" }, "artist": "constable", "year": "", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "the-kiss", "status": "planned", "title": { "zh": "吻", "en": "The Kiss" }, "artist": "klimt", "year": "", "museum": "belvedere", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "great-wave", "status": "planned", "title": { "zh": "神奈川冲浪里", "en": "The Great Wave off Kanagawa" }, "artist": "hokusai", "year": "", "museum": "british-museum", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "", "_说明": "收藏地：大英博物馆等（Tia 稍后核对）" }
   ]
 }
