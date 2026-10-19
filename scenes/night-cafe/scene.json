@@ -554,15 +554,25 @@
     "museums": [
       "yale"
     ],
-    "exit": {
-      "_说明": "结尾的按钮：回到黄房子",
-      "scene": "yellow-house",
-      "label": {
-        "zh": "回到黄房子",
-        "en": "Back to the Yellow House"
+    "exit": [
+      {
+        "_说明": "结尾的按钮：回到黄房子",
+        "scene": "yellow-house",
+        "label": {
+          "zh": "回到黄房子",
+          "en": "Back to the Yellow House"
+        },
+        "href": "../yellow-house/"
       },
-      "href": "../yellow-house/"
-    }
+      {
+        "scene": "wheatfield-cypresses",
+        "label": {
+          "zh": "之后：圣雷米",
+          "en": "Next: Saint-Rémy"
+        },
+        "href": "../wheatfield-cypresses/"
+      }
+    ]
   },
   "record": {
     "_说明": "作品档案表：Tia 提供。作品页网址由 Claude 查到，请 Tia 核对。空着的行不显示。",

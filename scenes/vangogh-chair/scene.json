@@ -425,6 +425,14 @@
           "en": "Back to the Yellow House"
         },
         "href": "../yellow-house/"
+      },
+      {
+        "scene": "wheatfield-cypresses",
+        "label": {
+          "zh": "之后：圣雷米",
+          "en": "Next: Saint-Rémy"
+        },
+        "href": "../wheatfield-cypresses/"
       }
     ]
   },

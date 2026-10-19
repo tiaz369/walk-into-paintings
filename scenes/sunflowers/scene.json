@@ -493,6 +493,14 @@
           "zh": "梵高的椅子",
           "en": "Van Gogh's Chair"
         }
+      },
+      {
+        "scene": "wheatfield-cypresses",
+        "label": {
+          "zh": "之后：圣雷米",
+          "en": "Next: Saint-Rémy"
+        },
+        "href": "../wheatfield-cypresses/"
       }
     ]
   },

@@ -3,6 +3,7 @@
 
   "collections": [
     { "id": "arles", "name": { "zh": "梵高在阿尔勒", "en": "Van Gogh in Arles" }, "desc": { "zh": "1888年，等待高更的那段日子", "en": "1888: the days of waiting for Gauguin" }, "accent": "arles", "order": ["bedroom", "yellow-house", "night-cafe", "cafe-terrace", "starry-night-rhone", "sunflowers", "vangogh-chair"] },
+    { "id": "saint-remy", "name": { "zh": "梵高在圣雷米", "en": "Van Gogh in Saint-Rémy" }, "desc": { "zh": "1889–1890，疗养院的日子", "en": "1889–1890: the days in the asylum" }, "accent": "saint-remy", "order": ["wheatfield-cypresses"] },
     { "id": "delft", "name": { "zh": "维米尔的代尔夫特", "en": "Vermeer's Delft" }, "desc": { "zh": "安静的室内和光", "en": "Quiet interiors and light" }, "accent": "delft", "order": ["milkmaid", "woman-reading-letter", "little-street", "girl-pearl-earring"] },
     { "id": "national-gallery", "name": { "zh": "伦敦国家美术馆", "en": "The National Gallery, London" }, "desc": { "zh": "在伦敦就能看到真迹的名画", "en": "Masterpieces you can see in London" }, "accent": "", "order": ["arnolfini", "water-lily-pond", "bathers-asnieres"] },
     { "id": "stage", "name": { "zh": "舞台与排练", "en": "Stage and Rehearsal" }, "desc": { "zh": "德加的芭蕾世界", "en": "Degas's world of ballet" }, "accent": "", "order": ["dance-class"] }
@@ -172,7 +173,16 @@
     { "id": "absinthe", "status": "planned", "title": { "zh": "苦艾酒", "en": "In a Café (The Absinthe Drinker)" }, "artist": "degas", "year": {"zh": "约1875–76", "en": "c. 1875–76"}, "museum": "orsay", "collection": null, "version": null, "place": null, "themes": ["cafes"], "period": "impressionism", "artworkUrl": "" },
     { "id": "grande-jatte", "status": "planned", "title": { "zh": "大碗岛的星期天下午", "en": "A Sunday on La Grande Jatte — 1884" }, "artist": "seurat", "year": "1884–86", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": ["water", "gardens"], "period": "post-impressionism", "artworkUrl": "" },
     { "id": "view-of-delft", "status": "planned", "title": { "zh": "代尔夫特一景", "en": "View of Delft" }, "artist": "vermeer", "year": {"zh": "约1660–61", "en": "c. 1660–61"}, "museum": "mauritshuis", "collection": null, "version": null, "place": null, "themes": ["water", "city-stations"], "period": "dutch-golden-age", "artworkUrl": "" },
-    {"id": "wheatfield-cypresses", "status": "planned", "title": {"zh": "麦田与柏树", "en": "A Wheatfield, with Cypresses"}, "artist": "van-gogh", "year": "1889", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": ["london"], "period": null, "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-a-wheatfield-with-cypresses", "onDisplay": true, "loan": false, "room": "43"},
+    {
+      "_说明": "原画 images/wheatfield-cypresses.jpg 上传并对准后，把 status 改成 live",
+      "id": "wheatfield-cypresses", "status": "soon", "week": 6, "path": "scenes/wheatfield-cypresses/", "cover": "scenes/wheatfield-cypresses/images/wheatfield-cypresses.jpg",
+      "title": { "zh": "麦田与柏树", "en": "A Wheatfield, with Cypresses" },
+      "artist": "van-gogh", "year": "1889", "museum": "national-gallery", "collection": "saint-remy",
+      "version": "full", "place": null, "themes": ["gardens", "london"], "period": "post-impressionism", "added": "2026-10-19",
+      "onDisplay": true, "loan": false, "room": "43",
+      "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-a-wheatfield-with-cypresses",
+      "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
+    },
     {"id": "long-grass-butterflies", "status": "planned", "title": {"zh": "长草与蝴蝶", "en": "Long Grass with Butterflies"}, "artist": "van-gogh", "year": "1890", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": ["london"], "period": null, "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-long-grass-with-butterflies", "onDisplay": true, "loan": false, "room": "43"},
     {"id": "two-crabs", "status": "planned", "title": {"zh": "两只螃蟹", "en": "Two Crabs"}, "artist": "van-gogh", "year": "1889", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": ["london"], "period": null, "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-two-crabs", "onDisplay": true, "loan": true, "room": "43"},
     {"id": "farms-near-auvers", "status": "planned", "title": {"zh": "奥维尔附近的农场", "en": "Farms near Auvers"}, "artist": "van-gogh", "year": "1890", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": ["london"], "period": null, "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-farms-near-auvers", "onDisplay": true, "loan": true, "room": "43"},

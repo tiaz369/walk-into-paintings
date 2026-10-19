@@ -34,6 +34,7 @@ export async function startScene(sceneUrl) {
 // ---------------------------------------------------------------------
 function buildDOM(S, R, meta) {
   const P = S.painting, L = S.label, E = S.ending;
+  const TW = S.compare || (S.exclusive && S.exclusive.type === 'compare' ? S.exclusive : null);   // 对比滑块（可以和另一个独家发现同时有）
   const labelLine = { zh: [L.title.zh, L.artist.zh, L.date.zh, L.museum.zh].join(' · '), en: [L.title.en, L.artist.en, L.date.en, L.museum.en].join(' · ') };
   const imgLine = imageSourceHTML(L.source);   // 图片：… / Image: …
   // 个别图片有自己的来源说明（比如奥赛的照片），页面底部也一起列出
@@ -126,7 +127,8 @@ function buildDOM(S, R, meta) {
       <button data-mode="flat">${ui('简笔画', 'Simple view')}</button>
     </div>
     ${S.exclusive && S.exclusive.type === 'pair' ? `<button class="btn" id="pairBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
-    ${S.exclusive && S.exclusive.type === 'compare' ? `<button class="btn" id="twinBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${TW ? `<button class="btn" id="twinBtn">✦ ${ui(TW.label.zh, TW.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'wind' ? `<button class="btn" id="windBtn">🌬 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
       `<button data-opt="${i}" class="${i === 0 ? 'on' : ''}">${ui(o.label.zh, o.label.en)}</button>`).join('')}</div>` : ''}
   </div>
@@ -146,16 +148,16 @@ function buildDOM(S, R, meta) {
     <p><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button></p>
     ${hasRecord ? `<details class="rec-box"><summary>${ui('作品档案', 'Artwork record')}</summary>${recordHTML()}</details>` : ''}
   </div>
-  ${S.exclusive && S.exclusive.type === 'compare' ? `<div class="popup panel" id="twin">
+  ${TW ? `<div class="popup panel" id="twin">
     <button class="close" data-close="twin" aria-label="Close">×</button>
-    <h3>${bi(S.exclusive.label)}</h3>
+    <h3>${bi(TW.label)}</h3>
     <div class="twin-cmp" id="twinCmp">
-      <img id="twinA" src="${S.exclusive.left.image}" ${altAttr(S.exclusive.left.caption)} />
-      <img id="twinB" src="${S.exclusive.right.image}" ${altAttr(S.exclusive.right.caption)} />
+      <img id="twinA" src="${TW.left.image}" ${altAttr(TW.left.caption)} />
+      <img id="twinB" src="${TW.right.image}" ${altAttr(TW.right.caption)} />
       <div class="twin-line" id="twinLine"></div>
     </div>
-    <p class="twin-caps"><span>← ${bi(S.exclusive.left.caption, ' / ')}</span><span>${bi(S.exclusive.right.caption, ' / ')} →</span></p>
-    <p><small>${ui('左右拖动对比', 'Drag left and right to compare')}${S.exclusive.right.credit ? ' · ' + bi(S.exclusive.right.credit, ' / ') : ''}</small></p>
+    <p class="twin-caps"><span>← ${bi(TW.left.caption, ' / ')}</span><span>${bi(TW.right.caption, ' / ')} →</span></p>
+    <p><small>${ui('左右拖动对比', 'Drag left and right to compare')}${[TW.left.credit, TW.right.credit].filter(Boolean).map(c => ' · ' + bi(c, ' / ')).join('')}</small></p>
   </div>` : ''}
   ${S.exclusive && S.exclusive.type === 'pair' ? `<div class="popup panel" id="pair">
     <button class="close" data-close="pair" aria-label="Close">×</button>
@@ -198,7 +200,7 @@ function buildDOM(S, R, meta) {
   <div id="gallery">
     ${E.acts.map(actHTML).join('')}
     <section class="act final" id="actEnd">
-      <h2 class="reveal"><span class="zh">${E.final.zh}</span><small class="en">${E.final.en}</small></h2>
+      <h2 class="reveal"><span class="zh">${E.final.zh}</span><small class="en">${E.final.en}</small>${E.finalBy ? `<small class="final-by">${bi(E.finalBy, ' / ')}</small>` : ''}</h2>
       <div class="versions" id="versions"></div>
       ${E.versions.filter(v => v.image).length > 1 ? `<div class="section-title">${ui('找不同', 'Spot the difference')}<small class="en">Compare two versions — drag left and right</small></div>
       <div class="cmp-pick"><select id="cmpA" aria-label="A"></select><span>↔</span><select id="cmpB" aria-label="B"></select></div>
@@ -471,6 +473,7 @@ function run(S, R, meta) {
   };
   // ---------- 户外用的物体：房子、树、铁路桥、街道、发光入口 ----------
   const named = {};   // 有 id 的物体（独家发现里的“淡出”会用到）
+  const swayers = [];   // 起风时会摆动的物体（柏树、麦穗）
   const portals = [];
   // 入口通往的场景还没开放时，不显示入口
   const portalOpen = pt => !pt.scene || (R && R.sceneById[pt.scene] && R.sceneById[pt.scene].status === 'live');
@@ -496,6 +499,14 @@ function run(S, R, meta) {
     },
     tree(o) {
       const g = group(o.x, 0, o.z, 0, o.card);
+      if (o.id) named[o.id] = g;
+      if (o.sway) swayers.push({ g, amp: o.sway, phase: o.x * 0.7 + o.z * 0.3 });
+      if (o.shape === 'cypress') {   // 柏树：一根短树干 + 细高的尖锥
+        cyl(0.12, 0.16, o.h * 0.12, C.trunk || '#6b4a2e', 0, o.h * 0.06, 0, g);
+        const c = new THREE.Mesh(new THREE.ConeGeometry(o.r, o.h * 0.92, 12), paint(col(o.color || 'leaves'), 'cloth'));
+        c.position.y = o.h * 0.08 + o.h * 0.46; g.add(outline(c));
+        blocks.push([o.x - o.r, o.x + o.r, o.z - o.r, o.z + o.r]); return;
+      }
       cyl(0.18, 0.25, o.h * 0.5, C.trunk || '#6b4a2e', 0, o.h * 0.25, 0, g);
       const m = new THREE.Mesh(new THREE.IcosahedronGeometry(o.r, 1), paint(col(o.color || 'leaves'), 'cloth'));
       m.position.y = o.h * 0.5 + o.r * 0.7; g.add(outline(m));
@@ -576,6 +587,7 @@ function run(S, R, meta) {
     },
     boxes(o) {
       const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card);
+      if (o.sway) swayers.push({ g, amp: o.sway, phase: o.x * 0.7 + o.z * 0.3 });
       for (const [w, h, d, color, x, y, z, tex] of o.boxes) box(w, h, d, color, x, y, z, g, tex || 'wood');
       if (o.id) named[o.id] = g;
     }
@@ -646,7 +658,8 @@ function run(S, R, meta) {
   const projUniforms = {
     uPaint: { value: paintingTex }, uDepth: { value: depthRT.depthTexture },
     uProjVP: { value: new THREE.Matrix4().multiplyMatrices(projector.projectionMatrix, projector.matrixWorldInverse) },
-    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 }
+    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 },
+    uWind: { value: 0 }, uTime: { value: 0 }   // 独家发现“起风了”
   };
   const projVert = `
     varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv; uniform vec2 uRepeat;
@@ -654,7 +667,7 @@ function run(S, R, meta) {
   const projFrag = `
     uniform sampler2D uPaint; uniform sampler2D uDepth; uniform sampler2D uMap;
     uniform mat4 uProjVP; uniform vec3 uProjPos; uniform float uNear; uniform float uFar;
-    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn;
+    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn; uniform float uWind; uniform float uTime;
     varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv;
     float linDepth(float d) { float z = d * 2.0 - 1.0; return 2.0 * uNear * uFar / (uFar + uNear - z * (uFar - uNear)); }
     void main() {
@@ -665,10 +678,11 @@ function run(S, R, meta) {
       vec4 pc = uProjVP * vec4(vWorld, 1.0);
       if (pc.w > 0.0) {
         vec3 ndc = pc.xyz / pc.w; vec2 uv = ndc.xy * 0.5 + 0.5;
+        vec2 wuv = uv + uWind * vec2(0.004 * sin(uv.y * 26.0 + uTime * 2.3), 0.0025 * sin(uv.x * 19.0 + uTime * 1.7)) * (0.4 + uv.y);   // 起风：画面越往上动得越多
         if (uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0 && ndc.z < 1.0) {
           float sceneD = linDepth(texture2D(uDepth, uv).r), myD = linDepth(ndc.z * 0.5 + 0.5);
           float edge = smoothstep(0.0, 0.05, min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y)));   // 原画边缘慢慢过渡，不留硬边
-          if (myD <= sceneD + 0.05 + sceneD * 0.02 && dot(n, normalize(uProjPos - vWorld)) > 0.0) col = mix(col, texture2D(uPaint, uv).rgb, uEdge > 0.5 ? edge : 1.0);   // 照到了：显示原画
+          if (myD <= sceneD + 0.05 + sceneD * 0.02 && dot(n, normalize(uProjPos - vWorld)) > 0.0) col = mix(col, texture2D(uPaint, wuv).rgb, uEdge > 0.5 ? edge : 1.0);   // 照到了：显示原画
           else if (uSky > 0.5) col = mix(col, texture2D(uPaint, vec2(uv.x, 0.9)).rgb, edge);   // 天空被房子挡住的地方：用同一列画里天空的颜色
         }
       }
@@ -1095,10 +1109,21 @@ function run(S, R, meta) {
 
   // ---------- 每一帧 ----------
   const clock = new THREE.Clock(), introZ = player.z;
+  const windObj = S.exclusive && S.exclusive.type === 'wind' ? S.exclusive : null;
+  let windOn = false, windK = 0;
+  if (windObj) $('windBtn').onclick = () => {
+    windOn = !windOn; $('windBtn').classList.toggle('on', windOn);
+    if (windOn && windObj.card) showCard(windObj.card);
+  };
   function loop() {
     requestAnimationFrame(loop);
     const dt = Math.min(clock.getDelta(), 0.05);
     if (gallery.classList.contains('show')) return;   // 在结尾页时不画 3D，省电
+    if (windObj) {   // 起风了：慢慢变强 / 变弱
+      windK += ((windOn ? 1 : 0) - windK) * Math.min(1, dt * 1.5);
+      const t = clock.elapsedTime; projUniforms.uWind.value = windK; projUniforms.uTime.value = t;
+      for (const w of swayers) { w.g.rotation.z = windK * w.amp * Math.sin(t * 2.1 + w.phase); w.g.rotation.x = windK * w.amp * 0.4 * Math.sin(t * 1.6 + w.phase * 1.3); }
+    }
     if (introT >= 0 && !walking) {
       introT = Math.min(introT + dt / 1.6, 1);
       player.z = introZ + (VIEW.z - introZ) * ease(introT);

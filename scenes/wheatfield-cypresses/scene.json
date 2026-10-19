@@ -1,0 +1,2143 @@
+{
+  "_说明": "麦田与柏树场景的全部内容。所有事实文字由 Tia 提供。麦田、柏树、橄榄树和远山的位置是先大致摆的；原画 images/wheatfield-cypresses.jpg 上传后会照着原画重新算准，然后打开 projection。",
+  "id": "wheatfield-cypresses",
+  "painting": {
+    "image": "images/wheatfield-cypresses.jpg",
+    "width": 1920,
+    "height": 1523,
+    "alt": {
+      "zh": "梵高《麦田与柏树》1889，伦敦国家美术馆",
+      "en": "Vincent van Gogh, A Wheatfield, with Cypresses, 1889, The National Gallery, London"
+    }
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "麦田与柏树",
+      "en": "A Wheatfield, with Cypresses"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1889年9月",
+      "en": "September 1889"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆，43号展厅",
+      "en": "The National Gallery, London, Room 43"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下麦田、柏树、橄榄树、远山、天空看介绍 · 点“起风了”让麦田和柏树动起来 · 地上发光的圆点 = 梵高视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the wheat, the cypresses, the olive bush, the mountains or the sky to learn more · Tap “The wind rises” to set the field moving · The glowing circle = Van Gogh's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：站在麦田边。原画上传后会重新对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": 0.02,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“起风了”：打开后麦穗和柏树随风摆动，原画也轻轻波动，并显示卡片“风”。",
+    "type": "wind",
+    "label": {
+      "zh": "起风了",
+      "en": "The wind rises"
+    },
+    "card": "mistral"
+  },
+  "compare": {
+    "_说明": "独家发现“现场与房间”：对比滑块，左边大都会的现场习作，右边国家美术馆的定稿。",
+    "label": {
+      "zh": "现场与房间",
+      "en": "On the spot, and in his room"
+    },
+    "left": {
+      "image": "images/wheatfield-met.jpg",
+      "caption": {
+        "zh": "现场习作 · 1889年6月 · 纽约大都会博物馆",
+        "en": "Study painted on the spot · June 1889 · The Metropolitan Museum of Art, New York"
+      },
+      "credit": {
+        "zh": "大都会博物馆开放资源（CC0）",
+        "en": "The Met Open Access (CC0)"
+      }
+    },
+    "right": {
+      "image": "images/wheatfield-cypresses.jpg",
+      "caption": {
+        "zh": "定稿 · 1889年9月 · 伦敦国家美术馆",
+        "en": "Finished version · September 1889 · The National Gallery, London"
+      }
+    }
+  },
+  "sound": "wind",
+  "colors": {
+    "line": "#2a2a22",
+    "ground": "#d4b04a",
+    "sky": "#7fa7cf",
+    "trunk": "#4a3a2a",
+    "cypress": "#24402e",
+    "olive": "#6f8a4a",
+    "hills": "#5f7f4a",
+    "mountain": "#5d7fb3",
+    "stalk": "#d9b54a",
+    "ear": "#e3c25a",
+    "leaves": "#4f6f3a"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围，都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -90,
+      90,
+      -140,
+      20
+    ],
+    "bounds": [
+      -10,
+      10,
+      -16,
+      5
+    ],
+    "groundCard": "wheat",
+    "skyCard": "mistral",
+    "skyRadius": 170
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -3.17,
+      "z": -12.27,
+      "rot": 1.95,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -7.7,
+      "z": -7.84,
+      "rot": 1.1,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -7.96,
+      "z": -8.16,
+      "rot": 0.11,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -1.19,
+      "z": -13.2,
+      "rot": 0.27,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -1.36,
+      "z": -4.49,
+      "rot": 0.37,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -4.98,
+      "z": -6.78,
+      "rot": 2.84,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 1.39,
+      "z": -9.44,
+      "rot": 2.93,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -8.16,
+      "z": -4.13,
+      "rot": 0.87,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -6.4,
+      "z": -12.65,
+      "rot": 0.93,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 5.69,
+      "z": -11.92,
+      "rot": 1.74,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 2.5,
+      "z": -9.72,
+      "rot": 1.64,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -7.87,
+      "z": -13.31,
+      "rot": 0.62,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 3.25,
+      "z": -9.08,
+      "rot": 0.94,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 1.54,
+      "z": -8.79,
+      "rot": 0.9,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 5.3,
+      "z": -5.96,
+      "rot": 0.73,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 1.34,
+      "z": -7.96,
+      "rot": 2.63,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 4.13,
+      "z": -10.69,
+      "rot": 2.94,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -6.87,
+      "z": -9.19,
+      "rot": 2.27,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -6.26,
+      "z": -8.38,
+      "rot": 0.12,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 3.03,
+      "z": -5.21,
+      "rot": 1.72,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 6.76,
+      "z": -10.39,
+      "rot": 2.09,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 1.7,
+      "z": -7.33,
+      "rot": 1.37,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 6.12,
+      "z": -3.14,
+      "rot": 1.42,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 2.95,
+      "z": -13.3,
+      "rot": 2.1,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": 2.65,
+      "z": -2.58,
+      "rot": 2.47,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wheat",
+      "x": -3.88,
+      "z": -9.56,
+      "rot": 2.01,
+      "sway": 0.06,
+      "boxes": [
+        [
+          0.05,
+          0.9,
+          0.05,
+          "stalk",
+          0,
+          0.45,
+          0
+        ],
+        [
+          0.05,
+          0.85,
+          0.05,
+          "stalk",
+          0.12,
+          0.42,
+          0.05
+        ],
+        [
+          0.05,
+          0.95,
+          0.05,
+          "stalk",
+          -0.1,
+          0.47,
+          -0.04
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0,
+          0.95,
+          0
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          0.12,
+          0.9,
+          0.05
+        ],
+        [
+          0.12,
+          0.2,
+          0.12,
+          "ear",
+          -0.1,
+          1.0,
+          -0.04
+        ]
+      ]
+    },
+    {
+      "type": "tree",
+      "id": "cypress-big",
+      "shape": "cypress",
+      "card": "cypress",
+      "x": 7.5,
+      "z": -30,
+      "h": 15,
+      "r": 1.7,
+      "sway": 0.025,
+      "color": "cypress"
+    },
+    {
+      "type": "tree",
+      "id": "cypress-small",
+      "shape": "cypress",
+      "card": "cypress",
+      "x": 10.5,
+      "z": -32,
+      "h": 10,
+      "r": 1.3,
+      "sway": 0.03,
+      "color": "cypress"
+    },
+    {
+      "type": "tree",
+      "card": "olive",
+      "x": -3.5,
+      "z": -24,
+      "h": 2.6,
+      "r": 2.0,
+      "sway": 0.02,
+      "color": "olive"
+    },
+    {
+      "type": "tree",
+      "card": "olive",
+      "x": -1.2,
+      "z": -26,
+      "h": 2.2,
+      "r": 1.6,
+      "sway": 0.02,
+      "color": "olive"
+    },
+    {
+      "type": "surface",
+      "card": "mountains",
+      "pts": [
+        [
+          -90,
+          15,
+          -130
+        ],
+        [
+          -90,
+          0,
+          -130
+        ],
+        [
+          15,
+          0,
+          -130
+        ],
+        [
+          15,
+          9,
+          -130
+        ]
+      ],
+      "color": "mountain"
+    },
+    {
+      "type": "surface",
+      "card": "mountains",
+      "pts": [
+        [
+          5,
+          11,
+          -125
+        ],
+        [
+          5,
+          0,
+          -125
+        ],
+        [
+          90,
+          0,
+          -125
+        ],
+        [
+          90,
+          17,
+          -125
+        ]
+      ],
+      "color": "mountain"
+    },
+    {
+      "type": "surface",
+      "card": "olive",
+      "pts": [
+        [
+          -90,
+          4,
+          -60
+        ],
+        [
+          -90,
+          0,
+          -60
+        ],
+        [
+          90,
+          0,
+          -60
+        ],
+        [
+          90,
+          5,
+          -60
+        ]
+      ],
+      "color": "hills"
+    }
+  ],
+  "cards": {
+    "wheat": {
+      "title": {
+        "zh": "金色麦田",
+        "en": "The wheat field"
+      },
+      "text": {
+        "zh": "金色的麦田，是普罗旺斯夏天最典型的景色。",
+        "en": "The golden wheat field is a classic sight of a Provençal summer."
+      }
+    },
+    "cypress": {
+      "title": {
+        "zh": "柏树",
+        "en": "The cypresses"
+      },
+      "text": {
+        "zh": "1889年6月底，他决定把在圣雷米最早的一组画，献给这些高耸的柏树。",
+        "en": "In late June 1889, he decided to devote one of his first series at Saint-Rémy to these towering trees."
+      }
+    },
+    "olive": {
+      "title": {
+        "zh": "橄榄树丛",
+        "en": "The olive bush"
+      },
+      "text": {
+        "zh": "麦田旁边是一丛橄榄树，同样是普罗旺斯的典型景物。",
+        "en": "Beside the wheat is an olive bush, another typical sight of Provence."
+      }
+    },
+    "mountains": {
+      "title": {
+        "zh": "蓝色的山",
+        "en": "The blue mountains"
+      },
+      "text": {
+        "zh": "远处蓝色的山，是阿尔皮耶山。",
+        "en": "The blue mountains in the distance are the Alpilles."
+      }
+    },
+    "mistral": {
+      "title": {
+        "zh": "风",
+        "en": "The mistral"
+      },
+      "text": {
+        "zh": "他写到自己在夏天的密史脱拉风里户外作画。这股又强又冷的风，让整片风景都动了起来。",
+        "en": "He wrote of painting outdoors in the summer mistral, the strong, cold wind of southern France, which seems to set the whole landscape in motion."
+      }
+    },
+    "mother": {
+      "title": {
+        "zh": "给母亲和妹妹",
+        "en": "For his mother and sister"
+      },
+      "text": {
+        "zh": "他还为母亲和妹妹画了一幅小一点的复本，就像他对卧室做过的那样。",
+        "en": "He also made a smaller copy for his mother and sister, just as he did with The Bedroom."
+      },
+      "link": {
+        "scene": "bedroom",
+        "href": "../bedroom/",
+        "label": {
+          "zh": "去看《阿尔勒的卧室》",
+          "en": "See The Bedroom"
+        }
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/wheatfield-met.jpg",
+        "alt": {
+          "zh": "梵高《麦田与柏树》现场习作，1889年6月",
+          "en": "Vincent van Gogh, Wheat Field with Cypresses, study, June 1889"
+        },
+        "caption": {
+          "zh": "现场习作 · 1889年6月 · 纽约大都会博物馆",
+          "en": "Study painted on the spot · June 1889 · The Metropolitan Museum of Art, New York"
+        },
+        "credit": {
+          "zh": "图片：大都会博物馆开放资源（CC0）",
+          "en": "Image: The Met Open Access (CC0)"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 在现场",
+          "en": "On the spot"
+        },
+        "text": {
+          "zh": "1889年5月，梵高自愿住进圣雷米的圣保罗疗养院。6月底，他走到户外，在麦田边画下了第一幅习作。它现在在纽约大都会博物馆。",
+          "en": "In May 1889, Van Gogh voluntarily entered the asylum of Saint-Paul de Mausole in Saint-Rémy. In late June, he went outdoors and painted a first study by the wheat field. It is now at the Metropolitan Museum in New York."
+        }
+      },
+      {
+        "image": "images/wheatfield-cypresses.jpg",
+        "alt": {
+          "zh": "梵高《麦田与柏树》1889年9月",
+          "en": "Vincent van Gogh, A Wheatfield, with Cypresses, September 1889"
+        },
+        "caption": {
+          "zh": "定稿 · 1889年9月 · 伦敦国家美术馆",
+          "en": "Finished version · September 1889 · The National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 在房间里",
+          "en": "In his room"
+        },
+        "text": {
+          "zh": "九月，他被限制在病房里，凭着那幅习作，画出了这幅定稿。",
+          "en": "In September, confined to his room, he painted this finished version from that study."
+        }
+      },
+      {
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1923年，伦敦国家美术馆用考陶尔德基金买下了这幅画。今天，它就挂在43号展厅。",
+          "en": "In 1923, the National Gallery in London bought the painting with the Courtauld Fund. Today it hangs in Room 43."
+        }
+      }
+    ],
+    "final": {
+      "zh": "除了凝望麦田，还能做什么呢。",
+      "en": "What else can one do… but gaze upon the wheatfields."
+    },
+    "finalBy": {
+      "zh": "—— 梵高致妹妹，1889年7月2日",
+      "en": "— Van Gogh to his sister, 2 July 1889"
+    },
+    "versions": [
+      {
+        "image": "images/wheatfield-cypresses.jpg",
+        "short": {
+          "zh": "1889 · 伦敦",
+          "en": "1889 · London"
+        },
+        "caption": {
+          "zh": "1889年9月 · 伦敦国家美术馆",
+          "en": "September 1889 · The National Gallery, London"
+        }
+      }
+    ],
+    "museums": [
+      "national-gallery",
+      "met"
+    ],
+    "exit": {
+      "scene": "bedroom",
+      "label": {
+        "zh": "回到阿尔勒的卧室",
+        "en": "Back to The Bedroom in Arles"
+      },
+      "href": "../bedroom/"
+    }
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。空着的行不显示。尺寸等 Tia 提供。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "麦田与柏树",
+      "en": "A Wheatfield, with Cypresses"
+    },
+    "date": {
+      "zh": "1889年9月，圣雷米",
+      "en": "September 1889, Saint-Rémy"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "",
+      "en": ""
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆，43号展厅",
+      "en": "The National Gallery, London, Room 43"
+    },
+    "creditLine": {
+      "zh": "Bought, Courtauld Fund, 1923",
+      "en": "Bought, Courtauld Fund, 1923"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-a-wheatfield-with-cypresses"
+  },
+  "zoom": {
+    "image": "images/wheatfield-cypresses.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：麦田与柏树",
+          "en": "The National Gallery: A Wheatfield, with Cypresses"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-a-wheatfield-with-cypresses"
+      },
+      {
+        "title": {
+          "zh": "大都会博物馆：麦田与柏树（现场习作）",
+          "en": "The Met: Wheat Field with Cypresses (the study)"
+        },
+        "url": "https://www.metmuseum.org/toah/works-of-art/1993.132"
+      },
+      {
+        "title": {
+          "zh": "梵高书信：致妹妹威尔，1889年7月2日",
+          "en": "Van Gogh's letters: to his sister Wil, 2 July 1889"
+        },
+        "url": "https://www.vangoghletters.org"
+      }
+    ]
+  },
+  "audioGuide": {
+    "zh": "",
+    "en": ""
+  }
+}
