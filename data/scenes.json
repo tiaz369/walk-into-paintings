@@ -22,19 +22,19 @@
   ],
 
   "museums": [
-    { "id": "van-gogh-museum",  "name": { "zh": "阿姆斯特丹梵高博物馆", "en": "Van Gogh Museum, Amsterdam" }, "url": "https://www.vangoghmuseum.nl", "city": "amsterdam" },
-    { "id": "art-institute-chicago", "name": { "zh": "芝加哥艺术博物馆", "en": "Art Institute of Chicago" }, "url": "https://www.artic.edu", "city": "chicago" },
-    { "id": "orsay",            "name": { "zh": "巴黎奥赛博物馆", "en": "Musée d'Orsay, Paris" }, "url": "https://www.musee-orsay.fr", "city": "paris" },
-    { "id": "yale",             "name": { "zh": "耶鲁大学美术馆", "en": "Yale University Art Gallery" }, "url": "https://artgallery.yale.edu", "city": "new-haven" },
-    { "id": "kroller-muller",   "name": { "zh": "荷兰克勒勒-米勒博物馆", "en": "Kröller-Müller Museum" }, "url": "https://krollermuller.nl", "city": "otterlo" },
-    { "id": "national-gallery", "name": { "zh": "伦敦国家美术馆", "en": "The National Gallery, London" }, "url": "https://www.nationalgallery.org.uk", "city": "london" },
-    { "id": "rijksmuseum",      "name": { "zh": "阿姆斯特丹荷兰国立博物馆", "en": "Rijksmuseum, Amsterdam" }, "url": "https://www.rijksmuseum.nl", "city": "amsterdam" },
-    { "id": "mauritshuis",      "name": { "zh": "海牙莫瑞泰斯皇家美术馆", "en": "Mauritshuis, The Hague" }, "url": "https://www.mauritshuis.nl", "city": "the-hague" },
-    { "id": "met",              "name": { "zh": "纽约大都会艺术博物馆", "en": "The Metropolitan Museum of Art, New York" }, "url": "https://www.metmuseum.org", "city": "new-york" },
-    { "id": "courtauld",        "name": { "zh": "伦敦考陶尔德美术馆", "en": "The Courtauld Gallery, London" }, "url": "https://courtauld.ac.uk", "city": "london" },
-    { "id": "moma",             "name": { "zh": "纽约现代艺术博物馆", "en": "The Museum of Modern Art (MoMA), New York" }, "url": "https://www.moma.org", "city": "new-york" },
-    { "id": "marmottan",        "name": { "zh": "玛摩丹·莫奈美术馆", "en": "Musée Marmottan Monet, Paris" }, "url": "https://www.marmottan.fr", "city": "paris" },
-    { "id": "nga-washington",   "name": { "zh": "华盛顿国家美术馆", "en": "National Gallery of Art, Washington" }, "url": "https://www.nga.gov", "city": "washington" }
+    { "id": "van-gogh-museum",  "name": { "zh": "阿姆斯特丹梵高博物馆", "en": "Van Gogh Museum, Amsterdam" }, "url": "https://www.vangoghmuseum.nl", "city": "amsterdam", "lat": 52.3584, "lon": 4.8811 },
+    { "id": "art-institute-chicago", "name": { "zh": "芝加哥艺术博物馆", "en": "Art Institute of Chicago" }, "url": "https://www.artic.edu", "city": "chicago", "lat": 41.8796, "lon": -87.6237 },
+    { "id": "orsay",            "name": { "zh": "巴黎奥赛博物馆", "en": "Musée d'Orsay, Paris" }, "url": "https://www.musee-orsay.fr", "city": "paris", "lat": 48.86, "lon": 2.3266 },
+    { "id": "yale",             "name": { "zh": "耶鲁大学美术馆", "en": "Yale University Art Gallery" }, "url": "https://artgallery.yale.edu", "city": "new-haven", "lat": 41.3083, "lon": -72.931 },
+    { "id": "kroller-muller",   "name": { "zh": "荷兰克勒勒-米勒博物馆", "en": "Kröller-Müller Museum" }, "url": "https://krollermuller.nl", "city": "otterlo", "lat": 52.095, "lon": 5.817 },
+    { "id": "national-gallery", "name": { "zh": "伦敦国家美术馆", "en": "The National Gallery, London" }, "url": "https://www.nationalgallery.org.uk", "city": "london", "lat": 51.5089, "lon": -0.1283 },
+    { "id": "rijksmuseum",      "name": { "zh": "阿姆斯特丹荷兰国立博物馆", "en": "Rijksmuseum, Amsterdam" }, "url": "https://www.rijksmuseum.nl", "city": "amsterdam", "lat": 52.36, "lon": 4.8852 },
+    { "id": "mauritshuis",      "name": { "zh": "海牙莫瑞泰斯皇家美术馆", "en": "Mauritshuis, The Hague" }, "url": "https://www.mauritshuis.nl", "city": "the-hague", "lat": 52.0804, "lon": 4.3143 },
+    { "id": "met",              "name": { "zh": "纽约大都会艺术博物馆", "en": "The Metropolitan Museum of Art, New York" }, "url": "https://www.metmuseum.org", "city": "new-york", "lat": 40.7794, "lon": -73.9632 },
+    { "id": "courtauld",        "name": { "zh": "伦敦考陶尔德美术馆", "en": "The Courtauld Gallery, London" }, "url": "https://courtauld.ac.uk", "city": "london", "lat": 51.511, "lon": -0.1172 },
+    { "id": "moma",             "name": { "zh": "纽约现代艺术博物馆", "en": "The Museum of Modern Art (MoMA), New York" }, "url": "https://www.moma.org", "city": "new-york", "lat": 40.7614, "lon": -73.9776 },
+    { "id": "marmottan",        "name": { "zh": "玛摩丹·莫奈美术馆", "en": "Musée Marmottan Monet, Paris" }, "url": "https://www.marmottan.fr", "city": "paris", "lat": 48.8597, "lon": 2.2674 },
+    { "id": "nga-washington",   "name": { "zh": "华盛顿国家美术馆", "en": "National Gallery of Art, Washington" }, "url": "https://www.nga.gov", "city": "washington", "lat": 38.8913, "lon": -77.0199 }
   ],
 
   "themes": [
@@ -65,7 +65,7 @@
     { "id": "arles",  "name": { "zh": "阿尔勒", "en": "Arles" },  "lat": 43.677, "lon": 4.631 }
   ],
 
-  "_cities说明": "地图“现在在哪里”：博物馆所在的城市（博物馆的 city 指向这里）。label 是城市名写在圆点的哪一边：r 右（默认）、l 左、t 上、b 下。",
+  "_cities说明": "博物馆的 lat/lon 是近似坐标，只用来在地图“现在在哪里”上标点。地图“现在在哪里”：博物馆所在的城市（博物馆的 city 指向这里）。label 是城市名写在圆点的哪一边：r 右（默认）、l 左、t 上、b 下。",
   "cities": [
     { "id": "amsterdam",  "name": { "zh": "阿姆斯特丹", "en": "Amsterdam" }, "lat": 52.37, "lon": 4.9, "label": "t" },
     { "id": "the-hague",  "name": { "zh": "海牙", "en": "The Hague" }, "lat": 52.08, "lon": 4.31, "label": "l" },

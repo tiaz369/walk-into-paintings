@@ -142,6 +142,22 @@ export function sceneCard(R, s, opts = {}) {
 }
 // items：场景，或 { s: 场景, opts: {...} }
 export const cardsHTML = (R, list, opts = {}) => list.length ? `<div class="cards">${list.map(x => x.s ? sceneCard(R, x.s, { ...opts, ...x.opts }) : sceneCard(R, x, opts)).join('')}</div>` : `<p class="soon">${ui('即将开放', 'Coming soon')}</p>`;
+// 一行一幅（画家页、博物馆页）：小图 · 作品名（中 · EN） · 年份 · 收藏地（画家页）或画家（博物馆页）
+export function sceneRow(R, s, opts = {}) {
+  const artist = !opts.hideArtist && R.artistById[s.artist], museum = !opts.hideMuseum && R.museumById[opts.museum || s.museum];
+  const live = s.status === 'live', t = opts.title || s.title, cover = opts.cover || s.cover, y = opts.year || s.year;
+  const name = t.zh && t.en && t.zh !== t.en ? `<span lang="zh-CN">${esc(t.zh)}</span> · <span lang="en">${esc(t.en)}</span>` : esc(t.zh || t.en);
+  const year = esc(textOf(y, lang === 'en' ? 'en' : 'zh'));
+  const meta = [year, artist && bi(artist.name), museum && bi(museum.name)].filter(Boolean).join(' · ');
+  const pic = `<span class="row-pic">${live && cover ? `<img src="${ROOT + cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>`;
+  const text = `<span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span></span>`;
+  const url = opts.workLink && (opts.artworkUrl ?? s.artworkUrl);
+  const side = (live ? '' : `<span class="row-soon">${ui('即将开放', 'Coming soon')}</span>`)
+    + (url ? `<a class="work-link" href="${url}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '');
+  return `<div class="row${live ? '' : ' is-soon'}">${live ? `<a class="row-main" href="${sceneUrl(s)}">${pic}${text}</a>` : `<span class="row-main">${pic}${text}</span>`}
+    ${side ? `<span class="row-side">${side}</span>` : ''}${opts.credit ? `<small class="img-credit row-credit">${bi(opts.credit, ' / ')}</small>` : ''}</div>`;
+}
+export const rowsHTML = (R, list, opts = {}) => list.length ? `<div class="rows">${list.map(x => x.s ? sceneRow(R, x.s, { ...opts, ...x.opts }) : sceneRow(R, x, opts)).join('')}</div>` : '';
 // 即将开放的作品最多显示几个（画家页、博物馆页）
 export const SOON_MAX = 3;
 const capSoon = list => { let n = 0; return list.filter(x => ((x.s || x).status === 'live') || n++ < SOON_MAX); };
@@ -181,11 +197,13 @@ function mapDots(R, layer) {
     const list = R.scenes.filter(s => s.place === p.id);
     return list.length && { id: p.id, name: p.name, lat: p.lat, lon: p.lon, label: p.label, live: list.some(s => s.status === 'live') };
   }).filter(Boolean);
-  return (R.cities || []).map(c => {
-    const list = museumsIn(R, c.id).flatMap(m => museumItems(R, m.id));
-    return list.length && { id: c.id, name: c.name, lat: c.lat, lon: c.lon, label: c.label, live: list.some(x => (x.s || x).status === 'live') };
-  }).filter(Boolean);
+  // 现在在哪里：每家有作品显示的博物馆一个点，编号和地图下面的列表一样
+  return nowMuseums(R).map((m, i) => {
+    const list = museumItems(R, m.id);
+    return { id: m.id, num: i + 1, name: m.name, lat: m.lat, lon: m.lon, live: list.some(x => x.s.status === 'live') };
+  });
 }
+const nowMuseums = R => R.museums.filter(m => m.lat != null && museumItems(R, m.id).length);
 export function mapSVG(R, { layer = 'painted', small = false } = {}) {
   const H = layer === 'painted' ? 460 : 300, GAP = 14;
   const dots = mapDots(R, layer);
@@ -196,17 +214,20 @@ export function mapSVG(R, { layer = 'painted', small = false } = {}) {
     body += `<svg x="${x0}" y="0" width="${w}" height="${H}" viewBox="${vx} ${vy} ${vw} ${vh}" preserveAspectRatio="none"><path class="land" d="${LAND.d}"/></svg>`;
     if (P.name) body += `<text class="panel-name" x="${x0 + 10}" y="22">${esc(textOf(P.name, lang))}</text>`;
     if (x0) body += `<line class="grid" x1="${x0 - GAP / 2}" y1="0" x2="${x0 - GAP / 2}" y2="${H}"/>`;
+    const placed = [];
     for (const d of dots) {
       if (d.lon < b.w || d.lon > b.e || d.lat < b.s || d.lat > b.n) continue;
-      const cx = x0 + (d.lon - b.w) * px, cy = (b.n - d.lat) * py;
-      const [tx, ty, anchor] = { l: [cx - 10, cy + 4, 'end'], t: [cx, cy - 11, 'middle'], b: [cx, cy + 19, 'middle'] }[d.label] || [cx + 10, cy + 4, 'start'];
-      body += `<a href="${ROOT}map/?layer=${layer}#${d.id}"><circle class="${d.live ? 'dot' : 'dot-soon'}" cx="${cx}" cy="${cy}" r="${small ? 5 : 6}"/>
-        <text x="${tx}" y="${ty}" text-anchor="${anchor}">${esc(textOf(d.name, lang))}</text></a>`;
+      let cx = x0 + (d.lon - b.w) * px, cy = (b.n - d.lat) * py;
+      while (placed.some(([x, y]) => Math.hypot(x - cx, y - cy) < 13)) cx += 14;   // 同一座城市的几家博物馆：并排放，不重叠
+      placed.push([cx, cy]);
+      const [tx, ty, anchor] = d.num ? [cx, cy + 4, 'middle'] : ({ l: [cx - 10, cy + 4, 'end'], t: [cx, cy - 11, 'middle'], b: [cx, cy + 19, 'middle'] }[d.label] || [cx + 10, cy + 4, 'start']);
+      body += `<a href="${ROOT}map/?layer=${layer}#${d.id}"><title>${esc(textOf(d.name, lang))}</title><circle class="${d.live ? 'dot' : 'dot-soon'}${d.num ? ' num' : ''}" cx="${cx}" cy="${cy}" r="${d.num ? 8 : small ? 5 : 6}"/>
+        <text class="${d.num ? 'num' : ''}" x="${tx}" y="${ty}" text-anchor="${anchor}">${d.num || esc(textOf(d.name, lang))}</text></a>`;
     }
     x0 += w + GAP;
   }
   const note = layer === 'painted' ? ui('示意图：按经纬度标出画作诞生的城市。', 'Schematic map: places where the paintings were made, plotted by latitude and longitude.')
-    : ui('示意图：按经纬度标出收藏这些画的博物馆所在的城市。', 'Schematic map: cities of the museums that hold the paintings, plotted by latitude and longitude.');
+    : ui('示意图：标出收藏这些画的博物馆，编号和下面的列表一样。', 'Schematic map: the museums that hold the paintings, numbered as in the list below.');
   return `<svg class="map" viewBox="0 0 ${x0 - GAP} ${H}" role="img" aria-label="Map">${body}</svg>
     <div class="map-note">${note} ${ui('陆地轮廓：Natural Earth（公有领域）。', 'Coastlines: Natural Earth (public domain).')}</div>`;
 }
@@ -216,6 +237,7 @@ export function mapSVG(R, { layer = 'painted', small = false } = {}) {
 // 页面文件只写一行：renderPage('home') 之类，内容都从登记表里来。
 // =====================================================================
 const SOON = () => `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
+const LATER = () => `<p class="later-one">${ui('即将推出', 'Coming soon')}</p>`;   // 还没有作品可以显示
 // 系列的状态：有作品时“现在开放：… · 下一站：…”，还没有作品时“即将开放”（不显示数字）
 const openLine = (list) => {
   const live = list.filter(s => s.status === 'live'), next = list.find(s => s.status !== 'live');
@@ -323,15 +345,14 @@ const PAGES = {
       main.innerHTML = `<div class="wrap page-title"><h1>${bi(a.name)}${a.dates ? `<small class="sub">${bi(a.dates)}</small>` : ''}</h1></div>
         <section class="section wrap">
           ${a.bio ? `<p class="lead">${bi(a.bio)}</p>` : ''}
-          ${cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true })}
+          ${rowsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true }) || LATER()}
           <p style="margin-top:28px"><a class="btn" href="${ROOT}artists/">← ${ui('所有画家', 'All artists')}</a></p></section>`;
       return;
     }
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按画家', 'By artist')}</h1></div>
-      <section class="section wrap">${R.artists.filter(a => scenesOf(R, 'artist', a.id).length).map(a => `
-        <div class="group"><h3><a href="?id=${a.id}" style="text-decoration:none">${artistName(a)}</a></h3>
-        ${cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true })}</div>`).join('')}
-        ${laterLine(R.artists.filter(a => !scenesOf(R, 'artist', a.id).length).map(artistName))}</section>`;
+      <section class="section wrap">${R.artists.map(a => `
+        <div class="group" id="${a.id}"><h3><a href="?id=${a.id}" style="text-decoration:none">${artistName(a)}</a></h3>
+        ${rowsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true }) || LATER()}</div>`).join('')}</section>`;
   },
 
   // ---------- 按主题 ----------
@@ -373,14 +394,12 @@ const PAGES = {
     const draw = () => {
       const groups = layer === 'painted'
         ? R.places.map(pl => { const list = scenesOf(R, 'place', pl.id); return list.length ? `<div class="group" id="${pl.id}"><h3>${bi(pl.name)}</h3>${cardsHTML(R, list)}</div>` : ''; }).join('')
-        : (R.cities || []).map(c => {
-            const ms = museumsIn(R, c.id).filter(m => museumItems(R, m.id).length);
-            return ms.length ? `<div class="group" id="${c.id}"><h3>${bi(c.name)}</h3>${ms.map(m => `<p class="note"><a href="${ROOT}museums/?id=${m.id}">${bi(m.name)}</a></p>${cardsHTML(R, capSoon(museumItems(R, m.id)), { hideMuseum: true })}`).join('')}</div>` : '';
-          }).join('');
+        : nowMuseums(R).map((m, i) => `<div class="group" id="${m.id}"><h3><span class="map-num">${i + 1}</span> <a href="${ROOT}museums/?id=${m.id}" style="text-decoration:none">${bi(m.name)}</a></h3>
+            ${rowsHTML(R, capSoon(museumItems(R, m.id)), { hideMuseum: true })}</div>`).join('');
       main.innerHTML = `<div class="wrap page-title"><h1>${ui('地图', 'Map')}</h1>
         <div class="seg map-layers" role="group" aria-label="Map layer">${LAYERS.map(([k, zh, en]) => `<button data-layer="${k}" class="${k === layer ? 'on' : ''}">${ui(zh, en)}</button>`).join('')}</div>
         <p class="lead">${layer === 'painted' ? ui('画作诞生的城市。实心圆点：已开放；空心圆点：即将开放。', 'Cities where the paintings were made. Filled dot: open; outline: coming soon.')
-          : ui('这些画现在收藏在哪里。实心圆点：已开放；空心圆点：即将开放。', 'Where the paintings are now. Filled dot: open; outline: coming soon.')}</p></div>
+          : ui('这些画现在收藏在哪些博物馆。实心圆点：有已开放的作品；空心圆点：即将开放。', 'The museums where the paintings are now. Filled dot: has an open painting; outline: coming soon.')}</p></div>
         <section class="wrap">${mapSVG(R, { layer })}</section>
         <section class="section wrap">${groups || SOON()}</section>`;
       main.querySelectorAll('[data-layer]').forEach(b => b.onclick = () => {
@@ -394,15 +413,14 @@ const PAGES = {
   museums(R, main) {
     const visit = m => m.url ? `<a class="btn" href="${m.url}" target="_blank" rel="noopener">${ui('参观官网', 'Visit website')} ↗</a>` : '';
     const id = param('id'), one = id && R.museumById[id];
-    const list = one ? [one] : R.museums.filter(m => museumItems(R, m.id).length);   // 还没有作品的博物馆先不列
+    const list = one ? [one] : R.museums;
     main.innerHTML = `<div class="wrap page-title"><h1>${one ? bi(one.name) : ui('按博物馆', 'By museum')}</h1></div>
       <section class="section wrap">${list.map(m => {
         const sc = museumItems(R, m.id);
         return `<div class="group" id="${m.id}">${one ? '' : `<h3><a href="?id=${m.id}" style="text-decoration:none">${bi(m.name)}</a></h3>`}
-          <p class="note">${visit(m)}</p>${sc.length ? cardsHTML(R, capSoon(sc), { hideMuseum: true, workLink: true }) : SOON()}</div>`;
+          <p class="note">${visit(m)}</p>${rowsHTML(R, capSoon(sc), { hideMuseum: true, workLink: true }) || LATER()}</div>`;
       }).join('')}
-      ${one ? `<p style="margin-top:28px"><a class="btn" href="${ROOT}museums/">← ${ui('所有博物馆', 'All museums')}</a></p>`
-        : laterLine(R.museums.filter(m => !museumItems(R, m.id).length).map(m => m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${bi(m.name)} ↗</a>` : bi(m.name)))}</section>`;
+      ${one ? `<p style="margin-top:28px"><a class="btn" href="${ROOT}museums/">← ${ui('所有博物馆', 'All museums')}</a></p>` : ''}</section>`;
   },
 
   // ---------- 关于（文字来自 Tia，见上面的 ABOUT） ----------
