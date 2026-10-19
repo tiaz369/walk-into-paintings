@@ -336,10 +336,25 @@ const PAGES = {
 
   // ---------- 按主题 ----------
   themes(R, main) {
+    const hasLive = t => scenesOf(R, 'themes', t.id).some(s => s.status === 'live');
+    const id = param('id'), one = id && R.themeById[id];
+    if (one) {   // 某一个主题：已开放的全部 + 即将开放最多3个
+      main.innerHTML = `<div class="wrap page-title"><h1>${bi(one.name)}</h1></div>
+        <section class="section wrap">${cardsHTML(R, capSoon(scenesOf(R, 'themes', one.id)))}
+          <p style="margin-top:28px"><a class="btn" href="${ROOT}themes/">← ${ui('所有主题', 'All themes')}</a></p></section>`;
+      return;
+    }
+    // 有已开放作品的主题：可以点进去的卡片（封面用第一幅已开放的画）；其余放在底部一行小字
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按主题', 'By theme')}</h1></div>
-      <section class="section wrap">${R.themes.filter(t => scenesOf(R, 'themes', t.id).some(s => s.status === 'live')).map(t =>
-        `<div class="group" id="${t.id}"><h3>${bi(t.name)}</h3>${cardsHTML(R, capSoon(scenesOf(R, 'themes', t.id)))}</div>`).join('')}
-        ${laterLine(R.themes.filter(t => !scenesOf(R, 'themes', t.id).some(s => s.status === 'live')).map(t => bi(t.name)))}</section>`;
+      <section class="section wrap"><div class="cards">${(used => R.themes.filter(hasLive).map(t => {
+        const list = scenesOf(R, 'themes', t.id), live = list.filter(s => s.status === 'live');
+        const cover = live.find(s => s.cover && !used.has(s.id)) || live.find(s => s.cover);   // 尽量每个主题用不同的封面
+        if (cover) used.add(cover.id);
+        const soonN = Math.min(list.length - live.length, SOON_MAX);
+        return `<a class="card" href="?id=${t.id}"><div class="pic">${cover ? `<img src="${ROOT + cover.cover}" ${altAttr(cover.title)} loading="lazy" />` : ''}</div>
+          <div class="name">${bi(t.name)}</div><div class="meta">${ui(`${live.length} 幅已开放`, `${live.length} open`)}${soonN ? ' · ' + ui(`${soonN} 幅即将开放`, `${soonN} coming soon`) : ''}</div></a>`;
+      }).join(''))(new Set())}</div>
+        ${laterLine(R.themes.filter(t => !hasLive(t)).map(t => bi(t.name)))}</section>`;
   },
 
   // ---------- 按时期：一条时间轴 ----------
@@ -347,7 +362,7 @@ const PAGES = {
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按时期', 'By period')}</h1></div>
       <section class="section wrap"><div class="timeline">${R.periods.map(pd => {
         const list = scenesOf(R, 'period', pd.id);
-        return `<div class="group" id="${pd.id}"><h3>${bi(pd.name)}</h3>${list.length ? cardsHTML(R, list) : SOON()}</div>`;
+        return `<div class="group" id="${pd.id}"><h3>${bi(pd.name)}</h3>${list.length ? cardsHTML(R, capSoon(list)) : SOON()}</div>`;
       }).join('')}</div></section>`;
   },
 

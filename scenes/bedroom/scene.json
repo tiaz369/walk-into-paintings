@@ -92,7 +92,8 @@
     },
     "chair": {
       "title": { "zh": "两把椅子", "en": "Two chairs" },
-      "text": { "zh": "两把椅子、两个枕头……有人认为，这些成对的物品表达了他在等高更来同住的期待。", "en": "Two chairs, two pillows. Some see this as Van Gogh waiting for Gauguin to join him." }
+      "text": { "zh": "两把椅子、两个枕头……有人认为，这些成对的物品表达了他在等高更来同住的期待。", "en": "Two chairs, two pillows. Some see this as Van Gogh waiting for Gauguin to join him." },
+      "link": { "scene": "vangogh-chair", "href": "../vangogh-chair/", "label": { "zh": "看梵高单独画的椅子", "en": "See the chair he painted on its own" } }
     },
     "wall": {
       "title": { "zh": "墙", "en": "Walls" },

@@ -32,6 +32,19 @@ export async function startLight(sceneUrl) {
 const isLive = (R, id) => !id || !!(R && R.sceneById[id] && R.sceneById[id].status === 'live');
 // 世界地图上的一个点：经纬度 → 地图上的位置（和 world-land.js 用同一种投影）
 const mapXY = (lat, lon) => [(lon + 180) / 360 * LAND.w, (LAND.north - lat) / 360 * LAND.w];
+// 世界地图（只显示 box 这一片：{w, e, s, n} 经纬度）。places 里没有坐标的（比如私人收藏）不标点。
+// kind：here = 本场景这一幅（大一点的实心点）；gone = 已毁（灰色空心点）；其他 = 普通实心点
+function worldMap(X) {
+  const b = X.box || { w: -180, e: 180, s: -58, n: 84 };
+  const [x0, y0] = mapXY(b.n, b.w), [x1, y1] = mapXY(b.s, b.e), k = (x1 - x0) / 700;   // 圆点和字按显示大小换算
+  const dots = (X.places || []).map((p, i) => {
+    if (p.lat == null) return '';
+    const [x, y] = mapXY(p.lat, p.lon), r = (p.kind === 'here' ? 6 : 4.5) * k, f = 12 * k;
+    const [tx, ty, anchor] = { l: [x - r - 3 * k, y + f / 3, 'end'], t: [x, y - r - 3 * k, 'middle'], b: [x, y + r + f, 'middle'] }[p.label] || [x + r + 3 * k, y + f / 3, 'start'];
+    return `<circle class="dot ${p.kind || ''}" cx="${x}" cy="${y}" r="${r}" stroke-width="${1.6 * k}"/><text x="${tx}" y="${ty}" text-anchor="${anchor}" style="font-size:${f}px">${i + 1}</text>`;
+  }).join('');
+  return `<svg class="world" viewBox="${x0} ${y0} ${x1 - x0} ${y1 - y0}" role="img" aria-label="Map"><path class="land" d="${LAND.d}"/>${dots}</svg>`;
+}
 
 function buildDOM(S, R, meta) {
   const P = S.painting, L = S.label, E = S.ending, X = S.exclusive || {};
@@ -97,13 +110,12 @@ function buildDOM(S, R, meta) {
   </div>
   ${isMap ? `<div class="popup panel" id="where">
     <button class="close" data-close="where" aria-label="Close">×</button>
-    <h3>${bi(X.label)}</h3>
-    <svg class="world" viewBox="0 0 ${LAND.w} ${LAND.h}" role="img" aria-label="Map"><path class="land" d="${LAND.d}"/>
-      ${(X.places || []).map((p, i) => { const [x, y] = mapXY(p.lat, p.lon); return `<circle class="dot" cx="${x}" cy="${y}" r="7"/><text x="${x + 10}" y="${y + 5}">${i + 1}</text>`; }).join('')}
-    </svg>
-    ${(X.places || []).length ? `<ol class="where-list">${X.places.map(p => `<li>${bi(p.name, ' / ')}${p.note ? ` <small>${bi(p.note, ' / ')}</small>` : ''}</li>`).join('')}</ol>`
+    <h3>${bi(X.title || X.label)}</h3>
+    ${X.intro ? `<p class="where-intro">${bi(X.intro, ' / ')}</p>` : ''}
+    ${worldMap(X)}
+    ${(X.places || []).length ? `<ol class="where-list">${X.places.map(p => `<li class="${p.kind || ''}"><b>${bi(p.date, ' / ')}</b> · ${bi(p.name, ' / ')}${p.note ? ` <small>${bi(p.note, ' / ')}</small>` : ''}</li>`).join('')}</ol>`
       : `<p class="soon">${bi(X.empty || { zh: '名单核对中，即将补上。', en: 'The list is being checked and will be added soon.' }, ' / ')}</p>`}
-    <p class="map-note">${ui('示意图：按经纬度标出位置。陆地轮廓来自 Natural Earth（公有领域）。', 'Schematic map: places plotted by latitude and longitude. Coastlines from Natural Earth (public domain).')}</p>
+    <p class="map-note">${bi(X.mapNote || { zh: '示意图：坐标是近似值。陆地轮廓来自 Natural Earth（公有领域）。', en: 'Schematic map: positions are approximate. Coastlines from Natural Earth (public domain).' }, ' ')}</p>
   </div>` : ''}
 
   <div id="card" class="panel">

@@ -1,0 +1,535 @@
+{
+  "_说明": "梵高的椅子场景的全部内容。所有事实文字由 Tia 提供。房间、椅子、洋葱箱的位置是先大致摆的；原画 images/vangogh-chair.jpg 上传后会照着原画重新算准，然后打开 projection。",
+  "id": "vangogh-chair",
+  "painting": {
+    "image": "images/vangogh-chair.jpg",
+    "width": 1530,
+    "height": 1920,
+    "alt": {
+      "zh": "梵高《梵高的椅子》1888，伦敦国家美术馆",
+      "en": "Vincent van Gogh, Van Gogh's Chair, 1888, The National Gallery, London"
+    }
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "梵高的椅子",
+      "en": "Van Gogh's Chair"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1888年11月",
+      "en": "November 1888"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下椅子、烟斗、箱子、墙、地面、门看介绍 · 点“两把椅子面对面”看两幅画 · 地上发光的圆点 = 梵高视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the chair, the pipe, the box, the wall, the floor or the door to learn more · Tap “Two chairs face to face” to see both paintings · The glowing circle = Van Gogh's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：站在椅子前面往下看。原画上传后会重新对准。",
+    "x": 0.1,
+    "z": 0.5,
+    "eye": 1.45,
+    "yaw": 0,
+    "pitch": -0.75,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“两把椅子面对面”：两幅画并排，白天 / 夜晚切换。两张图都放在 images/ 里。",
+    "type": "pair",
+    "label": {
+      "zh": "两把椅子面对面",
+      "en": "Two chairs face to face"
+    },
+    "modes": [
+      {
+        "id": "day",
+        "label": {
+          "zh": "白天",
+          "en": "Day"
+        }
+      },
+      {
+        "id": "night",
+        "label": {
+          "zh": "夜晚",
+          "en": "Night"
+        }
+      }
+    ],
+    "left": {
+      "image": "images/vangogh-chair.jpg",
+      "mode": "day",
+      "caption": {
+        "zh": "梵高的椅子 · 1888 · 伦敦国家美术馆",
+        "en": "Van Gogh's Chair · 1888 · The National Gallery, London"
+      }
+    },
+    "right": {
+      "image": "images/gauguin-chair.jpg",
+      "mode": "night",
+      "caption": {
+        "zh": "高更的椅子 · 1888 · 阿姆斯特丹梵高博物馆",
+        "en": "Gauguin's Chair · 1888 · Van Gogh Museum, Amsterdam"
+      }
+    },
+    "note": {
+      "zh": "两幅画原本设计为一对，一把朝右，一把朝左。",
+      "en": "The two paintings were designed as a pair: one chair faces right, the other left."
+    },
+    "credit": {
+      "zh": "《高更的椅子》图片：Wikimedia Commons，公有领域",
+      "en": "Gauguin's Chair image: Wikimedia Commons, public domain"
+    }
+  },
+  "sound": null,
+  "colors": {
+    "line": "#2b2a33",
+    "floor": "#c4583a",
+    "wall": "#8fc9c0",
+    "ceiling": "#e6e2d0",
+    "wood": "#d9a832",
+    "seat": "#e2c25a",
+    "door": "#3d6fb0",
+    "doorPanel": "#2f5a94",
+    "crate": "#c9a04a",
+    "onion": "#e8dcb0",
+    "sprout": "#5f9a3a",
+    "pipe": "#5a3a26",
+    "pouch": "#d8cfa8"
+  },
+  "room": {
+    "_说明": "房间形状（米）：黄房子里的一角。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront",
+    "height": 2.7,
+    "front": 1.0,
+    "left": -1.4,
+    "backLeft": [
+      -1.4,
+      -1.8
+    ],
+    "backRight": [
+      1.6,
+      -1.8
+    ],
+    "rightFront": [
+      1.6,
+      1.0
+    ],
+    "floorTex": "ground",
+    "floorCard": "daylight",
+    "wallCard": "wall"
+  },
+  "objects": [
+    {
+      "type": "chair",
+      "card": "simple",
+      "seat": 0.45,
+      "top": 0.95,
+      "_": "梵高的椅子",
+      "back": [
+        [
+          -0.3,
+          -0.85
+        ],
+        [
+          0.1,
+          -1.0
+        ]
+      ],
+      "front": [
+        [
+          -0.15,
+          -0.45
+        ],
+        [
+          0.25,
+          -0.6
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "pipe",
+      "x": 0.0,
+      "y": 0.48,
+      "z": -0.72,
+      "rot": 0.4,
+      "boxes": [
+        [
+          0.05,
+          0.06,
+          0.05,
+          "pipe",
+          0,
+          0.03,
+          0
+        ],
+        [
+          0.18,
+          0.015,
+          0.02,
+          "pipe",
+          0.1,
+          0.04,
+          0
+        ],
+        [
+          0.16,
+          0.04,
+          0.11,
+          "pouch",
+          -0.04,
+          0.02,
+          0.1,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "box",
+      "x": -1.0,
+      "z": -1.55,
+      "rot": 0.05,
+      "boxes": [
+        [
+          0.62,
+          0.18,
+          0.3,
+          "crate",
+          0,
+          0.09,
+          0
+        ],
+        [
+          0.07,
+          0.07,
+          0.07,
+          "onion",
+          -0.18,
+          0.2,
+          0
+        ],
+        [
+          0.07,
+          0.07,
+          0.07,
+          "onion",
+          0,
+          0.2,
+          0.02
+        ],
+        [
+          0.07,
+          0.07,
+          0.07,
+          "onion",
+          0.17,
+          0.2,
+          -0.02
+        ],
+        [
+          0.015,
+          0.14,
+          0.015,
+          "sprout",
+          -0.18,
+          0.3,
+          0
+        ],
+        [
+          0.015,
+          0.16,
+          0.015,
+          "sprout",
+          0,
+          0.31,
+          0.02
+        ],
+        [
+          0.015,
+          0.13,
+          0.015,
+          "sprout",
+          0.17,
+          0.3,
+          -0.02
+        ]
+      ]
+    },
+    {
+      "type": "door",
+      "card": "bedroom",
+      "wall": "right",
+      "z": -1.0,
+      "width": 0.8,
+      "height": 2.0
+    },
+    {
+      "type": "portalDoor",
+      "x": -0.8,
+      "z": 0.95,
+      "rot": 3.1416,
+      "w": 0.9,
+      "h": 2.1,
+      "portal": {
+        "scene": "yellow-house",
+        "href": "../yellow-house/",
+        "label": {
+          "zh": "回到黄房子",
+          "en": "Back to the Yellow House"
+        }
+      }
+    }
+  ],
+  "cards": {
+    "simple": {
+      "title": {
+        "zh": "简朴的椅子",
+        "en": "A simple chair"
+      },
+      "text": {
+        "zh": "一把草编座面的木椅，让人想起他早年在荷兰画过的农民椅子。",
+        "en": "A wooden chair with a straw seat, recalling the peasant chairs he painted in the Netherlands in the 1880s."
+      }
+    },
+    "pipe": {
+      "title": {
+        "zh": "烟斗和烟草袋",
+        "en": "Pipe and tobacco"
+      },
+      "text": {
+        "zh": "椅子上放着他的烟斗和烟草袋，也许代表简单的家常慰藉。父亲去世后不久，他曾画过父亲的烟斗。",
+        "en": "His pipe and tobacco pouch rest on the seat, perhaps simple, homely comforts. Shortly after his father died, he had sketched his father's pipe."
+      }
+    },
+    "box": {
+      "title": {
+        "zh": "签名的箱子",
+        "en": "The signed box"
+      },
+      "text": {
+        "zh": "椅子左后方有一个签着\"Vincent\"的矮箱子，里面像是发芽的洋葱。它的含义至今是个谜。",
+        "en": "Behind the chair is a low box signed \"Vincent\", holding what look like sprouting onions. Its meaning remains a mystery."
+      }
+    },
+    "wall": {
+      "title": {
+        "zh": "墙的颜色",
+        "en": "The wall"
+      },
+      "text": {
+        "zh": "真实的墙是刷白的，但他把它画成了浅蓝绿色，好衬托黄色的椅子。",
+        "en": "The real walls were whitewashed, but he painted them light turquoise to set off the yellow chair."
+      }
+    },
+    "daylight": {
+      "title": {
+        "zh": "白天",
+        "en": "Daylight"
+      },
+      "text": {
+        "zh": "他把自己的椅子画在明亮的白天里；高更的椅子则画在夜晚的灯光下。",
+        "en": "He painted his own chair in bright daylight; Gauguin's chair was painted at night, by lamplight."
+      }
+    },
+    "bedroom": {
+      "title": {
+        "zh": "卧室里的椅子",
+        "en": "In the bedroom"
+      },
+      "text": {
+        "zh": "卧室那幅画里，也有两把几乎一样的椅子。",
+        "en": "Two very similar chairs appear in The Bedroom."
+      },
+      "link": {
+        "scene": "bedroom",
+        "href": "../bedroom/",
+        "label": {
+          "zh": "去卧室看那两把椅子",
+          "en": "See the two chairs in the bedroom"
+        }
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/vangogh-chair.jpg",
+        "alt": {
+          "zh": "梵高《梵高的椅子》1888",
+          "en": "Vincent van Gogh, Van Gogh's Chair, 1888"
+        },
+        "caption": {
+          "zh": "1888年11月 · 伦敦国家美术馆",
+          "en": "November 1888 · The National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 两把椅子",
+          "en": "Two chairs"
+        },
+        "text": {
+          "zh": "1888年11月，高更来到阿尔勒不久，梵高画了两把椅子：一把是他自己的，一把是高更的。两幅画是一对。",
+          "en": "In November 1888, soon after Gauguin arrived in Arles, Van Gogh painted two chairs: his own, and Gauguin's. The two paintings were a pair."
+        }
+      },
+      {
+        "image": "images/gauguin-chair.jpg",
+        "alt": {
+          "zh": "梵高《高更的椅子》1888",
+          "en": "Vincent van Gogh, Gauguin's Chair, 1888"
+        },
+        "caption": {
+          "zh": "高更的椅子 · 1888 · 阿姆斯特丹梵高博物馆",
+          "en": "Gauguin's Chair · 1888 · Van Gogh Museum, Amsterdam"
+        },
+        "credit": {
+          "zh": "《高更的椅子》图片：Wikimedia Commons，公有领域",
+          "en": "Gauguin's Chair image: Wikimedia Commons, public domain"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 白天与夜晚",
+          "en": "Day and night"
+        },
+        "text": {
+          "zh": "他自己的椅子简朴，画在白天，用黄与蓝；高更的扶手椅优雅精致，画在夜晚的煤气灯下，用红与绿。这盏煤气灯，是他一个月前才装的，部分原因是想让高更愿意来南方。",
+          "en": "His own chair is plain, painted by day in yellow and blue. Gauguin's armchair is elegant, painted at night under gaslight, in red and green. He had installed the gaslight just a month earlier, partly to encourage Gauguin to come south."
+        }
+      },
+      {
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 分开的椅子",
+          "en": "Chairs apart"
+        },
+        "text": {
+          "zh": "一个月后，黄房子里的生活破碎了，高更离开了阿尔勒。今天，梵高的椅子在伦敦，高更的椅子在阿姆斯特丹。",
+          "en": "A month later, life in the Yellow House fell apart, and Gauguin left Arles. Today Van Gogh's chair is in London; Gauguin's is in Amsterdam."
+        }
+      }
+    ],
+    "final": {
+      "zh": "两把空椅子，一把在伦敦，一把在阿姆斯特丹。",
+      "en": "Two empty chairs: one in London, one in Amsterdam."
+    },
+    "versions": [
+      {
+        "image": "images/vangogh-chair.jpg",
+        "short": {
+          "zh": "1888 · 伦敦",
+          "en": "1888 · London"
+        },
+        "caption": {
+          "zh": "1888年11月 · 伦敦国家美术馆",
+          "en": "November 1888 · The National Gallery, London"
+        }
+      }
+    ],
+    "museums": [
+      "national-gallery",
+      "van-gogh-museum"
+    ],
+    "exit": [
+      {
+        "scene": "bedroom",
+        "label": {
+          "zh": "回到卧室",
+          "en": "Back to the bedroom"
+        },
+        "href": "../bedroom/"
+      },
+      {
+        "scene": "yellow-house",
+        "label": {
+          "zh": "回到黄房子",
+          "en": "Back to the Yellow House"
+        },
+        "href": "../yellow-house/"
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。空着的行不显示。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "梵高的椅子",
+      "en": "Van Gogh's Chair"
+    },
+    "date": {
+      "zh": "1888年11月，阿尔勒；1889年1月修改",
+      "en": "Arles, November 1888; reworked January 1889"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "91.8 × 73 cm",
+      "en": "91.8 × 73 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-van-gogh-s-chair"
+  },
+  "zoom": {
+    "image": "images/vangogh-chair.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：梵高的椅子",
+          "en": "The National Gallery: Van Gogh's Chair"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-van-gogh-s-chair"
+      },
+      {
+        "title": {
+          "zh": "The Art Newspaper：梵高的空椅子",
+          "en": "The Art Newspaper: the story of Van Gogh's empty chairs"
+        },
+        "url": "https://theartnewspaper.com/blog/the-story-of-van-gogh-s-empty-chairs"
+      },
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：向日葵（七个版本）",
+          "en": "The National Gallery: Sunflowers (the seven versions)"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/NG3863"
+      }
+    ]
+  },
+  "audioGuide": {
+    "zh": "",
+    "en": ""
+  }
+}
