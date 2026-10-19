@@ -132,7 +132,8 @@ export function sceneCard(R, s, opts = {}) {
   const pic = live && cover
     ? `<img src="${ROOT + cover}" ${altAttr(title)} loading="lazy" />`
     : `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
-  const inner = `<div class="pic">${pic}</div><div class="name">${bi(title)}</div>
+  const nameHTML = opts.bothTitle && title.zh && title.en && title.zh !== title.en ? `<span lang="zh-CN">${esc(title.zh)}</span> · <span lang="en">${esc(title.en)}</span>` : bi(title);
+  const inner = `<div class="pic">${pic}</div><div class="name${opts.bothTitle ? ' both' : ''}">${nameHTML}</div>
     <div class="meta">${meta}</div>${museum && !short ? `<div class="meta">${bi(museum.name)}</div>` : ''}`;
   const card = live ? `<a class="card" href="${sceneUrl(s)}">${inner}</a>` : `<div class="card is-soon">${inner}</div>`;
   const url = opts.workLink && (opts.artworkUrl ?? s.artworkUrl);
@@ -345,14 +346,14 @@ const PAGES = {
       main.innerHTML = `<div class="wrap page-title"><h1>${bi(a.name)}${a.dates ? `<small class="sub">${bi(a.dates)}</small>` : ''}</h1></div>
         <section class="section wrap">
           ${a.bio ? `<p class="lead">${bi(a.bio)}</p>` : ''}
-          ${rowsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true }) || LATER()}
+          ${scenesOf(R, 'artist', a.id).length ? cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true, bothTitle: true }) : LATER()}
           <p style="margin-top:28px"><a class="btn" href="${ROOT}artists/">← ${ui('所有画家', 'All artists')}</a></p></section>`;
       return;
     }
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按画家', 'By artist')}</h1></div>
-      <section class="section wrap">${R.artists.map(a => `
+      <section class="section wrap">${R.artists.filter(a => a.status !== 'planned').map(a => `
         <div class="group" id="${a.id}"><h3><a href="?id=${a.id}" style="text-decoration:none">${artistName(a)}</a></h3>
-        ${rowsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true }) || LATER()}</div>`).join('')}</section>`;
+        ${scenesOf(R, 'artist', a.id).length ? cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true, bothTitle: true }) : LATER()}</div>`).join('')}</section>`;
   },
 
   // ---------- 按主题 ----------
@@ -413,7 +414,7 @@ const PAGES = {
   museums(R, main) {
     const visit = m => m.url ? `<a class="btn" href="${m.url}" target="_blank" rel="noopener">${ui('参观官网', 'Visit website')} ↗</a>` : '';
     const id = param('id'), one = id && R.museumById[id];
-    const list = one ? [one] : R.museums;
+    const list = one ? [one] : R.museums.filter(m => museumItems(R, m.id).length);   // 没有任何作品（已开放或即将开放）的博物馆先不显示
     main.innerHTML = `<div class="wrap page-title"><h1>${one ? bi(one.name) : ui('按博物馆', 'By museum')}</h1></div>
       <section class="section wrap">${list.map(m => {
         const sc = museumItems(R, m.id);
