@@ -1,16 +1,16 @@
 {
-  "_说明": "梵高的椅子场景的全部内容。所有事实文字由 Tia 提供。房间、椅子、洋葱箱的位置是先大致摆的；原画 images/vangogh-chair.jpg 上传后会照着原画重新算准，然后打开 projection。",
+  "_说明": "梵高的椅子场景的全部内容。所有事实文字由 Tia 提供。墙、门、椅子、烟斗和洋葱箱的位置是从原画（624×800）按透视算出来的：画家的眼睛很低（约 1 米，像坐在椅子旁边），往下看着椅子。站在画家视角时，原画正好贴在这些形状上。",
   "id": "vangogh-chair",
   "painting": {
     "image": "images/vangogh-chair.jpg",
-    "width": 1530,
-    "height": 1920,
+    "width": 624,
+    "height": 800,
     "alt": {
       "zh": "梵高《梵高的椅子》1888，伦敦国家美术馆",
       "en": "Vincent van Gogh, Van Gogh's Chair, 1888, The National Gallery, London"
     }
   },
-  "projection": false,
+  "projection": true,
   "label": {
     "_说明": "展签：画名、画家、年份、收藏地",
     "title": {
@@ -39,68 +39,20 @@
     "en": "Step into the painting"
   },
   "hint": {
-    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下椅子、烟斗、箱子、墙、地面、门看介绍 · 点“两把椅子面对面”看两幅画 · 地上发光的圆点 = 梵高视角",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the chair, the pipe, the box, the wall, the floor or the door to learn more · Tap “Two chairs face to face” to see both paintings · The glowing circle = Van Gogh's viewpoint"
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下椅子、烟斗、箱子、墙、地面、门看介绍 · 地上发光的圆点 = 梵高视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the chair, the pipe, the box, the wall, the floor or the door to learn more · The glowing circle = Van Gogh's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：站在椅子前面往下看。原画上传后会重新对准。",
-    "x": 0.1,
-    "z": 0.5,
-    "eye": 1.45,
+    "_说明": "画家视角：眼睛约 1 米高，往下看着椅子。数字是照着 images/vangogh-chair.jpg 算出来的。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.0,
     "yaw": 0,
-    "pitch": -0.75,
+    "pitch": -0.6,
     "fov": 50,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
-    }
-  },
-  "exclusive": {
-    "_说明": "独家发现“两把椅子面对面”：两幅画并排，白天 / 夜晚切换。两张图都放在 images/ 里。",
-    "type": "pair",
-    "label": {
-      "zh": "两把椅子面对面",
-      "en": "Two chairs face to face"
-    },
-    "modes": [
-      {
-        "id": "day",
-        "label": {
-          "zh": "白天",
-          "en": "Day"
-        }
-      },
-      {
-        "id": "night",
-        "label": {
-          "zh": "夜晚",
-          "en": "Night"
-        }
-      }
-    ],
-    "left": {
-      "image": "images/vangogh-chair.jpg",
-      "mode": "day",
-      "caption": {
-        "zh": "梵高的椅子 · 1888 · 伦敦国家美术馆",
-        "en": "Van Gogh's Chair · 1888 · The National Gallery, London"
-      }
-    },
-    "right": {
-      "image": "images/gauguin-chair.jpg",
-      "mode": "night",
-      "caption": {
-        "zh": "高更的椅子 · 1888 · 阿姆斯特丹梵高博物馆",
-        "en": "Gauguin's Chair · 1888 · Van Gogh Museum, Amsterdam"
-      }
-    },
-    "note": {
-      "zh": "两幅画原本设计为一对，一把朝右，一把朝左。",
-      "en": "The two paintings were designed as a pair: one chair faces right, the other left."
-    },
-    "credit": {
-      "zh": "《高更的椅子》图片：Wikimedia Commons，公有领域",
-      "en": "Gauguin's Chair image: Wikimedia Commons, public domain"
     }
   },
   "sound": null,
@@ -121,19 +73,19 @@
   },
   "room": {
     "_说明": "房间形状（米）：黄房子里的一角。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront",
-    "height": 2.7,
+    "height": 2.6,
     "front": 1.0,
-    "left": -1.4,
+    "left": -1.5,
     "backLeft": [
-      -1.4,
-      -1.8
+      -1.5,
+      -2.057
     ],
     "backRight": [
-      1.6,
-      -1.8
+      1.5,
+      -0.866
     ],
     "rightFront": [
-      1.6,
+      1.5,
       1.0
     ],
     "floorTex": "ground",
@@ -144,37 +96,37 @@
     {
       "type": "chair",
       "card": "simple",
-      "seat": 0.45,
-      "top": 0.95,
+      "seat": 0.53,
+      "top": 0.82,
       "_": "梵高的椅子",
       "back": [
         [
-          -0.3,
-          -0.85
+          -0.226,
+          -0.839
         ],
         [
-          0.1,
-          -1.0
+          0.053,
+          -0.975
         ]
       ],
       "front": [
         [
-          -0.15,
-          -0.45
+          -0.105,
+          -0.612
         ],
         [
-          0.25,
-          -0.6
+          0.272,
+          -0.821
         ]
       ]
     },
     {
       "type": "boxes",
       "card": "pipe",
-      "x": 0.0,
-      "y": 0.48,
-      "z": -0.72,
-      "rot": 0.4,
+      "x": -0.049,
+      "y": 0.53,
+      "z": -0.687,
+      "rot": -0.3,
       "boxes": [
         [
           0.05,
@@ -209,17 +161,17 @@
     {
       "type": "boxes",
       "card": "box",
-      "x": -1.0,
-      "z": -1.55,
-      "rot": 0.05,
+      "x": -0.8,
+      "z": -1.6,
+      "rot": -0.378,
       "boxes": [
         [
           0.62,
-          0.18,
-          0.3,
+          0.23,
+          0.25,
           "crate",
           0,
-          0.09,
+          0.115,
           0
         ],
         [
@@ -228,7 +180,7 @@
           0.07,
           "onion",
           -0.18,
-          0.2,
+          0.25,
           0
         ],
         [
@@ -237,7 +189,7 @@
           0.07,
           "onion",
           0,
-          0.2,
+          0.25,
           0.02
         ],
         [
@@ -246,7 +198,7 @@
           0.07,
           "onion",
           0.17,
-          0.2,
+          0.25,
           -0.02
         ],
         [
@@ -255,7 +207,7 @@
           0.015,
           "sprout",
           -0.18,
-          0.3,
+          0.35,
           0
         ],
         [
@@ -264,7 +216,7 @@
           0.015,
           "sprout",
           0,
-          0.31,
+          0.36,
           0.02
         ],
         [
@@ -273,7 +225,7 @@
           0.015,
           "sprout",
           0.17,
-          0.3,
+          0.35,
           -0.02
         ]
       ]
@@ -281,10 +233,11 @@
     {
       "type": "door",
       "card": "bedroom",
-      "wall": "right",
-      "z": -1.0,
+      "wall": "back",
+      "z": 0,
       "width": 0.8,
-      "height": 2.0
+      "height": 2.0,
+      "x": 0.66
     },
     {
       "type": "portalDoor",
@@ -397,19 +350,6 @@
         }
       },
       {
-        "image": "images/gauguin-chair.jpg",
-        "alt": {
-          "zh": "梵高《高更的椅子》1888",
-          "en": "Vincent van Gogh, Gauguin's Chair, 1888"
-        },
-        "caption": {
-          "zh": "高更的椅子 · 1888 · 阿姆斯特丹梵高博物馆",
-          "en": "Gauguin's Chair · 1888 · Van Gogh Museum, Amsterdam"
-        },
-        "credit": {
-          "zh": "《高更的椅子》图片：Wikimedia Commons，公有领域",
-          "en": "Gauguin's Chair image: Wikimedia Commons, public domain"
-        },
         "kicker": "ACT II",
         "title": {
           "zh": "第二幕 · 白天与夜晚",
@@ -450,8 +390,7 @@
       }
     ],
     "museums": [
-      "national-gallery",
-      "van-gogh-museum"
+      "national-gallery"
     ],
     "exit": [
       {
@@ -531,5 +470,71 @@
   "audioGuide": {
     "zh": "",
     "en": ""
+  },
+  "_待上传": {
+    "_说明": "《高更的椅子》images/gauguin-chair.jpg 上传后，把 exclusive 和第二幕的图片放回去",
+    "exclusive": {
+      "_说明": "独家发现“两把椅子面对面”：两幅画并排，白天 / 夜晚切换。两张图都放在 images/ 里。",
+      "type": "pair",
+      "label": {
+        "zh": "两把椅子面对面",
+        "en": "Two chairs face to face"
+      },
+      "modes": [
+        {
+          "id": "day",
+          "label": {
+            "zh": "白天",
+            "en": "Day"
+          }
+        },
+        {
+          "id": "night",
+          "label": {
+            "zh": "夜晚",
+            "en": "Night"
+          }
+        }
+      ],
+      "left": {
+        "image": "images/vangogh-chair.jpg",
+        "mode": "day",
+        "caption": {
+          "zh": "梵高的椅子 · 1888 · 伦敦国家美术馆",
+          "en": "Van Gogh's Chair · 1888 · The National Gallery, London"
+        }
+      },
+      "right": {
+        "image": "images/gauguin-chair.jpg",
+        "mode": "night",
+        "caption": {
+          "zh": "高更的椅子 · 1888 · 阿姆斯特丹梵高博物馆",
+          "en": "Gauguin's Chair · 1888 · Van Gogh Museum, Amsterdam"
+        }
+      },
+      "note": {
+        "zh": "两幅画原本设计为一对，一把朝右，一把朝左。",
+        "en": "The two paintings were designed as a pair: one chair faces right, the other left."
+      },
+      "credit": {
+        "zh": "《高更的椅子》图片：Wikimedia Commons，公有领域",
+        "en": "Gauguin's Chair image: Wikimedia Commons, public domain"
+      }
+    },
+    "act2": {
+      "image": "images/gauguin-chair.jpg",
+      "alt": {
+        "zh": "梵高《高更的椅子》1888",
+        "en": "Vincent van Gogh, Gauguin's Chair, 1888"
+      },
+      "caption": {
+        "zh": "高更的椅子 · 1888 · 阿姆斯特丹梵高博物馆",
+        "en": "Gauguin's Chair · 1888 · Van Gogh Museum, Amsterdam"
+      },
+      "credit": {
+        "zh": "《高更的椅子》图片：Wikimedia Commons，公有领域",
+        "en": "Gauguin's Chair image: Wikimedia Commons, public domain"
+      }
+    }
   }
 }

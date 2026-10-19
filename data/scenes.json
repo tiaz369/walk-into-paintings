@@ -146,11 +146,10 @@
     { "id": "caillebotte-paris-street", "status": "planned", "title": { "zh": "巴黎街道，雨天", "en": "Paris Street; Rainy Day" }, "artist": "caillebotte", "year": "1877", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": ["umbrellas", "streets"], "period": "impressionism", "artworkUrl": "" },
     { "id": "manet-folies-bergere", "status": "planned", "title": { "zh": "女神游乐厅的吧台", "en": "A Bar at the Folies-Bergère" }, "artist": "manet", "year": "1882", "museum": "courtauld", "collection": null, "version": null, "place": null, "themes": ["cafes", "london"], "period": "impressionism", "artworkUrl": "" },
     {
-      "_说明": "原画 images/vangogh-chair.jpg 上传并对准后，把 status 改成 live",
-      "id": "vangogh-chair", "status": "soon", "week": 5, "path": "scenes/vangogh-chair/", "cover": "scenes/vangogh-chair/images/vangogh-chair.jpg",
+      "id": "vangogh-chair", "status": "live", "week": 5, "path": "scenes/vangogh-chair/", "cover": "scenes/vangogh-chair/images/vangogh-chair.jpg",
       "title": { "zh": "梵高的椅子", "en": "Van Gogh's Chair" },
       "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles",
-      "version": "full", "place": null, "themes": ["rooms", "london"], "period": "post-impressionism", "added": "2026-10-18",
+      "version": "full", "place": "arles", "themes": ["rooms", "london"], "period": "post-impressionism", "added": "2026-10-18",
       "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-van-gogh-s-chair",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },

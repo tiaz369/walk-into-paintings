@@ -413,7 +413,7 @@ function run(S, R, meta) {
       if (o.id) named[o.id] = g;
     },
     door(o) {
-      const f = wallFrame(o.wall, 0, o.z), g = group(f.pos[0], 0, f.pos[1], f.rot, o.card), w = o.width, h = o.height;
+      const f = wallFrame(o.wall, o.x || 0, o.z), g = group(f.pos[0], 0, f.pos[1], f.rot, o.card), w = o.width, h = o.height;   // 后墙上的门可以用 x 指定位置
       box(w, h, 0.05, C.door, 0, h / 2, 0, g);
       box(w * 0.75, h * 0.38, 0.02, C.doorPanel || '#9a7dbd', 0, h * 0.7, 0.035, g);
       box(w * 0.75, h * 0.34, 0.02, C.doorPanel || '#9a7dbd', 0, h * 0.27, 0.035, g);
