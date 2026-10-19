@@ -6,7 +6,7 @@
 - The Art Newspaper：https://theartnewspaper.com/blog/the-story-of-van-gogh-s-empty-chairs
 - 伦敦国家美术馆（向日葵七个版本）：https://www.nationalgallery.org.uk/paintings/NG3863
 - 作品页：https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-van-gogh-s-chair
-- 图片：Wikimedia Commons，公有领域
+- 图片：《梵高的椅子》Wikimedia Commons，公有领域；《高更的椅子》阿姆斯特丹梵高博物馆官网（文森特·梵高基金会）
 
 ## Tia 整理的资料
 

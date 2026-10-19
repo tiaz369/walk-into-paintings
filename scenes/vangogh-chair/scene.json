@@ -39,8 +39,8 @@
     "en": "Step into the painting"
   },
   "hint": {
-    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下椅子、烟斗、箱子、墙、地面、门看介绍 · 地上发光的圆点 = 梵高视角",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the chair, the pipe, the box, the wall, the floor or the door to learn more · The glowing circle = Van Gogh's viewpoint"
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下椅子、烟斗、箱子、墙、地面、门看介绍 · 点“两把椅子面对面”看两幅画 · 地上发光的圆点 = 梵高视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the chair, the pipe, the box, the wall, the floor or the door to learn more · Tap “Two chairs face to face” to see both paintings · The glowing circle = Van Gogh's viewpoint"
   },
   "viewpoint": {
     "_说明": "画家视角：眼睛约 1 米高，往下看着椅子。数字是照着 images/vangogh-chair.jpg 算出来的。",
@@ -350,6 +350,19 @@
         }
       },
       {
+        "image": "images/gauguin-chair.jpg",
+        "alt": {
+          "zh": "梵高《高更的椅子》1888",
+          "en": "Vincent van Gogh, Gauguin's Chair, 1888"
+        },
+        "caption": {
+          "zh": "高更的椅子 · 1888 · 阿姆斯特丹梵高博物馆",
+          "en": "Gauguin's Chair · 1888 · Van Gogh Museum, Amsterdam"
+        },
+        "credit": {
+          "zh": "《高更的椅子》图片：阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+          "en": "Gauguin's Chair image: Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+        },
         "kicker": "ACT II",
         "title": {
           "zh": "第二幕 · 白天与夜晚",
@@ -390,7 +403,8 @@
       }
     ],
     "museums": [
-      "national-gallery"
+      "national-gallery",
+      "van-gogh-museum"
     ],
     "exit": [
       {
@@ -471,70 +485,52 @@
     "zh": "",
     "en": ""
   },
-  "_待上传": {
-    "_说明": "《高更的椅子》images/gauguin-chair.jpg 上传后，把 exclusive 和第二幕的图片放回去",
-    "exclusive": {
-      "_说明": "独家发现“两把椅子面对面”：两幅画并排，白天 / 夜晚切换。两张图都放在 images/ 里。",
-      "type": "pair",
-      "label": {
-        "zh": "两把椅子面对面",
-        "en": "Two chairs face to face"
-      },
-      "modes": [
-        {
-          "id": "day",
-          "label": {
-            "zh": "白天",
-            "en": "Day"
-          }
-        },
-        {
-          "id": "night",
-          "label": {
-            "zh": "夜晚",
-            "en": "Night"
-          }
-        }
-      ],
-      "left": {
-        "image": "images/vangogh-chair.jpg",
-        "mode": "day",
-        "caption": {
-          "zh": "梵高的椅子 · 1888 · 伦敦国家美术馆",
-          "en": "Van Gogh's Chair · 1888 · The National Gallery, London"
+  "exclusive": {
+    "_说明": "独家发现“两把椅子面对面”：两幅画并排，白天 / 夜晚切换。两张图都放在 images/ 里。",
+    "type": "pair",
+    "label": {
+      "zh": "两把椅子面对面",
+      "en": "Two chairs face to face"
+    },
+    "modes": [
+      {
+        "id": "day",
+        "label": {
+          "zh": "白天",
+          "en": "Day"
         }
       },
-      "right": {
-        "image": "images/gauguin-chair.jpg",
-        "mode": "night",
-        "caption": {
-          "zh": "高更的椅子 · 1888 · 阿姆斯特丹梵高博物馆",
-          "en": "Gauguin's Chair · 1888 · Van Gogh Museum, Amsterdam"
+      {
+        "id": "night",
+        "label": {
+          "zh": "夜晚",
+          "en": "Night"
         }
-      },
-      "note": {
-        "zh": "两幅画原本设计为一对，一把朝右，一把朝左。",
-        "en": "The two paintings were designed as a pair: one chair faces right, the other left."
-      },
-      "credit": {
-        "zh": "《高更的椅子》图片：Wikimedia Commons，公有领域",
-        "en": "Gauguin's Chair image: Wikimedia Commons, public domain"
+      }
+    ],
+    "left": {
+      "image": "images/vangogh-chair.jpg",
+      "mode": "day",
+      "caption": {
+        "zh": "梵高的椅子 · 1888 · 伦敦国家美术馆",
+        "en": "Van Gogh's Chair · 1888 · The National Gallery, London"
       }
     },
-    "act2": {
+    "right": {
       "image": "images/gauguin-chair.jpg",
-      "alt": {
-        "zh": "梵高《高更的椅子》1888",
-        "en": "Vincent van Gogh, Gauguin's Chair, 1888"
-      },
+      "mode": "night",
       "caption": {
         "zh": "高更的椅子 · 1888 · 阿姆斯特丹梵高博物馆",
         "en": "Gauguin's Chair · 1888 · Van Gogh Museum, Amsterdam"
-      },
-      "credit": {
-        "zh": "《高更的椅子》图片：Wikimedia Commons，公有领域",
-        "en": "Gauguin's Chair image: Wikimedia Commons, public domain"
       }
+    },
+    "note": {
+      "zh": "两幅画原本设计为一对，一把朝右，一把朝左。",
+      "en": "The two paintings were designed as a pair: one chair faces right, the other left."
+    },
+    "credit": {
+      "zh": "《高更的椅子》图片：阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+      "en": "Gauguin's Chair image: Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
     }
   }
 }
