@@ -53,14 +53,17 @@ walk-into-paintings/
    - `record`：作品档案表（画家生卒年、画名、年份、材质、尺寸、收藏地、博物馆作品页）。空着的格子显示“待补充”
    - `zoom`：细节放大用的图片（默认就是原画）
    - `reading`：页面最底部的“延伸阅读与来源”，每条写 `title`（中英文）和 `url`
-   - `audioGuide`：语音导览录音文件（`zh` / `en`）。空着时按钮不显示
+   - `audioGuide`：语音导览。录音放进 `audio/guide-zh.mp3`、`audio/guide-en.mp3`，没有录音时按钮不显示；`transcript` 是文字稿
+   - `sound`：环境音的种类（见 `assets/sound.js` 里的 `AMBIENCE`）；`music`：音乐（只用 CC0 / 公有领域录音，`src` 空着时不显示开关）
 4. **`index.html` 不用手动改**：第 7 步的 `tools/build.py` 会自动生成（网页标题和分享预览来自 `scene.json` 的 `label`；想自己写，就在 `scene.json` 里加 `seo`，见卧室的例子）。
 5. **在登记表登记**：打开 `data/scenes.json`，找到 `yellow-house` 这一条：
    - `status` 改成 `live`
    - 加上 `"path": "scenes/yellow-house/"` 和 `"cover": "scenes/yellow-house/images/封面图.jpg"`
-   - 填上 `added`（上线日期，首页“本周新作”按这个排序）、`themes`、`period`
+   - 填上 `added`（上线日期，首页“最新开放”按这个排序）、`themes`、`moods`（心情）、`period`、`place`；在伦敦国家美术馆展出的，加 `onDisplay` 和 `room`
 6. **填资料来源**：在 `sources.md` 里写下每条事实的出处。
-7. **运行 `python3 tools/build.py`**：把新场景的文字写进网页、更新 sitemap（Claude Code 会帮你运行）。
+7. **重新生成静态网页**：运行 `python3 tools/build.py`（Claude Code 会帮你运行）。
+   它根据 `data/scenes.json` 和每个 `scene.json`，重新生成所有浏览页（画家、主题、时期、心情、博物馆、地图、时间线）、场景页、sitemap 和 404 的静态 HTML（不运行 JavaScript 时看到的内容，也是搜索引擎读到的内容），规则和 JavaScript 版完全一样（比如即将开放最多 3 个、计划中的作品不显示、没有作品的博物馆不显示）。
+   **就算忘了这一步也没关系**：合并到 `main` 之后，GitHub 会自动运行它（`.github/workflows/build.yml`），一两分钟后把更新好的网页提交回 `main`。直接在 GitHub 网页上改 `data/scenes.json` 也一样。
 8. **上线前检查**（来自网站蓝图的“内容与版权规则”）：公有领域、图片来源已注明、文字由 Tia 提供并核对、解读性内容标明“有人认为”、中英文都检查过。
 
 首页、系列页、浏览页和地图会自动出现新场景，不用改它们。
@@ -88,6 +91,5 @@ python3 -m http.server 8000
 
 ## 访问统计（GoatCounter）
 
-1. 在 https://www.goatcounter.com 免费注册，选一个代码（比如 `walkintopaintings`）
-2. 打开 `assets/site.js`，找到 `export const GOATCOUNTER = '';`，在引号里填上代码
-3. 以后在 `https://你的代码.goatcounter.com` 看访问量
+已经开通：https://walkintopaintings.goatcounter.com 。统计代码由 `tools/build.py` 写在每一页的 `</body>` 前面。
+除了访问量，还会记录这些事件（在后台的列表里看）：`enter-scene-场景名`（打开场景）、`step-inside-`（走进画里）、`found-3-`（发现 3 处）、`ending-`（看故事结局）、`see-real-`（点“去现场看真迹”）、`surprise-me`（今天看哪幅）、`audio-`（听语音导览）。

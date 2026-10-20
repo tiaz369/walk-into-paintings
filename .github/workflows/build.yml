@@ -1,0 +1,41 @@
+# 走进名画 · 自动重新生成静态网页
+# data/、scene.json 或 tools/build.py 有改动并合并到 main 之后，自动运行 tools/build.py，
+# 把重新生成的网页（画家、主题、时期、心情、博物馆、地图、时间线、场景页、sitemap）提交回 main。
+# 这样即使直接在 GitHub 网页上改了 data/scenes.json，不运行 JavaScript 时看到的内容也会跟着更新。
+name: Rebuild static pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/**'
+      - 'scenes/**/scene.json'
+      - 'tools/build.py'
+  workflow_dispatch:   # 也可以在 GitHub 的 Actions 页面手动点 “Run workflow”
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rebuild-static
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Build
+        run: python3 tools/build.py
+      - name: Commit the rebuilt pages (only if something changed)
+        run: |
+          git add -A
+          # 只有 sitemap 的日期变了，就不提交
+          if git diff --cached --quiet -- . ':(exclude)sitemap.xml'; then echo "Static pages already up to date"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Rebuild static pages from data"
+          git push
