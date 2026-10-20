@@ -108,6 +108,7 @@
       "text": { "zh": "仔细看，画里几乎没有阴影。梵高故意用平涂的颜色，像日本浮世绘那样。", "en": "There are almost no shadows. Van Gogh used flat colour, like Japanese prints." }
     },
     "window": {
+      "letter": { "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。", "url": "" },
       "title": { "zh": "窗户", "en": "Window" },
       "text": { "zh": "梵高在给弟弟提奥的信里，把房间的颜色一一写了下来，其中窗户是绿色的。他说，在这幅画里，颜色要承担一切。", "en": "In a letter to his brother Theo, Van Gogh listed the room's colours, including a green window. Here, he said, colour was to do everything." }
     },
@@ -123,7 +124,7 @@
       { "image": "images/v1888.jpg", "alt": { "zh": "梵高《阿尔勒的卧室》1888", "en": "Vincent van Gogh, The Bedroom, 1888" },
         "caption": { "zh": "1888年10月 · 阿姆斯特丹梵高博物馆", "en": "October 1888 · Van Gogh Museum, Amsterdam" },
         "kicker": "ACT I", "title": { "zh": "第一幕 · 期待", "en": "Anticipation" },
-        "text": { "zh": "1888年秋，梵高租下阿尔勒的黄房子，梦想在这里建立画家们共同生活的\"南方画室\"。他画下自己的卧室，等待高更到来。", "en": "In autumn 1888, Van Gogh rented the Yellow House in Arles, dreaming of a \"Studio of the South\" where artists would live together. He painted his bedroom while waiting for Gauguin." } },
+        "text": { "zh": "1888年秋，梵高住进阿尔勒的黄房子，梦想在这里建立画家们共同生活的\"南方画室\"。他画下自己的卧室，等待高更到来。", "en": "In autumn 1888, Van Gogh moved into the Yellow House in Arles, dreaming of a \"Studio of the South\" where artists would live together. He painted his bedroom while waiting for Gauguin." } },
       { "image": "images/v1889-chicago.jpg", "alt": { "zh": "梵高《阿尔勒的卧室》1889 · 芝加哥", "en": "Vincent van Gogh, The Bedroom, 1889 · Chicago" },
         "caption": { "zh": "1889年9月 · 芝加哥艺术博物馆", "en": "September 1889 · Art Institute of Chicago" },
         "kicker": "ACT II", "title": { "zh": "第二幕 · 破碎", "en": "Shattered" },
@@ -186,8 +187,8 @@
           "en": "Anticipation"
         },
         "text": {
-          "zh": "1888年秋，梵高租下阿尔勒的黄房子，梦想在这里建立画家们共同生活的\"南方画室\"。他画下自己的卧室，等待高更到来。",
-          "en": "In autumn 1888, Van Gogh rented the Yellow House in Arles, dreaming of a \"Studio of the South\" where artists would live together. He painted his bedroom while waiting for Gauguin."
+          "zh": "1888年秋，梵高住进阿尔勒的黄房子，梦想在这里建立画家们共同生活的\"南方画室\"。他画下自己的卧室，等待高更到来。",
+          "en": "In autumn 1888, Van Gogh moved into the Yellow House in Arles, dreaming of a \"Studio of the South\" where artists would live together. He painted his bedroom while waiting for Gauguin."
         }
       },
       {

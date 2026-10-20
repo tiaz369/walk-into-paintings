@@ -142,7 +142,7 @@
       "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles",
       "version": "light", "place": "arles", "themes": ["gardens", "london"], "period": "post-impressionism", "added": "2026-10-18",
       "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-sunflowers",
-      "room": "43",
+      "onDisplay": true, "room": "43",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     { "id": "milkmaid",            "status": "soon", "week": 5,  "title": { "zh": "倒牛奶的女仆", "en": "The Milkmaid" },    "artist": "vermeer", "year": { "zh": "约1660", "en": "c. 1660" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": null, "themes": [], "period": "dutch-golden-age" },
@@ -163,7 +163,7 @@
       "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles",
       "version": "full", "place": "arles", "themes": ["rooms", "london"], "period": "post-impressionism", "added": "2026-10-18",
       "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-van-gogh-s-chair",
-      "room": "43",
+      "onDisplay": true, "room": "43",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     { "id": "gauguin-chair", "status": "planned", "title": { "zh": "高更的椅子", "en": "Gauguin's Chair" }, "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles", "version": null, "place": null, "themes": ["rooms"], "period": "post-impressionism", "artworkUrl": "" },

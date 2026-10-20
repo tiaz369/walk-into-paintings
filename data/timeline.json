@@ -1,5 +1,5 @@
 {
-  "_说明": "梵高时间线（/timeline/）。文字由 Tia 提供。scenes 写场景 id：已上线的显示缩略图、可以点进去；还没上线的不显示。写成 { \"id\": 场景, \"version\": 博物馆 id } 时，用这个场景 alsoAt 里那家博物馆的版本的图和名字。",
+  "_说明": "梵高时间线（/timeline/）。文字由 Tia 提供。scenes 写场景 id：已上线的显示缩略图、可以点进去；还没上线的不显示。写成 { \"id\": 场景, \"version\": 博物馆 id } 时，用这个场景 alsoAt 里那家博物馆的版本的图和名字。 英文里用 *星号* 包住的是画名，会显示成斜体。",
   "title": {
     "zh": "梵高时间线",
     "en": "Van Gogh timeline"
@@ -52,8 +52,8 @@
         "en": "May 1888"
       },
       "text": {
-        "zh": "租下黄房子",
-        "en": "Rents the Yellow House"
+        "zh": "租下黄房子的四个房间",
+        "en": "Rents four rooms in the Yellow House"
       },
       "scenes": [
         "yellow-house"
@@ -66,7 +66,7 @@
       },
       "text": {
         "zh": "画向日葵，为高更布置客房",
-        "en": "Paints sunflowers and prepares the guest room for Gauguin"
+        "en": "Paints *Sunflowers* to decorate the guest room for Gauguin"
       },
       "scenes": [
         "sunflowers"
@@ -78,8 +78,18 @@
         "en": "September 1888"
       },
       "text": {
+        "zh": "住进黄房子",
+        "en": "Moves into the Yellow House"
+      }
+    },
+    {
+      "date": {
+        "zh": "1888年9月",
+        "en": "September 1888"
+      },
+      "text": {
         "zh": "夜间咖啡馆、夜晚露天咖啡座、罗纳河上的星夜",
-        "en": "The Night Café, Café Terrace at Night, Starry Night over the Rhône"
+        "en": "Paints *The Night Café*, *Café Terrace at Night* and *Starry Night over the Rhône*"
       },
       "scenes": [
         "night-cafe",
@@ -94,7 +104,7 @@
       },
       "text": {
         "zh": "画下卧室；高更到来",
-        "en": "Paints the Bedroom; Gauguin arrives"
+        "en": "Paints *The Bedroom*; Gauguin arrives"
       },
       "scenes": [
         "bedroom"
@@ -107,7 +117,7 @@
       },
       "text": {
         "zh": "画下两把椅子",
-        "en": "Paints the two chairs"
+        "en": "Paints *Van Gogh's Chair* and *Gauguin's Chair*"
       },
       "scenes": [
         "vangogh-chair"
@@ -135,16 +145,29 @@
     },
     {
       "date": {
-        "zh": "1889年夏",
-        "en": "Summer 1889"
+        "zh": "1889年6–7月",
+        "en": "June–July 1889"
       },
       "text": {
-        "zh": "麦田与柏树；重画卧室",
-        "en": "A Wheatfield, with Cypresses; paints the Bedroom again"
+        "zh": "在麦田边画下《麦田与柏树》习作（现藏大都会）",
+        "en": "Paints a study of *A Wheatfield, with Cypresses* on site (now at the Met)"
+      }
+    },
+    {
+      "date": {
+        "zh": "1889年9月",
+        "en": "September 1889"
+      },
+      "text": {
+        "zh": "完成《麦田与柏树》定稿；重画卧室",
+        "en": "Completes *A Wheatfield, with Cypresses*; paints *The Bedroom* again"
       },
       "scenes": [
         "wheatfield-cypresses",
-        { "id": "bedroom", "version": "art-institute-chicago" }
+        {
+          "id": "bedroom",
+          "version": "art-institute-chicago"
+        }
       ]
     },
     {

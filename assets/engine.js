@@ -9,7 +9,7 @@
 // 这个文件只负责“怎么做”，不放任何某一幅画的文字。
 // =====================================================================
 import * as THREE from 'three';
-import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, ROOT } from './site.js';
+import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, oneMinuteHTML, oneMinute, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 
 export async function startScene(sceneUrl) {
@@ -107,6 +107,7 @@ function buildDOM(S, R, meta) {
     <div id="introMissing" class="hidden">${missing(P.image)}</div>
     <div id="introBottom">
       <button id="enter" class="btn primary"><span class="zh">${S.enter.zh}</span><span class="en">${S.enter.en}</span></button>
+      ${oneMinuteHTML()}
       <div id="introInfo" class="panel"><div class="lbl">${bi(labelLine, ' / ')}</div><div>${imgLine}</div></div>
     </div>
   </div>
@@ -185,6 +186,7 @@ function buildDOM(S, R, meta) {
     <p id="cardZh" class="zh"></p>
     <p class="en" id="cardEn"></p>
     <p id="cardLinkP" class="hidden"><a id="cardLink" class="btn"></a></p>
+    <p id="cardLetterP" class="hidden"><a id="cardLetter" class="work-link" target="_blank" rel="noopener">${ui('读原信', 'Read the letter')} ↗</a></p>
   </div>
 
   <div id="zoom" class="hidden" role="dialog" aria-label="Zoom">
@@ -216,8 +218,8 @@ function buildDOM(S, R, meta) {
       ${hasRecord ? `<div class="section-title">${ui('作品档案', 'Artwork record')}<small class="en-sub">Artwork record</small></div>${recordHTML()}` : ''}
       <p class="zoom-row"><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button></p>
       ${artistHTML}
-      <div class="section-title">${ui('去看真迹', 'See the real paintings')}<small class="en-sub">See the real paintings</small></div>
-      <div class="links">${museumLinks}</div>
+      <div class="section-title">${ui('去现场看真迹', 'See it in person')}<small class="en-sub">See it in person</small></div>
+      <div class="links">${seeInPersonHTML(R, meta) || museumLinks}</div>
       ${nextHTML}
       <div class="end-actions">
         ${[].concat(E.exit || []).filter(x => isLive(x.scene)).map(x => `<a class="btn primary" href="${x.href}">${ui(x.label.zh, x.label.en)} →</a>`).join('')}
@@ -828,6 +830,9 @@ function run(S, R, meta) {
     $('cardLinkP').classList.toggle('hidden', !linkOn);
     if (t.link) { $('cardLink').href = t.link.href; $('cardLink').innerHTML = ui(t.link.label.zh, t.link.label.en) + ' →'; }
     if (constGroup && key === constObj.card) constGroup.visible = true;   // 星空连线
+    const letter = t.letter && t.letter.url;   // 卡片引用了书信：“读原信”链接到 vangoghletters.org
+    $('cardLetterP').classList.toggle('hidden', !letter);
+    if (letter) $('cardLetter').href = letter;
     card.style.display = 'block';
     found.add(key); updateProgress();
   }
@@ -1041,6 +1046,7 @@ function run(S, R, meta) {
   camera.fov = paintingRect().fov; camera.updateProjectionMatrix();
   let introT = -1;
   $('enter').onclick = () => { intro.classList.add('fade'); introT = 0; };
+  oneMinute($('oneMin'));   // 一分钟看一幅画（可选）
   function finishIntro() {
     intro.style.display = 'none'; walking = true;
     document.body.classList.add('in-room'); hint.style.opacity = 1;

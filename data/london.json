@@ -1,5 +1,5 @@
 {
-  "_说明": "“在伦敦看真迹”参观路线（/london/）的文字（Tia 提供）。作品列表自动从 data/scenes.json 里取：收藏在 museum 这家博物馆、onDisplay 不是 false、写了展厅号 room 的作品，按展厅分组。",
+  "_说明": "“在伦敦看真迹”参观路线（/london/）的文字（Tia 提供）。作品列表自动从 data/scenes.json 里取：收藏在 museum 这家博物馆、onDisplay 为 true、写了展厅号 room 的作品，按展厅分组。",
   "museum": "national-gallery",
   "title": {
     "zh": "在伦敦看真迹",
