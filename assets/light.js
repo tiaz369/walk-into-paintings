@@ -11,6 +11,7 @@
 // =====================================================================
 import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
+import { setupSound } from './sound.js';
 
 export async function startLight(sceneUrl) {
   removeStatic();
@@ -84,6 +85,9 @@ function buildDOM(S, R, meta) {
   <div id="status" class="ui">
     <div id="progress" class="panel"></div>
     <div id="leftHint" class="panel hidden"></div>
+    <button class="btn hidden" id="ambBtn"></button>
+    <button class="btn hidden" id="musBtn"></button>
+    <div id="musInfo" class="panel hidden"></div>
     <button class="btn hidden" id="audioBtn"></button>
     <div id="guideBox" class="panel guide hidden"></div>
     <button class="btn primary hidden" id="endBtn">${ui('继续看故事', 'Continue the story')} →</button>
@@ -251,7 +255,8 @@ function run(S, R) {
     const el = popups[name]; el.style.display = (show ?? el.style.display !== 'block') ? 'block' : 'none';
   }
   $('compareBtn').onclick = () => togglePopup('compare');
-  setupGuide(S, { btn: $('audioBtn'), box: $('guideBox') });   // 语音导览（有录音才显示）
+  const sound = setupSound(S, { ambBtn: $('ambBtn'), musBtn: $('musBtn'), info: $('musInfo') });   // 环境音、音乐（都默认关闭）
+  setupGuide(S, { btn: $('audioBtn'), box: $('guideBox'), duck: on => sound.guide(on) });   // 语音导览（有录音才显示）
   if ($('mapBtn')) $('mapBtn').onclick = () => togglePopup('where');
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => togglePopup(b.dataset.close, false));
 

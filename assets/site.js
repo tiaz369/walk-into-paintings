@@ -206,7 +206,7 @@ const capSoon = list => { let n = 0; return list.filter(x => ((x.s || x).status 
 const NAV = [
   ['', '首页', 'Home'],
   ['artists/', '画家', 'Artists'], ['themes/', '主题', 'Themes'], ['periods/', '时期', 'Periods'],
-  ['map/', '地图', 'Map'], ['museums/', '博物馆', 'Museums'], ['timeline/', '梵高时间线', 'Van Gogh timeline'], ['about/', '关于', 'About']
+  ['map/', '地图', 'Map'], ['museums/', '博物馆', 'Museums'], ['timeline/', '时间线', 'Timeline'], ['about/', '关于', 'About']
 ];
 export function chrome(active) {
   const header = document.createElement('header');
@@ -336,7 +336,22 @@ const para = (p, cls = '') => `<p class="zh ${cls}">${p.label ? `<strong>${esc(p
   <p class="en ${cls}">${p.label ? `<strong>${esc(p.label.en)}</strong>` : ''}${esc(p.en)}</p>`;
 
 const getJSON = f => fetch(ROOT + 'data/' + f, { cache: 'no-cache' }).then(r => r.json());
-const TIMELINE_ARTIST = 'van-gogh';   // 哪位画家的页面放“梵高时间线”的入口
+// 横向时间轴（手机上竖向）：items 是 { date, text, pics }（都是做好的 HTML）
+const trackHTML = items => `<div class="tl-wrap">
+  <button class="tl-nav prev" aria-label="Earlier">←</button><button class="tl-nav next" aria-label="Later">→</button>
+  <ol class="vg-tl">${items.map(x => `<li class="tl-item${x.pics ? ' has-pic' : ''}"><div class="tl-date">${x.date}</div>${x.text ? `<div class="tl-text">${x.text}</div>` : ''}${x.pics ? `<div class="tl-pics">${x.pics}</div>` : ''}</li>`).join('')}</ol></div>`;
+function wireTracks(root) {   // 电脑上：左右箭头翻页，到头了箭头变淡
+  root.querySelectorAll('.tl-wrap').forEach(w => {
+    const ol = w.querySelector('.vg-tl'), prev = w.querySelector('.tl-nav.prev'), next = w.querySelector('.tl-nav.next');
+    const ends = () => { prev.disabled = ol.scrollLeft < 4; next.disabled = ol.scrollLeft + ol.clientWidth > ol.scrollWidth - 4; };
+    prev.onclick = () => ol.scrollBy({ left: -ol.clientWidth * 0.8, behavior: 'smooth' });
+    next.onclick = () => ol.scrollBy({ left: ol.clientWidth * 0.8, behavior: 'smooth' });
+    ol.addEventListener('scroll', ends, { passive: true }); addEventListener('resize', ends); ends();
+  });
+}
+// 画家页的“生平”：data/life/<画家 id>.json（没有这个文件就不显示）
+const lifeHTML = (R, L) => trackHTML(L.entries.map(x => ({ date: bi(x.date), text: italics(bi(x.text)), pics: (x.scenes || []).map(id => tlPic(R, id)).join('') })));
+const yearOf = s => { const m = String(textOf(s.year, 'en')).match(/\d{4}/); return m ? +m[0] : null; };
 const italics = h => h.replace(/\*([^*]+)\*/g, '<i>$1</i>');   // 英文里 *画名* 显示成斜体
 const linkBtn = (path, zh, en) => `<a class="btn" href="${ROOT + path}">${ui(zh, en)} →</a>`;
 // 时间线上的一幅画：场景 id，或 { id, version: 博物馆 id }（用 alsoAt 里那个版本的图和名字）
@@ -414,7 +429,7 @@ const PAGES = {
       <section class="section wrap" id="features">
         <h2>${ui('专题', 'Features')}</h2>
         <div class="ways features">
-          <a href="${ROOT}timeline/"><div class="name">${ui('梵高时间线', 'Van Gogh timeline')}</div><div class="ex">${bi(R.artistById[TIMELINE_ARTIST].dates, ' / ')}</div></a>
+          <a href="${ROOT}timeline/"><div class="name">${ui('时间线', 'Timeline')}</div><div class="ex">${(ys => ys.length ? `${Math.min(...ys)}–${Math.max(...ys)}` : '')(R.scenes.map(yearOf).filter(Boolean))}</div></a>
           <a href="${ROOT}london/"><div class="name">${bi(LONDON.title)}</div><div class="ex">${bi(LONDON.subtitle, ' / ')}</div></a>
           <a href="${ROOT}versions/"><div class="name">${ui('同一幅画的几个版本', 'One painting, many versions')}</div><div class="ex">${['bedroom', 'sunflowers'].map(id => R.sceneById[id] && bi(R.sceneById[id].title, ' / ')).filter(Boolean).join(' · ')}</div></a>
         </div>
@@ -450,15 +465,17 @@ const PAGES = {
   },
 
   // ---------- 按画家（?id= 打开某一位画家的页面） ----------
-  artists(R, main) {
+  async artists(R, main) {
     const id = param('id'), a = id && R.artistById[id];
     if (a) {
+      const life = await getJSON(`life/${a.id}.json`).catch(() => null);
       main.innerHTML = `<div class="wrap page-title"><h1>${bi(a.name)}${a.dates ? `<small class="sub">${bi(a.dates)}</small>` : ''}</h1></div>
         <section class="section wrap">
           ${a.bio ? `<p class="lead">${bi(a.bio)}</p>` : ''}
-          ${a.id === TIMELINE_ARTIST ? `<p style="margin:-8px 0 24px">${linkBtn('timeline/', '梵高时间线', 'Van Gogh timeline')}</p>` : ''}
-          ${scenesOf(R, 'artist', a.id).length ? cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true, bothTitle: true }) : LATER()}
-          <p style="margin-top:28px"><a class="btn" href="${ROOT}artists/">← ${ui('所有画家', 'All artists')}</a></p></section>`;
+          ${scenesOf(R, 'artist', a.id).length ? cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true, bothTitle: true }) : LATER()}</section>
+        ${life && life.entries ? `<section class="section wrap life" id="life"><h2>${ui('生平', 'Life')}</h2>${lifeHTML(R, life)}</section>` : ''}
+        <section class="wrap"><p style="margin:28px 0"><a class="btn" href="${ROOT}artists/">← ${ui('所有画家', 'All artists')}</a></p></section>`;
+      wireTracks(main);
       return;
     }
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按画家', 'By artist')}</h1></div>
@@ -559,23 +576,27 @@ const PAGES = {
     });
   },
 
-  // ---------- 梵高时间线（文字在 data/timeline.json） ----------
-  async timeline(R, main) {
-    const TL = await getJSON('timeline.json');
-    main.innerHTML = `<div class="wrap page-title"><h1>${bi(TL.title)}<small class="sub">${esc(R.artistById[TL.artist].dates.en)}</small></h1></div>
-      <section class="section wrap"><div class="tl-wrap">
-        <button class="tl-nav prev" aria-label="Earlier">←</button><button class="tl-nav next" aria-label="Later">→</button>
-        <ol class="vg-tl" id="vgTl">${TL.entries.map(x => {
-        const pics = (x.scenes || []).map(id => tlPic(R, id)).join('');
-        return `<li class="tl-item${pics ? ' has-pic' : ''}"><div class="tl-date">${bi(x.date)}</div><div class="tl-text">${italics(bi(x.text))}</div>${pics ? `<div class="tl-pics">${pics}</div>` : ''}</li>`;
-      }).join('')}</ol></div>
-      <p style="margin-top:28px">${linkBtn('artists/?id=' + TL.artist, '更多梵高的画', 'More by Van Gogh')}</p></section>`;
-    // 电脑上横向：左右箭头翻页，到头了箭头变淡
-    const ol = main.querySelector('#vgTl'), prev = main.querySelector('.tl-nav.prev'), next = main.querySelector('.tl-nav.next');
-    const ends = () => { prev.disabled = ol.scrollLeft < 4; next.disabled = ol.scrollLeft + ol.clientWidth > ol.scrollWidth - 4; };
-    prev.onclick = () => ol.scrollBy({ left: -ol.clientWidth * 0.8, behavior: 'smooth' });
-    next.onclick = () => ol.scrollBy({ left: ol.clientWidth * 0.8, behavior: 'smooth' });
-    ol.addEventListener('scroll', ends, { passive: true }); addEventListener('resize', ends); ends();
+  // ---------- 时间线：所有已开放和即将开放的作品，按年份排；顶部按画家筛选 ----------
+  timeline(R, main) {
+    let who = param('artist') || '';
+    const works = R.scenes.filter(s => yearOf(s)).sort((x, y) => yearOf(x) - yearOf(y));
+    const artists = R.artists.filter(a => works.some(s => s.artist === a.id));
+    const draw = () => {
+      const list = works.filter(s => !who || s.artist === who), years = [...new Set(list.map(yearOf))];
+      const item = s => s.status === 'live' ? tlPic(R, s.id)
+        : `<span class="tl-soon">${bi(s.title)}<small>${ui('即将开放', 'Coming soon')}</small></span>`;
+      const meta = s => [!who && R.artistById[s.artist] && bi(R.artistById[s.artist].name), String(textOf(s.year, 'en')) !== String(yearOf(s)) && bi(s.year)].filter(Boolean).join(' · ');
+      main.innerHTML = `<div class="wrap page-title"><h1>${ui('时间线', 'Timeline')}</h1>
+          <div class="seg tl-filter" role="group" aria-label="Artist">
+            <button data-who="" class="${who ? '' : 'on'}">${ui('全部', 'All')}</button>${artists.map(a => `<button data-who="${a.id}" class="${who === a.id ? 'on' : ''}">${bi(a.name)}</button>`).join('')}</div></div>
+        <section class="section wrap">${years.length ? trackHTML(years.map(y => ({ date: String(y),
+          pics: list.filter(s => yearOf(s) === y).map(s => `<div class="tl-work">${item(s)}${meta(s) ? `<small class="tl-meta">${meta(s)}</small>` : ''}</div>`).join('') }))) : SOON()}</section>`;
+      main.querySelectorAll('[data-who]').forEach(b => b.onclick = () => {
+        who = b.dataset.who; history.replaceState(null, '', who ? '?artist=' + who : location.pathname); draw();
+      });
+      wireTracks(main);
+    };
+    draw(); onLang(draw);
   },
 
   // ---------- 同一幅画的几个版本（data/versions.json；图和文字都来自各场景的 scene.json） ----------

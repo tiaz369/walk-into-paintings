@@ -488,3 +488,18 @@ body.looking :is(#introBottom, #sceneHome, #langSwitch), body.looking #introBott
 #lookTime { font-variant-numeric: tabular-nums; min-width: 2.6em; }
 #lookBar .btn { font-size: 12px; padding: 4px 12px; }
 .vers :is(h2, h3) .sep { display: none; }
+
+/* 环境音 / 音乐开关 */
+.scene .ui .btn.on { border-color: var(--ink); }
+#musInfo { font-size: 12px; padding: 5px 11px; max-width: min(320px, calc(100vw - 24px)); line-height: 1.5; text-align: right; }
+#musInfo a { color: inherit; }
+
+/* 时间线页：按画家筛选；即将开放的作品只写名字 */
+.tl-filter { display: inline-flex; flex-wrap: wrap; margin-top: 16px; }
+.tl-work { display: flex; flex-direction: column; gap: 2px; }
+.tl-meta { font-size: 11px; color: var(--muted); max-width: 110px; line-height: 1.35; }
+.tl-soon { display: flex; flex-direction: column; justify-content: center; width: 110px; min-height: 86px; padding: 8px; box-sizing: border-box; border: 1px dashed var(--line); border-radius: 4px; font-size: 12px; line-height: 1.35; }
+.tl-soon .en { display: block; color: var(--muted); }
+.tl-soon small { margin-top: 4px; font-size: 10px; color: var(--muted); }
+.vg-tl .tl-pics { gap: 10px; }
+.life h2 { margin-bottom: 40px; }

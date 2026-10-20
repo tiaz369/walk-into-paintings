@@ -197,7 +197,21 @@
       ]
     ]
   },
-  "sound": null,
+  "sound": "river",
+  "music": {
+    "_说明": "音乐（可选）：只用确认为 CC0 或公有领域的录音。录音放进 audio/ 文件夹，src 写文件路径（例如 audio/music.mp3）；src 空着时不显示“音乐”开关。performer 是演奏者，license 写 CC0 或 公有领域 / Public domain，page 是录音来源页。",
+    "title": {
+      "zh": "德彪西《月光》",
+      "en": "Debussy, Clair de lune"
+    },
+    "performer": {
+      "zh": "",
+      "en": ""
+    },
+    "license": "",
+    "page": "",
+    "src": ""
+  },
   "colors": {
     "line": "#1a1c2c",
     "ground": "#5f7f86",

@@ -11,6 +11,7 @@
 import * as THREE from 'three';
 import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, oneMinuteHTML, oneMinute, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
+import { setupSound } from './sound.js';
 
 export async function startScene(sceneUrl) {
   removeStatic();
@@ -137,7 +138,9 @@ function buildDOM(S, R, meta) {
 
   <div id="status" class="ui">
     <div id="progress" class="panel"></div>
-    <button class="btn" id="soundBtn"></button>
+    <button class="btn hidden" id="ambBtn"></button>
+    <button class="btn hidden" id="musBtn"></button>
+    <div id="musInfo" class="panel hidden"></div>
     <div id="leftHint" class="panel hidden"></div>
     <button class="btn hidden" id="audioBtn"></button>
     <div id="guideBox" class="panel guide hidden"></div>
@@ -903,50 +906,11 @@ function run(S, R, meta) {
     togglePopup('shot', true);
   };
 
-  // ---------- 声音：用代码现场合成（默认静音，无版权问题） ----------
-  let actx = null, master = null, soundOn = false, birdTimer = null;
-  const soundLabel = () => { $('soundBtn').innerHTML = (soundOn ? '🔊 ' : '🔇 ') + ui(soundOn ? '声音：开' : '声音：关', soundOn ? 'Sound: on' : 'Sound: off'); };
-  function setupAudio() {
-    actx = new (window.AudioContext || window.webkitAudioContext)();
-    master = actx.createGain(); master.gain.value = 0; master.connect(actx.destination);
-    const len = actx.sampleRate * 3, buf = actx.createBuffer(1, len, actx.sampleRate), d = buf.getChannelData(0);
-    let last = 0;
-    for (let i = 0; i < len; i++) { last = (last + 0.02 * (Math.random() * 2 - 1)) / 1.02; d[i] = last * 3.5; }
-    const wind = actx.createBufferSource(); wind.buffer = buf; wind.loop = true;
-    const lp = actx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 450;
-    const wg = actx.createGain(); wg.gain.value = 0.35;
-    wind.connect(lp).connect(wg).connect(master); wind.start();
-  }
-  function chirp(t, f0, f1, dur, vol, pan) {
-    const o = actx.createOscillator(), g = actx.createGain();
-    o.type = 'sine'; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(f1, t + dur);
-    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.012); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
-    let node = o.connect(g);
-    if (actx.createStereoPanner) { const p = actx.createStereoPanner(); p.pan.value = pan; node = node.connect(p); }
-    node.connect(master); o.start(t); o.stop(t + dur + 0.02);
-  }
-  function birdCall() {
-    const t0 = actx.currentTime + 0.05, n = 2 + Math.floor(Math.random() * 5);
-    const base = 2600 + Math.random() * 2200, gap = 0.09 + Math.random() * 0.08, pan = Math.random() * 1.6 - 0.8;
-    for (let k = 0; k < n; k++) { const up = Math.random() < 0.5; chirp(t0 + k * gap, base * (up ? 0.8 : 1.2), base * (up ? 1.25 : 0.75), 0.06 + Math.random() * 0.05, 0.05, pan); }
-  }
-  function scheduleBird() { birdTimer = setTimeout(() => { if (soundOn) { birdCall(); scheduleBird(); } }, 1500 + Math.random() * 4500); }
-  function setSound(on) {
-    soundOn = on; soundLabel();
-    if (on) { if (!actx) setupAudio(); actx.resume(); master.gain.setTargetAtTime(ambient(), actx.currentTime, 0.4); clearTimeout(birdTimer); birdCall(); scheduleBird(); }
-    else if (actx) { master.gain.setTargetAtTime(0, actx.currentTime, 0.2); clearTimeout(birdTimer); }
-  }
-  soundLabel();
-  if (S.sound) $('soundBtn').onclick = () => setSound(!soundOn); else $('soundBtn').classList.add('hidden');
-  document.addEventListener('visibilitychange', () => { if (actx && soundOn) document.hidden ? actx.suspend() : actx.resume(); });
+  // ---------- 声音：环境音（代码合成）和音乐（CC0 / 公有领域录音），都默认关闭；见 sound.js ----------
+  const sound = setupSound(S, { ambBtn: $('ambBtn'), musBtn: $('musBtn'), info: $('musInfo'), wind: () => windK });
 
-  // ---------- 语音导览（场景文件夹 audio/ 里有录音才显示按钮；播放时环境声自动调小） ----------
-  let guiding = false;
-  const ambient = () => guiding ? 0.15 : 0.7;
-  setupGuide(S, { btn: $('audioBtn'), box: $('guideBox'), duck: on => {
-    guiding = on;
-    if (actx && soundOn) master.gain.setTargetAtTime(ambient(), actx.currentTime, 0.4);
-  } });
+  // ---------- 语音导览（场景文件夹 audio/ 里有录音才显示按钮；播放时环境音调小、音乐暂停） ----------
+  setupGuide(S, { btn: $('audioBtn'), box: $('guideBox'), duck: on => sound.guide(on) });
 
   // ---------- 细节放大：双指 / 滚轮放大，拖动查看 ----------
   const zoom = $('zoom'), zStage = $('zoomStage'), zImg = $('zoomImg'), Z_MAX = 6;
@@ -1096,7 +1060,7 @@ function run(S, R, meta) {
     cmp.addEventListener('pointercancel', () => { cmpDrag = false; });
     setCmpImages(); setCmp(50);
   }
-  onLang(() => { updateProgress(); setCmpImages(); soundLabel(); });
+  onLang(() => { updateProgress(); setCmpImages(); });
   updateProgress();
 
   $('endBtn').onclick = () => {

@@ -39,7 +39,21 @@
     ]
   },
 
-  "sound": "birds",
+  "sound": "room-birds",
+  "music": {
+    "_说明": "音乐（可选）：只用确认为 CC0 或公有领域的录音。录音放进 audio/ 文件夹，src 写文件路径（例如 audio/music.mp3）；src 空着时不显示“音乐”开关。performer 是演奏者，license 写 CC0 或 公有领域 / Public domain，page 是录音来源页。",
+    "title": {
+      "zh": "萨蒂《裸体歌舞第一号》",
+      "en": "Satie, Gymnopédie No. 1"
+    },
+    "performer": {
+      "zh": "",
+      "en": ""
+    },
+    "license": "",
+    "page": "",
+    "src": ""
+  },
 
   "colors": {
     "floor": "#c98a7a", "wood": "#e8b84a", "sheet": "#e4efa8", "quilt": "#d42a2a", "window": "#4f9a5a", "glass": "#c9dc8a",
