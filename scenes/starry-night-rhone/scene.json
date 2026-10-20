@@ -1813,7 +1813,40 @@
     ]
   },
   "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。zh / en 一般空着；transcript 是播放器下面可展开的文字稿（现在先用三幕原文）。",
     "zh": "",
-    "en": ""
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 念念不忘",
+          "en": "A long wish"
+        },
+        "text": {
+          "zh": "1888年2月来到阿尔勒后，梵高一直想画夜晚。4月，他写信说需要一个星夜；6月，他又说这幅画一直萦绕在心头。",
+          "en": "After arriving in Arles in February 1888, Van Gogh kept thinking about painting the night. In April he wrote that he needed a starry night; in June, that the painting kept haunting him."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 终于画出星空",
+          "en": "At last, the starry sky"
+        },
+        "text": {
+          "zh": "他先在《夜晚露天咖啡座》里画了一角夜空。九月底，他来到罗纳河边，画下了整片星空。",
+          "en": "He first painted a corner of night sky in Café Terrace at Night. At the end of September, by the Rhône, he painted the whole starry sky."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 另一个星夜",
+          "en": "Another Starry Night"
+        },
+        "text": {
+          "zh": "几个月后，他住进圣雷米的疗养院，又画了一幅《星夜》，现藏纽约现代艺术博物馆。那一幅翻涌不安，这一幅却安静温柔。",
+          "en": "A few months later, in the asylum at Saint-Rémy, he painted another Starry Night, now at MoMA in New York. That one is turbulent; this one is calm."
+        }
+      }
+    ]
   }
 }

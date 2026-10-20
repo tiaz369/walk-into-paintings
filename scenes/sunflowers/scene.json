@@ -559,5 +559,43 @@
         "url": "https://data.ng.ac.uk/0GE6-0001-0000-0000"
       }
     ]
+  },
+
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。zh / en 一般空着；transcript 是播放器下面可展开的文字稿（现在先用三幕原文）。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "等待高更",
+          "en": "Waiting for Gauguin"
+        },
+        "text": {
+          "zh": "1888年8月，梵高画了一组向日葵，用来装饰黄房子的客房，迎接高更。",
+          "en": "In August 1888, Van Gogh painted a group of sunflowers to decorate the Yellow House guest room for Gauguin."
+        }
+      },
+      {
+        "title": {
+          "zh": "一场争执",
+          "en": "A quarrel"
+        },
+        "text": {
+          "zh": "高更离开阿尔勒后，想要一幅向日葵来换他留下的习作，梵高很不高兴。",
+          "en": "After leaving Arles, Gauguin asked for one of the sunflower paintings in exchange for studies he had left behind. Van Gogh was upset."
+        }
+      },
+      {
+        "title": {
+          "zh": "来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1924年，伦敦国家美术馆从梵高家人手中买下了这幅画。",
+          "en": "In 1924, the National Gallery in London bought this painting from Van Gogh's family."
+        }
+      }
+    ]
   }
 }

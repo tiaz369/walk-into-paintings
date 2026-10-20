@@ -176,8 +176,40 @@
   },
 
   "audioGuide": {
-    "_说明": "语音导览：把录音文件放进 audio/ 文件夹，在这里写文件名（例如 audio/guide-zh.mp3）。两个都空着时，按钮不显示。",
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。zh / en 一般空着；transcript 是播放器下面可展开的文字稿（现在先用三幕原文）。",
     "zh": "",
-    "en": ""
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 期待",
+          "en": "Anticipation"
+        },
+        "text": {
+          "zh": "1888年秋，梵高租下阿尔勒的黄房子，梦想在这里建立画家们共同生活的\"南方画室\"。他画下自己的卧室，等待高更到来。",
+          "en": "In autumn 1888, Van Gogh rented the Yellow House in Arles, dreaming of a \"Studio of the South\" where artists would live together. He painted his bedroom while waiting for Gauguin."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 破碎",
+          "en": "Shattered"
+        },
+        "text": {
+          "zh": "高更来了，但两个月后，两人激烈争吵。梵高精神崩溃住进医院，高更离开了阿尔勒。这幅画后来也在他住院期间受潮损坏。",
+          "en": "Gauguin came, but two months later they quarrelled violently. Van Gogh broke down and was hospitalised, and Gauguin left Arles. The painting was later damaged by damp while he was in hospital."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 回望",
+          "en": "Looking back"
+        },
+        "text": {
+          "zh": "1889年，梵高自愿住进圣雷米的疗养院，在那里重画了这间卧室两次，较小的一幅送给母亲和妹妹。那时，他已经不住在这里了。",
+          "en": "In 1889, Van Gogh entered an asylum in Saint-Rémy, where he painted the bedroom twice more, the smaller one for his mother and sister. By then, he no longer lived there."
+        }
+      }
+    ]
   }
 }

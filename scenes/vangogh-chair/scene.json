@@ -493,8 +493,41 @@
     ]
   },
   "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。zh / en 一般空着；transcript 是播放器下面可展开的文字稿（现在先用三幕原文）。",
     "zh": "",
-    "en": ""
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 两把椅子",
+          "en": "Two chairs"
+        },
+        "text": {
+          "zh": "1888年11月，高更来到阿尔勒不久，梵高画了两把椅子：一把是他自己的，一把是高更的。两幅画是一对。",
+          "en": "In November 1888, soon after Gauguin arrived in Arles, Van Gogh painted two chairs: his own, and Gauguin's. The two paintings were a pair."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 白天与夜晚",
+          "en": "Day and night"
+        },
+        "text": {
+          "zh": "他自己的椅子简朴，画在白天，用黄与蓝；高更的扶手椅优雅精致，画在夜晚的煤气灯下，用红与绿。这盏煤气灯，是他一个月前才装的，部分原因是想让高更愿意来南方。",
+          "en": "His own chair is plain, painted by day in yellow and blue. Gauguin's armchair is elegant, painted at night under gaslight, in red and green. He had installed the gaslight just a month earlier, partly to encourage Gauguin to come south."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 分开的椅子",
+          "en": "Chairs apart"
+        },
+        "text": {
+          "zh": "一个月后，黄房子里的生活破碎了，高更离开了阿尔勒。今天，梵高的椅子在伦敦，高更的椅子在阿姆斯特丹。",
+          "en": "A month later, life in the Yellow House fell apart, and Gauguin left Arles. Today Van Gogh's chair is in London; Gauguin's is in Amsterdam."
+        }
+      }
+    ]
   },
   "exclusive": {
     "_说明": "独家发现“两把椅子面对面”：两幅画并排，白天 / 夜晚切换。两张图都放在 images/ 里。",

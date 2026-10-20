@@ -628,7 +628,40 @@
     ]
   },
   "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。zh / en 一般空着；transcript 是播放器下面可展开的文字稿（现在先用三幕原文）。",
     "zh": "",
-    "en": ""
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 三个通宵",
+          "en": "Three nights"
+        },
+        "text": {
+          "zh": "1888年9月初，梵高在拉马丁广场的这家通宵咖啡馆里，连续三个晚上作画，白天睡觉。",
+          "en": "In early September 1888, Van Gogh painted for three nights in a row in this all-night café on Place Lamartine, sleeping by day."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 一个危险的地方",
+          "en": "A dangerous place"
+        },
+        "text": {
+          "zh": "他在信里说，想用这幅画表达：咖啡馆是一个可能让人毁掉自己、发疯或犯罪的地方。",
+          "en": "He wrote that he wanted to show the café as a place where one can ruin oneself, go mad or commit a crime."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 远行",
+          "en": "A long journey"
+        },
+        "text": {
+          "zh": "这幅画后来到了俄罗斯，属于收藏家莫罗佐夫，1918年被收归国有。之后它辗转来到美国，留给了耶鲁大学。2014年，法院裁定它继续留在耶鲁。",
+          "en": "The painting later went to Russia, to the collector Morozov, and was nationalised in 1918. It then made its way to America and was left to Yale. In 2014, a court ruled it would stay there."
+        }
+      }
+    ]
   }
 }

@@ -1,0 +1,171 @@
+{
+  "_说明": "梵高时间线（/timeline/）。文字由 Tia 提供。scenes 写场景 id：已上线的显示缩略图、可以点进去；还没上线的不显示。写成 { \"id\": 场景, \"version\": 博物馆 id } 时，用这个场景 alsoAt 里那家博物馆的版本的图和名字。",
+  "title": {
+    "zh": "梵高时间线",
+    "en": "Van Gogh timeline"
+  },
+  "artist": "van-gogh",
+  "entries": [
+    {
+      "date": {
+        "zh": "1853",
+        "en": "1853"
+      },
+      "text": {
+        "zh": "生于荷兰津德尔特",
+        "en": "Born in Zundert, the Netherlands"
+      }
+    },
+    {
+      "date": {
+        "zh": "约1880",
+        "en": "c. 1880"
+      },
+      "text": {
+        "zh": "将近27岁时决定成为画家",
+        "en": "Decides to become an artist, around age 27"
+      }
+    },
+    {
+      "date": {
+        "zh": "1886",
+        "en": "1886"
+      },
+      "text": {
+        "zh": "来到巴黎",
+        "en": "Moves to Paris"
+      }
+    },
+    {
+      "date": {
+        "zh": "1888年2月",
+        "en": "February 1888"
+      },
+      "text": {
+        "zh": "来到法国南部的阿尔勒",
+        "en": "Arrives in Arles, in the south of France"
+      }
+    },
+    {
+      "date": {
+        "zh": "1888年5月",
+        "en": "May 1888"
+      },
+      "text": {
+        "zh": "租下黄房子",
+        "en": "Rents the Yellow House"
+      },
+      "scenes": [
+        "yellow-house"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1888年8月",
+        "en": "August 1888"
+      },
+      "text": {
+        "zh": "画向日葵，为高更布置客房",
+        "en": "Paints sunflowers and prepares the guest room for Gauguin"
+      },
+      "scenes": [
+        "sunflowers"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1888年9月",
+        "en": "September 1888"
+      },
+      "text": {
+        "zh": "夜间咖啡馆、夜晚露天咖啡座、罗纳河上的星夜",
+        "en": "The Night Café, Café Terrace at Night, Starry Night over the Rhône"
+      },
+      "scenes": [
+        "night-cafe",
+        "cafe-terrace",
+        "starry-night-rhone"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1888年10月",
+        "en": "October 1888"
+      },
+      "text": {
+        "zh": "画下卧室；高更到来",
+        "en": "Paints the Bedroom; Gauguin arrives"
+      },
+      "scenes": [
+        "bedroom"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1888年11月",
+        "en": "November 1888"
+      },
+      "text": {
+        "zh": "画下两把椅子",
+        "en": "Paints the two chairs"
+      },
+      "scenes": [
+        "vangogh-chair"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1888年12月",
+        "en": "December 1888"
+      },
+      "text": {
+        "zh": "梵高精神崩溃住院，高更离开阿尔勒",
+        "en": "Van Gogh breaks down and is hospitalised; Gauguin leaves Arles"
+      }
+    },
+    {
+      "date": {
+        "zh": "1889年5月",
+        "en": "May 1889"
+      },
+      "text": {
+        "zh": "自愿住进圣雷米疗养院",
+        "en": "Voluntarily enters the asylum at Saint-Rémy"
+      }
+    },
+    {
+      "date": {
+        "zh": "1889年夏",
+        "en": "Summer 1889"
+      },
+      "text": {
+        "zh": "麦田与柏树；重画卧室",
+        "en": "A Wheatfield, with Cypresses; paints the Bedroom again"
+      },
+      "scenes": [
+        "wheatfield-cypresses",
+        { "id": "bedroom", "version": "art-institute-chicago" }
+      ]
+    },
+    {
+      "date": {
+        "zh": "1890年5月",
+        "en": "May 1890"
+      },
+      "text": {
+        "zh": "搬到巴黎附近的奥维尔",
+        "en": "Moves to Auvers-sur-Oise, near Paris"
+      }
+    },
+    {
+      "date": {
+        "zh": "1890年7月",
+        "en": "July 1890"
+      },
+      "text": {
+        "zh": "去世，年仅37岁",
+        "en": "Dies, aged 37"
+      }
+    }
+  ]
+}

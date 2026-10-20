@@ -413,3 +413,49 @@ a.row-main:hover .row-title { text-decoration: underline; }
 .map-num { display: inline-flex; align-items: center; justify-content: center; width: 1.3em; height: 1.3em; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-size: .6em; vertical-align: middle; font-family: var(--sans); }
 #windBtn.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 [data-series="saint-remy"] { --accent: #4f7f4a; --accent-ink: #ffffff; }
+
+/* 语音导览播放器（场景右上角，按“语音导览”展开） */
+.guide { width: min(320px, calc(100vw - 24px)); padding: 8px 10px; font-size: 12px; text-align: left; }
+.guide-row { display: flex; align-items: center; gap: 8px; }
+.guide-row .btn { min-width: 38px; padding: 5px 10px; }
+.guide-row input { flex: 1; min-width: 0; accent-color: var(--accent); }
+#gTime { font-variant-numeric: tabular-nums; color: var(--muted); white-space: nowrap; }
+.guide-text { margin-top: 6px; }
+.guide-text summary { cursor: pointer; color: var(--muted); padding: 2px 0; }
+.guide-text { max-height: 45vh; overflow-y: auto; }
+.guide-text h4 { margin: 10px 0 2px; font-family: var(--serif); font-size: 15px; font-weight: 500; }
+.guide-text p { margin: 0 0 6px; line-height: 1.6; }
+
+/* 梵高时间线：横向（手机上竖向） */
+.vg-tl { list-style: none; margin: 0; padding: 8px 0 18px; display: flex; overflow-x: auto; scroll-snap-type: x proximity; }
+.tl-item { flex: 0 0 210px; position: relative; padding: 26px 18px 0 0; border-top: 2px solid var(--line); scroll-snap-align: start; }
+.tl-item::before { content: ''; position: absolute; top: -7px; left: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--paper); border: 2px solid var(--muted); }
+.tl-item.has-pic::before { background: var(--accent); border-color: var(--accent); }
+.tl-item.has-pic { flex-basis: 250px; }
+.tl-date { font-family: var(--serif); font-size: 20px; line-height: 1.2; }
+.tl-date .en, .tl-text .en { display: block; font-size: 13px; color: var(--muted); font-style: italic; }
+.tl-text { margin-top: 6px; font-size: 14px; line-height: 1.55; }
+.tl-pics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.tl-pic { display: block; width: 110px; text-decoration: none; color: inherit; font-size: 11px; line-height: 1.35; }
+.tl-pic img { display: block; width: 110px; height: 86px; object-fit: cover; border-radius: 4px; margin-bottom: 4px; transition: opacity .3s; }
+.tl-pic:hover img { opacity: .85; }
+.tl-pic .en { display: block; color: var(--muted); }
+body:not(.lang-both) .tl-date .en, body:not(.lang-both) .tl-text .en, body:not(.lang-both) .tl-pic .en { font-style: normal; font-size: inherit; color: inherit; }
+@media (max-width: 700px) {
+  .vg-tl { flex-direction: column; overflow: visible; padding-left: 6px; }
+  .tl-item, .tl-item.has-pic { flex: none; border-top: 0; border-left: 2px solid var(--line); padding: 0 0 26px 22px; }
+  .tl-item::before { top: 4px; left: -7px; }
+}
+
+/* 在伦敦看真迹：参观路线 */
+.notice { margin: 16px 0 0; padding: 10px 14px; border-left: 3px solid var(--accent); background: var(--veil); font-size: 14px; }
+.london-links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; margin: 14px 0 0; font-size: 14px; }
+.london .row-side .btn { font-size: 13px; padding: 6px 12px; }
+@media print {
+  .site-header nav, .site-footer, .btn, .work-link, .prefs { display: none !important; }
+  :root, :root[data-theme] { --ink: #000 !important; --paper: #fff !important; --muted: #444 !important; --line: #ccc !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .notice { background: none; }
+  .london-links a::after { content: ' (' attr(href) ')'; font-size: 11px; }
+  .london .row { break-inside: avoid; }
+}

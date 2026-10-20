@@ -10,6 +10,7 @@
 // =====================================================================
 import * as THREE from 'three';
 import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, ROOT } from './site.js';
+import { setupGuide } from './guide.js';
 
 export async function startScene(sceneUrl) {
   removeStatic();
@@ -138,6 +139,7 @@ function buildDOM(S, R, meta) {
     <button class="btn" id="soundBtn"></button>
     <div id="leftHint" class="panel hidden"></div>
     <button class="btn hidden" id="audioBtn"></button>
+    <div id="guideBox" class="panel guide hidden"></div>
     <button class="btn primary hidden" id="endBtn">${ui('继续看故事', 'Continue the story')} →</button>
   </div>
 
@@ -926,34 +928,20 @@ function run(S, R, meta) {
   function scheduleBird() { birdTimer = setTimeout(() => { if (soundOn) { birdCall(); scheduleBird(); } }, 1500 + Math.random() * 4500); }
   function setSound(on) {
     soundOn = on; soundLabel();
-    if (on) { if (!actx) setupAudio(); actx.resume(); master.gain.setTargetAtTime(0.7, actx.currentTime, 0.4); clearTimeout(birdTimer); birdCall(); scheduleBird(); }
+    if (on) { if (!actx) setupAudio(); actx.resume(); master.gain.setTargetAtTime(ambient(), actx.currentTime, 0.4); clearTimeout(birdTimer); birdCall(); scheduleBird(); }
     else if (actx) { master.gain.setTargetAtTime(0, actx.currentTime, 0.2); clearTimeout(birdTimer); }
   }
   soundLabel();
   if (S.sound) $('soundBtn').onclick = () => setSound(!soundOn); else $('soundBtn').classList.add('hidden');
   document.addEventListener('visibilitychange', () => { if (actx && soundOn) document.hidden ? actx.suspend() : actx.resume(); });
 
-  // ---------- 语音导览（scene.json 的 audioGuide 填了录音文件才显示按钮） ----------
-  const AG = S.audioGuide || {};
-  let guide = null;
-  const guideSrc = () => (lang === 'en' ? (AG.en || AG.zh) : (AG.zh || AG.en)) || '';
-  const guideLabel = () => {
-    const playing = guide && !guide.paused;
-    $('audioBtn').innerHTML = playing ? ui('❚❚ 暂停导览', '❚❚ Pause guide') : ui('▶ 语音导览', '▶ Audio guide');
-  };
-  if (AG.zh || AG.en) {
-    $('audioBtn').classList.remove('hidden');
-    $('audioBtn').onclick = () => {
-      const src = guideSrc();
-      if (!guide || guide.dataset.src !== src) {
-        if (guide) guide.pause();
-        guide = new Audio(src); guide.dataset.src = src;
-        guide.onended = guide.onpause = guide.onplay = guideLabel;
-      }
-      guide.paused ? guide.play() : guide.pause();
-    };
-  }
-  guideLabel();
+  // ---------- 语音导览（场景文件夹 audio/ 里有录音才显示按钮；播放时环境声自动调小） ----------
+  let guiding = false;
+  const ambient = () => guiding ? 0.15 : 0.7;
+  setupGuide(S, { btn: $('audioBtn'), box: $('guideBox'), duck: on => {
+    guiding = on;
+    if (actx && soundOn) master.gain.setTargetAtTime(ambient(), actx.currentTime, 0.4);
+  } });
 
   // ---------- 细节放大：双指 / 滚轮放大，拖动查看 ----------
   const zoom = $('zoom'), zStage = $('zoomStage'), zImg = $('zoomImg'), Z_MAX = 6;
@@ -1102,7 +1090,7 @@ function run(S, R, meta) {
     cmp.addEventListener('pointercancel', () => { cmpDrag = false; });
     setCmpImages(); setCmp(50);
   }
-  onLang(() => { updateProgress(); setCmpImages(); soundLabel(); guideLabel(); });
+  onLang(() => { updateProgress(); setCmpImages(); soundLabel(); });
   updateProgress();
 
   $('endBtn').onclick = () => {
