@@ -72,7 +72,8 @@
 
   "_places说明": "地图“画在哪里”：画作诞生地。场景的 place 只填已上线场景的（Tia 核对后再补其他的）。",
   "places": [
-    { "id": "arles",  "name": { "zh": "阿尔勒", "en": "Arles" },  "lat": 43.677, "lon": 4.631 }
+    { "id": "arles",  "name": { "zh": "阿尔勒", "en": "Arles" },  "lat": 43.677, "lon": 4.631 },
+    { "id": "saint-remy", "name": { "zh": "圣雷米", "en": "Saint-Rémy" }, "lat": 43.789, "lon": 4.832, "label": "t" }
   ],
 
   "_cities说明": "博物馆的 lat/lon 是近似坐标，只用来在地图“现在在哪里”上标点。地图“现在在哪里”：博物馆所在的城市（博物馆的 city 指向这里）。label 是城市名写在圆点的哪一边：r 右（默认）、l 左、t 上、b 下。",
@@ -174,11 +175,10 @@
     { "id": "grande-jatte", "status": "planned", "title": { "zh": "大碗岛的星期天下午", "en": "A Sunday on La Grande Jatte — 1884" }, "artist": "seurat", "year": "1884–86", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": ["water", "gardens"], "period": "post-impressionism", "artworkUrl": "" },
     { "id": "view-of-delft", "status": "planned", "title": { "zh": "代尔夫特一景", "en": "View of Delft" }, "artist": "vermeer", "year": {"zh": "约1660–61", "en": "c. 1660–61"}, "museum": "mauritshuis", "collection": null, "version": null, "place": null, "themes": ["water", "city-stations"], "period": "dutch-golden-age", "artworkUrl": "" },
     {
-      "_说明": "原画 images/wheatfield-cypresses.jpg 上传并对准后，把 status 改成 live",
-      "id": "wheatfield-cypresses", "status": "soon", "week": 6, "path": "scenes/wheatfield-cypresses/", "cover": "scenes/wheatfield-cypresses/images/wheatfield-cypresses.jpg",
+      "id": "wheatfield-cypresses", "status": "live", "week": 6, "path": "scenes/wheatfield-cypresses/", "cover": "scenes/wheatfield-cypresses/images/wheatfield-cypresses.jpg",
       "title": { "zh": "麦田与柏树", "en": "A Wheatfield, with Cypresses" },
       "artist": "van-gogh", "year": "1889", "museum": "national-gallery", "collection": "saint-remy",
-      "version": "full", "place": null, "themes": ["gardens", "london"], "period": "post-impressionism", "added": "2026-10-19",
+      "version": "full", "place": "saint-remy", "themes": ["gardens", "london"], "period": "post-impressionism", "added": "2026-10-20",
       "onDisplay": true, "loan": false, "room": "43",
       "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-a-wheatfield-with-cypresses",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
