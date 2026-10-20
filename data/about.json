@@ -1,5 +1,5 @@
 {
-  "_说明": "关于页的文字（Tia 提供，原文照录）。首页“关于这个项目”用 home；关于页用 intro、me、principles。label 是段首加粗的小标题。 audioCredit：语音导览的说明，有场景上线录音之后才自动显示。",
+  "_说明": "关于页的文字（Tia 提供，原文照录）。首页“关于这个项目”用 home；关于页用 intro、me、principles。label 是段首加粗的小标题。 audioCredit：语音导览的说明，有场景上线录音之后才自动显示。 analytics：关于页底部的访问统计说明。",
   "home": {
     "zh": "走进名画，是一座可以走进去的线上美术馆。在画里走一走，发现细节，听听画背后的故事，然后去博物馆看看真迹。",
     "en": "An online gallery you can step inside. Walk into a painting, discover its details, hear its story, then go and see the real thing."
@@ -33,5 +33,9 @@
   "audioCredit": {
     "zh": "语音导览由 Tia 录制。",
     "en": "Audio guides are narrated by Tia."
+  },
+  "analytics": {
+    "zh": "本站使用 GoatCounter 统计访问量，不使用 cookie，不收集个人信息。",
+    "en": "This site uses GoatCounter for simple visit counts. No cookies, no personal data."
   }
 }

@@ -439,6 +439,7 @@
       }
     },
     "colours": {
+      "letter": { "url": "https://vangoghmuseum.nl/en/highlights/letters/676" },
       "title": {
         "zh": "红与绿",
         "en": "Red and green"
@@ -474,11 +475,12 @@
         "en": "The standing man"
       },
       "text": {
-        "zh": "画中站着的那位，据说就是咖啡馆的老板。",
-        "en": "The standing figure is said to be the café's owner."
+        "zh": "梵高在信里写到，穿白衣服的老板在角落里看着这一切。",
+        "en": "Van Gogh wrote of the owner in white, watching over everything from a corner."
       }
     },
     "nights": {
+      "letter": { "url": "https://vangoghmuseum.nl/en/highlights/letters/676" },
       "title": {
         "zh": "三个通宵",
         "en": "Three nights"

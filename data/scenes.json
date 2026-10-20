@@ -47,6 +47,15 @@
     { "id": "british-museum",   "name": { "zh": "大英博物馆", "en": "The British Museum, London" }, "url": "" }
   ],
 
+  "moods": [
+    { "id": "quiet", "name": { "zh": "安静", "en": "Quiet" } },
+    { "id": "night", "name": { "zh": "夜晚", "en": "Night" } },
+    { "id": "solitude", "name": { "zh": "孤独", "en": "Solitude" } },
+    { "id": "sunlight", "name": { "zh": "阳光", "en": "Sunlight" } },
+    { "id": "waiting", "name": { "zh": "等待", "en": "Waiting" } },
+    { "id": "lively", "name": { "zh": "热闹", "en": "Lively" } },
+    { "id": "nature", "name": { "zh": "自然", "en": "Nature" } }
+  ],
   "themes": [
     { "id": "rooms",    "name": { "zh": "房间", "en": "Rooms" } },
     { "id": "night",    "name": { "zh": "夜晚", "en": "Night" } },
@@ -95,12 +104,12 @@
       "title": { "zh": "阿尔勒的卧室", "en": "The Bedroom" },
       "tagline": { "zh": "一间等人的房间。", "en": "A room that waited." },
       "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles",
-      "version": "full", "place": "arles", "themes": ["rooms"], "period": "post-impressionism", "added": "2026-10-15",
+      "version": "full", "place": "arles", "themes": ["rooms"], "moods": ["quiet", "waiting"], "period": "post-impressionism", "added": "2026-10-15",
       "artworkUrl": "https://www.vangoghmuseum.nl/en/collection/s0047V1962",
       "_alsoAt说明": "同一幅画的其他版本，收藏在别的博物馆：在那家博物馆的页面上列出来，链接到这个场景",
       "alsoAt": [
         { "museum": "art-institute-chicago", "title": { "zh": "阿尔勒的卧室（1889年9月版）", "en": "The Bedroom (September 1889 version)" }, "year": "1889", "artworkUrl": "https://www.artic.edu/artworks/28560/the-bedroom", "cover": "scenes/bedroom/images/v1889-chicago.jpg" },
-        { "museum": "orsay", "title": { "zh": "阿尔勒的卧室（1889年小幅版）", "en": "The Bedroom (smaller 1889 version)" }, "year": "1889", "artworkUrl": "", "cover": "scenes/bedroom/images/v1889-orsay.jpg",
+        { "museum": "orsay", "title": { "zh": "阿尔勒的卧室（1889年小幅版）", "en": "The Bedroom (smaller 1889 version)" }, "year": "1889", "artworkUrl": "https://www.musee-orsay.fr/en/collections", "room": "36", "cover": "scenes/bedroom/images/v1889-orsay.jpg",
           "credit": { "zh": "图片：© Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt（经 Wikimedia Commons）", "en": "Image: © Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt (via Wikimedia Commons)" } }
       ],
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
@@ -109,7 +118,7 @@
       "id": "yellow-house", "status": "live", "week": 1, "path": "scenes/yellow-house/", "cover": "scenes/yellow-house/images/yellow-house.jpg",
       "title": { "zh": "黄房子", "en": "The Yellow House" },
       "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles",
-      "version": "full", "place": "arles", "themes": ["houses-streets"], "period": "post-impressionism", "added": "2026-10-15",
+      "version": "full", "place": "arles", "themes": ["houses-streets"], "moods": ["sunlight", "waiting"], "period": "post-impressionism", "added": "2026-10-15",
       "artworkUrl": "https://www.vangoghmuseum.nl/en/collection/s0032V1962",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
@@ -117,21 +126,21 @@
       "id": "night-cafe", "status": "live", "week": 2, "path": "scenes/night-cafe/", "cover": "scenes/night-cafe/images/night-cafe.jpg",
       "title": { "zh": "夜间咖啡馆", "en": "The Night Café" },
       "artist": "van-gogh", "year": "1888", "museum": "yale", "collection": "arles",
-      "version": "full", "place": "arles", "themes": ["night", "cafes", "rooms"], "period": "post-impressionism", "added": "2026-10-16",
+      "version": "full", "place": "arles", "themes": ["night", "cafes", "rooms"], "moods": ["night", "solitude"], "period": "post-impressionism", "added": "2026-10-16",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
       "id": "cafe-terrace", "status": "live", "week": 3, "path": "scenes/cafe-terrace/", "cover": "scenes/cafe-terrace/images/cafe-terrace.jpg",
       "title": { "zh": "夜晚露天咖啡座", "en": "Café Terrace at Night" },
       "artist": "van-gogh", "year": "1888", "museum": "kroller-muller", "collection": "arles",
-      "version": "full", "place": "arles", "themes": ["night", "cafes", "houses-streets"], "period": "post-impressionism", "added": "2026-10-16",
+      "version": "full", "place": "arles", "themes": ["night", "cafes", "houses-streets"], "moods": ["night", "lively"], "period": "post-impressionism", "added": "2026-10-16",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
       "id": "starry-night-rhone", "status": "live", "week": 3, "path": "scenes/starry-night-rhone/", "cover": "scenes/starry-night-rhone/images/starry-night-rhone.jpg",
       "title": { "zh": "罗纳河上的星夜", "en": "Starry Night over the Rhône" },
       "artist": "van-gogh", "year": "1888", "museum": "orsay", "collection": "arles",
-      "version": "full", "place": "arles", "themes": ["night", "water"], "period": "post-impressionism", "added": "2026-10-18",
+      "version": "full", "place": "arles", "themes": ["night", "water"], "moods": ["night", "quiet"], "period": "post-impressionism", "added": "2026-10-18",
       "artworkUrl": "https://www.musee-orsay.fr/en/artworks/la-nuit-etoilee-78696",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
@@ -140,7 +149,7 @@
       "id": "sunflowers", "status": "live", "week": 4, "path": "scenes/sunflowers/", "cover": "scenes/sunflowers/images/sunflowers.jpg",
       "title": { "zh": "向日葵", "en": "Sunflowers" },
       "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles",
-      "version": "light", "place": "arles", "themes": ["gardens", "london"], "period": "post-impressionism", "added": "2026-10-18",
+      "version": "light", "place": "arles", "themes": ["gardens", "london"], "moods": ["sunlight", "waiting"], "period": "post-impressionism", "added": "2026-10-18",
       "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-sunflowers",
       "onDisplay": true, "room": "43",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
@@ -161,7 +170,7 @@
       "id": "vangogh-chair", "status": "live", "week": 5, "path": "scenes/vangogh-chair/", "cover": "scenes/vangogh-chair/images/vangogh-chair.jpg",
       "title": { "zh": "梵高的椅子", "en": "Van Gogh's Chair" },
       "artist": "van-gogh", "year": "1888", "museum": "national-gallery", "collection": "arles",
-      "version": "full", "place": "arles", "themes": ["rooms", "london"], "period": "post-impressionism", "added": "2026-10-18",
+      "version": "full", "place": "arles", "themes": ["rooms", "london"], "moods": ["quiet", "solitude"], "period": "post-impressionism", "added": "2026-10-18",
       "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-van-gogh-s-chair",
       "onDisplay": true, "room": "43",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
@@ -178,7 +187,7 @@
       "id": "wheatfield-cypresses", "status": "live", "week": 6, "path": "scenes/wheatfield-cypresses/", "cover": "scenes/wheatfield-cypresses/images/wheatfield-cypresses.jpg",
       "title": { "zh": "麦田与柏树", "en": "A Wheatfield, with Cypresses" },
       "artist": "van-gogh", "year": "1889", "museum": "national-gallery", "collection": "saint-remy",
-      "version": "full", "place": "saint-remy", "themes": ["gardens", "london"], "period": "post-impressionism", "added": "2026-10-20",
+      "version": "full", "place": "saint-remy", "themes": ["gardens", "london"], "moods": ["sunlight", "nature"], "period": "post-impressionism", "added": "2026-10-20",
       "onDisplay": true, "loan": false, "room": "43",
       "artworkUrl": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-a-wheatfield-with-cypresses",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }

@@ -9,7 +9,7 @@
 // 这个文件只负责“怎么做”，不放任何某一幅画的文字。
 // =====================================================================
 import * as THREE from 'three';
-import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, oneMinuteHTML, oneMinute, ROOT } from './site.js';
+import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupSound } from './sound.js';
 
@@ -24,6 +24,7 @@ export async function startScene(sceneUrl) {
       <p class="lead">${ui('即将开放', 'Coming soon')}</p><a class="btn primary" href="${ROOT}">${ui('回到走进名画', 'Back to Walk into Paintings')}</a></main>`);
     wirePrefs(); return;
   }
+  track('enter-scene-' + S.id);   // 访问统计：打开了这个场景
   document.body.classList.add('scene');
   if (meta && R.collectionById[meta.collection]) document.body.dataset.series = R.collectionById[meta.collection].accent || '';
   buildDOM(S, R, meta);
@@ -825,6 +826,7 @@ function run(S, R, meta) {
     $('leftHint').innerHTML = `<span class="zh">还有 ${left} 个没发现</span><span class="en"><span class="zh"> / </span>${left} left to find</span>`;
   }
   function showCard(key) {
+    hideHint();   // 提示不遮挡卡片
     const t = S.cards[key];
     $('cardTitle').textContent = t.title.zh; $('cardTitleEn').textContent = t.title.en;
     $('cardZh').textContent = t.text.zh; $('cardEn').textContent = t.text.en;
@@ -838,6 +840,7 @@ function run(S, R, meta) {
     if (letter) $('cardLetter').href = letter;
     card.style.display = 'block';
     found.add(key); updateProgress();
+    if (found.size === 3 && !found.counted) { found.counted = true; track('found-3-' + S.id); }   // 访问统计：发现了3处
   }
   $('cardClose').onclick = () => { card.style.display = 'none'; };
 
@@ -984,7 +987,7 @@ function run(S, R, meta) {
   joy.addEventListener('pointerup', joyEnd); joy.addEventListener('pointercancel', joyEnd);
   const hint = $('hint');
   let hintHidden = false;
-  function hideHint() { if (!hintHidden) { hintHidden = true; setTimeout(() => hint.style.opacity = 0, 2500); } }
+  function hideHint() { if (!hintHidden) { hintHidden = true; hint.style.opacity = 0; } }   // 操作提示：点任意处、走动或 4 秒后淡出
 
   // ---------- 画家视角：站上去 → 对准原画构图 + 叠加滑杆 ----------
   function paintingRect() {
@@ -996,7 +999,7 @@ function run(S, R, meta) {
   function placeRect(el) { const r = paintingRect(); Object.assign(el.style, { left: r.x + 'px', top: r.y + 'px', width: r.w + 'px', height: r.h + 'px' }); }
   const vpOverlay = $('vpOverlay'), vpPanel = $('vpPanel'), vpSlider = $('vpSlider');
   vpSlider.oninput = () => { vpOverlay.style.opacity = vpSlider.value / 100; $('vpVal').textContent = vpSlider.value + '%'; };
-  let view = 'none', needExit = false, alignFrom = null, alignT = 0;
+  let view = 'none', needExit = false, alignFrom = null, alignT = 0, filmFov = null;
   function enterView() { view = 'aligning'; alignT = 0; alignFrom = { x: player.x, z: player.z, yaw: player.yaw, pitch: player.pitch, fov: camera.fov }; }
   function leaveView() { if (view === 'none') return; view = 'none'; needExit = true; vpPanel.classList.remove('show'); vpOverlay.style.display = 'none'; }
   function showAligned() { view = 'aligned'; placeRect(vpOverlay); vpOverlay.style.display = 'block'; vpPanel.classList.add('show'); }
@@ -1009,11 +1012,13 @@ function run(S, R, meta) {
   if (introImg.complete && introImg.naturalWidth === 0) introFail();
   camera.fov = paintingRect().fov; camera.updateProjectionMatrix();
   let introT = -1;
-  $('enter').onclick = () => { intro.classList.add('fade'); introT = 0; };
+  $('enter').onclick = () => { intro.classList.add('fade'); introT = 0; track('step-inside-' + S.id); };
   oneMinute($('oneMin'));   // 一分钟看一幅画（可选）
+  cleanToggle($('tools'));   // 隐藏按钮（录屏、截图用）
+  addEventListener('pointerdown', () => { if (document.body.classList.contains('in-room')) hideHint(); });
   function finishIntro() {
     intro.style.display = 'none'; walking = true;
-    document.body.classList.add('in-room'); hint.style.opacity = 1;
+    document.body.classList.add('in-room'); hint.style.opacity = 1; setTimeout(hideHint, 4000);
     player.x = VIEW.x; player.z = VIEW.z; showAligned();
   }
   const ease = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
@@ -1064,6 +1069,7 @@ function run(S, R, meta) {
   updateProgress();
 
   $('endBtn').onclick = () => {
+    track('ending-' + S.id);   // 访问统计：看故事结局
     walking = false; for (const k in keys) keys[k] = false;
     card.style.display = 'none'; for (const k in popups) togglePopup(k, false); leaveView();
     gallery.style.display = 'block';
@@ -1117,7 +1123,8 @@ function run(S, R, meta) {
       player.yaw = lerpAngle(alignFrom.yaw, VIEW.yaw, k); player.pitch = alignFrom.pitch + (VIEW.pitch - alignFrom.pitch) * k;
       camera.fov = alignFrom.fov + (paintingRect().fov - alignFrom.fov) * k;
       if (alignT >= 1) showAligned();
-    } else if (view === 'aligned' || !walking) camera.fov = paintingRect().fov;
+    } else if (filmFov) camera.fov = filmFov;   // 录首页动图用（只在 ?debug 下）
+    else if (view === 'aligned' || !walking) camera.fov = paintingRect().fov;
     else camera.fov += (70 - camera.fov) * (1 - Math.exp(-dt * 3));
     camera.updateProjectionMatrix();
     const pulse = 0.55 + 0.35 * Math.sin(performance.now() / 600);   // 圆点慢慢呼吸
@@ -1150,7 +1157,8 @@ function run(S, R, meta) {
   }
   loop();
   // 测试用：地址后面加 ?debug 时，可以在控制台里移动位置（普通访问不受影响）
-  if (location.search.includes("debug")) window.__room = { player, setMode, leaveView, showCard, portals, camera, skipTime: s => { dawnTime += s; } };
+  if (location.search.includes("debug")) window.__room = { player, setMode, leaveView, showCard, portals, camera, skipTime: s => { dawnTime += s; },
+    film: fov => { walking = !fov; introT = -1; view = 'none'; vpOverlay.style.display = 'none'; filmFov = fov || null; }, viewFov: () => paintingRect().fov, VIEW };
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);

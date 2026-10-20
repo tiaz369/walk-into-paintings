@@ -95,13 +95,16 @@ export const creditHTML = (inline = false) => inline
 export function removeStatic() { const s = document.getElementById('static'); if (s) s.remove(); }
 
 // ---------- 访问统计（GoatCounter） ----------
-// ★ 在 goatcounter.com 注册后，把你的代码（网址 https://代码.goatcounter.com 里的“代码”）填在这里
-export const GOATCOUNTER = '';
-if (GOATCOUNTER && !location.hostname.match(/^(localhost|127\.)/)) {
-  const sc = document.createElement('script');
-  sc.async = true; sc.src = 'https://gc.zgo.at/count.js'; sc.dataset.goatcounter = `https://${GOATCOUNTER}.goatcounter.com/count`;
-  document.head.append(sc);
+// 统计脚本写在每一页的 </body> 前面（tools/build.py）。这里记录“事件”，比如走进画里、看到结局。
+// 脚本没加载成功（被拦截、网络不好）时什么也不做，网站照常运行。
+export function track(path, title = path, tries = 0) {
+  try {
+    if (window.goatcounter && window.goatcounter.count) window.goatcounter.count({ path, title, event: true });
+    else if (tries < 10) setTimeout(() => track(path, title, tries + 1), 600);   // 脚本还在加载：等一会儿再试，最多等 6 秒
+  } catch (e) { /* 统计失败不影响网站 */ }
 }
+// 带 data-track 的链接、按钮：点一下记一次事件
+document.addEventListener('click', e => { const el = e.target.closest && e.target.closest('[data-track]'); if (el) track(el.dataset.track); });
 
 // ---------- 登记表 ----------
 let registryPromise = null;
@@ -115,7 +118,7 @@ function prepare(R) {
   R.scenes = R.scenes.filter(s => s.status !== 'planned');   // 计划中的作品：暂不在页面显示
   R.cityById = byId(R.cities || []);
   R.sceneById = byId(R.scenes); R.artistById = byId(R.artists); R.museumById = byId(R.museums);
-  R.collectionById = byId(R.collections); R.themeById = byId(R.themes); R.periodById = byId(R.periods); R.placeById = byId(R.places);
+  R.collectionById = byId(R.collections); R.themeById = byId(R.themes); R.moodById = byId(R.moods || []); R.periodById = byId(R.periods); R.placeById = byId(R.places);
   R.live = R.scenes.filter(s => s.status === 'live');
   return R;
 }
@@ -163,6 +166,17 @@ export function sceneRow(R, s, opts = {}) {
   return `<div class="row${live ? '' : ' is-soon'}">${live ? `<a class="row-main" href="${sceneUrl(s)}">${pic}${text}</a>` : `<span class="row-main">${pic}${text}</span>`}
     ${side ? `<span class="row-side">${side}</span>` : ''}${opts.credit ? `<small class="img-credit row-credit">${bi(opts.credit, ' / ')}</small>` : ''}</div>`;
 }
+// 场景里的“隐藏按钮”：暂时收起所有按钮，方便录屏、截图。右下角留一个很淡的“显示按钮”，键盘 H 也可以切换
+export function cleanToggle(tools) {
+  const hide = document.createElement('button');
+  hide.className = 'btn'; hide.id = 'cleanBtn'; hide.innerHTML = '⤢ ' + ui('隐藏按钮', 'Hide buttons');
+  const show = document.createElement('button');
+  show.className = 'btn'; show.id = 'uncleanBtn'; show.innerHTML = ui('显示按钮', 'Show buttons');
+  tools.append(hide); document.body.append(show);
+  const set = on => document.body.classList.toggle('clean', on);
+  hide.onclick = () => set(true); show.onclick = () => set(false);
+  addEventListener('keydown', e => { if ((e.key === 'h' || e.key === 'H') && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) set(!document.body.classList.contains('clean')); });
+}
 // 开场原画页的“一分钟看一幅画”：其他按钮都藏起来，安静地显示原画 60 秒，有倒计时，随时可以跳过
 export const oneMinuteHTML = () => `<button id="oneMin" class="btn">${ui('一分钟看一幅画', 'One minute of looking')}</button>`;
 export function oneMinute(btn, seconds = 60) {
@@ -191,10 +205,10 @@ export function seeInPersonHTML(R, meta) {
     const year = items.length > 1 && x.year ? ' · ' + bi(x.year) : '';
     if (x.museum === LONDON_MUSEUM && x.onDisplay === true) {
       const room = roomLabel(x.room);
-      return `<a class="btn primary" href="${ROOT}london/">${bi(m.name, ' · ')}${room ? ' · ' + bi(room) : ''} → ${ui('参观路线', 'Route by room')}</a>`;
+      return `<a class="btn primary" data-track="see-real-${meta.id}" href="${ROOT}london/">${bi(m.name, ' · ')}${room ? ' · ' + bi(room) : ''} → ${ui('参观路线', 'Route by room')}</a>`;
     }
     const url = x.artworkUrl || m.url;
-    return url ? `<a class="btn" href="${url}" target="_blank" rel="noopener">${bi(m.name, ' · ')}${year} ↗</a>` : '';
+    return url ? `<a class="btn" data-track="see-real-${meta.id}" href="${url}" target="_blank" rel="noopener">${bi(m.name, ' · ')}${year} ↗</a>` : '';
   }).join('');
 }
 export const rowsHTML = (R, list, opts = {}) => list.length ? `<div class="rows">${list.map(x => x.s ? sceneRow(R, x.s, { ...opts, ...x.opts }) : sceneRow(R, x, opts)).join('')}</div>` : '';
@@ -205,7 +219,7 @@ const capSoon = list => { let n = 0; return list.filter(x => ((x.s || x).status 
 // ---------- 页眉、页脚 ----------
 const NAV = [
   ['', '首页', 'Home'],
-  ['artists/', '画家', 'Artists'], ['themes/', '主题', 'Themes'], ['periods/', '时期', 'Periods'],
+  ['artists/', '画家', 'Artists'], ['themes/', '主题', 'Themes'], ['moods/', '心情', 'Mood'], ['periods/', '时期', 'Periods'],
   ['map/', '地图', 'Map'], ['museums/', '博物馆', 'Museums'], ['timeline/', '时间线', 'Timeline'], ['about/', '关于', 'About']
 ];
 export function chrome(active) {
@@ -308,7 +322,7 @@ const scenesOf = (R, key, id) => R.scenes.filter(s => (Array.isArray(s[key]) ? s
 function museumItems(R, id) {
   const own = scenesOf(R, 'museum', id).map(s => ({ s, opts: {} }));
   const also = R.scenes.flatMap(s => (s.alsoAt || []).filter(v => v.museum === id)
-    .map(v => ({ s, opts: { title: v.title, year: v.year, cover: v.cover, artworkUrl: v.artworkUrl, credit: v.credit, museum: v.museum } })));
+    .map(v => ({ s, opts: { title: v.title, year: v.year, cover: v.cover, artworkUrl: v.artworkUrl, credit: v.credit, museum: v.museum, room: v.room || '' } })));
   return [...own, ...also].sort((a, b) => (a.s.status === 'live' ? 0 : 1) - (b.s.status === 'live' ? 0 : 1));
 }
 const museumsIn = (R, cityId) => R.museums.filter(m => m.city === cityId);
@@ -321,10 +335,11 @@ const labelOf = (R, s) => {   // 展签：画名 · 画家 · 年份 · 收藏�
 };
 const param = k => new URLSearchParams(location.search).get(k);
 
-// 五种浏览方式（例子是网站蓝图里的）
+// 六种浏览方式（例子是网站蓝图里的；心情的例子是心情标签）
 const WAYS = [
   { path: 'artists/', name: { zh: '按画家', en: 'By artist' }, ex: { zh: '梵高、维米尔、莫奈、德加', en: 'Van Gogh, Vermeer, Monet, Degas' } },
   { path: 'themes/',  name: { zh: '按主题', en: 'By theme' },  ex: { zh: '房间、窗户、咖啡馆、花与花园、首饰、孩子', en: 'Rooms, windows, cafés, flowers and gardens, jewellery, children' } },
+  { path: 'moods/',   name: { zh: '按心情', en: 'By mood' },   ex: { zh: '安静、夜晚、阳光、等待', en: 'Quiet, night, sunlight, waiting' } },
   { path: 'periods/', name: { zh: '按时期', en: 'By period' }, ex: { zh: '荷兰黄金时代、印象派、后印象派', en: 'Dutch Golden Age, Impressionism, Post-Impressionism' } },
   { path: 'map/',     name: { zh: '按地图', en: 'By map' },    ex: { zh: '画在哪里、现在在哪里', en: 'Where it was painted, where it is now' } },
   { path: 'museums/', name: { zh: '按博物馆', en: 'By museum' }, ex: { zh: '梵高博物馆、荷兰国立博物馆、伦敦国家美术馆', en: 'Van Gogh Museum, Rijksmuseum, National Gallery' } }
@@ -335,6 +350,8 @@ let ABOUT = null, LONDON = null;   // 伦敦参观路线的文字在 data/london
 const para = (p, cls = '') => `<p class="zh ${cls}">${p.label ? `<strong>${esc(p.label.zh)}</strong>` : ''}${esc(p.zh)}</p>
   <p class="en ${cls}">${p.label ? `<strong>${esc(p.label.en)}</strong>` : ''}${esc(p.en)}</p>`;
 
+const HERO = { scene: 'bedroom', video: 'assets/hero/bedroom-walk',   // .webm 和 .mp4 两个版本，浏览器挑能播的
+                poster: 'assets/hero/bedroom-walk.jpg' };   // 首屏短片（用 3D 卧室录的）
 const getJSON = f => fetch(ROOT + 'data/' + f, { cache: 'no-cache' }).then(r => r.json());
 // 横向时间轴（手机上竖向）：items 是 { date, text, pics }（都是做好的 HTML）
 const trackHTML = items => `<div class="tl-wrap">
@@ -397,16 +414,25 @@ function compareSlider(root, CV, base) {
 const PAGES = {
   // ---------- 首页 ----------
   home(R, main) {
-    const pick = R.live[Math.floor(Math.random() * R.live.length)];   // 每次打开随机换一幅
+    // 首屏：卧室原画慢慢变成可以走进去的 3D 房间（几秒钟的循环短片，很小，手机上也流畅）
+    // 设置了“减少动态效果”的用户：只显示静态图。“今天看哪幅”：随机进入一个已开放的场景
+    const pick = R.sceneById[HERO.scene] && R.sceneById[HERO.scene].status === 'live' ? R.sceneById[HERO.scene] : R.live[0];
+    const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const heroMedia = pick.id === HERO.scene
+      ? (still ? `<img src="${ROOT + HERO.poster}" ${altAttr(pick.title)} />`
+        : `<video poster="${ROOT + HERO.poster}" autoplay muted loop playsinline preload="auto" role="img" ${altAttr(pick.title).replace('alt=', 'aria-label=')}>
+            <source src="${ROOT + HERO.video}.mp4" type="video/mp4" /><source src="${ROOT + HERO.video}.webm" type="video/webm" /></video>`)
+      : `<img src="${ROOT + pick.cover}" ${altAttr(pick.title)} />`;
     // 最新上线的（同一天上线的，登记表里排在后面的算更新）
     const newest = R.live.map((s, i) => [s, i]).sort((a, b) => (b[0].added || '').localeCompare(a[0].added || '') || b[1] - a[1])[0][0];
     main.innerHTML = `
       <section class="hero">
-        <img src="${ROOT + pick.cover}" ${altAttr(pick.title)} />
+        ${heroMedia}
         <div class="tagline">
           <div class="t-en en">Step inside the world's great paintings.</div>
           <div class="t-zh zh">走进世界名画的内部。</div>
-          <a class="btn primary" href="${sceneUrl(pick)}">${ui('走进画里', 'Step into the painting')}</a>
+          <div class="hero-btns"><a class="btn primary" href="${sceneUrl(pick)}">${ui('走进画里', 'Step into the painting')}</a>
+            <button class="btn" id="surprise" data-track="surprise-me">🎲 ${ui('今天看哪幅', 'Surprise me')}</button></div>
           <div class="label">${labelOf(R, pick)}${pick.imageSource ? '<br>' + imageSourceHTML(pick.imageSource) : ''}</div>
         </div>
       </section>
@@ -436,7 +462,7 @@ const PAGES = {
       </section>
 
       <section class="section wrap" id="browse">
-        <h2>${ui('五种浏览方式', 'Five ways to browse')}</h2>
+        <h2>${ui('六种浏览方式', 'Six ways to browse')}</h2>
         <div class="ways">${WAYS.map(w => `<a href="${ROOT + w.path}"><div class="name">${bi(w.name)}</div><div class="ex">${bi(w.ex, ' / ')}</div></a>`).join('')}</div>
       </section>
 
@@ -450,6 +476,7 @@ const PAGES = {
         ${para(ABOUT.home, 'lead')}
         <a class="btn" href="${ROOT}about/">${ui('关于', 'About')} →</a>
       </section>`;
+    document.getElementById('surprise').onclick = () => { location.href = sceneUrl(R.live[Math.floor(Math.random() * R.live.length)]); };
     onLang(() => { const m = document.getElementById('mapBox'); if (m) m.innerHTML = mapSVG(R, { small: true }); });
   },
 
@@ -506,6 +533,30 @@ const PAGES = {
           <div class="name">${bi(t.name)}</div><div class="meta">${ui(`${live.length} 幅已开放`, `${live.length} open`)}${soonN ? ' · ' + ui(`${soonN} 幅即将开放`, `${soonN} coming soon`) : ''}</div></a>`;
       }).join(''))(new Set())}</div>
         ${laterLine(R.themes.filter(t => !hasLive(t)).map(t => bi(t.name)))}</section>`;
+  },
+
+  // ---------- 按心情（规则和主题页一样：只显示有已开放作品的心情） ----------
+  moods(R, main) {
+    const hasLive = t => scenesOf(R, 'moods', t.id).some(s => s.status === 'live');
+    const id = param('id'), one = id && R.moodById[id];
+    if (one) {   // 某一个主题：已开放的全部 + 即将开放最多3个
+      main.innerHTML = `<div class="wrap page-title"><h1>${bi(one.name)}</h1>
+</div>
+        <section class="section wrap">${cardsHTML(R, capSoon(scenesOf(R, 'moods', one.id)))}
+          <p style="margin-top:28px"><a class="btn" href="${ROOT}moods/">← ${ui('所有心情', 'All moods')}</a></p></section>`;
+      return;
+    }
+    // 有已开放作品的主题：可以点进去的卡片（封面用第一幅已开放的画）；其余放在底部一行小字
+    main.innerHTML = `<div class="wrap page-title"><h1>${ui('按心情', 'By mood')}</h1></div>
+      <section class="section wrap"><div class="cards">${(used => R.moods.filter(hasLive).map(t => {
+        const list = scenesOf(R, 'moods', t.id), live = list.filter(s => s.status === 'live');
+        const cover = live.find(s => s.cover && !used.has(s.id)) || live.find(s => s.cover);   // 尽量每个主题用不同的封面
+        if (cover) used.add(cover.id);
+        const soonN = Math.min(list.length - live.length, SOON_MAX);
+        return `<a class="card" href="?id=${t.id}"><div class="pic">${cover ? `<img src="${ROOT + cover.cover}" ${altAttr(cover.title)} loading="lazy" />` : ''}</div>
+          <div class="name">${bi(t.name)}</div><div class="meta">${ui(`${live.length} 幅已开放`, `${live.length} open`)}${soonN ? ' · ' + ui(`${soonN} 幅即将开放`, `${soonN} coming soon`) : ''}</div></a>`;
+      }).join(''))(new Set())}</div>
+        ${laterLine(R.moods.filter(t => !hasLive(t)).map(t => bi(t.name)))}</section>`;
   },
 
   // ---------- 按时期：一条时间轴 ----------
@@ -569,6 +620,7 @@ const PAGES = {
         ${para(ABOUT.me)}
         ${para(ABOUT.principles)}
         <div id="audioCredit"></div>
+        ${ABOUT.analytics ? `<div class="about-note">${para(ABOUT.analytics)}</div>` : ''}
       </section>`;
     // “语音导览由 Tia 录制”：有已上线的场景放了录音之后才显示
     if (ABOUT.audioCredit) Promise.all(R.live.map(s => hasGuide(sceneUrl(s)))).then(r => {
@@ -585,10 +637,10 @@ const PAGES = {
       const list = works.filter(s => !who || s.artist === who), years = [...new Set(list.map(yearOf))];
       const item = s => s.status === 'live' ? tlPic(R, s.id)
         : `<span class="tl-soon">${bi(s.title)}<small>${ui('即将开放', 'Coming soon')}</small></span>`;
-      const meta = s => [!who && R.artistById[s.artist] && bi(R.artistById[s.artist].name), String(textOf(s.year, 'en')) !== String(yearOf(s)) && bi(s.year)].filter(Boolean).join(' · ');
+      const meta = s => [!who && R.artistById[s.artist] && ui(R.artistById[s.artist].name.zh, R.artistById[s.artist].name.en), String(textOf(s.year, 'en')) !== String(yearOf(s)) && (typeof s.year === 'object' ? ui(s.year.zh, s.year.en) : esc(s.year))].filter(Boolean).join(' · ');
       main.innerHTML = `<div class="wrap page-title"><h1>${ui('时间线', 'Timeline')}</h1>
           <div class="seg tl-filter" role="group" aria-label="Artist">
-            <button data-who="" class="${who ? '' : 'on'}">${ui('全部', 'All')}</button>${artists.map(a => `<button data-who="${a.id}" class="${who === a.id ? 'on' : ''}">${bi(a.name)}</button>`).join('')}</div></div>
+            <button data-who="" class="${who ? '' : 'on'}">${ui('全部', 'All')}</button>${artists.map(a => `<button data-who="${a.id}" class="${who === a.id ? 'on' : ''}">${ui(a.name.zh, a.name.en)}</button>`).join('')}</div></div>
         <section class="section wrap">${years.length ? trackHTML(years.map(y => ({ date: String(y),
           pics: list.filter(s => yearOf(s) === y).map(s => `<div class="tl-work">${item(s)}${meta(s) ? `<small class="tl-meta">${meta(s)}</small>` : ''}</div>`).join('') }))) : SOON()}</section>`;
       main.querySelectorAll('[data-who]').forEach(b => b.onclick = () => {

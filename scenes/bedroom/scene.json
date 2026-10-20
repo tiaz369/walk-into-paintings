@@ -101,6 +101,7 @@
 
   "cards": {
     "bed": {
+      "letter": { "url": "https://vangoghletters.org/en/let705" },
       "title": { "zh": "床", "en": "Bed" },
       "text": { "zh": "梵高说，这幅画想表达的就是\"休息\"。他希望人一看到它，头脑和想象力都能放松下来。", "en": "Van Gogh said this painting was about rest. Looking at it should calm the mind." }
     },
@@ -118,11 +119,12 @@
       "text": { "zh": "床上方挂着两位朋友的画像：画家欧仁·博赫，和军官米利耶。", "en": "Above the bed hang portraits of two friends: painter Eugène Boch and officer Milliet." }
     },
     "floor": {
+      "letter": { "url": "https://vangoghletters.org/en/let705" },
       "title": { "zh": "地板", "en": "Floor" },
       "text": { "zh": "仔细看，画里几乎没有阴影。梵高故意用平涂的颜色，像日本浮世绘那样。", "en": "There are almost no shadows. Van Gogh used flat colour, like Japanese prints." }
     },
     "window": {
-      "letter": { "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。", "url": "" },
+      "letter": { "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。", "url": "https://vangoghletters.org/en/let705" },
       "title": { "zh": "窗户", "en": "Window" },
       "text": { "zh": "梵高在给弟弟提奥的信里，把房间的颜色一一写了下来，其中窗户是绿色的。他说，在这幅画里，颜色要承担一切。", "en": "In a letter to his brother Theo, Van Gogh listed the room's colours, including a green window. Here, he said, colour was to do everything." }
     },
@@ -145,7 +147,7 @@
         "text": { "zh": "高更来了，但两个月后，两人激烈争吵。梵高精神崩溃住进医院，高更离开了阿尔勒。这幅画后来也在他住院期间受潮损坏。", "en": "Gauguin came, but two months later they quarrelled violently. Van Gogh broke down and was hospitalised, and Gauguin left Arles. The painting was later damaged by damp while he was in hospital." } },
       { "image": "images/v1889-orsay.jpg", "alt": { "zh": "梵高《阿尔勒的卧室》1889 · 奥赛", "en": "Vincent van Gogh, The Bedroom, 1889 · Orsay" },
         "_说明": "这张照片由奥赛博物馆拍摄，照原图注明来源（credit）", "credit": { "zh": "图片：© Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt（经 Wikimedia Commons）", "en": "Image: © Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt (via Wikimedia Commons)" },
-        "caption": { "zh": "1889年 · 巴黎奥赛博物馆", "en": "1889 · Musée d'Orsay, Paris" },
+        "caption": { "zh": "1889年 · 巴黎奥赛博物馆 · 36号展厅", "en": "1889 · Musée d'Orsay, Paris · Room 36" },
         "kicker": "ACT III", "title": { "zh": "第三幕 · 回望", "en": "Looking back" },
         "text": { "zh": "1889年，梵高自愿住进圣雷米的疗养院，在那里重画了这间卧室两次，较小的一幅送给母亲和妹妹。那时，他已经不住在这里了。", "en": "In 1889, Van Gogh entered an asylum in Saint-Rémy, where he painted the bedroom twice more, the smaller one for his mother and sister. By then, he no longer lived there." } }
     ],
@@ -153,7 +155,7 @@
     "versions": [
       { "image": "images/v1888.jpg",         "short": { "zh": "1888 · 阿姆斯特丹", "en": "1888 · Amsterdam" }, "caption": { "zh": "1888年10月 · 阿姆斯特丹梵高博物馆", "en": "October 1888 · Van Gogh Museum, Amsterdam" } },
       { "image": "images/v1889-chicago.jpg", "short": { "zh": "1889 · 芝加哥", "en": "1889 · Chicago" },     "caption": { "zh": "1889年9月 · 芝加哥艺术博物馆", "en": "September 1889 · Art Institute of Chicago" } },
-      { "image": "images/v1889-orsay.jpg",   "short": { "zh": "1889 · 巴黎", "en": "1889 · Paris" }, "credit": { "zh": "图片：© Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt（经 Wikimedia Commons）", "en": "Image: © Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt (via Wikimedia Commons)" },       "caption": { "zh": "1889年 · 巴黎奥赛博物馆", "en": "1889 · Musée d'Orsay, Paris" } }
+      { "image": "images/v1889-orsay.jpg",   "short": { "zh": "1889 · 巴黎", "en": "1889 · Paris" }, "credit": { "zh": "图片：© Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt（经 Wikimedia Commons）", "en": "Image: © Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt (via Wikimedia Commons)" },       "caption": { "zh": "1889年 · 巴黎奥赛博物馆 · 36号展厅", "en": "1889 · Musée d'Orsay, Paris · Room 36" } }
     ],
     "museums": ["van-gogh-museum", "art-institute-chicago", "orsay"],
     "exit": [
