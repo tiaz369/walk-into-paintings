@@ -381,8 +381,9 @@ function run(S, R, meta) {
     for (const p of [BL, BR, RF, { x: L, z: FRONT }]) box(0.03, H, 0.03, C.line, p.x, H / 2, p.z);
   } else {
     const G = RM.ground;   // [x0, x1, z0, z1]
-    const ground = new THREE.Mesh(new THREE.PlaneGeometry(G[1] - G[0], G[3] - G[2]), paint(C.ground, 'ground'));
-    ground.material.map.repeat.set((G[1] - G[0]) / 4, (G[3] - G[2]) / 4);
+    const ground = new THREE.Mesh(new THREE.PlaneGeometry(G[1] - G[0], G[3] - G[2]), paint(C.ground, RM.groundTex || 'ground'));
+    if (!RM.groundTex) ground.material.map.repeat.set((G[1] - G[0]) / 4, (G[3] - G[2]) / 4);
+    else { const sz = (S.textures[RM.groundTex] || {}).size || 4; ground.material.map.repeat.set((G[1] - G[0]) / sz, (G[3] - G[2]) / sz); }   // 场景自己的地面贴图（比如原画里的麦田）
     ground.rotation.x = -Math.PI / 2; ground.position.set((G[0] + G[1]) / 2, 0, (G[2] + G[3]) / 2);
     ground.userData.card = RM.groundCard || null; scene.add(ground);
     const sky = new THREE.Mesh(new THREE.SphereGeometry(RM.skyRadius || 150, 32, 16), new THREE.MeshBasicMaterial({ color: C.sky, side: THREE.BackSide }));
@@ -502,6 +503,11 @@ function run(S, R, meta) {
       const g = group(o.x, 0, o.z, 0, o.card);
       if (o.id) named[o.id] = g;
       if (o.sway) swayers.push({ g, amp: o.sway, phase: o.x * 0.7 + o.z * 0.3 });
+      if (o.shape === 'bush') {   // 灌木 / 橄榄树丛：一团扁圆的树冠，高 h、宽 2r
+        const b = new THREE.Mesh(new THREE.IcosahedronGeometry(o.r, 1), paint(col(o.color || 'leaves'), 'cloth'));
+        b.scale.y = (o.h / 2) / o.r; b.position.y = o.h / 2; g.add(outline(b));
+        blocks.push([o.x - o.r, o.x + o.r, o.z - o.r, o.z + o.r]); return;
+      }
       if (o.shape === 'cypress') {   // 柏树：一根短树干 + 细高的尖锥
         cyl(0.12, 0.16, o.h * 0.12, C.trunk || '#6b4a2e', 0, o.h * 0.06, 0, g);
         const c = new THREE.Mesh(new THREE.ConeGeometry(o.r, o.h * 0.92, 12), paint(col(o.color || 'leaves'), 'cloth'));
