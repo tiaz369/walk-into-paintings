@@ -169,9 +169,9 @@ export function sceneRow(R, s, opts = {}) {
 // 场景里的“隐藏按钮”：暂时收起所有按钮，方便录屏、截图。右下角留一个很淡的“显示按钮”，键盘 H 也可以切换
 export function cleanToggle(tools) {
   const hide = document.createElement('button');
-  hide.className = 'btn'; hide.id = 'cleanBtn'; hide.innerHTML = '⤢ ' + ui('隐藏按钮', 'Hide buttons');
+  hide.className = 'btn'; hide.id = 'cleanBtn'; hide.innerHTML = '⤢ ' + ui('隐藏按钮', 'Hide controls');
   const show = document.createElement('button');
-  show.className = 'btn'; show.id = 'uncleanBtn'; show.innerHTML = ui('显示按钮', 'Show buttons');
+  show.className = 'btn'; show.id = 'uncleanBtn'; show.innerHTML = ui('显示按钮', 'Show controls');
   tools.append(hide); document.body.append(show);
   const set = on => document.body.classList.toggle('clean', on);
   hide.onclick = () => set(true); show.onclick = () => set(false);
@@ -219,7 +219,7 @@ const capSoon = list => { let n = 0; return list.filter(x => ((x.s || x).status 
 // ---------- 页眉、页脚 ----------
 const NAV = [
   ['', '首页', 'Home'],
-  ['artists/', '画家', 'Artists'], ['themes/', '主题', 'Themes'], ['moods/', '心情', 'Mood'], ['periods/', '时期', 'Periods'],
+  ['artists/', '画家', 'Artists'], ['themes/', '主题', 'Themes'], ['moods/', '心情', 'Moods'], ['periods/', '时期', 'Periods'],
   ['map/', '地图', 'Map'], ['museums/', '博物馆', 'Museums'], ['timeline/', '时间线', 'Timeline'], ['about/', '关于', 'About']
 ];
 export function chrome(active) {
@@ -462,7 +462,7 @@ const PAGES = {
       </section>
 
       <section class="section wrap" id="browse">
-        <h2>${ui('六种浏览方式', 'Six ways to browse')}</h2>
+        <h2>${ui('六种浏览方式', 'Six ways to explore')}</h2>
         <div class="ways">${WAYS.map(w => `<a href="${ROOT + w.path}"><div class="name">${bi(w.name)}</div><div class="ex">${bi(w.ex, ' / ')}</div></a>`).join('')}</div>
       </section>
 

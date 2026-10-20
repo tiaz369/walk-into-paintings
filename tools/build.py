@@ -85,7 +85,7 @@ LIFE = {a['id']: json.load(open(f, encoding='utf-8')) for a in R['artists'] if o
 HAS_AUDIO = any(os.path.exists(os.path.join(ROOT, s['path'], 'audio', f)) for s in LIVE for f in ('guide-zh.mp3', 'guide-en.mp3'))   # 有录音了才写“语音导览由 Tia 录制”
 CREDIT = ('<p><span lang="zh-CN">创意、故事与文字：<a href="https://tiaz369.github.io">Tia</a> · 使用 Claude 制作</span><br>'
           '<span lang="en">Concept, stories and texts by <a href="https://tiaz369.github.io">Tia</a> · Built with Claude</span></p>')
-NAV = [('', '首页', 'Home'), ('artists/', '画家', 'Artists'), ('themes/', '主题', 'Themes'), ('moods/', '心情', 'Mood'), ('periods/', '时期', 'Periods'),
+NAV = [('', '首页', 'Home'), ('artists/', '画家', 'Artists'), ('themes/', '主题', 'Themes'), ('moods/', '心情', 'Moods'), ('periods/', '时期', 'Periods'),
        ('map/', '地图', 'Map'), ('museums/', '博物馆', 'Museums'), ('timeline/', '时间线', 'Timeline'), ('about/', '关于', 'About')]
 def nav(up): return '<nav>' + ' · '.join(f'<a href="{up}{p}">{zh} {en}</a>' for p, zh, en in NAV) + '</nav>'
 
@@ -174,6 +174,8 @@ s = f'''      <h1>{bi(NAME)}</h1>
       {''.join(f'<h3><a href="collections/{c["id"]}/">{e(both(c["name"]))}</a></h3><p>{e(both(c["desc"]))}</p>{scene_list([SCENES[x] for x in c["order"] if x in SCENES], "")}' for c in R['collections'])}
       <h2>专题 · Features</h2>
       <ul><li><a href="timeline/">时间线 · Timeline</a></li><li><a href="london/">{e(both(LONDON['title']))}</a> — {e(both(LONDON['subtitle'], ' / '))}</li><li><a href="versions/">同一幅画的几个版本 · One painting, many versions</a></li></ul>
+      <h2>六种浏览方式 · Six ways to explore</h2>
+      <ul>{''.join(f'<li><a href="{p}">{zh} · {en}</a></li>' for p, zh, en in [('artists/', '按画家', 'By artist'), ('themes/', '按主题', 'By theme'), ('moods/', '按心情', 'By mood'), ('periods/', '按时期', 'By period'), ('map/', '按地图', 'By map'), ('museums/', '按博物馆', 'By museum')])}</ul>
       <h2>关于这个项目 · About this project</h2>
       {para(ABOUT['home'])}
       <p><a href="about/">关于 · About</a></p>'''
@@ -211,7 +213,7 @@ ths += later([e(both(x['name'])) for x in R['themes'] if not live_in(x['id'])])
 PAGES.append(page('themes/', T('主题', 'Themes'), '按主题浏览 · Browse by theme', '      <h1>按主题 · By theme</h1>\n      ' + ths, site_script('../', 'themes')))
 moods = [x for x in R.get('moods', []) if any(y['status'] == 'live' for y in of('moods', x['id']))]   # 只放有已开放作品的心情
 mds = ''.join(f'<h2 id="{x["id"]}">{e(both(x["name"]))}</h2>{scene_list(cap_soon(of("moods", x["id"])), "../")}' for x in moods)
-PAGES.append(page('moods/', T('心情', 'Mood'), '按心情浏览 · Browse by mood', '      <h1>按心情 · By mood</h1>\n      ' + mds, site_script('../', 'moods')))
+PAGES.append(page('moods/', T('心情', 'Moods'), '按心情浏览 · Browse by mood', '      <h1>按心情 · By mood</h1>\n      ' + mds, site_script('../', 'moods')))
 pers = ''.join(f'<h2 id="{x["id"]}">{e(both(x["name"]))}</h2>{scene_list(cap_soon(of("period", x["id"])), "../")}' for x in R['periods'])
 PAGES.append(page('periods/', T('时期', 'Periods'), '按时期浏览 · Browse by period', '      <h1>按时期 · By period</h1>\n      ' + pers, site_script('../', 'periods')))
 def ul(items): return '<ul>' + ''.join(scene_li(s, '../', ('museum',), title, url, year, room) for s, title, url, year, room in items) + '</ul>'
