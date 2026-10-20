@@ -1527,6 +1527,7 @@
       }
     },
     "mistral": {
+      "letter": { "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。", "url": "" },
       "title": {
         "zh": "风",
         "en": "The mistral"

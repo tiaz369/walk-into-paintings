@@ -171,7 +171,7 @@ s = f'''      <h1>{bi(NAME)}</h1>
       <h2>系列 · Collections</h2>
       {''.join(f'<h3><a href="collections/{c["id"]}/">{e(both(c["name"]))}</a></h3><p>{e(both(c["desc"]))}</p>{scene_list([SCENES[x] for x in c["order"] if x in SCENES], "")}' for c in R['collections'])}
       <h2>专题 · Features</h2>
-      <ul><li><a href="timeline/">梵高时间线 · Van Gogh timeline</a></li><li><a href="london/">{e(both(LONDON['title']))}</a> — {e(both(LONDON['subtitle'], ' / '))}</li></ul>
+      <ul><li><a href="timeline/">梵高时间线 · Van Gogh timeline</a></li><li><a href="london/">{e(both(LONDON['title']))}</a> — {e(both(LONDON['subtitle'], ' / '))}</li><li><a href="versions/">同一幅画的几个版本 · One painting, many versions</a></li></ul>
       <h2>关于这个项目 · About this project</h2>
       {para(ABOUT['home'])}
       <p><a href="about/">关于 · About</a></p>'''
@@ -216,13 +216,14 @@ def tl_pics(x):
         alt = next((a for a in sc.get('alsoAt', []) if not isinstance(v, str) and a['museum'] == v.get('version')), None)
         out.append(f'<a href="../{sc["path"]}">{e(both((alt or sc)["title"]))}</a>')
     return (' → ' + ' · '.join(out)) if out else ''
-tl = '<ol>' + ''.join(f'<li>{e(both(x["date"], " / "))} · {e(both(x["text"], " / "))}{tl_pics(x)}</li>' for x in TIMELINE['entries']) + '</ol>'
+italics = lambda h: __import__('re').sub(r'\*([^*]+)\*', r'<i>\1</i>', h)   # 英文里 *画名* 显示成斜体
+tl = '<ol>' + ''.join(f'<li>{e(both(x["date"], " / "))} · {italics(e(both(x["text"], " / ")))}{tl_pics(x)}</li>' for x in TIMELINE['entries']) + '</ol>'
 PAGES.append(page('timeline/', T(TIMELINE['title']['zh'], TIMELINE['title']['en']), both(TIMELINE['title']) + ' · ' + ' / '.join(both(x['date'], ' ') for x in TIMELINE['entries'][:1] + TIMELINE['entries'][-1:]),
                   f'      <h1>{bi(TIMELINE["title"])}</h1>\n      {tl}', site_script('../', 'timeline')))
 
 # ---------- 在伦敦看真迹：参观路线 ----------
 ALL = json.load(open(os.path.join(ROOT, 'data/scenes.json'), encoding='utf-8'))['scenes']   # 包括计划中的作品
-ldn = [x for x in ALL if x['museum'] == LONDON['museum'] and x.get('onDisplay') is not False and x.get('room') not in (None, '')]
+ldn = [x for x in ALL if x['museum'] == LONDON['museum'] and x.get('onDisplay') is True and x.get('room') not in (None, '')]
 rkey = lambda r: r['en'] if isinstance(r, dict) else str(r)
 rooms = sorted({rkey(x['room']): x['room'] for x in ldn}.values(), key=lambda r: (isinstance(r, dict), int(r) if str(r).isdigit() else 0))
 def ldn_li(x):
@@ -234,6 +235,21 @@ ls = ''.join(f'<h2>{e(both(r, " / ") if isinstance(r, dict) else f"{r}号展厅 
 links = ''.join(f'<li><a href="{e(l["url"])}">{e(both(l["label"]))}</a></li>' for l in LONDON['links'])
 PAGES.append(page('london/', T(LONDON['title']['zh'], LONDON['title']['en']), f'{both(LONDON["title"])}：{both(LONDON["subtitle"], " / ")}',
                   f'      <h1>{bi(LONDON["title"])}</h1>\n      <p>{e(both(LONDON["subtitle"], " / "))}</p>\n      <p>{e(both(LONDON["notice"], " / "))}</p>\n      <ul>{links}</ul>\n      {ls}', site_script('../', 'london')))
+
+# ---------- 同一幅画的几个版本 ----------
+VERS = json.load(open(os.path.join(ROOT, 'data/versions.json'), encoding='utf-8'))
+vs = ''
+for g in VERS['groups']:
+    sc = SCENES.get(g['scene'])
+    if not sc or sc['status'] != 'live' or g['scene'] not in SCENE_DATA: continue
+    S = SCENE_DATA[g['scene']]
+    vs += f'<h2><a href="../{sc["path"]}">{e(both(sc["title"]))}</a></h2>'
+    if g['type'] == 'compare':
+        vs += '<ul>' + ''.join(f'<li>{e(both(v["caption"], " / "))}</li>' for v in S['ending'].get('versions', []) if v.get('image')) + '</ul>'
+    else:
+        X = S.get('exclusive', {})
+        vs += f'<h3>{e(both(X.get("title") or X.get("label")))}</h3><p>{e(both(X.get("intro"), " / "))}</p><ol>' + ''.join(f'<li>{e(both(p["date"], " / "))} · {e(both(p["name"], " / "))}</li>' for p in X.get('places', [])) + '</ol>'
+PAGES.append(page('versions/', T(VERS['title']['zh'], VERS['title']['en']), both(VERS['title']), f'      <h1>{bi(VERS["title"])}</h1>\n      {vs}', site_script('../', 'versions')))
 
 # ---------- 场景页 ----------
 REC = [('artist', '画家（生卒年）', 'Artist (dates)'), ('title', '画名', 'Title'), ('date', '年份', 'Date'), ('medium', '材质', 'Medium'),
@@ -257,7 +273,14 @@ for meta in BUILT:
     reading = ('<h2>延伸阅读与来源 · Further reading and sources</h2><ul>' + ''.join(f'<li><a href="{e(i["url"])}">{e(both(i["title"], " / "))}</a></li>' for i in items) + '</ul>') if items else ''
     A = ARTISTS.get(meta['artist'])
     artist_html = f'<h2>关于画家 · About the artist</h2>{bi(A["bio"], "p")}<p><a href="{up}artists/?id={A["id"]}">更多{e(A["name"]["zh"])}的画 · More by {e(A["name"]["en"])}</a></p>' if A and A.get('bio') else ''
-    museums = ''.join(f'<li><a href="{e(MUSEUMS[m]["url"])}">{e(both(MUSEUMS[m]["name"]))}</a></li>' for m in E.get('museums', []) if m in MUSEUMS and MUSEUMS[m].get('url'))
+    def see(x):   # 去现场看真迹：伦敦国家美术馆在展的 → 参观路线页；其他 → 博物馆作品页
+        m = MUSEUMS.get(x['museum'])
+        if not m: return ''
+        if x['museum'] == LONDON['museum'] and x.get('onDisplay') is True:
+            return f'<li><a href="{up}london/">{e(both(m["name"]))} — 参观路线 · Route by room</a></li>'
+        url = x.get('artworkUrl') or m.get('url')
+        return f'<li><a href="{e(url)}">{e(both(m["name"]))}</a></li>' if url else ''
+    museums = ''.join(see(x) for x in [meta] + meta.get('alsoAt', []))
     s = f'''      <h1>{bi(L["title"])}</h1>
       <p>{e(labelline)}</p>
       <p>图片：{e(L["source"]["zh"])} / Image: {e(L["source"]["en"])}</p>
@@ -269,7 +292,7 @@ for meta in BUILT:
       <p><strong>{bi(E["final"])}</strong></p>
       {rec_html}
       {artist_html}
-      <h2>去看真迹 · See the real painting</h2>
+      <h2>去现场看真迹 · See it in person</h2>
       <ul>{museums}</ul>
       {reading}'''
     script = ("    import { startLight } from '../../assets/light.js';\n    startLight('scene.json');" if S.get('kind') == 'light'   # 轻量版：分层景深

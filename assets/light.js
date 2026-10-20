@@ -9,8 +9,7 @@
 // 移动鼠标、拖动或转动手机时，前面的层移动得多一点，看起来像微微转动视角。
 // 文字、卡片、故事都写在 scene.json 里（结构和 3D 场景一样，按钮和样式也共用）。
 // =====================================================================
-import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, ROOT } from './site.js';
-import { LAND } from './world-land.js';
+import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 
 export async function startLight(sceneUrl) {
@@ -31,21 +30,6 @@ export async function startLight(sceneUrl) {
 }
 
 const isLive = (R, id) => !id || !!(R && R.sceneById[id] && R.sceneById[id].status === 'live');
-// 世界地图上的一个点：经纬度 → 地图上的位置（和 world-land.js 用同一种投影）
-const mapXY = (lat, lon) => [(lon + 180) / 360 * LAND.w, (LAND.north - lat) / 360 * LAND.w];
-// 世界地图（只显示 box 这一片：{w, e, s, n} 经纬度）。places 里没有坐标的（比如私人收藏）不标点。
-// kind：here = 本场景这一幅（大一点的实心点）；gone = 已毁（灰色空心点）；其他 = 普通实心点
-function worldMap(X) {
-  const b = X.box || { w: -180, e: 180, s: -58, n: 84 };
-  const [x0, y0] = mapXY(b.n, b.w), [x1, y1] = mapXY(b.s, b.e), k = (x1 - x0) / 700;   // 圆点和字按显示大小换算
-  const dots = (X.places || []).map((p, i) => {
-    if (p.lat == null) return '';
-    const [x, y] = mapXY(p.lat, p.lon), r = (p.kind === 'here' ? 6 : 4.5) * k, f = 12 * k;
-    const [tx, ty, anchor] = { l: [x - r - 3 * k, y + f / 3, 'end'], t: [x, y - r - 3 * k, 'middle'], b: [x, y + r + f, 'middle'] }[p.label] || [x + r + 3 * k, y + f / 3, 'start'];
-    return `<circle class="dot ${p.kind || ''}" cx="${x}" cy="${y}" r="${r}" stroke-width="${1.6 * k}"/><text x="${tx}" y="${ty}" text-anchor="${anchor}" style="font-size:${f}px">${i + 1}</text>`;
-  }).join('');
-  return `<svg class="world" viewBox="${x0} ${y0} ${x1 - x0} ${y1 - y0}" role="img" aria-label="Map"><path class="land" d="${LAND.d}"/>${dots}</svg>`;
-}
 
 function buildDOM(S, R, meta) {
   const P = S.painting, L = S.label, E = S.ending, X = S.exclusive || {};
@@ -85,6 +69,7 @@ function buildDOM(S, R, meta) {
     <div id="introMissing" class="hidden">${ui(`（找不到 ${P.image}）`, `(Image not found: ${P.image})`)}</div>
     <div id="introBottom">
       <button id="enter" class="btn primary">${bi(S.enter)}</button>
+      ${oneMinuteHTML()}
       <div id="introInfo" class="panel"><div class="lbl">${bi(labelLine, ' / ')}</div><div>${imgLine}</div></div>
     </div>
   </div>
@@ -128,6 +113,7 @@ function buildDOM(S, R, meta) {
     <p id="cardZh" class="zh"></p>
     <p class="en" id="cardEn"></p>
     <p id="cardLinkP" class="hidden"><a id="cardLink" class="btn"></a></p>
+    <p id="cardLetterP" class="hidden"><a id="cardLetter" class="work-link" target="_blank" rel="noopener">${ui('读原信', 'Read the letter')} ↗</a></p>
   </div>
   <div id="langSwitch">${langSwitchHTML()}</div>
 
@@ -151,8 +137,8 @@ function buildDOM(S, R, meta) {
         <p><span class="zh">${artist.bio.zh}</span><span class="en">${artist.bio.en}</span></p>
         <p><a class="btn" href="${ROOT}artists/?id=${artist.id}">${ui('更多' + artist.name.zh + '的画', 'More by ' + artist.name.en)} →</a></p>
       </section>` : ''}
-      <div class="section-title">${ui('去看真迹', 'See the real paintings')}<small class="en-sub">See the real paintings</small></div>
-      <div class="links">${museumLinks}</div>
+      <div class="section-title">${ui('去现场看真迹', 'See it in person')}<small class="en-sub">See it in person</small></div>
+      <div class="links">${seeInPersonHTML(R, meta) || museumLinks}</div>
       ${nextHTML}
       <div class="end-actions">
         ${[].concat(E.exit || []).filter(x => isLive(R, x.scene)).map(x => `<a class="btn primary" href="${x.href}">${ui(x.label.zh, x.label.en)} →</a>`).join('')}
@@ -223,6 +209,7 @@ function run(S, R) {
 
   // ---------- 开场 ----------
   const hint = $('hint');
+  oneMinute($('oneMin'));   // 一分钟看一幅画（可选）
   $('enter').onclick = () => {
     startTilt();
     $('intro').classList.add('fade');
@@ -246,6 +233,9 @@ function run(S, R) {
     const linkOn = t.link && isLive(R, t.link.scene);
     $('cardLinkP').classList.toggle('hidden', !linkOn);
     if (linkOn) { $('cardLink').href = t.link.href; $('cardLink').innerHTML = ui(t.link.label.zh, t.link.label.en) + ' →'; }
+    const letter = t.letter && t.letter.url;   // 卡片引用了书信：“读原信”链接到 vangoghletters.org
+    $('cardLetterP').classList.toggle('hidden', !letter);
+    if (letter) $('cardLetter').href = letter;
     card.style.display = 'block';
     found.add(key); updateProgress();
     spots.forEach(s => s.classList.toggle('seen', found.has(s.dataset.card)));

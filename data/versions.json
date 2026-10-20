@@ -1,0 +1,17 @@
+{
+  "_说明": "“同一幅画的几个版本”专题页（/versions/）。每一组用一个场景已有的内容：compare = 用这个场景 scene.json 里 ending.versions 的图做“找不同”对比滑块；map = 用这个场景 exclusive 里的名单和世界地图。",
+  "title": {
+    "zh": "同一幅画的几个版本",
+    "en": "One painting, many versions"
+  },
+  "groups": [
+    {
+      "scene": "bedroom",
+      "type": "compare"
+    },
+    {
+      "scene": "sunflowers",
+      "type": "map"
+    }
+  ]
+}

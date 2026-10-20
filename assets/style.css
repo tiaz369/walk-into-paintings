@@ -438,7 +438,9 @@ a.row-main:hover .row-title { text-decoration: underline; }
 .tl-item.has-pic::before { background: var(--accent); border-color: var(--accent); }
 .tl-item.has-pic { flex-basis: 250px; }
 .tl-date { font-family: var(--serif); font-size: 20px; line-height: 1.2; }
-.tl-date .en, .tl-text .en { display: block; font-size: 13px; color: var(--muted); font-style: italic; }
+.tl-date .en { display: block; font-size: 13px; color: var(--muted); font-style: italic; }
+.tl-text .en { display: block; font-size: 13px; color: var(--muted); }
+.tl-text i { font-style: italic; }
 .tl-text { margin-top: 6px; font-size: 14px; line-height: 1.55; }
 .tl-pics { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
 .tl-pic { display: block; width: 110px; text-decoration: none; color: inherit; font-size: 11px; line-height: 1.35; }
@@ -466,3 +468,23 @@ body:not(.lang-both) .tl-date .en, body:not(.lang-both) .tl-text .en, body:not(.
   .london-links a::after { content: ' (' attr(href) ')'; font-size: 11px; }
   .london .row { break-inside: avoid; }
 }
+
+/* 同一幅画的几个版本 */
+.vers h2 { font-size: 30px; margin: 0 0 16px; }
+.vers h3 { font-weight: 500; margin: 0 0 6px; }
+.vers .versions { margin-bottom: 8px; }
+.vers .section-title { text-align: center; }
+.vers .world { max-width: 820px; }
+.vers .where-list { margin-left: 22px; font-size: 14px; }
+body.lang-both .vers h2 > .en, body.lang-both .vers h3 > .en { display: block; font-size: .6em; color: var(--muted); font-style: italic; }
+
+/* 一分钟看一幅画：只留原画和倒计时 */
+#oneMin { font-size: 13px; padding: 6px 14px; margin-top: -2.5vh; }
+#introBottom, #sceneHome, #langSwitch { transition: opacity 1.2s ease; }
+body.looking :is(#introBottom, #sceneHome, #langSwitch), body.looking #introBottom > * { opacity: 0; pointer-events: none; }
+#lookBar { position: fixed; z-index: 22; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; padding: 6px 8px 6px 14px; font-size: 13px; opacity: .75; transition: opacity .6s; }
+#lookBar:hover { opacity: 1; }
+#lookBar.hidden { display: none; }
+#lookTime { font-variant-numeric: tabular-nums; min-width: 2.6em; }
+#lookBar .btn { font-size: 12px; padding: 4px 12px; }
+.vers :is(h2, h3) .sep { display: none; }

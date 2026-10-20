@@ -163,6 +163,40 @@ export function sceneRow(R, s, opts = {}) {
   return `<div class="row${live ? '' : ' is-soon'}">${live ? `<a class="row-main" href="${sceneUrl(s)}">${pic}${text}</a>` : `<span class="row-main">${pic}${text}</span>`}
     ${side ? `<span class="row-side">${side}</span>` : ''}${opts.credit ? `<small class="img-credit row-credit">${bi(opts.credit, ' / ')}</small>` : ''}</div>`;
 }
+// 开场原画页的“一分钟看一幅画”：其他按钮都藏起来，安静地显示原画 60 秒，有倒计时，随时可以跳过
+export const oneMinuteHTML = () => `<button id="oneMin" class="btn">${ui('一分钟看一幅画', 'One minute of looking')}</button>`;
+export function oneMinute(btn, seconds = 60) {
+  const bar = document.createElement('div');
+  bar.id = 'lookBar'; bar.className = 'panel hidden';
+  bar.innerHTML = `<span id="lookTime"></span><button class="btn" id="lookSkip">${ui('跳过', 'Skip')}</button>`;
+  document.body.append(bar);
+  let timer = null, left = 0;
+  const show = () => { bar.querySelector('#lookTime').textContent = `0:${String(left).padStart(2, '0')}`.replace('0:60', '1:00'); };
+  const stop = () => { clearInterval(timer); timer = null; document.body.classList.remove('looking'); bar.classList.add('hidden'); };
+  btn.onclick = () => {
+    left = seconds; show(); document.body.classList.add('looking'); bar.classList.remove('hidden');
+    timer = setInterval(() => { left--; show(); if (left <= 0) stop(); }, 1000);
+  };
+  bar.querySelector('#lookSkip').onclick = stop;
+  addEventListener('keydown', e => { if (e.key === 'Escape' && timer) stop(); });
+}
+// 场景最后一屏“去现场看真迹”：收藏在伦敦国家美术馆且在展的 → 伦敦参观路线页；其他 → 博物馆作品页（没有作品页时用博物馆官网）
+export const LONDON_MUSEUM = 'national-gallery';   // 和 data/london.json 的 museum 一致
+export function seeInPersonHTML(R, meta) {
+  if (!R || !meta) return '';
+  const items = [meta].concat(meta.alsoAt || []);   // 这幅画，加上收藏在别处的其他版本
+  return items.map(x => {
+    const m = R.museumById[x.museum];
+    if (!m) return '';
+    const year = items.length > 1 && x.year ? ' · ' + bi(x.year) : '';
+    if (x.museum === LONDON_MUSEUM && x.onDisplay === true) {
+      const room = roomLabel(x.room);
+      return `<a class="btn primary" href="${ROOT}london/">${bi(m.name, ' · ')}${room ? ' · ' + bi(room) : ''} → ${ui('参观路线', 'Route by room')}</a>`;
+    }
+    const url = x.artworkUrl || m.url;
+    return url ? `<a class="btn" href="${url}" target="_blank" rel="noopener">${bi(m.name, ' · ')}${year} ↗</a>` : '';
+  }).join('');
+}
 export const rowsHTML = (R, list, opts = {}) => list.length ? `<div class="rows">${list.map(x => x.s ? sceneRow(R, x.s, { ...opts, ...x.opts }) : sceneRow(R, x, opts)).join('')}</div>` : '';
 // 即将开放的作品最多显示几个（画家页、博物馆页）
 export const SOON_MAX = 3;
@@ -187,6 +221,23 @@ export function chrome(active) {
     ${social ? social + '<br>' : ''}${creditHTML()}`;
   document.body.append(footer);
   wirePrefs();
+}
+
+// ---------- 世界地图（向日葵在哪里、几个版本页） ----------
+// 世界地图上的一个点：经纬度 → 地图上的位置（和 world-land.js 用同一种投影）
+const worldXY = (lat, lon) => [(lon + 180) / 360 * LAND.w, (LAND.north - lat) / 360 * LAND.w];
+// 世界地图（只显示 box 这一片：{w, e, s, n} 经纬度）。places 里没有坐标的（比如私人收藏）不标点。
+// kind：here = 本场景这一幅（大一点的实心点）；gone = 已毁（灰色空心点）；其他 = 普通实心点
+export function worldMap(X) {
+  const b = X.box || { w: -180, e: 180, s: -58, n: 84 };
+  const [x0, y0] = worldXY(b.n, b.w), [x1, y1] = worldXY(b.s, b.e), k = (x1 - x0) / 700;   // 圆点和字按显示大小换算
+  const dots = (X.places || []).map((p, i) => {
+    if (p.lat == null) return '';
+    const [x, y] = worldXY(p.lat, p.lon), r = (p.kind === 'here' ? 6 : 4.5) * k, f = 12 * k;
+    const [tx, ty, anchor] = { l: [x - r - 3 * k, y + f / 3, 'end'], t: [x, y - r - 3 * k, 'middle'], b: [x, y + r + f, 'middle'] }[p.label] || [x + r + 3 * k, y + f / 3, 'start'];
+    return `<circle class="dot ${p.kind || ''}" cx="${x}" cy="${y}" r="${r}" stroke-width="${1.6 * k}"/><text x="${tx}" y="${ty}" text-anchor="${anchor}" style="font-size:${f}px">${i + 1}</text>`;
+  }).join('');
+  return `<svg class="world" viewBox="${x0} ${y0} ${x1 - x0} ${y1 - y0}" role="img" aria-label="Map"><path class="land" d="${LAND.d}"/>${dots}</svg>`;
 }
 
 // ---------- 地图：两层（画在哪里 / 现在在哪里） ----------
@@ -286,6 +337,7 @@ const para = (p, cls = '') => `<p class="zh ${cls}">${p.label ? `<strong>${esc(p
 
 const getJSON = f => fetch(ROOT + 'data/' + f, { cache: 'no-cache' }).then(r => r.json());
 const TIMELINE_ARTIST = 'van-gogh';   // 哪位画家的页面放“梵高时间线”的入口
+const italics = h => h.replace(/\*([^*]+)\*/g, '<i>$1</i>');   // 英文里 *画名* 显示成斜体
 const linkBtn = (path, zh, en) => `<a class="btn" href="${ROOT + path}">${ui(zh, en)} →</a>`;
 // 时间线上的一幅画：场景 id，或 { id, version: 博物馆 id }（用 alsoAt 里那个版本的图和名字）
 function tlPic(R, x) {
@@ -304,6 +356,27 @@ function londonRow(R, s) {
     + (s.artworkUrl ? `<a class="work-link" href="${s.artworkUrl}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '');
   return `<div class="row"><span class="row-main"><span class="row-pic">${live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>
     <span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span></span></span>${side ? `<span class="row-side">${side}</span>` : ''}</div>`;
+}
+
+// “找不同”对比滑块（和场景最后一屏的一样）：两个下拉选版本，左右拖动
+function compareSlider(root, CV, base) {
+  const $ = id => root.querySelector('#' + id), cmp = $('cmp'), A = $('cmpA'), B = $('cmpB');
+  CV.forEach((v, i) => { A.add(new Option('', i)); B.add(new Option('', i)); });
+  A.value = 0; B.value = Math.min(1, CV.length - 1);
+  const names = () => {
+    $('cmpImgA').src = base + CV[A.value].image; $('cmpTagA').textContent = textOf(CV[A.value].short, lang);
+    $('cmpImgB').src = base + CV[B.value].image; $('cmpTagB').textContent = textOf(CV[B.value].short, lang);
+    root.querySelectorAll('#cmpA option, #cmpB option').forEach(o => o.textContent = textOf(CV[o.value].short, lang));
+  };
+  const at = pct => { pct = Math.max(0, Math.min(100, pct)); $('cmpImgB').style.clipPath = `inset(0 0 0 ${pct}%)`; $('cmpLine').style.left = pct + '%'; };
+  A.onchange = B.onchange = names;
+  let drag = false;
+  const move = e => { const r = cmp.getBoundingClientRect(); at((e.clientX - r.left) / r.width * 100); };
+  cmp.addEventListener('pointerdown', e => { drag = true; cmp.setPointerCapture(e.pointerId); move(e); });
+  cmp.addEventListener('pointermove', e => { if (drag) move(e); });
+  cmp.addEventListener('pointerup', () => { drag = false; });
+  cmp.addEventListener('pointercancel', () => { drag = false; });
+  names(); at(50); onLang(names);
 }
 
 const PAGES = {
@@ -343,6 +416,7 @@ const PAGES = {
         <div class="ways features">
           <a href="${ROOT}timeline/"><div class="name">${ui('梵高时间线', 'Van Gogh timeline')}</div><div class="ex">${bi(R.artistById[TIMELINE_ARTIST].dates, ' / ')}</div></a>
           <a href="${ROOT}london/"><div class="name">${bi(LONDON.title)}</div><div class="ex">${bi(LONDON.subtitle, ' / ')}</div></a>
+          <a href="${ROOT}versions/"><div class="name">${ui('同一幅画的几个版本', 'One painting, many versions')}</div><div class="ex">${['bedroom', 'sunflowers'].map(id => R.sceneById[id] && bi(R.sceneById[id].title, ' / ')).filter(Boolean).join(' · ')}</div></a>
         </div>
       </section>
 
@@ -399,7 +473,7 @@ const PAGES = {
     const id = param('id'), one = id && R.themeById[id];
     if (one) {   // 某一个主题：已开放的全部 + 即将开放最多3个
       main.innerHTML = `<div class="wrap page-title"><h1>${bi(one.name)}</h1>
-        ${one.id === 'london' ? `<p style="margin-top:14px">${linkBtn('london/', '按展厅的参观路线', 'Visiting route by room')}</p>` : ''}</div>
+        ${one.id === 'london' ? `<p style="margin-top:14px">${linkBtn('london/', '按展厅的参观路线', 'Route by room')}</p>` : ''}</div>
         <section class="section wrap">${cardsHTML(R, capSoon(scenesOf(R, 'themes', one.id)))}
           <p style="margin-top:28px"><a class="btn" href="${ROOT}themes/">← ${ui('所有主题', 'All themes')}</a></p></section>`;
       return;
@@ -493,7 +567,7 @@ const PAGES = {
         <button class="tl-nav prev" aria-label="Earlier">←</button><button class="tl-nav next" aria-label="Later">→</button>
         <ol class="vg-tl" id="vgTl">${TL.entries.map(x => {
         const pics = (x.scenes || []).map(id => tlPic(R, id)).join('');
-        return `<li class="tl-item${pics ? ' has-pic' : ''}"><div class="tl-date">${bi(x.date)}</div><div class="tl-text">${bi(x.text)}</div>${pics ? `<div class="tl-pics">${pics}</div>` : ''}</li>`;
+        return `<li class="tl-item${pics ? ' has-pic' : ''}"><div class="tl-date">${bi(x.date)}</div><div class="tl-text">${italics(bi(x.text))}</div>${pics ? `<div class="tl-pics">${pics}</div>` : ''}</li>`;
       }).join('')}</ol></div>
       <p style="margin-top:28px">${linkBtn('artists/?id=' + TL.artist, '更多梵高的画', 'More by Van Gogh')}</p></section>`;
     // 电脑上横向：左右箭头翻页，到头了箭头变淡
@@ -504,10 +578,46 @@ const PAGES = {
     ol.addEventListener('scroll', ends, { passive: true }); addEventListener('resize', ends); ends();
   },
 
+  // ---------- 同一幅画的几个版本（data/versions.json；图和文字都来自各场景的 scene.json） ----------
+  async versions(R, main) {
+    const V = await getJSON('versions.json');
+    const groups = (await Promise.all(V.groups.map(async g => {
+      const meta = R.sceneById[g.scene];
+      if (!meta || meta.status !== 'live') return null;
+      const S = await fetch(sceneUrl(meta) + 'scene.json', { cache: 'no-cache' }).then(r => r.json());
+      return { ...g, meta, S, base: sceneUrl(meta) };
+    }))).filter(Boolean);
+    const step = g => `<p><a class="btn primary" href="${g.base}">${ui('走进画里', 'Step into the painting')} →</a></p>`;
+    main.innerHTML = `<div class="wrap page-title"><h1>${bi(V.title)}</h1></div>
+      ${groups.map((g, gi) => {
+        const head = `<h2>${bi(g.meta.title)}</h2>`;
+        if (g.type === 'compare') {
+          const CV = (g.S.ending.versions || []).filter(v => v.image);
+          return `<section class="section wrap vers" id="${g.scene}">${head}
+            <div class="versions">${CV.map(v => `<figure><img src="${g.base + v.image}" ${altAttr(v.caption)} loading="lazy" /><figcaption>${bi(v.caption, ' / ')}${v.credit ? `<br><small>${bi(v.credit, ' / ')}</small>` : ''}</figcaption></figure>`).join('')}</div>
+            ${CV.length > 1 ? `<div class="section-title">${ui('找不同', 'Spot the difference')}<small class="en">Compare two versions — drag left and right</small></div>
+            <div class="cmp-pick"><select id="cmpA" aria-label="A"></select><span>↔</span><select id="cmpB" aria-label="B"></select></div>
+            <div id="cmp"><img id="cmpImgA" alt="" /><img id="cmpImgB" alt="" /><div id="cmpLine"></div>
+              <span class="cmp-tag" id="cmpTagA" style="left:8px"></span><span class="cmp-tag" id="cmpTagB" style="right:8px"></span></div>` : ''}
+            ${step(g)}</section>`;
+        }
+        const X = g.S.exclusive || {};
+        return `<section class="section wrap vers" id="${g.scene}">${head}
+          <h3>${bi(X.title || X.label)}</h3>
+          ${X.intro ? `<p class="where-intro">${bi(X.intro, ' / ')}</p>` : ''}
+          ${worldMap(X)}
+          <ol class="where-list">${(X.places || []).map(p => `<li class="${p.kind || ''}"><b>${bi(p.date, ' / ')}</b> · ${bi(p.name, ' / ')}${p.note ? ` <small>${bi(p.note, ' / ')}</small>` : ''}</li>`).join('')}</ol>
+          <p class="map-note">${bi(X.mapNote || { zh: '示意图：坐标是近似值。陆地轮廓来自 Natural Earth（公有领域）。', en: 'Schematic map: positions are approximate. Coastlines from Natural Earth (public domain).' }, ' ')}</p>
+          ${step(g)}</section>`;
+      }).join('')}`;
+    const cg = groups.find(g => g.type === 'compare');
+    if (cg && main.querySelector('#cmp')) compareSlider(main, (cg.S.ending.versions || []).filter(v => v.image), cg.base);
+  },
+
   // ---------- 在伦敦看真迹：按展厅的参观路线（文字在 data/london.json） ----------
   london(R, main) {
     const L = LONDON, m = R.museumById[L.museum];
-    const list = R.allScenes.filter(s => s.museum === L.museum && s.onDisplay !== false && s.room != null && s.room !== '');
+    const list = R.allScenes.filter(s => s.museum === L.museum && s.onDisplay === true && s.room != null && s.room !== '');
     const key = r => typeof r === 'object' ? r.en : String(r);
     const rooms = [...new Map(list.map(s => [key(s.room), s.room])).values()]
       .sort((a, b) => (typeof a === 'object') - (typeof b === 'object') || (parseInt(key(a)) || 0) - (parseInt(key(b)) || 0));
