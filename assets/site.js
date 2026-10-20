@@ -299,7 +299,7 @@ function tlPic(R, x) {
 function londonRow(R, s) {
   const a = R.artistById[s.artist], live = s.status === 'live', t = s.title;
   const name = t.zh && t.en && t.zh !== t.en ? `<span lang="zh-CN">${esc(t.zh)}</span> · <span lang="en">${esc(t.en)}</span>` : esc(t.zh || t.en);
-  const meta = [a && bi(a.name), roomLabel(s.room) && bi(roomLabel(s.room)), loanLabel(s)].filter(Boolean).join(' · ');
+  const meta = [a && bi(a.name), loanLabel(s)].filter(Boolean).join(' · ');   // 展厅号已经写在分组标题上
   const side = (live ? `<a class="btn primary" href="${sceneUrl(s)}">${ui('先走进去看看', 'Step inside first')}</a>` : '')
     + (s.artworkUrl ? `<a class="work-link" href="${s.artworkUrl}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '');
   return `<div class="row"><span class="row-main"><span class="row-pic">${live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>
@@ -340,7 +340,7 @@ const PAGES = {
 
       <section class="section wrap" id="features">
         <h2>${ui('专题', 'Features')}</h2>
-        <div class="ways">
+        <div class="ways features">
           <a href="${ROOT}timeline/"><div class="name">${ui('梵高时间线', 'Van Gogh timeline')}</div><div class="ex">${bi(R.artistById[TIMELINE_ARTIST].dates, ' / ')}</div></a>
           <a href="${ROOT}london/"><div class="name">${bi(LONDON.title)}</div><div class="ex">${bi(LONDON.subtitle, ' / ')}</div></a>
         </div>
@@ -488,12 +488,20 @@ const PAGES = {
   // ---------- 梵高时间线（文字在 data/timeline.json） ----------
   async timeline(R, main) {
     const TL = await getJSON('timeline.json');
-    main.innerHTML = `<div class="wrap page-title"><h1>${bi(TL.title)}<small class="sub">${bi(R.artistById[TL.artist].name)} · ${bi(R.artistById[TL.artist].dates)}</small></h1></div>
-      <section class="section wrap"><ol class="vg-tl">${TL.entries.map(x => {
+    main.innerHTML = `<div class="wrap page-title"><h1>${bi(TL.title)}<small class="sub">${esc(R.artistById[TL.artist].dates.en)}</small></h1></div>
+      <section class="section wrap"><div class="tl-wrap">
+        <button class="tl-nav prev" aria-label="Earlier">←</button><button class="tl-nav next" aria-label="Later">→</button>
+        <ol class="vg-tl" id="vgTl">${TL.entries.map(x => {
         const pics = (x.scenes || []).map(id => tlPic(R, id)).join('');
         return `<li class="tl-item${pics ? ' has-pic' : ''}"><div class="tl-date">${bi(x.date)}</div><div class="tl-text">${bi(x.text)}</div>${pics ? `<div class="tl-pics">${pics}</div>` : ''}</li>`;
-      }).join('')}</ol>
+      }).join('')}</ol></div>
       <p style="margin-top:28px">${linkBtn('artists/?id=' + TL.artist, '更多梵高的画', 'More by Van Gogh')}</p></section>`;
+    // 电脑上横向：左右箭头翻页，到头了箭头变淡
+    const ol = main.querySelector('#vgTl'), prev = main.querySelector('.tl-nav.prev'), next = main.querySelector('.tl-nav.next');
+    const ends = () => { prev.disabled = ol.scrollLeft < 4; next.disabled = ol.scrollLeft + ol.clientWidth > ol.scrollWidth - 4; };
+    prev.onclick = () => ol.scrollBy({ left: -ol.clientWidth * 0.8, behavior: 'smooth' });
+    next.onclick = () => ol.scrollBy({ left: ol.clientWidth * 0.8, behavior: 'smooth' });
+    ol.addEventListener('scroll', ends, { passive: true }); addEventListener('resize', ends); ends();
   },
 
   // ---------- 在伦敦看真迹：按展厅的参观路线（文字在 data/london.json） ----------

@@ -427,6 +427,11 @@ a.row-main:hover .row-title { text-decoration: underline; }
 .guide-text p { margin: 0 0 6px; line-height: 1.6; }
 
 /* 梵高时间线：横向（手机上竖向） */
+.ways.features { grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); }
+.tl-wrap { position: relative; }
+.tl-nav { position: absolute; top: -46px; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper); color: var(--ink); font-size: 16px; cursor: pointer; }
+.tl-nav.prev { right: 44px; } .tl-nav.next { right: 0; }
+.tl-nav:disabled { opacity: .3; cursor: default; }
 .vg-tl { list-style: none; margin: 0; padding: 8px 0 18px; display: flex; overflow-x: auto; scroll-snap-type: x proximity; }
 .tl-item { flex: 0 0 210px; position: relative; padding: 26px 18px 0 0; border-top: 2px solid var(--line); scroll-snap-align: start; }
 .tl-item::before { content: ''; position: absolute; top: -7px; left: 0; width: 12px; height: 12px; border-radius: 50%; background: var(--paper); border: 2px solid var(--muted); }
@@ -440,9 +445,11 @@ a.row-main:hover .row-title { text-decoration: underline; }
 .tl-pic img { display: block; width: 110px; height: 86px; object-fit: cover; border-radius: 4px; margin-bottom: 4px; transition: opacity .3s; }
 .tl-pic:hover img { opacity: .85; }
 .tl-pic .en { display: block; color: var(--muted); }
+.vg-tl .sep { display: none; }
 body:not(.lang-both) .tl-date .en, body:not(.lang-both) .tl-text .en, body:not(.lang-both) .tl-pic .en { font-style: normal; font-size: inherit; color: inherit; }
 @media (max-width: 700px) {
   .vg-tl { flex-direction: column; overflow: visible; padding-left: 6px; }
+  .tl-nav { display: none; }
   .tl-item, .tl-item.has-pic { flex: none; border-top: 0; border-left: 2px solid var(--line); padding: 0 0 26px 22px; }
   .tl-item::before { top: 4px; left: -7px; }
 }
