@@ -1,0 +1,239 @@
+// =====================================================================
+// 走进名画 · 声音（3D 场景和轻量版场景共用）
+//
+// 两个开关，都默认关闭：
+//   环境音 / Ambience：用代码现场合成（没有录音文件，没有版权问题）。
+//     scene.json 的 "sound" 写用哪一种（见下面 AMBIENCE）；写 null 时不显示开关。
+//   音乐 / Music：scene.json 的 "music"，src 填了录音文件才显示开关。
+//     只用确认为 CC0 或公有领域的录音。播放时显示曲名和演奏信息。
+// 语音导览播放时：环境音自动调小，音乐自动暂停（导览停了再接着放）。
+// =====================================================================
+import { bi, ui, onLang } from './site.js';
+
+let ctx = null;
+const rnd = (a, b) => a + Math.random() * (b - a);
+
+// ---------- 合成用的小零件 ----------
+function noiseBuffer(kind = 'white', sec = 4) {
+  const len = ctx.sampleRate * sec, buf = ctx.createBuffer(1, len, ctx.sampleRate), d = buf.getChannelData(0);
+  let last = 0;
+  for (let i = 0; i < len; i++) {
+    const w = Math.random() * 2 - 1;
+    if (kind === 'brown') { last = (last + 0.02 * w) / 1.02; d[i] = last * 3.5; } else d[i] = w;
+  }
+  return buf;
+}
+const buffers = {};
+const buf = kind => buffers[kind] || (buffers[kind] = noiseBuffer(kind));
+function loopNoise(kind, out, { type = 'lowpass', freq = 500, q = 0.7, gain = 0.2 } = {}) {   // 一直响着的底噪（风、房间、河水……）
+  const src = ctx.createBufferSource(); src.buffer = buf(kind); src.loop = true;
+  src.playbackRate.value = rnd(0.9, 1.1);
+  const f = ctx.createBiquadFilter(); f.type = type; f.frequency.value = freq; f.Q.value = q;
+  const g = ctx.createGain(); g.gain.value = gain;
+  src.connect(f).connect(g).connect(out); src.start(ctx.currentTime, rnd(0, 3));
+  return { src, f, g };
+}
+function pan(out, p) {
+  if (!ctx.createStereoPanner) return out;
+  const n = ctx.createStereoPanner(); n.pan.value = p; n.connect(out); return n;
+}
+function burst(out, t, { kind = 'white', type = 'bandpass', freq = 2000, q = 1, vol = 0.2, dur = 0.03, p = 0 } = {}) {   // 很短的一声（钟摆、台球、马蹄）
+  const src = ctx.createBufferSource(); src.buffer = buf(kind);
+  const f = ctx.createBiquadFilter(); f.type = type; f.frequency.value = freq; f.Q.value = q;
+  const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.003); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  src.connect(f).connect(g).connect(pan(out, p)); src.start(t, rnd(0, 3)); src.stop(t + dur + 0.05);
+}
+function tone(out, t, { f0, f1 = f0, type = 'sine', vol = 0.05, attack = 0.005, dur = 0.2, p = 0 }) {
+  const o = ctx.createOscillator(), g = ctx.createGain();
+  o.type = type; o.frequency.setValueAtTime(f0, t); if (f1 !== f0) o.frequency.exponentialRampToValueAtTime(f1, t + dur);
+  g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + attack); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+  o.connect(g).connect(pan(out, p)); o.start(t); o.stop(t + dur + 0.05);
+}
+// 每隔一段随机时间做一件事（关掉环境音时停下）
+function every(state, min, max, fn) {
+  const go = () => { state.timers.push(setTimeout(() => { if (state.on) { fn(ctx.currentTime + 0.05); go(); } }, rnd(min, max) * 1000)); };
+  go();
+}
+
+// ---------- 声音事件 ----------
+function bird(out, t) {
+  const n = 2 + Math.floor(Math.random() * 5), base = rnd(2600, 4800), gap = rnd(0.09, 0.17), p = rnd(-0.8, 0.8);
+  for (let k = 0; k < n; k++) { const up = Math.random() < 0.5; tone(out, t + k * gap, { f0: base * (up ? 0.8 : 1.2), f1: base * (up ? 1.25 : 0.75), vol: 0.035, attack: 0.012, dur: rnd(0.06, 0.11), p }); }
+}
+function clink(out, t) {   // 杯子碰撞：两个不和谐的高音，很快消失
+  const f = rnd(2400, 3600), p = rnd(-0.7, 0.7);
+  tone(out, t, { f0: f, vol: 0.03, attack: 0.002, dur: rnd(0.5, 0.9), p });
+  tone(out, t, { f0: f * 2.76, vol: 0.012, attack: 0.002, dur: 0.35, p });
+  if (Math.random() < 0.4) tone(out, t + rnd(0.06, 0.14), { f0: f * 1.07, vol: 0.02, attack: 0.002, dur: 0.5, p });
+}
+function billiard(out, t) {   // 台球碰撞：一两声清脆的“咔”
+  const p = rnd(-0.5, 0.5);
+  burst(out, t, { type: 'bandpass', freq: 2600, q: 3, vol: 0.18, dur: 0.035, p });
+  tone(out, t, { f0: 1900, vol: 0.03, attack: 0.001, dur: 0.06, p });
+  if (Math.random() < 0.6) { const t2 = t + rnd(0.25, 0.7); burst(out, t2, { type: 'bandpass', freq: 2400, q: 3, vol: 0.1, dur: 0.03, p }); }
+}
+function murmur(out, gain = 0.12) {   // 低声交谈：几层人声频段的噪声，音量跟着说话的节奏起伏
+  const layers = [380, 620, 900].map((freq, i) => {
+    const l = loopNoise('white', pan(out, [-0.5, 0.3, 0.6][i]), { type: 'bandpass', freq, q: 1.2, gain: 0 });
+    return l;
+  });
+  return state => every(state, 0.12, 0.35, t => {
+    for (const l of layers) l.g.gain.setTargetAtTime(Math.random() < 0.3 ? gain * 0.15 : gain * rnd(0.4, 1), t, 0.06);
+  });
+}
+function hooves(out, t) {   // 远处马车：马蹄“嗒嗒”加车轮的低沉声音，慢慢近了又远去
+  const steps = 22, cad = 0.26, p0 = rnd(-0.9, -0.4), p1 = -p0;
+  for (let k = 0; k < steps; k++) {
+    const x = k / (steps - 1), env = Math.sin(Math.PI * x), tk = t + k * cad + (k % 2 ? 0.09 : 0);
+    burst(out, tk, { kind: 'brown', type: 'lowpass', freq: 900, q: 1, vol: 0.25 * env + 0.001, dur: 0.06, p: p0 + (p1 - p0) * x });
+  }
+  const rumble = ctx.createBufferSource(); rumble.buffer = buf('brown');
+  const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 160;
+  const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.18, t + steps * cad / 2); g.gain.linearRampToValueAtTime(0.0001, t + steps * cad);
+  rumble.connect(f).connect(g).connect(out); rumble.start(t); rumble.stop(t + steps * cad + 0.1);
+}
+function lap(out, t) {   // 河水轻拍岸边：一下涌上来、慢慢退去
+  const src = ctx.createBufferSource(); src.buffer = buf('white');
+  const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.setValueAtTime(400, t); f.frequency.linearRampToValueAtTime(1300, t + 0.35); f.frequency.linearRampToValueAtTime(300, t + 1.6);
+  const g = ctx.createGain(); const v = rnd(0.18, 0.32);
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v, t + 0.3); g.gain.exponentialRampToValueAtTime(0.0001, t + 1.8);
+  src.connect(f).connect(g).connect(pan(out, rnd(-0.6, 0.6))); src.start(t, rnd(0, 2)); src.stop(t + 2);
+}
+function bee(out, t) {   // 一只蜜蜂飞过：嗡嗡声，从一边飞到另一边
+  const dur = rnd(2.5, 5), base = rnd(190, 240), p0 = rnd(-1, 1);
+  const o = ctx.createOscillator(); o.type = 'sawtooth'; o.frequency.setValueAtTime(base, t);
+  const lfo = ctx.createOscillator(), lg = ctx.createGain(); lfo.frequency.value = rnd(4, 7); lg.gain.value = rnd(6, 14);
+  lfo.connect(lg).connect(o.frequency);
+  const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = base * 2.2; f.Q.value = 1.4;
+  const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.035, t + dur * 0.4); g.gain.linearRampToValueAtTime(0.0001, t + dur);
+  const pn = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+  let node = o.connect(f).connect(g);
+  if (pn) { pn.pan.setValueAtTime(p0, t); pn.pan.linearRampToValueAtTime(-p0 * 0.8, t + dur); node = node.connect(pn); }
+  node.connect(out); o.start(t); lfo.start(t); o.stop(t + dur + 0.1); lfo.stop(t + dur + 0.1);
+}
+function cicadas(out, t) {   // 蝉鸣：高音的“嘶嘶”，一阵一阵
+  const dur = rnd(4, 9);
+  const src = ctx.createBufferSource(); src.buffer = buf('white'); src.loop = true;
+  const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = rnd(4200, 5600); f.Q.value = 6;
+  const am = ctx.createGain(); am.gain.value = 0;
+  const lfo = ctx.createOscillator(), lg = ctx.createGain(); lfo.type = 'square'; lfo.frequency.value = rnd(28, 45); lg.gain.value = 0.5;
+  lfo.connect(lg).connect(am.gain);
+  const g = ctx.createGain(); const v = rnd(0.05, 0.09);
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v, t + 1.2); g.gain.setValueAtTime(v, t + dur - 1.5); g.gain.linearRampToValueAtTime(0.0001, t + dur);
+  src.connect(f).connect(am).connect(g).connect(pan(out, rnd(-0.7, 0.7)));
+  src.start(t, rnd(0, 3)); lfo.start(t); src.stop(t + dur + 0.1); lfo.stop(t + dur + 0.1);
+}
+
+// ---------- 每个场景的环境音（scene.json 的 "sound"） ----------
+// 每一种：start(out, state, opts) 接好一直响着的声音，再安排偶尔出现的声音
+const AMBIENCE = {
+  // 安静室内，偶尔鸟叫（窗外）
+  'room-birds'(out, st) { loopNoise('brown', out, { freq: 260, gain: 0.12 }); bird(out, ctx.currentTime + 0.3); every(st, 2, 7, t => bird(out, t)); },
+  // 安静室内
+  room(out) { loopNoise('brown', out, { freq: 220, gain: 0.12 }); },
+  // 白天街道，远处马车声
+  'street-day'(out, st) {
+    loopNoise('brown', out, { freq: 380, gain: 0.16 });
+    murmur(out, 0.03)(st);
+    every(st, 4, 12, t => bird(out, t));
+    hooves(out, ctx.currentTime + 2); every(st, 16, 30, t => hooves(out, t));
+  },
+  // 钟摆、台球碰撞、低声交谈
+  'cafe-night'(out, st) {
+    loopNoise('brown', out, { freq: 200, gain: 0.1 });
+    murmur(out, 0.06)(st);
+    let tick = 0;
+    const step = () => { st.timers.push(setTimeout(() => { if (!st.on) return; const t = ctx.currentTime + 0.02;
+      burst(out, t, { type: 'bandpass', freq: tick++ % 2 ? 1100 : 1500, q: 6, vol: 0.12, dur: 0.025, p: 0.55 }); step(); }, 1000)); };
+    step();
+    every(st, 4, 11, t => billiard(out, t));
+  },
+  // 人声、杯子碰撞
+  terrace(out, st) {
+    loopNoise('brown', out, { freq: 300, gain: 0.1 });
+    murmur(out, 0.1)(st);
+    every(st, 1.5, 5, t => clink(out, t));
+  },
+  // 河水轻拍岸边
+  river(out, st) {
+    loopNoise('brown', out, { freq: 350, gain: 0.12 });
+    lap(out, ctx.currentTime + 0.2); every(st, 1.4, 3.2, t => lap(out, t));
+  },
+  // 夏日蜜蜂声
+  bees(out, st) {
+    loopNoise('brown', out, { freq: 300, gain: 0.06 });
+    bee(out, ctx.currentTime + 0.2); every(st, 1.5, 4, t => bee(out, t));
+  },
+  // 风声、蝉鸣；风声跟着“起风了”变强
+  'wind-cicadas'(out, st, opts) {
+    const w = loopNoise('brown', out, { freq: 420, gain: 0.25 });
+    if (opts.wind) st.timers.push(setInterval(() => {
+      const k = opts.wind(), t = ctx.currentTime;
+      w.g.gain.setTargetAtTime(0.25 + 0.55 * k, t, 0.3); w.f.frequency.setTargetAtTime(420 + 700 * k, t, 0.3);
+    }, 150));
+    cicadas(out, ctx.currentTime + 0.5); every(st, 3, 9, t => cicadas(out, t));
+  }
+};
+// 以前的写法（"birds"、"wind"）也能用
+const ALIAS = { birds: 'room-birds', wind: 'wind-cicadas' };
+
+// ambBtn / musBtn：两个开关；info：放音乐时显示曲名的地方；wind()：“起风了”现在多强（0–1）
+export function setupSound(S, { ambBtn, musBtn, info, wind = null }) {
+  const kind = ALIAS[S.sound] || S.sound, make = AMBIENCE[kind];
+  const M = S.music && S.music.src ? S.music : null;
+  let ambOn = false, ambGain = null, guiding = false, musicWanted = false;
+  const st = { on: false, timers: [] };
+  const level = () => guiding ? 0.15 : 0.7;
+
+  // ---------- 环境音 ----------
+  const ambLabel = () => { ambBtn.innerHTML = (ambOn ? '🔊 ' : '🔇 ') + ui('环境音', 'Ambience'); ambBtn.classList.toggle('on', ambOn); ambBtn.setAttribute('aria-pressed', ambOn); };
+  function setAmb(on) {
+    ambOn = on; ambLabel();
+    if (on) {
+      if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+      ctx.resume();
+      ambGain = ctx.createGain(); ambGain.gain.value = 0; ambGain.connect(ctx.destination);
+      st.on = true; st.timers = [];
+      make(ambGain, st, { wind });
+      ambGain.gain.setTargetAtTime(level(), ctx.currentTime, 0.5);
+    } else if (ambGain) {
+      st.on = false; st.timers.forEach(clearTimeout); st.timers.forEach(clearInterval); st.timers = [];
+      const g = ambGain; ambGain = null;
+      g.gain.setTargetAtTime(0, ctx.currentTime, 0.2);
+      setTimeout(() => g.disconnect(), 1500);   // 淡出后拆掉（里面一直响着的声音也一起停）
+    }
+  }
+  if (make) { ambBtn.classList.remove('hidden'); ambBtn.onclick = () => setAmb(!ambOn); ambLabel(); }
+  else ambBtn.classList.add('hidden');
+
+  // ---------- 音乐 ----------
+  let audio = null;
+  const musLabel = () => {
+    const on = audio && !audio.paused;
+    musBtn.innerHTML = (musicWanted ? '♪ ' : '♪̸ ') + ui('音乐', 'Music'); musBtn.classList.toggle('on', musicWanted); musBtn.setAttribute('aria-pressed', musicWanted);
+    info.classList.toggle('hidden', !on);
+  };
+  const credit = () => {   // 萨蒂《裸体歌舞第一号》· 演奏：××（CC0）
+    const zh = `${M.title.zh} · 演奏：${M.performer.zh}${M.license ? `（${M.license}）` : ''}`;
+    const en = `${M.title.en} · Performed by ${M.performer.en}${M.license ? ` (${M.license})` : ''}`;
+    info.innerHTML = `♪ ${bi({ zh, en }, ' / ')}${M.page ? ` <a href="${M.page}" target="_blank" rel="noopener">${ui('来源', 'Source')} ↗</a>` : ''}`;
+  };
+  function playMusic() { if (!audio) { audio = new Audio(M.src); audio.loop = true; audio.volume = 0.6; audio.onplay = audio.onpause = musLabel; } if (!guiding) audio.play(); }
+  if (M) {
+    musBtn.classList.remove('hidden'); credit();
+    musBtn.onclick = () => { musicWanted = !musicWanted; musicWanted ? playMusic() : audio && audio.pause(); musLabel(); };
+    musLabel(); onLang(credit);
+  } else { musBtn.classList.add('hidden'); info.classList.add('hidden'); }
+
+  document.addEventListener('visibilitychange', () => { if (ctx && ambOn) document.hidden ? ctx.suspend() : ctx.resume(); });
+  onLang(() => { if (make) ambLabel(); if (M) musLabel(); });
+
+  // 语音导览开始 / 停下时调用：环境音调小，音乐暂停；导览停了，音乐接着放
+  return {
+    guide(on) {
+      guiding = on;
+      if (ambGain) ambGain.gain.setTargetAtTime(level(), ctx.currentTime, 0.4);
+      if (audio && musicWanted) on ? audio.pause() : audio.play();
+    }
+  };
+}

@@ -55,7 +55,7 @@
       "en": "From here, you see what the painting sees."
     }
   },
-  "sound": null,
+  "sound": "room",
   "colors": {
     "line": "#2b2a33",
     "floor": "#ffffff",

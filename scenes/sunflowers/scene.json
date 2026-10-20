@@ -1,4 +1,19 @@
 {
+  "sound": "bees",
+  "music": {
+    "_说明": "音乐（可选）：只用确认为 CC0 或公有领域的录音。录音放进 audio/ 文件夹，src 写文件路径（例如 audio/music.mp3）；src 空着时不显示“音乐”开关。performer 是演奏者，license 写 CC0 或 公有领域 / Public domain，page 是录音来源页。",
+    "title": {
+      "zh": "格里格《晨歌》",
+      "en": "Grieg, Morning Mood"
+    },
+    "performer": {
+      "zh": "",
+      "en": ""
+    },
+    "license": "",
+    "page": "",
+    "src": ""
+  },
   "_说明": "向日葵（轻量版：分层景深 + 卡片 + 短故事，不能走动）。所有事实文字由 Tia 提供。layers 是同一张原画切出来的三层（照着 images/sunflowers.jpg 画的）：clip 是原画上的多边形（0–1，从左到右、从上到下），depth 越大移动越多。spots 是发光圆点的位置。",
   "id": "sunflowers",
   "kind": "light",

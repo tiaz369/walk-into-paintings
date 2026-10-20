@@ -9,8 +9,9 @@
 // 移动鼠标、拖动或转动手机时，前面的层移动得多一点，看起来像微微转动视角。
 // 文字、卡片、故事都写在 scene.json 里（结构和 3D 场景一样，按钮和样式也共用）。
 // =====================================================================
-import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
+import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
+import { setupSound } from './sound.js';
 
 export async function startLight(sceneUrl) {
   removeStatic();
@@ -22,6 +23,7 @@ export async function startLight(sceneUrl) {
       <p class="lead">${ui('即将开放', 'Coming soon')}</p><a class="btn primary" href="${ROOT}">${ui('回到走进名画', 'Back to Walk into Paintings')}</a></main>`);
     wirePrefs(); return;
   }
+  track('enter-scene-' + S.id);   // 访问统计：打开了这个场景
   document.body.classList.add('scene', 'light');
   if (meta && R.collectionById[meta.collection]) document.body.dataset.series = R.collectionById[meta.collection].accent || '';
   buildDOM(S, R, meta);
@@ -84,6 +86,9 @@ function buildDOM(S, R, meta) {
   <div id="status" class="ui">
     <div id="progress" class="panel"></div>
     <div id="leftHint" class="panel hidden"></div>
+    <button class="btn hidden" id="ambBtn"></button>
+    <button class="btn hidden" id="musBtn"></button>
+    <div id="musInfo" class="panel hidden"></div>
     <button class="btn hidden" id="audioBtn"></button>
     <div id="guideBox" class="panel guide hidden"></div>
     <button class="btn primary hidden" id="endBtn">${ui('继续看故事', 'Continue the story')} →</button>
@@ -210,10 +215,13 @@ function run(S, R) {
   // ---------- 开场 ----------
   const hint = $('hint');
   oneMinute($('oneMin'));   // 一分钟看一幅画（可选）
+  cleanToggle($('tools'));   // 隐藏按钮（录屏、截图用）
+  addEventListener('pointerdown', () => { if (document.body.classList.contains('in-room')) hint.style.opacity = 0; });   // 点任意处，操作提示就淡出
   $('enter').onclick = () => {
+    track('step-inside-' + S.id);   // 访问统计：走进画里
     startTilt();
     $('intro').classList.add('fade');
-    setTimeout(() => { $('intro').style.display = 'none'; document.body.classList.add('in-room'); hint.style.opacity = 1; setTimeout(() => hint.style.opacity = 0, 6000); }, 1200);
+    setTimeout(() => { $('intro').style.display = 'none'; document.body.classList.add('in-room'); hint.style.opacity = 1; setTimeout(() => hint.style.opacity = 0, 4000); }, 1200);
   };
   requestAnimationFrame(frame);
 
@@ -227,6 +235,7 @@ function run(S, R) {
     $('leftHint').innerHTML = `<span class="zh">还有 ${left} 个没发现</span><span class="en"><span class="zh"> / </span>${left} left to find</span>`;
   }
   function showCard(key) {
+    hint.style.opacity = 0;   // 提示不遮挡卡片
     const t = S.cards[key];
     $('cardTitle').textContent = t.title.zh; $('cardTitleEn').textContent = t.title.en;
     $('cardZh').textContent = t.text.zh; $('cardEn').textContent = t.text.en;
@@ -238,6 +247,7 @@ function run(S, R) {
     if (letter) $('cardLetter').href = letter;
     card.style.display = 'block';
     found.add(key); updateProgress();
+    if (found.size === 3 && !found.counted) { found.counted = true; track('found-3-' + S.id); }   // 访问统计：发现了3处
     spots.forEach(s => s.classList.toggle('seen', found.has(s.dataset.card)));
   }
   spots.forEach(s => s.onclick = e => { e.stopPropagation(); showCard(s.dataset.card); });
@@ -251,7 +261,8 @@ function run(S, R) {
     const el = popups[name]; el.style.display = (show ?? el.style.display !== 'block') ? 'block' : 'none';
   }
   $('compareBtn').onclick = () => togglePopup('compare');
-  setupGuide(S, { btn: $('audioBtn'), box: $('guideBox') });   // 语音导览（有录音才显示）
+  const sound = setupSound(S, { ambBtn: $('ambBtn'), musBtn: $('musBtn'), info: $('musInfo') });   // 环境音、音乐（都默认关闭）
+  setupGuide(S, { btn: $('audioBtn'), box: $('guideBox'), duck: on => sound.guide(on) });   // 语音导览（有录音才显示）
   if ($('mapBtn')) $('mapBtn').onclick = () => togglePopup('where');
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => togglePopup(b.dataset.close, false));
 
@@ -261,6 +272,7 @@ function run(S, R) {
   document.querySelectorAll('.act').forEach(a => io.observe(a));
   document.querySelectorAll('.next').forEach(b => b.onclick = () => $(b.dataset.next).scrollIntoView({ behavior: 'smooth' }));
   $('endBtn').onclick = () => {
+    track('ending-' + S.id);   // 访问统计：看故事结局
     card.style.display = 'none'; for (const k in popups) togglePopup(k, false);
     gallery.style.display = 'block';
     gallery.style.scrollBehavior = 'auto'; gallery.scrollTop = 0; gallery.style.scrollBehavior = '';

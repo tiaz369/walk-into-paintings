@@ -8,7 +8,7 @@
 // 两个文件都没有时，按钮不显示。不会自动播放。
 // 文字稿写在 scene.json 的 audioGuide.transcript 里。
 // =====================================================================
-import { bi, ui, lang, onLang } from './site.js';
+import { bi, ui, lang, onLang, track } from './site.js';
 
 const FILES = { zh: 'audio/guide-zh.mp3', en: 'audio/guide-en.mp3' };
 const exists = url => fetch(url, { method: 'HEAD', cache: 'no-cache' }).then(r => r.ok).catch(() => false);
@@ -53,7 +53,8 @@ export async function setupGuide(S, { btn, box, duck = () => {} }) {
     if (!dragging) seek.value = audio.duration ? Math.round(audio.currentTime / audio.duration * 1000) : 0;
     time.textContent = `${mmss(audio.currentTime)} / ${mmss(audio.duration)}`;
   };
-  audio.addEventListener('play', () => { label(); duck(true); });
+  let counted = false;
+  audio.addEventListener('play', () => { label(); duck(true); if (!counted) { counted = true; track('audio-' + S.id); } });   // 访问统计：听了语音导览
   audio.addEventListener('pause', () => { label(); duck(false); });
   audio.addEventListener('ended', () => { label(); duck(false); });
   audio.addEventListener('timeupdate', tick);
