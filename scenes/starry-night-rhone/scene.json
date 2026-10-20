@@ -1743,15 +1743,25 @@
     "museums": [
       "orsay"
     ],
-    "exit": {
-      "_说明": "结尾的按钮：回到露天咖啡座",
-      "scene": "cafe-terrace",
-      "label": {
-        "zh": "回到夜晚露天咖啡座",
-        "en": "Back to Café Terrace at Night"
+    "exit": [
+      {
+        "_说明": "结尾的按钮：回到露天咖啡座",
+        "scene": "cafe-terrace",
+        "label": {
+          "zh": "回到夜晚露天咖啡座",
+          "en": "Back to Café Terrace at Night"
+        },
+        "href": "../cafe-terrace/"
       },
-      "href": "../cafe-terrace/"
-    }
+      {
+        "scene": "wheatfield-cypresses",
+        "label": {
+          "zh": "之后：圣雷米",
+          "en": "Next: Saint-Rémy"
+        },
+        "href": "../wheatfield-cypresses/"
+      }
+    ]
   },
   "record": {
     "_说明": "作品档案表：Tia 提供。空着的行不显示。",

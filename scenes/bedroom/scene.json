@@ -143,7 +143,8 @@
     "museums": ["van-gogh-museum", "art-institute-chicago", "orsay"],
     "exit": [
       { "_说明": "结尾的“走出门”按钮：去黄房子（黄房子上线后才显示）", "scene": "yellow-house", "label": { "zh": "走出门", "en": "Step outside" }, "href": "../yellow-house/" },
-      { "_说明": "去向日葵（向日葵上线后才显示）", "scene": "sunflowers", "label": { "zh": "去看高更房间里的画", "en": "See the paintings for Gauguin's room" }, "href": "../sunflowers/" }
+      { "_说明": "去向日葵（向日葵上线后才显示）", "scene": "sunflowers", "label": { "zh": "去看高更房间里的画", "en": "See the paintings for Gauguin's room" }, "href": "../sunflowers/" },
+      { "_说明": "去圣雷米（麦田与柏树上线后才显示）", "scene": "wheatfield-cypresses", "label": { "zh": "之后：圣雷米", "en": "Next: Saint-Rémy" }, "href": "../wheatfield-cypresses/" }
     ]
   },
 

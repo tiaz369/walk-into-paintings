@@ -54,6 +54,9 @@ def scene_line(s, hide=(), title=None, year=None):   # hide：这一页已经写
     return ' · '.join(x for x in [both(title or s['title']), a and both(a['name']), both(year or s['year']), m and both(m['name'])] if x)
 def scene_li(s, up, hide=(), title=None, url=None, year=None):
     work = f' · <a href="{e(url)}">官网作品页 · Museum page</a>' if url else ''
+    r = s.get('room') if 'museum' in hide else None   # 博物馆页：展厅号
+    if r: work = ' · ' + e(both(r, ' / ') if isinstance(r, dict) else f'{r}号展厅 / Room {r}') + work
+    if s.get('loan'): work = ' · 借展 / On loan' + work
     if s['status'] == 'live': return f'<li><a href="{up}{s["path"]}">{e(scene_line(s, hide, title, year))}</a>{work}</li>'
     return f'<li>{e(scene_line(s, hide, title, year))} — 即将开放 / Coming soon{work}</li>'
 def scene_list(lst, up, hide=()): return '<ul>' + ''.join(scene_li(s, up, hide) for s in lst) + '</ul>' if lst else '<p>即将开放 / Coming soon</p>'
@@ -67,7 +70,8 @@ def museum_items(mid):   # 收藏在这里的场景 + 收藏在这里的其他�
     own = [(s, None, s.get('artworkUrl'), None) for s in R['scenes'] if s['museum'] == mid]
     also = [(s, v['title'], v.get('artworkUrl'), v.get('year')) for s in R['scenes'] for v in s.get('alsoAt', []) if v['museum'] == mid]
     return sorted(own + also, key=lambda x: x[0]['status'] != 'live')
-def of(key, id_): return [s for s in R['scenes'] if (id_ in s[key] if isinstance(s.get(key), list) else s.get(key) == id_)]
+def of(key, id_): return [s for s in R['scenes'] if (id_ in s[key] if isinstance(s.get(key), list) else s.get(key) == id_)
+                           and not (key == 'themes' and id_ == 'london' and s.get('onDisplay') is False)]   # “在伦敦看真迹”只放正在展出的作品
 
 ABOUT = json.load(open(os.path.join(ROOT, 'data/about.json'), encoding='utf-8'))
 def para(p):

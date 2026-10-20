@@ -126,8 +126,8 @@ export function sceneCard(R, s, opts = {}) {
   const artist = !opts.hideArtist && R.artistById[s.artist], museum = !opts.hideMuseum && R.museumById[opts.museum || s.museum];
   // 画家页：年份 · 收藏地；博物馆页：年份 · 画家；其他页面：画家 · 年份，下一行收藏地
   const short = opts.hideArtist || opts.hideMuseum;
-  const meta = short ? [bi(opts.year || s.year), artist && bi(artist.name), museum && bi(museum.name)].filter(Boolean).join(' · ')
-    : [artist && bi(artist.name), bi(opts.year || s.year)].filter(Boolean).join(' · ');
+  const meta = (short ? [bi(opts.year || s.year), artist && bi(artist.name), museum && bi(museum.name)]
+    : [artist && bi(artist.name), bi(opts.year || s.year)]).concat(loanLabel(s)).filter(Boolean).join(' · ');
   const live = s.status === 'live', title = opts.title || s.title, cover = opts.cover || s.cover;
   const pic = live && cover
     ? `<img src="${ROOT + cover}" ${altAttr(title)} loading="lazy" />`
@@ -143,13 +143,17 @@ export function sceneCard(R, s, opts = {}) {
 }
 // items：场景，或 { s: 场景, opts: {...} }
 export const cardsHTML = (R, list, opts = {}) => list.length ? `<div class="cards">${list.map(x => x.s ? sceneCard(R, x.s, { ...opts, ...x.opts }) : sceneCard(R, x, opts)).join('')}</div>` : `<p class="soon">${ui('即将开放', 'Coming soon')}</p>`;
+// 展厅号：数字写成“43号展厅 / Room 43”，也可以直接写 { zh, en }
+const roomLabel = r => r == null || r === '' ? null : typeof r === 'object' ? r : { zh: `${r}号展厅`, en: `Room ${r}` };
+const loanLabel = s => s.loan ? ui('借展', 'On loan') : '';
 // 一行一幅（画家页、博物馆页）：小图 · 作品名（中 · EN） · 年份 · 收藏地（画家页）或画家（博物馆页）
 export function sceneRow(R, s, opts = {}) {
   const artist = !opts.hideArtist && R.artistById[s.artist], museum = !opts.hideMuseum && R.museumById[opts.museum || s.museum];
   const live = s.status === 'live', t = opts.title || s.title, cover = opts.cover || s.cover, y = opts.year || s.year;
   const name = t.zh && t.en && t.zh !== t.en ? `<span lang="zh-CN">${esc(t.zh)}</span> · <span lang="en">${esc(t.en)}</span>` : esc(t.zh || t.en);
   const year = esc(textOf(y, lang === 'en' ? 'en' : 'zh'));
-  const meta = [year, artist && bi(artist.name), museum && bi(museum.name)].filter(Boolean).join(' · ');
+  const room = opts.showRoom && roomLabel(opts.room ?? s.room);
+  const meta = [year, artist && bi(artist.name), museum && bi(museum.name), room && bi(room), loanLabel(s)].filter(Boolean).join(' · ');
   const pic = `<span class="row-pic">${live && cover ? `<img src="${ROOT + cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>`;
   const text = `<span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span></span>`;
   const url = opts.workLink && (opts.artworkUrl ?? s.artworkUrl);
@@ -246,7 +250,8 @@ const openLine = (list) => {
   const part = (lang, open, nextWord, join) => `${open}${live.map(s => textOf(s.title, lang)).join(join)}` + (next ? ` · ${nextWord}${textOf(next.title, lang)}` : '');
   return bi({ zh: part('zh', '现在开放：', '下一站：', '、'), en: part('en', 'Now open: ', 'Next: ', ', ') }, ' / ');
 };
-const scenesOf = (R, key, id) => R.scenes.filter(s => Array.isArray(s[key]) ? s[key].includes(id) : s[key] === id);
+const scenesOf = (R, key, id) => R.scenes.filter(s => (Array.isArray(s[key]) ? s[key].includes(id) : s[key] === id)
+  && !(key === 'themes' && id === 'london' && s.onDisplay === false));   // “在伦敦看真迹”只放正在展出的作品
 // 一家博物馆页面上的作品：收藏在这里的场景 + 收藏在这里的其他版本（比如芝加哥的1889年版卧室，链接到卧室场景）
 function museumItems(R, id) {
   const own = scenesOf(R, 'museum', id).map(s => ({ s, opts: {} }));
@@ -419,7 +424,7 @@ const PAGES = {
       <section class="section wrap">${list.map(m => {
         const sc = museumItems(R, m.id);
         return `<div class="group" id="${m.id}">${one ? '' : `<h3><a href="?id=${m.id}" style="text-decoration:none">${bi(m.name)}</a></h3>`}
-          <p class="note">${visit(m)}</p>${rowsHTML(R, capSoon(sc), { hideMuseum: true, workLink: true }) || LATER()}</div>`;
+          <p class="note">${visit(m)}</p>${rowsHTML(R, capSoon(sc), { hideMuseum: true, workLink: true, showRoom: true }) || LATER()}</div>`;
       }).join('')}
       ${one ? `<p style="margin-top:28px"><a class="btn" href="${ROOT}museums/">← ${ui('所有博物馆', 'All museums')}</a></p>` : ''}</section>`;
   },

@@ -479,15 +479,25 @@
     "museums": [
       "van-gogh-museum"
     ],
-    "exit": {
-      "_说明": "结尾的按钮：去夜间咖啡馆（咖啡馆开放后才显示）",
-      "scene": "night-cafe",
-      "label": {
-        "zh": "穿过广场，去咖啡馆",
-        "en": "Cross the square to the café"
+    "exit": [
+      {
+        "_说明": "结尾的按钮：去夜间咖啡馆（咖啡馆开放后才显示）",
+        "scene": "night-cafe",
+        "label": {
+          "zh": "穿过广场，去咖啡馆",
+          "en": "Cross the square to the café"
+        },
+        "href": "../night-cafe/"
       },
-      "href": "../night-cafe/"
-    }
+      {
+        "scene": "wheatfield-cypresses",
+        "label": {
+          "zh": "之后：圣雷米",
+          "en": "Next: Saint-Rémy"
+        },
+        "href": "../wheatfield-cypresses/"
+      }
+    ]
   },
   "record": {
     "_说明": "作品档案表：Tia 提供。尺寸核对后填写（空着时这一行不显示）。",

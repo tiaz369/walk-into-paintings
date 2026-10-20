@@ -411,3 +411,5 @@ a.row-main:hover .row-title { text-decoration: underline; }
 .map text.num { font-size: 10px; font-weight: 600; fill: var(--paper); pointer-events: none; }
 .map .dot-soon + text.num { fill: var(--muted); }
 .map-num { display: inline-flex; align-items: center; justify-content: center; width: 1.3em; height: 1.3em; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-size: .6em; vertical-align: middle; font-family: var(--sans); }
+#windBtn.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+[data-series="saint-remy"] { --accent: #4f7f4a; --accent-ink: #ffffff; }
