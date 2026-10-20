@@ -1695,8 +1695,41 @@
     ]
   },
   "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。zh / en 一般空着；transcript 是播放器下面可展开的文字稿（现在先用三幕原文）。",
     "zh": "",
-    "en": ""
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 在现场",
+          "en": "On the spot"
+        },
+        "text": {
+          "zh": "1889年5月，梵高自愿住进圣雷米的圣保罗疗养院。6月底，他走到户外，在麦田边画下了第一幅习作。它现在在纽约大都会博物馆。",
+          "en": "In May 1889, Van Gogh voluntarily entered the asylum of Saint-Paul de Mausole in Saint-Rémy. In late June, he went outdoors and painted a first study by the wheat field. It is now at the Metropolitan Museum in New York."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 在房间里",
+          "en": "In his room"
+        },
+        "text": {
+          "zh": "九月，他被限制在病房里，凭着那幅习作，画出了这幅定稿。",
+          "en": "In September, confined to his room, he painted this finished version from that study."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1923年，伦敦国家美术馆用考陶尔德基金买下了这幅画。今天，它就挂在43号展厅。",
+          "en": "In 1923, the National Gallery in London bought the painting with the Courtauld Fund. Today it hangs in Room 43."
+        }
+      }
+    ]
   },
   "_待上传": {
     "_说明": "大都会博物馆的现场习作 images/wheatfield-met.jpg 上传后，把 compare 和第一幕的图片放回去",

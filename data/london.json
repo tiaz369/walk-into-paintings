@@ -1,0 +1,32 @@
+{
+  "_说明": "“在伦敦看真迹”参观路线（/london/）的文字（Tia 提供）。作品列表自动从 data/scenes.json 里取：收藏在 museum 这家博物馆、onDisplay 不是 false、写了展厅号 room 的作品，按展厅分组。",
+  "museum": "national-gallery",
+  "title": {
+    "zh": "在伦敦看真迹",
+    "en": "See them in London"
+  },
+  "subtitle": {
+    "zh": "伦敦国家美术馆，特拉法加广场，常设展免费",
+    "en": "The National Gallery, Trafalgar Square. Free entry to the permanent collection."
+  },
+  "notice": {
+    "zh": "展厅安排可能变动，出发前请查看美术馆官网。",
+    "en": "Rooms may change. Please check the gallery's website before you go."
+  },
+  "links": [
+    {
+      "label": {
+        "zh": "展厅平面图",
+        "en": "Floor plans"
+      },
+      "url": "https://www.nationalgallery.org.uk/visiting/floorplans"
+    },
+    {
+      "label": {
+        "zh": "参观信息",
+        "en": "Plan your visit"
+      },
+      "url": "https://www.nationalgallery.org.uk/visiting/plan-your-visit"
+    }
+  ]
+}

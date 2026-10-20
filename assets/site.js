@@ -6,6 +6,7 @@
 // 场景页（3D）也会用这里的语言和配色切换。
 // =====================================================================
 import { LAND } from './world-land.js';   // 地图的陆地轮廓
+import { hasGuide } from './guide.js';   // 关于页：有没有语音导览
 
 // 网站根目录（不管网站放在哪个网址下面都能找到）
 export const ROOT = new URL('../', import.meta.url).href;
@@ -171,7 +172,7 @@ const capSoon = list => { let n = 0; return list.filter(x => ((x.s || x).status 
 const NAV = [
   ['', '首页', 'Home'],
   ['artists/', '画家', 'Artists'], ['themes/', '主题', 'Themes'], ['periods/', '时期', 'Periods'],
-  ['map/', '地图', 'Map'], ['museums/', '博物馆', 'Museums'], ['about/', '关于', 'About']
+  ['map/', '地图', 'Map'], ['museums/', '博物馆', 'Museums'], ['timeline/', '梵高时间线', 'Van Gogh timeline'], ['about/', '关于', 'About']
 ];
 export function chrome(active) {
   const header = document.createElement('header');
@@ -279,9 +280,31 @@ const WAYS = [
 ];
 
 // 关于页的文字在 data/about.json（Tia 提供，原文照录）
-let ABOUT = null;
+let ABOUT = null, LONDON = null;   // 伦敦参观路线的文字在 data/london.json
 const para = (p, cls = '') => `<p class="zh ${cls}">${p.label ? `<strong>${esc(p.label.zh)}</strong>` : ''}${esc(p.zh)}</p>
   <p class="en ${cls}">${p.label ? `<strong>${esc(p.label.en)}</strong>` : ''}${esc(p.en)}</p>`;
+
+const getJSON = f => fetch(ROOT + 'data/' + f, { cache: 'no-cache' }).then(r => r.json());
+const TIMELINE_ARTIST = 'van-gogh';   // 哪位画家的页面放“梵高时间线”的入口
+const linkBtn = (path, zh, en) => `<a class="btn" href="${ROOT + path}">${ui(zh, en)} →</a>`;
+// 时间线上的一幅画：场景 id，或 { id, version: 博物馆 id }（用 alsoAt 里那个版本的图和名字）
+function tlPic(R, x) {
+  const s = R.sceneById[typeof x === 'string' ? x : x.id];
+  if (!s || s.status !== 'live') return '';
+  const v = typeof x === 'object' && x.version && (s.alsoAt || []).find(a => a.museum === x.version);
+  const title = (v && v.title) || s.title, cover = (v && v.cover) || s.cover;
+  return `<a class="tl-pic" href="${sceneUrl(s)}"><img src="${ROOT + cover}" ${altAttr(title)} loading="lazy" /><span>${bi(title)}</span></a>`;
+}
+// 伦敦参观路线：一行一幅
+function londonRow(R, s) {
+  const a = R.artistById[s.artist], live = s.status === 'live', t = s.title;
+  const name = t.zh && t.en && t.zh !== t.en ? `<span lang="zh-CN">${esc(t.zh)}</span> · <span lang="en">${esc(t.en)}</span>` : esc(t.zh || t.en);
+  const meta = [a && bi(a.name), loanLabel(s)].filter(Boolean).join(' · ');   // 展厅号已经写在分组标题上
+  const side = (live ? `<a class="btn primary" href="${sceneUrl(s)}">${ui('先走进去看看', 'Step inside first')}</a>` : '')
+    + (s.artworkUrl ? `<a class="work-link" href="${s.artworkUrl}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '');
+  return `<div class="row"><span class="row-main"><span class="row-pic">${live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>
+    <span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span></span></span>${side ? `<span class="row-side">${side}</span>` : ''}</div>`;
+}
 
 const PAGES = {
   // ---------- 首页 ----------
@@ -312,6 +335,14 @@ const PAGES = {
           <a href="${ROOT}collections/${c.id}/" data-series="${c.accent || ''}">
             <div class="name">${bi(c.name)}</div><div class="desc">${bi(c.desc)}</div>
             <div class="count">${openLine(c.order.map(x => R.sceneById[x]).filter(Boolean))}</div></a>`).join('')}
+        </div>
+      </section>
+
+      <section class="section wrap" id="features">
+        <h2>${ui('专题', 'Features')}</h2>
+        <div class="ways features">
+          <a href="${ROOT}timeline/"><div class="name">${ui('梵高时间线', 'Van Gogh timeline')}</div><div class="ex">${bi(R.artistById[TIMELINE_ARTIST].dates, ' / ')}</div></a>
+          <a href="${ROOT}london/"><div class="name">${bi(LONDON.title)}</div><div class="ex">${bi(LONDON.subtitle, ' / ')}</div></a>
         </div>
       </section>
 
@@ -351,6 +382,7 @@ const PAGES = {
       main.innerHTML = `<div class="wrap page-title"><h1>${bi(a.name)}${a.dates ? `<small class="sub">${bi(a.dates)}</small>` : ''}</h1></div>
         <section class="section wrap">
           ${a.bio ? `<p class="lead">${bi(a.bio)}</p>` : ''}
+          ${a.id === TIMELINE_ARTIST ? `<p style="margin:-8px 0 24px">${linkBtn('timeline/', '梵高时间线', 'Van Gogh timeline')}</p>` : ''}
           ${scenesOf(R, 'artist', a.id).length ? cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true, bothTitle: true }) : LATER()}
           <p style="margin-top:28px"><a class="btn" href="${ROOT}artists/">← ${ui('所有画家', 'All artists')}</a></p></section>`;
       return;
@@ -366,7 +398,8 @@ const PAGES = {
     const hasLive = t => scenesOf(R, 'themes', t.id).some(s => s.status === 'live');
     const id = param('id'), one = id && R.themeById[id];
     if (one) {   // 某一个主题：已开放的全部 + 即将开放最多3个
-      main.innerHTML = `<div class="wrap page-title"><h1>${bi(one.name)}</h1></div>
+      main.innerHTML = `<div class="wrap page-title"><h1>${bi(one.name)}</h1>
+        ${one.id === 'london' ? `<p style="margin-top:14px">${linkBtn('london/', '按展厅的参观路线', 'Visiting route by room')}</p>` : ''}</div>
         <section class="section wrap">${cardsHTML(R, capSoon(scenesOf(R, 'themes', one.id)))}
           <p style="margin-top:28px"><a class="btn" href="${ROOT}themes/">← ${ui('所有主题', 'All themes')}</a></p></section>`;
       return;
@@ -444,7 +477,46 @@ const PAGES = {
         ${ABOUT.intro.map(p => para(p, 'lead')).join('')}
         ${para(ABOUT.me)}
         ${para(ABOUT.principles)}
+        <div id="audioCredit"></div>
       </section>`;
+    // “语音导览由 Tia 录制”：有已上线的场景放了录音之后才显示
+    if (ABOUT.audioCredit) Promise.all(R.live.map(s => hasGuide(sceneUrl(s)))).then(r => {
+      if (r.some(Boolean)) { document.getElementById('audioCredit').innerHTML = para(ABOUT.audioCredit); setLang(lang); }
+    });
+  },
+
+  // ---------- 梵高时间线（文字在 data/timeline.json） ----------
+  async timeline(R, main) {
+    const TL = await getJSON('timeline.json');
+    main.innerHTML = `<div class="wrap page-title"><h1>${bi(TL.title)}<small class="sub">${esc(R.artistById[TL.artist].dates.en)}</small></h1></div>
+      <section class="section wrap"><div class="tl-wrap">
+        <button class="tl-nav prev" aria-label="Earlier">←</button><button class="tl-nav next" aria-label="Later">→</button>
+        <ol class="vg-tl" id="vgTl">${TL.entries.map(x => {
+        const pics = (x.scenes || []).map(id => tlPic(R, id)).join('');
+        return `<li class="tl-item${pics ? ' has-pic' : ''}"><div class="tl-date">${bi(x.date)}</div><div class="tl-text">${bi(x.text)}</div>${pics ? `<div class="tl-pics">${pics}</div>` : ''}</li>`;
+      }).join('')}</ol></div>
+      <p style="margin-top:28px">${linkBtn('artists/?id=' + TL.artist, '更多梵高的画', 'More by Van Gogh')}</p></section>`;
+    // 电脑上横向：左右箭头翻页，到头了箭头变淡
+    const ol = main.querySelector('#vgTl'), prev = main.querySelector('.tl-nav.prev'), next = main.querySelector('.tl-nav.next');
+    const ends = () => { prev.disabled = ol.scrollLeft < 4; next.disabled = ol.scrollLeft + ol.clientWidth > ol.scrollWidth - 4; };
+    prev.onclick = () => ol.scrollBy({ left: -ol.clientWidth * 0.8, behavior: 'smooth' });
+    next.onclick = () => ol.scrollBy({ left: ol.clientWidth * 0.8, behavior: 'smooth' });
+    ol.addEventListener('scroll', ends, { passive: true }); addEventListener('resize', ends); ends();
+  },
+
+  // ---------- 在伦敦看真迹：按展厅的参观路线（文字在 data/london.json） ----------
+  london(R, main) {
+    const L = LONDON, m = R.museumById[L.museum];
+    const list = R.allScenes.filter(s => s.museum === L.museum && s.onDisplay !== false && s.room != null && s.room !== '');
+    const key = r => typeof r === 'object' ? r.en : String(r);
+    const rooms = [...new Map(list.map(s => [key(s.room), s.room])).values()]
+      .sort((a, b) => (typeof a === 'object') - (typeof b === 'object') || (parseInt(key(a)) || 0) - (parseInt(key(b)) || 0));
+    main.innerHTML = `<div class="wrap page-title"><h1>${bi(L.title)}<small class="sub">${bi(L.subtitle)}</small></h1>
+        <p class="notice">${bi(L.notice, ' / ')}</p>
+        <p class="london-links">${L.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${bi(l.label)} ↗</a>`).join('')}${m && m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${bi(m.name)} ↗</a>` : ''}
+          <button class="btn" onclick="print()">${ui('打印', 'Print')}</button></p></div>
+      <section class="section wrap london">${rooms.map(r => `<div class="group"><h3>${bi(roomLabel(r))}</h3>
+        <div class="rows">${list.filter(s => key(s.room) === key(r)).sort((a, b) => (a.status !== 'live') - (b.status !== 'live')).map(s => londonRow(R, s)).join('')}</div></div>`).join('') || SOON()}</section>`;
   }
 };
 
@@ -455,9 +527,9 @@ export async function renderPage(kind, opts = {}) {
   chrome(opts.nav ?? (kind === 'home' ? '' : kind === 'collection' ? null : kind + '/'));
   document.querySelector('footer').before(main);
   try {
-    const [R, about] = await Promise.all([loadRegistry(), fetch(ROOT + 'data/about.json', { cache: 'no-cache' }).then(r => r.json())]);
-    ABOUT = about;
-    PAGES[kind](R, main, opts);
+    const [R, about, london] = await Promise.all([loadRegistry(), getJSON('about.json'), getJSON('london.json')]);
+    ABOUT = about; LONDON = london;
+    await PAGES[kind](R, main, opts);
   } catch (e) {
     main.innerHTML = `<div class="wrap page-title"><p class="soon">${ui('内容加载失败，请刷新页面。', 'Could not load. Please refresh.')}</p></div>`;
     console.error(e);

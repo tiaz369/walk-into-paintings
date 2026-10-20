@@ -669,7 +669,40 @@
     ]
   },
   "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。zh / en 一般空着；transcript 是播放器下面可展开的文字稿（现在先用三幕原文）。",
     "zh": "",
-    "en": ""
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 没有黑色的夜",
+          "en": "A night without black"
+        },
+        "text": {
+          "zh": "梵高一直想画一幅夜景，但不想用传统的黑色和灰色，而是用丰富的颜色。",
+          "en": "Van Gogh had long wanted to paint a night scene, not in black and grey, but full of colour."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 在黑暗中画",
+          "en": "Painting in the dark"
+        },
+        "text": {
+          "zh": "他在夜里来到论坛广场，在煤气灯下现场作画。他写信告诉妹妹威尔，他非常享受在夜里现场画画。",
+          "en": "He went to Place du Forum at night and painted by gaslight. He wrote to his sister Wil that he enormously enjoyed painting on the spot at night."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 今天的广场",
+          "en": "The square today"
+        },
+        "text": {
+          "zh": "今天，你可以站在广场东北角，也就是他当年支画架的地方。这家咖啡馆在1990至1991年按画中的样子重新翻修过。",
+          "en": "Today you can stand at the north-east corner of the square, where he set up his easel. The café was refurbished in 1990–91 to look like the painting."
+        }
+      }
+    ]
   }
 }
