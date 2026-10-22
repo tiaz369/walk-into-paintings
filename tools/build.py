@@ -116,7 +116,7 @@ def head(path, title, desc, image, image_alt, up, scene=False):
   <meta property="og:title" content="{e(title)}" />
   <meta property="og:description" content="{e(desc)}" />
   <meta property="og:image" content="{img}" />
-  <meta property="og:image:alt" content="{e(image_alt)}" />
+  <meta property="og:image:alt" content="{e(image_alt)}" />{OG_SIZE if image == OG_HOME else ''}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{e(title)}" />
   <meta name="twitter:description" content="{e(desc)}" />
@@ -134,7 +134,11 @@ def head(path, title, desc, image, image_alt, up, scene=False):
   </script>""" if scene else ''}
 </head>
 '''
-def page(path, title, desc, static, script, image='scenes/bedroom/images/v1888.jpg', image_alt='梵高《阿尔勒的卧室》1888 · Vincent van Gogh, The Bedroom, 1888', scene=False, up=None, noindex=False):
+# 首页和浏览页的分享预览图：三幅画并排（tools/make_og.py 生成）；场景页用自己的原画
+OG_HOME = 'assets/og-home.jpg'
+OG_SIZE = '\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="630" />'
+OG_HOME_ALT = "梵高《阿尔勒的卧室》、维米尔《戴珍珠耳环的少女》、梵高《向日葵》· Van Gogh's The Bedroom, Vermeer's Girl with a Pearl Earring, Van Gogh's Sunflowers"
+def page(path, title, desc, static, script, image=OG_HOME, image_alt=OG_HOME_ALT, scene=False, up=None, noindex=False):
     if up is None: up = '../' * path.count('/')
     body = f'''<body class="lang-both">
   <!-- ↓ 自动生成（tools/build.py）：给搜索引擎看的文字。打开网页时会被 JavaScript 画出来的页面替换。不要手动改这一段。 -->
