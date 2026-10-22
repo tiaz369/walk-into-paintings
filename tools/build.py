@@ -12,7 +12,7 @@
 #   2. 生成 sitemap.xml、robots.txt、404.html
 # 只用 Python 自带的功能，不用安装任何东西。
 # =====================================================================
-import json, html, os, datetime
+import json, html, os, datetime, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://tiaz369.github.io/walk-into-paintings/'
@@ -22,7 +22,12 @@ FONTS = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0
 THREE = 'assets/vendor/three.module.js'   # three.js 0.160.0，放在自己的仓库里（不依赖外部 CDN，中国大陆也能打开）
 
 R = json.load(open(os.path.join(ROOT, 'data/scenes.json'), encoding='utf-8'))
-R['scenes'] = [s for s in R['scenes'] if s['status'] != 'planned']   # 计划中的作品：暂不在页面显示
+ORDER = [s['id'] for s in R['scenes']]   # 登记表里的顺序（“本周新作”同一天上线时用）
+def year_num(year):
+    m = re.search(r'\d{4}', year['en'] if isinstance(year, dict) else str(year or ''))
+    return int(m.group()) if m else 9999
+open_year = lambda s, year=None: (s['status'] != 'live', year_num(year or s.get('year')))   # 全站排序：已开放的在前，同一组里按年份从早到晚
+R['scenes'] = sorted([s for s in R['scenes'] if s['status'] != 'planned'], key=open_year)   # 计划中的作品：暂不在页面显示
 by = lambda k: {x['id']: x for x in R[k]}
 ARTISTS, MUSEUMS, COLS, THEMES, PERIODS, PLACES, SCENES = by('artists'), by('museums'), by('collections'), by('themes'), by('periods'), by('places'), by('scenes')
 SOON_MAX = 3   # 画家页、博物馆页最多列几个即将开放的作品
@@ -69,7 +74,7 @@ def cap_soon(lst, key=lambda x: x):   # 已开放的都列出；即将开放的�
 def museum_items(mid):   # 收藏在这里的场景 + 收藏在这里的其他版本
     own = [(s, None, s.get('artworkUrl'), None, None) for s in R['scenes'] if s['museum'] == mid]
     also = [(s, v['title'], v.get('artworkUrl'), v.get('year'), v.get('room')) for s in R['scenes'] for v in s.get('alsoAt', []) if v['museum'] == mid]
-    return sorted(own + also, key=lambda x: x[0]['status'] != 'live')
+    return sorted(own + also, key=lambda x: open_year(x[0], x[3]))
 def of(key, id_): return [s for s in R['scenes'] if (id_ in s[key] if isinstance(s.get(key), list) else s.get(key) == id_)
                            and not (key == 'themes' and id_ == 'london' and s.get('onDisplay') is False)]   # “在伦敦看真迹”只放正在展出的作品
 
@@ -168,10 +173,10 @@ DESC = both(TAGLINE, ' ')
 # ---------- 首页 ----------
 s = f'''      <h1>{bi(NAME)}</h1>
       <p>{bi(TAGLINE)}</p>
-      <h2>最新开放 · Latest</h2>
-      {scene_list(sorted(LIVE, key=lambda s: s.get('added', ''), reverse=True), '')}
+      <h2>本周新作 · New this week</h2>
+      {scene_list(sorted(LIVE, key=lambda s: (s.get('added', ''), ORDER.index(s['id'])), reverse=True)[:1], '')}
       <h2>系列 · Collections</h2>
-      {''.join(f'<h3><a href="collections/{c["id"]}/">{e(both(c["name"]))}</a></h3><p>{e(both(c["desc"]))}</p>{scene_list([SCENES[x] for x in c["order"] if x in SCENES], "")}' for c in R['collections'])}
+      {''.join(f'<h3><a href="collections/{c["id"]}/">{e(both(c["name"]))}</a></h3><p>{e(both(c["desc"]))}</p>{scene_list(sorted([SCENES[x] for x in c["order"] if x in SCENES], key=open_year), "")}' for c in R['collections'])}
       <h2>专题 · Features</h2>
       <ul><li><a href="timeline/">时间线 · Timeline</a></li><li><a href="london/">{e(both(LONDON['title']))}</a> — {e(both(LONDON['subtitle'], ' / '))}</li><li><a href="versions/">同一幅画的几个版本 · One painting, many versions</a></li></ul>
       <h2>六种浏览方式 · Six ways to explore</h2>
@@ -184,7 +189,7 @@ PAGES.append(page('', '走进名画 · Walk into Paintings', DESC, s, site_scrip
 # ---------- 系列页 ----------
 for c in R['collections']:
     p = f'collections/{c["id"]}/'
-    lst = [SCENES[x] for x in c['order'] if x in SCENES]
+    lst = sorted([SCENES[x] for x in c['order'] if x in SCENES], key=open_year)
     s = f'      <h1>{bi(c["name"])}</h1>\n      <p>{bi(c["desc"])}</p>\n      {scene_list(lst, "../../")}'
     PAGES.append(page(p, T(t(c['name']), t(c['name'], 'en')), f'{both(c["name"])}：{both(c["desc"])}', s, site_script('../../', 'collection', f", {{ id: '{c['id']}' }}")))
 
@@ -205,7 +210,10 @@ def groups(items, key, up, name='name'):
     return ''.join(f'<h2 id="{x["id"]}">{e(both(x[name]))}</h2>{scene_list(of(key, x["id"]), up)}' for x in items)
 def later(names): return f'<p>即将推出 · Coming soon: {" · ".join(names)}</p>' if names else ''   # 还没有作品可以显示的
 def aname(a): return both(a['name']) + (f'（{both(a["dates"], " / ")}）' if a.get('dates') else '')
-arts = ''.join(f'<h2 id="{a["id"]}">{e(aname(a))}</h2>' + (scene_list(cap_soon(of("artist", a["id"])), "../", ("artist",)) if of('artist', a['id']) else '<p>即将推出 · Coming soon</p>') + (life_html(LIFE[a['id']]) if a['id'] in LIFE else '') for a in R['artists'] if a.get('status') != 'planned')
+def artist_cover(a):   # 画家卡片的封面：cover 里第一个已开放的场景
+    c = next((SCENES[x] for x in a.get('cover', []) if x in SCENES and SCENES[x]['status'] == 'live' and SCENES[x].get('cover')), None)
+    return f'<p><img src="../{c["cover"]}" alt="{e(both(c["title"], " / "))}" width="96" loading="lazy" /></p>' if c else ''
+arts = ''.join(f'<h2 id="{a["id"]}">{e(aname(a))}</h2>' + artist_cover(a) + (scene_list(cap_soon(of("artist", a["id"])), "../", ("artist",)) if of('artist', a['id']) else '<p>即将推出 · Coming soon</p>') + (life_html(LIFE[a['id']]) if a['id'] in LIFE else '') for a in R['artists'] if a.get('status') != 'planned')
 PAGES.append(page('artists/', T('画家', 'Artists'), '按画家浏览 · Browse by artist', '      <h1>按画家 · By artist</h1>\n      ' + arts, site_script('../', 'artists')))
 live_in = lambda tid: any(x['status'] == 'live' for x in of('themes', tid))
 ths = ''.join(f'<h2 id="{x["id"]}">{e(both(x["name"]))}</h2>{scene_list(cap_soon(of("themes", x["id"])), "../")}' for x in R['themes'] if live_in(x['id']))
@@ -238,7 +246,7 @@ PAGES.append(page('timeline/', T('时间线', 'Timeline'), '时间线：按年�
 
 # ---------- 在伦敦看真迹：参观路线 ----------
 ALL = json.load(open(os.path.join(ROOT, 'data/scenes.json'), encoding='utf-8'))['scenes']   # 包括计划中的作品
-ldn = [x for x in ALL if x['museum'] == LONDON['museum'] and x.get('onDisplay') is True and x.get('room') not in (None, '')]
+ldn = sorted([x for x in ALL if x['museum'] == LONDON['museum'] and x.get('onDisplay') is True and x.get('room') not in (None, '')], key=lambda x: open_year(x, x.get('year')))
 rkey = lambda r: r['en'] if isinstance(r, dict) else str(r)
 rooms = sorted({rkey(x['room']): x['room'] for x in ldn}.values(), key=lambda r: (isinstance(r, dict), int(r) if str(r).isdigit() else 0))
 def ldn_li(x):

@@ -10,9 +10,9 @@
   ],
 
   "artists": [
-    { "id": "van-gogh", "name": { "zh": "梵高", "en": "Vincent van Gogh" }, "dates": { "zh": "1853–1890", "en": "1853–1890" },
+    { "id": "van-gogh", "cover": ["bedroom"], "name": { "zh": "梵高", "en": "Vincent van Gogh" }, "dates": { "zh": "1853–1890", "en": "1853–1890" },
       "bio": {"zh": "文森特·梵高（1853–1890），荷兰画家。他将近27岁才开始画画，短短十年留下了大量作品。1888年他来到法国南部的阿尔勒，在那里画出了许多最著名的画。", "en": "Vincent van Gogh (1853–1890) was a Dutch painter. He began painting at around 27 and left a huge body of work in just ten years. In 1888 he moved to Arles in the south of France, where he painted many of his best-known works."} },
-    { "id": "vermeer",  "name": { "zh": "维米尔", "en": "Johannes Vermeer" }, "dates": { "zh": "1632–1675", "en": "1632–1675" }, "bio": { "zh": "约翰内斯·维米尔（1632–1675），荷兰画家，一生都在代尔夫特生活和创作。他留下的画作只有约35幅，以描绘室内的光线著称。", "en": "Johannes Vermeer (1632–1675) was a Dutch painter who lived and worked in Delft all his life. Only about 35 of his paintings survive, famous for their rendering of light in quiet interiors." } },
+    { "id": "vermeer",  "cover": ["pearl-earring", "milkmaid"], "name": { "zh": "维米尔", "en": "Johannes Vermeer" }, "dates": { "zh": "1632–1675", "en": "1632–1675" }, "bio": { "zh": "约翰内斯·维米尔（1632–1675），荷兰画家，一生都在代尔夫特生活和创作。他留下的画作只有约35幅，以描绘室内的光线著称。", "en": "Johannes Vermeer (1632–1675) was a Dutch painter who lived and worked in Delft all his life. Only about 35 of his paintings survive, famous for their rendering of light in quiet interiors." } },
     { "id": "van-eyck", "name": { "zh": "扬·凡·艾克", "en": "Jan van Eyck" }, "dates": { "zh": "约1390–1441", "en": "c. 1390–1441" }, "bio": null },
     { "id": "monet",    "name": { "zh": "莫奈", "en": "Claude Monet" }, "dates": { "zh": "1840–1926", "en": "1840–1926" }, "bio": null },
     { "id": "seurat",   "name": { "zh": "修拉", "en": "Georges Seurat" }, "dates": { "zh": "1859–1891", "en": "1859–1891" }, "bio": null },
