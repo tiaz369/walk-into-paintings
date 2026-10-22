@@ -329,7 +329,7 @@ open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8').write(f'<?xml ver
 open(os.path.join(ROOT, 'robots.txt'), 'w', encoding='utf-8').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}sitemap.xml\n')
 print('生成了', len(PAGES), '个页面 + sitemap.xml + robots.txt')
 # 顺便检查每个场景是否符合模板（一个骨架，四种变体）；只提醒，不改文件
-import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import sys; sys.dont_write_bytecode = True; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))   # 不生成 __pycache__
 from check_scenes import check
 _rows, _problems = check()
 print('场景检查：' + ('全部符合模板' if not _problems else f'有 {len(_problems)} 处要看一下'))
