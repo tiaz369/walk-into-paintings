@@ -159,6 +159,8 @@ function cicadas(out, t) {   // 蝉鸣：高音的“嘶嘶”，一阵一阵
 const AMBIENCE = {
   // 安静室内，偶尔鸟叫（窗外）
   'room-birds'(out, st) { loopNoise('brown', out, { freq: 260, gain: 0.12 }); bird(out, ctx.currentTime + 0.3); every(st, 2, 7, t => bird(out, t)); },
+  // 非常安静的室内：只有很轻的房间底噪
+  quiet(out) { loopNoise('brown', out, { freq: 180, gain: 0.06 }); },
   // 安静室内
   room(out) { loopNoise('brown', out, { freq: 220, gain: 0.12 }); },
   // 安静的街道：运河边轻轻的水声，孩子的笑声，远处的鸟叫
