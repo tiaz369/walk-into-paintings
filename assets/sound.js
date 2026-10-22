@@ -92,6 +92,10 @@ function hooves(out, t) {   // 远处马车：马蹄“嗒嗒”加车轮的低�
   const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.18, t + steps * cad / 2); g.gain.linearRampToValueAtTime(0.0001, t + steps * cad);
   rumble.connect(f).connect(g).connect(out); rumble.start(t); rumble.stop(t + steps * cad + 0.1);
 }
+function rustle(out, t) {   // 纸张轻响：几下很轻、很短的“沙沙”
+  const n = 2 + Math.floor(Math.random() * 4), p = rnd(-0.3, 0.3);
+  for (let k = 0; k < n; k++) burst(out, t + k * rnd(0.05, 0.14), { type: 'highpass', freq: rnd(2500, 4500), q: 0.7, vol: rnd(0.03, 0.06), dur: rnd(0.05, 0.12), p });
+}
 function pour(out, t) {   // 牛奶倒进陶罐：细细的水声，倒完慢慢停下，中间偶尔“咕”一声
   const dur = rnd(5, 9);
   const src = ctx.createBufferSource(); src.buffer = buf('white'); src.loop = true;
@@ -146,6 +150,12 @@ const AMBIENCE = {
   'room-birds'(out, st) { loopNoise('brown', out, { freq: 260, gain: 0.12 }); bird(out, ctx.currentTime + 0.3); every(st, 2, 7, t => bird(out, t)); },
   // 安静室内
   room(out) { loopNoise('brown', out, { freq: 220, gain: 0.12 }); },
+  // 安静的室内：偶尔有纸张轻响，窗外远处有几声鸟叫
+  letter(out, st) {
+    loopNoise('brown', out, { freq: 210, gain: 0.11 });
+    every(st, 4, 10, t => rustle(out, t));
+    every(st, 8, 18, t => bird(pan(out, -0.6), t));
+  },
   // 安静的厨房：牛奶倒进陶罐的细细水声，窗外偶尔几声鸟叫
   kitchen(out, st) {
     loopNoise('brown', out, { freq: 220, gain: 0.1 });

@@ -1,0 +1,850 @@
+{
+  "_说明": "读信的蓝衣女子（室内房间，完整版）。所有文字由 Tia 提供。房间形状和画家视角是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "woman-reading-letter",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示；具体的灯光效果由 room、exclusive 里的设置决定）",
+    "type": "window",
+    "label": {
+      "zh": "清晨，左边窗户的光",
+      "en": "Morning, light from a window on the left"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片 4 还链接到主题“读信与书写”（不是场景，所以不列在这里）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "milkmaid"
+    ]
+  },
+  "painting": {
+    "image": "images/woman-reading-letter.jpg",
+    "width": 1678,
+    "height": 2000,
+    "alt": {
+      "zh": "维米尔《读信的蓝衣女子》约1663，阿姆斯特丹荷兰国立博物馆",
+      "en": "Johannes Vermeer, Woman Reading a Letter, c. 1663, Rijksmuseum, Amsterdam"
+    },
+    "_": "宽高是按 39 × 46.5 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "读信的蓝衣女子",
+      "en": "Woman Reading a Letter"
+    },
+    "artist": {
+      "zh": "维米尔",
+      "en": "Johannes Vermeer"
+    },
+    "date": {
+      "zh": "约1663年",
+      "en": "c. 1663"
+    },
+    "museum": {
+      "zh": "阿姆斯特丹荷兰国立博物馆",
+      "en": "Rijksmuseum, Amsterdam"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下她、信、地图、墙上的影子看介绍 · 点“光从哪里来”看光线 · 地上发光的圆点 = 维米尔视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap her, the letter, the map or the shadows on the wall to learn more · Tap “Where does the light come from?” to see the light · The glowing circle = Vermeer's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.2,
+    "yaw": 0,
+    "pitch": -0.05,
+    "fov": 45,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "letter",
+  "colors": {
+    "line": "#2b2a2a",
+    "floor": "#8a7a62",
+    "wall": "#dcd6c8",
+    "ceiling": "#cfc9bb",
+    "table": "#4a3a2e",
+    "glass": "#e4ece8",
+    "window": "#4a4034",
+    "wood": "#5a4636",
+    "jacket": "#3b5c9a",
+    "skirt": "#6f6a58",
+    "skin": "#e2cbb0",
+    "map": "#b9a27a",
+    "rod": "#2e2a24",
+    "chair": "#2f4f86",
+    "paper": "#efe7d6",
+    "tile": "#eef1f3"
+  },
+  "room": {
+    "_说明": "房间形状（米）。左墙 x=left（窗户在画面外的左边），前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。walkSpeed：安静的小房间，走得慢一点。",
+    "height": 3.0,
+    "front": 0.8,
+    "left": -1.3,
+    "backLeft": [
+      -1.3,
+      -2.4
+    ],
+    "backRight": [
+      1.6,
+      -2.4
+    ],
+    "rightFront": [
+      1.6,
+      0.8
+    ],
+    "floorCard": "light",
+    "wallCard": "blueShadows",
+    "walkSpeed": 0.6
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "light",
+      "_": "左墙上的窗户（在画面外，晨光从这里照进来）",
+      "x": -1.26,
+      "y": 1.7,
+      "z": -1.3,
+      "rot": 1.5708,
+      "boxes": [
+        [
+          0.8,
+          1.2,
+          0.02,
+          "glass",
+          0,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.86,
+          0.06,
+          0.06,
+          "window",
+          0,
+          0.6,
+          0
+        ],
+        [
+          0.86,
+          0.06,
+          0.06,
+          "window",
+          0,
+          -0.6,
+          0
+        ],
+        [
+          0.06,
+          1.2,
+          0.06,
+          "window",
+          -0.4,
+          0,
+          0
+        ],
+        [
+          0.06,
+          1.2,
+          0.06,
+          "window",
+          0.4,
+          0,
+          0
+        ],
+        [
+          0.04,
+          1.2,
+          0.05,
+          "window",
+          0,
+          0,
+          0.01
+        ]
+      ]
+    },
+    {
+      "type": "wallBoxes",
+      "card": "map",
+      "wall": "back",
+      "x": 0.35,
+      "y": 1.85,
+      "z": -2.4,
+      "_": "墙上的地图：荷兰与西弗里斯兰",
+      "boxes": [
+        [
+          1.15,
+          0.86,
+          0.015,
+          "map",
+          0,
+          0,
+          0.01,
+          "cloth"
+        ],
+        [
+          1.25,
+          0.04,
+          0.04,
+          "rod",
+          0,
+          0.45,
+          0.03
+        ],
+        [
+          1.25,
+          0.04,
+          0.04,
+          "rod",
+          0,
+          -0.45,
+          0.03
+        ]
+      ]
+    },
+    {
+      "type": "wallBoxes",
+      "card": "shadows",
+      "wall": "back",
+      "x": -0.28,
+      "y": 2.3,
+      "z": -2.4,
+      "_": "地图挂钩的旋钮",
+      "boxes": [
+        [
+          0.04,
+          0.04,
+          0.05,
+          "rod",
+          0,
+          0,
+          0.03
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "letter",
+      "_": "她：蓝色的睡衣外套、裙子、双手握着的信",
+      "x": 0.2,
+      "z": -1.75,
+      "boxes": [
+        [
+          0.6,
+          0.95,
+          0.55,
+          "skirt",
+          0,
+          0.48,
+          0,
+          "cloth"
+        ],
+        [
+          0.46,
+          0.5,
+          0.4,
+          "jacket",
+          0,
+          1.2,
+          0,
+          "cloth"
+        ],
+        [
+          0.18,
+          0.24,
+          0.2,
+          "skin",
+          -0.05,
+          1.58,
+          0,
+          "cloth"
+        ],
+        [
+          0.2,
+          0.15,
+          0.02,
+          "paper",
+          -0.28,
+          1.22,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "blue",
+      "_": "蓝色外套（点一下看颜料）",
+      "x": 0.2,
+      "y": 1.0,
+      "z": -1.75,
+      "boxes": [
+        [
+          0.48,
+          0.06,
+          0.42,
+          "jacket",
+          0,
+          0.42,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "table",
+      "card": "blue",
+      "_": "桌子：深色的桌布、珍珠、纸",
+      "nearLeft": [
+        -0.95,
+        -0.95
+      ],
+      "nearRight": [
+        -0.2,
+        -0.95
+      ],
+      "farLeft": [
+        -0.95,
+        -1.6
+      ],
+      "farRight": [
+        -0.2,
+        -1.6
+      ],
+      "items": [
+        [
+          0.08,
+          0.08,
+          0.06,
+          "wood",
+          0.1,
+          0.84,
+          0.05
+        ],
+        [
+          0.06,
+          0.06,
+          0.02,
+          "paper",
+          -0.15,
+          0.82,
+          0.1
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "blue",
+      "_": "左前方的椅子（蓝色坐垫）",
+      "x": -0.75,
+      "z": -0.75,
+      "boxes": [
+        [
+          0.45,
+          0.06,
+          0.45,
+          "chair",
+          0,
+          0.46,
+          0,
+          "cloth"
+        ],
+        [
+          0.45,
+          0.5,
+          0.06,
+          "wood",
+          0,
+          0.75,
+          -0.2
+        ],
+        [
+          0.05,
+          0.46,
+          0.05,
+          "wood",
+          -0.2,
+          0.23,
+          -0.2
+        ],
+        [
+          0.05,
+          0.46,
+          0.05,
+          "wood",
+          0.2,
+          0.23,
+          -0.2
+        ],
+        [
+          0.05,
+          0.46,
+          0.05,
+          "wood",
+          -0.2,
+          0.23,
+          0.2
+        ],
+        [
+          0.05,
+          0.46,
+          0.05,
+          "wood",
+          0.2,
+          0.23,
+          0.2
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "blue",
+      "_": "右边、她身后的椅子",
+      "x": 0.95,
+      "z": -1.95,
+      "rot": -0.3,
+      "boxes": [
+        [
+          0.45,
+          0.06,
+          0.45,
+          "chair",
+          0,
+          0.46,
+          0,
+          "cloth"
+        ],
+        [
+          0.45,
+          0.55,
+          0.06,
+          "wood",
+          0,
+          0.78,
+          0.2
+        ],
+        [
+          0.05,
+          0.46,
+          0.05,
+          "wood",
+          -0.2,
+          0.23,
+          -0.2
+        ],
+        [
+          0.05,
+          0.46,
+          0.05,
+          "wood",
+          0.2,
+          0.23,
+          -0.2
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "light": {
+      "title": {
+        "zh": "晨光",
+        "en": "Morning light"
+      },
+      "text": {
+        "zh": "她在晨光里读信，身上还穿着蓝色的睡衣外套。",
+        "en": "She reads in the morning light, still wearing her blue night jacket."
+      }
+    },
+    "blue": {
+      "title": {
+        "zh": "珍贵的蓝",
+        "en": "Precious blue"
+      },
+      "text": {
+        "zh": "这种明亮的蓝色是群青，用青金石磨成粉制成，在当时非常昂贵。",
+        "en": "This brilliant blue is ultramarine, made by grinding lapis lazuli into powder, an expensive pigment at the time."
+      }
+    },
+    "letter": {
+      "title": {
+        "zh": "紧握的信",
+        "en": "The letter"
+      },
+      "text": {
+        "zh": "她用双手紧紧握着信。信里写了什么，维米尔没有告诉我们。",
+        "en": "She holds the letter tightly with both hands. Vermeer gives no hint of what it says."
+      }
+    },
+    "map": {
+      "title": {
+        "zh": "墙上的地图",
+        "en": "The map"
+      },
+      "text": {
+        "zh": "地图画的是荷兰与西弗里斯兰，是一张真实存在的地图，1620年由著名的地图出版商布劳出版。维米尔在别的画里也画过同一张。",
+        "en": "The map shows Holland and West Friesland. It is a real map, published in 1620 by the famous mapmaker Willem Jansz Blaeu. Vermeer painted the same map in other works."
+      },
+      "link": {
+        "href": "../../themes/?id=letters",
+        "label": {
+          "zh": "看更多“读信与书写”",
+          "en": "More: Reading and writing letters"
+        }
+      }
+    },
+    "shadows": {
+      "title": {
+        "zh": "两道影子",
+        "en": "Two shadows"
+      },
+      "text": {
+        "zh": "地图挂钩的旋钮在墙上投下了两道影子，说明房间里可能还有第二个光源。",
+        "en": "The knob of the map hanger casts two shadows on the wall, suggesting a second source of light."
+      }
+    },
+    "blueShadows": {
+      "title": {
+        "zh": "蓝色的影子",
+        "en": "Blue shadows"
+      },
+      "text": {
+        "zh": "维米尔用淡灰色画她的皮肤，用浅蓝色画墙上的影子，这在当时很有创新。",
+        "en": "Vermeer painted her skin with pale grey and the shadows on the wall with light blue, an innovative choice for his time."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“光从哪里来”：打开后，画面左边那扇看不见的窗户亮起来，并用虚线标出第二个光源和旋钮的两道影子，同时显示卡片 5 的文字。光线和第二个光源的位置是示意。",
+    "type": "reveal",
+    "card": "shadows",
+    "label": {
+      "zh": "光从哪里来",
+      "en": "Where does the light come from?"
+    },
+    "note": {
+      "zh": "示意图",
+      "en": "Illustration"
+    },
+    "shapes": [
+      {
+        "_": "左墙上看不见的窗户亮起来",
+        "at": [
+          -1.24,
+          1.7,
+          -1.3
+        ],
+        "label": {
+          "zh": "看不见的窗户",
+          "en": "The unseen window"
+        },
+        "labelAt": [
+          0.1,
+          0.8,
+          0
+        ],
+        "parts": [
+          [
+            "glow",
+            0.8,
+            1.2,
+            0,
+            0,
+            0,
+            1.5708
+          ],
+          [
+            "line",
+            0,
+            0,
+            0,
+            1.2,
+            -0.4,
+            -0.45
+          ],
+          [
+            "line",
+            0,
+            0.4,
+            0,
+            1.5,
+            -0.45,
+            -1.1
+          ]
+        ]
+      },
+      {
+        "_": "第二个光源（示意）",
+        "at": [
+          -1.24,
+          2.45,
+          -2.05
+        ],
+        "label": {
+          "zh": "第二个光源",
+          "en": "A second light source"
+        },
+        "labelAt": [
+          0.1,
+          0.35,
+          0
+        ],
+        "parts": [
+          [
+            "glow",
+            0.45,
+            0.4,
+            0,
+            0,
+            0,
+            1.5708
+          ],
+          [
+            "line",
+            0,
+            0,
+            0,
+            1.0,
+            -0.15,
+            -0.33
+          ]
+        ]
+      },
+      {
+        "_": "旋钮的两道影子",
+        "at": [
+          -0.28,
+          2.3,
+          -2.34
+        ],
+        "label": {
+          "zh": "两道影子",
+          "en": "Two shadows"
+        },
+        "labelAt": [
+          0.2,
+          0.22,
+          0
+        ],
+        "parts": [
+          [
+            "line",
+            0,
+            0,
+            0,
+            0.16,
+            -0.12,
+            0
+          ],
+          [
+            "line",
+            0,
+            0,
+            0,
+            0.2,
+            -0.03,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/woman-reading-letter.jpg",
+        "alt": {
+          "zh": "维米尔《读信的蓝衣女子》约1663，阿姆斯特丹荷兰国立博物馆",
+          "en": "Johannes Vermeer, Woman Reading a Letter, c. 1663, Rijksmuseum, Amsterdam"
+        },
+        "caption": {
+          "zh": "约1663年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1663 · Rijksmuseum, Amsterdam"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 一封信",
+          "en": "A letter"
+        },
+        "text": {
+          "zh": "一个清晨，她还穿着睡衣外套，就站着读起了信。这封信大概来得很突然。只有她和写信的人，知道里面写了什么。",
+          "en": "Early one morning, still in her night jacket, she stands reading a letter. It seems to have arrived unexpectedly. Only she and the writer know what it says."
+        }
+      },
+      {
+        "image": "images/woman-reading-letter.jpg",
+        "alt": {
+          "zh": "维米尔《读信的蓝衣女子》约1663，阿姆斯特丹荷兰国立博物馆",
+          "en": "Johannes Vermeer, Woman Reading a Letter, c. 1663, Rijksmuseum, Amsterdam"
+        },
+        "caption": {
+          "zh": "约1663年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1663 · Rijksmuseum, Amsterdam"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 改了又改",
+          "en": "Changed and changed again"
+        },
+        "text": {
+          "zh": "2010至2011年，荷兰国立博物馆修复了这幅画，发现她的外套原本画得更宽，下面可能还有一圈毛领。维米尔后来把它改得更简洁了。",
+          "en": "In 2010–11, the Rijksmuseum restored the painting and found that her jacket was originally wider, perhaps with a fur collar. Vermeer later made it simpler."
+        }
+      },
+      {
+        "image": "images/woman-reading-letter.jpg",
+        "alt": {
+          "zh": "维米尔《读信的蓝衣女子》约1663，阿姆斯特丹荷兰国立博物馆",
+          "en": "Johannes Vermeer, Woman Reading a Letter, c. 1663, Rijksmuseum, Amsterdam"
+        },
+        "caption": {
+          "zh": "约1663年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1663 · Rijksmuseum, Amsterdam"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 第一幅",
+          "en": "The first"
+        },
+        "text": {
+          "zh": "这是荷兰国立博物馆收藏的第一幅维米尔，从1885年起就在这里展出。画上没有签名。",
+          "en": "This was the first Vermeer in the Rijksmuseum, on display there since 1885. It bears no signature."
+        }
+      }
+    ],
+    "final": {
+      "zh": "只有她和写信的人知道信里写了什么。",
+      "en": "Only she and the writer know what the letter says."
+    },
+    "versions": [
+      {
+        "image": "images/woman-reading-letter.jpg",
+        "short": {
+          "zh": "约1663 · 阿姆斯特丹",
+          "en": "c. 1663 · Amsterdam"
+        },
+        "caption": {
+          "zh": "约1663年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1663 · Rijksmuseum, Amsterdam"
+        }
+      }
+    ],
+    "museums": [
+      "rijksmuseum"
+    ],
+    "exit": [
+      {
+        "scene": "milkmaid",
+        "href": "../milkmaid/",
+        "label": {
+          "zh": "同一家博物馆的另一幅维米尔",
+          "en": "Another Vermeer in the same museum"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。空着的行不显示。",
+    "artist": {
+      "zh": "约翰内斯·维米尔（1632–1675）",
+      "en": "Johannes Vermeer (1632–1675)"
+    },
+    "title": {
+      "zh": "读信的蓝衣女子",
+      "en": "Woman Reading a Letter (also known as Woman in Blue Reading a Letter)"
+    },
+    "date": {
+      "zh": "约1663年",
+      "en": "c. 1663"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "46.5 × 39 cm",
+      "en": "46.5 × 39 cm"
+    },
+    "collection": {
+      "zh": "阿姆斯特丹荷兰国立博物馆（馆藏编号 SK-C-251）",
+      "en": "Rijksmuseum, Amsterdam (SK-C-251)"
+    },
+    "url": "https://www.rijksmuseum.nl/en/collection/SK-C-251"
+  },
+  "zoom": {
+    "image": "images/woman-reading-letter.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "荷兰国立博物馆作品页：读信的蓝衣女子",
+          "en": "Rijksmuseum: Woman Reading a Letter"
+        },
+        "url": "https://www.rijksmuseum.nl/en/collection/SK-C-251"
+      },
+      {
+        "title": {
+          "zh": "荷兰国立博物馆：关于《读信的蓝衣女子》的10件事",
+          "en": "Rijksmuseum: 10 things about Vermeer's Woman Reading a Letter"
+        },
+        "url": "https://www.rijksmuseum.nl/en/stories/10-things/story/10-things-about-vermeer-woman-reading-letter"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 是文字稿（现在先用三幕原文）。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 一封信",
+          "en": "A letter"
+        },
+        "text": {
+          "zh": "一个清晨，她还穿着睡衣外套，就站着读起了信。这封信大概来得很突然。只有她和写信的人，知道里面写了什么。",
+          "en": "Early one morning, still in her night jacket, she stands reading a letter. It seems to have arrived unexpectedly. Only she and the writer know what it says."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 改了又改",
+          "en": "Changed and changed again"
+        },
+        "text": {
+          "zh": "2010至2011年，荷兰国立博物馆修复了这幅画，发现她的外套原本画得更宽，下面可能还有一圈毛领。维米尔后来把它改得更简洁了。",
+          "en": "In 2010–11, the Rijksmuseum restored the painting and found that her jacket was originally wider, perhaps with a fur collar. Vermeer later made it simpler."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 第一幅",
+          "en": "The first"
+        },
+        "text": {
+          "zh": "这是荷兰国立博物馆收藏的第一幅维米尔，从1885年起就在这里展出。画上没有签名。",
+          "en": "This was the first Vermeer in the Rijksmuseum, on display there since 1885. It bears no signature."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}
