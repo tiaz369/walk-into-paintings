@@ -3,7 +3,7 @@
 //
 // 两个开关，都默认关闭：
 //   环境音 / Ambience：用代码现场合成（没有录音文件，没有版权问题）。
-//     scene.json 的 "sound" 写用哪一种（见下面 AMBIENCE）；写 null 时不显示开关。
+//     scene.json 的 "ambience" 写用哪一种（见下面 AMBIENCE）；写 null 时不显示开关。
 //   音乐 / Music：scene.json 的 "music"，src 填了录音文件才显示开关。
 //     只用确认为 CC0 或公有领域的录音。播放时显示曲名和演奏信息。
 // 语音导览播放时：环境音自动调小，音乐自动暂停（导览停了再接着放）。
@@ -124,7 +124,7 @@ function cicadas(out, t) {   // 蝉鸣：高音的“嘶嘶”，一阵一阵
   src.start(t, rnd(0, 3)); lfo.start(t); src.stop(t + dur + 0.1); lfo.stop(t + dur + 0.1);
 }
 
-// ---------- 每个场景的环境音（scene.json 的 "sound"） ----------
+// ---------- 每个场景的环境音（scene.json 的 "ambience"） ----------
 // 每一种：start(out, state, opts) 接好一直响着的声音，再安排偶尔出现的声音
 const AMBIENCE = {
   // 安静室内，偶尔鸟叫（窗外）
@@ -179,7 +179,8 @@ const ALIAS = { birds: 'room-birds', wind: 'wind-cicadas' };
 
 // ambBtn / musBtn：两个开关；info：放音乐时显示曲名的地方；wind()：“起风了”现在多强（0–1）
 export function setupSound(S, { ambBtn, musBtn, info, wind = null }) {
-  const kind = ALIAS[S.sound] || S.sound, make = AMBIENCE[kind];
+  const name = S.ambience !== undefined ? S.ambience : S.sound;   // 以前叫 sound，也能用
+  const kind = ALIAS[name] || name, make = AMBIENCE[kind];
   const M = S.music && S.music.src ? S.music : null;
   let ambOn = false, ambGain = null, guiding = false, musicWanted = false;
   const st = { on: false, timers: [] };

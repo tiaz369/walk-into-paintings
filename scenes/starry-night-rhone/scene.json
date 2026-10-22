@@ -1,6 +1,28 @@
 {
   "_说明": "罗纳河上的星夜场景的全部内容。所有事实文字由 Tia 提供。河岸、河面、对岸灯火、房子、船、恋人和星星的位置是从原画（646×500）按透视算出来的：画家站在高高的码头上（眼睛离水面约 5 米），对岸约 200 米远。站在画家视角时，原画正好贴在这些形状上。",
   "id": "starry-night-rhone",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（说明用；具体的灯光效果仍由 room、exclusive 里的设置决定）",
+    "type": "night",
+    "label": {
+      "zh": "夜晚",
+      "en": "Night"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。真正的设置在 objects / cards / ending.exit 里，tools/check_scenes.py 会检查这里和那里是否一致。",
+    "doors": [
+      "cafe-terrace"
+    ],
+    "cards": [
+      "cafe-terrace"
+    ],
+    "end": [
+      "cafe-terrace",
+      "wheatfield-cypresses"
+    ]
+  },
   "painting": {
     "image": "images/starry-night-rhone.jpg",
     "width": 646,
@@ -197,7 +219,7 @@
       ]
     ]
   },
-  "sound": "river",
+  "ambience": "river",
   "music": {
     "_说明": "音乐（可选）：只用确认为 CC0 或公有领域的录音。录音放进 audio/ 文件夹，src 写文件路径（例如 audio/music.mp3）；src 空着时不显示“音乐”开关。performer 是演奏者，license 写 CC0 或 公有领域 / Public domain，page 是录音来源页。",
     "title": {

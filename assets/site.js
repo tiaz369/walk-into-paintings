@@ -120,6 +120,9 @@ function prepare(R) {
   R.sceneById = byId(R.scenes); R.artistById = byId(R.artists); R.museumById = byId(R.museums);
   R.collectionById = byId(R.collections); R.themeById = byId(R.themes); R.moodById = byId(R.moods || []); R.periodById = byId(R.periods); R.placeById = byId(R.places);
   R.live = R.scenes.filter(s => s.status === 'live');
+  // 系列主色（登记表 collections 里的 color）：按钮和点缀用，比如梵高的黄、代尔夫特蓝
+  const css = R.collections.filter(c => c.color && c.accent).map(c => `[data-series="${c.accent}"] { --accent: ${c.color.accent}; --accent-ink: ${c.color.ink || '#ffffff'}; }`).join('\n');
+  if (css) { const st = document.createElement('style'); st.id = 'seriesColors'; st.textContent = css; document.head.append(st); }
   return R;
 }
 export const sceneUrl = s => ROOT + s.path;

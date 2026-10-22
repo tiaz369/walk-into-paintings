@@ -11,7 +11,7 @@
   --muted:   #6f685c;
   --line:    #d6cdbb;
   --veil:    rgba(245, 240, 230, .9);   /* 3D 画面上的面板底色 */
-  --accent:  #8a6a2c;   /* 默认点缀色；每个系列会换成画里的颜色 */
+  --accent:  #8a6a2c;   /* 默认点缀色；每个系列的主色写在 data/scenes.json 的 collections → color */
   --accent-ink: #ffffff;
   --serif: 'Cormorant Garamond', 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', Georgia, 'Times New Roman', serif;   /* 谷歌字体打不开时，用系统里的宋体、衬线体 */
   --sans:  'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;   /* 谷歌字体打不开时，用系统里的苹方、微软雅黑 */
@@ -31,8 +31,6 @@
 }
 
 /* 系列点缀色：阿尔勒用梵高的黄，代尔夫特用维米尔的蓝 */
-[data-series="arles"] { --accent: #c99a22; --accent-ink: #1c1c1e; }
-[data-series="delft"] { --accent: #2f5597; --accent-ink: #ffffff; }
 
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -412,7 +410,6 @@ a.row-main:hover .row-title { text-decoration: underline; }
 .map .dot-soon + text.num { fill: var(--muted); }
 .map-num { display: inline-flex; align-items: center; justify-content: center; width: 1.3em; height: 1.3em; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-size: .6em; vertical-align: middle; font-family: var(--sans); }
 #windBtn.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-[data-series="saint-remy"] { --accent: #4f7f4a; --accent-ink: #ffffff; }
 
 /* 语音导览播放器（场景右上角，按“语音导览”展开） */
 .guide { width: min(320px, calc(100vw - 24px)); padding: 8px 10px; font-size: 12px; text-align: left; }
