@@ -476,7 +476,7 @@ body:not(.lang-both) .tl-date .en, body:not(.lang-both) .tl-text .en, body:not(.
 body.lang-both .vers h2 > .en, body.lang-both .vers h3 > .en { display: block; font-size: .6em; color: var(--muted); font-style: italic; }
 
 /* 一分钟看一幅画：只留原画和倒计时 */
-#oneMin { font-size: 13px; padding: 6px 14px; margin-top: -2.5vh; }
+#oneMin { font-size: 13px; padding: 6px 14px; margin-top: -2.5vh; background: var(--veil); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }   /* 半透明底色：放在深色的画上也看得清 */
 #introBottom, #sceneHome, #langSwitch { transition: opacity 1.2s ease; }
 body.looking :is(#introBottom, #sceneHome, #langSwitch), body.looking #introBottom > * { opacity: 0; pointer-events: none; }
 #lookBar { position: fixed; z-index: 22; left: 50%; bottom: 16px; transform: translateX(-50%); display: flex; align-items: center; gap: 12px; padding: 6px 8px 6px 14px; font-size: 13px; opacity: .75; transition: opacity .6s; }
