@@ -112,7 +112,16 @@ const openRank = s => (s.status === 'live' ? 0 : 1);
 const byOpenYear = (a, b) => openRank(a) - openRank(b) || (yearOf(a) ?? 9999) - (yearOf(b) ?? 9999);
 const sortWorks = list => [...list].sort(byOpenYear);
 // 画家卡片的封面：cover 里列出的场景，用第一个已开放的
-const artistCover = (R, a) => [].concat(a.cover || []).map(id => R.sceneById[id]).find(s => s && s.status === 'live' && s.cover);
+// 没有已开放场景的，用 coverImage（放在 assets/artists/ 里的公有领域图片）
+const artistCover = (R, a) => [].concat(a.cover || []).map(id => R.sceneById[id]).find(s => s && s.status === 'live' && s.cover)
+  || (a.coverImage && { cover: a.coverImage.src, title: a.coverImage.title });
+// 其他代表作：只显示核对过的（check 为 ok）
+const artistWorks = (W, id) => ((W && W.artists[id]) || []).filter(x => x.check === 'ok');
+const workLine = (R, x) => {
+  const m = R.museumById[x.museum], url = x.url || (m && m.url);
+  const where = x.museumNote ? bi(x.museumNote) : m ? bi(m.name) : '';
+  return `<li>${url ? `<a href="${url}" target="_blank" rel="noopener">${bi(x.title)} ↗</a>` : bi(x.title)}<span class="meta">${[x.kind && bi(x.kind), x.year && bi(x.year), where].filter(Boolean).join(' · ')}</span></li>`;
+};
 let registryPromise = null;
 export function loadRegistry() {
   if (!registryPromise) registryPromise = fetch(ROOT + 'data/scenes.json', { cache: 'no-cache' }).then(r => r.json()).then(prepare);
@@ -502,14 +511,23 @@ const PAGES = {
 
   // ---------- 按画家（?id= 打开某一位画家的页面） ----------
   async artists(R, main) {
+    const W = await getJSON('works.json').catch(() => null);   // 其他代表作（data/works.json）
+    const coverHTML = (a, tag) => (c => c ? `<${tag} class="artist-cover"${tag === 'a' ? ` href="?id=${a.id}"` : ''}><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" onerror="this.parentNode.remove()" /></${tag}>` : '')(artistCover(R, a));
+    // 一位画家的作品：可以走进去的画（已上线 + 最多3个即将开放）；其他代表作（只显示作品名、年份、收藏地，链接到博物馆官网）
+    const worksOf = a => {
+      const sc = scenesOf(R, 'artist', a.id), more = artistWorks(W, a.id);
+      if (!sc.length && !more.length) return LATER();
+      return (sc.length ? `<h4 class="works-title">${ui('可以走进去的画', 'Paintings you can step into')}</h4>${cardsHTML(R, capSoon(sc), { hideArtist: true, bothTitle: true })}` : '')
+        + (more.length ? `<h4 class="works-title">${bi(W.title, ' / ')}</h4><p class="note">${bi(W.note, ' / ')}</p>
+          <ul class="more-works">${more.map(x => workLine(R, x)).join('')}</ul>` : '');
+    };
     const id = param('id'), a = id && R.artistById[id];
     if (a) {
       const life = await getJSON(`life/${a.id}.json`).catch(() => null);
-      const cv = artistCover(R, a);
-      main.innerHTML = `<div class="wrap page-title artist-head">${cv ? `<span class="artist-cover"><img src="${ROOT + cv.cover}" ${altAttr(cv.title)} /></span>` : ''}<h1>${bi(a.name)}${a.dates ? `<small class="sub">${bi(a.dates)}</small>` : ''}</h1></div>
+      main.innerHTML = `<div class="wrap page-title artist-head">${coverHTML(a, 'span')}<h1>${bi(a.name)}${a.dates ? `<small class="sub">${bi(a.dates)}</small>` : ''}</h1></div>
         <section class="section wrap">
           ${a.bio ? `<p class="lead">${bi(a.bio)}</p>` : ''}
-          ${scenesOf(R, 'artist', a.id).length ? cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true, bothTitle: true }) : LATER()}</section>
+          ${worksOf(a)}</section>
         ${life && life.entries ? `<section class="section wrap life" id="life"><h2>${ui('生平', 'Life')}</h2>${lifeHTML(R, life)}</section>` : ''}
         <section class="wrap"><p style="margin:28px 0"><a class="btn" href="${ROOT}artists/">← ${ui('所有画家', 'All artists')}</a></p></section>`;
       wireTracks(main);
@@ -517,9 +535,9 @@ const PAGES = {
     }
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按画家', 'By artist')}</h1></div>
       <section class="section wrap">${R.artists.filter(a => a.status !== 'planned').map(a => `
-        <div class="group" id="${a.id}"><div class="artist-head">${(c => c ? `<a class="artist-cover" href="?id=${a.id}"><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" /></a>` : '')(artistCover(R, a))}
+        <div class="group" id="${a.id}"><div class="artist-head">${coverHTML(a, 'a')}
           <h3><a href="?id=${a.id}" style="text-decoration:none">${artistName(a)}</a></h3></div>
-        ${scenesOf(R, 'artist', a.id).length ? cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true, bothTitle: true }) : LATER()}</div>`).join('')}</section>`;
+        ${worksOf(a)}</div>`).join('')}</section>`;
   },
 
   // ---------- 按主题 ----------

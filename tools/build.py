@@ -210,10 +210,26 @@ def groups(items, key, up, name='name'):
     return ''.join(f'<h2 id="{x["id"]}">{e(both(x[name]))}</h2>{scene_list(of(key, x["id"]), up)}' for x in items)
 def later(names): return f'<p>即将推出 · Coming soon: {" · ".join(names)}</p>' if names else ''   # 还没有作品可以显示的
 def aname(a): return both(a['name']) + (f'（{both(a["dates"], " / ")}）' if a.get('dates') else '')
-def artist_cover(a):   # 画家卡片的封面：cover 里第一个已开放的场景
+def artist_cover(a):   # 画家卡片的封面：cover 里第一个已开放的场景；没有的用 coverImage（图片已经放进 assets/artists/ 才显示）
     c = next((SCENES[x] for x in a.get('cover', []) if x in SCENES and SCENES[x]['status'] == 'live' and SCENES[x].get('cover')), None)
-    return f'<p><img src="../{c["cover"]}" alt="{e(both(c["title"], " / "))}" width="96" loading="lazy" /></p>' if c else ''
-arts = ''.join(f'<h2 id="{a["id"]}">{e(aname(a))}</h2>' + artist_cover(a) + (scene_list(cap_soon(of("artist", a["id"])), "../", ("artist",)) if of('artist', a['id']) else '<p>即将推出 · Coming soon</p>') + (life_html(LIFE[a['id']]) if a['id'] in LIFE else '') for a in R['artists'] if a.get('status') != 'planned')
+    if c: return f'<p><img src="../{c["cover"]}" alt="{e(both(c["title"], " / "))}" width="96" loading="lazy" /></p>'
+    ci = a.get('coverImage')
+    if ci and os.path.exists(os.path.join(ROOT, ci['src'])): return f'<p><img src="../{ci["src"]}" alt="{e(both(ci["title"], " / "))}" width="96" loading="lazy" /></p>'
+    return ''
+WORKS = json.load(open(os.path.join(ROOT, 'data/works.json'), encoding='utf-8'))   # 其他代表作
+def more_works(aid):   # 只列核对过的（check 为 ok）
+    lst = [x for x in WORKS['artists'].get(aid, []) if x.get('check') == 'ok']
+    if not lst: return ''
+    def li(x):
+        m = MUSEUMS.get(x['museum']); url = x.get('url') or (m or {}).get('url')
+        meta = ' · '.join(filter(None, [x.get('kind') and both(x['kind'], ' / '), x.get('year') and both(x['year'], ' / '), both(x['museumNote'], ' / ') if x.get('museumNote') else (m and both(m['name'], ' / '))]))
+        t = e(both(x['title'], ' / '))
+        return f'<li>{f"<a href={chr(34)}{e(url)}{chr(34)}>{t}</a>" if url else t} — {e(meta)}</li>'
+    return f'<h3>{e(both(WORKS["title"], " · "))}</h3><p>{e(both(WORKS["note"], " "))}</p><ul>' + ''.join(li(x) for x in lst) + '</ul>'
+def step_into(aid):
+    lst = of('artist', aid)
+    return f'<h3>可以走进去的画 · Paintings you can step into</h3>' + scene_list(cap_soon(lst), "../", ("artist",)) if lst else ''
+arts = ''.join(f'<h2 id="{a["id"]}">{e(aname(a))}</h2>' + artist_cover(a) + ((step_into(a['id']) + more_works(a['id'])) or '<p>即将推出 · Coming soon</p>') + (life_html(LIFE[a['id']]) if a['id'] in LIFE else '') for a in R['artists'] if a.get('status') != 'planned')
 PAGES.append(page('artists/', T('画家', 'Artists'), '按画家浏览 · Browse by artist', '      <h1>按画家 · By artist</h1>\n      ' + arts, site_script('../', 'artists')))
 live_in = lambda tid: any(x['status'] == 'live' for x in of('themes', tid))
 ths = ''.join(f'<h2 id="{x["id"]}">{e(both(x["name"]))}</h2>{scene_list(cap_soon(of("themes", x["id"])), "../")}' for x in R['themes'] if live_in(x['id']))

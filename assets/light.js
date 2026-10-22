@@ -33,6 +33,7 @@ export async function startLight(sceneUrl) {
   run(S, R);
 }
 
+const zoomsOf = X => X.zooms || (X.zoom ? [X.zoom] : []);
 const isLive = (R, id) => !id || !!(R && R.sceneById[id] && R.sceneById[id].status === 'live');
 
 function buildDOM(S, R, meta) {
@@ -63,12 +64,15 @@ function buildDOM(S, R, meta) {
       <img src="${P.image}" alt="" draggable="false" /></div>`).join('');
   const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}" style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
   const isMap = X.type === 'map', isCurtain = X.type === 'curtain';
+  // 细节放大的热点（zooms：眼睛、嘴唇、珍珠……）；只有一个时也可以写成 zoom
+  const ZOOMS = zoomsOf(X), ZL = X.zoomLabel || (X.zoom && X.zoom.label) || { zh: '放大看细节', en: 'Zoom in on details' };
+  const zspotsHTML = ZOOMS.map((z, i) => `<button class="zspot" data-z="${i}" style="left:${z.x * 100}%;top:${z.y * 100}%">${ui(z.label.zh, z.label.en)}</button>`).join('');
   // 独家发现“帘子回来了”：示意的帘子放在背景（第 0 层）上面、人物各层下面
   const curtainHTML = isCurtain ? `<div id="curtain" class="curtain" style="--curtain:${X.color || '#3c5a3a'};--curtain-on:${X.opacity ?? 0.75}"></div>` : '';
 
   document.body.insertAdjacentHTML('beforeend', `
   <div class="grain"></div>
-  <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML.replace('</div>', '</div>' + curtainHTML)}<div id="spots">${spotsHTML}</div></div></div>
+  <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML.replace('</div>', '</div>' + curtainHTML)}<div id="spots">${spotsHTML}</div><div id="zspots">${zspotsHTML}</div></div></div>
 
   <div id="intro">
     <img id="introImg" src="${P.image}" ${altAttr(P.alt || '')} />
@@ -87,7 +91,7 @@ function buildDOM(S, R, meta) {
     <a class="btn" href="${ROOT}">← ${ui('走进名画', 'Home')}</a>
     <button class="btn" id="compareBtn">${ui('对照原画', 'Original painting')}</button>
     ${isCurtain ? `<button class="btn" id="curtainBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
-    ${X.zoom ? `<button class="btn" id="zoomBtn">🔍 ${ui(X.zoom.label.zh, X.zoom.label.en)}</button>`
+    ${ZOOMS.length ? `<button class="btn" id="zoomBtn">🔍 ${ui(ZL.zh, ZL.en)}</button>`
       : VARIANTS[variantOf(S)].zoomFirst ? `<a class="btn" id="zoomBtn" href="${(S.zoom && S.zoom.image) || P.image}" target="_blank" rel="noopener">🔍 ${ui('放大看细节', 'Zoom in on details')}</a>` : ''}
     ${isMap ? `<button class="btn" id="mapBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
   </div>
@@ -211,19 +215,21 @@ function run(S, R) {
     else window.addEventListener('deviceorientation', onTilt);
   }
   const depth = i => (S.layers[i] && S.layers[i].depth) || 0;
-  const Z = (S.exclusive || {}).zoom;   // 独家发现“放大珍珠”：画面放大到原画上的 (x, y)
-  let zoomT = 0, zoomK = 0;
-  if (Z) stage.style.transformOrigin = `${Z.x * 100}% ${Z.y * 100}%`;
+  const ZOOMS = zoomsOf(S.exclusive || {});   // 细节放大：画面放大到原画上的 (x, y)
+  let zoomT = 0, zoomK = 0, zoomAt = null, zx = 0.5, zy = 0.5, zs = 1;   // zx、zy、zs：现在对准的点和倍数（慢慢跟上目标）
   function frame() {
     requestAnimationFrame(frame);
     if (gallery.classList.contains('show')) return;
     cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
     zoomK += (zoomT - zoomK) * 0.06;
+    if (zoomAt) { zx += (zoomAt.x - zx) * 0.08; zy += (zoomAt.y - zy) * 0.08; zs += ((zoomAt.scale || 4) - zs) * 0.08; }
     let zoomCSS = '';
-    if (Z && zoomK > 0.001) {   // 把珍珠移到屏幕中间，再放大
-      const w = stage.offsetWidth, h = stage.offsetHeight;
-      const dx = (window.innerWidth / 2 - (stage.offsetLeft + Z.x * w)) * zoomK, dy = (window.innerHeight / 2 - (stage.offsetTop + Z.y * h)) * zoomK;
-      zoomCSS = `translate(${dx}px, ${dy}px) scale(${1 + ((Z.scale || 4) - 1) * zoomK})`;
+    if (zoomK > 0.001) {   // 把那一点移到屏幕中间，再放大（以画面中心为原点）
+      const w = stage.offsetWidth, h = stage.offsetHeight, s = 1 + (zs - 1) * zoomK;
+      const px = (zx - 0.5) * w, py = (zy - 0.5) * h;   // 那一点离画面中心多远
+      const cxS = stage.offsetLeft + w / 2, cyS = stage.offsetTop + h / 2;
+      const qx = cxS + px + (window.innerWidth / 2 - cxS - px) * zoomK, qy = cyS + py + (window.innerHeight / 2 - cyS - py) * zoomK;
+      zoomCSS = `translate(${qx - cxS - s * px}px, ${qy - cyS - s * py}px) scale(${s})`;
     }
     stage.style.transform = `${zoomCSS} perspective(1400px) rotateY(${cx * 3 * (1 - zoomK)}deg) rotateX(${-cy * 2 * (1 - zoomK)}deg)`;
     layers.forEach((l, i) => { l.style.transform = `translate(${-cx * MAX * depth(i)}px, ${-cy * MAX * depth(i)}px) scale(${1 + depth(i) * 0.02})`; });
@@ -288,12 +294,23 @@ function run(S, R) {
     if ($('curtainNote')) $('curtainNote').classList.toggle('hidden', !on);
     if (on) track('exclusive-' + S.id);
   };
-  if (Z) $('zoomBtn').onclick = () => {   // 放大珍珠：放大，并显示卡片的文字
-    const on = !$('zoomBtn').classList.contains('on');
-    $('zoomBtn').classList.toggle('on', on); zoomT = on ? 1 : 0;
-    document.body.classList.toggle('zoomed', on);
-    if (on) { showCard(Z.card); track('zoom-' + S.id); } else card.style.display = 'none';
-  };
+  // 细节放大：点按钮，画上出现热点；点热点放大到那里（有卡片的显示卡片文字）；放大时再点按钮缩回去
+  function zoomTo(z) {
+    zoomAt = z; zoomT = z ? 1 : 0;
+    if (z && zoomK < 0.01) { zx = z.x; zy = z.y; zs = z.scale || 4; }
+    document.body.classList.toggle('zoomed', !!z);
+    if (z && z.card) showCard(z.card); else card.style.display = 'none';
+    if (z) track('zoom-' + S.id + '-' + (z.id || ''));
+  }
+  if (ZOOMS.length) {
+    $('zoomBtn').onclick = () => {
+      if (zoomAt) { zoomTo(null); return; }
+      const on = !document.body.classList.contains('zoom-pick');
+      document.body.classList.toggle('zoom-pick', on); $('zoomBtn').classList.toggle('on', on);
+      if (ZOOMS.length === 1 && on) zoomTo(ZOOMS[0]);
+    };
+    document.querySelectorAll('.zspot').forEach(b => b.onclick = e => { e.stopPropagation(); zoomTo(ZOOMS[+b.dataset.z]); });
+  }
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => togglePopup(b.dataset.close, false));
 
   // ---------- 短故事 ----------
@@ -311,5 +328,5 @@ function run(S, R) {
   $('backRoom').onclick = () => { gallery.classList.remove('show'); setTimeout(() => { gallery.style.display = 'none'; }, 900); };
   onLang(updateProgress);
   updateProgress();
-  if (location.search.includes('debug')) window.__light = { showCard, togglePopup, zoom: on => { zoomT = on ? 1 : 0; zoomK = zoomT; }, setView: (x, y) => { tx = x; ty = y; } };
+  if (location.search.includes('debug')) window.__light = { showCard, togglePopup, zoom: i => { zoomTo(i == null ? null : ZOOMS[i]); }, setView: (x, y) => { tx = x; ty = y; } };
 }

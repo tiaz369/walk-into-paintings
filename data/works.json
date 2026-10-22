@@ -1,0 +1,529 @@
+{
+  "_说明": "画家页的“其他代表作”（不能走进去，只显示作品名、年份、收藏地，并链接到博物馆官网；没有 url 的链接到博物馆首页）。名单由 Tia 提供；check 为 ok 的是核对过的，“待核对”的先不显示，等 Tia 确认后改成 ok。_ 里写着核对的来源。已经在“可以走进去的画”里的作品不重复列。",
+  "title": {
+    "zh": "其他代表作",
+    "en": "More famous works"
+  },
+  "note": {
+    "zh": "这些作品暂时还不能走进去，但值得去博物馆看看。",
+    "en": "You can't step into these yet, but they're worth seeing in person."
+  },
+  "artists": {
+    "van-gogh": [
+      {
+        "title": {
+          "zh": "星夜",
+          "en": "The Starry Night"
+        },
+        "year": {
+          "zh": "1889",
+          "en": "1889"
+        },
+        "museum": "moma",
+        "check": "ok",
+        "_": "MoMA 课程资料、维基百科：1889，MoMA 472.1941"
+      },
+      {
+        "title": {
+          "zh": "杏花",
+          "en": "Almond Blossom"
+        },
+        "year": {
+          "zh": "1890",
+          "en": "1890"
+        },
+        "museum": "van-gogh-museum",
+        "check": "ok",
+        "_": "PBS、苏富比博物馆页"
+      },
+      {
+        "title": {
+          "zh": "吃土豆的人",
+          "en": "The Potato Eaters"
+        },
+        "year": {
+          "zh": "1885",
+          "en": "1885"
+        },
+        "museum": "van-gogh-museum",
+        "check": "ok",
+        "_": "梵高博物馆展览页"
+      },
+      {
+        "title": {
+          "zh": "鸢尾花",
+          "en": "Irises"
+        },
+        "year": {
+          "zh": "1889",
+          "en": "1889"
+        },
+        "museum": "getty",
+        "check": "ok",
+        "_": "PBS 画作清单：1889，盖蒂"
+      },
+      {
+        "title": {
+          "zh": "包扎耳朵的自画像",
+          "en": "Self-Portrait with Bandaged Ear"
+        },
+        "year": {
+          "zh": "1889",
+          "en": "1889"
+        },
+        "museum": "courtauld",
+        "url": "https://courtauld.ac.uk/highlights/self-portrait-with-bandaged-ear/",
+        "check": "ok",
+        "_": "考陶尔德作品页：1889年1月，P.1948.SC.175"
+      }
+    ],
+    "vermeer": [
+      {
+        "title": {
+          "zh": "代尔夫特一景",
+          "en": "View of Delft"
+        },
+        "year": {
+          "zh": "约1660–61",
+          "en": "c. 1660–61"
+        },
+        "museum": "mauritshuis",
+        "check": "ok",
+        "_": "维基百科：约1660–61，莫瑞泰斯"
+      },
+      {
+        "title": {
+          "zh": "绘画艺术",
+          "en": "The Art of Painting"
+        },
+        "year": {
+          "zh": "约1666–68",
+          "en": "c. 1666–68"
+        },
+        "museum": "khm",
+        "check": "待核对",
+        "_": "搜索没有找到可靠来源确认年份"
+      },
+      {
+        "title": {
+          "zh": "情书",
+          "en": "The Love Letter"
+        },
+        "year": {
+          "zh": "约1669–70",
+          "en": "c. 1669–70"
+        },
+        "museum": "rijksmuseum",
+        "check": "待核对",
+        "_": "Tia 没写年份；维基百科写1669/70，荷兰国立博物馆写约1667–1670：请 Tia 选"
+      },
+      {
+        "title": {
+          "zh": "花边女工",
+          "en": "The Lacemaker"
+        },
+        "year": {
+          "zh": "约1669–70",
+          "en": "c. 1669–70"
+        },
+        "museum": "louvre",
+        "check": "待核对",
+        "_": "Tia 没写年份；维基百科写1669/70：请 Tia 确认要不要写年份"
+      },
+      {
+        "title": {
+          "zh": "站在维金纳琴前的年轻女子",
+          "en": "A Young Woman Standing at a Virginal"
+        },
+        "year": {
+          "zh": "约1670–72",
+          "en": "c. 1670–72"
+        },
+        "museum": "national-gallery",
+        "check": "待核对",
+        "_": "Tia 没写年份；常见约1670–72，也有写1673–75：请 Tia 确认"
+      }
+    ],
+    "van-eyck": [
+      {
+        "title": {
+          "zh": "根特祭坛画",
+          "en": "The Ghent Altarpiece"
+        },
+        "year": {
+          "zh": "1432",
+          "en": "1432"
+        },
+        "museum": "st-bavo",
+        "check": "ok",
+        "_": "维基百科：1432年5月6日落成，圣巴夫主教座堂；与兄长休伯特合作"
+      },
+      {
+        "title": {
+          "zh": "戴红头巾的男子",
+          "en": "Portrait of a Man (Man in a Red Turban)"
+        },
+        "year": {
+          "zh": "1433",
+          "en": "1433"
+        },
+        "museum": "national-gallery",
+        "check": "ok",
+        "_": "作品清单：1433，伦敦国家美术馆"
+      }
+    ],
+    "monet": [
+      {
+        "title": {
+          "zh": "日出·印象",
+          "en": "Impression, Sunrise"
+        },
+        "year": {
+          "zh": "1872",
+          "en": "1872"
+        },
+        "museum": "marmottan",
+        "check": "ok",
+        "_": "玛摩丹·莫奈美术馆（维基百科等）"
+      },
+      {
+        "title": {
+          "zh": "撑阳伞的女人",
+          "en": "Woman with a Parasol"
+        },
+        "year": {
+          "zh": "1875",
+          "en": "1875"
+        },
+        "museum": "nga-washington",
+        "check": "ok",
+        "_": "多处来源：1875，华盛顿国家美术馆"
+      },
+      {
+        "title": {
+          "zh": "圣拉扎尔火车站",
+          "en": "The Saint-Lazare Station"
+        },
+        "year": {
+          "zh": "1877",
+          "en": "1877"
+        },
+        "museum": "orsay",
+        "check": "待核对",
+        "_": "搜索结果没有确认收藏地"
+      },
+      {
+        "title": {
+          "zh": "睡莲系列",
+          "en": "Water Lilies"
+        },
+        "year": null,
+        "museum": "orangerie",
+        "check": "ok",
+        "_": "1927年安放在橘园美术馆两个椭圆展厅"
+      },
+      {
+        "title": {
+          "zh": "鲁昂大教堂系列",
+          "en": "Rouen Cathedral series"
+        },
+        "year": {
+          "zh": "1892–94",
+          "en": "1892–94"
+        },
+        "museum": "orsay",
+        "museumNote": {
+          "zh": "多家博物馆，含奥赛",
+          "en": "Several museums, including the Musée d'Orsay"
+        },
+        "check": "ok",
+        "_": "维基百科、盖蒂：1892–94，奥赛收藏其中几幅"
+      },
+      {
+        "title": {
+          "zh": "干草堆系列",
+          "en": "Haystacks (Stacks of Wheat) series"
+        },
+        "year": {
+          "zh": "1890–91",
+          "en": "1890–91"
+        },
+        "museum": "art-institute-chicago",
+        "museumNote": {
+          "zh": "多家博物馆，含芝加哥艺术博物馆",
+          "en": "Several museums, including the Art Institute of Chicago"
+        },
+        "check": "ok",
+        "_": "芝加哥艺术博物馆：全世界最多的一组（6幅）"
+      }
+    ],
+    "degas": [
+      {
+        "title": {
+          "zh": "舞蹈课",
+          "en": "The Dance Class"
+        },
+        "year": {
+          "zh": "约1873–76",
+          "en": "c. 1873–76"
+        },
+        "museum": "orsay",
+        "check": "待核对",
+        "_": "搜索结果没有确认"
+      },
+      {
+        "title": {
+          "zh": "明星",
+          "en": "The Star (L'Étoile)"
+        },
+        "year": {
+          "zh": "约1876–77",
+          "en": "c. 1876–77"
+        },
+        "museum": "orsay",
+        "check": "待核对",
+        "_": "Tia 写约1876–78；奥赛作品页写约1876–1877：请 Tia 确认用哪个"
+      },
+      {
+        "title": {
+          "zh": "苦艾酒",
+          "en": "In a Café (The Absinthe)"
+        },
+        "year": {
+          "zh": "约1875–76",
+          "en": "c. 1875–76"
+        },
+        "museum": "orsay",
+        "check": "待核对",
+        "_": "搜索结果没有确认"
+      },
+      {
+        "title": {
+          "zh": "贝列利一家",
+          "en": "The Bellelli Family"
+        },
+        "year": {
+          "zh": "1858–69",
+          "en": "1858–69"
+        },
+        "museum": "orsay",
+        "check": "ok",
+        "_": "奥赛（谷歌艺术与文化）：1858–1869"
+      },
+      {
+        "title": {
+          "zh": "十四岁的小舞者",
+          "en": "Little Dancer Aged Fourteen"
+        },
+        "year": {
+          "zh": "1878–81",
+          "en": "1878–81"
+        },
+        "museum": "nga-washington",
+        "kind": {
+          "zh": "雕塑，原始蜡像",
+          "en": "Sculpture, original wax"
+        },
+        "check": "ok",
+        "_": "华盛顿国家美术馆：蜡像 1878–1881"
+      }
+    ],
+    "seurat": [
+      {
+        "title": {
+          "zh": "大碗岛的星期天下午",
+          "en": "A Sunday on La Grande Jatte — 1884"
+        },
+        "year": {
+          "zh": "1884–86",
+          "en": "1884–86"
+        },
+        "museum": "art-institute-chicago",
+        "check": "ok",
+        "_": "维基百科：1884–1886，芝加哥艺术博物馆"
+      },
+      {
+        "title": {
+          "zh": "马戏团",
+          "en": "The Circus"
+        },
+        "year": {
+          "zh": "1891",
+          "en": "1891"
+        },
+        "museum": "orsay",
+        "check": "待核对",
+        "_": "搜索结果没有确认"
+      }
+    ],
+    "renoir": [
+      {
+        "title": {
+          "zh": "煎饼磨坊的舞会",
+          "en": "Dance at Le Moulin de la Galette"
+        },
+        "year": {
+          "zh": "1876",
+          "en": "1876"
+        },
+        "museum": "orsay",
+        "url": "https://www.musee-orsay.fr/en/artworks/bal-du-moulin-de-la-galette-497",
+        "check": "ok",
+        "_": "奥赛作品页：1876"
+      },
+      {
+        "title": {
+          "zh": "游艇上的午宴",
+          "en": "Luncheon of the Boating Party"
+        },
+        "year": {
+          "zh": "1880–81",
+          "en": "1880–81"
+        },
+        "museum": "phillips",
+        "check": "ok",
+        "_": "维基百科等：1880–81，菲利普斯收藏馆（芝加哥艺术博物馆一篇文章写1882）"
+      },
+      {
+        "title": {
+          "zh": "伞",
+          "en": "The Umbrellas"
+        },
+        "year": {
+          "zh": "约1881–86",
+          "en": "c. 1881–86"
+        },
+        "museum": "national-gallery",
+        "url": "https://www.nationalgallery.org.uk/paintings/pierre-auguste-renoir-the-umbrellas",
+        "check": "ok",
+        "_": "伦敦国家美术馆作品页（登记表里已有）"
+      },
+      {
+        "title": {
+          "zh": "包厢",
+          "en": "La Loge (The Theatre Box)"
+        },
+        "year": {
+          "zh": "1874",
+          "en": "1874"
+        },
+        "museum": "courtauld",
+        "check": "待核对",
+        "_": "搜索结果没有确认"
+      },
+      {
+        "title": {
+          "zh": "两姐妹",
+          "en": "Two Sisters (On the Terrace)"
+        },
+        "year": {
+          "zh": "1881",
+          "en": "1881"
+        },
+        "museum": "art-institute-chicago",
+        "check": "ok",
+        "_": "芝加哥艺术博物馆目录：1881，1933.455"
+      },
+      {
+        "title": {
+          "zh": "布吉瓦尔之舞",
+          "en": "Dance at Bougival"
+        },
+        "year": {
+          "zh": "1883",
+          "en": "1883"
+        },
+        "museum": "mfa-boston",
+        "check": "ok",
+        "_": "维基百科：1883，波士顿美术馆"
+      }
+    ],
+    "caillebotte": [
+      {
+        "title": {
+          "zh": "巴黎街道，雨天",
+          "en": "Paris Street; Rainy Day"
+        },
+        "year": {
+          "zh": "1877",
+          "en": "1877"
+        },
+        "museum": "art-institute-chicago",
+        "check": "ok",
+        "_": "芝加哥艺术博物馆导览"
+      },
+      {
+        "title": {
+          "zh": "刨地板的工人",
+          "en": "The Floor Scrapers"
+        },
+        "year": {
+          "zh": "1875",
+          "en": "1875"
+        },
+        "museum": "orsay",
+        "check": "ok",
+        "_": "维基百科、Time Out：1875，1986年进入奥赛"
+      }
+    ],
+    "manet": [
+      {
+        "title": {
+          "zh": "女神游乐厅的吧台",
+          "en": "A Bar at the Folies-Bergère"
+        },
+        "year": {
+          "zh": "1882",
+          "en": "1882"
+        },
+        "museum": "courtauld",
+        "check": "待核对",
+        "_": "搜索结果没有确认收藏地"
+      },
+      {
+        "title": {
+          "zh": "杜伊勒里花园的音乐会",
+          "en": "Music in the Tuileries Gardens"
+        },
+        "year": {
+          "zh": "1862",
+          "en": "1862"
+        },
+        "museum": "national-gallery",
+        "museumNote": {
+          "zh": "伦敦国家美术馆，与都柏林休·莱恩美术馆轮流展出",
+          "en": "The National Gallery, London, shown in turn with the Hugh Lane Gallery, Dublin"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/edouard-manet-music-in-the-tuileries-gardens",
+        "check": "ok",
+        "_": "伦敦国家美术馆作品页：与都柏林休·莱恩美术馆共有（莱恩遗赠）"
+      },
+      {
+        "title": {
+          "zh": "草地上的午餐",
+          "en": "Luncheon on the Grass"
+        },
+        "year": {
+          "zh": "1863",
+          "en": "1863"
+        },
+        "museum": "orsay",
+        "check": "ok",
+        "_": "多处来源：1863，奥赛"
+      },
+      {
+        "title": {
+          "zh": "吹笛少年",
+          "en": "The Fifer"
+        },
+        "year": {
+          "zh": "1866",
+          "en": "1866"
+        },
+        "museum": "orsay",
+        "check": "待核对",
+        "_": "收藏地确认是奥赛；年份1866搜索结果没有写明"
+      }
+    ]
+  }
+}

@@ -134,6 +134,12 @@ body.lang-both .about p.en:not(.lead) { margin-top: 0; color: var(--muted); }
 /* 画家卡片的封面（登记表 artists 里的 cover：用这位画家最有名的一幅） */
 .artist-head { display: flex; align-items: center; gap: 16px; }
 .group .artist-head { margin-bottom: 12px; }
+/* 画家页：可以走进去的画 / 其他代表作 */
+.works-title { font-size: 15px; font-weight: 500; margin: 18px 0 8px; color: var(--muted); letter-spacing: .02em; }
+.more-works { list-style: none; padding: 0; margin: 6px 0 0; }
+.more-works li { padding: 8px 0; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 2px 10px; align-items: baseline; }
+.more-works li a { text-decoration: none; }
+.more-works .meta { color: var(--muted); font-size: 13px; }
 .artist-head .artist-cover { flex: none; width: 72px; height: 90px; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.18); }
 .artist-head .artist-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .page-title.artist-head .artist-cover { width: 96px; height: 120px; }
@@ -356,9 +362,15 @@ body.lang-both .act h3 > .en { display: block; font-size: .62em; color: var(--mu
 .light .curtain.on { opacity: var(--curtain-on, .75); }
 #curtainNote { position: fixed; left: 50%; bottom: 112px; transform: translateX(-50%); z-index: 5; padding: 6px 14px; font-size: 12px; pointer-events: none; max-width: calc(100% - 32px); text-align: center; }
 .touch #curtainNote { bottom: 240px; }
-body.zoomed .spot { opacity: 0; pointer-events: none; }
+body.zoomed .spot, body.zoom-pick .spot { opacity: 0; pointer-events: none; }
+/* 细节放大的热点：点“放大看细节”后出现 */
+.light #zspots .zspot { position: absolute; transform: translate(-50%, -50%); display: none; padding: 4px 10px; border-radius: 999px; border: 1.5px solid #fff3b0;
+  background: rgba(28,28,30,.55); color: #fff3b0; font: 500 12px/1.2 Inter, system-ui, sans-serif; cursor: pointer; white-space: nowrap; }
+body.zoom-pick:not(.zoomed) #zspots .zspot { display: block; }
 .light #stage { box-shadow: 0 18px 50px rgba(0, 0, 0, .28); }
-.light #spots { position: absolute; inset: 0; }
+.light #spots, .light #zspots { position: absolute; inset: 0; }
+.light #zspots { pointer-events: none; }
+.light #zspots .zspot { pointer-events: auto; }
 .spot { position: absolute; width: 26px; height: 26px; padding: 0; border: 2px solid #fff8dc; border-radius: 50%; background: rgba(255, 236, 160, .55); cursor: pointer;
   box-shadow: 0 0 0 0 rgba(255, 236, 160, .7); animation: spotPulse 2.4s ease-out infinite; }
 .spot.seen { background: rgba(255, 255, 255, .25); animation: none; }

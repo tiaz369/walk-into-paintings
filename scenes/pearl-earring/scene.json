@@ -57,8 +57,8 @@
     "en": "Step into the painting"
   },
   "hint": {
-    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“帘子回来了”看背景原来的样子 · 点“放大珍珠”看珍珠",
-    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “The curtain returns” to see the original background · Tap “Zoom in on the pearl” to see the pearl"
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“帘子回来了”看背景原来的样子 · 点“放大看细节”，再点眼睛、嘴唇或珍珠",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “The curtain returns” to see the original background · Tap “Zoom in on details”, then the eyes, lips or pearl"
   },
   "parallax": 14,
   "layers": [
@@ -347,11 +347,6 @@
       "y": 0.25,
       "layer": 0
     },
-    "headscarf": {
-      "x": 0.5,
-      "y": 0.22,
-      "layer": 2
-    },
     "eyelashes": {
       "x": 0.46,
       "y": 0.365,
@@ -371,10 +366,15 @@
       "x": 0.16,
       "y": 0.8,
       "layer": 0
+    },
+    "light": {
+      "x": 0.36,
+      "y": 0.34,
+      "layer": 1
     }
   },
   "exclusive": {
-    "_说明": "独家发现：①“帘子回来了”：打开后，背景慢慢浮现出绿色帘子（示意，我们自己画的，不是研究图片），帘子在头巾、脸、珍珠这几层的后面。②“放大珍珠”：画面放大到珍珠（x、y 是珍珠在原画上的位置，0–1），并显示卡片 card 的文字。",
+    "_说明": "独家发现：①“帘子回来了”：打开后，背景慢慢浮现出绿色帘子（示意，我们自己画的，不是研究图片），帘子在脸、头巾、珍珠这几层的后面。②“放大看细节”：画上出现三个热点（眼睛、嘴唇、珍珠），点一下放大到那里；有 card 的显示那张卡片的文字。x、y 是在原画上的位置（0–1），scale 是放大几倍。",
     "type": "curtain",
     "label": {
       "zh": "帘子回来了",
@@ -386,16 +386,44 @@
     },
     "color": "#3c5a3a",
     "opacity": 0.75,
-    "zoom": {
-      "label": {
-        "zh": "放大珍珠",
-        "en": "Zoom in on the pearl"
+    "zoomLabel": {
+      "zh": "放大看细节",
+      "en": "Zoom in on details"
+    },
+    "zooms": [
+      {
+        "id": "eyes",
+        "label": {
+          "zh": "眼睛",
+          "en": "Eyes"
+        },
+        "x": 0.4,
+        "y": 0.385,
+        "scale": 3.2,
+        "card": "eyelashes"
       },
-      "x": 0.627,
-      "y": 0.54,
-      "scale": 5,
-      "card": "pearl"
-    }
+      {
+        "id": "lips",
+        "label": {
+          "zh": "嘴唇",
+          "en": "Lips"
+        },
+        "x": 0.39,
+        "y": 0.52,
+        "scale": 4
+      },
+      {
+        "id": "pearl",
+        "label": {
+          "zh": "珍珠",
+          "en": "Pearl"
+        },
+        "x": 0.627,
+        "y": 0.54,
+        "scale": 5,
+        "card": "pearl"
+      }
+    ]
   },
   "cards": {
     "pearl": {
@@ -428,14 +456,14 @@
         "en": "The background was not originally empty and dark: Vermeer painted a green curtain. Over the centuries the translucent green paint changed, and the curtain disappeared."
       }
     },
-    "headscarf": {
+    "light": {
       "title": {
-        "zh": "头巾",
-        "en": "The headscarf"
+        "zh": "光",
+        "en": "The light"
       },
       "text": {
-        "zh": "她穿着异国风格的衣服，戴着头巾，这在当时的荷兰并不常见。",
-        "en": "She wears exotic dress and a headscarf, unusual in the Netherlands at the time."
+        "zh": "光从左边照过来，落在她的脸、头巾和珍珠上，背景是一片深色。维米尔一生都在画光。",
+        "en": "Light falls from the left onto her face, headscarf and pearl, against a dark background. Vermeer spent his life painting light."
       }
     },
     "tronie": {
@@ -444,8 +472,8 @@
         "en": "Not a portrait"
       },
       "text": {
-        "zh": "这是一幅“特罗尼”，17世纪荷兰人所说的“头像”，本来就不是为某个真人画的肖像。她是谁，至今没有人知道。",
-        "en": "This is a \"tronie\", what the 17th-century Dutch called a \"head\": it was never meant as a portrait of a real person. Her identity remains unknown."
+        "zh": "这是一幅“特罗尼”，17世纪荷兰人所说的“头像”，本来就不是为某个真人画的肖像。她穿着异国风格的衣服，戴着头巾。她是谁，至今没有人知道。",
+        "en": "This is a \"tronie\", what the 17th-century Dutch called a \"head\": never meant as a portrait of a real person. She wears exotic dress and a headscarf. Her identity remains unknown."
       }
     },
     "layers": {
