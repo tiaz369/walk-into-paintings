@@ -131,6 +131,12 @@ body.lang-both .about p.en:not(.lead) { margin-top: 0; color: var(--muted); }
 .group { padding: 28px 0; border-top: 1px solid var(--line); }
 .group:first-child { border-top: 0; }
 .group h3 { font-size: 26px; margin: 0 0 4px; }
+/* 画家卡片的封面（登记表 artists 里的 cover：用这位画家最有名的一幅） */
+.artist-head { display: flex; align-items: center; gap: 16px; }
+.group .artist-head { margin-bottom: 12px; }
+.artist-head .artist-cover { flex: none; width: 72px; height: 90px; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.18); }
+.artist-head .artist-cover img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.page-title.artist-head .artist-cover { width: 96px; height: 120px; }
 .group .note { font-size: 13px; color: var(--muted); margin: 0 0 16px; }
 
 /* 时间轴 */

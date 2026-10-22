@@ -107,6 +107,12 @@ export function track(path, title = path, tries = 0) {
 document.addEventListener('click', e => { const el = e.target.closest && e.target.closest('[data-track]'); if (el) track(el.dataset.track); });
 
 // ---------- 登记表 ----------
+// 全站作品排序：已开放的在前，即将开放的在后；同一组里按年份从早到晚（年份一样的，按登记表顺序）
+const openRank = s => (s.status === 'live' ? 0 : 1);
+const byOpenYear = (a, b) => openRank(a) - openRank(b) || (yearOf(a) ?? 9999) - (yearOf(b) ?? 9999);
+const sortWorks = list => [...list].sort(byOpenYear);
+// 画家卡片的封面：cover 里列出的场景，用第一个已开放的
+const artistCover = (R, a) => [].concat(a.cover || []).map(id => R.sceneById[id]).find(s => s && s.status === 'live' && s.cover);
 let registryPromise = null;
 export function loadRegistry() {
   if (!registryPromise) registryPromise = fetch(ROOT + 'data/scenes.json', { cache: 'no-cache' }).then(r => r.json()).then(prepare);
@@ -115,7 +121,7 @@ export function loadRegistry() {
 function prepare(R) {
   const byId = list => Object.fromEntries(list.map(x => [x.id, x]));
   R.allScenes = R.scenes;
-  R.scenes = R.scenes.filter(s => s.status !== 'planned');   // 计划中的作品：暂不在页面显示
+  R.scenes = R.scenes.filter(s => s.status !== 'planned').sort(byOpenYear);   // 计划中的作品：暂不在页面显示；全站排序见 byOpenYear
   R.cityById = byId(R.cities || []);
   R.sceneById = byId(R.scenes); R.artistById = byId(R.artists); R.museumById = byId(R.museums);
   R.collectionById = byId(R.collections); R.themeById = byId(R.themes); R.moodById = byId(R.moods || []); R.periodById = byId(R.periods); R.placeById = byId(R.places);
@@ -326,7 +332,7 @@ function museumItems(R, id) {
   const own = scenesOf(R, 'museum', id).map(s => ({ s, opts: {} }));
   const also = R.scenes.flatMap(s => (s.alsoAt || []).filter(v => v.museum === id)
     .map(v => ({ s, opts: { title: v.title, year: v.year, cover: v.cover, artworkUrl: v.artworkUrl, credit: v.credit, museum: v.museum, room: v.room || '' } })));
-  return [...own, ...also].sort((a, b) => (a.s.status === 'live' ? 0 : 1) - (b.s.status === 'live' ? 0 : 1));
+  return [...own, ...also].sort((a, b) => byOpenYear({ ...a.s, year: a.opts.year || a.s.year }, { ...b.s, year: b.opts.year || b.s.year }));
 }
 const museumsIn = (R, cityId) => R.museums.filter(m => m.city === cityId);
 // 页面底部一行小字：还没有作品可以显示的画家 / 博物馆 / 主题
@@ -426,8 +432,8 @@ const PAGES = {
         : `<video poster="${ROOT + HERO.poster}" autoplay muted loop playsinline preload="auto" role="img" ${altAttr(pick.title).replace('alt=', 'aria-label=')}>
             <source src="${ROOT + HERO.video}.mp4" type="video/mp4" /><source src="${ROOT + HERO.video}.webm" type="video/webm" /></video>`)
       : `<img src="${ROOT + pick.cover}" ${altAttr(pick.title)} />`;
-    // 最新上线的（同一天上线的，登记表里排在后面的算更新）
-    const newest = R.live.map((s, i) => [s, i]).sort((a, b) => (b[0].added || '').localeCompare(a[0].added || '') || b[1] - a[1])[0][0];
+    // 本周新作：最近上线的（同一天上线的，登记表里排在后面的算更新）
+    const newest = R.live.map(s => [s, R.allScenes.indexOf(s)]).sort((a, b) => (b[0].added || '').localeCompare(a[0].added || '') || b[1] - a[1])[0][0];
     main.innerHTML = `
       <section class="hero">
         ${heroMedia}
@@ -441,7 +447,7 @@ const PAGES = {
       </section>
 
       <section class="section wrap" id="new">
-        <h2>${ui('最新开放', 'Latest')}</h2>
+        <h2>${ui('本周新作', 'New this week')}</h2>
         <div class="cards" style="max-width:420px">${sceneCard(R, newest)}</div>
         ${newest.tagline ? `<p class="lead" style="margin-top:12px">${bi(newest.tagline, ' / ')}</p>` : ''}
       </section>
@@ -451,7 +457,7 @@ const PAGES = {
         <div class="series">${R.collections.map(c => `
           <a href="${ROOT}collections/${c.id}/" data-series="${c.accent || ''}">
             <div class="name">${bi(c.name)}</div><div class="desc">${bi(c.desc)}</div>
-            <div class="count">${openLine(c.order.map(x => R.sceneById[x]).filter(Boolean))}</div></a>`).join('')}
+            <div class="count">${openLine(sortWorks(c.order.map(x => R.sceneById[x]).filter(Boolean)))}</div></a>`).join('')}
         </div>
       </section>
 
@@ -487,7 +493,7 @@ const PAGES = {
   collection(R, main, { id }) {
     const c = R.collectionById[id];
     document.body.dataset.series = c.accent || '';
-    const list = c.order.map(x => R.sceneById[x]).filter(Boolean);
+    const list = sortWorks(c.order.map(x => R.sceneById[x]).filter(Boolean));
     main.innerHTML = `
       <div class="wrap page-title"><h1>${bi(c.name)}<small class="sub">${bi(c.desc)}</small></h1>
         <p class="soon" style="margin-top:12px">${openLine(list)}</p></div>
@@ -499,7 +505,8 @@ const PAGES = {
     const id = param('id'), a = id && R.artistById[id];
     if (a) {
       const life = await getJSON(`life/${a.id}.json`).catch(() => null);
-      main.innerHTML = `<div class="wrap page-title"><h1>${bi(a.name)}${a.dates ? `<small class="sub">${bi(a.dates)}</small>` : ''}</h1></div>
+      const cv = artistCover(R, a);
+      main.innerHTML = `<div class="wrap page-title artist-head">${cv ? `<span class="artist-cover"><img src="${ROOT + cv.cover}" ${altAttr(cv.title)} /></span>` : ''}<h1>${bi(a.name)}${a.dates ? `<small class="sub">${bi(a.dates)}</small>` : ''}</h1></div>
         <section class="section wrap">
           ${a.bio ? `<p class="lead">${bi(a.bio)}</p>` : ''}
           ${scenesOf(R, 'artist', a.id).length ? cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true, bothTitle: true }) : LATER()}</section>
@@ -510,7 +517,8 @@ const PAGES = {
     }
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按画家', 'By artist')}</h1></div>
       <section class="section wrap">${R.artists.filter(a => a.status !== 'planned').map(a => `
-        <div class="group" id="${a.id}"><h3><a href="?id=${a.id}" style="text-decoration:none">${artistName(a)}</a></h3>
+        <div class="group" id="${a.id}"><div class="artist-head">${(c => c ? `<a class="artist-cover" href="?id=${a.id}"><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" /></a>` : '')(artistCover(R, a))}
+          <h3><a href="?id=${a.id}" style="text-decoration:none">${artistName(a)}</a></h3></div>
         ${scenesOf(R, 'artist', a.id).length ? cardsHTML(R, capSoon(scenesOf(R, 'artist', a.id)), { hideArtist: true, bothTitle: true }) : LATER()}</div>`).join('')}</section>`;
   },
 
@@ -702,7 +710,7 @@ const PAGES = {
         <p class="london-links">${L.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${bi(l.label)} ↗</a>`).join('')}${m && m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${bi(m.name)} ↗</a>` : ''}
           <button class="btn" onclick="print()">${ui('打印', 'Print')}</button></p></div>
       <section class="section wrap london">${rooms.map(r => `<div class="group"><h3>${bi(roomLabel(r))}</h3>
-        <div class="rows">${list.filter(s => key(s.room) === key(r)).sort((a, b) => (a.status !== 'live') - (b.status !== 'live')).map(s => londonRow(R, s)).join('')}</div></div>`).join('') || SOON()}</section>`;
+        <div class="rows">${list.filter(s => key(s.room) === key(r)).sort(byOpenYear).map(s => londonRow(R, s)).join('')}</div></div>`).join('') || SOON()}</section>`;
   }
 };
 
