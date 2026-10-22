@@ -15,58 +15,86 @@ walk-into-paintings/
 ├── index.html            首页
 ├── about/                关于这个项目
 ├── map/                  地图页
-├── artists/  themes/  periods/  museums/   浏览页面
-├── collections/arles/    系列页（每个系列一个文件夹：arles、delft、national-gallery、stage）
+├── artists/  themes/  moods/  periods/  museums/  timeline/   浏览页面
+├── london/  versions/    专题页：在伦敦看真迹、同一幅画的几个版本
+├── collections/arles/    系列页（每个系列一个文件夹：arles、saint-remy、delft、national-gallery、stage）
 ├── scenes/
 │   └── bedroom/
 │       ├── index.html    场景页（只有几行，套用模板）
-│       ├── scene.json    这个场景的内容：卡片、三幕、展签、房间形状、家具位置
+│       ├── scene.json    这个场景的内容：变体、卡片、三幕、展签、独家发现、环境音、光线、衔接、房间形状、家具位置
+│       ├── audio/        语音导览录音（guide-zh.mp3、guide-en.mp3，可选）
 │       ├── sources.md    资料来源记录
 │       └── images/       原画和裁剪图
 ├── assets/
 │   ├── vendor/three.module.js   3D 程序库 three.js 0.160.0（放在自己仓库里，不依赖外部网站）
-│   ├── engine.js         共用的 3D 和互动功能（场景页用）
+│   ├── variants.js       场景模板：一个骨架，四种变体（interior、outdoor、still-life、portrait）
+│   ├── engine.js         完整版场景（interior、outdoor）：3D 走动和互动
+│   ├── light.js          轻量版场景（still-life、portrait）：分层景深
+│   ├── sound.js          环境音（代码合成）和音乐
+│   ├── guide.js          语音导览播放器
+│   ├── hero/             首页首屏短片
 │   ├── site.js           共用的网站功能：页眉页脚、中英切换、深浅色、画卡片
 │   └── style.css         共用的样式（配色、字体）
 ├── data/scenes.json      所有场景的登记表，首页、筛选和地图都读这里
 ├── data/about.json       关于页的文字
+├── data/life/            画家页“生平”（每位画家一个文件，比如 van-gogh.json）
 ├── tools/build.py        把每页的文字写进 html（给搜索引擎看），并生成 sitemap.xml、404.html
+├── tools/check_scenes.py 检查每个场景是否符合模板（build.py 会自动运行）
+├── .github/workflows/build.yml   合并到 main 后自动运行 build.py
 ├── favicon.svg  404.html  sitemap.xml  robots.txt
 ```
 
 原则：功能代码只写一次，每个新场景只加一个文件夹和一条登记。
 
+## 场景模板：一个骨架，四种变体
+
+**骨架**（所有场景都有，顺序固定）：
+
+开场原画 → 走进画里 → 发现卡片 → 独家发现 → 故事 → 作品档案与画家简介 → 去看真迹 → 下一个场景
+
+**四种变体**（`scene.json` 里的 `variant`；规则写在 `assets/variants.js` 和 `tools/check_scenes.py`）：
+
+| variant | 用哪个程序 | 卡片 | 画家视角 | 故事 | 现有场景 |
+|---|---|---|---|---|---|
+| `interior` 室内房间（完整版） | `engine.js`：第一人称在房间里走动 | 5–7 | 有 | 三幕 | bedroom、night-cafe、vangogh-chair |
+| `outdoor` 户外风景（完整版） | `engine.js`：第一人称走动，有天空、风和远景 | 5–7 | 有 | 三幕 | yellow-house、cafe-terrace、starry-night-rhone、wheatfield-cypresses |
+| `still-life` 静物（轻量版） | `light.js`：分层景深，可轻微转动视角 | 3–6 | 没有 | 一段短故事（三段） | sunflowers |
+| `portrait` 人物肖像（轻量版） | `light.js`：分层景深，重点是细节放大（多一个“放大看细节”按钮） | 3–6 | 没有 | 一段短故事（三段） | 暂无 |
+
+**每个场景必须各自不同的四样东西**（都写在 `scene.json` 里）：
+
+- `exclusive`：独家发现（每个场景一个，不能和别的场景重复）
+- `ambience`：环境音（用 `assets/sound.js` 里 `AMBIENCE` 的一种，比如 `room-birds`、`river`）
+- `lighting`：光线设定，`type`（`daylight` 白天、`gaslight` 煤气灯、`night` 夜晚、`window` 窗边光……）和中英文 `label`
+- `links`：与其他场景的衔接一览——`doors` 房间里的门、`cards` 卡片里的链接、`end` 故事结尾的按钮（“下一个场景”按系列顺序自动出现）
+
+**系列主色**：写在 `data/scenes.json` 的 `collections` → `color`，用于按钮和点缀。梵高在阿尔勒、梵高在圣雷米：梵高的黄 `#c99a22`；维米尔的代尔夫特：代尔夫特蓝 `#2f5597`。
+
 ## 如何新增一个场景
 
-以“黄房子”为例（登记表里已经有它，状态是 `soon`）：
+1. **选变体**：室内 `interior`、户外 `outdoor`、静物 `still-life`、肖像 `portrait`。
+   复制一个同变体的现有场景文件夹当起点（室内：`scenes/bedroom/`；户外：`scenes/yellow-house/`；静物、肖像：`scenes/sunflowers/`），改名为新场景的 id，比如 `scenes/the-milkmaid/`。
+2. **填 `scene.json`**（场景的全部内容都在这里；所有事实文字由 Tia 提供）：
+   - `id`（和登记表一样）、`variant`
+   - **作品档案**：`label`（展签：画名、画家、年份、收藏地；`source` 是图片来源）、`record`（画家生卒年、材质、尺寸、来源说明、博物馆作品页）
+   - **卡片**：`cards`（数量见上表），每个都有中英文；引用了书信的卡片可以加 `letter.url`（“读原信”）
+   - **故事**：`ending.acts`（三段）、`ending.final`（最后一句话）、`ending.museums`
+   - **独家发现**：`exclusive`
+   - **声音**：`ambience`（环境音）、`music`（可选，只用 CC0 / 公有领域录音）、`audioGuide`（语音导览，录音放进 `audio/`）
+   - **光线**：`lighting`
+   - **衔接**：`links`，以及真正的门（`objects` 里的 `portal`）、卡片链接（`cards` 的 `link`）、结尾按钮（`ending.exit`）
+   - 完整版还要：`viewpoint`（画家视角，可以请 Claude Code 对照原画计算）、`room` 和 `objects`（房间和家具，种类见 `assets/engine.js` 里的 `BUILD`）；轻量版要：`layers`（分层）和 `spots`（卡片的位置）
+   - **来源**：在场景文件夹的 `sources.md` 里写下每条事实的出处；`reading` 是页面最底部的“延伸阅读与来源”
+3. **放图片**：原画放进 `scenes/新场景/images/`，在 `images/README.md` 里写图片来源和授权（只用公有领域的画作）。
+4. **登记到 `data/scenes.json`**：在 `scenes` 里找到（或新加）这一条，`status` 改成 `live`，加上 `path`、`cover`、`added`（上线日期），以及 `collection`、`themes`、`moods`（心情）、`period`、`place`、`museum`；在伦敦国家美术馆展出的，加 `onDisplay` 和 `room`。新系列在 `collections` 里加一条，写上 `color`（主色）。
+5. **重新生成静态页面**：运行 `python3 tools/build.py`（Claude Code 会帮你运行）。
+   它根据 `data/scenes.json` 和每个 `scene.json`，重新生成所有浏览页（画家、主题、时期、心情、博物馆、地图、时间线）、场景页、sitemap 和 404 的静态 HTML（不运行 JavaScript 时看到的内容，也是搜索引擎读到的内容），规则和 JavaScript 版完全一样。
+   它还会自动运行 `tools/check_scenes.py`，按变体检查卡片数量、故事段数、独家发现是否重复、环境音、光线、衔接是否齐全，有问题会列出来。
+   **就算忘了这一步也没关系**：合并到 `main` 之后，GitHub 会自动运行它（`.github/workflows/build.yml`）。
+6. **发布**：Claude Code 开一个 Pull Request → 在 GitHub 上点 **Merge pull request** → **Confirm merge** → 等 1–2 分钟，强制刷新网站（Ctrl+Shift+R）。
+   上线前再检查一遍（来自网站蓝图的“内容与版权规则”）：公有领域、图片来源已注明、文字由 Tia 提供并核对、解读性内容标明“有人认为”、中英文都检查过。
 
-1. **复制文件夹**：把 `scenes/bedroom/` 整个复制一份，改名为 `scenes/yellow-house/`。
-2. **换图片**：把原画放进 `scenes/yellow-house/images/`，删掉卧室的图片。
-3. **改 `scene.json`**（场景的全部内容都在这里）：
-   - `id`：改成 `yellow-house`（要和登记表里的一样）
-   - `painting`：原画文件名和宽高
-   - `label`：展签——画名、画家、年份、收藏地；`source` 是图片来源，会显示成“图片：… / Image: …”
-   - `viewpoint`：画家视角（镜头位置和角度；需要对照原画调整，可以请 Claude Code 帮忙计算）
-   - `room` 和 `objects`：房间形状和家具位置（可用的家具种类见 `assets/engine.js` 里的 `BUILD`）
-   - `cards`：发现卡片（完整版 5–7 个，轻量版 3–4 个），每个都要有中英文
-   - `ending`：三幕故事、最后一句话、各版本的展签、博物馆
-   - `record`：作品档案表（画家生卒年、画名、年份、材质、尺寸、收藏地、博物馆作品页）。空着的格子显示“待补充”
-   - `zoom`：细节放大用的图片（默认就是原画）
-   - `reading`：页面最底部的“延伸阅读与来源”，每条写 `title`（中英文）和 `url`
-   - `audioGuide`：语音导览。录音放进 `audio/guide-zh.mp3`、`audio/guide-en.mp3`，没有录音时按钮不显示；`transcript` 是文字稿
-   - `sound`：环境音的种类（见 `assets/sound.js` 里的 `AMBIENCE`）；`music`：音乐（只用 CC0 / 公有领域录音，`src` 空着时不显示开关）
-4. **`index.html` 不用手动改**：第 7 步的 `tools/build.py` 会自动生成（网页标题和分享预览来自 `scene.json` 的 `label`；想自己写，就在 `scene.json` 里加 `seo`，见卧室的例子）。
-5. **在登记表登记**：打开 `data/scenes.json`，找到 `yellow-house` 这一条：
-   - `status` 改成 `live`
-   - 加上 `"path": "scenes/yellow-house/"` 和 `"cover": "scenes/yellow-house/images/封面图.jpg"`
-   - 填上 `added`（上线日期，首页“最新开放”按这个排序）、`themes`、`moods`（心情）、`period`、`place`；在伦敦国家美术馆展出的，加 `onDisplay` 和 `room`
-6. **填资料来源**：在 `sources.md` 里写下每条事实的出处。
-7. **重新生成静态网页**：运行 `python3 tools/build.py`（Claude Code 会帮你运行）。
-   它根据 `data/scenes.json` 和每个 `scene.json`，重新生成所有浏览页（画家、主题、时期、心情、博物馆、地图、时间线）、场景页、sitemap 和 404 的静态 HTML（不运行 JavaScript 时看到的内容，也是搜索引擎读到的内容），规则和 JavaScript 版完全一样（比如即将开放最多 3 个、计划中的作品不显示、没有作品的博物馆不显示）。
-   **就算忘了这一步也没关系**：合并到 `main` 之后，GitHub 会自动运行它（`.github/workflows/build.yml`），一两分钟后把更新好的网页提交回 `main`。直接在 GitHub 网页上改 `data/scenes.json` 也一样。
-8. **上线前检查**（来自网站蓝图的“内容与版权规则”）：公有领域、图片来源已注明、文字由 Tia 提供并核对、解读性内容标明“有人认为”、中英文都检查过。
-
-首页、系列页、浏览页和地图会自动出现新场景，不用改它们。
+首页、系列页、浏览页、时间线和地图会自动出现新场景，不用改它们。
 
 ## 本地预览
 

@@ -1,6 +1,25 @@
 {
   "_说明": "麦田与柏树场景的全部内容。所有事实文字由 Tia 提供。柏树、橄榄树丛、灌木和远山的位置是从原画（800×636）按透视算出来的：画家的视平线在画面 63% 的高度，柏树约 20 米远、14 米高，橄榄树丛约 9 米远。站在画家视角时，原画正好贴在这些形状上。",
   "id": "wheatfield-cypresses",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（说明用；具体的灯光效果仍由 room、exclusive 里的设置决定）",
+    "type": "daylight",
+    "label": {
+      "zh": "白天",
+      "en": "Daylight"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。真正的设置在 objects / cards / ending.exit 里，tools/check_scenes.py 会检查这里和那里是否一致。",
+    "doors": [],
+    "cards": [
+      "bedroom"
+    ],
+    "end": [
+      "bedroom"
+    ]
+  },
   "painting": {
     "image": "images/wheatfield-cypresses.jpg",
     "width": 800,
@@ -64,7 +83,7 @@
     },
     "card": "mistral"
   },
-  "sound": "wind-cicadas",
+  "ambience": "wind-cicadas",
   "colors": {
     "line": "#2a2a22",
     "ground": "#ffffff",

@@ -12,6 +12,7 @@
 import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupSound } from './sound.js';
+import { variantOf, VARIANTS } from './variants.js';
 
 export async function startLight(sceneUrl) {
   removeStatic();
@@ -25,6 +26,7 @@ export async function startLight(sceneUrl) {
   }
   track('enter-scene-' + S.id);   // 访问统计：打开了这个场景
   document.body.classList.add('scene', 'light');
+  document.body.dataset.variant = variantOf(S);   // 场景变体：interior / outdoor / still-life / portrait（见 variants.js）
   if (meta && R.collectionById[meta.collection]) document.body.dataset.series = R.collectionById[meta.collection].accent || '';
   buildDOM(S, R, meta);
   wirePrefs();
@@ -81,6 +83,7 @@ function buildDOM(S, R, meta) {
   <div id="tools" class="ui">
     <a class="btn" href="${ROOT}">← ${ui('走进名画', 'Home')}</a>
     <button class="btn" id="compareBtn">${ui('对照原画', 'Original painting')}</button>
+    ${VARIANTS[variantOf(S)].zoomFirst ? `<a class="btn" id="zoomBtn" href="${(S.zoom && S.zoom.image) || P.image}" target="_blank" rel="noopener">🔍 ${ui('放大看细节', 'Zoom in on details')}</a>` : ''}
     ${isMap ? `<button class="btn" id="mapBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
   </div>
   <div id="status" class="ui">

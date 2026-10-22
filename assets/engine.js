@@ -12,6 +12,7 @@ import * as THREE from 'three';
 import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupSound } from './sound.js';
+import { variantOf, VARIANTS } from './variants.js';
 
 export async function startScene(sceneUrl) {
   removeStatic();
@@ -26,6 +27,7 @@ export async function startScene(sceneUrl) {
   }
   track('enter-scene-' + S.id);   // 访问统计：打开了这个场景
   document.body.classList.add('scene');
+  document.body.dataset.variant = variantOf(S);   // 场景变体：interior / outdoor / still-life / portrait（见 variants.js）
   if (meta && R.collectionById[meta.collection]) document.body.dataset.series = R.collectionById[meta.collection].accent || '';
   buildDOM(S, R, meta);
   wirePrefs();

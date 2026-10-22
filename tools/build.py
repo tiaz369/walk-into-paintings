@@ -310,7 +310,7 @@ for meta in BUILT:
       <h2>去现场看真迹 · See it in person</h2>
       <ul>{museums}</ul>
       {reading}'''
-    script = ("    import { startLight } from '../../assets/light.js';\n    startLight('scene.json');" if S.get('kind') == 'light'   # 轻量版：分层景深
+    script = ("    import { startLight } from '../../assets/light.js';\n    startLight('scene.json');" if (S.get('variant') in ('still-life', 'portrait') or S.get('kind') == 'light')   # 轻量版（静物、肖像）：分层景深
               else "    import { startScene } from '../../assets/engine.js';\n    startScene('scene.json');")
     path = page(meta['path'], title, desc, s, script, image=meta.get('cover') or (meta['path'] + S['painting']['image']), image_alt=alt, scene=True, noindex=meta['status'] != 'live')
     if meta['status'] == 'live': PAGES.append(path)   # 还没上线的场景不放进 sitemap
@@ -328,4 +328,10 @@ urls = ''.join(f'  <url><loc>{SITE}{p}</loc><lastmod>{today}</lastmod></url>\n' 
 open(os.path.join(ROOT, 'sitemap.xml'), 'w', encoding='utf-8').write(f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}</urlset>\n')
 open(os.path.join(ROOT, 'robots.txt'), 'w', encoding='utf-8').write(f'User-agent: *\nAllow: /\n\nSitemap: {SITE}sitemap.xml\n')
 print('生成了', len(PAGES), '个页面 + sitemap.xml + robots.txt')
+# 顺便检查每个场景是否符合模板（一个骨架，四种变体）；只提醒，不改文件
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from check_scenes import check
+_rows, _problems = check()
+print('场景检查：' + ('全部符合模板' if not _problems else f'有 {len(_problems)} 处要看一下'))
+for _p in _problems: print('  · ' + _p)
 for p in PAGES: print('  ', p or '(首页)')
