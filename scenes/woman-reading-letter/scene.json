@@ -18,7 +18,8 @@
     "cards": [],
     "end": [
       "little-street",
-      "milkmaid"
+      "milkmaid",
+      "pearl-earring"
     ]
   },
   "painting": {
@@ -785,6 +786,14 @@
         "label": {
           "zh": "同一家博物馆的另一幅维米尔",
           "en": "Another Vermeer in the same museum"
+        }
+      },
+      {
+        "scene": "pearl-earring",
+        "href": "../pearl-earring/",
+        "label": {
+          "zh": "维米尔的另一幅",
+          "en": "Another Vermeer"
         }
       }
     ]

@@ -62,11 +62,13 @@ function buildDOM(S, R, meta) {
   const layersHTML = S.layers.map((l, i) => `<div class="layer" data-i="${i}" style="${l.clip ? `clip-path:polygon(${l.clip.map(([x, y]) => `${x * 100}% ${y * 100}%`).join(',')})` : ''}">
       <img src="${P.image}" alt="" draggable="false" /></div>`).join('');
   const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}" style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
-  const isMap = X.type === 'map';
+  const isMap = X.type === 'map', isCurtain = X.type === 'curtain';
+  // 独家发现“帘子回来了”：示意的帘子放在背景（第 0 层）上面、人物各层下面
+  const curtainHTML = isCurtain ? `<div id="curtain" class="curtain" style="--curtain:${X.color || '#3c5a3a'};--curtain-on:${X.opacity ?? 0.75}"></div>` : '';
 
   document.body.insertAdjacentHTML('beforeend', `
   <div class="grain"></div>
-  <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML}<div id="spots">${spotsHTML}</div></div></div>
+  <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML.replace('</div>', '</div>' + curtainHTML)}<div id="spots">${spotsHTML}</div></div></div>
 
   <div id="intro">
     <img id="introImg" src="${P.image}" ${altAttr(P.alt || '')} />
@@ -78,12 +80,15 @@ function buildDOM(S, R, meta) {
     </div>
   </div>
   <a id="sceneHome" href="${ROOT}">← ${ui('走进名画', 'Walk into Paintings')}</a>
+  ${isCurtain && X.note ? `<div id="curtainNote" class="panel hidden">${bi(X.note, ' / ')}</div>` : ''}
   <div id="hint" class="panel"><span class="zh">${S.hint.zh}</span><span class="en-ui">${S.hint.en}</span></div>
 
   <div id="tools" class="ui">
     <a class="btn" href="${ROOT}">← ${ui('走进名画', 'Home')}</a>
     <button class="btn" id="compareBtn">${ui('对照原画', 'Original painting')}</button>
-    ${VARIANTS[variantOf(S)].zoomFirst ? `<a class="btn" id="zoomBtn" href="${(S.zoom && S.zoom.image) || P.image}" target="_blank" rel="noopener">🔍 ${ui('放大看细节', 'Zoom in on details')}</a>` : ''}
+    ${isCurtain ? `<button class="btn" id="curtainBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
+    ${X.zoom ? `<button class="btn" id="zoomBtn">🔍 ${ui(X.zoom.label.zh, X.zoom.label.en)}</button>`
+      : VARIANTS[variantOf(S)].zoomFirst ? `<a class="btn" id="zoomBtn" href="${(S.zoom && S.zoom.image) || P.image}" target="_blank" rel="noopener">🔍 ${ui('放大看细节', 'Zoom in on details')}</a>` : ''}
     ${isMap ? `<button class="btn" id="mapBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
   </div>
   <div id="status" class="ui">
@@ -206,11 +211,21 @@ function run(S, R) {
     else window.addEventListener('deviceorientation', onTilt);
   }
   const depth = i => (S.layers[i] && S.layers[i].depth) || 0;
+  const Z = (S.exclusive || {}).zoom;   // 独家发现“放大珍珠”：画面放大到原画上的 (x, y)
+  let zoomT = 0, zoomK = 0;
+  if (Z) stage.style.transformOrigin = `${Z.x * 100}% ${Z.y * 100}%`;
   function frame() {
     requestAnimationFrame(frame);
     if (gallery.classList.contains('show')) return;
     cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
-    stage.style.transform = `perspective(1400px) rotateY(${cx * 3}deg) rotateX(${-cy * 2}deg)`;
+    zoomK += (zoomT - zoomK) * 0.06;
+    let zoomCSS = '';
+    if (Z && zoomK > 0.001) {   // 把珍珠移到屏幕中间，再放大
+      const w = stage.offsetWidth, h = stage.offsetHeight;
+      const dx = (window.innerWidth / 2 - (stage.offsetLeft + Z.x * w)) * zoomK, dy = (window.innerHeight / 2 - (stage.offsetTop + Z.y * h)) * zoomK;
+      zoomCSS = `translate(${dx}px, ${dy}px) scale(${1 + ((Z.scale || 4) - 1) * zoomK})`;
+    }
+    stage.style.transform = `${zoomCSS} perspective(1400px) rotateY(${cx * 3 * (1 - zoomK)}deg) rotateX(${-cy * 2 * (1 - zoomK)}deg)`;
     layers.forEach((l, i) => { l.style.transform = `translate(${-cx * MAX * depth(i)}px, ${-cy * MAX * depth(i)}px) scale(${1 + depth(i) * 0.02})`; });
     spots.forEach(s => { const d = depth(+s.dataset.layer); s.style.transform = `translate(calc(-50% + ${-cx * MAX * d}px), calc(-50% + ${-cy * MAX * d}px))`; });
   }
@@ -267,6 +282,18 @@ function run(S, R) {
   const sound = setupSound(S, { ambBtn: $('ambBtn'), musBtn: $('musBtn'), info: $('musInfo') });   // 环境音、音乐（都默认关闭）
   setupGuide(S, { btn: $('audioBtn'), box: $('guideBox'), duck: on => sound.guide(on) });   // 语音导览（有录音才显示）
   if ($('mapBtn')) $('mapBtn').onclick = () => togglePopup('where');
+  if ($('curtainBtn')) $('curtainBtn').onclick = () => {   // 帘子回来了：慢慢浮现 / 消失
+    const on = !$('curtainBtn').classList.contains('on');
+    $('curtainBtn').classList.toggle('on', on); $('curtain').classList.toggle('on', on);
+    if ($('curtainNote')) $('curtainNote').classList.toggle('hidden', !on);
+    if (on) track('exclusive-' + S.id);
+  };
+  if (Z) $('zoomBtn').onclick = () => {   // 放大珍珠：放大，并显示卡片的文字
+    const on = !$('zoomBtn').classList.contains('on');
+    $('zoomBtn').classList.toggle('on', on); zoomT = on ? 1 : 0;
+    document.body.classList.toggle('zoomed', on);
+    if (on) { showCard(Z.card); track('zoom-' + S.id); } else card.style.display = 'none';
+  };
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => togglePopup(b.dataset.close, false));
 
   // ---------- 短故事 ----------
@@ -284,5 +311,5 @@ function run(S, R) {
   $('backRoom').onclick = () => { gallery.classList.remove('show'); setTimeout(() => { gallery.style.display = 'none'; }, 900); };
   onLang(updateProgress);
   updateProgress();
-  if (location.search.includes('debug')) window.__light = { showCard, togglePopup, setView: (x, y) => { tx = x; ty = y; } };
+  if (location.search.includes('debug')) window.__light = { showCard, togglePopup, zoom: on => { zoomT = on ? 1 : 0; zoomK = zoomT; }, setView: (x, y) => { tx = x; ty = y; } };
 }

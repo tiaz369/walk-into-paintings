@@ -1,0 +1,351 @@
+{
+  "_说明": "戴珍珠耳环的少女（人物肖像，轻量版：分层景深 + 卡片 + 短故事，重点是细节放大）。所有事实文字由 Tia 提供。layers 是同一张原画切出来的四层（背景、头巾、脸、珍珠）；原画上传后照着原画切好 clip、对准 spots 和珍珠的位置，再把登记表里的 status 改成 live。",
+  "id": "pearl-earring",
+  "variant": "portrait",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（渲染用的设定说明，不在页面上显示）",
+    "type": "indoor",
+    "label": {
+      "zh": "室内光",
+      "en": "Indoor light"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。《读信的蓝衣女子》结尾有入口“维米尔的另一幅”通到这里。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "woman-reading-letter"
+    ]
+  },
+  "ambience": "quiet",
+  "painting": {
+    "image": "images/pearl-earring.jpg",
+    "width": 1400,
+    "height": 1598,
+    "_": "宽高是按 39 × 44.5 cm 估的，上传原画后改成图片的真实像素",
+    "alt": {
+      "zh": "维米尔《戴珍珠耳环的少女》约1665，海牙莫瑞泰斯皇家美术馆",
+      "en": "Johannes Vermeer, Girl with a Pearl Earring, c. 1665, Mauritshuis, The Hague"
+    }
+  },
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "戴珍珠耳环的少女",
+      "en": "Girl with a Pearl Earring"
+    },
+    "artist": {
+      "zh": "维米尔",
+      "en": "Johannes Vermeer"
+    },
+    "date": {
+      "zh": "约1665年",
+      "en": "c. 1665"
+    },
+    "museum": {
+      "zh": "海牙莫瑞泰斯皇家美术馆",
+      "en": "Mauritshuis, The Hague"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“帘子回来了”看背景原来的样子 · 点“放大珍珠”看珍珠",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “The curtain returns” to see the original background · Tap “Zoom in on the pearl” to see the pearl"
+  },
+  "parallax": 14,
+  "layers": [
+    {
+      "_说明": "背景（整张画）",
+      "depth": 0
+    },
+    {
+      "_说明": "头巾（待照原画切）",
+      "depth": 0.5,
+      "clip": null
+    },
+    {
+      "_说明": "脸（待照原画切）",
+      "depth": 0.75,
+      "clip": null
+    },
+    {
+      "_说明": "珍珠（待照原画切）",
+      "depth": 1,
+      "clip": null
+    }
+  ],
+  "spots": {
+    "curtain": {
+      "x": 0.14,
+      "y": 0.22,
+      "layer": 0
+    },
+    "headscarf": {
+      "x": 0.42,
+      "y": 0.1,
+      "layer": 1
+    },
+    "eyelashes": {
+      "x": 0.55,
+      "y": 0.4,
+      "layer": 2
+    },
+    "pearl": {
+      "x": 0.43,
+      "y": 0.6,
+      "layer": 3
+    },
+    "tronie": {
+      "x": 0.66,
+      "y": 0.62,
+      "layer": 2
+    },
+    "layers": {
+      "x": 0.16,
+      "y": 0.8,
+      "layer": 0
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现：①“帘子回来了”：打开后，背景慢慢浮现出绿色帘子（示意，我们自己画的，不是研究图片），帘子在头巾、脸、珍珠这几层的后面。②“放大珍珠”：画面放大到珍珠（x、y 是珍珠在原画上的位置，0–1），并显示卡片 card 的文字。",
+    "type": "curtain",
+    "label": {
+      "zh": "帘子回来了",
+      "en": "The curtain returns"
+    },
+    "note": {
+      "zh": "示意，根据2018年研究",
+      "en": "Illustration based on the 2018 research"
+    },
+    "color": "#3c5a3a",
+    "opacity": 0.75,
+    "zoom": {
+      "label": {
+        "zh": "放大珍珠",
+        "en": "Zoom in on the pearl"
+      },
+      "x": 0.43,
+      "y": 0.6,
+      "scale": 5,
+      "card": "pearl"
+    }
+  },
+  "cards": {
+    "pearl": {
+      "title": {
+        "zh": "珍珠",
+        "en": "The pearl"
+      },
+      "text": {
+        "zh": "这颗“珍珠”没有轮廓，也没有挂在耳朵上的钩子，只是几笔半透明和不透明的白色颜料。",
+        "en": "The \"pearl\" has no outline and no hook to hang it from her ear. It is just a few translucent and opaque touches of white paint."
+      }
+    },
+    "eyelashes": {
+      "title": {
+        "zh": "睫毛",
+        "en": "Eyelashes"
+      },
+      "text": {
+        "zh": "2018年的研究发现，维米尔画过睫毛，只是肉眼已经看不见了。",
+        "en": "Research in 2018 found that Vermeer painted eyelashes, though they can no longer be seen with the naked eye."
+      }
+    },
+    "curtain": {
+      "title": {
+        "zh": "消失的帘子",
+        "en": "The vanished curtain"
+      },
+      "text": {
+        "zh": "背景原本不是一片黑暗，而是一道绿色帘子。几百年来，半透明的绿色颜料慢慢变化，帘子就消失了。",
+        "en": "The background was not originally empty and dark: Vermeer painted a green curtain. Over the centuries the translucent green paint changed, and the curtain disappeared."
+      }
+    },
+    "headscarf": {
+      "title": {
+        "zh": "头巾",
+        "en": "The headscarf"
+      },
+      "text": {
+        "zh": "她穿着异国风格的衣服，戴着头巾，这在当时的荷兰并不常见。",
+        "en": "She wears exotic dress and a headscarf, unusual in the Netherlands at the time."
+      }
+    },
+    "tronie": {
+      "title": {
+        "zh": "不是肖像",
+        "en": "Not a portrait"
+      },
+      "text": {
+        "zh": "这是一幅“特罗尼”，17世纪荷兰人所说的“头像”，本来就不是为某个真人画的肖像。她是谁，至今没有人知道。",
+        "en": "This is a \"tronie\", what the 17th-century Dutch called a \"head\": it was never meant as a portrait of a real person. Her identity remains unknown."
+      }
+    },
+    "layers": {
+      "title": {
+        "zh": "一层一层",
+        "en": "Layer by layer"
+      },
+      "text": {
+        "zh": "维米尔先画绿色帘子，再一层层往前画，头巾和珍珠是最后加上去的。",
+        "en": "Vermeer began with the green curtain and worked forward, adding the headscarf and the pearl last."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/pearl-earring.jpg",
+        "alt": {
+          "zh": "维米尔《戴珍珠耳环的少女》约1665",
+          "en": "Johannes Vermeer, Girl with a Pearl Earring, c. 1665"
+        },
+        "caption": {
+          "zh": "约1665年 · 海牙莫瑞泰斯皇家美术馆",
+          "en": "c. 1665 · Mauritshuis, The Hague"
+        },
+        "title": {
+          "zh": "她是谁？",
+          "en": "Who was she?"
+        },
+        "text": {
+          "zh": "这幅画大约画于1665年。几百年来，人们一直想知道画中的女孩是谁，但她本来就不是某个真人的肖像。",
+          "en": "Painted around 1665, this girl has made people wonder for centuries who she was, yet she was never meant to be a portrait of anyone."
+        }
+      },
+      {
+        "title": {
+          "zh": "玻璃房里的研究",
+          "en": "Research in a glass room"
+        },
+        "text": {
+          "zh": "2018年，莫瑞泰斯皇家美术馆在展厅里搭了一间玻璃工作室，国际研究团队在里面检测这幅画，两周内公众可以在旁边观看。",
+          "en": "In 2018, the Mauritshuis built a glass studio in the gallery. An international team examined the painting inside it, and for two weeks the public could watch."
+        }
+      },
+      {
+        "title": {
+          "zh": "更“私人”的一幅画",
+          "en": "A more personal painting"
+        },
+        "text": {
+          "zh": "研究找到了睫毛和消失的绿色帘子。美术馆说，这幅画比人们以前以为的更“私人”。",
+          "en": "The research revealed eyelashes and the vanished green curtain. The museum said the painting is more personal than was previously thought."
+        }
+      }
+    ],
+    "final": {
+      "zh": "最珍贵的首饰，只有几笔颜料。",
+      "en": "The most precious jewel is just a few touches of paint."
+    },
+    "museums": [
+      "mauritshuis"
+    ],
+    "exit": [
+      {
+        "scene": "woman-reading-letter",
+        "href": "../woman-reading-letter/",
+        "label": {
+          "zh": "维米尔的另一幅",
+          "en": "Another Vermeer"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸是在维基百科等处查到的，等 Tia 在莫瑞泰斯作品页核对。空着的行不显示。",
+    "artist": {
+      "zh": "约翰内斯·维米尔（1632–1675）",
+      "en": "Johannes Vermeer (1632–1675)"
+    },
+    "title": {
+      "zh": "戴珍珠耳环的少女",
+      "en": "Girl with a Pearl Earring"
+    },
+    "date": {
+      "zh": "约1665年",
+      "en": "c. 1665"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "44.5 × 39 cm",
+      "en": "44.5 × 39 cm"
+    },
+    "collection": {
+      "zh": "海牙莫瑞泰斯皇家美术馆",
+      "en": "Mauritshuis, The Hague"
+    },
+    "url": "https://www.mauritshuis.nl/en/our-collection/artworks/670-girl-with-a-pearl-earring"
+  },
+  "zoom": {
+    "image": "images/pearl-earring.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "莫瑞泰斯皇家美术馆：戴珍珠耳环的少女",
+          "en": "Mauritshuis: Girl with a Pearl Earring"
+        },
+        "url": "https://www.mauritshuis.nl/en/our-collection/artworks/670-girl-with-a-pearl-earring"
+      },
+      {
+        "title": {
+          "zh": "Timeless Travels：揭开《戴珍珠耳环的少女》的秘密",
+          "en": "Timeless Travels: Secrets of Vermeer's Girl with a Pearl Earring revealed"
+        },
+        "url": "https://www.timeless-travels.co.uk/post/secrets-of-vermeer-s-girl-with-a-pearl-earring-revealed"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三段故事原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "她是谁？",
+          "en": "Who was she?"
+        },
+        "text": {
+          "zh": "这幅画大约画于1665年。几百年来，人们一直想知道画中的女孩是谁，但她本来就不是某个真人的肖像。",
+          "en": "Painted around 1665, this girl has made people wonder for centuries who she was, yet she was never meant to be a portrait of anyone."
+        }
+      },
+      {
+        "title": {
+          "zh": "玻璃房里的研究",
+          "en": "Research in a glass room"
+        },
+        "text": {
+          "zh": "2018年，莫瑞泰斯皇家美术馆在展厅里搭了一间玻璃工作室，国际研究团队在里面检测这幅画，两周内公众可以在旁边观看。",
+          "en": "In 2018, the Mauritshuis built a glass studio in the gallery. An international team examined the painting inside it, and for two weeks the public could watch."
+        }
+      },
+      {
+        "title": {
+          "zh": "更“私人”的一幅画",
+          "en": "A more personal painting"
+        },
+        "text": {
+          "zh": "研究找到了睫毛和消失的绿色帘子。美术馆说，这幅画比人们以前以为的更“私人”。",
+          "en": "The research revealed eyelashes and the vanished green curtain. The museum said the painting is more personal than was previously thought."
+        }
+      }
+    ]
+  }
+}
