@@ -6,8 +6,8 @@
     "_说明": "光线设定（说明用；具体的灯光效果仍由 room、exclusive 里的设置决定）",
     "type": "night",
     "label": {
-      "zh": "夜晚",
-      "en": "Night"
+      "zh": "夜晚，星光和对岸的煤气灯",
+      "en": "Night, starlight and gas lamps on the far bank"
     }
   },
   "links": {

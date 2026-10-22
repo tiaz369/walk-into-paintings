@@ -6,8 +6,8 @@
     "_说明": "光线设定（说明用；具体的灯光效果仍由 room、exclusive 里的设置决定）",
     "type": "night-gaslight",
     "label": {
-      "zh": "夜晚 · 煤气灯",
-      "en": "Night, gas light"
+      "zh": "夜晚，雨棚下的煤气灯",
+      "en": "Night, gas light under the awning"
     }
   },
   "links": {
