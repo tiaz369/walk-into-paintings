@@ -161,6 +161,13 @@ const AMBIENCE = {
   'room-birds'(out, st) { loopNoise('brown', out, { freq: 260, gain: 0.12 }); bird(out, ctx.currentTime + 0.3); every(st, 2, 7, t => bird(out, t)); },
   // 非常安静的室内：只有很轻的房间底噪
   quiet(out) { loopNoise('brown', out, { freq: 180, gain: 0.06 }); },
+  // 安静的室内，窗外远处的街道声（人声和马车都隔着窗，很轻）
+  'room-street'(out, st) {
+    loopNoise('brown', out, { freq: 220, gain: 0.11 });
+    const far = ctx.createGain(); far.gain.value = 0.35; far.connect(pan(out, -0.6));   // 窗在左边
+    murmur(far, 0.03)(st);
+    hooves(far, ctx.currentTime + 4); every(st, 20, 40, t => hooves(far, t));
+  },
   // 安静室内
   room(out) { loopNoise('brown', out, { freq: 220, gain: 0.12 }); },
   // 安静的街道：运河边轻轻的水声，孩子的笑声，远处的鸟叫

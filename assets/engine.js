@@ -135,6 +135,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'pair' ? `<button class="btn" id="pairBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${TW ? `<button class="btn" id="twinBtn">✦ ${ui(TW.label.zh, TW.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'wind' ? `<button class="btn" id="windBtn">🌬 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'mirror' ? `<button class="btn" id="mirrorBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.today ? `<div class="seg hidden" id="todaySwitch"><button data-today="0" class="on">${ui(S.exclusive.today.then.zh, S.exclusive.today.then.en)}</button><button data-today="1">${ui(S.exclusive.today.now.zh, S.exclusive.today.now.en)}</button></div>` : ''}
     ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
@@ -180,6 +181,12 @@ function buildDOM(S, R, meta) {
     ${S.exclusive.note ? `<p>${bi(S.exclusive.note, ' / ')}</p>` : ''}
     ${S.exclusive.credit ? `<p><small>${bi(S.exclusive.credit, ' / ')}</small></p>` : ''}
   </div>` : ''}
+  ${S.exclusive && S.exclusive.type === 'mirror' ? (M => `<div class="popup panel" id="mirror">
+    <button class="close" data-close="mirror" aria-label="Close">×</button>
+    <h3>${bi(M.label)}</h3>
+    <div class="mirror-zoom" role="img" ${altAttr(M.alt || M.label).replace('alt=', 'aria-label=')} style="background-image:url('${S.painting.image}');aspect-ratio:${(M.crop.w * S.painting.width) / (M.crop.h * S.painting.height)};background-size:${100 / M.crop.w}% ${100 / M.crop.h}%;background-position:${M.crop.x / (1 - M.crop.w) * 100}% ${M.crop.y / (1 - M.crop.h) * 100}%"></div>
+    <p>${bi(M.text, ' / ')}</p>
+  </div>`)(S.exclusive) : ''}
   <div class="popup panel" id="shot">
     <button class="close" data-close="shot" aria-label="Close">×</button>
     <img id="shotImg" ${altAttr({ zh: '你拍下的画面', en: 'Your snapshot' })} />
@@ -1019,8 +1026,18 @@ function run(S, R, meta) {
   vpSlider.oninput = () => { vpOverlay.style.opacity = vpSlider.value / 100; $('vpVal').textContent = vpSlider.value + '%'; };
   let view = 'none', needExit = false, alignFrom = null, alignT = 0, filmFov = null;
   function enterView() { view = 'aligning'; alignT = 0; alignFrom = { x: player.x, z: player.z, yaw: player.yaw, pitch: player.pitch, fov: camera.fov }; }
-  function leaveView() { if (view === 'none') return; view = 'none'; needExit = true; vpPanel.classList.remove('show'); vpOverlay.style.display = 'none'; }
-  function showAligned() { view = 'aligned'; placeRect(vpOverlay); vpOverlay.style.display = 'block'; vpPanel.classList.add('show'); }
+  function leaveView() { if (view === 'none') return; view = 'none'; mirrorArmed = true; needExit = true; vpPanel.classList.remove('show'); vpOverlay.style.display = 'none'; }
+  function showAligned() {
+    view = 'aligned'; placeRect(vpOverlay); vpOverlay.style.display = 'block'; vpPanel.classList.add('show');
+    if (mirrorObj && mirrorArmed && !mirrorSeen) { mirrorSeen = true; togglePopup('mirror', true); track('exclusive-' + S.id); }   // 站到画家视角点：镜子放大
+  }
+  // 独家发现“镜子里的人”（mirror）：站到画家视角点时（或点按钮），把原画上 crop 这一块（镜子）放大显示，配上文字
+  const mirrorObj = S.exclusive && S.exclusive.type === 'mirror' ? S.exclusive : null;
+  let mirrorSeen = false, mirrorArmed = false;   // 刚走进画里时也站在视角点上：先不弹出，离开过一次再回来才弹出
+  if (mirrorObj) {
+    popups.mirror = $('mirror');
+    $('mirrorBtn').onclick = () => { if (view === 'aligned') togglePopup('mirror', true); else { mirrorSeen = false; mirrorArmed = true; enterView(); } };
+  }
 
   // ---------- 开场：原画（和 3D 画面完全重合）→ 淡出 → 站在画里 ----------
   const intro = $('intro'), introImg = $('introImg');
