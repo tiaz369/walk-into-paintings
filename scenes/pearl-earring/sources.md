@@ -4,7 +4,7 @@
 
 - 作品页：https://www.mauritshuis.nl/en/our-collection/artworks/670-girl-with-a-pearl-earring
 - Timeless Travels：https://www.timeless-travels.co.uk/post/secrets-of-vermeer-s-girl-with-a-pearl-earring-revealed
-- 图片：Wikimedia Commons，公有领域
+- 图片：莫瑞泰斯皇家美术馆官网下载，公有领域（注明 Mauritshuis, The Hague）
 
 ## Tia 整理的资料
 
