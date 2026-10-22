@@ -92,6 +92,21 @@ function hooves(out, t) {   // 远处马车：马蹄“嗒嗒”加车轮的低�
   const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.18, t + steps * cad / 2); g.gain.linearRampToValueAtTime(0.0001, t + steps * cad);
   rumble.connect(f).connect(g).connect(out); rumble.start(t); rumble.stop(t + steps * cad + 0.1);
 }
+function pour(out, t) {   // 牛奶倒进陶罐：细细的水声，倒完慢慢停下，中间偶尔“咕”一声
+  const dur = rnd(5, 9);
+  const src = ctx.createBufferSource(); src.buffer = buf('white'); src.loop = true;
+  const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.Q.value = 1.6;
+  f.frequency.setValueAtTime(2600, t); f.frequency.linearRampToValueAtTime(1700, t + dur);   // 罐子越满，声音越低
+  const flutter = ctx.createGain(); flutter.gain.value = 0.7;
+  const lfo = ctx.createOscillator(), lg = ctx.createGain(); lfo.frequency.value = rnd(9, 14); lg.gain.value = 0.3;
+  lfo.connect(lg).connect(flutter.gain);
+  const g = ctx.createGain(); const v = rnd(0.05, 0.08);
+  g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(v, t + 0.6); g.gain.setValueAtTime(v, t + dur - 1); g.gain.linearRampToValueAtTime(0.0001, t + dur);
+  src.connect(f).connect(flutter).connect(g).connect(pan(out, -0.25));
+  src.start(t, rnd(0, 3)); lfo.start(t); src.stop(t + dur + 0.1); lfo.stop(t + dur + 0.1);
+  for (let k = 0, n = 2 + Math.floor(Math.random() * 3); k < n; k++)
+    tone(out, t + rnd(0.8, dur - 1), { f0: rnd(500, 800), f1: rnd(900, 1300), vol: 0.012, attack: 0.004, dur: 0.07, p: -0.25 });
+}
 function lap(out, t) {   // 河水轻拍岸边：一下涌上来、慢慢退去
   const src = ctx.createBufferSource(); src.buffer = buf('white');
   const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.setValueAtTime(400, t); f.frequency.linearRampToValueAtTime(1300, t + 0.35); f.frequency.linearRampToValueAtTime(300, t + 1.6);
@@ -131,6 +146,12 @@ const AMBIENCE = {
   'room-birds'(out, st) { loopNoise('brown', out, { freq: 260, gain: 0.12 }); bird(out, ctx.currentTime + 0.3); every(st, 2, 7, t => bird(out, t)); },
   // 安静室内
   room(out) { loopNoise('brown', out, { freq: 220, gain: 0.12 }); },
+  // 安静的厨房：牛奶倒进陶罐的细细水声，窗外偶尔几声鸟叫
+  kitchen(out, st) {
+    loopNoise('brown', out, { freq: 220, gain: 0.1 });
+    pour(out, ctx.currentTime + 0.8); every(st, 10, 16, t => pour(out, t));
+    every(st, 6, 14, t => bird(out, t));
+  },
   // 白天街道，远处马车声
   'street-day'(out, st) {
     loopNoise('brown', out, { freq: 380, gain: 0.16 });

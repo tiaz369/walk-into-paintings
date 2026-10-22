@@ -3,11 +3,11 @@
   "id": "yellow-house",
   "variant": "outdoor",
   "lighting": {
-    "_说明": "光线设定（说明用；具体的灯光效果仍由 room、exclusive 里的设置决定）",
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示；具体的灯光效果由 room、exclusive 里的设置决定）",
     "type": "daylight",
     "label": {
       "zh": "白天，强烈的阳光",
-      "en": "Daylight, strong sunshine"
+      "en": "Daytime, strong sunlight"
     }
   },
   "links": {

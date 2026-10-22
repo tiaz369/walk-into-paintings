@@ -12,7 +12,7 @@
   "artists": [
     { "id": "van-gogh", "name": { "zh": "梵高", "en": "Vincent van Gogh" }, "dates": { "zh": "1853–1890", "en": "1853–1890" },
       "bio": {"zh": "文森特·梵高（1853–1890），荷兰画家。他将近27岁才开始画画，短短十年留下了大量作品。1888年他来到法国南部的阿尔勒，在那里画出了许多最著名的画。", "en": "Vincent van Gogh (1853–1890) was a Dutch painter. He began painting at around 27 and left a huge body of work in just ten years. In 1888 he moved to Arles in the south of France, where he painted many of his best-known works."} },
-    { "id": "vermeer",  "name": { "zh": "维米尔", "en": "Johannes Vermeer" }, "dates": { "zh": "1632–1675", "en": "1632–1675" }, "bio": null },
+    { "id": "vermeer",  "name": { "zh": "维米尔", "en": "Johannes Vermeer" }, "dates": { "zh": "1632–1675", "en": "1632–1675" }, "bio": { "zh": "约翰内斯·维米尔（1632–1675），荷兰画家，一生都在代尔夫特生活和创作。他留下的画作只有约35幅，以描绘室内的光线著称。", "en": "Johannes Vermeer (1632–1675) was a Dutch painter who lived and worked in Delft all his life. Only about 35 of his paintings survive, famous for their rendering of light in quiet interiors." } },
     { "id": "van-eyck", "name": { "zh": "扬·凡·艾克", "en": "Jan van Eyck" }, "dates": { "zh": "约1390–1441", "en": "c. 1390–1441" }, "bio": null },
     { "id": "monet",    "name": { "zh": "莫奈", "en": "Claude Monet" }, "dates": { "zh": "1840–1926", "en": "1840–1926" }, "bio": null },
     { "id": "seurat",   "name": { "zh": "修拉", "en": "Georges Seurat" }, "dates": { "zh": "1859–1891", "en": "1859–1891" }, "bio": null },
@@ -59,7 +59,7 @@
   "themes": [
     { "id": "rooms",    "name": { "zh": "房间", "en": "Rooms" } },
     { "id": "night",    "name": { "zh": "夜晚", "en": "Night" } },
-    { "id": "windows",  "name": { "zh": "窗户", "en": "Windows" } },
+    { "id": "windows",  "name": { "zh": "窗户与光", "en": "Windows and light" } },
     { "id": "cafes",    "name": { "zh": "咖啡馆", "en": "Cafés" } },
     { "id": "gardens",  "name": { "zh": "花与花园", "en": "Flowers and gardens" } },
     { "id": "jewellery","name": { "zh": "首饰", "en": "Jewellery" } },
@@ -82,7 +82,8 @@
   "_places说明": "地图“画在哪里”：画作诞生地。场景的 place 只填已上线场景的（Tia 核对后再补其他的）。",
   "places": [
     { "id": "arles",  "name": { "zh": "阿尔勒", "en": "Arles" },  "lat": 43.677, "lon": 4.631 },
-    { "id": "saint-remy", "name": { "zh": "圣雷米", "en": "Saint-Rémy" }, "lat": 43.789, "lon": 4.832, "label": "t" }
+    { "id": "saint-remy", "name": { "zh": "圣雷米", "en": "Saint-Rémy" }, "lat": 43.789, "lon": 4.832, "label": "t" },
+    { "id": "delft", "name": { "zh": "代尔夫特", "en": "Delft" }, "lat": 52.012, "lon": 4.357, "label": "l" }
   ],
 
   "_cities说明": "博物馆的 lat/lon 是近似坐标，只用来在地图“现在在哪里”上标点。地图“现在在哪里”：博物馆所在的城市（博物馆的 city 指向这里）。label 是城市名写在圆点的哪一边：r 右（默认）、l 左、t 上、b 下。",
@@ -154,7 +155,8 @@
       "onDisplay": true, "room": "43",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
-    { "id": "milkmaid",            "status": "soon", "week": 5,  "title": { "zh": "倒牛奶的女仆", "en": "The Milkmaid" },    "artist": "vermeer", "year": { "zh": "约1660", "en": "c. 1660" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": null, "themes": [], "period": "dutch-golden-age", "lighting": { "_": "做场景时写进 scene.json", "type": "window", "label": { "zh": "白天，左边窗户的光", "en": "Daylight, light from the window on the left" } } },
+    { "id": "milkmaid",            "status": "soon", "week": 5,  "title": { "zh": "倒牛奶的女仆", "en": "The Milkmaid" },    "artist": "vermeer", "year": { "zh": "约1660", "en": "c. 1660" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": "delft", "themes": ["rooms", "windows"], "moods": ["quiet"], "period": "dutch-golden-age",
+      "path": "scenes/milkmaid/", "cover": "scenes/milkmaid/images/milkmaid.jpg", "artworkUrl": "", "imageSource": { "zh": "荷兰国立博物馆，公有领域", "en": "Rijksmuseum, public domain" }, "_": "原画上传、对准画家视角后，status 改成 live 并填 added" },
     { "id": "woman-reading-letter","status": "soon", "week": 6,  "title": { "zh": "读信的蓝衣女子", "en": "Woman in Blue Reading a Letter" },  "artist": "vermeer", "year": { "zh": "约1663", "en": "c. 1663" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": null, "themes": [], "period": "dutch-golden-age" },
     { "id": "little-street",       "status": "soon", "week": 7,  "title": { "zh": "小街", "en": "The Little Street" },            "artist": "vermeer", "year": { "zh": "约1658", "en": "c. 1658" }, "museum": "rijksmuseum", "collection": "delft", "version": "full",  "place": null, "themes": [], "period": "dutch-golden-age" },
     { "id": "girl-pearl-earring",  "status": "soon", "week": 7,  "title": { "zh": "戴珍珠耳环的少女", "en": "Girl with a Pearl Earring" }, "artist": "vermeer", "year": { "zh": "约1665", "en": "c. 1665" }, "museum": "mauritshuis", "collection": "delft", "version": "light", "place": null, "themes": [], "period": "dutch-golden-age" },

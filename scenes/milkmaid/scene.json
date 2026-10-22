@@ -1,0 +1,878 @@
+{
+  "_说明": "倒牛奶的女仆（室内房间，完整版）。所有文字由 Tia 提供。房间形状和画家视角是先按画面构图估的；原画上传后要对照原画重新计算（calibrate），再打开 projection。",
+  "id": "milkmaid",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示；具体的灯光效果由 room、exclusive 里的设置决定）",
+    "type": "window",
+    "label": {
+      "zh": "白天，左边窗户的光",
+      "en": "Daytime, light from a window on the left"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片 1 还链接到主题“窗户与光”（不是场景，所以不列在这里）。",
+    "doors": [],
+    "cards": [],
+    "end": []
+  },
+  "painting": {
+    "image": "images/milkmaid.jpg",
+    "width": 1800,
+    "height": 1998,
+    "alt": {
+      "zh": "维米尔《倒牛奶的女仆》约1660，阿姆斯特丹荷兰国立博物馆",
+      "en": "Johannes Vermeer, The Milkmaid, c. 1660, Rijksmuseum, Amsterdam"
+    },
+    "_": "宽高是按 41 × 45.5 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "倒牛奶的女仆",
+      "en": "The Milkmaid"
+    },
+    "artist": {
+      "zh": "维米尔",
+      "en": "Johannes Vermeer"
+    },
+    "date": {
+      "zh": "约1660年",
+      "en": "c. 1660"
+    },
+    "museum": {
+      "zh": "阿姆斯特丹荷兰国立博物馆",
+      "en": "Rijksmuseum, Amsterdam"
+    },
+    "source": {
+      "zh": "荷兰国立博物馆，公有领域",
+      "en": "Rijksmuseum, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下窗户、牛奶、面包、瓷砖、脚炉看介绍 · 点“画布下的秘密”看被盖掉的东西 · 地上发光的圆点 = 维米尔视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the window, the milk, the bread, the tiles or the foot warmer to learn more · Tap “Beneath the paint” to see what was painted over · The glowing circle = Vermeer's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "x": 0.15,
+    "z": 0,
+    "eye": 1.25,
+    "yaw": 0.05,
+    "pitch": -0.12,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "kitchen",
+  "colors": {
+    "line": "#2e2b26",
+    "floor": "#b9a27a",
+    "wall": "#e7e1d2",
+    "ceiling": "#cfc8b6",
+    "table": "#6a5a46",
+    "glass": "#dfe6e4",
+    "window": "#4a4034",
+    "wood": "#7a6248",
+    "bodice": "#d7b24c",
+    "apron": "#3e5c8e",
+    "skin": "#e6c7a3",
+    "jug": "#9a5a3a",
+    "pot": "#a0643f",
+    "bread": "#c99a5b",
+    "cloth": "#3f5f8f",
+    "basket": "#a2824f",
+    "brass": "#b89646",
+    "tile": "#eef1f3"
+  },
+  "room": {
+    "_说明": "房间形状（米）：一间小厨房。左墙 x=left（有窗），前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。walkSpeed：空间小，走得慢一点。",
+    "height": 2.7,
+    "front": 0.8,
+    "left": -0.9,
+    "backLeft": [
+      -0.9,
+      -2.4
+    ],
+    "backRight": [
+      2.0,
+      -2.4
+    ],
+    "rightFront": [
+      2.0,
+      0.8
+    ],
+    "floorCard": "footwarmer",
+    "wallCard": "light",
+    "walkSpeed": 0.6
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "light",
+      "_": "左墙上的窗户",
+      "x": -0.86,
+      "y": 1.85,
+      "z": -1.55,
+      "rot": 1.5708,
+      "boxes": [
+        [
+          1.0,
+          1.1,
+          0.02,
+          "glass",
+          0,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          1.06,
+          0.06,
+          0.06,
+          "window",
+          0,
+          0.55,
+          0
+        ],
+        [
+          1.06,
+          0.06,
+          0.06,
+          "window",
+          0,
+          -0.55,
+          0
+        ],
+        [
+          0.06,
+          1.1,
+          0.06,
+          "window",
+          -0.5,
+          0,
+          0
+        ],
+        [
+          0.06,
+          1.1,
+          0.06,
+          "window",
+          0.5,
+          0,
+          0
+        ],
+        [
+          0.04,
+          1.1,
+          0.05,
+          "window",
+          0,
+          0,
+          0.01
+        ],
+        [
+          1.0,
+          0.04,
+          0.05,
+          "window",
+          0,
+          0.15,
+          0.01
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "_": "窗下墙上挂着的篮子和铜桶",
+      "x": -0.78,
+      "y": 1.45,
+      "z": -2.15,
+      "rot": 1.5708,
+      "boxes": [
+        [
+          0.3,
+          0.2,
+          0.18,
+          "basket",
+          0,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.2,
+          0.18,
+          0.16,
+          "brass",
+          0.05,
+          -0.3,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "table",
+      "card": "bread",
+      "_": "桌子：面包、篮子、陶罐、蓝色的罐子",
+      "nearLeft": [
+        -0.85,
+        -1.0
+      ],
+      "nearRight": [
+        -0.1,
+        -1.2
+      ],
+      "farLeft": [
+        -0.72,
+        -1.72
+      ],
+      "farRight": [
+        0.02,
+        -1.9
+      ],
+      "items": [
+        [
+          0.15,
+          0.13,
+          0.1,
+          "basket",
+          -0.15,
+          0.86,
+          0.05
+        ],
+        [
+          0.06,
+          0.06,
+          0.06,
+          "bread",
+          0.05,
+          0.84,
+          0.18
+        ],
+        [
+          0.07,
+          0.07,
+          0.06,
+          "bread",
+          -0.3,
+          0.84,
+          -0.1
+        ],
+        [
+          0.06,
+          0.07,
+          0.17,
+          "cloth",
+          -0.1,
+          0.9,
+          -0.2
+        ],
+        [
+          0.1,
+          0.08,
+          0.1,
+          "pot",
+          0.22,
+          0.86,
+          -0.18
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "card": "pour",
+      "_": "女仆",
+      "pose": "standing",
+      "x": 0.42,
+      "z": -2.0,
+      "color": "bodice",
+      "legs": "apron"
+    },
+    {
+      "type": "boxes",
+      "card": "pour",
+      "_": "她手里的罐子和倒下来的牛奶",
+      "x": 0.2,
+      "y": 0.98,
+      "z": -1.85,
+      "boxes": [
+        [
+          0.12,
+          0.16,
+          0.12,
+          "jug",
+          0,
+          0.08,
+          0,
+          "cloth"
+        ],
+        [
+          0.012,
+          0.1,
+          0.012,
+          "tile",
+          -0.05,
+          -0.04,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "footwarmer",
+      "_": "脚炉",
+      "x": 0.9,
+      "z": -2.2,
+      "boxes": [
+        [
+          0.3,
+          0.22,
+          0.3,
+          "wood",
+          0,
+          0.11,
+          0
+        ],
+        [
+          0.22,
+          0.03,
+          0.22,
+          "line",
+          0,
+          0.225,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "wallBoxes",
+      "wall": "back",
+      "x": 0.25,
+      "y": 0.07,
+      "z": -2.4,
+      "_": "墙脚一排代尔夫特瓷砖",
+      "boxes": [
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          0.0,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          0.135,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          0.27,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          0.405,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          0.54,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          0.675,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          0.81,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          0.9450000000000001,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          1.08,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          1.215,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          1.35,
+          0,
+          0,
+          "cloth"
+        ],
+        [
+          0.13,
+          0.13,
+          0.012,
+          "tile",
+          1.485,
+          0,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "wallBoxes",
+      "card": "cupid",
+      "wall": "back",
+      "x": 0.52,
+      "y": 0.07,
+      "z": -2.4,
+      "_": "画着丘比特的瓷砖",
+      "boxes": [
+        [
+          0.13,
+          0.13,
+          0.02,
+          "tile",
+          0,
+          0,
+          0.005,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "wallBoxes",
+      "card": "traveller",
+      "wall": "back",
+      "x": 1.22,
+      "y": 0.07,
+      "z": -2.4,
+      "_": "脚炉右边、画着旅人的瓷砖",
+      "boxes": [
+        [
+          0.13,
+          0.13,
+          0.02,
+          "tile",
+          0,
+          0,
+          0.005,
+          "cloth"
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "light": {
+      "title": {
+        "zh": "窗边的光",
+        "en": "Light from the window"
+      },
+      "text": {
+        "zh": "光从左边的窗户照进来，落在女仆、面包和墙上。",
+        "en": "Light streams in from the window on the left, falling on the maid, the bread and the wall."
+      },
+      "link": {
+        "href": "../../themes/?id=windows",
+        "label": {
+          "zh": "看更多“窗户与光”",
+          "en": "More: Windows and light"
+        }
+      }
+    },
+    "pour": {
+      "title": {
+        "zh": "倒牛奶",
+        "en": "Pouring milk"
+      },
+      "text": {
+        "zh": "她专注地把牛奶倒进一个矮矮的陶罐里，动作很慢、很稳。",
+        "en": "She carefully pours milk into a squat earthenware pot, slowly and steadily."
+      }
+    },
+    "bread": {
+      "title": {
+        "zh": "桌上的面包",
+        "en": "The bread"
+      },
+      "text": {
+        "zh": "桌上放着几种不同的面包。",
+        "en": "Several kinds of bread lie on the table."
+      }
+    },
+    "cupid": {
+      "title": {
+        "zh": "瓷砖上的丘比特",
+        "en": "Cupid on the tiles"
+      },
+      "text": {
+        "zh": "墙脚有一块代尔夫特瓷砖，画着拿弓的丘比特。",
+        "en": "At the foot of the wall, a Delft tile shows Cupid with his bow."
+      }
+    },
+    "traveller": {
+      "title": {
+        "zh": "瓷砖上的旅人",
+        "en": "The traveller"
+      },
+      "text": {
+        "zh": "脚炉右边的瓷砖上，画着一个拿手杖、背行囊的旅人。",
+        "en": "On the tile to the right of the foot warmer is a traveller with a walking stick and knapsack."
+      }
+    },
+    "footwarmer": {
+      "title": {
+        "zh": "脚炉",
+        "en": "The foot warmer"
+      },
+      "text": {
+        "zh": "地上的木箱是一个脚炉，里面放着一盆炭。",
+        "en": "The box on the floor is a foot warmer, holding a pot of coals."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“画布下的秘密”：打开后，墙上和地上浮现出挂罐架和火盆的半透明轮廓（自己画的示意图，不用博物馆的扫描图片）。位置是示意。",
+    "type": "reveal",
+    "label": {
+      "zh": "画布下的秘密",
+      "en": "Beneath the paint"
+    },
+    "note": {
+      "zh": "示意图，根据2022年研究绘制",
+      "en": "Illustration based on the 2022 research"
+    },
+    "shapes": [
+      {
+        "_": "墙上挂罐子的架子",
+        "at": [
+          0.95,
+          1.95,
+          -2.32
+        ],
+        "label": {
+          "zh": "挂罐子的架子",
+          "en": "Jug holder"
+        },
+        "labelAt": [
+          0,
+          0.28,
+          0
+        ],
+        "parts": [
+          [
+            "box",
+            0.62,
+            0.05,
+            0.12,
+            0,
+            0,
+            0
+          ],
+          [
+            "cyl",
+            0.06,
+            0.08,
+            0.18,
+            -0.2,
+            -0.12,
+            0.02
+          ],
+          [
+            "cyl",
+            0.06,
+            0.08,
+            0.18,
+            0.02,
+            -0.12,
+            0.02
+          ],
+          [
+            "cyl",
+            0.05,
+            0.07,
+            0.15,
+            0.22,
+            -0.11,
+            0.02
+          ]
+        ]
+      },
+      {
+        "_": "地上的火盆",
+        "at": [
+          0.85,
+          0,
+          -2.05
+        ],
+        "label": {
+          "zh": "火盆",
+          "en": "Fire basket"
+        },
+        "labelAt": [
+          0,
+          0.55,
+          0
+        ],
+        "parts": [
+          [
+            "cyl",
+            0.2,
+            0.15,
+            0.26,
+            0,
+            0.13,
+            0
+          ],
+          [
+            "cyl",
+            0.05,
+            0.05,
+            0.06,
+            0,
+            0.03,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/milkmaid.jpg",
+        "alt": {
+          "zh": "维米尔《倒牛奶的女仆》约1660，阿姆斯特丹荷兰国立博物馆",
+          "en": "Johannes Vermeer, The Milkmaid, c. 1660, Rijksmuseum, Amsterdam"
+        },
+        "caption": {
+          "zh": "约1660年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1660 · Rijksmuseum, Amsterdam"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 一个安静的早晨",
+          "en": "A quiet morning"
+        },
+        "text": {
+          "zh": "一间普通的厨房，一个女仆在窗边倒牛奶。维米尔把这个平凡的瞬间，画得像时间停止了一样。",
+          "en": "An ordinary kitchen, a maid pouring milk by the window. Vermeer painted this everyday moment as if time had stopped."
+        }
+      },
+      {
+        "image": "images/milkmaid.jpg",
+        "alt": {
+          "zh": "维米尔《倒牛奶的女仆》约1660，阿姆斯特丹荷兰国立博物馆",
+          "en": "Johannes Vermeer, The Milkmaid, c. 1660, Rijksmuseum, Amsterdam"
+        },
+        "caption": {
+          "zh": "约1660年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1660 · Rijksmuseum, Amsterdam"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 画布下的秘密",
+          "en": "Beneath the paint"
+        },
+        "text": {
+          "zh": "2022年，荷兰国立博物馆用先进的扫描技术研究这幅画，发现了两个后来被盖掉的物品：墙上挂罐子的架子，和地上的一个火盆。维米尔后来用脚炉、瓷砖和地板盖住了火盆。",
+          "en": "In 2022, the Rijksmuseum examined the painting with advanced scanning and found two objects he later painted over: a jug holder on the wall and a fire basket on the floor. He covered the fire basket with the foot warmer, tiles and floor."
+        }
+      },
+      {
+        "image": "images/milkmaid.jpg",
+        "alt": {
+          "zh": "维米尔《倒牛奶的女仆》约1660，阿姆斯特丹荷兰国立博物馆",
+          "en": "Johannes Vermeer, The Milkmaid, c. 1660, Rijksmuseum, Amsterdam"
+        },
+        "caption": {
+          "zh": "约1660年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1660 · Rijksmuseum, Amsterdam"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 不是慢慢画出来的",
+          "en": "Not painted slowly"
+        },
+        "text": {
+          "zh": "研究还发现，女仆左臂下有一道快速画上的粗黑线。原来维米尔是先用明暗快速画出整体，再慢慢画细节。人们一直以为他画得极慢、极精确，这个看法正在改变。",
+          "en": "The research also found a quick, thick black line beneath the maid's left arm. Vermeer first sketched the scene rapidly in light and dark, then developed the detail. The idea that he always worked slowly and precisely is now being revised."
+        }
+      }
+    ],
+    "final": {
+      "zh": "倒了三百多年的牛奶。",
+      "en": "Milk still pouring, after more than 350 years."
+    },
+    "versions": [
+      {
+        "image": "images/milkmaid.jpg",
+        "short": {
+          "zh": "约1660 · 阿姆斯特丹",
+          "en": "c. 1660 · Amsterdam"
+        },
+        "caption": {
+          "zh": "约1660年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1660 · Rijksmuseum, Amsterdam"
+        }
+      }
+    ],
+    "museums": [
+      "rijksmuseum"
+    ],
+    "exit": []
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。空着的行不显示。",
+    "artist": {
+      "zh": "约翰内斯·维米尔（1632–1675）",
+      "en": "Johannes Vermeer (1632–1675)"
+    },
+    "title": {
+      "zh": "倒牛奶的女仆",
+      "en": "The Milkmaid"
+    },
+    "date": {
+      "zh": "约1660年，代尔夫特",
+      "en": "c. 1660, Delft"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "45.5 × 41 cm",
+      "en": "45.5 × 41 cm"
+    },
+    "collection": {
+      "zh": "阿姆斯特丹荷兰国立博物馆（馆藏编号 SK-A-2344）",
+      "en": "Rijksmuseum, Amsterdam (SK-A-2344)"
+    },
+    "url": ""
+  },
+  "zoom": {
+    "image": "images/milkmaid.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "荷兰国立博物馆新闻稿：《倒牛奶的女仆》的重大发现",
+          "en": "Rijksmuseum press release: major discoveries on Vermeer's The Milkmaid"
+        },
+        "url": "https://www.rijksmuseum.nl/en/press/press-releases/rijksmuseum-reveals-major-discoveries-on-vermeer-s-painting-the-milkmaid"
+      },
+      {
+        "title": {
+          "zh": "大都会艺术博物馆：海尔布伦艺术史年表",
+          "en": "The Met: Heilbrunn Timeline of Art History"
+        },
+        "url": "https://www.metmuseum.org/toah/hd/milk/hd_milk.htm"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 是文字稿（现在先用三幕原文）。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 一个安静的早晨",
+          "en": "A quiet morning"
+        },
+        "text": {
+          "zh": "一间普通的厨房，一个女仆在窗边倒牛奶。维米尔把这个平凡的瞬间，画得像时间停止了一样。",
+          "en": "An ordinary kitchen, a maid pouring milk by the window. Vermeer painted this everyday moment as if time had stopped."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 画布下的秘密",
+          "en": "Beneath the paint"
+        },
+        "text": {
+          "zh": "2022年，荷兰国立博物馆用先进的扫描技术研究这幅画，发现了两个后来被盖掉的物品：墙上挂罐子的架子，和地上的一个火盆。维米尔后来用脚炉、瓷砖和地板盖住了火盆。",
+          "en": "In 2022, the Rijksmuseum examined the painting with advanced scanning and found two objects he later painted over: a jug holder on the wall and a fire basket on the floor. He covered the fire basket with the foot warmer, tiles and floor."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 不是慢慢画出来的",
+          "en": "Not painted slowly"
+        },
+        "text": {
+          "zh": "研究还发现，女仆左臂下有一道快速画上的粗黑线。原来维米尔是先用明暗快速画出整体，再慢慢画细节。人们一直以为他画得极慢、极精确，这个看法正在改变。",
+          "en": "The research also found a quick, thick black line beneath the maid's left arm. Vermeer first sketched the scene rapidly in light and dark, then developed the detail. The idea that he always worked slowly and precisely is now being revised."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}

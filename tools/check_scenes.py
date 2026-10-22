@@ -30,7 +30,7 @@ def ambience_kinds():   # assets/sound.js 里能用的环境音
 
 def scene_id(link):   # {scene: ...} 或 {href: '../bedroom/'}
     if link.get('scene'): return link['scene']
-    m = re.search(r'\.\./([^/]+)/', link.get('href', ''))
+    m = re.fullmatch(r'\.\./([a-z0-9-]+)/', link.get('href', ''))   # 只算“../场景名/”；链接到主题页等不算场景
     return m.group(1) if m else None
 
 
