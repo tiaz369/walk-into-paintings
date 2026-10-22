@@ -135,10 +135,12 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'pair' ? `<button class="btn" id="pairBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${TW ? `<button class="btn" id="twinBtn">✦ ${ui(TW.label.zh, TW.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'wind' ? `<button class="btn" id="windBtn">🌬 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
       `<button data-opt="${i}" class="${i === 0 ? 'on' : ''}">${ui(o.label.zh, o.label.en)}</button>`).join('')}</div>` : ''}
   </div>
 
+  ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   <div id="status" class="ui">
     <div id="progress" class="panel"></div>
     <button class="btn hidden" id="ambBtn"></button>
@@ -1088,10 +1090,48 @@ function run(S, R, meta) {
     windOn = !windOn; $('windBtn').classList.toggle('on', windOn);
     if (windOn && windObj.card) showCard(windObj.card);
   };
+  // 独家发现“画布下的秘密”（reveal）：打开后，后来被画家盖掉的东西以半透明轮廓出现（自己画的示意图）
+  // shapes：每一个 { at: [x, y, z], rot, label: {zh, en}, labelAt: [x, y, z], parts: [['box', 宽, 高, 深, x, y, z] 或 ['cyl', 上半径, 下半径, 高, x, y, z]] }
+  const revealObj = S.exclusive && S.exclusive.type === 'reveal' ? S.exclusive : null;
+  let revealOn = false, revealK = 0;
+  const revealGroup = new THREE.Group(), revealMats = [];
+  if (revealObj) {
+    revealGroup.visible = false; scene.add(revealGroup);
+    const fill = new THREE.MeshBasicMaterial({ color: revealObj.color || '#fffbe8', transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide });
+    const edge = new THREE.LineBasicMaterial({ color: revealObj.line || '#fff3b0', transparent: true, opacity: 0, depthTest: false });
+    revealMats.push([fill, 0.3], [edge, 1]);
+    const labels = [];
+    for (const it of revealObj.shapes || []) {
+      const g = new THREE.Group(); g.position.set(...it.at); g.rotation.y = it.rot || 0; revealGroup.add(g);
+      for (const [kind, ...v] of it.parts) {
+        const geo = kind === 'cyl' ? new THREE.CylinderGeometry(v[0], v[1], v[2], 24, 1, true) : new THREE.BoxGeometry(v[0], v[1], v[2]);
+        const m = new THREE.Mesh(geo, fill); m.position.set(...(kind === 'cyl' ? v.slice(3) : v.slice(3)));
+        m.userData.noPaint = true; m.raycast = () => {};   // 不挡住点击
+        const e = new THREE.LineSegments(new THREE.EdgesGeometry(geo, 25), edge); e.raycast = () => {}; m.add(e); g.add(m);
+      }
+      if (it.label) {
+        const mat = new THREE.SpriteMaterial({ transparent: true, depthTest: false, sizeAttenuation: false, opacity: 0 });
+        const sp = new THREE.Sprite(mat); sp.scale.set(0.26, 0.065, 1); sp.position.set(...(it.labelAt || [0, 0.4, 0])); sp.raycast = () => {};
+        g.add(sp); labels.push([mat, it.label]); revealMats.push([mat, 1]);
+      }
+    }
+    const setLabels = () => labels.forEach(([mat, l]) => { mat.map = labelSprite(lang === 'en' ? [l.en] : lang === 'zh' ? [l.zh] : [l.zh, l.en]); mat.needsUpdate = true; });
+    setLabels(); onLang(setLabels);
+    $('revealBtn').onclick = () => {
+      revealOn = !revealOn; $('revealBtn').classList.toggle('on', revealOn);
+      if ($('revealNote')) $('revealNote').classList.toggle('show', revealOn);
+      if (revealOn && revealObj.card) showCard(revealObj.card);
+    };
+  }
   function loop() {
     requestAnimationFrame(loop);
     const dt = Math.min(clock.getDelta(), 0.05);
     if (gallery.classList.contains('show')) return;   // 在结尾页时不画 3D，省电
+    if (revealObj) {   // 画布下的秘密：轮廓慢慢浮现 / 消失
+      revealK += ((revealOn ? 1 : 0) - revealK) * Math.min(1, dt * 2.5);
+      revealGroup.visible = revealK > 0.01;
+      for (const [m, full] of revealMats) m.opacity = full * revealK;
+    }
     if (windObj) {   // 起风了：慢慢变强 / 变弱
       windK += ((windOn ? 1 : 0) - windK) * Math.min(1, dt * 1.5);
       const t = clock.elapsedTime; projUniforms.uWind.value = windK; projUniforms.uTime.value = t;
@@ -1110,7 +1150,7 @@ function run(S, R, meta) {
       if (keys.KeyA || keys.ArrowLeft) side -= 1;
       fwd -= joyMove.y; side += joyMove.x;
       if (fwd || side) { hideHint(); leaveView(); }
-      const speed = 1.4 * dt, sin = Math.sin(player.yaw), cos = Math.cos(player.yaw);
+      const speed = (RM.walkSpeed || 1.4) * dt, sin = Math.sin(player.yaw), cos = Math.cos(player.yaw);
       const dx = (side * cos + fwd * sin) * speed, dz = (side * sin - fwd * cos) * speed;
       if (!blocked(player.x + dx, player.z)) player.x += dx;
       if (!blocked(player.x, player.z + dz)) player.z += dz;

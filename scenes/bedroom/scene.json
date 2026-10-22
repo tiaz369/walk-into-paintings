@@ -4,11 +4,11 @@
   "id": "bedroom",
   "variant": "interior",
   "lighting": {
-    "_说明": "光线设定（说明用；具体的灯光效果仍由 room、exclusive 里的设置决定）",
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示；具体的灯光效果由 room、exclusive 里的设置决定）",
     "type": "window",
     "label": {
       "zh": "白天，窗边光",
-      "en": "Daylight, window light"
+      "en": "Daytime, light from the window"
     }
   },
   "links": {

@@ -3,11 +3,11 @@
   "id": "night-cafe",
   "variant": "interior",
   "lighting": {
-    "_说明": "光线设定（说明用；具体的灯光效果仍由 room、exclusive 里的设置决定）",
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示；具体的灯光效果由 room、exclusive 里的设置决定）",
     "type": "gaslight",
     "label": {
       "zh": "夜晚，煤气灯",
-      "en": "Night, gas light"
+      "en": "Night, gaslight"
     }
   },
   "links": {

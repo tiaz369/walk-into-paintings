@@ -516,3 +516,9 @@ body.clean :is(.ui, #langSwitch, #vpPanel, #hint, #sceneHome, #guideBox, #musInf
 body.clean #uncleanBtn { display: block; position: fixed; right: 10px; bottom: 10px; z-index: 30; font-size: 11px; padding: 4px 10px; opacity: .35; background: var(--veil); }
 body.clean #uncleanBtn:hover, body.clean #uncleanBtn:focus { opacity: 1; }
 .vg-tl :is(.tl-soon, .tl-pic) .sep { display: none; }
+
+/* 独家发现“画布下的秘密”：打开时在下方显示“示意图”说明 */
+#revealBtn.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+#revealNote { position: fixed; left: 50%; bottom: 112px; transform: translateX(-50%); z-index: 5; padding: 6px 14px; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .8s; max-width: calc(100% - 32px); text-align: center; }
+#revealNote.show { opacity: 1; }
+.touch #revealNote { bottom: 240px; }
