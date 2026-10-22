@@ -32,7 +32,8 @@
     "end": [
       "bedroom",
       "vangogh-chair",
-      "wheatfield-cypresses"
+      "wheatfield-cypresses",
+      "arnolfini"
     ]
   },
   "kind": "light",
@@ -520,6 +521,14 @@
           "en": "Next: Saint-Rémy"
         },
         "href": "../wheatfield-cypresses/"
+      },
+      {
+        "scene": "arnolfini",
+        "href": "../arnolfini/",
+        "label": {
+          "zh": "同一家美术馆",
+          "en": "In the same gallery"
+        }
       }
     ]
   },
@@ -579,7 +588,6 @@
       }
     ]
   },
-
   "audioGuide": {
     "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。zh / en 一般空着；transcript 是播放器下面可展开的文字稿（现在先用三幕原文）。",
     "zh": "",

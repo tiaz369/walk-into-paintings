@@ -535,6 +535,8 @@ body.clean #uncleanBtn:hover, body.clean #uncleanBtn:focus { opacity: 1; }
 
 /* 独家发现“画布下的秘密”：打开时在下方显示“示意图”说明 */
 #revealBtn.on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+/* 独家发现“镜子里的人”：原画上镜子那一块放大 */
+.mirror-zoom { width: min(100%, 360px); margin: 8px auto 12px; border-radius: 50%; background-repeat: no-repeat; box-shadow: 0 0 0 6px rgba(60,40,20,.35), 0 4px 18px rgba(0,0,0,.35); }
 #revealNote { position: fixed; left: 50%; bottom: 112px; transform: translateX(-50%); z-index: 5; padding: 6px 14px; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .8s; max-width: calc(100% - 32px); text-align: center; }
 #revealNote.show { opacity: 1; }
 .touch #revealNote { bottom: 240px; }

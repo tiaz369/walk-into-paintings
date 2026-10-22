@@ -21,7 +21,8 @@
     "end": [
       "bedroom",
       "yellow-house",
-      "wheatfield-cypresses"
+      "wheatfield-cypresses",
+      "arnolfini"
     ]
   },
   "painting": {
@@ -456,6 +457,14 @@
           "en": "Next: Saint-Rémy"
         },
         "href": "../wheatfield-cypresses/"
+      },
+      {
+        "scene": "arnolfini",
+        "href": "../arnolfini/",
+        "label": {
+          "zh": "同一家美术馆",
+          "en": "In the same gallery"
+        }
       }
     ]
   },
