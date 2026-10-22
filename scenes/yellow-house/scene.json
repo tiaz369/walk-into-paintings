@@ -6,8 +6,8 @@
     "_说明": "光线设定（说明用；具体的灯光效果仍由 room、exclusive 里的设置决定）",
     "type": "daylight",
     "label": {
-      "zh": "白天",
-      "en": "Daylight"
+      "zh": "白天，强烈的阳光",
+      "en": "Daylight, strong sunshine"
     }
   },
   "links": {

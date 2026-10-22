@@ -7,8 +7,8 @@
     "_说明": "光线设定（说明用；具体的灯光效果仍由 room、exclusive 里的设置决定）",
     "type": "window",
     "label": {
-      "zh": "窗边光",
-      "en": "Window light"
+      "zh": "白天，窗边光",
+      "en": "Daylight, window light"
     }
   },
   "links": {

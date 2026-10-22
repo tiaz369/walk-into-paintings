@@ -19,10 +19,10 @@
   "variant": "still-life",
   "lighting": {
     "_说明": "光线设定（说明用；具体的灯光效果仍由 room、exclusive 里的设置决定）",
-    "type": "daylight",
+    "type": "indoor",
     "label": {
-      "zh": "白天",
-      "en": "Daylight"
+      "zh": "明亮的室内光",
+      "en": "Bright indoor light"
     }
   },
   "links": {
@@ -237,11 +237,6 @@
       "x": 0.06,
       "y": 0.62,
       "layer": 0
-    },
-    "gauguinPortrait": {
-      "x": 0.93,
-      "y": 0.45,
-      "layer": 0
     }
   },
   "exclusive": {
@@ -436,22 +431,12 @@
     },
     "praise": {
       "title": {
-        "zh": "高更的称赞",
-        "en": "Gauguin's praise"
+        "zh": "高更与向日葵",
+        "en": "Gauguin and the sunflowers"
       },
       "text": {
-        "zh": "高更很喜欢这幅画，称赞它完美体现了梵高的风格。",
-        "en": "Gauguin admired it, praising it as a perfect example of Van Gogh's style."
-      }
-    },
-    "gauguinPortrait": {
-      "title": {
-        "zh": "高更画梵高",
-        "en": "Gauguin's portrait"
-      },
-      "text": {
-        "zh": "和梵高同住时，高更画了一幅《画向日葵的梵高》，现藏阿姆斯特丹梵高博物馆。",
-        "en": "While living with Van Gogh, Gauguin painted \"Van Gogh Painting Sunflowers\", now in the Van Gogh Museum, Amsterdam."
+        "zh": "高更很喜欢这幅画。和梵高同住时，他还画了一幅《画向日葵的梵高》，现藏阿姆斯特丹梵高博物馆。",
+        "en": "Gauguin admired this painting. While living with Van Gogh, he painted \"Van Gogh Painting Sunflowers\", now in the Van Gogh Museum, Amsterdam."
       }
     }
   },
