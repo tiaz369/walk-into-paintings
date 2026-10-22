@@ -14,12 +14,14 @@
     "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片 1 还链接到主题“窗户与光”（不是场景，所以不列在这里）。",
     "doors": [],
     "cards": [],
-    "end": []
+    "end": [
+      "woman-reading-letter"
+    ]
   },
   "painting": {
     "image": "images/milkmaid.jpg",
-    "width": 966,
-    "height": 1080,
+    "width": 1800,
+    "height": 2018,
     "alt": {
       "zh": "维米尔《倒牛奶的女仆》约1660，阿姆斯特丹荷兰国立博物馆",
       "en": "Johannes Vermeer, The Milkmaid, c. 1660, Rijksmuseum, Amsterdam"
@@ -45,8 +47,8 @@
       "en": "Rijksmuseum, Amsterdam"
     },
     "source": {
-      "zh": "荷兰国立博物馆，公有领域",
-      "en": "Rijksmuseum, public domain"
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
     }
   },
   "enter": {
@@ -784,7 +786,16 @@
     "museums": [
       "rijksmuseum"
     ],
-    "exit": []
+    "exit": [
+      {
+        "scene": "woman-reading-letter",
+        "href": "../woman-reading-letter/",
+        "label": {
+          "zh": "同一家博物馆的另一幅维米尔",
+          "en": "Another Vermeer in the same museum"
+        }
+      }
+    ]
   },
   "record": {
     "_说明": "作品档案表：Tia 提供。空着的行不显示。",

@@ -1091,7 +1091,10 @@ function run(S, R, meta) {
     if (windOn && windObj.card) showCard(windObj.card);
   };
   // 独家发现“画布下的秘密”（reveal）：打开后，后来被画家盖掉的东西以半透明轮廓出现（自己画的示意图）
-  // shapes：每一个 { at: [x, y, z], rot, label: {zh, en}, labelAt: [x, y, z], parts: [['box', 宽, 高, 深, x, y, z] 或 ['cyl', 上半径, 下半径, 高, x, y, z]] }
+  // shapes：每一个 { at: [x, y, z], rot, label: {zh, en}, labelAt: [x, y, z], parts: [...] }，parts 里每一项是：
+  //   ['box', 宽, 高, 深, x, y, z]、['cyl', 上半径, 下半径, 高, x, y, z]：半透明的轮廓
+  //   ['glow', 宽, 高, x, y, z, 转角]：一块发光的面（比如看不见的窗户亮起来）
+  //   ['line', x1, y1, z1, x2, y2, z2]：一条虚线（比如光线、影子的方向）
   const revealObj = S.exclusive && S.exclusive.type === 'reveal' ? S.exclusive : null;
   let revealOn = false, revealK = 0;
   const revealGroup = new THREE.Group(), revealMats = [];
@@ -1099,11 +1102,21 @@ function run(S, R, meta) {
     revealGroup.visible = false; scene.add(revealGroup);
     const fill = new THREE.MeshBasicMaterial({ color: revealObj.color || '#fffbe8', transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide });
     const edge = new THREE.LineBasicMaterial({ color: revealObj.line || '#fff3b0', transparent: true, opacity: 0, depthTest: false });
-    revealMats.push([fill, 0.3], [edge, 1]);
+    const glow = new THREE.MeshBasicMaterial({ color: revealObj.glow || '#fff4c8', transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide, blending: THREE.AdditiveBlending });
+    const dash = new THREE.LineDashedMaterial({ color: revealObj.line || '#fff3b0', dashSize: 0.06, gapSize: 0.04, transparent: true, opacity: 0, depthTest: false });
+    revealMats.push([fill, 0.3], [edge, 1], [glow, 0.85], [dash, 1]);
     const labels = [];
     for (const it of revealObj.shapes || []) {
       const g = new THREE.Group(); g.position.set(...it.at); g.rotation.y = it.rot || 0; revealGroup.add(g);
       for (const [kind, ...v] of it.parts) {
+        if (kind === 'glow') {
+          const m = new THREE.Mesh(new THREE.PlaneGeometry(v[0], v[1]), glow); m.position.set(v[2], v[3], v[4]); m.rotation.y = v[5] || 0;
+          m.userData.noPaint = true; m.raycast = () => {}; g.add(m); continue;
+        }
+        if (kind === 'line') {
+          const l = new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(v[0], v[1], v[2]), new THREE.Vector3(v[3], v[4], v[5])]), dash);
+          l.computeLineDistances(); l.raycast = () => {}; g.add(l); continue;
+        }
         const geo = kind === 'cyl' ? new THREE.CylinderGeometry(v[0], v[1], v[2], 24, 1, true) : new THREE.BoxGeometry(v[0], v[1], v[2]);
         const m = new THREE.Mesh(geo, fill); m.position.set(...(kind === 'cyl' ? v.slice(3) : v.slice(3)));
         m.userData.noPaint = true; m.raycast = () => {};   // 不挡住点击
