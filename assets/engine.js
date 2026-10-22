@@ -1233,6 +1233,10 @@ function run(S, R, meta) {
       for (const m of dawnGlass) m.material.color.copy(nightGlass).lerp(dawnGlassC, dawn);
       if (dawn >= 1 && !dawnShown) { dawnShown = true; showToast(dawnObj.message); }
     }
+    if (RM.walkEye) {   // 画家视角的眼睛比一般人高（比如站在高处）：离开视角点后，慢慢降到走路的高度
+      const t = Math.min(1, Math.hypot(player.x - VIEW.x, player.z - VIEW.z) / 2);
+      player.eye = VIEW.eye + (RM.walkEye - VIEW.eye) * t * t * (3 - 2 * t);
+    }
     camera.position.set(player.x, player.eye, player.z);
     camera.rotation.set(player.pitch, -player.yaw, 0, 'YXZ');
     renderer.render(scene, camera);
