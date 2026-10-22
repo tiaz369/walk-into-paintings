@@ -92,6 +92,17 @@ function hooves(out, t) {   // 远处马车：马蹄“嗒嗒”加车轮的低�
   const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.linearRampToValueAtTime(0.18, t + steps * cad / 2); g.gain.linearRampToValueAtTime(0.0001, t + steps * cad);
   rumble.connect(f).connect(g).connect(out); rumble.start(t); rumble.stop(t + steps * cad + 0.1);
 }
+function giggle(out, t) {   // 远处孩子的笑声：几声短短的、有颤音的“哈哈”，一声比一声低
+  const n = 3 + Math.floor(Math.random() * 4), base = rnd(420, 620), p = rnd(-0.7, 0.7);
+  const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = rnd(1100, 1500); f.Q.value = 1.2;
+  f.connect(pan(out, p));
+  for (let k = 0; k < n; k++) {
+    const tk = t + k * rnd(0.13, 0.18), fr = base * (1 - k * 0.04);
+    const o = ctx.createOscillator(); o.type = 'triangle'; o.frequency.setValueAtTime(fr * 1.08, tk); o.frequency.exponentialRampToValueAtTime(fr, tk + 0.1);
+    const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, tk); g.gain.exponentialRampToValueAtTime(0.05, tk + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, tk + 0.11);
+    o.connect(g).connect(f); o.start(tk); o.stop(tk + 0.13);
+  }
+}
 function rustle(out, t) {   // 纸张轻响：几下很轻、很短的“沙沙”
   const n = 2 + Math.floor(Math.random() * 4), p = rnd(-0.3, 0.3);
   for (let k = 0; k < n; k++) burst(out, t + k * rnd(0.05, 0.14), { type: 'highpass', freq: rnd(2500, 4500), q: 0.7, vol: rnd(0.03, 0.06), dur: rnd(0.05, 0.12), p });
@@ -150,6 +161,14 @@ const AMBIENCE = {
   'room-birds'(out, st) { loopNoise('brown', out, { freq: 260, gain: 0.12 }); bird(out, ctx.currentTime + 0.3); every(st, 2, 7, t => bird(out, t)); },
   // 安静室内
   room(out) { loopNoise('brown', out, { freq: 220, gain: 0.12 }); },
+  // 安静的街道：运河边轻轻的水声，孩子的笑声，远处的鸟叫
+  'street-canal'(out, st) {
+    loopNoise('brown', out, { freq: 320, gain: 0.11 });
+    const water = ctx.createGain(); water.gain.value = 0.45; water.connect(out);   // 运河在身后，水声轻一点
+    lap(water, ctx.currentTime + 0.4); every(st, 2.5, 5, t => lap(water, t));
+    every(st, 7, 16, t => giggle(out, t));
+    every(st, 5, 12, t => bird(out, t));
+  },
   // 安静的室内：偶尔有纸张轻响，窗外远处有几声鸟叫
   letter(out, st) {
     loopNoise('brown', out, { freq: 210, gain: 0.11 });

@@ -12,9 +12,12 @@
   },
   "links": {
     "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片 1 还链接到主题“窗户与光”（不是场景，所以不列在这里）。",
-    "doors": [],
+    "doors": [
+      "little-street"
+    ],
     "cards": [],
     "end": [
+      "little-street",
       "woman-reading-letter"
     ]
   },
@@ -525,6 +528,23 @@
           "cloth"
         ]
       ]
+    },
+    {
+      "type": "portalDoor",
+      "_": "右墙上的门：走出门，到代尔夫特的街上（小街开放后才显示）",
+      "x": 1.97,
+      "z": -0.6,
+      "rot": -1.5708,
+      "w": 0.9,
+      "h": 2.1,
+      "portal": {
+        "scene": "little-street",
+        "href": "../little-street/",
+        "label": {
+          "zh": "走出门，到代尔夫特的街上",
+          "en": "Step outside, into the streets of Delft"
+        }
+      }
     }
   ],
   "cards": {
@@ -787,6 +807,14 @@
       "rijksmuseum"
     ],
     "exit": [
+      {
+        "scene": "little-street",
+        "href": "../little-street/",
+        "label": {
+          "zh": "走出门，到代尔夫特的街上",
+          "en": "Step outside, into the streets of Delft"
+        }
+      },
       {
         "scene": "woman-reading-letter",
         "href": "../woman-reading-letter/",
