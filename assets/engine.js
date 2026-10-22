@@ -136,6 +136,7 @@ function buildDOM(S, R, meta) {
     ${TW ? `<button class="btn" id="twinBtn">✦ ${ui(TW.label.zh, TW.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'wind' ? `<button class="btn" id="windBtn">🌬 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.today ? `<div class="seg hidden" id="todaySwitch"><button data-today="0" class="on">${ui(S.exclusive.today.then.zh, S.exclusive.today.then.en)}</button><button data-today="1">${ui(S.exclusive.today.now.zh, S.exclusive.today.now.en)}</button></div>` : ''}
     ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
       `<button data-opt="${i}" class="${i === 0 ? 'on' : ''}">${ui(o.label.zh, o.label.en)}</button>`).join('')}</div>` : ''}
   </div>
@@ -611,7 +612,9 @@ function run(S, R, meta) {
       if (o.id) named[o.id] = g;
     }
   });
+  const firstObject = scene.children.length;
   for (const o of S.objects) { if (BUILD[o.type]) BUILD[o.type](o); else console.warn('unknown object type', o.type); }
+  const objectRoots = scene.children.slice(firstObject);   // objects 里建出来的东西（“1658 / 今天”淡出时用）
 
   // 发光入口：门上的光 + 上方的文字牌，点一下去另一个场景
   function labelSprite(text2) {
@@ -643,6 +646,17 @@ function run(S, R, meta) {
     if (!o.material) return;
     o.material = o.material.clone(); o.material.transparent = true; fadeMeshes.push(o);
   });
+  // 独家发现里的“1658 / 今天”（reveal.today）：除了 keep 里的物体（按 id），其他慢慢淡出，只留下今天还在的部分（示意）
+  const todayObj = S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.today ? S.exclusive.today : null;
+  const todayMeshes = [];
+  let todayTarget = 0, todayNow = 0;
+  if (todayObj) {
+    const keep = new Set((todayObj.keep || []).map(id => named[id]).filter(Boolean));
+    for (const root of objectRoots) if (!keep.has(root)) root.traverse(o => {
+      if (!o.material) return;
+      o.material = o.material.clone(); o.material.transparent = true; todayMeshes.push(o);
+    });
+  }
   // 独家发现“天亮了”：在场景里待得越久，灯光和窗外慢慢从深夜变成清晨
   const dawnObj = S.exclusive && S.exclusive.type === 'dawn' ? S.exclusive : null;
   const dawnGlass = [];
@@ -1133,9 +1147,15 @@ function run(S, R, meta) {
     $('revealBtn').onclick = () => {
       revealOn = !revealOn; $('revealBtn').classList.toggle('on', revealOn);
       if ($('revealNote')) $('revealNote').classList.toggle('show', revealOn);
+      if ($('todaySwitch')) { $('todaySwitch').classList.toggle('hidden', !revealOn); if (!revealOn) setToday(0); }
       if (revealOn && revealObj.card) showCard(revealObj.card);
     };
   }
+  function setToday(v) {   // “1658 / 今天”
+    todayTarget = v;
+    document.querySelectorAll('[data-today]').forEach(b => b.classList.toggle('on', +b.dataset.today === v));
+  }
+  document.querySelectorAll('[data-today]').forEach(b => b.onclick = () => setToday(+b.dataset.today));
   function loop() {
     requestAnimationFrame(loop);
     const dt = Math.min(clock.getDelta(), 0.05);
@@ -1185,6 +1205,13 @@ function run(S, R, meta) {
     const pulse = 0.55 + 0.35 * Math.sin(performance.now() / 600);   // 圆点慢慢呼吸
     vpRing.material.opacity = pulse; vpDot.material.opacity = pulse * 0.4;
     wallMat.color.lerp(wallTarget, 1 - Math.exp(-dt * 4));
+    if (todayObj && Math.abs(todayTarget - todayNow) > 0.001) {   // “今天”：其他部分慢慢淡出（约 2 秒）
+      todayNow += Math.sign(todayTarget - todayNow) * Math.min(Math.abs(todayTarget - todayNow), dt / 2);
+      for (const m of todayMeshes) {
+        m.material.opacity = 1 - todayNow; m.material.depthWrite = todayNow < 0.05; m.visible = todayNow < 0.99;
+        if (m.userData.paintMat) m.userData.paintMat.uniforms.uAlpha.value = 1 - todayNow;
+      }
+    }
     if (fadeObj && Math.abs(fadeTarget - fadeNow) > 0.001) {   // 慢慢淡出 / 淡入（约 2 秒）
       fadeNow += Math.sign(fadeTarget - fadeNow) * Math.min(Math.abs(fadeTarget - fadeNow), dt / 2);
       for (const m of fadeMeshes) {

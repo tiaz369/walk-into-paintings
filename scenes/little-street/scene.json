@@ -1,0 +1,929 @@
+{
+  "_说明": "小街（户外风景，完整版）。所有文字由 Tia 提供。房子的位置和画家视角是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "little-street",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示；具体的灯光效果由 room、exclusive 里的设置决定）",
+    "type": "daylight",
+    "label": {
+      "zh": "白天",
+      "en": "Daytime"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是场景里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片 2 还链接到主题“孩子”（不是场景，所以不列在这里）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "woman-reading-letter",
+      "milkmaid"
+    ]
+  },
+  "painting": {
+    "image": "images/little-street.jpg",
+    "width": 1620,
+    "height": 2000,
+    "alt": {
+      "zh": "维米尔《小街》约1658，阿姆斯特丹荷兰国立博物馆",
+      "en": "Johannes Vermeer, The Little Street, c. 1658, Rijksmuseum, Amsterdam"
+    },
+    "_": "宽高是按 44 × 54.3 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "小街",
+      "en": "The Little Street"
+    },
+    "artist": {
+      "zh": "维米尔",
+      "en": "Johannes Vermeer"
+    },
+    "date": {
+      "zh": "约1658年",
+      "en": "c. 1658"
+    },
+    "museum": {
+      "zh": "阿姆斯特丹荷兰国立博物馆",
+      "en": "Rijksmuseum, Amsterdam"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下房子、孩子、门口和小巷里的女人、门道看介绍 · 点“找到这条街”看门道 · 地上发光的圆点 = 维米尔视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the houses, the children, the women in the doorway and the alley, or the gateways to learn more · Tap “Finding the street” to see the gateways · The glowing circle = Vermeer's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "x": 0.4,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": 0.12,
+    "fov": 55,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "street-canal",
+  "colors": {
+    "line": "#2a2622",
+    "ground": "#8d8676",
+    "sky": "#cfd6d6",
+    "brick": "#8e4a38",
+    "brick2": "#9a5844",
+    "mortar": "#d8d0c0",
+    "shutter": "#5a2f25",
+    "glass": "#3a3a36",
+    "door": "#4a3a2e",
+    "street": "#8b8274",
+    "water": "#5f6f70",
+    "roof": "#7a3a2e",
+    "dress": "#2f4a6a",
+    "apron": "#d9d2c0",
+    "skin": "#e2c7a6",
+    "child": "#7a5a3a"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（街道），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -40,
+      40,
+      -60,
+      20
+    ],
+    "bounds": [
+      -4,
+      5.5,
+      -6.8,
+      3.5
+    ],
+    "groundCard": "houses",
+    "skyCard": "houses",
+    "skyRadius": 120,
+    "walkSpeed": 1.0
+  },
+  "objects": [
+    {
+      "type": "building",
+      "id": "main-house",
+      "card": "houses",
+      "_": "左边的房子（门口有做针线的女人）",
+      "x": -0.9,
+      "z": -7.5,
+      "w": 4.6,
+      "d": 7,
+      "h": 8.5,
+      "color": "brick",
+      "roof": "roof",
+      "windows": [
+        {
+          "face": "front",
+          "x": -1.2,
+          "y": 4.3,
+          "w": 0.9,
+          "h": 1.4,
+          "color": "shutter"
+        },
+        {
+          "face": "front",
+          "x": 0.6,
+          "y": 4.3,
+          "w": 0.9,
+          "h": 1.4,
+          "color": "shutter"
+        },
+        {
+          "face": "front",
+          "x": -1.2,
+          "y": 6.6,
+          "w": 0.8,
+          "h": 1.1,
+          "color": "glass"
+        },
+        {
+          "face": "front",
+          "x": 0.6,
+          "y": 6.6,
+          "w": 0.8,
+          "h": 1.1,
+          "color": "glass"
+        },
+        {
+          "face": "front",
+          "x": 0.7,
+          "y": 1.1,
+          "w": 0.95,
+          "h": 2.2,
+          "color": "door",
+          "card": "sewing"
+        },
+        {
+          "face": "front",
+          "x": -1.2,
+          "y": 1.6,
+          "w": 1.0,
+          "h": 1.2,
+          "color": "glass"
+        }
+      ]
+    },
+    {
+      "type": "boxes",
+      "id": "alley-gate",
+      "card": "alley",
+      "_": "两栋房子之间的小巷门道（里面有女人在忙家务）",
+      "x": 1.85,
+      "z": -7.5,
+      "boxes": [
+        [
+          0.95,
+          2.3,
+          0.12,
+          "door",
+          0,
+          1.15,
+          0.02
+        ],
+        [
+          0.95,
+          0.3,
+          0.6,
+          "brick2",
+          0,
+          2.45,
+          0.25
+        ]
+      ]
+    },
+    {
+      "type": "building",
+      "id": "right-house",
+      "card": "houses",
+      "_": "右边的房子",
+      "x": 3.9,
+      "z": -7.5,
+      "w": 3.2,
+      "d": 7,
+      "h": 6.5,
+      "color": "brick2",
+      "roof": "roof",
+      "windows": [
+        {
+          "face": "front",
+          "x": 0.5,
+          "y": 4.2,
+          "w": 0.9,
+          "h": 1.3,
+          "color": "shutter"
+        },
+        {
+          "face": "front",
+          "x": 0.5,
+          "y": 1.6,
+          "w": 0.9,
+          "h": 1.2,
+          "color": "glass"
+        }
+      ]
+    },
+    {
+      "type": "boxes",
+      "id": "tripe-gate",
+      "card": "tripe",
+      "_": "右边的门道：牛肚门（今天唯一还能认出来的部分）",
+      "x": 2.95,
+      "z": -7.48,
+      "boxes": [
+        [
+          0.95,
+          2.4,
+          0.14,
+          "door",
+          0,
+          1.2,
+          0.03
+        ],
+        [
+          1.1,
+          0.22,
+          0.2,
+          "mortar",
+          0,
+          2.5,
+          0.05
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "alley",
+      "_": "小巷里的女人",
+      "x": 1.85,
+      "z": -8.7,
+      "boxes": [
+        [
+          0.4,
+          0.9,
+          0.35,
+          "dress",
+          0,
+          0.45,
+          0,
+          "cloth"
+        ],
+        [
+          0.34,
+          0.5,
+          0.28,
+          "apron",
+          0,
+          1.15,
+          0,
+          "cloth"
+        ],
+        [
+          0.18,
+          0.22,
+          0.18,
+          "skin",
+          0,
+          1.5,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "sewing",
+      "_": "门口做针线的女人（坐着）",
+      "x": -0.2,
+      "z": -7.05,
+      "boxes": [
+        [
+          0.45,
+          0.5,
+          0.45,
+          "dress",
+          0,
+          0.25,
+          0,
+          "cloth"
+        ],
+        [
+          0.36,
+          0.45,
+          0.3,
+          "apron",
+          0,
+          0.72,
+          0,
+          "cloth"
+        ],
+        [
+          0.18,
+          0.22,
+          0.18,
+          "skin",
+          0,
+          1.06,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "children",
+      "_": "人行道上玩耍的两个孩子",
+      "x": -1.9,
+      "z": -6.5,
+      "boxes": [
+        [
+          0.3,
+          0.45,
+          0.28,
+          "child",
+          -0.2,
+          0.22,
+          0,
+          "cloth"
+        ],
+        [
+          0.16,
+          0.16,
+          0.16,
+          "skin",
+          -0.2,
+          0.53,
+          0,
+          "cloth"
+        ],
+        [
+          0.3,
+          0.4,
+          0.28,
+          "dress",
+          0.25,
+          0.2,
+          0.1,
+          "cloth"
+        ],
+        [
+          0.15,
+          0.15,
+          0.15,
+          "skin",
+          0.25,
+          0.48,
+          0.1,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "surface",
+      "card": "houses",
+      "_": "鹅卵石街道和人行道（示意）",
+      "pts": [
+        [
+          -6,
+          0.01,
+          -7.5
+        ],
+        [
+          -6,
+          0.01,
+          4
+        ],
+        [
+          7,
+          0.01,
+          4
+        ],
+        [
+          7,
+          0.01,
+          -7.5
+        ]
+      ],
+      "color": "street"
+    },
+    {
+      "type": "surface",
+      "card": "today",
+      "_": "身后的运河（示意）",
+      "pts": [
+        [
+          -20,
+          0.02,
+          5
+        ],
+        [
+          -20,
+          0.02,
+          12
+        ],
+        [
+          20,
+          0.02,
+          12
+        ],
+        [
+          20,
+          0.02,
+          5
+        ]
+      ],
+      "color": "water"
+    }
+  ],
+  "cards": {
+    "houses": {
+      "title": {
+        "zh": "两栋普通的房子",
+        "en": "Two ordinary houses"
+      },
+      "text": {
+        "zh": "画里只有鹅卵石街道上的两栋16世纪房子，没有全景，也没有发生什么大事。这在当时的城市风景画里很少见。",
+        "en": "Just two 16th-century houses on a cobbled street: no panorama, no notable events. This was unusual for cityscapes of the time."
+      }
+    },
+    "children": {
+      "title": {
+        "zh": "玩耍的孩子",
+        "en": "Children at play"
+      },
+      "text": {
+        "zh": "维米尔自己有11个孩子，但这两个玩耍的孩子，是他所有已知作品中唯一出现的孩子。",
+        "en": "Vermeer had 11 children of his own, yet these two are the only children in any of his known works."
+      },
+      "link": {
+        "href": "../../themes/?id=children",
+        "label": {
+          "zh": "看更多“孩子”",
+          "en": "More: Children"
+        }
+      }
+    },
+    "sewing": {
+      "title": {
+        "zh": "门口做针线的女人",
+        "en": "The woman sewing"
+      },
+      "text": {
+        "zh": "门口有一个女人在做针线。如果画的真是弗拉明街，人们很想认为她就是维米尔的姑妈。",
+        "en": "A woman sews in the doorway. If this is indeed Vlamingstraat, it is tempting to see her as Vermeer's aunt."
+      }
+    },
+    "alley": {
+      "title": {
+        "zh": "小巷里的女人",
+        "en": "The woman in the alley"
+      },
+      "text": {
+        "zh": "旁边的小巷里，还有一个女人在忙家务。",
+        "en": "In the alley beside the house, another woman is busy with housework."
+      }
+    },
+    "tripe": {
+      "title": {
+        "zh": "牛肚门",
+        "en": "The Tripe Gate"
+      },
+      "text": {
+        "zh": "维米尔的姑妈靠卖牛肚养活孩子。房子旁边的门道，直到19世纪都被叫作“牛肚门”。",
+        "en": "Vermeer's aunt supported her children by selling tripe. The passageway beside her house was known as the Tripe Gate into the 19th century."
+      }
+    },
+    "today": {
+      "title": {
+        "zh": "今天的小街",
+        "en": "The street today"
+      },
+      "text": {
+        "zh": "今天，画里唯一还能认出来的，是右边那道门和通道。",
+        "en": "Today, the only part still recognisable is the gate and passageway on the right."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“找到这条街”：打开后出现测量标尺，只标出两栋房子和两条门道（不标数字），并显示格赖岑豪特的发现。再切换“1658 / 今天”：其他部分淡出，只留下右边的门道（示意，不使用实景照片）。",
+    "type": "reveal",
+    "label": {
+      "zh": "找到这条街",
+      "en": "Finding the street"
+    },
+    "note": {
+      "zh": "格赖岑豪特用17世纪的码头登记册，在全城只找到一处和画中一样有两个相邻门道的地方。",
+      "en": "Using a 17th-century quay register, Grijzenhout found only one place in the city with two gateways side by side, as in the painting."
+    },
+    "today": {
+      "then": {
+        "zh": "1658",
+        "en": "1658"
+      },
+      "now": {
+        "zh": "今天（示意）",
+        "en": "Today (illustration)"
+      },
+      "keep": [
+        "tripe-gate"
+      ]
+    },
+    "shapes": [
+      {
+        "_": "标尺：左边的房子",
+        "at": [
+          -0.9,
+          8.9,
+          -7.4
+        ],
+        "label": {
+          "zh": "房子",
+          "en": "House"
+        },
+        "labelAt": [
+          0,
+          0.35,
+          0
+        ],
+        "parts": [
+          [
+            "line",
+            -2.3,
+            0,
+            0,
+            2.3,
+            0,
+            0
+          ],
+          [
+            "line",
+            -2.3,
+            -0.15,
+            0,
+            -2.3,
+            0.15,
+            0
+          ],
+          [
+            "line",
+            2.3,
+            -0.15,
+            0,
+            2.3,
+            0.15,
+            0
+          ]
+        ]
+      },
+      {
+        "_": "标尺：右边的房子",
+        "at": [
+          3.9,
+          6.9,
+          -7.4
+        ],
+        "label": {
+          "zh": "房子",
+          "en": "House"
+        },
+        "labelAt": [
+          0,
+          0.35,
+          0
+        ],
+        "parts": [
+          [
+            "line",
+            -1.6,
+            0,
+            0,
+            1.6,
+            0,
+            0
+          ],
+          [
+            "line",
+            -1.6,
+            -0.15,
+            0,
+            -1.6,
+            0.15,
+            0
+          ],
+          [
+            "line",
+            1.6,
+            -0.15,
+            0,
+            1.6,
+            0.15,
+            0
+          ]
+        ]
+      },
+      {
+        "_": "标尺：小巷门道",
+        "at": [
+          1.85,
+          2.9,
+          -7.35
+        ],
+        "label": {
+          "zh": "门道",
+          "en": "Gateway"
+        },
+        "labelAt": [
+          0,
+          0.75,
+          0
+        ],
+        "parts": [
+          [
+            "line",
+            -0.48,
+            0,
+            0,
+            0.48,
+            0,
+            0
+          ],
+          [
+            "line",
+            -0.48,
+            -0.12,
+            0,
+            -0.48,
+            0.12,
+            0
+          ],
+          [
+            "line",
+            0.48,
+            -0.12,
+            0,
+            0.48,
+            0.12,
+            0
+          ]
+        ]
+      },
+      {
+        "_": "标尺：牛肚门",
+        "at": [
+          2.95,
+          2.9,
+          -7.35
+        ],
+        "label": {
+          "zh": "门道",
+          "en": "Gateway"
+        },
+        "labelAt": [
+          0,
+          0.35,
+          0
+        ],
+        "parts": [
+          [
+            "line",
+            -0.48,
+            0,
+            0,
+            0.48,
+            0,
+            0
+          ],
+          [
+            "line",
+            -0.48,
+            -0.12,
+            0,
+            -0.48,
+            0.12,
+            0
+          ],
+          [
+            "line",
+            0.48,
+            -0.12,
+            0,
+            0.48,
+            0.12,
+            0
+          ]
+        ]
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/little-street.jpg",
+        "alt": {
+          "zh": "维米尔《小街》约1658，阿姆斯特丹荷兰国立博物馆",
+          "en": "Johannes Vermeer, The Little Street, c. 1658, Rijksmuseum, Amsterdam"
+        },
+        "caption": {
+          "zh": "约1658年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1658 · Rijksmuseum, Amsterdam"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 一条普通的街",
+          "en": "An ordinary street"
+        },
+        "text": {
+          "zh": "维米尔没有画教堂或广场，而是画了两栋普通的房子。这可能是北欧艺术中最早的普通房屋外观“肖像”。",
+          "en": "Vermeer painted no church or square, just two ordinary houses. It may be the earliest \"portrait\" of an ordinary house exterior in northern European art."
+        }
+      },
+      {
+        "image": "images/little-street.jpg",
+        "alt": {
+          "zh": "维米尔《小街》约1658，阿姆斯特丹荷兰国立博物馆",
+          "en": "Johannes Vermeer, The Little Street, c. 1658, Rijksmuseum, Amsterdam"
+        },
+        "caption": {
+          "zh": "约1658年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1658 · Rijksmuseum, Amsterdam"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 一百年的谜",
+          "en": "A century-old puzzle"
+        },
+        "text": {
+          "zh": "近一个世纪以来，学者们一直在争论：这条街是真实存在，还是维米尔想象出来的？2015年，艺术史学家弗兰斯·格赖岑豪特查阅17世纪的码头登记册，发现全城只有一个地方有两个相邻的门道，和画中一样：弗拉明街40–42号。",
+          "en": "For nearly a century, scholars debated whether this street was real or imagined. In 2015, art historian Frans Grijzenhout searched a 17th-century quay register and found only one place with two gateways side by side, just as in the painting: Vlamingstraat 40–42."
+        }
+      },
+      {
+        "image": "images/little-street.jpg",
+        "alt": {
+          "zh": "维米尔《小街》约1658，阿姆斯特丹荷兰国立博物馆",
+          "en": "Johannes Vermeer, The Little Street, c. 1658, Rijksmuseum, Amsterdam"
+        },
+        "caption": {
+          "zh": "约1658年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1658 · Rijksmuseum, Amsterdam"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 姑妈的家",
+          "en": "His aunt's house"
+        },
+        "text": {
+          "zh": "右边的房子属于维米尔守寡的姑妈。维米尔的母亲和姐姐就住在运河对面，这是他一定看过很多次的景色。",
+          "en": "The house on the right belonged to Vermeer's widowed aunt. His mother and sister lived across the canal; it was a view he must have seen many times."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一条他看过无数次的街。",
+      "en": "A street he must have seen many times."
+    },
+    "versions": [
+      {
+        "image": "images/little-street.jpg",
+        "short": {
+          "zh": "约1658 · 阿姆斯特丹",
+          "en": "c. 1658 · Amsterdam"
+        },
+        "caption": {
+          "zh": "约1658年 · 阿姆斯特丹荷兰国立博物馆",
+          "en": "c. 1658 · Rijksmuseum, Amsterdam"
+        }
+      }
+    ],
+    "museums": [
+      "rijksmuseum"
+    ],
+    "exit": [
+      {
+        "scene": "woman-reading-letter",
+        "href": "../woman-reading-letter/",
+        "label": {
+          "zh": "回到读信的房间",
+          "en": "Back to the room with the letter"
+        }
+      },
+      {
+        "scene": "milkmaid",
+        "href": "../milkmaid/",
+        "label": {
+          "zh": "回到厨房",
+          "en": "Back to the kitchen"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（尺寸和作品页由 Claude 查荷兰国立博物馆后填写，请 Tia 核对）。空着的行不显示。",
+    "artist": {
+      "zh": "约翰内斯·维米尔（1632–1675）",
+      "en": "Johannes Vermeer (1632–1675)"
+    },
+    "title": {
+      "zh": "小街（代尔夫特房屋一景）",
+      "en": "The Little Street (View of Houses in Delft)"
+    },
+    "date": {
+      "zh": "约1658年（也有研究认为画于1660–65年）",
+      "en": "c. 1658 (some research suggests 1660–65)"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "54.3 × 44 cm",
+      "en": "54.3 × 44 cm"
+    },
+    "collection": {
+      "zh": "阿姆斯特丹荷兰国立博物馆（馆藏编号 SK-A-2860）",
+      "en": "Rijksmuseum, Amsterdam (SK-A-2860)"
+    },
+    "url": "https://www.rijksmuseum.nl/en/collection/SK-A-2860"
+  },
+  "zoom": {
+    "image": "images/little-street.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "荷兰国立博物馆（Google Arts & Culture）：维米尔《小街》",
+          "en": "Rijksmuseum on Google Arts & Culture: The Little Street"
+        },
+        "url": "https://artsandculture.google.com/story/swXBMjfuYfh1Kw"
+      },
+      {
+        "title": {
+          "zh": "The Art Newspaper：《小街》的确切位置被找到",
+          "en": "The Art Newspaper: exact location of Vermeer's Little Street discovered"
+        },
+        "url": "https://theartnewspaper.com/2015/11/20/exact-location-of-vermeers-little-street-discovered"
+      },
+      {
+        "title": {
+          "zh": "CODART：《小街》的确切位置被找到",
+          "en": "CODART: exact location of Vermeer's The Little Street discovered"
+        },
+        "url": "https://www.codart.nl/research-study/exact-location-of-vermeer-s-the-little-street-discovered/"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 是文字稿（现在先用三幕原文）。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 一条普通的街",
+          "en": "An ordinary street"
+        },
+        "text": {
+          "zh": "维米尔没有画教堂或广场，而是画了两栋普通的房子。这可能是北欧艺术中最早的普通房屋外观“肖像”。",
+          "en": "Vermeer painted no church or square, just two ordinary houses. It may be the earliest \"portrait\" of an ordinary house exterior in northern European art."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 一百年的谜",
+          "en": "A century-old puzzle"
+        },
+        "text": {
+          "zh": "近一个世纪以来，学者们一直在争论：这条街是真实存在，还是维米尔想象出来的？2015年，艺术史学家弗兰斯·格赖岑豪特查阅17世纪的码头登记册，发现全城只有一个地方有两个相邻的门道，和画中一样：弗拉明街40–42号。",
+          "en": "For nearly a century, scholars debated whether this street was real or imagined. In 2015, art historian Frans Grijzenhout searched a 17th-century quay register and found only one place with two gateways side by side, just as in the painting: Vlamingstraat 40–42."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 姑妈的家",
+          "en": "His aunt's house"
+        },
+        "text": {
+          "zh": "右边的房子属于维米尔守寡的姑妈。维米尔的母亲和姐姐就住在运河对面，这是他一定看过很多次的景色。",
+          "en": "The house on the right belonged to Vermeer's widowed aunt. His mother and sister lived across the canal; it was a view he must have seen many times."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}
