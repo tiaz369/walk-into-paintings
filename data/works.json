@@ -1,5 +1,5 @@
 {
-  "_说明": "画家页的“其他代表作”（不能走进去，只显示作品名、年份、收藏地，并链接到博物馆官网；没有 url 的链接到博物馆首页）。名单由 Tia 提供；check 为 ok 的是核对过的，“待核对”的先不显示，等 Tia 确认后改成 ok。_ 里写着核对的来源。已经在“可以走进去的画”里的作品不重复列。",
+  "_说明": "画家页的“其他代表作”（不能走进去，只显示作品名、年份、收藏地，并链接到博物馆官网；没有 url 的链接到博物馆首页）。名单由 Tia 提供；年份和收藏地以收藏方博物馆官网为准；check 为 ok 的是核对过的，“待核对”的先不显示，等 Tia 确认后改成 ok。_ 里写着核对的来源。已经在“可以走进去的画”里的作品不重复列。",
   "title": {
     "zh": "其他代表作",
     "en": "More famous works"
@@ -101,8 +101,9 @@
           "en": "c. 1666–68"
         },
         "museum": "khm",
-        "check": "待核对",
-        "_": "搜索没有找到可靠来源确认年份"
+        "check": "ok",
+        "_": "维也纳艺术史博物馆作品页（Tia 提供）",
+        "url": "https://khm.at/en/object/2574"
       },
       {
         "title": {
@@ -110,12 +111,12 @@
           "en": "The Love Letter"
         },
         "year": {
-          "zh": "约1669–70",
-          "en": "c. 1669–70"
+          "zh": "约1667–1670",
+          "en": "c. 1667–70"
         },
         "museum": "rijksmuseum",
-        "check": "待核对",
-        "_": "Tia 没写年份；维基百科写1669/70，荷兰国立博物馆写约1667–1670：请 Tia 选"
+        "check": "ok",
+        "_": "荷兰国立博物馆：约1667–1670（Tia 确认）"
       },
       {
         "title": {
@@ -127,8 +128,9 @@
           "en": "c. 1669–70"
         },
         "museum": "louvre",
-        "check": "待核对",
-        "_": "Tia 没写年份；维基百科写1669/70：请 Tia 确认要不要写年份"
+        "check": "ok",
+        "_": "卢浮宫藏品页：约1669–1670（MI 1448）",
+        "url": "https://collections.louvre.fr/en/ark:/53355/cl010064918"
       },
       {
         "title": {
@@ -140,8 +142,9 @@
           "en": "c. 1670–72"
         },
         "museum": "national-gallery",
-        "check": "待核对",
-        "_": "Tia 没写年份；常见约1670–72，也有写1673–75：请 Tia 确认"
+        "check": "ok",
+        "_": "伦敦国家美术馆作品页：about 1670–2",
+        "url": "https://www.nationalgallery.org.uk/paintings/johannes-vermeer-a-young-woman-standing-at-a-virginal"
       }
     ],
     "van-eyck": [
@@ -209,8 +212,8 @@
           "en": "1877"
         },
         "museum": "orsay",
-        "check": "待核对",
-        "_": "搜索结果没有确认收藏地"
+        "check": "ok",
+        "_": "奥赛：1877，1896年卡耶博特遗赠"
       },
       {
         "title": {
@@ -264,12 +267,13 @@
           "en": "The Dance Class"
         },
         "year": {
-          "zh": "约1873–76",
-          "en": "c. 1873–76"
+          "zh": "1873–76",
+          "en": "1873–76"
         },
         "museum": "orsay",
-        "check": "待核对",
-        "_": "搜索结果没有确认"
+        "check": "ok",
+        "_": "奥赛作品页：between 1873 and 1876",
+        "url": "https://www.musee-orsay.fr/en/artworks/la-classe-de-danse-1151"
       },
       {
         "title": {
@@ -277,12 +281,13 @@
           "en": "The Star (L'Étoile)"
         },
         "year": {
-          "zh": "约1876–77",
+          "zh": "约1876–1877",
           "en": "c. 1876–77"
         },
         "museum": "orsay",
-        "check": "待核对",
-        "_": "Tia 写约1876–78；奥赛作品页写约1876–1877：请 Tia 确认用哪个"
+        "check": "ok",
+        "_": "奥赛作品页：vers 1876–1877（Tia 确认）",
+        "url": "https://www.musee-orsay.fr/en/artworks/ballet-2084"
       },
       {
         "title": {
@@ -290,12 +295,13 @@
           "en": "In a Café (The Absinthe)"
         },
         "year": {
-          "zh": "约1875–76",
-          "en": "c. 1875–76"
+          "zh": "1875–76",
+          "en": "1875–76"
         },
         "museum": "orsay",
-        "check": "待核对",
-        "_": "搜索结果没有确认"
+        "check": "ok",
+        "_": "奥赛作品页：entre 1875 et 1876",
+        "url": "https://www.musee-orsay.fr/en/artworks/dans-un-cafe-1147"
       },
       {
         "title": {
@@ -352,8 +358,8 @@
           "en": "1891"
         },
         "museum": "orsay",
-        "check": "待核对",
-        "_": "搜索结果没有确认"
+        "check": "ok",
+        "_": "奥赛：1891，1927年约翰·奎因遗赠"
       }
     ],
     "renoir": [
@@ -408,8 +414,9 @@
           "en": "1874"
         },
         "museum": "courtauld",
-        "check": "待核对",
-        "_": "搜索结果没有确认"
+        "check": "ok",
+        "_": "考陶尔德作品页：1874",
+        "url": "https://courtauld.ac.uk/highlights/la-loge-the-theatre-box/"
       },
       {
         "title": {
@@ -477,8 +484,9 @@
           "en": "1882"
         },
         "museum": "courtauld",
-        "check": "待核对",
-        "_": "搜索结果没有确认收藏地"
+        "check": "ok",
+        "_": "考陶尔德作品页：1882",
+        "url": "https://courtauld.ac.uk/highlights/a-bar-at-the-folies-bergere/"
       },
       {
         "title": {
@@ -492,7 +500,7 @@
         "museum": "national-gallery",
         "museumNote": {
           "zh": "伦敦国家美术馆，与都柏林休·莱恩美术馆轮流展出",
-          "en": "The National Gallery, London, shown in turn with the Hugh Lane Gallery, Dublin"
+          "en": "Shared with the Hugh Lane Gallery, Dublin; the two galleries display it in turn."
         },
         "url": "https://www.nationalgallery.org.uk/paintings/edouard-manet-music-in-the-tuileries-gardens",
         "check": "ok",
@@ -521,8 +529,8 @@
           "en": "1866"
         },
         "museum": "orsay",
-        "check": "待核对",
-        "_": "收藏地确认是奥赛；年份1866搜索结果没有写明"
+        "check": "ok",
+        "_": "奥赛：1866"
       }
     ]
   }

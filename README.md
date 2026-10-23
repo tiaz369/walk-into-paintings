@@ -93,6 +93,7 @@ walk-into-paintings/
    **就算忘了这一步也没关系**：合并到 `main` 之后，GitHub 会自动运行它（`.github/workflows/build.yml`）。
 6. **发布**：Claude Code 开一个 Pull Request → 在 GitHub 上点 **Merge pull request** → **Confirm merge** → 等 1–2 分钟，强制刷新网站（Ctrl+Shift+R）。
    上线前再检查一遍（来自网站蓝图的“内容与版权规则”）：公有领域、图片来源已注明、文字由 Tia 提供并核对、解读性内容标明“有人认为”、中英文都检查过。
+   **年份和收藏地**：不同来源写的不一样时，以收藏这幅画的博物馆官网为准。官网核对不了的，标“待核对”，先不显示（画家页的“其他代表作”在 `data/works.json` 里，`check` 写 `ok` 才显示）。
 
 首页、系列页、浏览页、时间线和地图会自动出现新场景，不用改它们。
 
