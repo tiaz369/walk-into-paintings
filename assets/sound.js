@@ -168,6 +168,14 @@ const AMBIENCE = {
     murmur(far, 0.03)(st);
     hooves(far, ctx.currentTime + 4); every(st, 20, 40, t => hooves(far, t));
   },
+  // 夏天的池塘边：轻轻的水声，风吹树叶，几声鸟叫
+  pond(out, st) {
+    const leaves = loopNoise('brown', out, { type: 'bandpass', freq: 900, q: 0.5, gain: 0.07 });   // 树叶沙沙：音量慢慢起伏
+    st.timers.push(setInterval(() => leaves.g.gain.setTargetAtTime(0.04 + 0.08 * Math.random(), ctx.currentTime, 1.2), 1500));
+    const water = ctx.createGain(); water.gain.value = 0.4; water.connect(out);
+    lap(water, ctx.currentTime + 0.5); every(st, 3, 7, t => lap(water, t));
+    bird(out, ctx.currentTime + 1.5); every(st, 4, 11, t => bird(out, t));
+  },
   // 安静室内
   room(out) { loopNoise('brown', out, { freq: 220, gain: 0.12 }); },
   // 安静的街道：运河边轻轻的水声，孩子的笑声，远处的鸟叫
