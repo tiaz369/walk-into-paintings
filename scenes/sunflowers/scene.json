@@ -33,7 +33,8 @@
       "bedroom",
       "vangogh-chair",
       "wheatfield-cypresses",
-      "arnolfini"
+      "arnolfini",
+      "water-lily-pond"
     ]
   },
   "kind": "light",
@@ -528,6 +529,14 @@
         "label": {
           "zh": "同一家美术馆",
           "en": "In the same gallery"
+        }
+      },
+      {
+        "scene": "water-lily-pond",
+        "href": "../water-lily-pond/",
+        "label": {
+          "zh": "同属“花与花园”",
+          "en": "Also in Flowers and gardens"
         }
       }
     ]

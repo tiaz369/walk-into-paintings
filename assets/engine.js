@@ -135,6 +135,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'pair' ? `<button class="btn" id="pairBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${TW ? `<button class="btn" id="twinBtn">✦ ${ui(TW.label.zh, TW.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'wind' ? `<button class="btn" id="windBtn">🌬 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'light' ? `<button class="btn" id="lightBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'mirror' ? `<button class="btn" id="mirrorBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.today ? `<div class="seg hidden" id="todaySwitch"><button data-today="0" class="on">${ui(S.exclusive.today.then.zh, S.exclusive.today.then.en)}</button><button data-today="1">${ui(S.exclusive.today.now.zh, S.exclusive.today.now.en)}</button></div>` : ''}
@@ -187,6 +188,11 @@ function buildDOM(S, R, meta) {
     <div class="mirror-zoom" role="img" ${altAttr(M.alt || M.label).replace('alt=', 'aria-label=')} style="background-image:url('${S.painting.image}');aspect-ratio:${(M.crop.w * S.painting.width) / (M.crop.h * S.painting.height)};background-size:${100 / M.crop.w}% ${100 / M.crop.h}%;background-position:${M.crop.x / (1 - M.crop.w) * 100}% ${M.crop.y / (1 - M.crop.h) * 100}%"></div>
     <p>${bi(M.text, ' / ')}</p>
   </div>`)(S.exclusive) : ''}
+  ${S.exclusive && S.exclusive.type === 'light' ? `<div id="lightPanel" class="panel hidden">
+    <input type="range" id="lightRange" min="0" max="1000" value="${Math.round((S.exclusive.start ?? 0.5) * 1000)}" aria-label="${textOf(S.exclusive.label, lang)}" />
+    <div class="light-labels">${S.exclusive.stops.map(st => `<span>${ui(st.label.zh, st.label.en)}</span>`).join('')}</div>
+    ${S.exclusive.note ? `<p>${bi(S.exclusive.note, ' / ')}</p>` : ''}
+  </div>` : ''}
   <div class="popup panel" id="shot">
     <button class="close" data-close="shot" aria-label="Close">×</button>
     <img id="shotImg" ${altAttr({ zh: '你拍下的画面', en: 'Your snapshot' })} />
@@ -698,7 +704,7 @@ function run(S, R, meta) {
   const projUniforms = {
     uPaint: { value: paintingTex }, uDepth: { value: depthRT.depthTexture },
     uProjVP: { value: new THREE.Matrix4().multiplyMatrices(projector.projectionMatrix, projector.matrixWorldInverse) },
-    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 },
+    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 }, uTint: { value: new THREE.Vector3(1, 1, 1) }, uLift: { value: new THREE.Vector3(0, 0, 0) },
     uWind: { value: 0 }, uTime: { value: 0 }   // 独家发现“起风了”
   };
   const projVert = `
@@ -707,7 +713,7 @@ function run(S, R, meta) {
   const projFrag = `
     uniform sampler2D uPaint; uniform sampler2D uDepth; uniform sampler2D uMap;
     uniform mat4 uProjVP; uniform vec3 uProjPos; uniform float uNear; uniform float uFar;
-    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn; uniform float uWind; uniform float uTime;
+    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn; uniform vec3 uTint; uniform vec3 uLift; uniform float uWind; uniform float uTime;
     varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv;
     float linDepth(float d) { float z = d * 2.0 - 1.0; return 2.0 * uNear * uFar / (uFar + uNear - z * (uFar - uNear)); }
     void main() {
@@ -727,6 +733,7 @@ function run(S, R, meta) {
         }
       }
       col = mix(col, col * vec3(0.8, 0.92, 1.1) + vec3(0.05, 0.06, 0.09), uDawn);   // 天亮了：灯光变淡、偏冷的晨光
+      col = clamp(col * uTint + uLift, 0.0, 1.0);   // 独家发现“换一种光”：清晨、正午、傍晚
       if (uWall > 0.5) {   // 褪色开关：把墙上偏蓝的颜色加回一点红色
         float blueish = smoothstep(0.0, 0.12, col.b - col.r);
         col = mix(col, vec3(min(col.r + 0.28 * col.b, 1.0), col.g * 0.88, col.b), uViolet * blueish);
@@ -1055,6 +1062,8 @@ function run(S, R, meta) {
     intro.style.display = 'none'; walking = true;
     document.body.classList.add('in-room'); hint.style.opacity = 1; setTimeout(hideHint, 4000);
     player.x = VIEW.x; player.z = VIEW.z; showAligned();
+    const openCard = new URLSearchParams(location.search).get('card');   // 从别的场景链接过来：?card=floor 打开那张卡片
+    if (openCard && S.cards[openCard]) setTimeout(() => showCard(openCard), 1500);
   }
   const ease = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
   const lerpAngle = (a, b, t) => a + Math.atan2(Math.sin(b - a), Math.cos(b - a)) * t;
@@ -1167,6 +1176,25 @@ function run(S, R, meta) {
       if ($('todaySwitch')) { $('todaySwitch').classList.toggle('hidden', !revealOn); if (!revealOn) setToday(0); }
       if (revealOn && revealObj.card) showCard(revealObj.card);
     };
+  }
+  // 独家发现“换一种光”（light）：滑杆从清晨拖到傍晚，原画的颜色乘上 tint、再加上 lift（stops 里每一站一组，中间平滑过渡）
+  const lightObj = S.exclusive && S.exclusive.type === 'light' ? S.exclusive : null;
+  if (lightObj) {
+    const ST = lightObj.stops, n = ST.length - 1;
+    const setLight = v => {
+      const f = Math.min(n - 1e-6, Math.max(0, v * n)), i = Math.floor(f), k = f - i, a = ST[i], b = ST[i + 1];
+      const mix = (p, q, d) => [0, 1, 2].map(j => (p || [d, d, d])[j] + (((q || [d, d, d])[j]) - ((p || [d, d, d])[j])) * k);
+      projUniforms.uTint.value.set(...mix(a.tint, b.tint, 1)); projUniforms.uLift.value.set(...mix(a.lift, b.lift, 0));
+    };
+    let lightUsed = false;
+    $('lightRange').addEventListener('input', e => { setLight(e.target.value / 1000); if (!lightUsed) { lightUsed = true; track('exclusive-' + S.id); } });
+    $('lightBtn').onclick = () => {
+      const on = $('lightPanel').classList.toggle('hidden') === false;
+      $('lightBtn').classList.toggle('on', on);
+      setLight(on ? $('lightRange').value / 1000 : (lightObj.start ?? 0.5));
+      if (on && lightObj.card) showCard(lightObj.card);
+    };
+    setLight(lightObj.start ?? 0.5);
   }
   function setToday(v) {   // “1658 / 今天”
     todayTarget = v;
