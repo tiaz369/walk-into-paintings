@@ -176,6 +176,13 @@ const AMBIENCE = {
     lap(water, ctx.currentTime + 0.5); every(st, 3, 7, t => lap(water, t));
     bird(out, ctx.currentTime + 1.5); every(st, 4, 11, t => bird(out, t));
   },
+  // 春天的花园：风吹叶子，鸟叫
+  'spring-garden'(out, st) {
+    const leaves = loopNoise('brown', out, { type: 'bandpass', freq: 1100, q: 0.5, gain: 0.08 });   // 树叶沙沙：音量慢慢起伏
+    st.timers.push(setInterval(() => leaves.g.gain.setTargetAtTime(0.04 + 0.1 * Math.random(), ctx.currentTime, 1), 1800));
+    bird(out, ctx.currentTime + 0.6); every(st, 1.5, 5, t => bird(out, t));
+    every(st, 6, 14, t => { bird(out, t); bird(out, t + rnd(0.4, 0.9)); });   // 偶尔两只鸟一问一答
+  },
   // 夜晚的风，远处几声蟋蟀
   'night-wind'(out, st) {
     const w = loopNoise('brown', out, { freq: 380, gain: 0.16 });

@@ -384,6 +384,18 @@ body.zoom-pick:not(.zoomed) #zspots .zspot { display: block; }
 .world text { font-size: 18px; fill: var(--ink); }
 .where-list { text-align: left; font-size: 13px; margin: 10px 8px 0 28px; }
 #where .soon { color: var(--muted); }
+/* 对比滑块：两张画叠在一起，拖动中间的线 */
+#slide { width: min(760px, calc(100% - 32px)); }
+#slide h3 { margin: 6px 0 10px; font-weight: 500; }
+.wipe { position: relative; aspect-ratio: 4 / 3; background: #111; border-radius: 4px; overflow: hidden; user-select: none; touch-action: none; }
+.wipe img, .wipe-b { position: absolute; inset: 0; width: 100%; height: 100%; }
+.wipe img { object-fit: contain; }
+.wipe-b { clip-path: inset(0 0 0 var(--pos)); background: #111; }
+.wipe-line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 6px rgba(0, 0, 0, .6); pointer-events: none; }
+.wipe input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.wipe-caps { display: flex; justify-content: space-between; gap: 12px; font-size: 13px; color: var(--muted); margin-top: 8px; text-align: left; }
+.wipe-caps span:last-child { text-align: right; }
+.wipe-note { margin: 10px 0 0; }
 .final .final-by { display: block; margin-top: 10px; font-size: 15px; font-style: normal; color: var(--muted); }
 
 /* 地图：陆地轮廓、两层切换、每块地图的名字 */
