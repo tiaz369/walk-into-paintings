@@ -1,0 +1,503 @@
+{
+  "_说明": "包扎耳朵的自画像（人物肖像，轻量版：分层景深 + 细节放大 + 卡片 + 短故事）。所有事实文字由 Tia 提供。写法要求：涉及梵高的精神危机，所有文字保持克制，不描写受伤的方式和细节，动效和配色保持安静，重点放在“他回到画架前”。layers 是同一张原画切出来的几层：背景（墙和窗户）、左边的画架、右边墙上的日本版画、前景的梵高；clip 是原画上的多边形（0–1），depth 越大移动越多。原画上传前，切层、发光圆点和放大热点的位置都是先估的，上传后照着原画重新画。",
+  "id": "bandaged-ear",
+  "variant": "portrait",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（渲染用的设定说明，不在页面上显示）",
+    "type": "indoor",
+    "label": {
+      "zh": "冬天安静的室内光",
+      "en": "Quiet winter light indoors"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现（阿尔勒系列的最后一幅）。卡片“日本版画”链接到卧室的“地板”和《杏花》的“日本版画”；结尾和《梵高的椅子》互相链接。",
+    "doors": [],
+    "cards": [
+      "bedroom",
+      "almond-blossom"
+    ],
+    "end": [
+      "vangogh-chair"
+    ]
+  },
+  "ambience": "winter-room",
+  "painting": {
+    "image": "images/bandaged-ear.jpg",
+    "width": 1240,
+    "height": 1500,
+    "alt": {
+      "zh": "梵高《包扎耳朵的自画像》1889，伦敦考陶尔德美术馆",
+      "en": "Vincent van Gogh, Self-Portrait with Bandaged Ear, 1889, The Courtauld, London"
+    },
+    "_": "宽高是按 60.5 × 50 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "包扎耳朵的自画像",
+      "en": "Self-Portrait with Bandaged Ear"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1889年1月",
+      "en": "January 1889"
+    },
+    "museum": {
+      "zh": "伦敦考陶尔德美术馆（塞缪尔·考陶尔德信托）",
+      "en": "The Courtauld, London (Samuel Courtauld Trust)"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“放大看细节”，再点帽子、画架或版画 · 点“镜子翻过来”，看别人眼中的他",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “Zoom in on details”, then the cap, the easel or the print · Tap “Flip the mirror” to see him as others saw him"
+  },
+  "parallax": 12,
+  "layers": [
+    {
+      "_说明": "背景（整张画：墙和窗户）",
+      "depth": 0
+    },
+    {
+      "_说明": "左边的画架（先估的）",
+      "depth": 0.3,
+      "clip": [
+        [
+          0.0,
+          0.1
+        ],
+        [
+          0.3,
+          0.1
+        ],
+        [
+          0.3,
+          0.75
+        ],
+        [
+          0.0,
+          0.75
+        ]
+      ]
+    },
+    {
+      "_说明": "右边墙上的日本版画（先估的）",
+      "depth": 0.3,
+      "clip": [
+        [
+          0.62,
+          0.05
+        ],
+        [
+          1.0,
+          0.05
+        ],
+        [
+          1.0,
+          0.5
+        ],
+        [
+          0.62,
+          0.5
+        ]
+      ]
+    },
+    {
+      "_说明": "前景的梵高（先估的）",
+      "depth": 0.8,
+      "clip": [
+        [
+          0.35,
+          0.1
+        ],
+        [
+          0.6,
+          0.08
+        ],
+        [
+          0.75,
+          0.25
+        ],
+        [
+          0.78,
+          0.5
+        ],
+        [
+          0.95,
+          0.7
+        ],
+        [
+          1.0,
+          1.0
+        ],
+        [
+          0.2,
+          1.0
+        ],
+        [
+          0.3,
+          0.7
+        ],
+        [
+          0.35,
+          0.5
+        ]
+      ]
+    }
+  ],
+  "spots": {
+    "mirror": {
+      "x": 0.62,
+      "y": 0.4,
+      "layer": 3
+    },
+    "cap": {
+      "x": 0.5,
+      "y": 0.14,
+      "layer": 3
+    },
+    "easel": {
+      "x": 0.14,
+      "y": 0.45,
+      "layer": 1
+    },
+    "print": {
+      "x": 0.82,
+      "y": 0.25,
+      "layer": 2
+    },
+    "week": {
+      "x": 0.25,
+      "y": 0.85,
+      "layer": 0
+    },
+    "colours": {
+      "x": 0.55,
+      "y": 0.8,
+      "layer": 3
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现：①“镜子翻过来”：打开后，画面慢慢左右翻转，下方显示说明。②“放大看细节”：画上出现三个热点（帽子和绷带、画架、日本版画），点一下放大到那里；有 card 的显示那张卡片的文字。x、y 是在原画上的位置（0–1），scale 是放大几倍。",
+    "type": "flip",
+    "label": {
+      "zh": "镜子翻过来",
+      "en": "Flip the mirror"
+    },
+    "note": {
+      "zh": "这是他对着镜子画的样子。翻过来，才是别人眼中的他。",
+      "en": "This is how he saw himself in the mirror. Flipped, this is how others saw him."
+    },
+    "zoomLabel": {
+      "zh": "放大看细节",
+      "en": "Zoom in on details"
+    },
+    "zooms": [
+      {
+        "id": "cap",
+        "label": {
+          "zh": "帽子和绷带",
+          "en": "Cap and bandage"
+        },
+        "x": 0.55,
+        "y": 0.3,
+        "scale": 2.6,
+        "card": "cap"
+      },
+      {
+        "id": "easel",
+        "label": {
+          "zh": "画架",
+          "en": "Easel"
+        },
+        "x": 0.14,
+        "y": 0.4,
+        "scale": 2.6,
+        "card": "easel"
+      },
+      {
+        "id": "print",
+        "label": {
+          "zh": "日本版画",
+          "en": "Japanese print"
+        },
+        "x": 0.82,
+        "y": 0.25,
+        "scale": 2.6,
+        "card": "print"
+      }
+    ]
+  },
+  "cards": {
+    "mirror": {
+      "title": {
+        "zh": "镜子里的他",
+        "en": "In the mirror"
+      },
+      "text": {
+        "zh": "他是对着镜子画的。所以画里缠着绷带的是右耳，其实受伤的是左耳。",
+        "en": "He painted himself in a mirror, so the bandage appears on his right ear, though it was his left ear that was injured."
+      }
+    },
+    "cap": {
+      "title": {
+        "zh": "毛皮帽子",
+        "en": "The fur cap"
+      },
+      "text": {
+        "zh": "毛皮帽子既能固定厚厚的绷带，也能抵御冬天的寒冷。",
+        "en": "The fur cap holds the thick bandage in place and keeps out the winter cold."
+      }
+    },
+    "easel": {
+      "title": {
+        "zh": "画架",
+        "en": "The easel"
+      },
+      "text": {
+        "zh": "身后画架上，是一张刚开始画的画布。它表明他还要继续画下去。",
+        "en": "On the easel behind him is a canvas just begun, a sign that he meant to keep painting."
+      }
+    },
+    "print": {
+      "title": {
+        "zh": "日本版画",
+        "en": "The Japanese print"
+      },
+      "text": {
+        "zh": "墙上是一幅19世纪70年代的日本版画，出自佐藤虎清之手。梵高把它挂在自己画室的墙上，日本版画是他重要的灵感来源。",
+        "en": "On the wall is a Japanese print from the 1870s by Sato Torakiyo, which Van Gogh hung in his studio. Japanese prints were an important source of inspiration for him."
+      },
+      "links": [
+        {
+          "scene": "bedroom",
+          "href": "../bedroom/?card=floor",
+          "label": {
+            "zh": "卧室的地板",
+            "en": "The bedroom floor"
+          }
+        },
+        {
+          "scene": "almond-blossom",
+          "href": "../almond-blossom/?card=japan",
+          "label": {
+            "zh": "《杏花》里的日本版画",
+            "en": "Japanese prints in *Almond Blossom*"
+          }
+        }
+      ]
+    },
+    "week": {
+      "title": {
+        "zh": "一周后",
+        "en": "A week later"
+      },
+      "text": {
+        "zh": "这幅画是他出院一周后画的。",
+        "en": "He painted this a week after leaving hospital."
+      }
+    },
+    "colours": {
+      "title": {
+        "zh": "颜色",
+        "en": "The colours"
+      },
+      "text": {
+        "zh": "绿色的外套，深色的帽子，身后的窗户和版画。他用笔触和颜色，宣告自己作为画家的雄心又回来了。",
+        "en": "A green coat, a dark cap, the window and print behind him. Through brushwork and colour, he declares his renewed ambition as a painter."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/bandaged-ear.jpg",
+        "alt": {
+          "zh": "梵高《包扎耳朵的自画像》1889，伦敦考陶尔德美术馆",
+          "en": "Vincent van Gogh, Self-Portrait with Bandaged Ear, 1889, The Courtauld, London"
+        },
+        "caption": {
+          "zh": "1889年1月 · 伦敦考陶尔德美术馆",
+          "en": "January 1889 · The Courtauld, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 一次危机",
+          "en": "A crisis"
+        },
+        "text": {
+          "zh": "1888年12月，高更来到阿尔勒两个月后，两人激烈争吵。之后，梵高在一次精神危机中伤了自己的耳朵，住进了医院。高更离开了阿尔勒。",
+          "en": "In December 1888, two months after Gauguin arrived in Arles, the two painters quarrelled violently. Soon after, in a mental crisis, Van Gogh injured his ear and was taken to hospital. Gauguin left Arles."
+        }
+      },
+      {
+        "image": "images/bandaged-ear.jpg",
+        "alt": {
+          "zh": "梵高《包扎耳朵的自画像》1889，伦敦考陶尔德美术馆",
+          "en": "Vincent van Gogh, Self-Portrait with Bandaged Ear, 1889, The Courtauld, London"
+        },
+        "caption": {
+          "zh": "1889年1月 · 伦敦考陶尔德美术馆",
+          "en": "January 1889 · The Courtauld, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 回到画架前",
+          "en": "Back to the easel"
+        },
+        "text": {
+          "zh": "1889年1月，出院一周后，他画下了这幅自画像。身后是一张刚开始画的画布，和一幅他喜爱的日本版画。",
+          "en": "In January 1889, a week after leaving hospital, he painted this self-portrait, with a canvas just begun behind him, and a Japanese print he loved."
+        }
+      },
+      {
+        "image": "images/bandaged-ear.jpg",
+        "alt": {
+          "zh": "梵高《包扎耳朵的自画像》1889，伦敦考陶尔德美术馆",
+          "en": "Vincent van Gogh, Self-Portrait with Bandaged Ear, 1889, The Courtauld, London"
+        },
+        "caption": {
+          "zh": "1889年1月 · 伦敦考陶尔德美术馆",
+          "en": "January 1889 · The Courtauld, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1948年，收藏家塞缪尔·考陶尔德把它遗赠给了考陶尔德。今天，它挂在考陶尔德美术馆3层的LVMH大厅。",
+          "en": "In 1948, the collector Samuel Courtauld bequeathed it to The Courtauld. Today it hangs in the LVMH Great Room, on Level 3 of The Courtauld Gallery."
+        }
+      }
+    ],
+    "final": {
+      "zh": "他回到了画架前。",
+      "en": "He went back to his easel."
+    },
+    "versions": [],
+    "museums": [
+      "courtauld"
+    ],
+    "exit": [
+      {
+        "scene": "vangogh-chair",
+        "href": "../vangogh-chair/",
+        "label": {
+          "zh": "一个月前，两把椅子",
+          "en": "A month earlier, two chairs"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸按考陶尔德馆藏页（gallerycollections.courtauld.ac.uk，P.1948.SC.175）补上。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "包扎耳朵的自画像",
+      "en": "Self-Portrait with Bandaged Ear"
+    },
+    "date": {
+      "zh": "1889年1月，阿尔勒",
+      "en": "January 1889, Arles"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "60.5 × 50 cm",
+      "en": "60.5 × 50 cm"
+    },
+    "collection": {
+      "zh": "伦敦考陶尔德美术馆（塞缪尔·考陶尔德信托）",
+      "en": "The Courtauld, London (Samuel Courtauld Trust)"
+    },
+    "creditLine": {
+      "zh": "1948年塞缪尔·考陶尔德遗赠",
+      "en": "Samuel Courtauld bequest, 1948"
+    },
+    "url": "https://courtauld.ac.uk/highlights/self-portrait-with-bandaged-ear/"
+  },
+  "zoom": {
+    "image": "images/bandaged-ear.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "考陶尔德美术馆：包扎耳朵的自画像",
+          "en": "The Courtauld: *Self-Portrait with Bandaged Ear*"
+        },
+        "url": "https://courtauld.ac.uk/highlights/self-portrait-with-bandaged-ear/"
+      },
+      {
+        "title": {
+          "zh": "考陶尔德美术馆虚拟导览",
+          "en": "The Courtauld virtual tour"
+        },
+        "url": "https://virtualtour.courtauld.ac.uk/gal-hotspot/self-portrait-with-bandaged-ear-1889/"
+      },
+      {
+        "title": {
+          "zh": "考陶尔德馆藏记录",
+          "en": "The Courtauld collection record"
+        },
+        "url": "https://gallerycollections.courtauld.ac.uk/object-p-1948-sc-175"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 一次危机",
+          "en": "A crisis"
+        },
+        "text": {
+          "zh": "1888年12月，高更来到阿尔勒两个月后，两人激烈争吵。之后，梵高在一次精神危机中伤了自己的耳朵，住进了医院。高更离开了阿尔勒。",
+          "en": "In December 1888, two months after Gauguin arrived in Arles, the two painters quarrelled violently. Soon after, in a mental crisis, Van Gogh injured his ear and was taken to hospital. Gauguin left Arles."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 回到画架前",
+          "en": "Back to the easel"
+        },
+        "text": {
+          "zh": "1889年1月，出院一周后，他画下了这幅自画像。身后是一张刚开始画的画布，和一幅他喜爱的日本版画。",
+          "en": "In January 1889, a week after leaving hospital, he painted this self-portrait, with a canvas just begun behind him, and a Japanese print he loved."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1948年，收藏家塞缪尔·考陶尔德把它遗赠给了考陶尔德。今天，它挂在考陶尔德美术馆3层的LVMH大厅。",
+          "en": "In 1948, the collector Samuel Courtauld bequeathed it to The Courtauld. Today it hangs in the LVMH Great Room, on Level 3 of The Courtauld Gallery."
+        }
+      }
+    ]
+  }
+}

@@ -22,7 +22,8 @@
       "bedroom",
       "yellow-house",
       "wheatfield-cypresses",
-      "arnolfini"
+      "arnolfini",
+      "bandaged-ear"
     ]
   },
   "painting": {
@@ -464,6 +465,14 @@
         "label": {
           "zh": "同一家美术馆",
           "en": "In the same gallery"
+        }
+      },
+      {
+        "scene": "bandaged-ear",
+        "href": "../bandaged-ear/",
+        "label": {
+          "zh": "一个月后，回到画架前",
+          "en": "A month later, back at the easel"
         }
       }
     ]

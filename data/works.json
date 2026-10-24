@@ -12,32 +12,6 @@
     "van-gogh": [
       {
         "title": {
-          "zh": "杏花",
-          "en": "Almond Blossom"
-        },
-        "year": {
-          "zh": "1890",
-          "en": "1890"
-        },
-        "museum": "van-gogh-museum",
-        "check": "ok",
-        "_": "PBS、苏富比博物馆页"
-      },
-      {
-        "title": {
-          "zh": "鸢尾花",
-          "en": "Irises"
-        },
-        "year": {
-          "zh": "1889",
-          "en": "1889"
-        },
-        "museum": "getty",
-        "check": "ok",
-        "_": "PBS 画作清单：1889，盖蒂"
-      },
-      {
-        "title": {
           "zh": "包扎耳朵的自画像",
           "en": "Self-Portrait with Bandaged Ear"
         },

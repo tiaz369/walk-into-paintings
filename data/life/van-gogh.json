@@ -149,7 +149,23 @@
       "text": {
         "zh": "梵高精神崩溃住院，高更离开阿尔勒",
         "en": "Van Gogh breaks down and is hospitalised; Gauguin leaves Arles"
-      }
+      },
+      "scenes": [
+        "bandaged-ear"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1889年1月",
+        "en": "January 1889"
+      },
+      "text": {
+        "zh": "出院一周后，画下《包扎耳朵的自画像》",
+        "en": "A week after leaving hospital, paints *Self-Portrait with Bandaged Ear*"
+      },
+      "scenes": [
+        "bandaged-ear"
+      ]
     },
     {
       "date": {
