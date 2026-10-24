@@ -176,6 +176,16 @@ const AMBIENCE = {
     lap(water, ctx.currentTime + 0.5); every(st, 3, 7, t => lap(water, t));
     bird(out, ctx.currentTime + 1.5); every(st, 4, 11, t => bird(out, t));
   },
+  // 巴黎街头的雨天：人声、脚步声，小雨打在伞上（A rainy Paris street）
+  'rain-street'(out, st) {
+    loopNoise('white', out, { type: 'highpass', freq: 3500, gain: 0.03 });   // 细雨
+    loopNoise('brown', out, { freq: 300, gain: 0.08 });
+    murmur(out, 0.06)(st);
+    const drop = t => burst(out, t, { type: 'bandpass', freq: rnd(1800, 3200), q: 3, vol: 0.05, dur: 0.02, p: rnd(-0.8, 0.8) });   // 雨点打在伞面上
+    every(st, 0.08, 0.3, drop);
+    const step = t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(500, 800), q: 4, vol: 0.06, dur: 0.05, p: rnd(-0.6, 0.6) });
+    every(st, 0.4, 1.2, step);
+  },
   // 夏日河边：水声，远处很低的蒸汽和工厂声，偶尔有人跳水的水花声（A summer riverside）
   riverside(out, st) {
     loopNoise('brown', out, { freq: 340, gain: 0.08 });

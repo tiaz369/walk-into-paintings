@@ -75,7 +75,8 @@ def cap_soon(lst, key=lambda x: x):   # 已开放的都列出；即将开放的�
 def museum_items(mid):   # 收藏在这里的场景 + 收藏在这里的其他版本
     own = [(s, None, s.get('artworkUrl'), None, None) for s in R['scenes'] if s['museum'] == mid]
     also = [(s, v['title'], v.get('artworkUrl'), v.get('year'), v.get('room')) for s in R['scenes'] for v in s.get('alsoAt', []) if v['museum'] == mid]
-    return sorted(own + also, key=lambda x: open_year(x[0], x[3]))
+    lent = [(s, None, s.get('artworkUrl'), None, None) for s in R['scenes'] if (s.get('displayAt') or {}).get('museum') == mid]   # 借展到这里的作品
+    return sorted(own + lent + also, key=lambda x: open_year(x[0], x[3]))
 def of(key, id_): return [s for s in R['scenes'] if (id_ in s[key] if isinstance(s.get(key), list) else s.get(key) == id_)
                            and not (key == 'themes' and id_ == 'london' and s.get('onDisplay') is False)]   # “在伦敦看真迹”只放正在展出的作品
 
@@ -327,7 +328,9 @@ for meta in BUILT:
             return f'<li><a href="{up}london/#{x["museum"]}">{e(both(m["name"]))} — 参观路线 · Route by room</a></li>'
         url = x.get('artworkUrl') or m.get('url')
         return f'<li><a href="{e(url)}">{e(both(m["name"]))}</a></li>' if url else ''
-    museums = ''.join(see(x) for x in [meta] + meta.get('alsoAt', []))
+    D = MUSEUMS.get((meta.get('displayAt') or {}).get('museum'))   # 借展到别的博物馆：先写现在能看到它的地方
+    now = f'<li><a href="{e(D["url"])}">现在在 · Now at {e(both(D["name"]))}{" · " + e(both(meta["displayAt"]["note"])) if meta["displayAt"].get("note") else ""}</a></li>' if D and D.get('url') else ''
+    museums = now + ''.join(see(x) for x in [meta] + meta.get('alsoAt', []))
     s = f'''      <h1>{bi(L["title"])}</h1>
       <p>{e(labelline)}</p>
       <p>图片：{e(L["source"]["zh"])} / Image: {e(L["source"]["en"])}</p>

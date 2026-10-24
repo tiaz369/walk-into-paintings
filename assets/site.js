@@ -177,7 +177,9 @@ export function sceneRow(R, s, opts = {}) {
   const name = t.zh && t.en && t.zh !== t.en ? `<span lang="zh-CN">${esc(t.zh)}</span> · <span lang="en">${esc(t.en)}</span>` : esc(t.zh || t.en);
   const year = esc(textOf(y, lang === 'en' ? 'en' : 'zh'));
   const room = opts.showRoom && roomLabel(opts.room ?? s.room);
-  const meta = [year, artist && bi(artist.name), museum && bi(museum.name), room && bi(room), loanLabel(s)].filter(Boolean).join(' · ');
+  const D = s.displayAt && R.museumById[s.displayAt.museum];
+  const away = D && (opts.museum || s.museum) !== s.displayAt.museum ? bi({ zh: `目前借展于${D.name.zh}`, en: `Currently at ${D.name.en}` }) : D ? bi({ zh: `借自${R.museumById[s.museum].name.zh}`, en: `Lent by ${R.museumById[s.museum].name.en}` }) : '';
+  const meta = [year, artist && bi(artist.name), museum && bi(museum.name), room && bi(room), loanLabel(s), away].filter(Boolean).join(' · ');
   const pic = `<span class="row-pic">${live && cover ? `<img src="${ROOT + cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>`;
   const text = `<span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span></span>`;
   const url = opts.workLink && (opts.artworkUrl ?? s.artworkUrl);
@@ -219,7 +221,9 @@ export const LONDON_MUSEUMS = ['national-gallery', 'courtauld'];   // 和 data/l
 export function seeInPersonHTML(R, meta) {
   if (!R || !meta) return '';
   const items = [meta].concat(meta.alsoAt || []);   // 这幅画，加上收藏在别处的其他版本
-  return items.map(x => {
+  const D = meta.displayAt && R.museumById[meta.displayAt.museum];   // 借展到别的博物馆：先显示现在能看到它的地方
+  const now = D && D.url ? `<a class="btn primary" data-track="see-real-${meta.id}" href="${D.url}" target="_blank" rel="noopener">${ui('现在在', 'Now at')} ${bi(D.name, ' · ')}${meta.displayAt.note ? ' · ' + bi(meta.displayAt.note) : ''} ↗</a>` : '';
+  return now + items.map(x => {
     const m = R.museumById[x.museum];
     if (!m) return '';
     const year = items.length > 1 && x.year ? ' · ' + bi(x.year) : '';
@@ -341,9 +345,10 @@ const scenesOf = (R, key, id) => R.scenes.filter(s => (Array.isArray(s[key]) ? s
 // 一家博物馆页面上的作品：收藏在这里的场景 + 收藏在这里的其他版本（比如芝加哥的1889年版卧室，链接到卧室场景）
 function museumItems(R, id) {
   const own = scenesOf(R, 'museum', id).map(s => ({ s, opts: {} }));
+  const lent = R.scenes.filter(s => s.displayAt && s.displayAt.museum === id).map(s => ({ s, opts: { museum: id, room: '' } }));   // 借展到这里的作品
   const also = R.scenes.flatMap(s => (s.alsoAt || []).filter(v => v.museum === id)
     .map(v => ({ s, opts: { title: v.title, year: v.year, cover: v.cover, artworkUrl: v.artworkUrl, credit: v.credit, museum: v.museum, room: v.room || '' } })));
-  return [...own, ...also].sort((a, b) => byOpenYear({ ...a.s, year: a.opts.year || a.s.year }, { ...b.s, year: b.opts.year || b.s.year }));
+  return [...own, ...lent, ...also].sort((a, b) => byOpenYear({ ...a.s, year: a.opts.year || a.s.year }, { ...b.s, year: b.opts.year || b.s.year }));
 }
 const museumsIn = (R, cityId) => R.museums.filter(m => m.city === cityId);
 // 页面底部一行小字：还没有作品可以显示的画家 / 博物馆 / 主题
