@@ -17,7 +17,8 @@
       "bedroom"
     ],
     "end": [
-      "sunflowers"
+      "sunflowers",
+      "bathers-asnieres"
     ]
   },
   "painting": {
@@ -1463,6 +1464,14 @@
         "label": {
           "zh": "同属“花与花园”",
           "en": "Also in Flowers and gardens"
+        }
+      },
+      {
+        "scene": "bathers-asnieres",
+        "href": "../bathers-asnieres/",
+        "label": {
+          "zh": "同属“水”：阿涅尔的浴场",
+          "en": "Also in Water: *Bathers at Asnières*"
         }
       }
     ]

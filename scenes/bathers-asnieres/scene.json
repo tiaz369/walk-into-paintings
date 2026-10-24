@@ -1,0 +1,707 @@
+{
+  "_说明": "阿涅尔的浴场（户外风景，完整版）。所有事实文字由 Tia 提供（资料来自伦敦国家美术馆官网）。夏日午后的塞纳河岸：左下是草坡，坐着、躺着休息的人；河里有人站在水中；对岸是克利希的工厂烟囱和铁路桥，右边是大碗岛。画家视角、地形和人物位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "bathers-asnieres",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "明亮而朦胧的夏日阳光",
+      "en": "Bright, hazy summer sunlight"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《睡莲池》互相链接（同属“水”）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "water-lily-pond"
+    ]
+  },
+  "painting": {
+    "image": "images/bathers-asnieres.jpg",
+    "width": 1800,
+    "height": 1206,
+    "alt": {
+      "zh": "修拉《阿涅尔的浴场》1884，伦敦国家美术馆",
+      "en": "Georges Seurat, Bathers at Asnières, 1884, The National Gallery, London"
+    },
+    "_": "宽高是按 201 × 300 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "阿涅尔的浴场",
+      "en": "Bathers at Asnières"
+    },
+    "artist": {
+      "zh": "修拉",
+      "en": "Georges Seurat"
+    },
+    "date": {
+      "zh": "1884年",
+      "en": "1884"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下岸上的人、河里的男孩、远处的烟囱和桥看介绍 · 点“放大那顶帽子”，看后来加上的彩色小点 · 点“对岸的岛”对比 · 地上发光的圆点 = 修拉的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the people on the bank, the boys in the water, the chimneys or the bridges to learn more · Tap “Zoom in on the hat” to see the coloured dots added later · Tap “The island across the river” to compare · The glowing circle = Seurat's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.7,
+    "yaw": 0,
+    "pitch": -0.06,
+    "fov": 45,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "riverside",
+  "colors": {
+    "line": "#3a3a30",
+    "grass": "#8aa860",
+    "water": "#7fa8b8",
+    "farbank": "#b8b498",
+    "chimney": "#9c8c80",
+    "factory": "#b0a898",
+    "bridge": "#a89c8c",
+    "island": "#7a9a5a",
+    "skin": "#e0b894",
+    "cloth": "#e8e4d8",
+    "hat": "#3a3430",
+    "boots": "#4a3a2c",
+    "ground": "#8aa860",
+    "sky": "#cfdde6"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（岸边的草坡），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -80,
+      80,
+      -120,
+      20
+    ],
+    "bounds": [
+      -8,
+      4,
+      -5,
+      4
+    ],
+    "groundCard": "seine",
+    "skyCard": "chimneys",
+    "skyRadius": 140,
+    "walkSpeed": 1.0
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "seine",
+      "_": "左下方的草坡（向河边倾斜）",
+      "pts": [
+        [
+          -30,
+          0.6,
+          6
+        ],
+        [
+          -30,
+          0.0,
+          -7
+        ],
+        [
+          2,
+          0.0,
+          -7
+        ],
+        [
+          8,
+          0.6,
+          6
+        ]
+      ],
+      "color": "grass"
+    },
+    {
+      "type": "surface",
+      "card": "seine",
+      "_": "塞纳河水面",
+      "pts": [
+        [
+          -60,
+          -0.05,
+          -7
+        ],
+        [
+          -60,
+          -0.05,
+          -80
+        ],
+        [
+          60,
+          -0.05,
+          -80
+        ],
+        [
+          60,
+          -0.05,
+          8
+        ]
+      ],
+      "color": "water"
+    },
+    {
+      "type": "surface",
+      "card": "chimneys",
+      "_": "对岸（克利希）",
+      "pts": [
+        [
+          -80,
+          0.2,
+          -80
+        ],
+        [
+          -80,
+          0.2,
+          -120
+        ],
+        [
+          30,
+          0.2,
+          -120
+        ],
+        [
+          30,
+          0.2,
+          -80
+        ]
+      ],
+      "color": "farbank"
+    },
+    {
+      "type": "boxes",
+      "card": "chimneys",
+      "x": -18,
+      "z": -95,
+      "_": "克利希的煤气厂和工厂烟囱",
+      "boxes": [
+        [
+          1.2,
+          16,
+          1.2,
+          "chimney",
+          0,
+          8,
+          0
+        ],
+        [
+          1.0,
+          13,
+          1.0,
+          "chimney",
+          6,
+          6.5,
+          2
+        ],
+        [
+          1.4,
+          18,
+          1.4,
+          "chimney",
+          -7,
+          9,
+          -3
+        ],
+        [
+          14,
+          6,
+          6,
+          "factory",
+          0,
+          3,
+          4
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "bridges",
+      "x": -30,
+      "z": -75,
+      "_": "铁路桥（挡住后面的公路桥）",
+      "boxes": [
+        [
+          60,
+          1.2,
+          3,
+          "bridge",
+          0,
+          6,
+          0
+        ],
+        [
+          1.5,
+          6,
+          3,
+          "bridge",
+          -20,
+          3,
+          0
+        ],
+        [
+          1.5,
+          6,
+          3,
+          "bridge",
+          -5,
+          3,
+          0
+        ],
+        [
+          1.5,
+          6,
+          3,
+          "bridge",
+          10,
+          3,
+          0
+        ],
+        [
+          60,
+          0.8,
+          3,
+          "bridge",
+          0,
+          6.8,
+          -6
+        ]
+      ]
+    },
+    {
+      "type": "tree",
+      "shape": "bush",
+      "card": "seine",
+      "_": "右边的大碗岛",
+      "x": 28,
+      "z": -55,
+      "h": 9,
+      "r": 10,
+      "color": "island"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "skin",
+      "x": -1.2,
+      "z": -3.2,
+      "rot": 1.57,
+      "card": "thought",
+      "_": "中间坐在岸边的男孩（侧面）"
+    },
+    {
+      "type": "boxes",
+      "card": "sculpture",
+      "x": -5.5,
+      "z": -2.6,
+      "_": "左边躺在草地上、戴帽子的男人",
+      "boxes": [
+        [
+          1.6,
+          0.35,
+          0.5,
+          "cloth",
+          0,
+          0.6,
+          0
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          "skin",
+          0.9,
+          0.75,
+          0
+        ],
+        [
+          0.36,
+          0.12,
+          0.36,
+          "hat",
+          0.95,
+          0.95,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "skin",
+      "legs": "skin",
+      "x": 4.6,
+      "z": -6.4,
+      "y": -1.0,
+      "rot": -1.57,
+      "card": "dots",
+      "_": "右边站在水里、戴红帽子的男孩"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "skin",
+      "legs": "skin",
+      "x": 2.6,
+      "z": -8.5,
+      "y": -1.1,
+      "rot": -1.57,
+      "card": "sculpture",
+      "_": "水里的另一个男孩"
+    },
+    {
+      "type": "boxes",
+      "card": "seine",
+      "x": -3.6,
+      "z": -2.0,
+      "_": "岸上的衣服和靴子",
+      "boxes": [
+        [
+          0.6,
+          0.15,
+          0.4,
+          "cloth",
+          0,
+          0.55,
+          0
+        ],
+        [
+          0.2,
+          0.25,
+          0.12,
+          "boots",
+          0.4,
+          0.6,
+          0.2
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "seine": {
+      "title": {
+        "zh": "塞纳河边",
+        "en": "By the Seine"
+      },
+      "text": {
+        "zh": "几个男人和男孩，在巴黎西北部的工业郊区阿涅尔的塞纳河岸边休息。",
+        "en": "Several men and boys relax on the banks of the Seine at Asnières, an industrial suburb north-west of Paris."
+      }
+    },
+    "sculpture": {
+      "title": {
+        "zh": "像雕塑一样",
+        "en": "Like sculptures"
+      },
+      "text": {
+        "zh": "他们都是侧面，像雕塑一样一动不动。修拉在美术学院学过临摹古典雕塑，几个人的姿势就反映了这一点。",
+        "en": "Shown in profile, they are as still as sculptures. Seurat had learned to draw from classical sculpture at art school, and several of the poses reflect this."
+      }
+    },
+    "thought": {
+      "title": {
+        "zh": "各自的思绪",
+        "en": "Lost in thought"
+      },
+      "text": {
+        "zh": "他们各自沉浸在自己的思绪里，既不互相交流，也不看向我们。",
+        "en": "Each seems absorbed in his own thoughts, engaging neither with one another nor with us."
+      }
+    },
+    "chimneys": {
+      "title": {
+        "zh": "远处的烟囱",
+        "en": "The chimneys"
+      },
+      "text": {
+        "zh": "远处是克利希的煤气厂和工厂的烟囱。画中有些人，可能就在那里工作。",
+        "en": "In the distance are the chimneys of the gas plant and factories at Clichy, where some of these men may have worked."
+      }
+    },
+    "bridges": {
+      "title": {
+        "zh": "两座桥",
+        "en": "Two bridges"
+      },
+      "text": {
+        "zh": "背景里，一座铁路桥挡住了另一座平行的公路桥。",
+        "en": "In the background, a railway bridge partly hides a parallel road bridge."
+      }
+    },
+    "dots": {
+      "title": {
+        "zh": "后来加的小点",
+        "en": "Dots added later"
+      },
+      "text": {
+        "zh": "大约1886年，修拉发明了用对比色小点作画的技法，之后又回来修改了这幅画，比如右边男孩的帽子。",
+        "en": "Around 1886, after inventing his technique of dots of contrasting colour, Seurat returned to this painting and reworked parts of it, such as the hat of the boy on the right."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“放大那顶帽子”：站到画家视角点时，画面放大到右边男孩的帽子，显示卡片“后来加的小点”的文字。crop 是帽子在原画上的位置（0–1：x、y 是左上角，w、h 是宽高），原画上传后照着原画量。",
+    "type": "mirror",
+    "label": {
+      "zh": "放大那顶帽子",
+      "en": "Zoom in on the hat"
+    },
+    "alt": {
+      "zh": "《阿涅尔的浴场》右边男孩的帽子（放大）",
+      "en": "The boy's hat on the right of Bathers at Asnières (detail)"
+    },
+    "text": {
+      "zh": "大约1886年，修拉发明了用对比色小点作画的技法，之后又回来修改了这幅画，比如右边男孩的帽子。",
+      "en": "Around 1886, after inventing his technique of dots of contrasting colour, Seurat returned to this painting and reworked parts of it, such as the hat of the boy on the right."
+    },
+    "crop": {
+      "x": 0.8,
+      "y": 0.3,
+      "w": 0.1,
+      "h": 0.1
+    }
+  },
+  "compare": {
+    "_说明": "独家发现“对岸的岛”：对比滑块，左边是本画，右边是修拉的《大碗岛的星期天下午》（芝加哥艺术博物馆，CC0）。",
+    "type": "compare",
+    "label": {
+      "zh": "对岸的岛",
+      "en": "The island across the river"
+    },
+    "note": {
+      "zh": "画面右边的小岛，就是他接下来要画的大碗岛。",
+      "en": "The island on the right is La Grande Jatte, the subject of his next great painting."
+    },
+    "versions": [
+      {
+        "image": "images/bathers-asnieres.jpg",
+        "short": {
+          "zh": "阿涅尔的浴场 · 1884",
+          "en": "Bathers at Asnières · 1884"
+        },
+        "caption": {
+          "zh": "《阿涅尔的浴场》，1884年 · 伦敦国家美术馆",
+          "en": "*Bathers at Asnières*, 1884 · The National Gallery, London"
+        }
+      },
+      {
+        "image": "images/grande-jatte.jpg",
+        "short": {
+          "zh": "大碗岛 · 1884–86",
+          "en": "La Grande Jatte · 1884–86"
+        },
+        "caption": {
+          "zh": "《大碗岛的星期天下午》，1884–86年 · 芝加哥艺术博物馆",
+          "en": "*A Sunday on La Grande Jatte — 1884*, 1884–86 · The Art Institute of Chicago"
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/bathers-asnieres.jpg",
+        "alt": {
+          "zh": "修拉《阿涅尔的浴场》1884，伦敦国家美术馆",
+          "en": "Georges Seurat, Bathers at Asnières, 1884, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1884年 · 伦敦国家美术馆",
+          "en": "1884 · The National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 不到25岁",
+          "en": "Not yet 25"
+        },
+        "text": {
+          "zh": "这是修拉的第一幅大型作品，画的时候他还不到25岁。他想用这幅巨大的画，在1884年春天的官方沙龙上一鸣惊人。",
+          "en": "This was Seurat's first major composition, painted before he turned 25. He meant this huge canvas to make his mark at the official Salon in spring 1884."
+        }
+      },
+      {
+        "image": "images/bathers-asnieres.jpg",
+        "alt": {
+          "zh": "修拉《阿涅尔的浴场》1884，伦敦国家美术馆",
+          "en": "Georges Seurat, Bathers at Asnières, 1884, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1884年 · 伦敦国家美术馆",
+          "en": "1884 · The National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 被拒绝",
+          "en": "Rejected"
+        },
+        "text": {
+          "zh": "沙龙拒绝了它。修拉把它送到了新成立的独立艺术家沙龙展出。",
+          "en": "The Salon rejected it. Seurat showed it instead at the newly formed Salon des Artistes Indépendants."
+        }
+      },
+      {
+        "image": "images/bathers-asnieres.jpg",
+        "alt": {
+          "zh": "修拉《阿涅尔的浴场》1884，伦敦国家美术馆",
+          "en": "Georges Seurat, Bathers at Asnières, 1884, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1884年 · 伦敦国家美术馆",
+          "en": "1884 · The National Gallery, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1924年，伦敦国家美术馆用考陶尔德基金买下了这幅画。今天，它在伦敦国家美术馆展出。",
+          "en": "In 1924, the National Gallery bought the painting with the Courtauld Fund. Today it is on display at the National Gallery, London."
+        }
+      }
+    ],
+    "final": {
+      "zh": "好像时间停住了。",
+      "en": "As if time had stood still."
+    },
+    "versions": [],
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "water-lily-pond",
+        "href": "../water-lily-pond/",
+        "label": {
+          "zh": "同属“水”",
+          "en": "Also in Water"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆官网）。展厅号待核对（Tia 看到的是43号，搜索结果显示官网写44号），核对前先不写。",
+    "artist": {
+      "zh": "乔治·修拉（1859–1891）",
+      "en": "Georges Seurat (1859–1891)"
+    },
+    "title": {
+      "zh": "阿涅尔的浴场",
+      "en": "Bathers at Asnières"
+    },
+    "date": {
+      "zh": "1884年",
+      "en": "1884"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "201 × 300 cm",
+      "en": "201 × 300 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "creditLine": {
+      "zh": "1924年用考陶尔德基金购入（编号 NG3908）",
+      "en": "Bought, Courtauld Fund, 1924 (NG3908)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/georges-seurat-bathers-at-asnieres"
+  },
+  "zoom": {
+    "image": "images/bathers-asnieres.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：阿涅尔的浴场",
+          "en": "The National Gallery: *Bathers at Asnières*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/georges-seurat-bathers-at-asnieres"
+      },
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：Take One Picture 2014",
+          "en": "The National Gallery: Take One Picture 2014"
+        },
+        "url": "https://www.nationalgallery.org.uk/exhibitions/past/take-one-picture-2014"
+      },
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：大碗岛的星期天下午",
+          "en": "The Art Institute of Chicago: *A Sunday on La Grande Jatte — 1884*"
+        },
+        "url": "https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 不到25岁",
+          "en": "Not yet 25"
+        },
+        "text": {
+          "zh": "这是修拉的第一幅大型作品，画的时候他还不到25岁。他想用这幅巨大的画，在1884年春天的官方沙龙上一鸣惊人。",
+          "en": "This was Seurat's first major composition, painted before he turned 25. He meant this huge canvas to make his mark at the official Salon in spring 1884."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 被拒绝",
+          "en": "Rejected"
+        },
+        "text": {
+          "zh": "沙龙拒绝了它。修拉把它送到了新成立的独立艺术家沙龙展出。",
+          "en": "The Salon rejected it. Seurat showed it instead at the newly formed Salon des Artistes Indépendants."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1924年，伦敦国家美术馆用考陶尔德基金买下了这幅画。今天，它在伦敦国家美术馆展出。",
+          "en": "In 1924, the National Gallery bought the painting with the Courtauld Fund. Today it is on display at the National Gallery, London."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}
