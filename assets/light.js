@@ -9,7 +9,7 @@
 // 移动鼠标、拖动或转动手机时，前面的层移动得多一点，看起来像微微转动视角。
 // 文字、卡片、故事都写在 scene.json 里（结构和 3D 场景一样，按钮和样式也共用）。
 // =====================================================================
-import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
+import { bi, ui, escItalic, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupSound } from './sound.js';
 import { variantOf, VARIANTS } from './variants.js';
@@ -262,7 +262,7 @@ function run(S, R) {
     hint.style.opacity = 0;   // 提示不遮挡卡片
     const t = S.cards[key];
     $('cardTitle').textContent = t.title.zh; $('cardTitleEn').textContent = t.title.en;
-    $('cardZh').textContent = t.text.zh; $('cardEn').textContent = t.text.en;
+    $('cardZh').textContent = t.text.zh; $('cardEn').innerHTML = escItalic(t.text.en);   // 英文里的 *画名* 显示成斜体
     const linkOn = t.link && isLive(R, t.link.scene);
     $('cardLinkP').classList.toggle('hidden', !linkOn);
     if (linkOn) { $('cardLink').href = t.link.href; $('cardLink').innerHTML = ui(t.link.label.zh, t.link.label.en) + ' →'; }

@@ -9,7 +9,7 @@
 // 这个文件只负责“怎么做”，不放任何某一幅画的文字。
 // =====================================================================
 import * as THREE from 'three';
-import { bi, ui, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
+import { bi, ui, escItalic, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupSound } from './sound.js';
 import { variantOf, VARIANTS } from './variants.js';
@@ -872,7 +872,7 @@ function run(S, R, meta) {
     hideHint();   // 提示不遮挡卡片
     const t = S.cards[key];
     $('cardTitle').textContent = t.title.zh; $('cardTitleEn').textContent = t.title.en;
-    $('cardZh').textContent = t.text.zh; $('cardEn').textContent = t.text.en;
+    $('cardZh').textContent = t.text.zh; $('cardEn').innerHTML = escItalic(t.text.en);   // 英文里的 *画名* 显示成斜体
     // 卡片里的链接（比如“去卧室看博赫的画像”）
     const linkOn = t.link && (!t.link.scene || (R && R.sceneById[t.link.scene] && R.sceneById[t.link.scene].status === 'live'));
     $('cardLinkP').classList.toggle('hidden', !linkOn);
