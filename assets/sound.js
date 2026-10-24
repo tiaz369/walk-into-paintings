@@ -176,6 +176,15 @@ const AMBIENCE = {
     lap(water, ctx.currentTime + 0.5); every(st, 3, 7, t => lap(water, t));
     bird(out, ctx.currentTime + 1.5); every(st, 4, 11, t => bird(out, t));
   },
+  // 夏日河边：水声，远处很低的蒸汽和工厂声，偶尔有人跳水的水花声（A summer riverside）
+  riverside(out, st) {
+    loopNoise('brown', out, { freq: 340, gain: 0.08 });
+    loopNoise('brown', out, { type: 'lowpass', freq: 90, gain: 0.07 });   // 远处工厂的低鸣
+    lap(out, ctx.currentTime + 0.4); every(st, 2, 5, t => lap(out, t));
+    const splash = t => { burst(out, t, { kind: 'white', type: 'bandpass', freq: 1400, q: 0.6, vol: 0.16, dur: 0.35, p: rnd(-0.4, 0.8) }); burst(out, t + 0.12, { kind: 'white', type: 'highpass', freq: 2500, q: 0.5, vol: 0.06, dur: 0.6, p: rnd(-0.4, 0.8) }); };
+    every(st, 14, 30, splash);
+    every(st, 8, 18, t => bird(out, t));
+  },
   // 排练室：木地板轻响，低声交谈，远处的钢琴（A rehearsal room）
   rehearsal(out, st) {
     loopNoise('brown', out, { freq: 240, gain: 0.08 });
