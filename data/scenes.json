@@ -2,6 +2,7 @@
   "_说明": "所有场景的登记表。首页、系列页、各种浏览页和地图都读这里。新增场景时在 scenes 里加一条；status 为 live 表示已上线，soon 表示即将上线，planned 表示计划中（不在页面显示；画家也可以写 status: planned）。收藏地和英文名由 Claude 先填，Tia 稍后核对。onDisplay：是否正在展出；loan：是否借展；room：展厅号（数字，或 {zh, en}）。artworkUrl 是博物馆官网的作品页（不知道的留空）。名称、年份、收藏地来自网站蓝图的内容路线图，上线前请再核对。英文由 Claude 补写，请 Tia 核对。year 可以写成 {zh: 约1660, en: c. 1660} 这样可以分别显示中英文。imageSource 是首页大图下面显示的图片来源。",
 
   "collections": [
+    { "id": "nuenen", "name": { "zh": "梵高在纽南", "en": "Van Gogh in Nuenen" }, "desc": { "zh": "1883–1885，荷兰时期", "en": "1883–1885: the Dutch years" }, "accent": "nuenen", "color": { "accent": "#c99a22", "ink": "#1c1c1e", "_": "梵高的黄" }, "order": ["potato-eaters"] },
     { "id": "arles", "name": { "zh": "梵高在阿尔勒", "en": "Van Gogh in Arles" }, "desc": { "zh": "1888年，等待高更的那段日子", "en": "1888: the days of waiting for Gauguin" }, "accent": "arles", "color": { "accent": "#c99a22", "ink": "#1c1c1e", "_": "梵高的黄" }, "order": ["bedroom", "yellow-house", "night-cafe", "cafe-terrace", "starry-night-rhone", "sunflowers", "vangogh-chair"] },
     { "id": "saint-remy", "name": { "zh": "梵高在圣雷米", "en": "Van Gogh in Saint-Rémy" }, "desc": { "zh": "1889–1890，疗养院的日子", "en": "1889–1890: the days in the asylum" }, "accent": "saint-remy", "color": { "accent": "#c99a22", "ink": "#1c1c1e", "_": "梵高的黄" }, "order": ["starry-night", "wheatfield-cypresses"] },
     { "id": "delft", "name": { "zh": "维米尔的代尔夫特", "en": "Vermeer's Delft" }, "desc": { "zh": "安静的室内和光", "en": "Quiet interiors and light" }, "accent": "delft", "color": { "accent": "#2f5597", "ink": "#ffffff", "_": "代尔夫特蓝" }, "order": ["milkmaid", "woman-reading-letter", "little-street", "pearl-earring"] },
@@ -88,6 +89,7 @@
   "_places说明": "地图“画在哪里”：画作诞生地。场景的 place 只填已上线场景的（Tia 核对后再补其他的）。",
   "places": [
     { "id": "arles",  "name": { "zh": "阿尔勒", "en": "Arles" },  "lat": 43.677, "lon": 4.631 },
+    { "id": "nuenen", "name": { "zh": "纽南", "en": "Nuenen" }, "lat": 51.47, "lon": 5.55, "label": "r" },
     { "id": "saint-remy", "name": { "zh": "圣雷米", "en": "Saint-Rémy" }, "lat": 43.789, "lon": 4.832, "label": "t" },
     { "id": "delft", "name": { "zh": "代尔夫特", "en": "Delft" }, "lat": 52.012, "lon": 4.357, "label": "l" }
   ],
@@ -189,6 +191,8 @@
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     { "id": "gauguin-chair", "status": "planned", "title": { "zh": "高更的椅子", "en": "Gauguin's Chair" }, "artist": "van-gogh", "year": "1888", "museum": "van-gogh-museum", "collection": "arles", "version": null, "place": null, "themes": ["rooms"], "period": "post-impressionism", "artworkUrl": "" },
+    { "id": "potato-eaters", "status": "soon", "title": { "zh": "吃土豆的人", "en": "The Potato Eaters" }, "artist": "van-gogh", "year": { "zh": "1885年4–5月", "en": "April–May 1885" }, "museum": "van-gogh-museum", "collection": "nuenen", "version": "full", "place": "nuenen", "themes": ["rooms"], "moods": ["night"], "period": "post-impressionism",
+      "path": "scenes/potato-eaters/", "cover": "scenes/potato-eaters/images/potato-eaters.jpg", "artworkUrl": "https://www.vangoghmuseum.nl/en/collection/s0005V1962", "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }, "_": "时期：按画家统一归为后印象派（严格说是早期荷兰时期，以后可以在“时期”里加说明）。原画上传、对准画家视角后，status 改成 live 并填 added" },
     { "id": "starry-night", "status": "live", "added": "2026-10-24", "title": { "zh": "星夜", "en": "The Starry Night" }, "artist": "van-gogh", "year": "1889", "museum": "moma", "collection": "saint-remy", "version": "full", "place": "saint-remy", "themes": ["night"], "moods": ["night", "solitude"], "period": "post-impressionism",
       "path": "scenes/starry-night/", "cover": "scenes/starry-night/images/starry-night.jpg", "artworkUrl": "https://www.moma.org/collection/works/79802", "imageSource": { "zh": "Wikimedia Commons（Google Art Project），公有领域", "en": "Wikimedia Commons (Google Art Project), public domain" } },
     { "id": "impression-sunrise", "status": "planned", "title": { "zh": "日出·印象", "en": "Impression, Sunrise" }, "artist": "monet", "year": "1872", "museum": "marmottan", "collection": null, "version": null, "place": null, "themes": ["water"], "period": "impressionism", "artworkUrl": "" },

@@ -184,6 +184,15 @@ const AMBIENCE = {
     const chirp = t => { for (let i = 0; i < 3; i++) burst(far, t + i * 0.09, { type: 'bandpass', freq: 4300, q: 14, vol: 0.12, dur: 0.05, p: rnd(-0.6, 0.6) }); };
     chirp(ctx.currentTime + 1); every(st, 1.5, 4, chirp);
   },
+  // 农舍里安静的夜晚：木头椅子轻响，餐具碰撞，屋外的风
+  farmhouse(out, st) {
+    loopNoise('brown', out, { freq: 200, gain: 0.1 });
+    const wind = loopNoise('brown', out, { freq: 320, gain: 0.05 });
+    st.timers.push(setInterval(() => wind.g.gain.setTargetAtTime(0.03 + 0.07 * Math.random(), ctx.currentTime, 2), 3000));
+    const creak = t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(380, 620), q: 9, vol: 0.18, dur: rnd(0.12, 0.25), p: rnd(-0.5, 0.5) });
+    every(st, 6, 14, creak);
+    every(st, 3, 8, t => clink(out, t));
+  },
   // 安静室内
   room(out) { loopNoise('brown', out, { freq: 220, gain: 0.12 }); },
   // 安静的街道：运河边轻轻的水声，孩子的笑声，远处的鸟叫

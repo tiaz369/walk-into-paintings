@@ -1,0 +1,758 @@
+{
+  "_说明": "吃土豆的人（室内房间，完整版）。所有文字由 Tia 提供。农舍、桌子、油灯和五个人的位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "potato-eaters",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "lamp",
+    "label": {
+      "zh": "夜晚，一盏油灯",
+      "en": "Night, a single oil lamp"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《阿尔勒的卧室》互相链接（“三年后，阿尔勒”）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "bedroom"
+    ]
+  },
+  "painting": {
+    "image": "images/potato-eaters.jpg",
+    "width": 1600,
+    "height": 1151,
+    "alt": {
+      "zh": "梵高《吃土豆的人》1885，阿姆斯特丹梵高博物馆",
+      "en": "Vincent van Gogh, The Potato Eaters, 1885, Van Gogh Museum, Amsterdam"
+    },
+    "_": "宽高是按 114 × 82 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "吃土豆的人",
+      "en": "The Potato Eaters"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1885年4–5月",
+      "en": "April–May 1885"
+    },
+    "museum": {
+      "zh": "阿姆斯特丹梵高博物馆",
+      "en": "Van Gogh Museum, Amsterdam"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下油灯、手、盘子和人看介绍 · 点“只有一盏灯”，只留下灯下的脸和手 · 点“三个版本”对比 · 地上发光的圆点 = 梵高的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the lamp, the hands, the dish or the people to learn more · Tap “Only the lamp” to leave just the faces and hands in its light · Tap “Three versions” to compare · The glowing circle = Van Gogh's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.35,
+    "yaw": 0,
+    "pitch": -0.05,
+    "fov": 45,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "farmhouse",
+  "colors": {
+    "line": "#1a1610",
+    "floor": "#3a3020",
+    "wall": "#3e3626",
+    "ceiling": "#2a2418",
+    "wood": "#4a3a24",
+    "table": "#4a3c28",
+    "skin": "#8a7a4a",
+    "dark": "#2e2a1e",
+    "cloth": "#3a3a2a",
+    "lamp": "#c9a24a",
+    "potato": "#8a7a3a",
+    "window": "#2a2a20",
+    "glass": "#4a4a38"
+  },
+  "room": {
+    "_说明": "房间形状（米）：一间低矮、昏暗的农舍。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 2.5,
+    "front": 0.8,
+    "left": -2.0,
+    "backLeft": [
+      -2.0,
+      -3.2
+    ],
+    "backRight": [
+      2.0,
+      -3.2
+    ],
+    "rightFront": [
+      2.0,
+      0.8
+    ],
+    "floorCard": "apart",
+    "wallCard": "studies",
+    "walkSpeed": 0.6
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "honest",
+      "_": "木桌和一盘土豆",
+      "x": 0,
+      "z": -1.9,
+      "boxes": [
+        [
+          1.6,
+          0.06,
+          0.9,
+          "table",
+          0,
+          0.74,
+          0
+        ],
+        [
+          0.06,
+          0.72,
+          0.06,
+          "table",
+          -0.74,
+          0.36,
+          -0.4
+        ],
+        [
+          0.06,
+          0.72,
+          0.06,
+          "table",
+          0.74,
+          0.36,
+          -0.4
+        ],
+        [
+          0.06,
+          0.72,
+          0.06,
+          "table",
+          -0.74,
+          0.36,
+          0.4
+        ],
+        [
+          0.06,
+          0.72,
+          0.06,
+          "table",
+          0.74,
+          0.36,
+          0.4
+        ],
+        [
+          0.36,
+          0.06,
+          0.36,
+          "potato",
+          0,
+          0.8,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "lamp",
+      "_": "屋顶挂着的油灯（房间里唯一的光）",
+      "x": 0,
+      "y": 1.75,
+      "z": -1.9,
+      "boxes": [
+        [
+          0.02,
+          0.55,
+          0.02,
+          "dark",
+          0,
+          0.475,
+          0
+        ],
+        [
+          0.16,
+          0.18,
+          0.16,
+          "lamp",
+          0,
+          0,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "hands",
+      "x": -0.95,
+      "z": -1.7,
+      "boxes": [
+        [
+          0.42,
+          0.55,
+          0.38,
+          "cloth",
+          0,
+          0.28,
+          0,
+          "cloth"
+        ],
+        [
+          0.4,
+          0.5,
+          0.3,
+          "cloth",
+          0,
+          0.8,
+          0,
+          "cloth"
+        ],
+        [
+          0.18,
+          0.22,
+          0.2,
+          "skin",
+          0,
+          1.17,
+          0,
+          "cloth"
+        ]
+      ],
+      "_": "左边的男人"
+    },
+    {
+      "type": "boxes",
+      "card": "notportraits",
+      "x": -0.95,
+      "z": -2.25,
+      "boxes": [
+        [
+          0.42,
+          0.55,
+          0.38,
+          "dark",
+          0,
+          0.28,
+          0,
+          "cloth"
+        ],
+        [
+          0.4,
+          0.5,
+          0.3,
+          "dark",
+          0,
+          0.8,
+          0,
+          "cloth"
+        ],
+        [
+          0.18,
+          0.22,
+          0.2,
+          "skin",
+          0,
+          1.17,
+          0,
+          "cloth"
+        ]
+      ],
+      "_": "左边后面的女人"
+    },
+    {
+      "type": "boxes",
+      "card": "apart",
+      "x": 0.95,
+      "z": -2.25,
+      "boxes": [
+        [
+          0.42,
+          0.55,
+          0.38,
+          "dark",
+          0,
+          0.28,
+          0,
+          "cloth"
+        ],
+        [
+          0.4,
+          0.5,
+          0.3,
+          "dark",
+          0,
+          0.8,
+          0,
+          "cloth"
+        ],
+        [
+          0.18,
+          0.22,
+          0.2,
+          "skin",
+          0,
+          1.17,
+          0,
+          "cloth"
+        ]
+      ],
+      "_": "右边后面的男人"
+    },
+    {
+      "type": "boxes",
+      "card": "honest",
+      "x": 0.95,
+      "z": -1.6,
+      "boxes": [
+        [
+          0.42,
+          0.55,
+          0.38,
+          "cloth",
+          0,
+          0.28,
+          0,
+          "cloth"
+        ],
+        [
+          0.4,
+          0.5,
+          0.3,
+          "cloth",
+          0,
+          0.8,
+          0,
+          "cloth"
+        ],
+        [
+          0.18,
+          0.22,
+          0.2,
+          "skin",
+          0,
+          1.17,
+          0,
+          "cloth"
+        ]
+      ],
+      "_": "右边倒咖啡的女人"
+    },
+    {
+      "type": "boxes",
+      "card": "apart",
+      "x": 0,
+      "z": -1.15,
+      "boxes": [
+        [
+          0.42,
+          0.55,
+          0.38,
+          "dark",
+          0,
+          0.28,
+          0,
+          "cloth"
+        ],
+        [
+          0.4,
+          0.5,
+          0.3,
+          "dark",
+          0,
+          0.8,
+          0,
+          "cloth"
+        ],
+        [
+          0.18,
+          0.22,
+          0.2,
+          "skin",
+          0,
+          1.17,
+          0,
+          "cloth"
+        ]
+      ],
+      "_": "背对着我们的女孩"
+    },
+    {
+      "type": "wallBoxes",
+      "card": "studies",
+      "wall": "back",
+      "x": -1.2,
+      "y": 1.6,
+      "z": -3.2,
+      "_": "后墙上的小窗",
+      "boxes": [
+        [
+          0.5,
+          0.45,
+          0.04,
+          "window",
+          0,
+          0,
+          0.02,
+          "cloth"
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "lamp": {
+      "title": {
+        "zh": "唯一的灯",
+        "en": "The only lamp"
+      },
+      "text": {
+        "zh": "屋顶挂着的这盏油灯，是房间里唯一的光，照亮了每个人的脸和手。",
+        "en": "This oil lamp is the only light in the room, picking out each face and hand."
+      }
+    },
+    "hands": {
+      "title": {
+        "zh": "这双手",
+        "en": "These hands"
+      },
+      "text": {
+        "zh": "梵高说，他想让人感觉到，这些人是用伸进盘子的这双手，亲自翻土种出了土豆。",
+        "en": "Van Gogh said he wanted people to feel that these folk had tilled the earth with the very hands they put into the dish."
+      }
+    },
+    "honest": {
+      "title": {
+        "zh": "诚实挣来的食物",
+        "en": "Honestly earned"
+      },
+      "text": {
+        "zh": "他说这幅画讲的是体力劳动，讲的是他们诚实地挣来了自己的食物。",
+        "en": "He said the painting speaks of manual labour, and of how they had honestly earned their food."
+      }
+    },
+    "studies": {
+      "title": {
+        "zh": "一百多张习作",
+        "en": "Over a hundred studies"
+      },
+      "text": {
+        "zh": "开始画之前，他画了一百多张农民的肖像习作，还有许多素描。",
+        "en": "Before starting, he made over a hundred portrait studies of farmworkers, and many drawings."
+      }
+    },
+    "notportraits": {
+      "title": {
+        "zh": "不是肖像",
+        "en": "Not portraits"
+      },
+      "text": {
+        "zh": "他在农民德格罗特-范罗伊一家的家里画习作，但并不打算画出这家人准确的样子。",
+        "en": "He made his studies at the home of the De Groot-van Rooij family, but did not intend to make exact portraits of them."
+      }
+    },
+    "apart": {
+      "title": {
+        "zh": "彼此孤立",
+        "en": "Apart, together"
+      },
+      "text": {
+        "zh": "画中的人是由几张单人习作组合起来的，所以虽然围坐在一起，看起来却有些彼此孤立。",
+        "en": "The figures were combined from separate studies, so although they sit together, they seem somewhat isolated from one another."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“只有一盏灯”：打开后，除了油灯附近，房间里其他地方都暗下去，只剩灯下的脸和手（spot.at 是灯的位置，原画上传后照着原画改）。",
+    "type": "toggles",
+    "label": {
+      "zh": "只有一盏灯",
+      "en": "Only the lamp"
+    },
+    "toggles": [
+      {
+        "id": "lamp",
+        "label": {
+          "zh": "只有一盏灯",
+          "en": "Only the lamp"
+        },
+        "spot": {
+          "at": [
+            0,
+            1.75,
+            -1.9
+          ],
+          "radius": 1.4,
+          "dark": 0.15
+        },
+        "card": "lamp"
+      }
+    ]
+  },
+  "compare": {
+    "_说明": "“三个版本”：任选两个对比。图片都要是公有领域；找不到合格图片的先不放（versions 里只写已经放进 images/ 的）。",
+    "type": "compare",
+    "label": {
+      "zh": "三个版本",
+      "en": "Three versions"
+    },
+    "note": {
+      "zh": "版画是他用一天时间凭记忆画在石板上的，所以人物左右相反；只印了20张，准备送给朋友和学生。",
+      "en": "He drew the lithograph on stone from memory in a single day, so the figures are reversed. Only 20 were printed, as gifts for friends and pupils."
+    },
+    "versions": [
+      {
+        "image": "images/potato-eaters.jpg",
+        "short": {
+          "zh": "最终版 · 梵高博物馆",
+          "en": "Final version · Van Gogh Museum"
+        },
+        "caption": {
+          "zh": "最终版，1885年4–5月，阿姆斯特丹梵高博物馆",
+          "en": "Final version, April–May 1885, Van Gogh Museum, Amsterdam"
+        }
+      }
+    ],
+    "_待上传": [
+      {
+        "image": "images/potato-eaters-kroller-muller.jpg",
+        "short": {
+          "zh": "早期版本 · 克勒勒-米勒",
+          "en": "Earlier version · Kröller-Müller"
+        },
+        "caption": {
+          "zh": "早期版本，克勒勒-米勒博物馆",
+          "en": "Earlier version, Kröller-Müller Museum"
+        }
+      },
+      {
+        "image": "images/potato-eaters-lithograph.jpg",
+        "short": {
+          "zh": "版画",
+          "en": "Lithograph"
+        },
+        "caption": {
+          "zh": "版画（人物左右相反）",
+          "en": "Lithograph (figures reversed)"
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/potato-eaters.jpg",
+        "alt": {
+          "zh": "梵高《吃土豆的人》1885，阿姆斯特丹梵高博物馆",
+          "en": "Vincent van Gogh, The Potato Eaters, 1885, Van Gogh Museum, Amsterdam"
+        },
+        "caption": {
+          "zh": "1885年4–5月 · 阿姆斯特丹梵高博物馆",
+          "en": "April–May 1885 · Van Gogh Museum, Amsterdam"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 一场考试",
+          "en": "A test"
+        },
+        "text": {
+          "zh": "1883年底，梵高回到纽南父母家。为了这幅画，他画了一百多张农民的肖像习作。他把它当作对自己的一次考试，想证明自己正在成为一个真正的人物画家。",
+          "en": "At the end of 1883, Van Gogh returned to his parents' home in Nuenen. For this painting he made over a hundred portrait studies of farmworkers. He saw it as a test of his mastery, proof that he was becoming an accomplished figure painter."
+        }
+      },
+      {
+        "image": "images/potato-eaters.jpg",
+        "alt": {
+          "zh": "梵高《吃土豆的人》1885，阿姆斯特丹梵高博物馆",
+          "en": "Vincent van Gogh, The Potato Eaters, 1885, Van Gogh Museum, Amsterdam"
+        },
+        "caption": {
+          "zh": "1885年4–5月 · 阿姆斯特丹梵高博物馆",
+          "en": "April–May 1885 · Van Gogh Museum, Amsterdam"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 灯下的晚餐",
+          "en": "Supper under the lamp"
+        },
+        "text": {
+          "zh": "1885年春天，他画下了这五个人，在唯一的一盏灯下吃土豆。他写信告诉提奥：他们用伸进盘子的这双手，亲自翻土种出了这些土豆。",
+          "en": "In spring 1885, he painted these five people eating potatoes under a single lamp. He wrote to Theo that they had tilled the earth with the very hands they put into the dish."
+        }
+      },
+      {
+        "image": "images/potato-eaters.jpg",
+        "alt": {
+          "zh": "梵高《吃土豆的人》1885，阿姆斯特丹梵高博物馆",
+          "en": "Vincent van Gogh, The Potato Eaters, 1885, Van Gogh Museum, Amsterdam"
+        },
+        "caption": {
+          "zh": "1885年4–5月 · 阿姆斯特丹梵高博物馆",
+          "en": "April–May 1885 · Van Gogh Museum, Amsterdam"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 不急着被喜欢",
+          "en": "In no hurry to be liked"
+        },
+        "text": {
+          "zh": "画商和其他画家都不喜欢这幅画，但梵高自己很看重它。他说，他并不急着让每个人都马上喜欢它。",
+          "en": "Dealers and fellow artists did not like the painting, but Van Gogh valued it highly. He said he was not at all anxious for everyone to like it at once."
+        }
+      }
+    ],
+    "final": {
+      "zh": "他们诚实地挣来了自己的食物。",
+      "en": "They had honestly earned their food."
+    },
+    "versions": [
+      {
+        "image": "images/potato-eaters.jpg",
+        "short": {
+          "zh": "1885 · 阿姆斯特丹",
+          "en": "1885 · Amsterdam"
+        },
+        "caption": {
+          "zh": "1885年4–5月 · 阿姆斯特丹梵高博物馆",
+          "en": "April–May 1885 · Van Gogh Museum, Amsterdam"
+        }
+      }
+    ],
+    "museums": [
+      "van-gogh-museum"
+    ],
+    "exit": [
+      {
+        "scene": "bedroom",
+        "href": "../bedroom/",
+        "label": {
+          "zh": "三年后，阿尔勒",
+          "en": "Three years later, Arles"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸和作品页按梵高博物馆官网补上。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "吃土豆的人",
+      "en": "The Potato Eaters"
+    },
+    "date": {
+      "zh": "1885年4–5月，纽南",
+      "en": "April–May 1885, Nuenen"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "82 × 114 cm",
+      "en": "82 × 114 cm"
+    },
+    "collection": {
+      "zh": "阿姆斯特丹梵高博物馆",
+      "en": "Van Gogh Museum, Amsterdam"
+    },
+    "url": "https://www.vangoghmuseum.nl/en/collection/s0005V1962"
+  },
+  "zoom": {
+    "image": "images/potato-eaters.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "梵高博物馆：吃土豆的人",
+          "en": "Van Gogh Museum: The Potato Eaters"
+        },
+        "url": "https://www.vangoghmuseum.nl/en/collection/s0005V1962"
+      },
+      {
+        "title": {
+          "zh": "克勒勒-米勒博物馆：吃土豆的人",
+          "en": "Kröller-Müller Museum: The Potato Eaters"
+        },
+        "url": "https://krollermuller.nl/en/vincent-van-gogh-the-potato-eaters-1"
+      },
+      {
+        "title": {
+          "zh": "提森-博内米萨博物馆：吃土豆的人",
+          "en": "Museo Thyssen-Bornemisza: The Potato Eaters"
+        },
+        "url": "https://www.museothyssen.org/en/collection/artists/gogh-vincent-van/potato-eaters"
+      },
+      {
+        "title": {
+          "zh": "世界历史百科：吃土豆的人",
+          "en": "World History Encyclopedia: The Potato Eaters"
+        },
+        "url": "https://www.worldhistory.org/image/15462/the-potato-eaters-by-van-gogh/"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 一场考试",
+          "en": "A test"
+        },
+        "text": {
+          "zh": "1883年底，梵高回到纽南父母家。为了这幅画，他画了一百多张农民的肖像习作。他把它当作对自己的一次考试，想证明自己正在成为一个真正的人物画家。",
+          "en": "At the end of 1883, Van Gogh returned to his parents' home in Nuenen. For this painting he made over a hundred portrait studies of farmworkers. He saw it as a test of his mastery, proof that he was becoming an accomplished figure painter."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 灯下的晚餐",
+          "en": "Supper under the lamp"
+        },
+        "text": {
+          "zh": "1885年春天，他画下了这五个人，在唯一的一盏灯下吃土豆。他写信告诉提奥：他们用伸进盘子的这双手，亲自翻土种出了这些土豆。",
+          "en": "In spring 1885, he painted these five people eating potatoes under a single lamp. He wrote to Theo that they had tilled the earth with the very hands they put into the dish."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 不急着被喜欢",
+          "en": "In no hurry to be liked"
+        },
+        "text": {
+          "zh": "画商和其他画家都不喜欢这幅画，但梵高自己很看重它。他说，他并不急着让每个人都马上喜欢它。",
+          "en": "Dealers and fellow artists did not like the painting, but Van Gogh valued it highly. He said he was not at all anxious for everyone to like it at once."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}

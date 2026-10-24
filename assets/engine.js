@@ -39,7 +39,7 @@ export async function startScene(sceneUrl) {
 // ---------------------------------------------------------------------
 function buildDOM(S, R, meta) {
   const P = S.painting, L = S.label, E = S.ending;
-  const TW = S.compare || (S.exclusive && S.exclusive.type === 'compare' ? S.exclusive : null);   // 对比滑块（可以和另一个独家发现同时有）
+  const TW = twinOf(S);   // 对比滑块（可以和另一个独家发现同时有）
   const labelLine = { zh: [L.title.zh, L.artist.zh, L.date.zh, L.museum.zh].join(' · '), en: [L.title.en, L.artist.en, L.date.en, L.museum.en].join(' · ') };
   const imgLine = imageSourceHTML(L.source);   // 图片：… / Image: …
   // 个别图片有自己的来源说明（比如奥赛的照片），页面底部也一起列出
@@ -166,12 +166,14 @@ function buildDOM(S, R, meta) {
   ${TW ? `<div class="popup panel" id="twin">
     <button class="close" data-close="twin" aria-label="Close">×</button>
     <h3>${bi(TW.label)}</h3>
+    ${TW.versions ? `<div class="cmp-pick"><select id="twinPickA" aria-label="A">${TW.versions.map((v, i) => `<option value="${i}">${textOf(v.short || v.caption, lang)}</option>`).join('')}</select><span>↔</span><select id="twinPickB" aria-label="B">${TW.versions.map((v, i) => `<option value="${i}" ${i === 1 ? 'selected' : ''}>${textOf(v.short || v.caption, lang)}</option>`).join('')}</select></div>` : ''}
     <div class="twin-cmp" id="twinCmp">
       <img id="twinA" src="${TW.left.image}" ${altAttr(TW.left.caption)} />
       <img id="twinB" src="${TW.right.image}" ${altAttr(TW.right.caption)} />
       <div class="twin-line" id="twinLine"></div>
     </div>
-    <p class="twin-caps"><span>← ${bi(TW.left.caption, ' / ')}</span><span>${bi(TW.right.caption, ' / ')} →</span></p>
+    <p class="twin-caps"><span id="twinCapA">← ${bi(TW.left.caption, ' / ')}</span><span id="twinCapB">${bi(TW.right.caption, ' / ')} →</span></p>
+    ${TW.note ? `<p>${bi(TW.note, ' / ')}</p>` : ''}
     ${TW.right.link && isLive(TW.right.link.scene) ? `<p><a class="btn" href="${TW.right.link.href}">${ui(TW.right.link.label.zh, TW.right.link.label.en)} →</a></p>` : ''}
     <p><small>${ui('左右拖动对比', 'Drag left and right to compare')}${[TW.left.credit, TW.right.credit].filter(Boolean).map(c => ' · ' + bi(c, ' / ')).join('')}</small></p>
   </div>` : ''}
@@ -260,7 +262,13 @@ function buildDOM(S, R, meta) {
 // ---------------------------------------------------------------------
 // 2. 3D 场景和所有互动
 // ---------------------------------------------------------------------
+// 对比滑块（compare）：versions 里任选两个版本对比（比如最终版、早期版本、版画）；只有一个版本时不显示
+function twinOf(S) {
+  const T = S.compare || (S.exclusive && S.exclusive.type === 'compare' ? S.exclusive : null);
+  return T && T.versions ? (T.versions.length > 1 ? { ...T, left: T.versions[0], right: T.versions[1] } : null) : T;
+}
 function run(S, R, meta) {
+  const TW = twinOf(S);
   const $ = id => document.getElementById(id);
   const C = S.colors;
   const col = v => (C[v] || v);   // "basin" 这类名字 → scene.json 里的颜色
@@ -711,7 +719,7 @@ function run(S, R, meta) {
   const projUniforms = {
     uPaint: { value: paintingTex }, uPaintB: { value: paintingTexB }, uDepth: { value: depthRT.depthTexture },
     uProjVP: { value: new THREE.Matrix4().multiplyMatrices(projector.projectionMatrix, projector.matrixWorldInverse) },
-    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 }, uTint: { value: new THREE.Vector3(1, 1, 1) }, uMixB: { value: 0 }, uLift: { value: new THREE.Vector3(0, 0, 0) },
+    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 }, uTint: { value: new THREE.Vector3(1, 1, 1) }, uMixB: { value: 0 }, uSpotPos: { value: new THREE.Vector3() }, uSpotR: { value: 1 }, uSpotDark: { value: 0.2 }, uSpotK: { value: 0 }, uLift: { value: new THREE.Vector3(0, 0, 0) },
     uWind: { value: 0 }, uTime: { value: 0 }   // 独家发现“起风了”
   };
   const projVert = `
@@ -720,7 +728,7 @@ function run(S, R, meta) {
   const projFrag = `
     uniform sampler2D uPaint; uniform sampler2D uDepth; uniform sampler2D uMap;
     uniform mat4 uProjVP; uniform vec3 uProjPos; uniform float uNear; uniform float uFar;
-    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn; uniform vec3 uTint; uniform vec3 uLift; uniform sampler2D uPaintB; uniform float uMixB; uniform float uWind; uniform float uTime;
+    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn; uniform vec3 uTint; uniform vec3 uLift; uniform sampler2D uPaintB; uniform float uMixB; uniform vec3 uSpotPos; uniform float uSpotR; uniform float uSpotDark; uniform float uSpotK; uniform float uWind; uniform float uTime;
     varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv;
     float linDepth(float d) { float z = d * 2.0 - 1.0; return 2.0 * uNear * uFar / (uFar + uNear - z * (uFar - uNear)); }
     void main() {
@@ -741,6 +749,10 @@ function run(S, R, meta) {
       }
       col = mix(col, col * vec3(0.8, 0.92, 1.1) + vec3(0.05, 0.06, 0.09), uDawn);   // 天亮了：灯光变淡、偏冷的晨光
       col = clamp(col * uTint + uLift, 0.0, 1.0);   // 独家发现“换一种光”：清晨、正午、傍晚
+      if (uSpotK > 0.0) {   // 独家发现“只有一盏灯”：离灯越远越暗
+        float lit = 1.0 - smoothstep(uSpotR * 0.35, uSpotR, distance(vWorld, uSpotPos));
+        col *= mix(1.0, mix(uSpotDark, 1.0, lit), uSpotK);
+      }
       if (uWall > 0.5) {   // 褪色开关：把墙上偏蓝的颜色加回一点红色
         float blueish = smoothstep(0.0, 0.12, col.b - col.r);
         col = mix(col, vec3(min(col.r + 0.28 * col.b, 1.0), col.g * 0.88, col.b), uViolet * blueish);
@@ -914,6 +926,14 @@ function run(S, R, meta) {
     tc.addEventListener('pointerup', () => { td = false; }); tc.addEventListener('pointercancel', () => { td = false; });
     setTwin(50);
     $('twinBtn').onclick = () => togglePopup('twin');
+    if (TW.versions) {   // 换版本
+      const pick = () => {
+        const a = TW.versions[$('twinPickA').value], b = TW.versions[$('twinPickB').value];
+        $('twinA').src = a.image; $('twinB').src = b.image;
+        $('twinCapA').innerHTML = '← ' + bi(a.caption, ' / '); $('twinCapB').innerHTML = bi(b.caption, ' / ') + ' →';
+      };
+      $('twinPickA').onchange = $('twinPickB').onchange = pick;
+    }
   }
   document.querySelectorAll('[data-close]').forEach(b => b.onclick = () => togglePopup(b.dataset.close, false));
   // 图片真的加载失败时，才换成“找不到”的提示
@@ -1192,6 +1212,9 @@ function run(S, R, meta) {
   //   paintAlt：同时把投影的原画换成改过的那一版（示意）；note：打开时显示的说明；card：打开时显示的卡片；noPaint：这些物体不贴原画（比如窗框和铁栏）
   const togObj = S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive : null;
   const toggles = [];
+  if (togObj) for (const t of togObj.toggles) if (t.spot) {   // spot：{ at: [x, y, z], radius, dark }，只有灯附近亮着
+    projUniforms.uSpotPos.value.set(...t.spot.at); projUniforms.uSpotR.value = t.spot.radius || 1.5; projUniforms.uSpotDark.value = t.spot.dark ?? 0.18;
+  }
   if (togObj) togObj.toggles.forEach((t, i) => {
     const meshes = [];
     for (const id of t.targets || []) named[id] && named[id].traverse(o => {
@@ -1223,6 +1246,7 @@ function run(S, R, meta) {
         m.visible = T.now < 0.99;
       }
       if (T.t.paintAlt) projUniforms.uMixB.value = T.now;
+      if (T.t.spot) projUniforms.uSpotK.value = T.now;
       if (Math.abs(target - T.now) < 0.001) renderProjectorDepth();   // 淡出 / 淡入完了：重新判断哪些表面能照到原画
     }
   }
