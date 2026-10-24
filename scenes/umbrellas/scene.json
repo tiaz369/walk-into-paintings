@@ -1,5 +1,5 @@
 {
-  "_说明": "伞（户外风景，完整版）。所有事实文字由 Tia 提供（资料来自伦敦国家美术馆官网和技术研究）。巴黎一条热闹的街道：前景是六个主要人物（左边的年轻女子和她身后的男人，中间打开伞的女子，右边的母亲和两个女儿），身后是密集的人群，头顶是一片伞。这幅画分两个阶段完成：右边一组约1881年，左边两人、背景人群和所有的伞约1885年。画家视角和人物位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "_说明": "伞（户外风景，完整版）。所有事实文字由 Tia 提供（资料来自伦敦国家美术馆官网和技术研究）。巴黎一条热闹的街道：前景是六个主要人物（左边的年轻女子和她身后的男人，中间打开伞的女子，右边的母亲和两个女儿），身后是密集的人群，头顶是一片伞。这幅画分两个阶段完成：右边一组约1881年，左边两人、背景人群和所有的伞约1885年。画家视角按原画估算：站在人群里平视（视平线约在画面上方 31%，和人的眼睛差不多高），离左边的年轻女子不到两米。人物按头在原画上的位置摆放。",
   "id": "umbrellas",
   "variant": "outdoor",
   "lighting": {
@@ -20,15 +20,14 @@
   },
   "painting": {
     "image": "images/umbrellas.jpg",
-    "width": 1150,
-    "height": 1800,
+    "width": 960,
+    "height": 1510,
     "alt": {
       "zh": "雷诺阿《伞》约1881–86，伦敦国家美术馆",
       "en": "Pierre-Auguste Renoir, The Umbrellas, about 1881–6, The National Gallery, London"
-    },
-    "_": "宽高是按 180.3 × 114.9 cm 估的，上传原画后改成图片的真实像素"
+    }
   },
-  "projection": false,
+  "projection": true,
   "label": {
     "_说明": "展签：画名、画家、年份、收藏地",
     "title": {
@@ -44,8 +43,8 @@
       "en": "About 1881–6"
     },
     "museum": {
-      "zh": "伦敦国家美术馆（2026–2031年在都柏林休·莱恩美术馆展出）",
-      "en": "The National Gallery, London (on display at the Hugh Lane Gallery, Dublin, 2026–2031)"
+      "zh": "伦敦国家美术馆（2026年10月–2027年1月在伦敦展览《雷诺阿与爱》中展出）",
+      "en": "The National Gallery, London (on show in London in the exhibition Renoir and Love, October 2026 – January 2027)"
     },
     "source": {
       "zh": "Wikimedia Commons，公有领域",
@@ -61,13 +60,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the people in the street or the umbrellas overhead to learn more · Tap “No umbrellas yet in 1881” to see the first stage · The glowing circle = Renoir's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "_说明": "画家视角：按原画估算（人物的头、小女孩的脚和头顶的伞对齐原画）。",
     "x": 0,
     "z": 0,
     "eye": 1.6,
     "yaw": 0,
-    "pitch": 0.05,
-    "fov": 60,
+    "pitch": -0.2076,
+    "fov": 58,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -88,7 +87,8 @@
     "bluedress": "#3a4a6a",
     "girl": "#7a8aa8",
     "tights": "#e0d6cc",
-    "skin": "#e6c8b0"
+    "skin": "#e6c8b0",
+    "basket": "#c8904a"
   },
   "room": {
     "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（街道），都写 [x最小, x最大, z最小, z最大]，单位是米。",
@@ -143,16 +143,16 @@
       "type": "boxes",
       "card": "sell",
       "x": 0,
-      "z": -12,
-      "_": "街对面的房子",
+      "z": -9,
+      "_": "远处的树和房子",
       "boxes": [
         [
-          24,
-          10,
+          16,
+          7,
           1,
           "house",
           0,
-          5,
+          3.5,
           0
         ]
       ]
@@ -162,20 +162,39 @@
       "pose": "standing",
       "color": "darkdress",
       "legs": "darkdress",
-      "x": -0.9,
-      "z": -2.2,
+      "x": -0.37,
+      "z": -1.75,
       "rot": 0.3,
       "card": "young",
       "_": "左边拿篮子的年轻女子（第二阶段）"
+    },
+    {
+      "type": "boxes",
+      "card": "young",
+      "x": -0.05,
+      "z": -1.6,
+      "_": "她手里的篮子",
+      "boxes": [
+        [
+          0.4,
+          0.3,
+          0.3,
+          "basket",
+          0,
+          0.95,
+          0
+        ]
+      ]
     },
     {
       "type": "figure",
       "pose": "standing",
       "color": "coat",
       "legs": "trousers",
-      "x": -0.55,
-      "z": -3.0,
+      "x": -0.71,
+      "z": -2.4,
       "rot": 0.2,
+      "scale": 1.03,
       "card": "fashion",
       "_": "她身后的男人（第二阶段）"
     },
@@ -184,9 +203,10 @@
       "pose": "standing",
       "color": "bluedress",
       "legs": "bluedress",
-      "x": 0.25,
-      "z": -3.2,
+      "x": 0.0,
+      "z": -3.0,
       "rot": -1.2,
+      "scale": 0.91,
       "card": "opening",
       "_": "中间抬头打开伞的女子（第一阶段）"
     },
@@ -195,9 +215,10 @@
       "pose": "standing",
       "color": "bluedress",
       "legs": "bluedress",
-      "x": 1.0,
-      "z": -2.6,
+      "x": 0.18,
+      "z": -2.56,
       "rot": -0.4,
+      "scale": 0.92,
       "card": "mother",
       "_": "右边的母亲（第一阶段）"
     },
@@ -206,10 +227,10 @@
       "pose": "standing",
       "color": "girl",
       "legs": "tights",
-      "x": 0.95,
-      "z": -1.7,
+      "x": 0.41,
+      "z": -2.02,
       "rot": -0.2,
-      "scale": 0.6,
+      "scale": 0.61,
       "card": "mother",
       "_": "拿铁环的小女孩（第一阶段）"
     },
@@ -218,10 +239,10 @@
       "pose": "standing",
       "color": "girl",
       "legs": "tights",
-      "x": 1.4,
+      "x": 0.53,
       "z": -2.1,
       "rot": -0.3,
-      "scale": 0.65,
+      "scale": 0.8,
       "card": "mother",
       "_": "另一个女儿（第一阶段）"
     },
@@ -230,7 +251,7 @@
       "id": "crowd",
       "card": "canopy",
       "x": 0,
-      "z": -5,
+      "z": -4.5,
       "_": "背景里的人群（第二阶段加上的）",
       "boxes": [
         [
@@ -238,7 +259,7 @@
           1.6,
           0.35,
           "coat",
-          -2.2,
+          -1.6,
           0.8,
           0
         ],
@@ -247,7 +268,7 @@
           1.6,
           0.35,
           "coat",
-          -1.4,
+          -1.0,
           0.8,
           -0.6
         ],
@@ -256,7 +277,7 @@
           1.6,
           0.35,
           "coat",
-          -0.6,
+          -0.4,
           0.8,
           0.3
         ],
@@ -274,7 +295,7 @@
           1.6,
           0.35,
           "coat",
-          1.1,
+          0.9,
           0.8,
           0.2
         ],
@@ -283,7 +304,7 @@
           1.6,
           0.35,
           "coat",
-          1.9,
+          1.5,
           0.8,
           -0.5
         ],
@@ -292,7 +313,7 @@
           1.6,
           0.35,
           "coat",
-          2.6,
+          2.0,
           0.8,
           0.1
         ],
@@ -301,7 +322,7 @@
           1.6,
           0.35,
           "coat",
-          -2.8,
+          -2.1,
           0.8,
           -0.8
         ]
@@ -312,7 +333,7 @@
       "id": "canopy",
       "card": "canopy",
       "x": 0,
-      "z": -4,
+      "z": -4.2,
       "_": "头顶的一片伞（至少十几把，第二阶段加上的）",
       "boxes": [
         [
@@ -320,81 +341,99 @@
           0.06,
           1.1,
           "umbrella",
-          -2.4,
-          2.3,
-          -0.4
+          -1.05,
+          2.54,
+          0.07
         ],
         [
           1.1,
           0.06,
           1.1,
           "umbrella",
-          -1.6,
-          2.5,
-          0.3
-        ],
-        [
-          1.1,
-          0.06,
-          1.1,
-          "umbrella",
-          -0.8,
-          2.35,
-          -0.8
-        ],
-        [
-          1.1,
-          0.06,
-          1.1,
-          "umbrella",
-          0,
+          0.42,
           2.6,
-          0.2
+          -0.48
         ],
         [
           1.1,
           0.06,
           1.1,
           "umbrella",
-          0.8,
-          2.4,
-          -0.5
+          -1.95,
+          2.77,
+          -0.13
         ],
         [
           1.1,
           0.06,
           1.1,
           "umbrella",
-          1.6,
-          2.55,
-          0.4
+          -1.06,
+          2.9,
+          0.25
         ],
         [
           1.1,
           0.06,
           1.1,
           "umbrella",
-          2.4,
-          2.3,
-          -0.3
+          1.35,
+          2.48,
+          0.55
         ],
         [
           1.1,
           0.06,
           1.1,
           "umbrella",
-          -2.0,
-          2.7,
-          -1.4
+          -1.4,
+          2.61,
+          0.96
         ],
         [
           1.1,
           0.06,
           1.1,
           "umbrella",
-          -0.4,
-          2.75,
-          -1.6
+          0.09,
+          2.69,
+          0.61
+        ],
+        [
+          1.1,
+          0.06,
+          1.1,
+          "umbrella",
+          -1.74,
+          2.71,
+          0.46
+        ],
+        [
+          1.1,
+          0.06,
+          1.1,
+          "umbrella",
+          -0.79,
+          2.12,
+          0.96
+        ],
+        [
+          1.1,
+          0.06,
+          1.1,
+          "umbrella",
+          -0.11,
+          2.68,
+          0.98
+        ],
+        [
+          1.1,
+          0.06,
+          1.1,
+          "umbrella",
+          0.86,
+          2.84,
+          0.11
         ],
         [
           1.1,
@@ -402,44 +441,26 @@
           1.1,
           "umbrella",
           1.2,
-          2.7,
-          -1.5
+          2.46,
+          1.08
         ],
         [
           1.1,
           0.06,
           1.1,
           "umbrella",
-          2.8,
-          2.6,
-          -1.2
+          1.52,
+          2.18,
+          -0.36
         ],
         [
           1.1,
           0.06,
           1.1,
           "umbrella",
-          -3.0,
-          2.5,
-          0.6
-        ],
-        [
-          1.1,
-          0.06,
-          1.1,
-          "umbrella",
-          0.4,
-          2.45,
-          1.2
-        ],
-        [
-          0.03,
-          1.0,
-          0.03,
-          "handle",
-          0.25,
-          1.95,
-          0.8
+          -1.13,
+          2.87,
+          0.19
         ]
       ]
     }
@@ -507,7 +528,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“1881年还没有伞”：开关打开后，头顶的伞和背景人群淡出，只剩下右边第一阶段画的那一组，并显示说明（示意）。原画上传后，再加一张左边两个人物变模糊的示意图（paintAlt）。",
+    "_说明": "独家发现“1881年还没有伞”：开关打开后，头顶的伞和背景人群淡出，原画也换成示意图（images/umbrellas-1881.jpg：把第二阶段加上的伞、人群和左边两个人物变模糊，是我们做的示意，不是研究图片），只剩右边第一阶段画的那一组清楚，并显示说明。",
     "type": "toggles",
     "label": {
       "zh": "1881年还没有伞",
@@ -528,7 +549,8 @@
         "note": {
           "zh": "根据国家美术馆的研究，这些伞是雷诺阿大约四年后才加上的。这是示意。",
           "en": "According to National Gallery research, Renoir added the umbrellas about four years later. This is an illustration."
-        }
+        },
+        "paintAlt": "images/umbrellas-1881.jpg"
       }
     ]
   },
@@ -542,8 +564,8 @@
           "en": "Pierre-Auguste Renoir, The Umbrellas, about 1881–6, The National Gallery, London"
         },
         "caption": {
-          "zh": "约1881–86年 · 伦敦国家美术馆（2026–2031年在都柏林休·莱恩美术馆展出）",
-          "en": "About 1881–6 · The National Gallery, London (on display at the Hugh Lane Gallery, Dublin, 2026–2031)"
+          "zh": "约1881–86年 · 伦敦国家美术馆",
+          "en": "About 1881–6 · The National Gallery, London"
         },
         "kicker": "ACT I",
         "title": {
@@ -562,8 +584,8 @@
           "en": "Pierre-Auguste Renoir, The Umbrellas, about 1881–6, The National Gallery, London"
         },
         "caption": {
-          "zh": "约1881–86年 · 伦敦国家美术馆（2026–2031年在都柏林休·莱恩美术馆展出）",
-          "en": "About 1881–6 · The National Gallery, London (on display at the Hugh Lane Gallery, Dublin, 2026–2031)"
+          "zh": "约1881–86年 · 伦敦国家美术馆",
+          "en": "About 1881–6 · The National Gallery, London"
         },
         "kicker": "ACT II",
         "title": {
@@ -582,8 +604,8 @@
           "en": "Pierre-Auguste Renoir, The Umbrellas, about 1881–6, The National Gallery, London"
         },
         "caption": {
-          "zh": "约1881–86年 · 伦敦国家美术馆（2026–2031年在都柏林休·莱恩美术馆展出）",
-          "en": "About 1881–6 · The National Gallery, London (on display at the Hugh Lane Gallery, Dublin, 2026–2031)"
+          "zh": "约1881–86年 · 伦敦国家美术馆",
+          "en": "About 1881–6 · The National Gallery, London"
         },
         "kicker": "ACT III",
         "title": {
@@ -591,8 +613,8 @@
           "en": "London and Dublin"
         },
         "text": {
-          "zh": "1917年，它作为休·莱恩爵士遗赠的一部分，进入伦敦国家美术馆，并和都柏林的休·莱恩美术馆轮流展出。2026年到2031年，它在都柏林。",
-          "en": "In 1917, it came to the National Gallery in London as part of the Sir Hugh Lane Bequest, and is shared with the Hugh Lane Gallery in Dublin. From 2026 to 2031, it is in Dublin."
+          "zh": "1917年，它作为休·莱恩爵士遗赠的一部分，进入伦敦国家美术馆，并和都柏林的休·莱恩美术馆轮流展出。2026年到2031年，它长期借展给都柏林；2026年10月到2027年1月，它暂时回到伦敦，在国家美术馆的展览《雷诺阿与爱》中展出。",
+          "en": "In 1917, it came to the National Gallery in London as part of the Sir Hugh Lane Bequest, and is shared with the Hugh Lane Gallery in Dublin. It is on long loan to Dublin from 2026 to 2031; from October 2026 to January 2027 it is back in London for the National Gallery's exhibition *Renoir and Love*."
         }
       }
     ],
@@ -643,8 +665,8 @@
       "en": "The National Gallery, London (Sir Hugh Lane Bequest, 1917. In partnership with Hugh Lane Gallery, Dublin)"
     },
     "creditLine": {
-      "zh": "目前展出：都柏林休·莱恩美术馆，2026–2031年",
-      "en": "Currently on display at the Hugh Lane Gallery, Dublin, 2026–2031"
+      "zh": "目前展出：伦敦国家美术馆展览《雷诺阿与爱》，2026年10月3日–2027年1月31日；之后回到都柏林休·莱恩美术馆（长期借展至2031年2月23日）",
+      "en": "Currently on show in the National Gallery exhibition Renoir and Love, 3 October 2026 – 31 January 2027; then back to the Hugh Lane Gallery, Dublin (long loan until 23 February 2031)"
     },
     "url": "https://www.nationalgallery.org.uk/paintings/pierre-auguste-renoir-the-umbrellas"
   },
@@ -707,8 +729,8 @@
           "en": "London and Dublin"
         },
         "text": {
-          "zh": "1917年，它作为休·莱恩爵士遗赠的一部分，进入伦敦国家美术馆，并和都柏林的休·莱恩美术馆轮流展出。2026年到2031年，它在都柏林。",
-          "en": "In 1917, it came to the National Gallery in London as part of the Sir Hugh Lane Bequest, and is shared with the Hugh Lane Gallery in Dublin. From 2026 to 2031, it is in Dublin."
+          "zh": "1917年，它作为休·莱恩爵士遗赠的一部分，进入伦敦国家美术馆，并和都柏林的休·莱恩美术馆轮流展出。2026年到2031年，它长期借展给都柏林；2026年10月到2027年1月，它暂时回到伦敦，在国家美术馆的展览《雷诺阿与爱》中展出。",
+          "en": "In 1917, it came to the National Gallery in London as part of the Sir Hugh Lane Bequest, and is shared with the Hugh Lane Gallery in Dublin. It is on long loan to Dublin from 2026 to 2031; from October 2026 to January 2027 it is back in London for the National Gallery's exhibition *Renoir and Love*."
         }
       }
     ]

@@ -1182,6 +1182,10 @@ function run(S, R, meta) {
     setCmpImages = () => {
       const a = CV[$('cmpA').value], b = CV[$('cmpB').value];
       imgA.src = a.image; $('cmpTagA').textContent = textOf(a.short, lang);
+      imgA.onload = () => {   // 对比框的比例跟着左边那张画，不留空白；竖的画不超过屏幕高度的 75%
+        const r = imgA.naturalWidth / imgA.naturalHeight;
+        cmp.style.aspectRatio = `${imgA.naturalWidth} / ${imgA.naturalHeight}`; cmp.style.width = `min(820px, 100%, ${Math.round(75 * r)}vh)`;
+      };
       imgB.src = b.image; $('cmpTagB').textContent = textOf(b.short, lang);
       document.querySelectorAll('#cmpA option, #cmpB option').forEach(o => o.textContent = textOf(CV[o.value].short, lang));
     };
