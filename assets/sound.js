@@ -176,6 +176,17 @@ const AMBIENCE = {
     lap(water, ctx.currentTime + 0.5); every(st, 3, 7, t => lap(water, t));
     bird(out, ctx.currentTime + 1.5); every(st, 4, 11, t => bird(out, t));
   },
+  // 排练室：木地板轻响，低声交谈，远处的钢琴（A rehearsal room）
+  rehearsal(out, st) {
+    loopNoise('brown', out, { freq: 240, gain: 0.08 });
+    murmur(out, 0.05)(st);
+    const creak = t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(420, 700), q: 10, vol: 0.12, dur: rnd(0.08, 0.18), p: rnd(-0.7, 0.7) });
+    every(st, 3, 9, creak);
+    const far = ctx.createGain(); far.gain.value = 0.3; far.connect(pan(out, 0.5));   // 钢琴在隔壁，很轻
+    const scale = [262, 294, 330, 349, 392, 440, 494, 523];
+    const phrase = t => { let k = Math.floor(rnd(0, 4)); for (let i = 0; i < 6; i++) { k = Math.max(0, Math.min(7, k + Math.floor(rnd(-2, 3)))); tone(far, t + i * 0.42, { f0: scale[k], type: 'triangle', vol: 0.05, attack: 0.01, dur: 1.2 }); } };
+    phrase(ctx.currentTime + 2); every(st, 7, 14, phrase);
+  },
   // 非常安静的冬日室内：很轻的房间底噪，窗外偶尔一阵很远的风（A quiet winter room）
   'winter-room'(out, st) {
     loopNoise('brown', out, { freq: 170, gain: 0.06 });
