@@ -140,6 +140,19 @@
     },
     {
       "date": {
+        "zh": "1889年6月",
+        "en": "June 1889"
+      },
+      "text": {
+        "zh": "画下《星夜》",
+        "en": "Paints *The Starry Night*"
+      },
+      "scenes": [
+        "starry-night"
+      ]
+    },
+    {
+      "date": {
         "zh": "1889年6–7月",
         "en": "June–July 1889"
       },

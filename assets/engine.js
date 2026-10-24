@@ -135,6 +135,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'pair' ? `<button class="btn" id="pairBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${TW ? `<button class="btn" id="twinBtn">✦ ${ui(TW.label.zh, TW.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'wind' ? `<button class="btn" id="windBtn">🌬 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.map((t, i) => `<button class="btn" data-toggle="${i}">✦ ${ui(t.label.zh, t.label.en)}</button>`).join('') : ''}
     ${S.exclusive && S.exclusive.type === 'light' ? `<button class="btn" id="lightBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'mirror' ? `<button class="btn" id="mirrorBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
@@ -171,6 +172,7 @@ function buildDOM(S, R, meta) {
       <div class="twin-line" id="twinLine"></div>
     </div>
     <p class="twin-caps"><span>← ${bi(TW.left.caption, ' / ')}</span><span>${bi(TW.right.caption, ' / ')} →</span></p>
+    ${TW.right.link && isLive(TW.right.link.scene) ? `<p><a class="btn" href="${TW.right.link.href}">${ui(TW.right.link.label.zh, TW.right.link.label.en)} →</a></p>` : ''}
     <p><small>${ui('左右拖动对比', 'Drag left and right to compare')}${[TW.left.credit, TW.right.credit].filter(Boolean).map(c => ' · ' + bi(c, ' / ')).join('')}</small></p>
   </div>` : ''}
   ${S.exclusive && S.exclusive.type === 'pair' ? `<div class="popup panel" id="pair">
@@ -188,6 +190,7 @@ function buildDOM(S, R, meta) {
     <div class="mirror-zoom" role="img" ${altAttr(M.alt || M.label).replace('alt=', 'aria-label=')} style="background-image:url('${S.painting.image}');aspect-ratio:${(M.crop.w * S.painting.width) / (M.crop.h * S.painting.height)};background-size:${100 / M.crop.w}% ${100 / M.crop.h}%;background-position:${M.crop.x / (1 - M.crop.w) * 100}% ${M.crop.y / (1 - M.crop.h) * 100}%"></div>
     <p>${bi(M.text, ' / ')}</p>
   </div>`)(S.exclusive) : ''}
+  ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.filter(t => t.note).map(t => `<div class="panel toggle-note hidden" data-toggle-note="${S.exclusive.toggles.indexOf(t)}">${bi(t.note, ' / ')}</div>`).join('') : ''}
   ${S.exclusive && S.exclusive.type === 'light' ? `<div id="lightPanel" class="panel hidden">
     <input type="range" id="lightRange" min="0" max="1000" value="${Math.round((S.exclusive.start ?? 0.5) * 1000)}" aria-label="${textOf(S.exclusive.label, lang)}" />
     <div class="light-labels">${S.exclusive.stops.map(st => `<span>${ui(st.label.zh, st.label.en)}</span>`).join('')}</div>
@@ -627,6 +630,8 @@ function run(S, R, meta) {
   });
   const firstObject = scene.children.length;
   for (const o of S.objects) { if (BUILD[o.type]) BUILD[o.type](o); else console.warn('unknown object type', o.type); }
+  // noPaint：这个物体不贴原画、也不挡住原画的投影（比如画家视角前面的窗框和铁栏）
+  for (const o of S.objects) if (o.noPaint && o.id && named[o.id]) named[o.id].traverse(m => { m.userData.noDepth = true; if (m.isMesh) m.userData.noPaint = true; });
   const objectRoots = scene.children.slice(firstObject);   // objects 里建出来的东西（“1658 / 今天”淡出时用）
 
   // 发光入口：门上的光 + 上方的文字牌，点一下去另一个场景
@@ -699,12 +704,14 @@ function run(S, R, meta) {
   projector.rotation.set(VIEW.pitch, -VIEW.yaw, 0, 'YXZ');
   projector.updateMatrixWorld(); projector.updateProjectionMatrix();
   const paintingTex = imageTex(S.painting.image); paintingTex.anisotropy = 4;
+  const paintAlt = S.exclusive && S.exclusive.type === 'toggles' && (S.exclusive.toggles.find(t => t.paintAlt) || {}).paintAlt;
+  const paintingTexB = paintAlt ? imageTex(paintAlt) : paintingTex;   // 独家发现“去掉想象”用的另一版原画
   const depthRT = new THREE.WebGLRenderTarget(1024, 812);
   depthRT.depthTexture = new THREE.DepthTexture(1024, 812); depthRT.depthTexture.type = THREE.UnsignedIntType;
   const projUniforms = {
-    uPaint: { value: paintingTex }, uDepth: { value: depthRT.depthTexture },
+    uPaint: { value: paintingTex }, uPaintB: { value: paintingTexB }, uDepth: { value: depthRT.depthTexture },
     uProjVP: { value: new THREE.Matrix4().multiplyMatrices(projector.projectionMatrix, projector.matrixWorldInverse) },
-    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 }, uTint: { value: new THREE.Vector3(1, 1, 1) }, uLift: { value: new THREE.Vector3(0, 0, 0) },
+    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 }, uTint: { value: new THREE.Vector3(1, 1, 1) }, uMixB: { value: 0 }, uLift: { value: new THREE.Vector3(0, 0, 0) },
     uWind: { value: 0 }, uTime: { value: 0 }   // 独家发现“起风了”
   };
   const projVert = `
@@ -713,7 +720,7 @@ function run(S, R, meta) {
   const projFrag = `
     uniform sampler2D uPaint; uniform sampler2D uDepth; uniform sampler2D uMap;
     uniform mat4 uProjVP; uniform vec3 uProjPos; uniform float uNear; uniform float uFar;
-    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn; uniform vec3 uTint; uniform vec3 uLift; uniform float uWind; uniform float uTime;
+    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn; uniform vec3 uTint; uniform vec3 uLift; uniform sampler2D uPaintB; uniform float uMixB; uniform float uWind; uniform float uTime;
     varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv;
     float linDepth(float d) { float z = d * 2.0 - 1.0; return 2.0 * uNear * uFar / (uFar + uNear - z * (uFar - uNear)); }
     void main() {
@@ -728,7 +735,7 @@ function run(S, R, meta) {
         if (uv.x >= 0.0 && uv.x <= 1.0 && uv.y >= 0.0 && uv.y <= 1.0 && ndc.z < 1.0) {
           float sceneD = linDepth(texture2D(uDepth, uv).r), myD = linDepth(ndc.z * 0.5 + 0.5);
           float edge = smoothstep(0.0, 0.05, min(min(uv.x, 1.0 - uv.x), min(uv.y, 1.0 - uv.y)));   // 原画边缘慢慢过渡，不留硬边
-          if (myD <= sceneD + 0.05 + sceneD * 0.02 && dot(n, normalize(uProjPos - vWorld)) > 0.0) col = mix(col, texture2D(uPaint, wuv).rgb, uEdge > 0.5 ? edge : 1.0);   // 照到了：显示原画
+          if (myD <= sceneD + 0.05 + sceneD * 0.02 && dot(n, normalize(uProjPos - vWorld)) > 0.0) col = mix(col, mix(texture2D(uPaint, wuv).rgb, texture2D(uPaintB, wuv).rgb, uMixB), uEdge > 0.5 ? edge : 1.0);   // 照到了：显示原画（uMixB：换成改过的那一版，比如去掉村庄）
           else if (uSky > 0.5) col = mix(col, texture2D(uPaint, vec2(uv.x, 0.9)).rgb, edge);   // 天空被房子挡住的地方：用同一列画里天空的颜色
         }
       }
@@ -763,14 +770,18 @@ function run(S, R, meta) {
     solids.push(o);
   });
   const PROJ = S.projection !== false;   // 原画投影：画家视角和 3D 形状对准以后才打开
-  if (PROJ) (function renderProjectorDepth() {   // 从投影仪的位置拍一次“深度图”，判断哪些表面被挡住（只拍一次）
-    const hidden = [cornerHit, vpRing, vpDot, ...outlines, ...portals.map(p => p.sprite), ...halos].filter(Boolean);
+  function renderProjectorDepth() {   // 从投影仪的位置拍一张“深度图”，判断哪些表面被挡住（开始时拍一次；独家发现里有东西淡出后再拍一次）
+    if (!PROJ) return;
+    const noDepth = []; scene.traverse(o => { if (o.userData.noDepth) noDepth.push(o); });
+    const hidden = [cornerHit, vpRing, vpDot, ...outlines, ...portals.map(p => p.sprite), ...halos, ...noDepth].filter(Boolean);
+    const was = hidden.map(o => o.visible);
     hidden.forEach(o => o.visible = false);
     scene.overrideMaterial = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide });
     renderer.setRenderTarget(depthRT); renderer.render(scene, projector); renderer.setRenderTarget(null);
     scene.overrideMaterial = null;
-    hidden.forEach(o => o.visible = true);
-  })();
+    hidden.forEach((o, i) => o.visible = was[i]);
+  }
+  renderProjectorDepth();
   function setMode(m) {
     for (const o of solids) o.material = m === 'paint' ? o.userData.paintMat : o.userData.flatMat;
     for (const l of outlines) l.visible = m === 'flat';
@@ -1177,6 +1188,44 @@ function run(S, R, meta) {
       if (revealOn && revealObj.card) showCard(revealObj.card);
     };
   }
+  // 独家发现：几个开关（toggles）。每个开关让 targets 里的物体（按 id）慢慢淡出 / 淡入；
+  //   paintAlt：同时把投影的原画换成改过的那一版（示意）；note：打开时显示的说明；card：打开时显示的卡片；noPaint：这些物体不贴原画（比如窗框和铁栏）
+  const togObj = S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive : null;
+  const toggles = [];
+  if (togObj) togObj.toggles.forEach((t, i) => {
+    const meshes = [];
+    for (const id of t.targets || []) named[id] && named[id].traverse(o => {
+      if (!o.material) return;
+      if (o.userData.paintMat) {   // 贴原画的物体：两种模式的材质各复制一份，只淡出这个物体
+        const wasFlat = o.material === o.userData.flatMat;
+        o.userData.flatMat = o.userData.flatMat.clone(); o.userData.flatMat.transparent = true;
+        const pm = o.userData.paintMat.clone(); for (const k in projUniforms) pm.uniforms[k] = projUniforms[k];
+        pm.uniforms.uAlpha = { value: 1 }; pm.transparent = true; o.userData.paintMat = pm;
+        o.material = wasFlat ? o.userData.flatMat : pm;
+      } else { o.material = o.material.clone(); o.material.transparent = true; }
+      meshes.push(o);
+    });
+    const T = { t, meshes, on: false, now: 0 }; toggles.push(T);
+    const btn = document.querySelector(`[data-toggle="${i}"]`), note = document.querySelector(`[data-toggle-note="${i}"]`);
+    btn.onclick = () => {
+      T.on = !T.on; btn.classList.toggle('on', T.on); if (note) note.classList.toggle('hidden', !T.on);
+      if (T.on && t.card) showCard(t.card);
+      if (T.on) track('exclusive-' + S.id + '-' + (t.id || i));
+    };
+  });
+  function stepToggles(dt) {
+    for (const T of toggles) {
+      const target = T.on ? 1 : 0; if (Math.abs(target - T.now) < 0.001) continue;
+      T.now += Math.sign(target - T.now) * Math.min(Math.abs(target - T.now), dt / 2);   // 约 2 秒
+      for (const m of T.meshes) {
+        for (const mat of [m.material, m.userData.flatMat]) if (mat) { mat.opacity = 1 - T.now; mat.depthWrite = T.now < 0.05; }
+        if (m.userData.paintMat) { m.userData.paintMat.uniforms.uAlpha.value = 1 - T.now; m.userData.paintMat.depthWrite = T.now < 0.05; }
+        m.visible = T.now < 0.99;
+      }
+      if (T.t.paintAlt) projUniforms.uMixB.value = T.now;
+      if (Math.abs(target - T.now) < 0.001) renderProjectorDepth();   // 淡出 / 淡入完了：重新判断哪些表面能照到原画
+    }
+  }
   // 独家发现“换一种光”（light）：滑杆从清晨拖到傍晚，原画的颜色乘上 tint、再加上 lift（stops 里每一站一组，中间平滑过渡）
   const lightObj = S.exclusive && S.exclusive.type === 'light' ? S.exclusive : null;
   if (lightObj) {
@@ -1250,6 +1299,7 @@ function run(S, R, meta) {
     const pulse = 0.55 + 0.35 * Math.sin(performance.now() / 600);   // 圆点慢慢呼吸
     vpRing.material.opacity = pulse; vpDot.material.opacity = pulse * 0.4;
     wallMat.color.lerp(wallTarget, 1 - Math.exp(-dt * 4));
+    stepToggles(dt);
     if (todayObj && Math.abs(todayTarget - todayNow) > 0.001) {   // “今天”：其他部分慢慢淡出（约 2 秒）
       todayNow += Math.sign(todayTarget - todayNow) * Math.min(Math.abs(todayTarget - todayNow), dt / 2);
       for (const m of todayMeshes) {
@@ -1288,7 +1338,7 @@ function run(S, R, meta) {
   }
   loop();
   // 测试用：地址后面加 ?debug 时，可以在控制台里移动位置（普通访问不受影响）
-  if (location.search.includes("debug")) window.__room = { player, setMode, leaveView, showCard, portals, camera, skipTime: s => { dawnTime += s; },
+  if (location.search.includes("debug")) window.__room = { player, setMode, leaveView, showCard, portals, camera, toggles, skipTime: s => { dawnTime += s; },
     film: fov => { walking = !fov; introT = -1; view = 'none'; vpOverlay.style.display = 'none'; filmFov = fov || null; }, viewFov: () => paintingRect().fov, VIEW };
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();

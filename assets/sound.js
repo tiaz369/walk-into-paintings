@@ -176,6 +176,14 @@ const AMBIENCE = {
     lap(water, ctx.currentTime + 0.5); every(st, 3, 7, t => lap(water, t));
     bird(out, ctx.currentTime + 1.5); every(st, 4, 11, t => bird(out, t));
   },
+  // 夜晚的风，远处几声蟋蟀
+  'night-wind'(out, st) {
+    const w = loopNoise('brown', out, { freq: 380, gain: 0.16 });
+    st.timers.push(setInterval(() => { const t = ctx.currentTime, k = Math.random(); w.g.gain.setTargetAtTime(0.1 + 0.18 * k, t, 1.5); w.f.frequency.setTargetAtTime(300 + 400 * k, t, 1.5); }, 2500));
+    const far = ctx.createGain(); far.gain.value = 0.35; far.connect(out);
+    const chirp = t => { for (let i = 0; i < 3; i++) burst(far, t + i * 0.09, { type: 'bandpass', freq: 4300, q: 14, vol: 0.12, dur: 0.05, p: rnd(-0.6, 0.6) }); };
+    chirp(ctx.currentTime + 1); every(st, 1.5, 4, chirp);
+  },
   // 安静室内
   room(out) { loopNoise('brown', out, { freq: 220, gain: 0.12 }); },
   // 安静的街道：运河边轻轻的水声，孩子的笑声，远处的鸟叫

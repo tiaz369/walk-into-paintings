@@ -17,7 +17,8 @@
       "bedroom"
     ],
     "end": [
-      "bedroom"
+      "bedroom",
+      "starry-night"
     ]
   },
   "painting": {
@@ -1546,7 +1547,10 @@
       }
     },
     "mistral": {
-      "letter": { "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。", "url": "" },
+      "letter": {
+        "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。",
+        "url": ""
+      },
       "title": {
         "zh": "风",
         "en": "The mistral"
@@ -1645,14 +1649,24 @@
     "museums": [
       "national-gallery"
     ],
-    "exit": {
-      "scene": "bedroom",
-      "label": {
-        "zh": "回到阿尔勒的卧室",
-        "en": "Back to The Bedroom in Arles"
+    "exit": [
+      {
+        "scene": "bedroom",
+        "label": {
+          "zh": "回到阿尔勒的卧室",
+          "en": "Back to The Bedroom in Arles"
+        },
+        "href": "../bedroom/"
       },
-      "href": "../bedroom/"
-    }
+      {
+        "scene": "starry-night",
+        "href": "../starry-night/",
+        "label": {
+          "zh": "同一扇窗外",
+          "en": "From the same window"
+        }
+      }
+    ]
   },
   "record": {
     "_说明": "作品档案表：Tia 提供。空着的行不显示。尺寸等 Tia 提供。",
