@@ -5,7 +5,7 @@
 - 作品页：https://www.nationalgallery.org.uk/paintings/georges-seurat-bathers-at-asnieres
 - Take One Picture 2014：https://www.nationalgallery.org.uk/exhibitions/past/take-one-picture-2014
 - 《大碗岛的星期天下午》（芝加哥艺术博物馆，CC0）：https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884
-- 图片：Wikimedia Commons，公有领域（不从国家美术馆官网下载）
+- 图片：维基百科（Wikimedia Commons），公有领域。国家美术馆官网的图片只限非商业研究使用，网站以后可能商用，所以不用。
 
 ## Tia 整理的资料
 
@@ -16,5 +16,5 @@
 
 ## 核对（2026-10-24）
 
-- 展厅号**待核对**：Tia 看到官网写43号；搜索结果里官网作品页和44号展厅的平面图都写44号。核对前，登记表里 room 先空着，伦敦路线页先不列，第三幕也不写展厅号。
+- 展厅号：Tia 在官网核对为 **44号展厅**（之前看到的43号不对）。第三幕不写展厅号（展厅安排会变）。
 - 《大碗岛的星期天下午》：芝加哥艺术博物馆作品页写1884–86年（画框边1888–89年加），CC0。
