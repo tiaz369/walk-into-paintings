@@ -214,8 +214,8 @@ export function oneMinute(btn, seconds = 60) {
   bar.querySelector('#lookSkip').onclick = stop;
   addEventListener('keydown', e => { if (e.key === 'Escape' && timer) stop(); });
 }
-// 场景最后一屏“去现场看真迹”：收藏在伦敦国家美术馆且在展的 → 伦敦参观路线页；其他 → 博物馆作品页（没有作品页时用博物馆官网）
-export const LONDON_MUSEUM = 'national-gallery';   // 和 data/london.json 的 museum 一致
+// 场景最后一屏“去现场看真迹”：收藏在伦敦这几家美术馆且在展的 → 伦敦参观路线页（那一节）；其他 → 博物馆作品页（没有作品页时用博物馆官网）
+export const LONDON_MUSEUMS = ['national-gallery', 'courtauld'];   // 和 data/london.json 的 sections 一致
 export function seeInPersonHTML(R, meta) {
   if (!R || !meta) return '';
   const items = [meta].concat(meta.alsoAt || []);   // 这幅画，加上收藏在别处的其他版本
@@ -223,9 +223,9 @@ export function seeInPersonHTML(R, meta) {
     const m = R.museumById[x.museum];
     if (!m) return '';
     const year = items.length > 1 && x.year ? ' · ' + bi(x.year) : '';
-    if (x.museum === LONDON_MUSEUM && x.onDisplay === true) {
+    if (LONDON_MUSEUMS.includes(x.museum) && x.onDisplay === true) {
       const room = roomLabel(x.room);
-      return `<a class="btn primary" data-track="see-real-${meta.id}" href="${ROOT}london/">${bi(m.name, ' · ')}${room ? ' · ' + bi(room) : ''} → ${ui('参观路线', 'Route by room')}</a>`;
+      return `<a class="btn primary" data-track="see-real-${meta.id}" href="${ROOT}london/#${x.museum}">${bi(m.name, ' · ')}${room ? ' · ' + bi(room) : ''} → ${ui('参观路线', 'Route by room')}</a>`;
     }
     const url = x.artworkUrl || m.url;
     return url ? `<a class="btn" data-track="see-real-${meta.id}" href="${url}" target="_blank" rel="noopener">${bi(m.name, ' · ')}${year} ↗</a>` : '';
@@ -476,7 +476,7 @@ const PAGES = {
         <h2>${ui('专题', 'Features')}</h2>
         <div class="ways features">
           <a href="${ROOT}timeline/"><div class="name">${ui('时间线', 'Timeline')}</div><div class="ex">${(ys => ys.length ? `${Math.min(...ys)}–${Math.max(...ys)}` : '')(R.scenes.map(yearOf).filter(Boolean))}</div></a>
-          <a href="${ROOT}london/"><div class="name">${bi(LONDON.title)}</div><div class="ex">${bi(LONDON.subtitle, ' / ')}</div></a>
+          <a href="${ROOT}london/"><div class="name">${bi(LONDON.title)}</div><div class="ex">${LONDON.sections.map(sec => bi(sec.title)).join(' · ')}</div></a>
           <a href="${ROOT}versions/"><div class="name">${ui('同一幅画的几个版本', 'One painting, many versions')}</div><div class="ex">${['bedroom', 'sunflowers'].map(id => R.sceneById[id] && bi(R.sceneById[id].title, ' / ')).filter(Boolean).join(' · ')}</div></a>
         </div>
       </section>
@@ -720,17 +720,22 @@ const PAGES = {
 
   // ---------- 在伦敦看真迹：按展厅的参观路线（文字在 data/london.json） ----------
   london(R, main) {
-    const L = LONDON, m = R.museumById[L.museum];
-    const list = R.allScenes.filter(s => s.museum === L.museum && s.onDisplay === true && s.room != null && s.room !== '');
-    const key = r => typeof r === 'object' ? r.en : String(r);
-    const rooms = [...new Map(list.map(s => [key(s.room), s.room])).values()]
-      .sort((a, b) => (typeof a === 'object') - (typeof b === 'object') || (parseInt(key(a)) || 0) - (parseInt(key(b)) || 0));
-    main.innerHTML = `<div class="wrap page-title"><h1>${bi(L.title)}<small class="sub">${bi(L.subtitle)}</small></h1>
-        <p class="notice">${bi(L.notice, ' / ')}</p>
-        <p class="london-links">${L.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${bi(l.label)} ↗</a>`).join('')}${m && m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${bi(m.name)} ↗</a>` : ''}
-          <button class="btn" onclick="print()">${ui('打印', 'Print')}</button></p></div>
-      <section class="section wrap london">${rooms.map(r => `<div class="group"><h3>${bi(roomLabel(r))}</h3>
+    const L = LONDON, key = r => typeof r === 'object' ? r.en : String(r);
+    const section = sec => {   // 每家美术馆一节：标题、链接，再按展厅分组
+      const m = R.museumById[sec.museum];
+      const list = R.allScenes.filter(s => s.museum === sec.museum && s.onDisplay === true && s.room != null && s.room !== '');
+      const rooms = [...new Map(list.map(s => [key(s.room), s.room])).values()]
+        .sort((a, b) => (typeof a === 'object') - (typeof b === 'object') || (parseInt(key(a)) || 0) - (parseInt(key(b)) || 0));
+      return `<section class="section wrap london" id="${sec.museum}"><h2>${bi(sec.title)}<small class="sub">${bi(sec.subtitle)}</small></h2>
+        <p class="london-links">${sec.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${bi(l.label)} ↗</a>`).join('')}${m && m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${bi(m.name)} ↗</a>` : ''}</p>
+        ${rooms.map(r => `<div class="group"><h3>${bi(roomLabel(r))}</h3>
         <div class="rows">${list.filter(s => key(s.room) === key(r)).sort(byOpenYear).map(s => londonRow(R, s)).join('')}</div></div>`).join('') || SOON()}</section>`;
+    };
+    main.innerHTML = `<div class="wrap page-title"><h1>${bi(L.title)}</h1>
+        <p class="notice">${bi(L.notice, ' / ')}</p>
+        <p class="london-links"><button class="btn" onclick="print()">${ui('打印', 'Print')}</button></p></div>
+      ${L.sections.map(section).join('')}`;
+    if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
   }
 };
 

@@ -63,7 +63,7 @@ function buildDOM(S, R, meta) {
   const layersHTML = S.layers.map((l, i) => `<div class="layer" data-i="${i}" style="${l.clip ? `clip-path:polygon(${l.clip.map(([x, y]) => `${x * 100}% ${y * 100}%`).join(',')})` : ''}">
       <img src="${P.image}" alt="" draggable="false" /></div>`).join('');
   const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}" style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
-  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider';
+  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip';
   // 细节放大的热点（zooms：眼睛、嘴唇、珍珠……）；只有一个时也可以写成 zoom
   const ZOOMS = zoomsOf(X), ZL = X.zoomLabel || (X.zoom && X.zoom.label) || { zh: '放大看细节', en: 'Zoom in on details' };
   const zspotsHTML = ZOOMS.map((z, i) => `<button class="zspot" data-z="${i}" style="left:${z.x * 100}%;top:${z.y * 100}%">${ui(z.label.zh, z.label.en)}</button>`).join('');
@@ -85,7 +85,7 @@ function buildDOM(S, R, meta) {
     </div>
   </div>
   <a id="sceneHome" href="${ROOT}">← ${ui('走进名画', 'Walk into Paintings')}</a>
-  ${isCurtain && X.note ? `<div id="curtainNote" class="panel hidden">${bi(X.note, ' / ')}</div>` : ''}
+  ${(isCurtain || isFlip) && X.note ? `<div id="curtainNote" class="panel hidden">${bi(X.note, ' / ')}</div>` : ''}
   <div id="hint" class="panel"><span class="zh">${S.hint.zh}</span><span class="en-ui">${S.hint.en}</span></div>
 
   <div id="tools" class="ui">
@@ -95,6 +95,7 @@ function buildDOM(S, R, meta) {
     ${ZOOMS.length ? `<button class="btn" id="zoomBtn">🔍 ${ui(ZL.zh, ZL.en)}</button>`
       : VARIANTS[variantOf(S)].zoomFirst ? `<a class="btn" id="zoomBtn" href="${(S.zoom && S.zoom.image) || P.image}" target="_blank" rel="noopener">🔍 ${ui('放大看细节', 'Zoom in on details')}</a>` : ''}
     ${isMap ? `<button class="btn" id="mapBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
+    ${isFlip ? `<button class="btn" id="flipBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isSlider ? `<button class="btn" id="sliderBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
   </div>
   <div id="status" class="ui">
@@ -244,12 +245,13 @@ function run(S, R) {
   }
   const depth = i => (S.layers[i] && S.layers[i].depth) || 0;
   const ZOOMS = zoomsOf(S.exclusive || {});   // 细节放大：画面放大到原画上的 (x, y)
+  let flipT = 0, flipK = 0;   // 独家发现“镜子翻过来”：画面左右翻转（慢慢转过去）
   let zoomT = 0, zoomK = 0, zoomAt = null, zx = 0.5, zy = 0.5, zs = 1;   // zx、zy、zs：现在对准的点和倍数（慢慢跟上目标）
   function frame() {
     requestAnimationFrame(frame);
     if (gallery.classList.contains('show')) return;
     cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
-    zoomK += (zoomT - zoomK) * 0.06;
+    zoomK += (zoomT - zoomK) * 0.06; flipK += (flipT - flipK) * 0.06;
     if (zoomAt) { zx += (zoomAt.x - zx) * 0.08; zy += (zoomAt.y - zy) * 0.08; zs += ((zoomAt.scale || 4) - zs) * 0.08; }
     let zoomCSS = '';
     if (zoomK > 0.001) {   // 把那一点移到屏幕中间，再放大（以画面中心为原点）
@@ -259,7 +261,7 @@ function run(S, R) {
       const qx = cxS + px + (window.innerWidth / 2 - cxS - px) * zoomK, qy = cyS + py + (window.innerHeight / 2 - cyS - py) * zoomK;
       zoomCSS = `translate(${qx - cxS - s * px}px, ${qy - cyS - s * py}px) scale(${s})`;
     }
-    stage.style.transform = `${zoomCSS} perspective(1400px) rotateY(${cx * 3 * (1 - zoomK)}deg) rotateX(${-cy * 2 * (1 - zoomK)}deg)`;
+    stage.style.transform = `${zoomCSS} perspective(1400px) rotateY(${cx * 3 * (1 - zoomK)}deg) rotateX(${-cy * 2 * (1 - zoomK)}deg)${flipK > 0.001 ? ` scaleX(${1 - 2 * flipK})` : ''}`;
     layers.forEach((l, i) => { l.style.transform = `translate(${-cx * MAX * depth(i)}px, ${-cy * MAX * depth(i)}px) scale(${1 + depth(i) * 0.02})`; });
     spots.forEach(s => { const d = depth(+s.dataset.layer); s.style.transform = `translate(calc(-50% + ${-cx * MAX * d}px), calc(-50% + ${-cy * MAX * d}px))`; });
   }
@@ -273,7 +275,11 @@ function run(S, R) {
     track('step-inside-' + S.id);   // 访问统计：走进画里
     startTilt();
     $('intro').classList.add('fade');
-    setTimeout(() => { $('intro').style.display = 'none'; document.body.classList.add('in-room'); hint.style.opacity = 1; setTimeout(() => hint.style.opacity = 0, 4000); }, 1200);
+    setTimeout(() => {
+      $('intro').style.display = 'none'; document.body.classList.add('in-room'); hint.style.opacity = 1; setTimeout(() => hint.style.opacity = 0, 4000);
+      const openCard = new URLSearchParams(location.search).get('card');   // 从别的场景链接过来：?card=japan 打开那张卡片
+      if (openCard && S.cards[openCard]) showCard(openCard);
+    }, 1200);
   };
   requestAnimationFrame(frame);
 
@@ -321,6 +327,10 @@ function run(S, R) {
     const wipe = $('slide').querySelector('.wipe'), range = $('slide').querySelector('input');
     range.oninput = () => wipe.style.setProperty('--pos', range.value + '%');
     $('sliderBtn').onclick = () => { togglePopup('slide'); if (popups.slide.style.display === 'block') track('exclusive-' + S.id); };
+    $('slide').querySelectorAll('img').forEach(im => {   // 对比用的图还没上传时，先不显示按钮
+      const hide = () => $('sliderBtn').classList.add('hidden');
+      im.addEventListener('error', hide, { once: true }); if (im.complete && im.naturalWidth === 0) hide();
+    });
   }
   if ($('curtainBtn')) $('curtainBtn').onclick = () => {   // 帘子回来了：慢慢浮现 / 消失
     const on = !$('curtainBtn').classList.contains('on');
@@ -328,8 +338,16 @@ function run(S, R) {
     if ($('curtainNote')) $('curtainNote').classList.toggle('hidden', !on);
     if (on) track('exclusive-' + S.id);
   };
+  function setFlip(on) {
+    flipT = on ? 1 : 0;
+    $('flipBtn').classList.toggle('on', on);
+    if ($('curtainNote')) $('curtainNote').classList.toggle('hidden', !on);
+    if (on) { if (zoomAt) zoomTo(null); track('exclusive-' + S.id); }
+  }
+  if ($('flipBtn')) $('flipBtn').onclick = () => setFlip(!flipT);
   // 细节放大：点按钮，画上出现热点；点热点放大到那里（有卡片的显示卡片文字）；放大时再点按钮缩回去
   function zoomTo(z) {
+    if (z && flipT) setFlip(false);   // 放大细节时先翻回来
     zoomAt = z; zoomT = z ? 1 : 0;
     if (z && zoomK < 0.01) { zx = z.x; zy = z.y; zs = z.scale || 4; }
     document.body.classList.toggle('zoomed', !!z);

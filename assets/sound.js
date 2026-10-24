@@ -176,14 +176,20 @@ const AMBIENCE = {
     lap(water, ctx.currentTime + 0.5); every(st, 3, 7, t => lap(water, t));
     bird(out, ctx.currentTime + 1.5); every(st, 4, 11, t => bird(out, t));
   },
-  // 春天的花园：风吹叶子，鸟叫
+  // 非常安静的冬日室内：很轻的房间底噪，窗外偶尔一阵很远的风（A quiet winter room）
+  'winter-room'(out, st) {
+    loopNoise('brown', out, { freq: 170, gain: 0.06 });
+    const wind = loopNoise('brown', out, { freq: 300, gain: 0.0 });
+    every(st, 12, 24, t => { wind.g.gain.setTargetAtTime(0.05, t, 1.5); wind.g.gain.setTargetAtTime(0.0, t + 4, 2); });
+  },
+  // 春天的花园：风吹叶子，鸟叫（Spring garden）
   'spring-garden'(out, st) {
     const leaves = loopNoise('brown', out, { type: 'bandpass', freq: 1100, q: 0.5, gain: 0.08 });   // 树叶沙沙：音量慢慢起伏
     st.timers.push(setInterval(() => leaves.g.gain.setTargetAtTime(0.04 + 0.1 * Math.random(), ctx.currentTime, 1), 1800));
     bird(out, ctx.currentTime + 0.6); every(st, 1.5, 5, t => bird(out, t));
     every(st, 6, 14, t => { bird(out, t); bird(out, t + rnd(0.4, 0.9)); });   // 偶尔两只鸟一问一答
   },
-  // 早春的微风，几声鸟叫
+  // 早春的微风，几声鸟叫（A breeze in early spring）
   'early-spring'(out, st) {
     const w = loopNoise('brown', out, { freq: 360, gain: 0.08 });   // 微风：音量慢慢起伏
     st.timers.push(setInterval(() => w.g.gain.setTargetAtTime(0.04 + 0.09 * Math.random(), ctx.currentTime, 1.5), 2500));
