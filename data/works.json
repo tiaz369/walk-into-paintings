@@ -12,19 +12,6 @@
     "van-gogh": [
       {
         "title": {
-          "zh": "星夜",
-          "en": "The Starry Night"
-        },
-        "year": {
-          "zh": "1889",
-          "en": "1889"
-        },
-        "museum": "moma",
-        "check": "ok",
-        "_": "MoMA 课程资料、维基百科：1889，MoMA 472.1941"
-      },
-      {
-        "title": {
           "zh": "杏花",
           "en": "Almond Blossom"
         },

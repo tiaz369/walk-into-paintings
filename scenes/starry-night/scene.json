@@ -1,0 +1,1207 @@
+{
+  "_说明": "星夜（户外风景，完整版）。所有文字由 Tia 提供。画家视角、柏树、村庄和山的位置按原画估算（视平线约在画面 62% 的高度，从高处往下看村庄）。开场站在疗养院房间里，透过铁栏的窗往外看；“推开窗”后铁栏和墙淡出。",
+  "id": "starry-night",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "night",
+    "label": {
+      "zh": "日出前的夜空",
+      "en": "Night sky before sunrise"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是场景里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片“柏树”和结尾都链接到《麦田与柏树》；《罗纳河上的星夜》的“两个星夜”对比也链接到这里。",
+    "doors": [],
+    "cards": [
+      "wheatfield-cypresses"
+    ],
+    "end": [
+      "wheatfield-cypresses",
+      "starry-night-rhone"
+    ]
+  },
+  "painting": {
+    "image": "images/starry-night.jpg",
+    "width": 1920,
+    "height": 1520,
+    "alt": {
+      "zh": "梵高《星夜》1889，纽约现代艺术博物馆",
+      "en": "Vincent van Gogh, The Starry Night, 1889, The Museum of Modern Art, New York"
+    }
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "星夜",
+      "en": "The Starry Night"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1889年6月",
+      "en": "June 1889"
+    },
+    "museum": {
+      "zh": "纽约现代艺术博物馆",
+      "en": "The Museum of Modern Art, New York"
+    },
+    "source": {
+      "zh": "Wikimedia Commons（Google Art Project），公有领域",
+      "en": "Wikimedia Commons (Google Art Project), public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>先点“推开窗” · 点一下柏树、村庄、山和天空看介绍 · 点“去掉想象”看窗外原来的样子 · 地上发光的圆点 = 梵高的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>First tap “Open the window” · Tap the cypress, the village, the hills or the sky to learn more · Tap “Without the imagined village” to see the real view · The glowing circle = Van Gogh's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：照着 images/starry-night.jpg 估的（从疗养院的窗口往下看，眼睛高 5 米，走开后降到 1.6 米）。",
+    "x": 0,
+    "z": 0,
+    "eye": 5.0,
+    "yaw": 0,
+    "pitch": 0.1115,
+    "fov": 50.0,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "night-wind",
+  "colors": {
+    "line": "#1a2238",
+    "ground": "#2a3a5a",
+    "sky": "#1d3a7a",
+    "hill": "#2c3f86",
+    "house": "#3a4a6a",
+    "roof": "#4a3a3a",
+    "spire": "#5a6a8a",
+    "cypress": "#1f3424",
+    "wall2": "#5a5048",
+    "iron": "#1c1a18",
+    "field": "#2f4a5a"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围，都写 [x最小, x最大, z最小, z最大]，单位是米。walkEye：走路时眼睛的高度（画家视角在楼上窗口，5 米）。",
+    "kind": "outdoor",
+    "ground": [
+      -150,
+      150,
+      -200,
+      30
+    ],
+    "bounds": [
+      -9,
+      9,
+      -11,
+      3
+    ],
+    "groundCard": "village",
+    "skyCard": "before",
+    "skyRadius": 180,
+    "walkSpeed": 1.2,
+    "walkEye": 1.6
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "id": "window-wall",
+      "card": "window",
+      "_": "疗养院房间的墙和装着铁栏的东窗（开场看到的）",
+      "x": 0,
+      "y": 5.05,
+      "z": -0.45,
+      "boxes": [
+        [
+          1.6,
+          0.6,
+          0.03,
+          "wall2",
+          0,
+          0.455,
+          0,
+          "wall"
+        ],
+        [
+          1.6,
+          0.6,
+          0.03,
+          "wall2",
+          0,
+          -0.455,
+          0,
+          "wall"
+        ],
+        [
+          0.6,
+          0.31,
+          0.03,
+          "wall2",
+          -0.5,
+          0,
+          0,
+          "wall"
+        ],
+        [
+          0.6,
+          0.31,
+          0.03,
+          "wall2",
+          0.5,
+          0,
+          0,
+          "wall"
+        ],
+        [
+          0.43000000000000005,
+          0.025,
+          0.04,
+          "iron",
+          0,
+          0.155,
+          0.01
+        ],
+        [
+          0.43000000000000005,
+          0.025,
+          0.04,
+          "iron",
+          0,
+          -0.155,
+          0.01
+        ],
+        [
+          0.025,
+          0.31,
+          0.04,
+          "iron",
+          -0.2,
+          0,
+          0.01
+        ],
+        [
+          0.025,
+          0.31,
+          0.04,
+          "iron",
+          0.2,
+          0,
+          0.01
+        ],
+        [
+          0.012,
+          0.31,
+          0.012,
+          "iron",
+          -0.133,
+          0,
+          0.02
+        ],
+        [
+          0.012,
+          0.31,
+          0.012,
+          "iron",
+          -0.067,
+          0,
+          0.02
+        ],
+        [
+          0.012,
+          0.31,
+          0.012,
+          "iron",
+          0.0,
+          0,
+          0.02
+        ],
+        [
+          0.012,
+          0.31,
+          0.012,
+          "iron",
+          0.067,
+          0,
+          0.02
+        ],
+        [
+          0.012,
+          0.31,
+          0.012,
+          "iron",
+          0.133,
+          0,
+          0.02
+        ],
+        [
+          0.4,
+          0.012,
+          0.012,
+          "iron",
+          0,
+          -0.052,
+          0.02
+        ],
+        [
+          0.4,
+          0.012,
+          0.012,
+          "iron",
+          0,
+          0.052,
+          0.02
+        ]
+      ],
+      "noPaint": true
+    },
+    {
+      "type": "tree",
+      "id": "cypress",
+      "shape": "cypress",
+      "card": "cypress",
+      "_": "近处巨大的柏树",
+      "x": -1.76,
+      "z": -7.0,
+      "h": 8.9,
+      "r": 1.11,
+      "sway": 0.02,
+      "color": "cypress"
+    },
+    {
+      "type": "boxes",
+      "id": "village",
+      "card": "village",
+      "_": "想象的村庄（房子）",
+      "x": 0,
+      "z": 0,
+      "boxes": [
+        [
+          2.87,
+          2.92,
+          2.3,
+          "house",
+          4.51,
+          1.46,
+          -17.21,
+          "wall"
+        ],
+        [
+          3.0700000000000003,
+          0.4,
+          2.5,
+          "roof",
+          4.51,
+          3.12,
+          -17.21,
+          "wall"
+        ],
+        [
+          1.65,
+          2.25,
+          1.32,
+          "house",
+          5.16,
+          1.12,
+          -15.77,
+          "wall"
+        ],
+        [
+          1.8499999999999999,
+          0.4,
+          1.52,
+          "roof",
+          5.16,
+          2.45,
+          -15.77,
+          "wall"
+        ],
+        [
+          3.04,
+          1.76,
+          2.43,
+          "house",
+          8.02,
+          0.88,
+          -18.05,
+          "wall"
+        ],
+        [
+          3.24,
+          0.4,
+          2.63,
+          "roof",
+          8.02,
+          1.96,
+          -18.05,
+          "wall"
+        ],
+        [
+          2.47,
+          2.4,
+          1.98,
+          "house",
+          4.06,
+          1.2,
+          -23.0,
+          "wall"
+        ],
+        [
+          2.6700000000000004,
+          0.4,
+          2.18,
+          "roof",
+          4.06,
+          2.6,
+          -23.0,
+          "wall"
+        ],
+        [
+          2.05,
+          2.88,
+          1.64,
+          "house",
+          -1.97,
+          1.44,
+          -23.48,
+          "wall"
+        ],
+        [
+          2.25,
+          0.4,
+          1.84,
+          "roof",
+          -1.97,
+          3.08,
+          -23.48,
+          "wall"
+        ],
+        [
+          2.88,
+          1.79,
+          2.3,
+          "house",
+          8.47,
+          0.9,
+          -24.46,
+          "wall"
+        ],
+        [
+          3.08,
+          0.4,
+          2.5,
+          "roof",
+          8.47,
+          1.99,
+          -24.46,
+          "wall"
+        ],
+        [
+          1.6,
+          2.82,
+          1.28,
+          "house",
+          6.56,
+          1.41,
+          -25.06,
+          "wall"
+        ],
+        [
+          1.8,
+          0.4,
+          1.48,
+          "roof",
+          6.56,
+          3.02,
+          -25.06,
+          "wall"
+        ],
+        [
+          3.17,
+          2.82,
+          2.54,
+          "house",
+          0.66,
+          1.41,
+          -23.5,
+          "wall"
+        ],
+        [
+          3.37,
+          0.4,
+          2.74,
+          "roof",
+          0.66,
+          3.02,
+          -23.5,
+          "wall"
+        ],
+        [
+          2.46,
+          2.55,
+          1.97,
+          "house",
+          1.13,
+          1.27,
+          -15.5,
+          "wall"
+        ],
+        [
+          2.66,
+          0.4,
+          2.17,
+          "roof",
+          1.13,
+          2.75,
+          -15.5,
+          "wall"
+        ],
+        [
+          2.71,
+          2.95,
+          2.17,
+          "house",
+          0.4,
+          1.48,
+          -15.64,
+          "wall"
+        ],
+        [
+          2.91,
+          0.4,
+          2.37,
+          "roof",
+          0.4,
+          3.15,
+          -15.64,
+          "wall"
+        ],
+        [
+          2.18,
+          1.83,
+          1.74,
+          "house",
+          9.3,
+          0.92,
+          -22.2,
+          "wall"
+        ],
+        [
+          2.3800000000000003,
+          0.4,
+          1.94,
+          "roof",
+          9.3,
+          2.03,
+          -22.2,
+          "wall"
+        ],
+        [
+          2.08,
+          2.44,
+          1.66,
+          "house",
+          -0.22,
+          1.22,
+          -26.28,
+          "wall"
+        ],
+        [
+          2.2800000000000002,
+          0.4,
+          1.86,
+          "roof",
+          -0.22,
+          2.64,
+          -26.28,
+          "wall"
+        ],
+        [
+          2.14,
+          2.03,
+          1.71,
+          "house",
+          -1.58,
+          1.01,
+          -17.78,
+          "wall"
+        ],
+        [
+          2.3400000000000003,
+          0.4,
+          1.91,
+          "roof",
+          -1.58,
+          2.23,
+          -17.78,
+          "wall"
+        ],
+        [
+          2.11,
+          2.27,
+          1.69,
+          "house",
+          7.43,
+          1.14,
+          -19.83,
+          "wall"
+        ],
+        [
+          2.31,
+          0.4,
+          1.89,
+          "roof",
+          7.43,
+          2.47,
+          -19.83,
+          "wall"
+        ],
+        [
+          3.16,
+          1.63,
+          2.53,
+          "house",
+          8.25,
+          0.81,
+          -26.45,
+          "wall"
+        ],
+        [
+          3.3600000000000003,
+          0.4,
+          2.73,
+          "roof",
+          8.25,
+          1.83,
+          -26.45,
+          "wall"
+        ],
+        [
+          1.63,
+          2.7,
+          1.3,
+          "house",
+          5.45,
+          1.35,
+          -16.36,
+          "wall"
+        ],
+        [
+          1.8299999999999998,
+          0.4,
+          1.5,
+          "roof",
+          5.45,
+          2.9,
+          -16.36,
+          "wall"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "id": "church",
+      "card": "village",
+      "_": "村庄里的教堂和尖顶",
+      "x": 0,
+      "z": 0,
+      "boxes": [
+        [
+          2.4,
+          2.5,
+          3.5,
+          "house",
+          1.72,
+          1.25,
+          -23.18,
+          "wall"
+        ],
+        [
+          0.7,
+          2.29,
+          0.7,
+          "spire",
+          1.72,
+          3.65,
+          -23.18,
+          "wall"
+        ]
+      ]
+    },
+    {
+      "type": "surface",
+      "card": "times",
+      "_": "窗外围起来的麦田（示意，在村庄前面）",
+      "pts": [
+        [
+          -30,
+          0.02,
+          -12
+        ],
+        [
+          -30,
+          0.02,
+          -60
+        ],
+        [
+          60,
+          0.02,
+          -60
+        ],
+        [
+          60,
+          0.02,
+          -12
+        ]
+      ],
+      "color": "field"
+    },
+    {
+      "type": "surface",
+      "card": "before",
+      "pts": [
+        [
+          -92.7,
+          -9.59,
+          -160
+        ],
+        [
+          -92.7,
+          -1,
+          -160
+        ],
+        [
+          -55.68,
+          -1,
+          -160
+        ],
+        [
+          -55.68,
+          -8.14,
+          -160
+        ]
+      ],
+      "color": "hill"
+    },
+    {
+      "type": "surface",
+      "card": "before",
+      "pts": [
+        [
+          -55.68,
+          -8.14,
+          -160
+        ],
+        [
+          -55.68,
+          -1,
+          -160
+        ],
+        [
+          -18.58,
+          -1,
+          -160
+        ],
+        [
+          -18.58,
+          -6.69,
+          -160
+        ]
+      ],
+      "color": "hill"
+    },
+    {
+      "type": "surface",
+      "card": "before",
+      "pts": [
+        [
+          -18.58,
+          -6.69,
+          -160
+        ],
+        [
+          -18.58,
+          -1,
+          -160
+        ],
+        [
+          0.0,
+          -1,
+          -160
+        ],
+        [
+          0.0,
+          -1.6,
+          -160
+        ]
+      ],
+      "color": "hill"
+    },
+    {
+      "type": "surface",
+      "card": "before",
+      "pts": [
+        [
+          0.0,
+          -1.6,
+          -160
+        ],
+        [
+          0.0,
+          -1,
+          -160
+        ],
+        [
+          18.68,
+          -1,
+          -160
+        ],
+        [
+          18.68,
+          1.33,
+          -160
+        ]
+      ],
+      "color": "hill"
+    },
+    {
+      "type": "surface",
+      "card": "before",
+      "pts": [
+        [
+          18.68,
+          1.33,
+          -160
+        ],
+        [
+          18.68,
+          -1,
+          -160
+        ],
+        [
+          37.44,
+          -1,
+          -160
+        ],
+        [
+          37.44,
+          4.26,
+          -160
+        ]
+      ],
+      "color": "hill"
+    },
+    {
+      "type": "surface",
+      "card": "before",
+      "pts": [
+        [
+          37.44,
+          4.26,
+          -160
+        ],
+        [
+          37.44,
+          -1,
+          -160
+        ],
+        [
+          56.34,
+          -1,
+          -160
+        ],
+        [
+          56.34,
+          8.69,
+          -160
+        ]
+      ],
+      "color": "hill"
+    },
+    {
+      "type": "surface",
+      "card": "before",
+      "pts": [
+        [
+          56.34,
+          8.69,
+          -160
+        ],
+        [
+          56.34,
+          -1,
+          -160
+        ],
+        [
+          71.85,
+          -1,
+          -160
+        ],
+        [
+          71.85,
+          18.39,
+          -160
+        ]
+      ],
+      "color": "hill"
+    },
+    {
+      "type": "surface",
+      "card": "before",
+      "pts": [
+        [
+          71.85,
+          18.39,
+          -160
+        ],
+        [
+          71.85,
+          -1,
+          -160
+        ],
+        [
+          85.22,
+          -1,
+          -160
+        ],
+        [
+          85.22,
+          20.64,
+          -160
+        ]
+      ],
+      "color": "hill"
+    },
+    {
+      "type": "surface",
+      "card": "before",
+      "pts": [
+        [
+          85.22,
+          20.64,
+          -160
+        ],
+        [
+          85.22,
+          -1,
+          -160
+        ],
+        [
+          94.54,
+          -1,
+          -160
+        ],
+        [
+          94.54,
+          18.39,
+          -160
+        ]
+      ],
+      "color": "hill"
+    }
+  ],
+  "cards": {
+    "window": {
+      "title": {
+        "zh": "铁栏窗",
+        "en": "The barred window"
+      },
+      "text": {
+        "zh": "梵高在信里写道：“透过装着铁栏的窗户，我能看到一片围起来的麦田。”",
+        "en": "Van Gogh wrote: \"Through the iron-barred window, I can see an enclosed square of wheat.\""
+      }
+    },
+    "before": {
+      "title": {
+        "zh": "日出前",
+        "en": "Before sunrise"
+      },
+      "text": {
+        "zh": "画的是他房间东窗外，日出前的景色。",
+        "en": "It shows the view from his east-facing window, just before sunrise."
+      }
+    },
+    "village": {
+      "title": {
+        "zh": "想象的村庄",
+        "en": "An imagined village"
+      },
+      "text": {
+        "zh": "画里的村庄是他加上去的，从窗口其实看不到。",
+        "en": "The village was his own addition; it could not be seen from the window."
+      }
+    },
+    "cypress": {
+      "title": {
+        "zh": "柏树",
+        "en": "The cypress"
+      },
+      "text": {
+        "zh": "近处的柏树被他画得很大，像是拉近了。在《麦田与柏树》里，他也这样画过柏树。",
+        "en": "He painted the cypress huge, as if pulled closer. He did the same in A Wheatfield, with Cypresses."
+      },
+      "link": {
+        "scene": "wheatfield-cypresses",
+        "href": "../wheatfield-cypresses/",
+        "label": {
+          "zh": "去看《麦田与柏树》",
+          "en": "See A Wheatfield, with Cypresses"
+        }
+      }
+    },
+    "day": {
+      "title": {
+        "zh": "白天画的星夜",
+        "en": "A night painted by day"
+      },
+      "text": {
+        "zh": "这幅星夜，其实是白天在他一楼的画室里画的。",
+        "en": "This starry night was actually painted by day, in his ground-floor studio."
+      }
+    },
+    "times": {
+      "title": {
+        "zh": "二十一次",
+        "en": "Twenty-one times"
+      },
+      "text": {
+        "zh": "窗外这片景色，他至少画过21次，有日出，有月亮升起，有晴天，也有雨天。",
+        "en": "He painted the view from this window at least 21 times: at sunrise and moonrise, on sunny days and rainy ones."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现两个开关：①“推开窗”：开场在疗养院房间里，透过铁栏看窗外；点一下，墙和铁栏淡出，走进星空下的风景。②“去掉想象”：村庄慢慢淡出，原画也换成去掉村庄的版本（images/starry-night-no-village.jpg，是我们用原画别处的笔触盖住村庄做的示意图），并显示卡片 3 的文字。",
+    "type": "toggles",
+    "label": {
+      "zh": "推开窗 · 去掉想象",
+      "en": "Open the window · Without the imagined village"
+    },
+    "toggles": [
+      {
+        "id": "window",
+        "label": {
+          "zh": "推开窗",
+          "en": "Open the window"
+        },
+        "targets": [
+          "window-wall"
+        ]
+      },
+      {
+        "id": "imagine",
+        "label": {
+          "zh": "去掉想象",
+          "en": "Without the imagined village"
+        },
+        "targets": [
+          "village",
+          "church"
+        ],
+        "paintAlt": "images/starry-night-no-village.jpg",
+        "card": "village",
+        "note": {
+          "zh": "示意：去掉村庄后的窗外",
+          "en": "Illustration: the view without the village"
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/starry-night.jpg",
+        "alt": {
+          "zh": "梵高《星夜》1889，纽约现代艺术博物馆",
+          "en": "Vincent van Gogh, The Starry Night, 1889, The Museum of Modern Art, New York"
+        },
+        "caption": {
+          "zh": "1889年6月 · 纽约现代艺术博物馆",
+          "en": "June 1889 · MoMA, New York"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 一个很久的愿望",
+          "en": "A long-held wish"
+        },
+        "text": {
+          "zh": "早在1888年刚到阿尔勒时，梵高就写信说：“我需要一个有柏树的星夜。”",
+          "en": "As early as 1888, soon after arriving in Arles, Van Gogh wrote: \"I need a starry night with cypresses.\""
+        }
+      },
+      {
+        "image": "images/starry-night.jpg",
+        "alt": {
+          "zh": "梵高《星夜》1889，纽约现代艺术博物馆",
+          "en": "Vincent van Gogh, The Starry Night, 1889, The Museum of Modern Art, New York"
+        },
+        "caption": {
+          "zh": "1889年6月 · 纽约现代艺术博物馆",
+          "en": "June 1889 · MoMA, New York"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 窗外",
+          "en": "Outside the window"
+        },
+        "text": {
+          "zh": "1889年5月，他自愿住进圣雷米的疗养院。从房间装着铁栏的东窗，他能看到一片围起来的麦田，远处是山。他一次又一次地画这片景色。",
+          "en": "In May 1889, he voluntarily entered the asylum at Saint-Rémy. From the barred east window of his room he could see a walled wheat field and the hills beyond. He painted this view again and again."
+        }
+      },
+      {
+        "image": "images/starry-night.jpg",
+        "alt": {
+          "zh": "梵高《星夜》1889，纽约现代艺术博物馆",
+          "en": "Vincent van Gogh, The Starry Night, 1889, The Museum of Modern Art, New York"
+        },
+        "caption": {
+          "zh": "1889年6月 · 纽约现代艺术博物馆",
+          "en": "June 1889 · MoMA, New York"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 星夜",
+          "en": "The Starry Night"
+        },
+        "text": {
+          "zh": "1889年6月，他在画室里画下了这幅星夜：窗外的山和柏树，加上一座想象的村庄，和一片翻涌的天空。1941年起，它收藏在纽约现代艺术博物馆。",
+          "en": "In June 1889, in his studio, he painted this starry night: the hills and cypress from his window, an imagined village, and a swirling sky. Since 1941 it has been in the collection of MoMA, New York."
+        }
+      }
+    ],
+    "final": {
+      "zh": "透过铁栏，他看见了星空。",
+      "en": "Through the bars, he saw the stars."
+    },
+    "versions": [
+      {
+        "image": "images/starry-night.jpg",
+        "short": {
+          "zh": "1889 · 纽约",
+          "en": "1889 · New York"
+        },
+        "caption": {
+          "zh": "1889年6月 · 纽约现代艺术博物馆",
+          "en": "June 1889 · MoMA, New York"
+        }
+      }
+    ],
+    "museums": [
+      "moma"
+    ],
+    "exit": [
+      {
+        "scene": "wheatfield-cypresses",
+        "href": "../wheatfield-cypresses/",
+        "label": {
+          "zh": "同一扇窗外",
+          "en": "From the same window"
+        }
+      },
+      {
+        "scene": "starry-night-rhone",
+        "href": "../starry-night-rhone/",
+        "label": {
+          "zh": "另一个星夜：罗纳河上",
+          "en": "Another starry night: over the Rhône"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。空着的行不显示。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "星夜",
+      "en": "The Starry Night"
+    },
+    "date": {
+      "zh": "1889年6月，圣雷米",
+      "en": "June 1889, Saint-Rémy"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "73.7 × 92.1 cm",
+      "en": "73.7 × 92.1 cm"
+    },
+    "collection": {
+      "zh": "纽约现代艺术博物馆（1941年起）",
+      "en": "The Museum of Modern Art (MoMA), New York (since 1941)"
+    },
+    "url": "https://www.moma.org/collection/works/79802"
+  },
+  "zoom": {
+    "image": "images/starry-night.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "纽约现代艺术博物馆：星夜",
+          "en": "MoMA: The Starry Night"
+        },
+        "url": "https://www.moma.org/collection/works/79802"
+      },
+      {
+        "title": {
+          "zh": "维基百科：星夜",
+          "en": "Wikipedia: The Starry Night"
+        },
+        "url": "https://en.wikipedia.org/wiki/The_Starry_Night"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 一个很久的愿望",
+          "en": "A long-held wish"
+        },
+        "text": {
+          "zh": "早在1888年刚到阿尔勒时，梵高就写信说：“我需要一个有柏树的星夜。”",
+          "en": "As early as 1888, soon after arriving in Arles, Van Gogh wrote: \"I need a starry night with cypresses.\""
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 窗外",
+          "en": "Outside the window"
+        },
+        "text": {
+          "zh": "1889年5月，他自愿住进圣雷米的疗养院。从房间装着铁栏的东窗，他能看到一片围起来的麦田，远处是山。他一次又一次地画这片景色。",
+          "en": "In May 1889, he voluntarily entered the asylum at Saint-Rémy. From the barred east window of his room he could see a walled wheat field and the hills beyond. He painted this view again and again."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 星夜",
+          "en": "The Starry Night"
+        },
+        "text": {
+          "zh": "1889年6月，他在画室里画下了这幅星夜：窗外的山和柏树，加上一座想象的村庄，和一片翻涌的天空。1941年起，它收藏在纽约现代艺术博物馆。",
+          "en": "In June 1889, in his studio, he painted this starry night: the hills and cypress from his window, an imagined village, and a swirling sky. Since 1941 it has been in the collection of MoMA, New York."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}

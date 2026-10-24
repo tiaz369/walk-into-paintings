@@ -78,7 +78,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“两个星夜”：工具栏上的按钮，打开左右对比滑块。两张图都放在 images/ 里。",
+    "_说明": "独家发现“两个星夜”：工具栏上的按钮，打开左右对比滑块。两张图都放在 images/ 里。 右边的《星夜》下面有按钮“走进《星夜》”（星夜场景开放后才显示）。",
     "type": "compare",
     "label": {
       "zh": "两个星夜",
@@ -100,6 +100,14 @@
       "credit": {
         "zh": "《星夜》图片：Wikimedia Commons（Google Art Project），公有领域",
         "en": "The Starry Night image: Wikimedia Commons (Google Art Project), public domain"
+      },
+      "link": {
+        "scene": "starry-night",
+        "href": "../starry-night/",
+        "label": {
+          "zh": "走进《星夜》",
+          "en": "Step into The Starry Night"
+        }
       }
     }
   },
@@ -1664,7 +1672,10 @@
       }
     },
     "longwish": {
-      "letter": { "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。", "url": "" },
+      "letter": {
+        "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。",
+        "url": ""
+      },
       "title": {
         "zh": "念念不忘",
         "en": "A long wish"
