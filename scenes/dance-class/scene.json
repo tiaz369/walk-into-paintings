@@ -1,5 +1,5 @@
 {
-  "_说明": "舞蹈课（室内房间，完整版）。所有事实文字由 Tia 提供（资料来自大都会艺术博物馆）。旧巴黎歌剧院的一间排练室：木地板、一面大镜子、墙上的海报；芭蕾大师佩罗站在右边，周围是等待的舞者和她们的母亲（24 位，写了 count 的人物），中间一位舞者在做“阿提丢”舞姿。画家视角和人物位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "_说明": "舞蹈课（室内房间，完整版）。所有事实文字由 Tia 提供（资料来自大都会艺术博物馆）。旧巴黎歌剧院的一间排练室：左边是挂着大镜子和海报的长墙，一直通到远处的尽头墙，尽头有一块高台；芭蕾大师佩罗站在右边，周围是等待的舞者和她们的母亲（24 位，写了 count 的人物，中间做“阿提丢”的舞者也算在内）。画家视角按原画估算：德加从稍高处往下看（视平线约在画面上方 21%），长墙的消失点在画面右边约 85% 处。人物按脚或头在原画上的位置摆放，舞者是孩子（scale 0.82）。",
   "id": "dance-class",
   "variant": "interior",
   "lighting": {
@@ -18,15 +18,14 @@
   },
   "painting": {
     "image": "images/dance-class.jpg",
-    "width": 1600,
-    "height": 1730,
+    "width": 1920,
+    "height": 2076,
     "alt": {
       "zh": "德加《舞蹈课》1874，纽约大都会艺术博物馆",
       "en": "Edgar Degas, The Dance Class, 1874, The Metropolitan Museum of Art, New York"
-    },
-    "_": "宽高是按 83.5 × 77.2 cm 估的，上传原画后改成图片的真实像素"
+    }
   },
-  "projection": false,
+  "projection": true,
   "label": {
     "_说明": "展签：画名、画家、年份、收藏地",
     "title": {
@@ -59,13 +58,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the ballet master, the cane, the dancers or the poster to learn more · Tap “Count them”, then tap the women one by one · The glowing circle = Degas's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估的（从稍高处斜着看向房间），上传原画后对照原画重新计算。",
-    "x": 2.6,
-    "z": 0.2,
-    "eye": 2.0,
-    "yaw": -0.35,
-    "pitch": -0.22,
-    "fov": 50,
+    "_说明": "画家视角：按原画估算（镜子上沿、远处的墙角和佩罗的身高对齐原画）。",
+    "x": 0,
+    "z": 0,
+    "eye": 2.4,
+    "yaw": -0.3251,
+    "pitch": -0.2932,
+    "fov": 55,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -88,8 +87,8 @@
   },
   "colors": {
     "line": "#2a2620",
-    "floor": "#b89a6e",
-    "wall": "#c9b898",
+    "floor": "#b8a07a",
+    "wall": "#8fae98",
     "ceiling": "#d8ccb2",
     "wood": "#8a6a44",
     "tutu": "#f1ede4",
@@ -101,24 +100,25 @@
     "bonnet": "#4a4440",
     "mirror": "#a9b4b0",
     "poster": "#d8c090",
-    "cane": "#5a4630"
+    "cane": "#5a4630",
+    "shawl": "#b0402c"
   },
   "room": {
     "_说明": "房间形状（米）：旧巴黎歌剧院一间宽大的排练室。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
-    "height": 4.6,
-    "front": 1.2,
-    "left": -3.6,
+    "height": 3.7,
+    "front": 1.0,
+    "left": -1.59,
     "backLeft": [
-      -3.6,
-      -7.8
+      -1.59,
+      -16.4
     ],
     "backRight": [
-      3.8,
-      -7.8
+      3.0,
+      -16.4
     ],
     "rightFront": [
-      3.8,
-      1.2
+      3.0,
+      1.0
     ],
     "floorCard": "opera",
     "wallCard": "opera",
@@ -130,26 +130,82 @@
       "pose": "standing",
       "color": "coat",
       "legs": "trousers",
-      "x": 1.4,
-      "z": -3.4,
-      "rot": -0.5,
+      "x": 0.39,
+      "z": -4.9,
+      "rot": -0.3,
       "card": "master",
       "_": "芭蕾大师于勒·佩罗"
     },
     {
       "type": "boxes",
       "card": "cane",
-      "x": 1.15,
-      "z": -3.0,
+      "x": 0.02,
+      "z": -4.8,
       "_": "佩罗的长手杖",
       "boxes": [
         [
           0.03,
-          1.25,
+          1.15,
           0.03,
           "cane",
           0,
-          0.62,
+          0.57,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "poster",
+      "x": -1.56,
+      "z": -4.25,
+      "_": "墙上的大镜子",
+      "boxes": [
+        [
+          0.04,
+          0.8,
+          1.9,
+          "mirror",
+          0,
+          2.4,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "poster",
+      "x": -1.56,
+      "z": -2.73,
+      "_": "镜子旁边的《威廉·退尔》海报",
+      "boxes": [
+        [
+          0.03,
+          0.37,
+          0.3,
+          "poster",
+          0,
+          2.2,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "opera",
+      "x": 0.7,
+      "z": -14.2,
+      "_": "尽头的高台（远处的人站在上面）",
+      "boxes": [
+        [
+          4.6,
+          0.65,
+          4.4,
+          "floor",
+          0,
+          0.325,
           0
         ]
       ]
@@ -158,331 +214,323 @@
       "type": "figure",
       "pose": "standing",
       "color": "tutu",
-      "legs": "tights",
-      "x": -0.2,
-      "z": -4.6,
-      "rot": 0.3,
+      "x": -1.35,
+      "z": -5.96,
+      "rot": 0,
       "card": "exam",
-      "_": "中间做“阿提丢”舞姿的舞者"
-    },
-    {
-      "type": "wallBoxes",
-      "card": "poster",
-      "wall": "back",
-      "x": -1.5,
-      "y": 1.9,
-      "z": -7.8,
-      "_": "镜子和旁边的《威廉·退尔》海报",
-      "boxes": [
-        [
-          1.6,
-          2.4,
-          0.04,
-          "mirror",
-          0,
-          0,
-          0.02,
-          "cloth"
-        ],
-        [
-          0.45,
-          0.65,
-          0.03,
-          "poster",
-          1.15,
-          0.2,
-          0.02,
-          "cloth"
-        ]
-      ]
+      "_": "中间做“阿提丢”舞姿、接受考试的舞者（也是24位之一）",
+      "count": true,
+      "scale": 0.82,
+      "legs": "tights"
     },
     {
       "type": "figure",
       "pose": "standing",
       "color": "tutu",
-      "legs": "tights",
-      "x": -2.6,
-      "z": -2.2,
-      "rot": -0.21,
+      "x": -1.36,
+      "z": -2.36,
+      "rot": 0,
       "card": "waiting",
+      "_": "前景低头整理裙子的舞者",
       "count": true,
-      "_": "等待的舞者"
+      "scale": 0.82,
+      "legs": "tights"
     },
     {
       "type": "figure",
       "pose": "standing",
       "color": "tutu",
-      "legs": "tights",
-      "x": -2.9,
-      "z": -3.0,
-      "rot": -0.42,
+      "x": -1.34,
+      "z": -2.8,
+      "rot": 0,
       "card": "waiting",
+      "_": "前景站着的黑发舞者",
       "count": true,
-      "_": "等待的舞者"
+      "scale": 1.38,
+      "legs": "tights"
     },
     {
       "type": "figure",
       "pose": "standing",
       "color": "tutu",
-      "legs": "tights",
-      "x": -2.5,
-      "z": -3.8,
-      "rot": 0.18,
+      "x": -1.34,
+      "z": -2.09,
+      "rot": 0,
       "card": "waiting",
+      "_": "前景金发舞者",
       "count": true,
-      "_": "等待的舞者"
+      "scale": 1.24,
+      "legs": "tights"
     },
     {
       "type": "figure",
       "pose": "standing",
       "color": "tutu",
-      "legs": "tights",
-      "x": -2.9,
-      "z": -4.6,
-      "rot": -0.51,
+      "x": -1.34,
+      "z": -1.48,
+      "rot": 0,
       "card": "waiting",
+      "_": "左边靠着钢琴的舞者",
       "count": true,
-      "_": "等待的舞者"
+      "scale": 1.29,
+      "legs": "tights"
     },
     {
       "type": "figure",
       "pose": "standing",
       "color": "tutu",
-      "legs": "tights",
-      "x": -2.2,
-      "z": -5.4,
-      "rot": 0.04,
+      "x": -1.34,
+      "z": -4.24,
+      "rot": 0,
       "card": "waiting",
+      "_": "中间的舞者",
       "count": true,
-      "_": "等待的舞者"
+      "scale": 1.16,
+      "legs": "tights"
     },
     {
       "type": "figure",
       "pose": "standing",
       "color": "tutu",
-      "legs": "tights",
-      "x": -1.6,
-      "z": -6.0,
-      "rot": -0.16,
+      "x": -1.34,
+      "z": -4.7,
+      "rot": 0,
       "card": "waiting",
+      "_": "中间的舞者",
       "count": true,
-      "_": "等待的舞者"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "tutu",
-      "legs": "tights",
-      "x": -0.9,
-      "z": -6.4,
-      "rot": -0.53,
-      "card": "waiting",
-      "count": true,
-      "_": "等待的舞者"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "tutu",
-      "legs": "tights",
-      "x": -0.2,
-      "z": -6.6,
-      "rot": 0.01,
-      "card": "waiting",
-      "count": true,
-      "_": "等待的舞者"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "tutu",
-      "legs": "tights",
-      "x": 0.6,
-      "z": -6.6,
-      "rot": -0.56,
-      "card": "waiting",
-      "count": true,
-      "_": "等待的舞者"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "tutu",
-      "legs": "tights",
-      "x": 1.4,
-      "z": -6.4,
-      "rot": -0.08,
-      "card": "waiting",
-      "count": true,
-      "_": "等待的舞者"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "tutu",
-      "legs": "tights",
-      "x": 2.2,
-      "z": -6.0,
-      "rot": -0.52,
-      "card": "waiting",
-      "count": true,
-      "_": "等待的舞者"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "tutu",
-      "legs": "tights",
-      "x": -1.8,
-      "z": -3.4,
-      "rot": -0.49,
-      "card": "waiting",
-      "count": true,
-      "_": "等待的舞者"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "tutu",
-      "legs": "tights",
-      "x": -1.3,
-      "z": -4.4,
-      "rot": -0.09,
-      "card": "waiting",
-      "count": true,
-      "_": "等待的舞者"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "tutu",
-      "legs": "tights",
-      "x": 2.6,
-      "z": -5.2,
-      "rot": 0.39,
-      "card": "waiting",
-      "count": true,
-      "_": "等待的舞者"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "tutu",
-      "legs": "tights",
-      "x": -2.0,
-      "z": -1.6,
-      "rot": -0.45,
-      "card": "waiting",
-      "count": true,
-      "_": "等待的舞者"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "tutu",
-      "legs": "tights",
-      "x": 0.2,
-      "z": -2.6,
-      "rot": -0.33,
-      "card": "waiting",
-      "count": true,
-      "_": "等待的舞者"
+      "scale": 1.16,
+      "legs": "tights"
     },
     {
       "type": "figure",
       "pose": "sitting",
-      "color": "dress",
-      "hat": "bonnet",
-      "x": -1.2,
-      "z": -7.2,
-      "rot": 0.08,
+      "color": "tutu",
+      "x": -1.34,
+      "z": -3.43,
+      "rot": 0,
       "card": "waiting",
+      "_": "镜子前坐着的舞者",
       "count": true,
-      "_": "等待的母亲"
+      "scale": 1.45,
+      "legs": "tights"
     },
     {
       "type": "figure",
       "pose": "sitting",
-      "color": "dress",
-      "hat": "bonnet",
-      "x": -0.4,
-      "z": -7.3,
-      "rot": 0.27,
+      "color": "tutu",
+      "x": -0.8,
+      "z": -8.12,
+      "rot": 0,
       "card": "waiting",
+      "_": "后面长凳上坐着的舞者",
       "count": true,
-      "_": "等待的母亲"
+      "scale": 0.82,
+      "legs": "tights"
     },
     {
       "type": "figure",
       "pose": "sitting",
-      "color": "dress",
-      "hat": "bonnet",
-      "x": 0.4,
-      "z": -7.3,
-      "rot": 0.05,
+      "color": "tutu",
+      "x": -0.3,
+      "z": -7.7,
+      "rot": 0,
       "card": "waiting",
+      "_": "后面长凳上坐着的舞者",
       "count": true,
-      "_": "等待的母亲"
+      "scale": 0.82,
+      "legs": "tights"
     },
     {
       "type": "figure",
-      "pose": "sitting",
-      "color": "dress",
-      "hat": "bonnet",
-      "x": 1.2,
-      "z": -7.2,
-      "rot": -0.06,
+      "pose": "standing",
+      "color": "tutu",
+      "x": 0.7,
+      "z": -9.55,
+      "rot": 0,
       "card": "waiting",
+      "_": "右边的舞者",
       "count": true,
-      "_": "等待的母亲"
+      "scale": 0.82,
+      "legs": "tights"
     },
     {
       "type": "figure",
-      "pose": "sitting",
-      "color": "dress",
-      "hat": "bonnet",
-      "x": 2.0,
-      "z": -7.0,
-      "rot": 0.29,
+      "pose": "standing",
+      "color": "tutu",
+      "x": 0.87,
+      "z": -8.87,
+      "rot": 0,
       "card": "waiting",
+      "_": "右边的舞者",
       "count": true,
-      "_": "等待的母亲"
+      "scale": 0.82,
+      "legs": "tights"
     },
     {
       "type": "figure",
-      "pose": "sitting",
-      "color": "dress",
-      "hat": "bonnet",
-      "x": 2.8,
-      "z": -6.6,
-      "rot": -0.27,
+      "pose": "standing",
+      "color": "tutu",
+      "x": 0.49,
+      "z": -7.07,
+      "rot": 0,
       "card": "waiting",
+      "_": "佩罗身后的舞者",
       "count": true,
-      "_": "等待的母亲"
+      "scale": 0.82,
+      "legs": "tights"
     },
     {
       "type": "figure",
-      "pose": "sitting",
-      "color": "dress",
-      "hat": "bonnet",
-      "x": 3.0,
-      "z": -5.8,
-      "rot": 0.22,
+      "pose": "standing",
+      "color": "tutu",
+      "x": 0.48,
+      "z": -4.65,
+      "rot": 0,
       "card": "waiting",
+      "_": "右边的舞者",
       "count": true,
-      "_": "等待的母亲"
+      "scale": 0.82,
+      "legs": "tights"
     },
     {
       "type": "figure",
-      "pose": "sitting",
-      "color": "dress",
-      "hat": "bonnet",
-      "x": -2.0,
-      "z": -7.0,
-      "rot": -0.13,
+      "pose": "standing",
+      "color": "tutu",
+      "x": -1.34,
+      "z": -12.0,
+      "rot": 0,
       "card": "waiting",
+      "_": "高台边上站着的舞者",
       "count": true,
-      "_": "等待的母亲"
+      "y": 0.65,
+      "scale": 0.82,
+      "legs": "tights"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "x": -1.06,
+      "z": -12.6,
+      "rot": 0,
+      "card": "waiting",
+      "_": "远处的舞者",
+      "count": true,
+      "y": 0.65,
+      "scale": 0.82,
+      "legs": "tights"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "x": -0.51,
+      "z": -12.9,
+      "rot": 0,
+      "card": "waiting",
+      "_": "远处的舞者",
+      "count": true,
+      "y": 0.65,
+      "scale": 0.82,
+      "legs": "tights"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "x": -0.17,
+      "z": -12.4,
+      "rot": 0,
+      "card": "waiting",
+      "_": "远处的舞者",
+      "count": true,
+      "y": 0.65,
+      "scale": 0.82,
+      "legs": "tights"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "x": 0.14,
+      "z": -12.2,
+      "rot": 0,
+      "card": "waiting",
+      "_": "远处的舞者",
+      "count": true,
+      "y": 0.65,
+      "scale": 0.82,
+      "legs": "tights"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "x": 0.49,
+      "z": -13.3,
+      "rot": 0,
+      "card": "waiting",
+      "_": "远处的舞者",
+      "count": true,
+      "y": 0.65,
+      "scale": 0.82,
+      "legs": "tights"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "dress",
+      "x": 0.29,
+      "z": -14.2,
+      "rot": 0,
+      "card": "waiting",
+      "_": "远处戴帽子的母亲",
+      "count": true,
+      "y": 0.65,
+      "legs": "dress",
+      "hat": "bonnet"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "dress",
+      "x": 0.86,
+      "z": -14.0,
+      "rot": 0,
+      "card": "waiting",
+      "_": "远处戴帽子的母亲",
+      "count": true,
+      "y": 0.65,
+      "legs": "dress",
+      "hat": "bonnet"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "dress",
+      "x": 1.27,
+      "z": -13.6,
+      "rot": 0,
+      "card": "waiting",
+      "_": "远处的母亲",
+      "count": true,
+      "y": 0.65,
+      "legs": "dress",
+      "hat": "bonnet"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "shawl",
+      "x": 0.56,
+      "z": -12.5,
+      "rot": 0,
+      "card": "waiting",
+      "_": "披红披肩的母亲",
+      "count": true,
+      "y": 0.65,
+      "legs": "dress",
+      "hat": "bonnet"
     }
   ],
   "cards": {
@@ -635,8 +683,8 @@
           "en": "1874 · The Met"
         },
         "caption": {
-          "zh": "1874年 · 纽约大都会艺术博物馆",
-          "en": "1874 · The Metropolitan Museum of Art, New York"
+          "zh": "《舞蹈课》，1874年 · 纽约大都会艺术博物馆",
+          "en": "*The Dance Class*, 1874 · The Metropolitan Museum of Art, New York"
         }
       },
       {
@@ -646,8 +694,8 @@
           "en": "1873–76 · Orsay"
         },
         "caption": {
-          "zh": "1873–1876年 · 巴黎奥赛博物馆",
-          "en": "1873–1876 · Musée d'Orsay, Paris"
+          "zh": "《舞蹈课》，1873–76年 · 巴黎奥赛博物馆",
+          "en": "*The Dance Class*, 1873–76 · Musée d'Orsay, Paris"
         }
       }
     ],

@@ -605,6 +605,7 @@ function run(S, R, meta) {
     // 简单的人形：站着（standing）、坐着（sitting）、趴在桌上（slumped）
     figure(o) {
       const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card), c = col(o.color || 'coat');
+      if (o.scale) g.scale.setScalar(o.scale);   // 孩子、远处的人可以小一点
       if (o.pose === 'standing') {
         cyl(0.2, 0.24, 1.1, c, 0, 0.95, 0, g); cyl(0.09, 0.09, 0.5, col(o.legs || 'trousers'), -0.08, 0.25, 0, g); cyl(0.09, 0.09, 0.5, col(o.legs || 'trousers'), 0.08, 0.25, 0, g);
         const h = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 12), paint(col('skin'))); h.position.y = 1.65; g.add(outline(h));
@@ -876,7 +877,19 @@ function run(S, R, meta) {
     const hit = raycaster.intersectObjects(scene.children, true).find(h => (h.object.isMesh || h.object.isSprite) && h.object !== vpRing && h.object !== vpDot && shown(h.object) && !(h.object.userData.fade > 0.5));
     let obj = hit && hit.object;
     if (obj && obj.userData.portal) { goPortal(obj.userData.portal); return; }
-    if (counting) { for (let c = obj; c; c = c.parent) if (c.userData.countable) { countOne(c); return; } return; }   // 数人的时候，点别处不打开卡片
+    if (counting) {   // 数人的时候：点到人就数；没点准，就数离点的位置最近（70 像素以内）的那位；点别处不打开卡片
+      for (let c = obj; c; c = c.parent) if (c.userData.countable) { countOne(c); return; }
+      let best = null, bd = 70;
+      for (const c of countables) {
+        if (c.userData.counted) continue;
+        const b = new THREE.Box3().setFromObject(c), v = new THREE.Vector3((b.min.x + b.max.x) / 2, b.min.y * 0.3 + b.max.y * 0.7, (b.min.z + b.max.z) / 2).project(camera);
+        if (v.z > 1) continue;
+        const d = Math.hypot((v.x + 1) / 2 * window.innerWidth - cx, (1 - v.y) / 2 * window.innerHeight - cy);
+        if (d < bd) { bd = d; best = c; }
+      }
+      if (best) countOne(best);
+      return;
+    }
     while (obj && !obj.userData.card) obj = obj.parent;
     if (obj && S.cards[obj.userData.card]) showCard(obj.userData.card); else card.style.display = 'none';
   }
