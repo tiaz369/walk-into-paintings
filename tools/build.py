@@ -138,9 +138,9 @@ def head(path, title, desc, image, image_alt, up, scene=False):
 </head>
 '''
 # 首页和浏览页的分享预览图：三幅画并排（tools/make_og.py 生成）；场景页用自己的原画
-OG_HOME = 'assets/og-home.jpg'
+OG_HOME = 'assets/og-share.jpg'   # tools/make_og.py 生成
 OG_SIZE = '\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="630" />'
-OG_HOME_ALT = "梵高《阿尔勒的卧室》、维米尔《戴珍珠耳环的少女》、梵高《向日葵》· Van Gogh's The Bedroom, Vermeer's Girl with a Pearl Earring, Van Gogh's Sunflowers"
+OG_HOME_ALT = "梵高《星夜》，1889，纽约现代艺术博物馆 · Vincent van Gogh, The Starry Night, 1889, The Museum of Modern Art, New York"
 def page(path, title, desc, static, script, image=OG_HOME, image_alt=OG_HOME_ALT, scene=False, up=None, noindex=False):
     if up is None: up = '../' * path.count('/')
     body = f'''<body class="lang-both">

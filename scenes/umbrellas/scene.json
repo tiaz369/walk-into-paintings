@@ -502,8 +502,8 @@
         "en": "The young woman on the left"
       },
       "text": {
-        "zh": "左边这位年轻女子轮廓分明、五官精确，和右边的人物画法完全不同。她是几年后才画上去的。",
-        "en": "The young woman on the left has clear outlines and precisely drawn features, quite unlike the figures on the right. She was painted several years later."
+        "zh": "她最初也是在1881年左右画的，四年后被雷诺阿重新画过：轮廓更分明，五官更精确，和右边的人物画法完全不同。",
+        "en": "She was first painted around 1881, then repainted by Renoir about four years later, with clearer outlines and more precise features, quite unlike the figures on the right."
       }
     },
     "fashion": {
@@ -528,7 +528,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“1881年还没有伞”：开关打开后，头顶的伞和背景人群淡出，原画也换成示意图（images/umbrellas-1881.jpg：把第二阶段加上的伞、人群和左边两个人物变模糊，是我们做的示意，不是研究图片），只剩右边第一阶段画的那一组清楚，并显示说明。",
+    "_说明": "独家发现“1881年还没有伞”：开关打开后，头顶的伞和背景人群淡出；原画换成示意图（images/umbrellas-1881.jpg，是我们做的示意，不是研究图片）：上方的伞和人群淡掉，左边两个人物换成更柔和、模糊的笔触（示意她们最初的样子），右边一组保持不变；并显示说明。",
     "type": "toggles",
     "label": {
       "zh": "1881年还没有伞",

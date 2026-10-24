@@ -101,7 +101,11 @@ body.lang-both .about p.en:not(.lead) { margin-top: 0; color: var(--muted); }
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 28px; }   /* 中大卡片：手机一行 1 张，电脑一行 2–3 张 */
 .card { display: block; text-decoration: none; color: inherit; }
 .card .pic { aspect-ratio: 5 / 4; background: var(--paper-2); border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-.card .pic img { width: 100%; height: 100%; object-fit: contain; display: block; transition: opacity .6s; }
+/* 有画的时候：不加底色框，每幅画按自己的比例完整显示，底边对齐（像挂在同一条线上），加一点阴影 */
+.card .pic:has(img) { background: none; overflow: visible; align-items: flex-end; justify-content: flex-start; }
+.card .pic img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; display: block; border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 8px 22px rgba(0, 0, 0, .14); transition: opacity .6s, transform .6s; }
+.card:hover .pic img { transform: translateY(-2px); }
 .card:hover .pic img { opacity: .9; }
 .card .pic .soon { padding: 12px; text-align: center; }
 .card .name { font-family: var(--serif); font-size: 21px; margin-top: 10px; line-height: 1.3; }
