@@ -87,7 +87,7 @@ def check():
             ex = S.get('ending', {}).get('exit') or []
             ex = [ex] if isinstance(ex, dict) else ex
             real = {'doors': uniq(portals(S.get('objects', []), []) + portals(S.get('room', {}), [])),
-                    'cards': uniq(scene_id(c['link']) for c in S['cards'].values() if c.get('link')),
+                    'cards': uniq(scene_id(l) for c in S['cards'].values() for l in ([c['link']] if c.get('link') else []) + c.get('links', [])),
                     'end': uniq(scene_id(x) for x in ex)}
             for k, want in real.items():
                 if sorted(links.get(k, [])) != sorted(want): say(f'links.{k} 写的是 {links.get(k, [])}，实际是 {want}')

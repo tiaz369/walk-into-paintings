@@ -1,0 +1,465 @@
+{
+  "_说明": "杏花（静物，轻量版：分层景深 + 卡片 + 短故事 + 花瓣飘落）。所有事实文字由 Tia 提供。像从树下仰望：layers 是同一张原画切出来的三层——背后的蓝天、后面的树枝、前面的树枝；clip 是原画上的多边形（0–1），depth 越大移动越多。原画上传前，切层和发光圆点的位置都是先估的，上传后照着原画重新画。只讲礼物和希望，不提梵高的去世。",
+  "id": "almond-blossom",
+  "variant": "still-life",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（渲染用的设定说明，不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "早春的蓝天",
+      "en": "Early spring, blue sky"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现（圣雷米系列的最后一幅）。卡片“日本版画”链接到卧室的“地板”和《睡莲池》的“日本桥”；结尾和《鸢尾花》互相链接。",
+    "doors": [],
+    "cards": [
+      "bedroom",
+      "water-lily-pond"
+    ],
+    "end": [
+      "irises"
+    ]
+  },
+  "ambience": "early-spring",
+  "petals": {
+    "_说明": "花瓣慢慢飘落",
+    "count": 18,
+    "color": "#fbf4f0"
+  },
+  "painting": {
+    "image": "images/almond-blossom.jpg",
+    "width": 1600,
+    "height": 1269,
+    "alt": {
+      "zh": "梵高《杏花》1890，阿姆斯特丹梵高博物馆",
+      "en": "Vincent van Gogh, Almond Blossom, 1890, Van Gogh Museum, Amsterdam"
+    },
+    "_": "宽高是按 73.3 × 92.4 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "杏花",
+      "en": "Almond Blossom"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1890年2月",
+      "en": "February 1890"
+    },
+    "museum": {
+      "zh": "阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+      "en": "Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“日本版画的影子”，拖动中间的线，对比三年前他临摹的花枝",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “Echoes of a Japanese print” and drag the line to compare the branch he copied three years earlier"
+  },
+  "parallax": 18,
+  "layers": [
+    {
+      "_说明": "背后的蓝天（整张画）",
+      "depth": 0
+    },
+    {
+      "_说明": "后面的树枝（先估的）",
+      "depth": 0.45,
+      "clip": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.6,
+          0.0
+        ],
+        [
+          0.7,
+          0.35
+        ],
+        [
+          0.55,
+          0.7
+        ],
+        [
+          0.3,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "_说明": "前面的树枝（先估的）",
+      "depth": 1,
+      "clip": [
+        [
+          0.3,
+          0.0
+        ],
+        [
+          1.0,
+          0.0
+        ],
+        [
+          1.0,
+          0.6
+        ],
+        [
+          0.75,
+          0.55
+        ],
+        [
+          0.5,
+          0.4
+        ]
+      ]
+    }
+  ],
+  "spots": {
+    "spring": {
+      "x": 0.62,
+      "y": 0.3,
+      "layer": 2
+    },
+    "sky": {
+      "x": 0.88,
+      "y": 0.82,
+      "layer": 0
+    },
+    "japan": {
+      "x": 0.35,
+      "y": 0.55,
+      "layer": 1
+    },
+    "gift": {
+      "x": 0.8,
+      "y": 0.2,
+      "layer": 2
+    },
+    "name": {
+      "x": 0.2,
+      "y": 0.25,
+      "layer": 1
+    },
+    "trunk": {
+      "x": 0.12,
+      "y": 0.88,
+      "layer": 0
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“日本版画的影子”：对比滑块。左边是梵高1887年临摹歌川广重的《开花的梅园》（梵高博物馆），右边是《杏花》。",
+    "type": "slider",
+    "label": {
+      "zh": "日本版画的影子",
+      "en": "Echoes of a Japanese print"
+    },
+    "title": {
+      "zh": "日本版画的影子",
+      "en": "Echoes of a Japanese print"
+    },
+    "before": {
+      "image": "images/plum-orchard.jpg",
+      "alt": {
+        "zh": "梵高《开花的梅园》（临摹广重）1887，阿姆斯特丹梵高博物馆",
+        "en": "Vincent van Gogh, Flowering Plum Orchard (after Hiroshige), 1887, Van Gogh Museum, Amsterdam"
+      },
+      "caption": {
+        "zh": "《开花的梅园》（临摹广重），1887年，梵高博物馆",
+        "en": "*Flowering Plum Orchard (after Hiroshige)*, 1887, Van Gogh Museum"
+      }
+    },
+    "after": {
+      "image": "images/almond-blossom.jpg",
+      "alt": {
+        "zh": "梵高《杏花》1890，阿姆斯特丹梵高博物馆",
+        "en": "Vincent van Gogh, Almond Blossom, 1890, Van Gogh Museum, Amsterdam"
+      },
+      "caption": {
+        "zh": "《杏花》，1890年2月，梵高博物馆",
+        "en": "*Almond Blossom*, February 1890, Van Gogh Museum"
+      }
+    },
+    "note": {
+      "zh": "三年前，他临摹过日本版画里的花枝。",
+      "en": "Three years earlier, he had copied a flowering branch from a Japanese print."
+    }
+  },
+  "cards": {
+    "spring": {
+      "title": {
+        "zh": "早春的花",
+        "en": "Early spring"
+      },
+      "text": {
+        "zh": "杏树在早春开花，比其他树都早，所以象征新生命。",
+        "en": "Almond trees flower early in spring, before most others, which makes them a symbol of new life."
+      }
+    },
+    "sky": {
+      "title": {
+        "zh": "蓝天",
+        "en": "The blue sky"
+      },
+      "text": {
+        "zh": "蓝天下大枝的开花树枝，是梵高最喜欢的题材之一。",
+        "en": "Large blossoming branches against a blue sky were one of Van Gogh's favourite subjects."
+      }
+    },
+    "japan": {
+      "title": {
+        "zh": "日本版画",
+        "en": "Japanese prints"
+      },
+      "text": {
+        "zh": "画的题材、粗重的轮廓线和树枝在画面中的位置，都借鉴了日本版画。",
+        "en": "The subject, the bold outlines and the position of the branches in the picture were all borrowed from Japanese printmaking."
+      },
+      "links": [
+        {
+          "scene": "bedroom",
+          "href": "../bedroom/?card=floor",
+          "label": {
+            "zh": "卧室的地板",
+            "en": "The bedroom floor"
+          }
+        },
+        {
+          "scene": "water-lily-pond",
+          "href": "../water-lily-pond/?card=bridge",
+          "label": {
+            "zh": "莫奈的日本桥",
+            "en": "Monet's Japanese bridge"
+          }
+        }
+      ]
+    },
+    "gift": {
+      "title": {
+        "zh": "一份礼物",
+        "en": "A gift"
+      },
+      "text": {
+        "zh": "这幅画是送给弟弟提奥和弟媳乔的礼物，庆祝他们的儿子出生。",
+        "en": "The painting was a gift for his brother Theo and sister-in-law Jo, to celebrate the birth of their son."
+      }
+    },
+    "name": {
+      "title": {
+        "zh": "用你的名字",
+        "en": "Named after you"
+      },
+      "text": {
+        "zh": "提奥在报喜的信里写道：“我们说过，会用你的名字给他命名。”这个孩子就叫文森特·威廉。",
+        "en": "In the letter announcing the birth, Theo wrote: \"As we told you, we'll name him after you.\" The baby was called Vincent Willem."
+      }
+    },
+    "trunk": {
+      "title": {
+        "zh": "看不见树干",
+        "en": "No trunk"
+      },
+      "text": {
+        "zh": "画里只有树枝和花，看不到树干，就像我们正站在树下往上看。",
+        "en": "There are only branches and blossom, no trunk, as if we are standing under the tree, looking up."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/almond-blossom.jpg",
+        "alt": {
+          "zh": "梵高《杏花》1890，阿姆斯特丹梵高博物馆",
+          "en": "Vincent van Gogh, Almond Blossom, 1890, Van Gogh Museum, Amsterdam"
+        },
+        "caption": {
+          "zh": "1890年2月 · 阿姆斯特丹梵高博物馆",
+          "en": "February 1890 · Van Gogh Museum, Amsterdam"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 一个新生命",
+          "en": "A new life"
+        },
+        "text": {
+          "zh": "1890年初，提奥和乔的儿子出生了，他们用哥哥的名字给他取名文森特。提奥在信里写道：“我希望他能像你一样坚定、勇敢。”",
+          "en": "In early 1890, Theo and Jo's son was born, and they named him Vincent after his uncle. Theo wrote: \"I'm making the wish that he may be as determined and as courageous as you.\""
+        }
+      },
+      {
+        "image": "images/almond-blossom.jpg",
+        "alt": {
+          "zh": "梵高《杏花》1890，阿姆斯特丹梵高博物馆",
+          "en": "Vincent van Gogh, Almond Blossom, 1890, Van Gogh Museum, Amsterdam"
+        },
+        "caption": {
+          "zh": "1890年2月 · 阿姆斯特丹梵高博物馆",
+          "en": "February 1890 · Van Gogh Museum, Amsterdam"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 一枝杏花",
+          "en": "A branch of almond blossom"
+        },
+        "text": {
+          "zh": "那年2月，在圣雷米，梵高画下了这枝开花的杏树，作为送给他们的礼物。杏树在早春开花，象征新生命。",
+          "en": "That February, in Saint-Rémy, Van Gogh painted this blossoming almond branch as a gift for them. Almond trees flower in early spring, a symbol of new life."
+        }
+      },
+      {
+        "image": "images/almond-blossom.jpg",
+        "alt": {
+          "zh": "梵高《杏花》1890，阿姆斯特丹梵高博物馆",
+          "en": "Vincent van Gogh, Almond Blossom, 1890, Van Gogh Museum, Amsterdam"
+        },
+        "caption": {
+          "zh": "1890年2月 · 阿姆斯特丹梵高博物馆",
+          "en": "February 1890 · Van Gogh Museum, Amsterdam"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 留在家里的画",
+          "en": "Kept in the family"
+        },
+        "text": {
+          "zh": "这幅画一直是梵高家人心里最珍爱的一幅。后来，那个孩子文森特·威廉创办了梵高博物馆。",
+          "en": "It remained the painting closest to the hearts of the Van Gogh family. That baby, Vincent Willem, went on to found the Van Gogh Museum."
+        }
+      }
+    ],
+    "final": {
+      "zh": "我希望他能像你一样坚定、勇敢。",
+      "en": "I'm making the wish that he may be as determined and as courageous as you."
+    },
+    "finalBy": {
+      "zh": "提奥致梵高，1890年",
+      "en": "Theo to Vincent, 1890"
+    },
+    "versions": [],
+    "museums": [
+      "van-gogh-museum"
+    ],
+    "exit": [
+      {
+        "scene": "irises",
+        "href": "../irises/",
+        "label": {
+          "zh": "同属圣雷米的花：鸢尾花",
+          "en": "Also from Saint-Rémy: *Irises*"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。作品页按梵高博物馆官网补上（等 Tia 核对）。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "杏花",
+      "en": "Almond Blossom"
+    },
+    "date": {
+      "zh": "1890年2月，圣雷米",
+      "en": "February 1890, Saint-Rémy"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "73.3 × 92.4 cm",
+      "en": "73.3 × 92.4 cm"
+    },
+    "collection": {
+      "zh": "阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+      "en": "Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+    },
+    "url": "https://www.vangoghmuseum.nl/en/collection/s0176V1962"
+  },
+  "zoom": {
+    "image": "images/almond-blossom.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "梵高博物馆：杏花",
+          "en": "Van Gogh Museum: *Almond Blossom*"
+        },
+        "url": "https://www.vangoghmuseum.nl/en/collection/s0176V1962"
+      },
+      {
+        "title": {
+          "zh": "梵高博物馆：开花的梅园（临摹广重）",
+          "en": "Van Gogh Museum: *Flowering Plum Orchard (after Hiroshige)*"
+        },
+        "url": "https://www.vangoghmuseum.nl/en/collection/s0115V1962"
+      },
+      {
+        "title": {
+          "zh": "DailyArt Magazine：梵高的《杏花》",
+          "en": "DailyArt Magazine: Van Gogh's *Almond Blossom*"
+        },
+        "url": "https://www.dailyartmagazine.com/van-gogh-almond-blossom/"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 一个新生命",
+          "en": "A new life"
+        },
+        "text": {
+          "zh": "1890年初，提奥和乔的儿子出生了，他们用哥哥的名字给他取名文森特。提奥在信里写道：“我希望他能像你一样坚定、勇敢。”",
+          "en": "In early 1890, Theo and Jo's son was born, and they named him Vincent after his uncle. Theo wrote: \"I'm making the wish that he may be as determined and as courageous as you.\""
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 一枝杏花",
+          "en": "A branch of almond blossom"
+        },
+        "text": {
+          "zh": "那年2月，在圣雷米，梵高画下了这枝开花的杏树，作为送给他们的礼物。杏树在早春开花，象征新生命。",
+          "en": "That February, in Saint-Rémy, Van Gogh painted this blossoming almond branch as a gift for them. Almond trees flower in early spring, a symbol of new life."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 留在家里的画",
+          "en": "Kept in the family"
+        },
+        "text": {
+          "zh": "这幅画一直是梵高家人心里最珍爱的一幅。后来，那个孩子文森特·威廉创办了梵高博物馆。",
+          "en": "It remained the painting closest to the hearts of the Van Gogh family. That baby, Vincent Willem, went on to found the Van Gogh Museum."
+        }
+      }
+    ]
+  }
+}

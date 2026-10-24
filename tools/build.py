@@ -314,7 +314,7 @@ for meta in BUILT:
         if rec.get('url'): rows += f'<tr><th>博物馆作品页 · Museum page</th><td><a href="{e(rec["url"])}">{e(rec["url"])}</a></td></tr>'
         rec_html = f'<h2>作品档案 · Artwork record</h2><table>{rows}</table>'
     items = [i for i in (S.get('reading') or {}).get('items', []) if i.get('url')]
-    reading = ('<h2>延伸阅读与来源 · Further reading and sources</h2><ul>' + ''.join(f'<li><a href="{e(i["url"])}">{e(both(i["title"], " / "))}</a></li>' for i in items) + '</ul>') if items else ''
+    reading = ('<h2>延伸阅读与来源 · Further reading and sources</h2><ul>' + itl(''.join(f'<li><a href="{e(i["url"])}">{e(both(i["title"], " / "))}</a></li>' for i in items)) + '</ul>') if items else ''
     A = ARTISTS.get(meta['artist'])
     artist_html = f'<h2>关于画家 · About the artist</h2>{bi(A["bio"], "p")}<p><a href="{up}artists/?id={A["id"]}">更多{e(A["name"]["zh"])}的画 · More by {e(A["name"]["en"])}</a></p>' if A and A.get('bio') else ''
     def see(x):   # 去现场看真迹：伦敦国家美术馆在展的 → 参观路线页；其他 → 博物馆作品页

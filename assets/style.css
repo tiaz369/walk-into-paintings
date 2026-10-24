@@ -573,3 +573,16 @@ body.clean #uncleanBtn:hover, body.clean #uncleanBtn:focus { opacity: 1; }
 #revealNote { position: fixed; left: 50%; bottom: 112px; transform: translateX(-50%); z-index: 5; padding: 6px 14px; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .8s; max-width: calc(100% - 32px); text-align: center; }
 #revealNote.show { opacity: 1; }
 .touch #revealNote { bottom: 240px; }
+
+/* 花瓣慢慢飘落（轻量版场景的 petals） */
+#petals { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 3; }
+#petals i { position: absolute; top: -4vh; width: 10px; height: 8px; border-radius: 60% 40% 60% 40%; background: var(--petal); opacity: .85;
+  box-shadow: 0 0 2px rgba(0, 0, 0, .12); transform: scale(var(--s)); animation: petalFall var(--d) linear var(--delay) infinite; }
+@keyframes petalFall {
+  0% { transform: translate(0, 0) rotate(0) scale(var(--s)); opacity: 0; }
+  10% { opacity: .85; }
+  50% { transform: translate(calc(var(--x) * .6), 52vh) rotate(calc(var(--r) * .5)) scale(var(--s)); }
+  90% { opacity: .85; }
+  100% { transform: translate(var(--x), 106vh) rotate(var(--r)) scale(var(--s)); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { #petals { display: none; } }

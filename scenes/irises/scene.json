@@ -17,7 +17,9 @@
     "cards": [
       "bedroom"
     ],
-    "end": []
+    "end": [
+      "almond-blossom"
+    ]
   },
   "ambience": "spring-garden",
   "painting": {
@@ -58,8 +60,8 @@
     "en": "Step into the painting"
   },
   "hint": {
-    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“一年后”，拖动中间的线，对比一年后的鸢尾",
-    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “A year later” and drag the line to compare the irises he painted a year later"
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“相隔一年”，拖动中间的线，对比一年后画的鸢尾",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “A year apart” and drag the line to compare the irises he painted a year later"
   },
   "parallax": 16,
   "layers": [
@@ -177,15 +179,15 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“一年后”：对比滑块。左边是1889年花园里的鸢尾（这幅画），右边是1890年5月的《花瓶里的鸢尾》（阿姆斯特丹梵高博物馆）。拖动中间的线对比。",
+    "_说明": "独家发现“相隔一年”：对比滑块。左边是1889年花园里的鸢尾（这幅画），右边是1890年5月的《花瓶里的鸢尾》（阿姆斯特丹梵高博物馆）。拖动中间的线对比。",
     "type": "slider",
     "label": {
-      "zh": "一年后",
-      "en": "A year later"
+      "zh": "相隔一年",
+      "en": "A year apart"
     },
     "title": {
-      "zh": "一年后",
-      "en": "A year later"
+      "zh": "相隔一年",
+      "en": "A year apart"
     },
     "before": {
       "image": "images/irises.jpg",
@@ -195,7 +197,7 @@
       },
       "caption": {
         "zh": "《鸢尾花》，1889年5月，盖蒂博物馆",
-        "en": "*Irises*, May 1889, Getty Museum"
+        "en": "*Irises*, May 1889, J. Paul Getty Museum"
       }
     },
     "after": {
@@ -206,7 +208,7 @@
       },
       "caption": {
         "zh": "《花瓶里的鸢尾》，1890年5月，梵高博物馆",
-        "en": "*Irises*, May 1890, Van Gogh Museum"
+        "en": "*Irises* (in a vase), May 1890, Van Gogh Museum"
       }
     },
     "note": {
@@ -320,7 +322,7 @@
         "kicker": "ACT II",
         "title": {
           "zh": "第二幕 · 第一次展览",
-          "en": "The first exhibition"
+          "en": "His first exhibition"
         },
         "text": {
           "zh": "那年9月，提奥把它送到巴黎的独立艺术家沙龙。这是梵高第一次参加公开展览的两幅作品之一。它的第一位主人是评论家奥克塔夫·米尔博，他写道：“他多么懂得花的精妙！”",
@@ -353,14 +355,23 @@
       "en": "Considering that life happens above all in the garden, it isn't so sad."
     },
     "finalBy": {
-      "zh": "—— 梵高",
-      "en": "— Van Gogh"
+      "zh": "梵高致提奥，1889年5月",
+      "en": "Van Gogh to Theo, May 1889"
     },
     "versions": [],
     "museums": [
       "getty"
     ],
-    "exit": []
+    "exit": [
+      {
+        "scene": "almond-blossom",
+        "href": "../almond-blossom/",
+        "label": {
+          "zh": "同属圣雷米的花：杏花",
+          "en": "Also from Saint-Rémy: *Almond Blossom*"
+        }
+      }
+    ]
   },
   "record": {
     "_说明": "作品档案表：Tia 提供。尺寸和作品页按盖蒂博物馆官网补上。",
@@ -398,28 +409,28 @@
       {
         "title": {
           "zh": "盖蒂博物馆：鸢尾花",
-          "en": "Getty Museum: Irises"
+          "en": "Getty Museum: *Irises*"
         },
         "url": "https://www.getty.edu/art/collection/objects/826/vincent-van-gogh-irises-dutch-1889/"
       },
       {
         "title": {
           "zh": "梵高博物馆：花瓶里的鸢尾（1890）",
-          "en": "Van Gogh Museum: Irises (1890)"
+          "en": "Van Gogh Museum: *Irises* (1890)"
         },
         "url": "https://www.vangoghmuseum.nl/en/collection/s0050V1962"
       },
       {
         "title": {
           "zh": "《艺术新闻报》：马丁·贝利谈《鸢尾花》",
-          "en": "The Art Newspaper: Martin Bailey on Irises"
+          "en": "The Art Newspaper: Martin Bailey on *Irises*"
         },
         "url": "https://theartnewspaper.com/blog/irises-anniversary-of-van-gogh-s-finest-garden-picture-painted-on-his-first-morning-in-the-asylum"
       },
       {
         "title": {
           "zh": "DailyArt Magazine：梵高的《鸢尾花》",
-          "en": "DailyArt Magazine: Van Gogh's Irises"
+          "en": "DailyArt Magazine: Van Gogh's *Irises*"
         },
         "url": "https://dailyartmagazine.com/vincent-van-gogh-irises"
       }
@@ -443,7 +454,7 @@
       {
         "title": {
           "zh": "第二幕 · 第一次展览",
-          "en": "The first exhibition"
+          "en": "His first exhibition"
         },
         "text": {
           "zh": "那年9月，提奥把它送到巴黎的独立艺术家沙龙。这是梵高第一次参加公开展览的两幅作品之一。它的第一位主人是评论家奥克塔夫·米尔博，他写道：“他多么懂得花的精妙！”",
