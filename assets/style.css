@@ -284,7 +284,7 @@ body.lang-both .act h3 > .en { display: block; font-size: .62em; color: var(--mu
 .cmp-pick { display: flex; justify-content: center; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; }
 .cmp-pick select { font: inherit; font-size: 14px; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); }
 #cmp { position: relative; width: min(820px, 100%); aspect-ratio: 5 / 4; margin: 0 auto; overflow: hidden; border-radius: 4px; touch-action: pan-y; cursor: ew-resize; user-select: none; background: var(--paper-2); }
-#cmp img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; pointer-events: none; -webkit-user-drag: none; }
+#cmp img { position: absolute; inset: 0; width: 100%; height: 100% !important; max-height: none !important; margin: 0; object-fit: cover; pointer-events: none; -webkit-user-drag: none; }   /* 盒子的比例跟着第一张画（见 engine.js） */
 #cmpLine { position: absolute; top: 0; bottom: 0; width: 2px; background: #f5f0e6; transform: translateX(-50%); pointer-events: none; }
 #cmpLine::after { content: '◀ ▶'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #f5f0e6; color: #22201c; font-size: 11px; padding: 5px 8px; border-radius: 14px; white-space: nowrap; }
 .cmp-tag { position: absolute; top: 8px; background: rgba(28,28,30,.7); color: #f5f0e6; padding: 3px 8px; border-radius: 4px; font-size: 12px; pointer-events: none; }
