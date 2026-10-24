@@ -36,6 +36,7 @@ BUILT = [s for s in R['scenes'] if s.get('path') and os.path.exists(os.path.join
 SCENE_DATA = {s['id']: json.load(open(os.path.join(ROOT, s['path'], 'scene.json'), encoding='utf-8')) for s in BUILT}
 
 e = lambda t: html.escape(str(t or ''), quote=True)
+itl = lambda h: re.sub(r'\*([^*]+)\*', r'<i>\1</i>', h)   # 英文里的 *画名* 显示成斜体
 def t(o, lang='zh'):
     if o is None: return ''
     if isinstance(o, str): return o
@@ -304,8 +305,8 @@ for meta in BUILT:
     desc = S.get('seo', {}).get('description') or f'走进{t(L["artist"])}的《{t(L["title"])}》，{t(L["date"])}。Walk into {t(L["artist"], "en")}’s {t(L["title"], "en")}, {t(L["date"], "en")}.'
     labelline = ' · '.join(both(L[k], ' / ') for k in ('title', 'artist', 'date', 'museum'))
     alt = both(S['painting'].get('alt'), ' · ')
-    cards = ''.join(f'<h3>{bi(c["title"])}</h3>{bi(c["text"], "p")}' for c in S['cards'].values())
-    acts = ''.join(f'<h3>{e(a.get("kicker", ""))} {bi(a["title"])}</h3>{bi(a["text"], "p")}' + (f'<p>{e(both(a["caption"], " / "))}</p>' if a.get('caption') else '') for a in E['acts'])
+    cards = itl(''.join(f'<h3>{bi(c["title"])}</h3>{bi(c["text"], "p")}' for c in S['cards'].values()))
+    acts = itl(''.join(f'<h3>{e(a.get("kicker", ""))} {bi(a["title"])}</h3>{bi(a["text"], "p")}' + (f'<p>{e(both(a["caption"], " / "))}</p>' if a.get('caption') else '') for a in E['acts']))
     rec = S.get('record')
     rec_html = ''
     if rec and any(both(v) for k, v in rec.items() if not k.startswith('_')):

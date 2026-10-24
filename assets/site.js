@@ -13,16 +13,18 @@ export const ROOT = new URL('../', import.meta.url).href;
 
 // ---------- 双语文字 ----------
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+// 英文里的画名写成 *Title*，显示成斜体（先转义，再加 <i>）
+export const escItalic = s => esc(s).replace(/\*([^*]+)\*/g, '<i>$1</i>');
 // { zh, en } → 两个 span；只有一种语言时就直接显示那一种
 // 双语时中间加分隔符（只在双语时出现）；标题里英文会换到下一行（见 style.css 的 .sep）
 export function bi(o, sep = ' · ') {
   if (o == null) return '';
   if (typeof o === 'string') return esc(o);
-  if (o.zh && o.en && o.zh !== o.en) return `<span class="zh">${esc(o.zh)}</span><span class="en"><span class="zh sep">${sep}</span>${esc(o.en)}</span>`;
+  if (o.zh && o.en && o.zh !== o.en) return `<span class="zh">${esc(o.zh)}</span><span class="en"><span class="zh sep">${sep}</span>${escItalic(o.en)}</span>`;
   return esc(o.zh || o.en || '');
 }
 // 界面上的短标签：中文/双语 显示中文，EN 显示英文
-export const ui = (zh, en) => `<span class="zh">${esc(zh)}</span><span class="en-ui">${esc(en)}</span>`;
+export const ui = (zh, en) => `<span class="zh">${esc(zh)}</span><span class="en-ui">${escItalic(en)}</span>`;
 // 图片说明：{ zh, en } → alt 属性（切换语言时自动换）
 export const altAttr = o => `alt="${esc(textOf(o, lang))}" data-alt-zh="${esc(textOf(o, 'zh'))}" data-alt-en="${esc(textOf(o, 'en'))}"`;
 export const textOf = (o, lang) => (o == null ? '' : typeof o === 'string' ? o : (lang === 'en' ? (o.en || o.zh) : (o.zh || o.en)));

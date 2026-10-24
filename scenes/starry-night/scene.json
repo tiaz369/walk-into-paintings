@@ -59,8 +59,8 @@
     "en": "Step into the painting"
   },
   "hint": {
-    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>先点“推开窗” · 点一下柏树、村庄、山和天空看介绍 · 点“去掉想象”看窗外原来的样子 · 地上发光的圆点 = 梵高的视角",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>First tap “Open the window” · Tap the cypress, the village, the hills or the sky to learn more · Tap “Without the imagined village” to see the real view · The glowing circle = Van Gogh's viewpoint"
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>先点“推开窗” · 点一下柏树、村庄、山和天空看介绍 · 点“去掉想象的村庄”看窗外原来的样子 · 地上发光的圆点 = 梵高的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>First tap “Open the window” · Tap the cypress, the village, the hills or the sky to learn more · Tap “Hide the imagined village” to see the real view · The glowing circle = Van Gogh's viewpoint"
   },
   "viewpoint": {
     "_说明": "画家视角：照着 images/starry-night.jpg 估的（从疗养院的窗口往下看，眼睛高 5 米，走开后降到 1.6 米）。",
@@ -944,15 +944,15 @@
         "en": "The cypress"
       },
       "text": {
-        "zh": "近处的柏树被他画得很大，像是拉近了。在《麦田与柏树》里，他也这样画过柏树。",
-        "en": "He painted the cypress huge, as if pulled closer. He did the same in A Wheatfield, with Cypresses."
+        "zh": "近处的柏树被他画得又高又大，像一团升起的火焰。同一个夏天，他在《麦田与柏树》里也画了柏树。",
+        "en": "In the foreground, the cypress rises tall and dark, like a flame. That same summer, he painted cypresses in *A Wheatfield, with Cypresses* too."
       },
       "link": {
         "scene": "wheatfield-cypresses",
         "href": "../wheatfield-cypresses/",
         "label": {
           "zh": "去看《麦田与柏树》",
-          "en": "See A Wheatfield, with Cypresses"
+          "en": "See *A Wheatfield, with Cypresses*"
         }
       }
     },
@@ -981,8 +981,8 @@
     "_说明": "独家发现两个开关：①“推开窗”：开场在疗养院房间里，透过铁栏看窗外；点一下，墙和铁栏淡出，走进星空下的风景。②“去掉想象”：村庄慢慢淡出，原画也换成去掉村庄的版本（images/starry-night-no-village.jpg，是我们用原画别处的笔触盖住村庄做的示意图），并显示卡片 3 的文字。",
     "type": "toggles",
     "label": {
-      "zh": "推开窗 · 去掉想象",
-      "en": "Open the window · Without the imagined village"
+      "zh": "推开窗 · 去掉想象的村庄",
+      "en": "Open the window · Hide the imagined village"
     },
     "toggles": [
       {
@@ -998,8 +998,8 @@
       {
         "id": "imagine",
         "label": {
-          "zh": "去掉想象",
-          "en": "Without the imagined village"
+          "zh": "去掉想象的村庄",
+          "en": "Hide the imagined village"
         },
         "targets": [
           "village",
@@ -1050,7 +1050,7 @@
         "kicker": "ACT II",
         "title": {
           "zh": "第二幕 · 窗外",
-          "en": "Outside the window"
+          "en": "The view from the window"
         },
         "text": {
           "zh": "1889年5月，他自愿住进圣雷米的疗养院。从房间装着铁栏的东窗，他能看到一片围起来的麦田，远处是山。他一次又一次地画这片景色。",
@@ -1103,8 +1103,8 @@
         "scene": "wheatfield-cypresses",
         "href": "../wheatfield-cypresses/",
         "label": {
-          "zh": "同一扇窗外",
-          "en": "From the same window"
+          "zh": "同一个夏天的柏树",
+          "en": "Cypresses of the same summer"
         }
       },
       {
@@ -1184,7 +1184,7 @@
       {
         "title": {
           "zh": "第二幕 · 窗外",
-          "en": "Outside the window"
+          "en": "The view from the window"
         },
         "text": {
           "zh": "1889年5月，他自愿住进圣雷米的疗养院。从房间装着铁栏的东窗，他能看到一片围起来的麦田，远处是山。他一次又一次地画这片景色。",

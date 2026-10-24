@@ -23,6 +23,29 @@
     },
     {
       "date": {
+        "zh": "1883年12月",
+        "en": "December 1883"
+      },
+      "text": {
+        "zh": "回到纽南父母家",
+        "en": "Returns to his parents' home in Nuenen"
+      }
+    },
+    {
+      "date": {
+        "zh": "1885年4–5月",
+        "en": "April–May 1885"
+      },
+      "text": {
+        "zh": "画下《吃土豆的人》",
+        "en": "Paints *The Potato Eaters*"
+      },
+      "scenes": [
+        "potato-eaters"
+      ]
+    },
+    {
+      "date": {
         "zh": "1886",
         "en": "1886"
       },
