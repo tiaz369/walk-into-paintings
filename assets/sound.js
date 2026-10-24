@@ -183,6 +183,12 @@ const AMBIENCE = {
     bird(out, ctx.currentTime + 0.6); every(st, 1.5, 5, t => bird(out, t));
     every(st, 6, 14, t => { bird(out, t); bird(out, t + rnd(0.4, 0.9)); });   // 偶尔两只鸟一问一答
   },
+  // 早春的微风，几声鸟叫
+  'early-spring'(out, st) {
+    const w = loopNoise('brown', out, { freq: 360, gain: 0.08 });   // 微风：音量慢慢起伏
+    st.timers.push(setInterval(() => w.g.gain.setTargetAtTime(0.04 + 0.09 * Math.random(), ctx.currentTime, 1.5), 2500));
+    bird(out, ctx.currentTime + 1.2); every(st, 5, 12, t => bird(out, t));
+  },
   // 夜晚的风，远处几声蟋蟀
   'night-wind'(out, st) {
     const w = loopNoise('brown', out, { freq: 380, gain: 0.16 });

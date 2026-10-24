@@ -72,6 +72,7 @@ function buildDOM(S, R, meta) {
 
   document.body.insertAdjacentHTML('beforeend', `
   <div class="grain"></div>
+  ${S.petals ? petalsHTML(S.petals) : ''}
   <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML.replace('</div>', '</div>' + curtainHTML)}<div id="spots">${spotsHTML}</div><div id="zspots">${zspotsHTML}</div></div></div>
 
   <div id="intro">
@@ -132,7 +133,7 @@ function buildDOM(S, R, meta) {
     <div class="en-title" id="cardTitleEn"></div>
     <p id="cardZh" class="zh"></p>
     <p class="en" id="cardEn"></p>
-    <p id="cardLinkP" class="hidden"><a id="cardLink" class="btn"></a></p>
+    <p id="cardLinkP" class="hidden"></p>
     <p id="cardLetterP" class="hidden"><a id="cardLetter" class="work-link" target="_blank" rel="noopener">${ui('读原信', 'Read the letter')} ↗</a></p>
   </div>
   <div id="langSwitch">${langSwitchHTML()}</div>
@@ -170,6 +171,13 @@ function buildDOM(S, R, meta) {
       <div class="credit">${imgLine}<br>${creditHTML()}</div>
     </section>
   </div>`);
+}
+
+// 花瓣慢慢飘落（petals：count 片数，color 颜色）；系统设置“减少动态效果”时不显示
+function petalsHTML(o) {
+  const n = o.count || 18, R = (a, b) => (a + Math.random() * (b - a)).toFixed(2);
+  return `<div id="petals" aria-hidden="true" style="--petal:${o.color || '#fbf4f0'}">${Array.from({ length: n }, () =>
+    `<i style="left:${R(0, 100)}%;--d:${R(9, 16)}s;--delay:-${R(0, 16)}s;--x:${R(-12, 12)}vw;--s:${R(0.6, 1.2)};--r:${R(-180, 180)}deg"></i>`).join('')}</div>`;
 }
 
 // 独家发现“对比滑块”：两张画叠在一起，拖动滑块，左边露出 before（默认是这幅画），右边露出 after
@@ -283,9 +291,9 @@ function run(S, R) {
     const t = S.cards[key];
     $('cardTitle').textContent = t.title.zh; $('cardTitleEn').textContent = t.title.en;
     $('cardZh').textContent = t.text.zh; $('cardEn').innerHTML = escItalic(t.text.en);   // 英文里的 *画名* 显示成斜体
-    const linkOn = t.link && isLive(R, t.link.scene);
-    $('cardLinkP').classList.toggle('hidden', !linkOn);
-    if (linkOn) { $('cardLink').href = t.link.href; $('cardLink').innerHTML = ui(t.link.label.zh, t.link.label.en) + ' →'; }
+    const links = [].concat(t.links || t.link || []).filter(l => isLive(R, l.scene));   // 一张卡片可以有几个链接（links）
+    $('cardLinkP').classList.toggle('hidden', !links.length);
+    $('cardLinkP').innerHTML = links.map(l => `<a class="btn" href="${l.href}">${ui(l.label.zh, l.label.en)} →</a>`).join(' ');
     const letter = t.letter && t.letter.url;   // 卡片引用了书信：“读原信”链接到 vangoghletters.org
     $('cardLetterP').classList.toggle('hidden', !letter);
     if (letter) $('cardLetter').href = letter;

@@ -206,6 +206,29 @@
     },
     {
       "date": {
+        "zh": "1890年初",
+        "en": "Early 1890"
+      },
+      "text": {
+        "zh": "侄子文森特·威廉出生",
+        "en": "His nephew Vincent Willem is born"
+      }
+    },
+    {
+      "date": {
+        "zh": "1890年2月",
+        "en": "February 1890"
+      },
+      "text": {
+        "zh": "画下《杏花》",
+        "en": "Paints *Almond Blossom*"
+      },
+      "scenes": [
+        "almond-blossom"
+      ]
+    },
+    {
+      "date": {
         "zh": "1890年5月",
         "en": "May 1890"
       },
