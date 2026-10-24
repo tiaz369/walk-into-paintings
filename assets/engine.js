@@ -138,12 +138,14 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.map((t, i) => `<button class="btn" data-toggle="${i}">✦ ${ui(t.label.zh, t.label.en)}</button>`).join('') : ''}
     ${S.exclusive && S.exclusive.type === 'light' ? `<button class="btn" id="lightBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'mirror' ? `<button class="btn" id="mirrorBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'count' ? `<button class="btn" id="countBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.today ? `<div class="seg hidden" id="todaySwitch"><button data-today="0" class="on">${ui(S.exclusive.today.then.zh, S.exclusive.today.then.en)}</button><button data-today="1">${ui(S.exclusive.today.now.zh, S.exclusive.today.now.en)}</button></div>` : ''}
     ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
       `<button data-opt="${i}" class="${i === 0 ? 'on' : ''}">${ui(o.label.zh, o.label.en)}</button>`).join('')}</div>` : ''}
   </div>
 
+  ${S.exclusive && S.exclusive.type === 'count' ? `<div id="countPanel" class="panel hidden"><div id="countN"></div><div id="countDone" class="hidden">${bi(S.exclusive.done, ' / ')}</div></div>` : ''}
   ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   <div id="status" class="ui">
     <div id="progress" class="panel"></div>
@@ -637,7 +639,12 @@ function run(S, R, meta) {
     }
   });
   const firstObject = scene.children.length;
-  for (const o of S.objects) { if (BUILD[o.type]) BUILD[o.type](o); else console.warn('unknown object type', o.type); }
+  const countables = [];   // 独家发现“数一数”：写了 count: true 的物体，点一下数一个
+  for (const o of S.objects) {
+    const n0 = scene.children.length;
+    if (BUILD[o.type]) BUILD[o.type](o); else console.warn('unknown object type', o.type);
+    if (o.count) for (const c of scene.children.slice(n0)) { c.userData.countable = true; countables.push(c); }
+  }
   // noPaint：这个物体不贴原画、也不挡住原画的投影（比如画家视角前面的窗框和铁栏）
   for (const o of S.objects) if (o.noPaint && o.id && named[o.id]) named[o.id].traverse(m => { m.userData.noDepth = true; if (m.isMesh) m.userData.noPaint = true; });
   const objectRoots = scene.children.slice(firstObject);   // objects 里建出来的东西（“1658 / 今天”淡出时用）
@@ -869,6 +876,7 @@ function run(S, R, meta) {
     const hit = raycaster.intersectObjects(scene.children, true).find(h => (h.object.isMesh || h.object.isSprite) && h.object !== vpRing && h.object !== vpDot && shown(h.object) && !(h.object.userData.fade > 0.5));
     let obj = hit && hit.object;
     if (obj && obj.userData.portal) { goPortal(obj.userData.portal); return; }
+    if (counting) { for (let c = obj; c; c = c.parent) if (c.userData.countable) { countOne(c); return; } return; }   // 数人的时候，点别处不打开卡片
     while (obj && !obj.userData.card) obj = obj.parent;
     if (obj && S.cards[obj.userData.card]) showCard(obj.userData.card); else card.style.display = 'none';
   }
@@ -1070,6 +1078,40 @@ function run(S, R, meta) {
     if (mirrorObj && mirrorArmed && !mirrorSeen) { mirrorSeen = true; togglePopup('mirror', true); track('exclusive-' + S.id); }   // 站到画家视角点：镜子放大
   }
   // 独家发现“镜子里的人”（mirror）：站到画家视角点时（或点按钮），把原画上 crop 这一块（镜子）放大显示，配上文字
+  // 独家发现“数一数”：打开后，点画里的人一个一个数，头顶出现数字；全部数完显示 done 的文字
+  const countObj = S.exclusive && S.exclusive.type === 'count' ? S.exclusive : null;
+  let counting = false, counted = 0;
+  function numberSprite(n) {
+    const cv = document.createElement('canvas'); cv.width = cv.height = 128;
+    const g = cv.getContext('2d');
+    g.fillStyle = 'rgba(255,243,176,.92)'; g.beginPath(); g.arc(64, 64, 58, 0, Math.PI * 2); g.fill();
+    g.fillStyle = '#1c1c1e'; g.font = '600 64px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(n), 64, 70);
+    const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace;
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, depthTest: false, transparent: true }));
+    sp.scale.set(0.22, 0.22, 1); sp.renderOrder = 10; sp.userData.noPaint = true; sp.userData.noDepth = true; return sp;
+  }
+  function showCount() {
+    $('countN').innerHTML = ui(`已数 ${counted} 位`, `${counted} counted`);
+    $('countDone').classList.toggle('hidden', counted < countables.length);
+  }
+  function countOne(c) {
+    if (c.userData.counted) return;
+    c.userData.counted = true; counted++;
+    const box = new THREE.Box3().setFromObject(c), sp = numberSprite(counted);
+    sp.position.set((box.min.x + box.max.x) / 2, box.max.y + 0.18, (box.min.z + box.max.z) / 2);
+    scene.add(sp); c.userData.badge = sp; showCount();
+    if (counted === countables.length) track('exclusive-done-' + S.id);
+  }
+  if (countObj) {
+    $('countBtn').onclick = () => {
+      counting = !counting;
+      $('countBtn').classList.toggle('on', counting); $('countPanel').classList.toggle('hidden', !counting);
+      for (const c of countables) if (c.userData.badge) c.userData.badge.visible = counting;
+      if (counting) { card.style.display = 'none'; showCount(); track('exclusive-' + S.id); }
+    };
+    onLang(() => { if (counting) showCount(); });
+  }
+
   const mirrorObj = S.exclusive && S.exclusive.type === 'mirror' ? S.exclusive : null;
   let mirrorSeen = false, mirrorArmed = false;   // 刚走进画里时也站在视角点上：先不弹出，离开过一次再回来才弹出
   if (mirrorObj) {

@@ -9,22 +9,7 @@
     "en": "You can't step into these yet, but they're worth seeing in person."
   },
   "artists": {
-    "van-gogh": [
-      {
-        "title": {
-          "zh": "包扎耳朵的自画像",
-          "en": "Self-Portrait with Bandaged Ear"
-        },
-        "year": {
-          "zh": "1889",
-          "en": "1889"
-        },
-        "museum": "courtauld",
-        "url": "https://courtauld.ac.uk/highlights/self-portrait-with-bandaged-ear/",
-        "check": "ok",
-        "_": "考陶尔德作品页：1889年1月，P.1948.SC.175"
-      }
-    ],
+    "van-gogh": [],
     "vermeer": [
       {
         "title": {

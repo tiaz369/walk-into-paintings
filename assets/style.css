@@ -586,3 +586,9 @@ body.clean #uncleanBtn:hover, body.clean #uncleanBtn:focus { opacity: 1; }
   100% { transform: translate(var(--x), 106vh) rotate(var(--r)) scale(var(--s)); opacity: 0; }
 }
 @media (prefers-reduced-motion: reduce) { #petals { display: none; } }
+
+/* 独家发现“数一数”：数到第几位，数完显示一句话 */
+#countPanel { position: fixed; left: 50%; bottom: 112px; transform: translateX(-50%); z-index: 5; padding: 8px 16px; text-align: center; max-width: calc(100% - 32px); pointer-events: none; }
+#countN { font-size: 15px; font-weight: 500; }
+#countDone { margin-top: 4px; font-size: 13px; }
+.touch #countPanel { bottom: 240px; }

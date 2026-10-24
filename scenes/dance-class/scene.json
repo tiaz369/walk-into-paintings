@@ -1,0 +1,757 @@
+{
+  "_说明": "舞蹈课（室内房间，完整版）。所有事实文字由 Tia 提供（资料来自大都会艺术博物馆）。旧巴黎歌剧院的一间排练室：木地板、一面大镜子、墙上的海报；芭蕾大师佩罗站在右边，周围是等待的舞者和她们的母亲（24 位，写了 count 的人物），中间一位舞者在做“阿提丢”舞姿。画家视角和人物位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "dance-class",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "排练室里的白天",
+      "en": "Daylight in the rehearsal room"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。本场景是主题“舞蹈”的第一幅。",
+    "doors": [],
+    "cards": [],
+    "end": []
+  },
+  "painting": {
+    "image": "images/dance-class.jpg",
+    "width": 1600,
+    "height": 1730,
+    "alt": {
+      "zh": "德加《舞蹈课》1874，纽约大都会艺术博物馆",
+      "en": "Edgar Degas, The Dance Class, 1874, The Metropolitan Museum of Art, New York"
+    },
+    "_": "宽高是按 83.5 × 77.2 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "舞蹈课",
+      "en": "The Dance Class"
+    },
+    "artist": {
+      "zh": "德加",
+      "en": "Edgar Degas"
+    },
+    "date": {
+      "zh": "1874年",
+      "en": "1874"
+    },
+    "museum": {
+      "zh": "纽约大都会艺术博物馆",
+      "en": "The Metropolitan Museum of Art, New York"
+    },
+    "source": {
+      "zh": "大都会艺术博物馆开放资源（CC0），公有领域",
+      "en": "The Met Open Access (CC0), public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下芭蕾大师、手杖、舞者和海报看介绍 · 点“数一数”，再一个一个点画里的女士，数一数有多少位 · 地上发光的圆点 = 德加的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the ballet master, the cane, the dancers or the poster to learn more · Tap “Count them”, then tap the women one by one · The glowing circle = Degas's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的（从稍高处斜着看向房间），上传原画后对照原画重新计算。",
+    "x": 2.6,
+    "z": 0.2,
+    "eye": 2.0,
+    "yaw": -0.35,
+    "pitch": -0.22,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "rehearsal",
+  "music": {
+    "_说明": "音乐（可选）：只用确认为 CC0 或公有领域的录音。录音放进 audio/ 文件夹，src 写文件路径；src 空着时不显示“音乐”开关。录音授权等 Tia 确认。",
+    "title": {
+      "zh": "德利布《葛蓓莉亚》",
+      "en": "Delibes, Coppélia"
+    },
+    "performer": {
+      "zh": "",
+      "en": ""
+    },
+    "license": "",
+    "page": "",
+    "src": ""
+  },
+  "colors": {
+    "line": "#2a2620",
+    "floor": "#b89a6e",
+    "wall": "#c9b898",
+    "ceiling": "#d8ccb2",
+    "wood": "#8a6a44",
+    "tutu": "#f1ede4",
+    "tights": "#e8d6c4",
+    "dress": "#3c3a3e",
+    "coat": "#2e2c2a",
+    "trousers": "#3a3632",
+    "skin": "#e2c4a8",
+    "bonnet": "#4a4440",
+    "mirror": "#a9b4b0",
+    "poster": "#d8c090",
+    "cane": "#5a4630"
+  },
+  "room": {
+    "_说明": "房间形状（米）：旧巴黎歌剧院一间宽大的排练室。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 4.6,
+    "front": 1.2,
+    "left": -3.6,
+    "backLeft": [
+      -3.6,
+      -7.8
+    ],
+    "backRight": [
+      3.8,
+      -7.8
+    ],
+    "rightFront": [
+      3.8,
+      1.2
+    ],
+    "floorCard": "opera",
+    "wallCard": "opera",
+    "walkSpeed": 0.9
+  },
+  "objects": [
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 1.4,
+      "z": -3.4,
+      "rot": -0.5,
+      "card": "master",
+      "_": "芭蕾大师于勒·佩罗"
+    },
+    {
+      "type": "boxes",
+      "card": "cane",
+      "x": 1.15,
+      "z": -3.0,
+      "_": "佩罗的长手杖",
+      "boxes": [
+        [
+          0.03,
+          1.25,
+          0.03,
+          "cane",
+          0,
+          0.62,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -0.2,
+      "z": -4.6,
+      "rot": 0.3,
+      "card": "exam",
+      "_": "中间做“阿提丢”舞姿的舞者"
+    },
+    {
+      "type": "wallBoxes",
+      "card": "poster",
+      "wall": "back",
+      "x": -1.5,
+      "y": 1.9,
+      "z": -7.8,
+      "_": "镜子和旁边的《威廉·退尔》海报",
+      "boxes": [
+        [
+          1.6,
+          2.4,
+          0.04,
+          "mirror",
+          0,
+          0,
+          0.02,
+          "cloth"
+        ],
+        [
+          0.45,
+          0.65,
+          0.03,
+          "poster",
+          1.15,
+          0.2,
+          0.02,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -2.6,
+      "z": -2.2,
+      "rot": -0.21,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -2.9,
+      "z": -3.0,
+      "rot": -0.42,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -2.5,
+      "z": -3.8,
+      "rot": 0.18,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -2.9,
+      "z": -4.6,
+      "rot": -0.51,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -2.2,
+      "z": -5.4,
+      "rot": 0.04,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -1.6,
+      "z": -6.0,
+      "rot": -0.16,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -0.9,
+      "z": -6.4,
+      "rot": -0.53,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -0.2,
+      "z": -6.6,
+      "rot": 0.01,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": 0.6,
+      "z": -6.6,
+      "rot": -0.56,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": 1.4,
+      "z": -6.4,
+      "rot": -0.08,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": 2.2,
+      "z": -6.0,
+      "rot": -0.52,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -1.8,
+      "z": -3.4,
+      "rot": -0.49,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -1.3,
+      "z": -4.4,
+      "rot": -0.09,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": 2.6,
+      "z": -5.2,
+      "rot": 0.39,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": -2.0,
+      "z": -1.6,
+      "rot": -0.45,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "legs": "tights",
+      "x": 0.2,
+      "z": -2.6,
+      "rot": -0.33,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的舞者"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "hat": "bonnet",
+      "x": -1.2,
+      "z": -7.2,
+      "rot": 0.08,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的母亲"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "hat": "bonnet",
+      "x": -0.4,
+      "z": -7.3,
+      "rot": 0.27,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的母亲"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "hat": "bonnet",
+      "x": 0.4,
+      "z": -7.3,
+      "rot": 0.05,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的母亲"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "hat": "bonnet",
+      "x": 1.2,
+      "z": -7.2,
+      "rot": -0.06,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的母亲"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "hat": "bonnet",
+      "x": 2.0,
+      "z": -7.0,
+      "rot": 0.29,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的母亲"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "hat": "bonnet",
+      "x": 2.8,
+      "z": -6.6,
+      "rot": -0.27,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的母亲"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "hat": "bonnet",
+      "x": 3.0,
+      "z": -5.8,
+      "rot": 0.22,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的母亲"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "hat": "bonnet",
+      "x": -2.0,
+      "z": -7.0,
+      "rot": -0.13,
+      "card": "waiting",
+      "count": true,
+      "_": "等待的母亲"
+    }
+  ],
+  "cards": {
+    "master": {
+      "title": {
+        "zh": "芭蕾大师",
+        "en": "The ballet master"
+      },
+      "text": {
+        "zh": "主持这堂课的是著名的芭蕾大师于勒·佩罗。1874年他已经64岁，退休后经常在歌剧院教课。",
+        "en": "The class is led by the famous ballet master Jules Perrot. In 1874 he was 64, a retired master who often taught classes at the Opéra."
+      }
+    },
+    "cane": {
+      "title": {
+        "zh": "手杖",
+        "en": "The cane"
+      },
+      "text": {
+        "zh": "佩罗站在画面右边，看起来却像在房间中央。他双臂伸开，双手扶着一根长手杖。",
+        "en": "Perrot stands at the right of the picture, yet seems to be at the centre of the room, arms outstretched, hands resting on a long cane."
+      }
+    },
+    "exam": {
+      "title": {
+        "zh": "考试",
+        "en": "The examination"
+      },
+      "text": {
+        "zh": "中间一位舞者正在做“阿提丢”（attitude）舞姿，接受考试。",
+        "en": "In the middle, a dancer performs an \"attitude\" for her examination."
+      }
+    },
+    "waiting": {
+      "title": {
+        "zh": "等待的人",
+        "en": "Those who wait"
+      },
+      "text": {
+        "zh": "画中大约有24位女性，是芭蕾舞者和她们的母亲，都在等待。",
+        "en": "Some 24 women, dancers and their mothers, are waiting."
+      }
+    },
+    "poster": {
+      "title": {
+        "zh": "墙上的海报",
+        "en": "The poster"
+      },
+      "text": {
+        "zh": "镜子旁边贴着罗西尼歌剧《威廉·退尔》的海报，是向委托这幅画的歌唱家福尔致敬。",
+        "en": "Beside the mirror is a poster for Rossini's opera *William Tell*, a tribute to the singer Faure, who commissioned the picture."
+      }
+    },
+    "opera": {
+      "title": {
+        "zh": "已经不在的歌剧院",
+        "en": "An opera house now gone"
+      },
+      "text": {
+        "zh": "这间排练室在旧巴黎歌剧院里，而那座歌剧院不久前刚被烧毁。这是一个想象的场景。",
+        "en": "This rehearsal room is in the old Paris Opéra, which had recently burned down. The scene is imagined."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“数一数”：打开后，点画里的女士一个一个数（写了 count: true 的 24 位），头顶出现数字；全部数完显示 done 的文字。大都会写的是“大约24位”，所以文字保留“大约”。",
+    "type": "count",
+    "label": {
+      "zh": "数一数",
+      "en": "Count them"
+    },
+    "done": {
+      "zh": "画中大约有24位女性，是芭蕾舞者和她们的母亲。",
+      "en": "Some 24 women, dancers and their mothers, fill the room."
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/dance-class.jpg",
+        "alt": {
+          "zh": "德加《舞蹈课》1874，纽约大都会艺术博物馆",
+          "en": "Edgar Degas, The Dance Class, 1874, The Metropolitan Museum of Art, New York"
+        },
+        "caption": {
+          "zh": "1874年 · 纽约大都会艺术博物馆",
+          "en": "1874 · The Metropolitan Museum of Art, New York"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 一份委托",
+          "en": "A commission"
+        },
+        "text": {
+          "zh": "1873年，著名的歌剧男中音让-巴蒂斯特·福尔，请德加画一幅芭蕾舞者上课或考试的画。",
+          "en": "In 1873, the famous opera baritone Jean-Baptiste Faure commissioned Degas to paint ballet dancers at a class or examination."
+        }
+      },
+      {
+        "image": "images/dance-class.jpg",
+        "alt": {
+          "zh": "德加《舞蹈课》1874，纽约大都会艺术博物馆",
+          "en": "Edgar Degas, The Dance Class, 1874, The Metropolitan Museum of Art, New York"
+        },
+        "caption": {
+          "zh": "1874年 · 纽约大都会艺术博物馆",
+          "en": "1874 · The Metropolitan Museum of Art, New York"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 想象的教室",
+          "en": "An imagined classroom"
+        },
+        "text": {
+          "zh": "19世纪70年代前半期，德加花了很多时间在巴黎歌剧院，观察教室、排练室和舞台上的课程和排练。但这间教室是他想象出来的：它所在的旧歌剧院，不久前刚被烧毁。",
+          "en": "In the early 1870s, Degas spent a great deal of time at the Paris Opéra, watching classes and rehearsals. But this room is imagined: the old opera house it belonged to had recently burned down."
+        }
+      },
+      {
+        "image": "images/dance-class.jpg",
+        "alt": {
+          "zh": "德加《舞蹈课》1874，纽约大都会艺术博物馆",
+          "en": "Edgar Degas, The Dance Class, 1874, The Metropolitan Museum of Art, New York"
+        },
+        "caption": {
+          "zh": "1874年 · 纽约大都会艺术博物馆",
+          "en": "1874 · The Metropolitan Museum of Art, New York"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 两个版本",
+          "en": "Two versions"
+        },
+        "text": {
+          "zh": "1876年，福尔把这幅画借给了印象派画展。这一幅和奥赛博物馆的另一版本，是德加以舞蹈为主题最有雄心的两幅作品。今天，它在纽约大都会艺术博物馆的815展厅。",
+          "en": "In 1876, Faure lent the painting to the Impressionist exhibition. This work and its variant in the Musée d'Orsay are Degas's most ambitious paintings of dance. Today it hangs in Gallery 815 of the Metropolitan Museum."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一堂想象的舞蹈课，在一座已经不在的歌剧院里。",
+      "en": "An imagined dance class, in an opera house that was already gone."
+    },
+    "versions": [
+      {
+        "image": "images/dance-class.jpg",
+        "short": {
+          "zh": "1874 · 大都会",
+          "en": "1874 · The Met"
+        },
+        "caption": {
+          "zh": "1874年 · 纽约大都会艺术博物馆",
+          "en": "1874 · The Metropolitan Museum of Art, New York"
+        }
+      },
+      {
+        "image": "images/dance-class-orsay.jpg",
+        "short": {
+          "zh": "1873–76 · 奥赛",
+          "en": "1873–76 · Orsay"
+        },
+        "caption": {
+          "zh": "1873–1876年 · 巴黎奥赛博物馆",
+          "en": "1873–1876 · Musée d'Orsay, Paris"
+        }
+      }
+    ],
+    "museums": [
+      "met"
+    ],
+    "exit": []
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（大都会艺术博物馆作品页）。",
+    "artist": {
+      "zh": "埃德加·德加（1834–1917）",
+      "en": "Edgar Degas (1834–1917)"
+    },
+    "title": {
+      "zh": "舞蹈课",
+      "en": "The Dance Class"
+    },
+    "date": {
+      "zh": "1874年",
+      "en": "1874"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "83.5 × 77.2 cm",
+      "en": "83.5 × 77.2 cm"
+    },
+    "collection": {
+      "zh": "纽约大都会艺术博物馆，815展厅",
+      "en": "The Metropolitan Museum of Art, New York, Gallery 815"
+    },
+    "creditLine": {
+      "zh": "哈里·佩恩·宾厄姆夫人遗赠，1986年（馆藏编号 1987.47.1）",
+      "en": "Bequest of Mrs. Harry Payne Bingham, 1986 (1987.47.1)"
+    },
+    "url": "https://www.metmuseum.org/art/collection/search/438817"
+  },
+  "zoom": {
+    "image": "images/dance-class.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "大都会艺术博物馆：舞蹈课",
+          "en": "The Met: *The Dance Class*"
+        },
+        "url": "https://www.metmuseum.org/art/collection/search/438817"
+      },
+      {
+        "title": {
+          "zh": "大都会艺术史年表：舞蹈课",
+          "en": "The Met Heilbrunn Timeline: *The Dance Class*"
+        },
+        "url": "https://www.metmuseum.org/toah/works-of-art/1987.47.1"
+      },
+      {
+        "title": {
+          "zh": "奥赛博物馆：舞蹈课（另一版本）",
+          "en": "Musée d'Orsay: *The Dance Class* (the variant)"
+        },
+        "url": "https://www.musee-orsay.fr/en/artworks/la-classe-de-danse-1151"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 一份委托",
+          "en": "A commission"
+        },
+        "text": {
+          "zh": "1873年，著名的歌剧男中音让-巴蒂斯特·福尔，请德加画一幅芭蕾舞者上课或考试的画。",
+          "en": "In 1873, the famous opera baritone Jean-Baptiste Faure commissioned Degas to paint ballet dancers at a class or examination."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 想象的教室",
+          "en": "An imagined classroom"
+        },
+        "text": {
+          "zh": "19世纪70年代前半期，德加花了很多时间在巴黎歌剧院，观察教室、排练室和舞台上的课程和排练。但这间教室是他想象出来的：它所在的旧歌剧院，不久前刚被烧毁。",
+          "en": "In the early 1870s, Degas spent a great deal of time at the Paris Opéra, watching classes and rehearsals. But this room is imagined: the old opera house it belonged to had recently burned down."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 两个版本",
+          "en": "Two versions"
+        },
+        "text": {
+          "zh": "1876年，福尔把这幅画借给了印象派画展。这一幅和奥赛博物馆的另一版本，是德加以舞蹈为主题最有雄心的两幅作品。今天，它在纽约大都会艺术博物馆的815展厅。",
+          "en": "In 1876, Faure lent the painting to the Impressionist exhibition. This work and its variant in the Musée d'Orsay are Degas's most ambitious paintings of dance. Today it hangs in Gallery 815 of the Metropolitan Museum."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}
