@@ -157,9 +157,12 @@
         "en": "May 1889"
       },
       "text": {
-        "zh": "自愿住进圣雷米疗养院",
-        "en": "Voluntarily enters the asylum at Saint-Rémy"
-      }
+        "zh": "自愿住进圣雷米疗养院，在花园里画下《鸢尾花》",
+        "en": "Voluntarily enters the asylum at Saint-Rémy; paints *Irises* in the garden"
+      },
+      "scenes": [
+        "irises"
+      ]
     },
     {
       "date": {

@@ -63,7 +63,7 @@ function buildDOM(S, R, meta) {
   const layersHTML = S.layers.map((l, i) => `<div class="layer" data-i="${i}" style="${l.clip ? `clip-path:polygon(${l.clip.map(([x, y]) => `${x * 100}% ${y * 100}%`).join(',')})` : ''}">
       <img src="${P.image}" alt="" draggable="false" /></div>`).join('');
   const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}" style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
-  const isMap = X.type === 'map', isCurtain = X.type === 'curtain';
+  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider';
   // 细节放大的热点（zooms：眼睛、嘴唇、珍珠……）；只有一个时也可以写成 zoom
   const ZOOMS = zoomsOf(X), ZL = X.zoomLabel || (X.zoom && X.zoom.label) || { zh: '放大看细节', en: 'Zoom in on details' };
   const zspotsHTML = ZOOMS.map((z, i) => `<button class="zspot" data-z="${i}" style="left:${z.x * 100}%;top:${z.y * 100}%">${ui(z.label.zh, z.label.en)}</button>`).join('');
@@ -94,6 +94,7 @@ function buildDOM(S, R, meta) {
     ${ZOOMS.length ? `<button class="btn" id="zoomBtn">🔍 ${ui(ZL.zh, ZL.en)}</button>`
       : VARIANTS[variantOf(S)].zoomFirst ? `<a class="btn" id="zoomBtn" href="${(S.zoom && S.zoom.image) || P.image}" target="_blank" rel="noopener">🔍 ${ui('放大看细节', 'Zoom in on details')}</a>` : ''}
     ${isMap ? `<button class="btn" id="mapBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
+    ${isSlider ? `<button class="btn" id="sliderBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
   </div>
   <div id="status" class="ui">
     <div id="progress" class="panel"></div>
@@ -122,6 +123,8 @@ function buildDOM(S, R, meta) {
       : `<p class="soon">${bi(X.empty || { zh: '名单核对中，即将补上。', en: 'The list is being checked and will be added soon.' }, ' / ')}</p>`}
     <p class="map-note">${bi(X.mapNote || { zh: '示意图：坐标是近似值。陆地轮廓来自 Natural Earth（公有领域）。', en: 'Schematic map: positions are approximate. Coastlines from Natural Earth (public domain).' }, ' ')}</p>
   </div>` : ''}
+
+  ${isSlider ? sliderHTML(X, P) : ''}
 
   <div id="card" class="panel">
     <button class="close" id="cardClose" aria-label="Close">×</button>
@@ -167,6 +170,23 @@ function buildDOM(S, R, meta) {
       <div class="credit">${imgLine}<br>${creditHTML()}</div>
     </section>
   </div>`);
+}
+
+// 独家发现“对比滑块”：两张画叠在一起，拖动滑块，左边露出 before（默认是这幅画），右边露出 after
+function sliderHTML(X, P) {
+  const A = X.before || { image: P.image, alt: P.alt }, B = X.after;
+  return `<div class="popup panel" id="slide">
+    <button class="close" data-close="slide" aria-label="Close">×</button>
+    <h3>${bi(X.title || X.label)}</h3>
+    <div class="wipe" style="--pos:50%">
+      <img src="${A.image}" ${altAttr(A.alt || '')} draggable="false" />
+      <div class="wipe-b"><img src="${B.image}" ${altAttr(B.alt || '')} draggable="false" /></div>
+      <div class="wipe-line"></div>
+      <input type="range" min="0" max="100" value="50" aria-label="${ui('拖动对比', 'Drag to compare')}" />
+    </div>
+    <div class="wipe-caps"><span>← ${bi(A.caption || {}, ' / ')}</span><span>${bi(B.caption || {}, ' / ')} →</span></div>
+    ${X.note ? `<p class="wipe-note">${bi(X.note, ' / ')}</p>` : ''}
+  </div>`;
 }
 
 function run(S, R) {
@@ -288,6 +308,12 @@ function run(S, R) {
   const sound = setupSound(S, { ambBtn: $('ambBtn'), musBtn: $('musBtn'), info: $('musInfo') });   // 环境音、音乐（都默认关闭）
   setupGuide(S, { btn: $('audioBtn'), box: $('guideBox'), duck: on => sound.guide(on) });   // 语音导览（有录音才显示）
   if ($('mapBtn')) $('mapBtn').onclick = () => togglePopup('where');
+  if ($('slide')) {   // 对比滑块：拖动中间的线，左边是这幅画，右边是另一幅
+    popups.slide = $('slide');
+    const wipe = $('slide').querySelector('.wipe'), range = $('slide').querySelector('input');
+    range.oninput = () => wipe.style.setProperty('--pos', range.value + '%');
+    $('sliderBtn').onclick = () => { togglePopup('slide'); if (popups.slide.style.display === 'block') track('exclusive-' + S.id); };
+  }
   if ($('curtainBtn')) $('curtainBtn').onclick = () => {   // 帘子回来了：慢慢浮现 / 消失
     const on = !$('curtainBtn').classList.contains('on');
     $('curtainBtn').classList.toggle('on', on); $('curtain').classList.toggle('on', on);

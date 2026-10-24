@@ -1,5 +1,5 @@
 {
-  "_说明": "吃土豆的人（室内房间，完整版）。所有文字由 Tia 提供。农舍、桌子、油灯和五个人的位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "_说明": "吃土豆的人（室内房间，完整版）。所有文字由 Tia 提供。画家视角、桌子、油灯和五个人的位置按原画估算：视平线约在画面上方 35%，从稍高处看向桌子；屋子低矮，人围得很紧。",
   "id": "potato-eaters",
   "variant": "interior",
   "lighting": {
@@ -20,15 +20,14 @@
   },
   "painting": {
     "image": "images/potato-eaters.jpg",
-    "width": 1600,
-    "height": 1151,
+    "width": 800,
+    "height": 564,
     "alt": {
       "zh": "梵高《吃土豆的人》1885，阿姆斯特丹梵高博物馆",
       "en": "Vincent van Gogh, The Potato Eaters, 1885, Van Gogh Museum, Amsterdam"
-    },
-    "_": "宽高是按 114 × 82 cm 估的，上传原画后改成图片的真实像素"
+    }
   },
-  "projection": false,
+  "projection": true,
   "label": {
     "_说明": "展签：画名、画家、年份、收藏地",
     "title": {
@@ -48,8 +47,8 @@
       "en": "Van Gogh Museum, Amsterdam"
     },
     "source": {
-      "zh": "Wikimedia Commons，公有领域",
-      "en": "Wikimedia Commons, public domain"
+      "zh": "梵高博物馆，公有领域",
+      "en": "Van Gogh Museum, public domain"
     }
   },
   "enter": {
@@ -58,16 +57,16 @@
   },
   "hint": {
     "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下油灯、手、盘子和人看介绍 · 点“只有一盏灯”，只留下灯下的脸和手 · 点“三个版本”对比 · 地上发光的圆点 = 梵高的视角",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the lamp, the hands, the dish or the people to learn more · Tap “Only the lamp” to leave just the faces and hands in its light · Tap “Three versions” to compare · The glowing circle = Van Gogh's viewpoint"
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the lamp, the hands, the dish or the people to learn more · Tap “Lamplight only” to leave just the faces and hands in its light · Tap “Three versions” to compare · The glowing circle = Van Gogh's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "_说明": "画家视角：按原画估算（桌上的盘子、五个人的头和油灯对齐原画）。",
     "x": 0,
     "z": 0,
-    "eye": 1.35,
+    "eye": 1.3,
     "yaw": 0,
-    "pitch": -0.05,
-    "fov": 45,
+    "pitch": -0.1054,
+    "fov": 40,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -91,19 +90,19 @@
   },
   "room": {
     "_说明": "房间形状（米）：一间低矮、昏暗的农舍。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
-    "height": 2.5,
+    "height": 2.1,
     "front": 0.8,
-    "left": -2.0,
+    "left": -1.8,
     "backLeft": [
-      -2.0,
+      -1.8,
       -3.2
     ],
     "backRight": [
-      2.0,
+      1.8,
       -3.2
     ],
     "rightFront": [
-      2.0,
+      1.8,
       0.8
     ],
     "floorCard": "apart",
@@ -115,13 +114,13 @@
       "type": "boxes",
       "card": "honest",
       "_": "木桌和一盘土豆",
-      "x": 0,
+      "x": -0.03,
       "z": -1.9,
       "boxes": [
         [
-          1.6,
-          0.06,
-          0.9,
+          1.0,
+          0.05,
+          0.7,
           "table",
           0,
           0.74,
@@ -132,45 +131,45 @@
           0.72,
           0.06,
           "table",
-          -0.74,
+          -0.45,
           0.36,
-          -0.4
+          -0.3
         ],
         [
           0.06,
           0.72,
           0.06,
           "table",
-          0.74,
+          -0.45,
           0.36,
-          -0.4
+          0.3
         ],
         [
           0.06,
           0.72,
           0.06,
           "table",
-          -0.74,
+          0.45,
           0.36,
-          0.4
+          -0.3
         ],
         [
           0.06,
           0.72,
           0.06,
           "table",
-          0.74,
+          0.45,
           0.36,
-          0.4
+          0.3
         ],
         [
-          0.36,
-          0.06,
-          0.36,
+          0.3,
+          0.05,
+          0.22,
           "potato",
-          0,
-          0.8,
-          0,
+          -0.24,
+          0.79,
+          0.02,
           "cloth"
         ]
       ]
@@ -179,23 +178,32 @@
       "type": "boxes",
       "card": "lamp",
       "_": "屋顶挂着的油灯（房间里唯一的光）",
-      "x": 0,
-      "y": 1.75,
+      "x": -0.1,
+      "y": 1.4,
       "z": -1.9,
       "boxes": [
         [
           0.02,
-          0.55,
+          0.6,
           0.02,
           "dark",
           0,
-          0.475,
+          0.4,
           0
         ],
         [
-          0.16,
+          0.3,
+          0.03,
+          0.3,
+          "dark",
+          0,
+          0.1,
+          0
+        ],
+        [
+          0.12,
           0.18,
-          0.16,
+          0.12,
           "lamp",
           0,
           0,
@@ -207,36 +215,36 @@
     {
       "type": "boxes",
       "card": "hands",
-      "x": -0.95,
-      "z": -1.7,
+      "x": -0.46,
+      "z": -1.55,
       "boxes": [
         [
-          0.42,
-          0.55,
-          0.38,
-          "cloth",
-          0,
-          0.28,
-          0,
-          "cloth"
-        ],
-        [
           0.4,
-          0.5,
-          0.3,
+          0.62,
+          0.36,
           "cloth",
           0,
-          0.8,
+          0.31,
           0,
           "cloth"
         ],
         [
-          0.18,
-          0.22,
-          0.2,
-          "skin",
+          0.38,
+          0.48,
+          0.28,
+          "cloth",
           0,
-          1.17,
+          0.87,
+          0,
+          "cloth"
+        ],
+        [
+          0.16,
+          0.2,
+          0.18,
+          "skin",
+          0.01,
+          1.22,
           0,
           "cloth"
         ]
@@ -246,36 +254,36 @@
     {
       "type": "boxes",
       "card": "notportraits",
-      "x": -0.95,
-      "z": -2.25,
+      "x": -0.41,
+      "z": -2.35,
       "boxes": [
-        [
-          0.42,
-          0.55,
-          0.38,
-          "dark",
-          0,
-          0.28,
-          0,
-          "cloth"
-        ],
         [
           0.4,
           0.5,
-          0.3,
+          0.36,
           "dark",
           0,
-          0.8,
+          0.25,
           0,
           "cloth"
         ],
         [
-          0.18,
-          0.22,
-          0.2,
-          "skin",
+          0.38,
+          0.48,
+          0.28,
+          "dark",
           0,
-          1.17,
+          0.75,
+          0,
+          "cloth"
+        ],
+        [
+          0.16,
+          0.2,
+          0.18,
+          "skin",
+          0.0,
+          1.1,
           0,
           "cloth"
         ]
@@ -285,36 +293,36 @@
     {
       "type": "boxes",
       "card": "apart",
-      "x": 0.95,
-      "z": -2.25,
+      "x": 0.16,
+      "z": -2.45,
       "boxes": [
         [
-          0.42,
-          0.55,
-          0.38,
-          "dark",
-          0,
-          0.28,
-          0,
-          "cloth"
-        ],
-        [
           0.4,
-          0.5,
-          0.3,
+          0.59,
+          0.36,
           "dark",
           0,
-          0.8,
+          0.29,
           0,
           "cloth"
         ],
         [
-          0.18,
-          0.22,
-          0.2,
-          "skin",
+          0.38,
+          0.48,
+          0.28,
+          "dark",
           0,
-          1.17,
+          0.84,
+          0,
+          "cloth"
+        ],
+        [
+          0.16,
+          0.2,
+          0.18,
+          "skin",
+          0.0,
+          1.19,
           0,
           "cloth"
         ]
@@ -324,36 +332,36 @@
     {
       "type": "boxes",
       "card": "honest",
-      "x": 0.95,
-      "z": -1.6,
+      "x": 0.67,
+      "z": -1.75,
       "boxes": [
         [
-          0.42,
-          0.55,
-          0.38,
-          "cloth",
-          0,
-          0.28,
-          0,
-          "cloth"
-        ],
-        [
           0.4,
-          0.5,
-          0.3,
+          0.62,
+          0.36,
           "cloth",
           0,
-          0.8,
+          0.31,
           0,
           "cloth"
         ],
         [
-          0.18,
-          0.22,
-          0.2,
-          "skin",
+          0.38,
+          0.48,
+          0.28,
+          "cloth",
           0,
-          1.17,
+          0.87,
+          0,
+          "cloth"
+        ],
+        [
+          0.16,
+          0.2,
+          0.18,
+          "skin",
+          -0.15,
+          1.22,
           0,
           "cloth"
         ]
@@ -363,13 +371,13 @@
     {
       "type": "boxes",
       "card": "apart",
-      "x": 0,
-      "z": -1.15,
+      "x": 0.04,
+      "z": -1.4,
       "boxes": [
         [
-          0.42,
+          0.4,
           0.55,
-          0.38,
+          0.36,
           "dark",
           0,
           0.28,
@@ -377,9 +385,9 @@
           "cloth"
         ],
         [
-          0.4,
-          0.5,
-          0.3,
+          0.38,
+          0.48,
+          0.28,
           "dark",
           0,
           0.8,
@@ -387,12 +395,12 @@
           "cloth"
         ],
         [
-          0.18,
-          0.22,
-          0.2,
+          0.13,
+          0.16,
+          0.14,
           "skin",
-          0,
-          1.17,
+          -0.05,
+          1.15,
           0,
           "cloth"
         ]
@@ -403,14 +411,14 @@
       "type": "wallBoxes",
       "card": "studies",
       "wall": "back",
-      "x": -1.2,
-      "y": 1.6,
+      "x": -0.53,
+      "y": 1.7,
       "z": -3.2,
       "_": "后墙上的小窗",
       "boxes": [
         [
-          0.5,
-          0.45,
+          0.18,
+          0.26,
           0.04,
           "window",
           0,
@@ -484,26 +492,26 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“只有一盏灯”：打开后，除了油灯附近，房间里其他地方都暗下去，只剩灯下的脸和手（spot.at 是灯的位置，原画上传后照着原画改）。",
+    "_说明": "独家发现“只有一盏灯”：打开后，除了油灯附近，房间里其他地方都暗下去，只剩灯下的脸和手（spot.at 是油灯的位置）。",
     "type": "toggles",
     "label": {
       "zh": "只有一盏灯",
-      "en": "Only the lamp"
+      "en": "Lamplight only"
     },
     "toggles": [
       {
         "id": "lamp",
         "label": {
           "zh": "只有一盏灯",
-          "en": "Only the lamp"
+          "en": "Lamplight only"
         },
         "spot": {
           "at": [
-            0,
-            1.75,
+            -0.1,
+            1.4,
             -1.9
           ],
-          "radius": 1.4,
+          "radius": 1.2,
           "dark": 0.15
         },
         "card": "lamp"
@@ -575,7 +583,7 @@
         "kicker": "ACT I",
         "title": {
           "zh": "第一幕 · 一场考试",
-          "en": "A test"
+          "en": "A test of mastery"
         },
         "text": {
           "zh": "1883年底，梵高回到纽南父母家。为了这幅画，他画了一百多张农民的肖像习作。他把它当作对自己的一次考试，想证明自己正在成为一个真正的人物画家。",
@@ -725,7 +733,7 @@
       {
         "title": {
           "zh": "第一幕 · 一场考试",
-          "en": "A test"
+          "en": "A test of mastery"
         },
         "text": {
           "zh": "1883年底，梵高回到纽南父母家。为了这幅画，他画了一百多张农民的肖像习作。他把它当作对自己的一次考试，想证明自己正在成为一个真正的人物画家。",

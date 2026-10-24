@@ -1,0 +1,465 @@
+{
+  "_说明": "鸢尾花（静物，轻量版：分层景深 + 卡片 + 短故事）。所有事实文字由 Tia 提供。layers 是同一张原画切出来的三层：背景（土地和远处的花丛）、中间的叶子、前景的花；clip 是原画上的多边形（0–1，从左到右、从上到下），depth 越大移动越多。原画上传前，切层和发光圆点的位置都是先估的，上传后照着原画重新画。",
+  "id": "irises",
+  "variant": "still-life",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（渲染用的设定说明，不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "春天花园里的阳光",
+      "en": "Spring sunlight in the garden"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现（鸢尾花 → 星夜 → 麦田与柏树）。卡片“原本是紫色”链接到《阿尔勒的卧室》的“墙”卡片。",
+    "doors": [],
+    "cards": [
+      "bedroom"
+    ],
+    "end": []
+  },
+  "ambience": "spring-garden",
+  "painting": {
+    "image": "images/irises.jpg",
+    "width": 1600,
+    "height": 1261,
+    "alt": {
+      "zh": "梵高《鸢尾花》1889，洛杉矶盖蒂博物馆",
+      "en": "Vincent van Gogh, Irises, 1889, J. Paul Getty Museum, Los Angeles"
+    },
+    "_": "宽高是按 74.3 × 94.3 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "鸢尾花",
+      "en": "Irises"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1889年5月",
+      "en": "May 1889"
+    },
+    "museum": {
+      "zh": "洛杉矶盖蒂博物馆",
+      "en": "J. Paul Getty Museum, Los Angeles"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“一年后”，拖动中间的线，对比一年后的鸢尾",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “A year later” and drag the line to compare the irises he painted a year later"
+  },
+  "parallax": 16,
+  "layers": [
+    {
+      "_说明": "背景（整张画：土地和远处的花丛）",
+      "depth": 0
+    },
+    {
+      "_说明": "中间的叶子（先估的）",
+      "depth": 0.45,
+      "clip": [
+        [
+          0.0,
+          0.15
+        ],
+        [
+          0.3,
+          0.08
+        ],
+        [
+          0.6,
+          0.12
+        ],
+        [
+          0.78,
+          0.3
+        ],
+        [
+          0.85,
+          0.55
+        ],
+        [
+          0.8,
+          0.85
+        ],
+        [
+          0.6,
+          1.0
+        ],
+        [
+          0.0,
+          1.0
+        ]
+      ]
+    },
+    {
+      "_说明": "前景的花（先估的）",
+      "depth": 1,
+      "clip": [
+        [
+          0.0,
+          0.2
+        ],
+        [
+          0.25,
+          0.12
+        ],
+        [
+          0.5,
+          0.15
+        ],
+        [
+          0.7,
+          0.3
+        ],
+        [
+          0.72,
+          0.55
+        ],
+        [
+          0.55,
+          0.75
+        ],
+        [
+          0.3,
+          0.8
+        ],
+        [
+          0.0,
+          0.7
+        ]
+      ]
+    }
+  ],
+  "spots": {
+    "first": {
+      "x": 0.3,
+      "y": 0.35,
+      "layer": 2
+    },
+    "violet": {
+      "x": 0.5,
+      "y": 0.25,
+      "layer": 2
+    },
+    "white": {
+      "x": 0.12,
+      "y": 0.35,
+      "layer": 2
+    },
+    "notsad": {
+      "x": 0.88,
+      "y": 0.15,
+      "layer": 0
+    },
+    "lightning": {
+      "x": 0.55,
+      "y": 0.65,
+      "layer": 1
+    },
+    "air": {
+      "x": 0.88,
+      "y": 0.75,
+      "layer": 0
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“一年后”：对比滑块。左边是1889年花园里的鸢尾（这幅画），右边是1890年5月的《花瓶里的鸢尾》（阿姆斯特丹梵高博物馆）。拖动中间的线对比。",
+    "type": "slider",
+    "label": {
+      "zh": "一年后",
+      "en": "A year later"
+    },
+    "title": {
+      "zh": "一年后",
+      "en": "A year later"
+    },
+    "before": {
+      "image": "images/irises.jpg",
+      "alt": {
+        "zh": "梵高《鸢尾花》1889，洛杉矶盖蒂博物馆",
+        "en": "Vincent van Gogh, Irises, 1889, J. Paul Getty Museum, Los Angeles"
+      },
+      "caption": {
+        "zh": "《鸢尾花》，1889年5月，盖蒂博物馆",
+        "en": "*Irises*, May 1889, Getty Museum"
+      }
+    },
+    "after": {
+      "image": "images/irises-vase.jpg",
+      "alt": {
+        "zh": "梵高《花瓶里的鸢尾》1890，阿姆斯特丹梵高博物馆",
+        "en": "Vincent van Gogh, Irises, 1890, Van Gogh Museum, Amsterdam"
+      },
+      "caption": {
+        "zh": "《花瓶里的鸢尾》，1890年5月，梵高博物馆",
+        "en": "*Irises*, May 1890, Van Gogh Museum"
+      }
+    },
+    "note": {
+      "zh": "整整一年后，他又画了鸢尾。",
+      "en": "Exactly a year later, he painted irises again."
+    }
+  },
+  "cards": {
+    "first": {
+      "title": {
+        "zh": "花园里的第一个早晨",
+        "en": "The first morning"
+      },
+      "text": {
+        "zh": "梵高住进疗养院后，早餐后在花园里一眼看到了这丛刚开的鸢尾，很快就开始画它。",
+        "en": "Soon after arriving at the asylum, he spotted these irises in flower in the garden after breakfast, and soon began to paint them."
+      }
+    },
+    "violet": {
+      "title": {
+        "zh": "原本是紫色",
+        "en": "Once violet"
+      },
+      "text": {
+        "zh": "这些蓝色的鸢尾原本是紫色的，是用蓝色和红色颜料混出来的。红色褪了，就变成了今天的蓝。",
+        "en": "These blue irises were once violet, mixed from blue and red pigments. As the red faded, they turned blue."
+      },
+      "link": {
+        "scene": "bedroom",
+        "href": "../bedroom/?card=wall",
+        "label": {
+          "zh": "卧室的墙也是这样褪色的",
+          "en": "The bedroom walls faded the same way"
+        }
+      }
+    },
+    "white": {
+      "title": {
+        "zh": "一朵白色的",
+        "en": "The white one"
+      },
+      "text": {
+        "zh": "在一片蓝紫色里，有一朵白色的鸢尾。",
+        "en": "Among all the blue and violet, there is a single white iris."
+      }
+    },
+    "notsad": {
+      "title": {
+        "zh": "不那么悲伤",
+        "en": "Not so sad"
+      },
+      "text": {
+        "zh": "到疗养院两周后，他写信告诉提奥：“考虑到生活主要是在花园里，这里并不那么悲伤。”",
+        "en": "Two weeks after arriving, he wrote to Theo: \"Considering that life happens above all in the garden, it isn't so sad.\""
+      }
+    },
+    "lightning": {
+      "title": {
+        "zh": "避雷针",
+        "en": "A lightning conductor"
+      },
+      "text": {
+        "zh": "梵高把作画称为“疾病的避雷针”。他相信，只要继续画画，就能保护自己。",
+        "en": "Van Gogh called painting \"the lightning conductor for my illness\". He believed that as long as he kept painting, it would protect him."
+      }
+    },
+    "air": {
+      "title": {
+        "zh": "充满空气和生命",
+        "en": "Full of air and life"
+      },
+      "text": {
+        "zh": "提奥把这幅画送去巴黎展览，写信告诉梵高：“它从远处就吸引人的目光，是一幅充满空气和生命的美丽习作。”",
+        "en": "Theo sent the painting to an exhibition in Paris and wrote to Vincent: \"It strikes the eye from afar. It is a beautiful study full of air and life.\""
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/irises.jpg",
+        "alt": {
+          "zh": "梵高《鸢尾花》1889，洛杉矶盖蒂博物馆",
+          "en": "Vincent van Gogh, Irises, 1889, J. Paul Getty Museum, Los Angeles"
+        },
+        "caption": {
+          "zh": "1889年5月 · 洛杉矶盖蒂博物馆",
+          "en": "May 1889 · J. Paul Getty Museum, Los Angeles"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 花园",
+          "en": "The garden"
+        },
+        "text": {
+          "zh": "1889年5月，梵高自愿住进圣雷米的疗养院。刚到不久，他就在花园里画下了这丛鸢尾。",
+          "en": "In May 1889, Van Gogh voluntarily entered the asylum at Saint-Rémy. Soon after arriving, he painted this clump of irises in the garden."
+        }
+      },
+      {
+        "image": "images/irises.jpg",
+        "alt": {
+          "zh": "梵高《鸢尾花》1889，洛杉矶盖蒂博物馆",
+          "en": "Vincent van Gogh, Irises, 1889, J. Paul Getty Museum, Los Angeles"
+        },
+        "caption": {
+          "zh": "1889年5月 · 洛杉矶盖蒂博物馆",
+          "en": "May 1889 · J. Paul Getty Museum, Los Angeles"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 第一次展览",
+          "en": "The first exhibition"
+        },
+        "text": {
+          "zh": "那年9月，提奥把它送到巴黎的独立艺术家沙龙。这是梵高第一次参加公开展览的两幅作品之一。它的第一位主人是评论家奥克塔夫·米尔博，他写道：“他多么懂得花的精妙！”",
+          "en": "That September, Theo sent it to the Salon des Indépendants in Paris, one of two works in Van Gogh's first public exhibition. Its first owner, the critic Octave Mirbeau, wrote: \"How well he understood the exquisite nature of flowers!\""
+        }
+      },
+      {
+        "image": "images/irises.jpg",
+        "alt": {
+          "zh": "梵高《鸢尾花》1889，洛杉矶盖蒂博物馆",
+          "en": "Vincent van Gogh, Irises, 1889, J. Paul Getty Museum, Los Angeles"
+        },
+        "caption": {
+          "zh": "1889年5月 · 洛杉矶盖蒂博物馆",
+          "en": "May 1889 · J. Paul Getty Museum, Los Angeles"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 一年后",
+          "en": "A year later"
+        },
+        "text": {
+          "zh": "整整一年后，他又在鸢尾开得最好的时候画了一次。1990年，盖蒂博物馆买下了这幅画。",
+          "en": "Exactly a year later, he painted irises again, when they were at their best. In 1990, the Getty Museum acquired this painting."
+        }
+      }
+    ],
+    "final": {
+      "zh": "考虑到生活主要是在花园里，这里并不那么悲伤。",
+      "en": "Considering that life happens above all in the garden, it isn't so sad."
+    },
+    "finalBy": {
+      "zh": "—— 梵高",
+      "en": "— Van Gogh"
+    },
+    "versions": [],
+    "museums": [
+      "getty"
+    ],
+    "exit": []
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸和作品页按盖蒂博物馆官网补上。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "鸢尾花",
+      "en": "Irises"
+    },
+    "date": {
+      "zh": "1889年5月，圣雷米",
+      "en": "May 1889, Saint-Rémy"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "74.3 × 94.3 cm",
+      "en": "74.3 × 94.3 cm"
+    },
+    "collection": {
+      "zh": "洛杉矶盖蒂博物馆（1990年起）",
+      "en": "J. Paul Getty Museum, Los Angeles (since 1990)"
+    },
+    "url": "https://www.getty.edu/art/collection/objects/826/vincent-van-gogh-irises-dutch-1889/"
+  },
+  "zoom": {
+    "image": "images/irises.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "盖蒂博物馆：鸢尾花",
+          "en": "Getty Museum: Irises"
+        },
+        "url": "https://www.getty.edu/art/collection/objects/826/vincent-van-gogh-irises-dutch-1889/"
+      },
+      {
+        "title": {
+          "zh": "梵高博物馆：花瓶里的鸢尾（1890）",
+          "en": "Van Gogh Museum: Irises (1890)"
+        },
+        "url": "https://www.vangoghmuseum.nl/en/collection/s0050V1962"
+      },
+      {
+        "title": {
+          "zh": "《艺术新闻报》：马丁·贝利谈《鸢尾花》",
+          "en": "The Art Newspaper: Martin Bailey on Irises"
+        },
+        "url": "https://theartnewspaper.com/blog/irises-anniversary-of-van-gogh-s-finest-garden-picture-painted-on-his-first-morning-in-the-asylum"
+      },
+      {
+        "title": {
+          "zh": "DailyArt Magazine：梵高的《鸢尾花》",
+          "en": "DailyArt Magazine: Van Gogh's Irises"
+        },
+        "url": "https://dailyartmagazine.com/vincent-van-gogh-irises"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 花园",
+          "en": "The garden"
+        },
+        "text": {
+          "zh": "1889年5月，梵高自愿住进圣雷米的疗养院。刚到不久，他就在花园里画下了这丛鸢尾。",
+          "en": "In May 1889, Van Gogh voluntarily entered the asylum at Saint-Rémy. Soon after arriving, he painted this clump of irises in the garden."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 第一次展览",
+          "en": "The first exhibition"
+        },
+        "text": {
+          "zh": "那年9月，提奥把它送到巴黎的独立艺术家沙龙。这是梵高第一次参加公开展览的两幅作品之一。它的第一位主人是评论家奥克塔夫·米尔博，他写道：“他多么懂得花的精妙！”",
+          "en": "That September, Theo sent it to the Salon des Indépendants in Paris, one of two works in Van Gogh's first public exhibition. Its first owner, the critic Octave Mirbeau, wrote: \"How well he understood the exquisite nature of flowers!\""
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 一年后",
+          "en": "A year later"
+        },
+        "text": {
+          "zh": "整整一年后，他又在鸢尾开得最好的时候画了一次。1990年，盖蒂博物馆买下了这幅画。",
+          "en": "Exactly a year later, he painted irises again, when they were at their best. In 1990, the Getty Museum acquired this painting."
+        }
+      }
+    ]
+  }
+}
