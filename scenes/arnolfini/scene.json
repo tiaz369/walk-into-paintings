@@ -16,7 +16,8 @@
     "cards": [],
     "end": [
       "vangogh-chair",
-      "sunflowers"
+      "sunflowers",
+      "folies-bergere"
     ]
   },
   "painting": {
@@ -741,6 +742,14 @@
         "label": {
           "zh": "同一家美术馆",
           "en": "In the same gallery"
+        }
+      },
+      {
+        "scene": "folies-bergere",
+        "href": "../folies-bergere/",
+        "label": {
+          "zh": "另一面藏着秘密的镜子：女神游乐厅的吧台",
+          "en": "Another mirror with a secret: *A Bar at the Folies-Bergère*"
         }
       }
     ]

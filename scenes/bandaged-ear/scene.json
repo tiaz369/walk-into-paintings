@@ -19,7 +19,8 @@
       "almond-blossom"
     ],
     "end": [
-      "vangogh-chair"
+      "vangogh-chair",
+      "folies-bergere"
     ]
   },
   "ambience": "winter-room",
@@ -426,6 +427,14 @@
         "label": {
           "zh": "两个月前，两把椅子",
           "en": "Two months earlier, two chairs"
+        }
+      },
+      {
+        "scene": "folies-bergere",
+        "href": "../folies-bergere/",
+        "label": {
+          "zh": "同一个大厅：女神游乐厅的吧台",
+          "en": "In the same room: *A Bar at the Folies-Bergère*"
         }
       }
     ]
