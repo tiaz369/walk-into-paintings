@@ -17,7 +17,8 @@
       "art-of-painting"
     ],
     "end": [
-      "woman-reading-letter"
+      "woman-reading-letter",
+      "standing-virginal"
     ]
   },
   "painting": {
@@ -626,6 +627,14 @@
         "label": {
           "zh": "另一封信",
           "en": "Another letter"
+        }
+      },
+      {
+        "scene": "standing-virginal",
+        "href": "../standing-virginal/",
+        "label": {
+          "zh": "音乐与爱情：站在维金纳琴前的年轻女子",
+          "en": "Music and love: *A Young Woman standing at a Virginal*"
         }
       }
     ]

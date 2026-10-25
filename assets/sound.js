@@ -210,6 +210,14 @@ const AMBIENCE = {
     const click = t => { const n = 1 + Math.floor(Math.random() * 3); for (let i = 0; i < n; i++) tone(out, t + i * rnd(0.08, 0.18), { f0: rnd(1800, 2600), type: 'triangle', vol: 0.02, attack: 0.001, dur: 0.05 }); };   // 木头线轴互相碰一下
     every(st, 0.8, 2.6, click);
   },
+  // 明亮安静的室内：偶尔几个维金纳琴的音符（拨弦，亮而短）（A bright, quiet room; a few notes on a virginal）
+  'virginal-room'(out, st) {
+    loopNoise('brown', out, { freq: 220, gain: 0.04 });
+    const notes = [523, 587, 659, 784, 659, 587, 523, 494];
+    const pluck = (t, f) => { tone(out, t, { f0: f, type: 'sawtooth', vol: 0.018, attack: 0.002, dur: 0.6 }); tone(out, t, { f0: f * 2, type: 'triangle', vol: 0.01, attack: 0.002, dur: 0.3 }); };
+    const phrase = t => { const n = 2 + Math.floor(Math.random() * 4), s = Math.floor(Math.random() * 4); for (let i = 0; i < n; i++) pluck(t + i * rnd(0.25, 0.4), notes[(s + i) % notes.length]); };
+    phrase(ctx.currentTime + 3); every(st, 12, 24, phrase);
+  },
   // 代尔夫特的河边：河水轻拍岸边，远处教堂的钟声，风和鸟叫（A riverside in Delft）
   'delft-river'(out, st) {
     const w = loopNoise('brown', out, { freq: 380, gain: 0.08 });
