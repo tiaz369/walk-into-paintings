@@ -692,3 +692,12 @@ body.lang-both .col-row h3 .en { font-size: .68em; color: var(--muted); font-sty
 #sitNote { position: fixed; left: 50%; bottom: 112px; transform: translateX(-50%); z-index: 5; padding: 8px 16px; font-size: 14px; font-family: var(--serif); opacity: 0; pointer-events: none; transition: opacity 1s; max-width: min(520px, calc(100% - 32px)); text-align: center; }
 #sitNote.show { opacity: 1; }
 .touch #sitNote { bottom: 240px; }
+
+/* 轻量版独家发现“读懂画框”：画框上的铭文框（点一下，原文被一个字一个字地换成翻译） */
+.insc-wrap { position: absolute; inset: 0; pointer-events: none; }
+.insc { position: absolute; padding: 0; border: 0; background: none; cursor: pointer; pointer-events: none; overflow: hidden; color: #f3e6c4; font-family: var(--serif); line-height: 1; display: flex; align-items: center; justify-content: center; white-space: nowrap; }
+.insc-wrap.on .insc { pointer-events: auto; outline: 2px dashed rgba(255, 243, 176, .85); outline-offset: 2px; animation: inscPulse 2s ease-in-out infinite; }
+.insc-wrap.on .insc.done { outline-color: transparent; animation: none; }
+.insc-cover { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--insc-bg); transition: width .12s linear; }
+.insc-text { position: relative; text-shadow: 0 1px 2px rgba(0,0,0,.5); }
+@keyframes inscPulse { 50% { outline-color: rgba(255, 243, 176, .35); } }

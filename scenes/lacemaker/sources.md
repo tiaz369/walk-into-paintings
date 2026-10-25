@@ -7,7 +7,11 @@
 - Tia 参考的文章：https://rosecreek.jordandistrict.org/wp-content/uploads/sites/34/ArtMasterpiece_1H.pdf
 - 图片：Wikimedia Commons，公有领域
 
-## 待核对
+## 核对
+
+- Tia 核对：尺寸 24.5 × 21 cm；材质：布面油画，裱于木板；年份先写“约1669–1671年”，能访问卢浮宫官网时按官网修正；展厅留空。
+
+## 之前的记录
 
 - 尺寸：说法不一（24.5 × 21 cm，或 23.9 × 20.5 cm）。卢浮宫藏品库网页 Claude 打不开；卢浮宫官方商店的商品页写的是 24.5 × 21 cm，但那不是藏品记录。先不显示，等 Tia 在卢浮宫官网核对。
 - 展厅：2023–24年借给卢浮宫朗斯分馆一年；现在的展厅等 Tia 在卢浮宫官网确认后再填（onDisplay、room）。
