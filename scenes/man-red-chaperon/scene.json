@@ -12,9 +12,11 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《阿尔诺芬尼夫妇像》互相链接（一年后，他在镜子上方签名）。伦敦参观路线页按登记表的展厅号自动列出（展厅等 Tia 确认后再填）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《阿尔诺芬尼夫妇像》互相链接：结尾按钮（一年后，他在镜子上方签名），卡片“原装画框”里的“同一个展厅”（都在52号展厅）。伦敦参观路线页按登记表的展厅号自动列出。",
     "doors": [],
-    "cards": [],
+    "cards": [
+      "arnolfini"
+    ],
     "end": [
       "arnolfini"
     ]
@@ -125,9 +127,9 @@
     }
   ],
   "spots": {
-    "who": {
+    "stubble": {
       "x": 0.5,
-      "y": 0.52,
+      "y": 0.66,
       "layer": 1
     },
     "chaperon": {
@@ -157,7 +159,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“读懂画框”：打开后，画框上方和下方的铭文各是一个可以点的框（x、y、w、h：在原画上的位置 0–1；bg 是盖住原文的画框颜色）。点一下，原文从左到右被一个字一个字地换成翻译（跟着语言设置：中文、English 或两种），并显示卡片3或卡片4的文字；再点一下恢复原文。位置原画上传后照着原画量。",
+    "_说明": "独家发现“读懂画框”：打开后，画框上方和下方的铭文各是一个可以点的框（x、y、w、h：在原画上的位置 0–1；bg 是盖住原文的画框颜色）。点一下，原文从左到右被一个字一个字地换成翻译（跟着语言设置：中文、English 或两种），并显示卡片3或卡片4的文字；再点一下恢复原文。位置原画上传后照着原画量。 放大热点：头饰显示卡片2；眼睛显示自己的一段话（text）；画框显示卡片5和卡片6（cards）。",
     "type": "inscriptions",
     "label": {
       "zh": "读懂画框",
@@ -222,7 +224,10 @@
         "x": 0.5,
         "y": 0.45,
         "scale": 3.5,
-        "card": "who"
+        "text": {
+          "zh": "他的两只眼睛看向稍微不同的方向，好像画家在照镜子时，轮流专注地看自己的每一只眼睛。",
+          "en": "His eyes gaze in slightly different directions, as if the artist, looking in a mirror, were concentrating on each in turn."
+        }
       },
       {
         "id": "frame",
@@ -233,19 +238,22 @@
         "x": 0.5,
         "y": 0.96,
         "scale": 3,
-        "card": "carved"
+        "cards": [
+          "frame",
+          "carved"
+        ]
       }
     ]
   },
   "cards": {
-    "who": {
+    "stubble": {
       "title": {
-        "zh": "他是谁",
-        "en": "Who is he?"
+        "zh": "胡茬",
+        "en": "The stubble"
       },
       "text": {
-        "zh": "这张平静的脸，几乎可以肯定就是扬·凡·艾克本人。",
-        "en": "This impassive face is almost certainly that of Jan van Eyck himself."
+        "zh": "他下巴上的胡茬，是一个个细小的颜料点画出来的。下巴上还在白色里混了一点蓝，让这些点像在反光。",
+        "en": "His stubble is made of tiny individual dabs of paint. On the chin, a little blue mixed with white makes the dots seem to catch the light."
       }
     },
     "chaperon": {
@@ -286,6 +294,14 @@
       "text": {
         "zh": "这幅画至今保留着15世纪的原装画框。",
         "en": "The painting is still in its original 15th-century frame."
+      },
+      "link": {
+        "scene": "arnolfini",
+        "href": "../arnolfini/",
+        "label": {
+          "zh": "同一个展厅",
+          "en": "In the same room"
+        }
       }
     },
     "carved": {
@@ -361,7 +377,7 @@
     ]
   },
   "record": {
-    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆）。尺寸 26 × 19 cm 是在搜索结果里看到的国家美术馆作品页内容，等 Tia 核对。",
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆），尺寸、材质、来源说明 Tia 核对过。",
     "artist": {
       "zh": "扬·凡·艾克（约1390–1441）",
       "en": "Jan van Eyck (c. 1390–1441)"
@@ -375,8 +391,8 @@
       "en": "21 October 1433"
     },
     "medium": {
-      "zh": "橡木板油画",
-      "en": "Oil on oak"
+      "zh": "木板油画，很可能是橡木",
+      "en": "Oil on wood (probably oak)"
     },
     "dimensions": {
       "zh": "26 × 19 cm",
@@ -385,6 +401,10 @@
     "collection": {
       "zh": "伦敦国家美术馆（编号 NG222）",
       "en": "The National Gallery, London (NG222)"
+    },
+    "creditLine": {
+      "zh": "1851年购入",
+      "en": "Bought, 1851"
     },
     "url": "https://www.nationalgallery.org.uk/paintings/jan-van-eyck-portrait-of-a-man-self-portrait"
   },

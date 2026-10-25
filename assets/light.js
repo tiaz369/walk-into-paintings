@@ -404,12 +404,24 @@ function run(S, R) {
   }
   if ($('flipBtn')) $('flipBtn').onclick = () => setFlip(!flipT);
   // 细节放大：点按钮，画上出现热点；点热点放大到那里（有卡片的显示卡片文字）；放大时再点按钮缩回去
+  // 放大热点自己的说明：text（自己写的一段话），或 cards（几张卡片的文字放在一起，打开就算发现了这几张）
+  function showZoomNote(z) {
+    const C = (z.cards || []).map(k => S.cards[k]);
+    const title = z.text ? (z.title || z.label) : { zh: C.map(c => c.title.zh).join(' · '), en: C.map(c => c.title.en).join(' · ') };
+    const text = z.text || { zh: C.map(c => c.text.zh).join(''), en: C.map(c => c.text.en).join(' ') };
+    $('cardTitle').textContent = title.zh; $('cardTitleEn').textContent = title.en;
+    $('cardZh').textContent = text.zh; $('cardEn').innerHTML = escItalic(text.en);
+    $('cardLinkP').classList.add('hidden'); $('cardLetterP').classList.add('hidden');
+    card.style.display = 'block'; hint.style.opacity = 0;
+    (z.cards || []).forEach(k => found.add(k)); updateProgress();
+    spots.forEach(s => s.classList.toggle('seen', found.has(s.dataset.card)));
+  }
   function zoomTo(z) {
     if (z && flipT) setFlip(false);   // 放大细节时先翻回来
     zoomAt = z; zoomT = z ? 1 : 0;
     if (z && zoomK < 0.01) { zx = z.x; zy = z.y; zs = z.scale || 4; }
     document.body.classList.toggle('zoomed', !!z);
-    if (z && z.card) showCard(z.card); else card.style.display = 'none';
+    if (z && z.card) showCard(z.card); else if (z && (z.text || z.cards)) showZoomNote(z); else card.style.display = 'none';
     if (z) track('zoom-' + S.id + '-' + (z.id || ''));
   }
   if (ZOOMS.length) {
