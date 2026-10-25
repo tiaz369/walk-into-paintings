@@ -32,7 +32,7 @@ walk-into-paintings/
 │   ├── light.js          轻量版场景（still-life、portrait）：分层景深
 │   ├── sound.js          环境音（代码合成）和音乐
 │   ├── guide.js          语音导览播放器
-│   ├── hero/             首页首屏短片
+│   ├── hero/             首页首屏短片（暂时不用：首屏现在是一幅画铺满一屏）
 │   ├── site.js           共用的网站功能：页眉页脚、中英切换、深浅色、画卡片
 │   └── style.css         共用的样式（配色、字体）
 ├── data/scenes.json      所有场景的登记表，首页、筛选和地图都读这里
