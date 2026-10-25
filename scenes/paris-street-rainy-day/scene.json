@@ -1,0 +1,720 @@
+{
+  "_说明": "巴黎街道，雨天（户外风景，完整版）。所有事实文字由 Tia 提供（资料来自维基百科和几篇文章，只保留多个来源一致的说法；尺寸和作品页按芝加哥艺术博物馆官网补上）。雨中的巴黎路口：石板路面湿漉漉地反光，中间立着一根路灯；前景是撑伞的一对夫妇，远处是新建的奥斯曼式楼房，行人撑着伞走过；冬天下午灰色的天光。不写“雨伞当时刚被发明”（这是错的）。画家视角和物体位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "paris-street-rainy-day",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "overcast",
+    "label": {
+      "zh": "冬天下午灰色的天光",
+      "en": "Grey winter afternoon light"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和雷诺阿《伞》互相链接；卡片“火车站旁边”预留了莫奈《圣拉扎尔火车站》的链接（开放后自动出现）。",
+    "doors": [],
+    "cards": [
+      "gare-saint-lazare"
+    ],
+    "end": [
+      "umbrellas"
+    ]
+  },
+  "painting": {
+    "image": "images/paris-street-rainy-day.jpg",
+    "width": 1800,
+    "height": 1384,
+    "alt": {
+      "zh": "卡耶博特《巴黎街道，雨天》1877，芝加哥艺术博物馆",
+      "en": "Gustave Caillebotte, Paris Street; Rainy Day, 1877, The Art Institute of Chicago"
+    },
+    "_": "宽高是按 212.2 × 276.2 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "巴黎街道，雨天",
+      "en": "Paris Street; Rainy Day"
+    },
+    "artist": {
+      "zh": "卡耶博特",
+      "en": "Gustave Caillebotte"
+    },
+    "date": {
+      "zh": "1877年",
+      "en": "1877"
+    },
+    "museum": {
+      "zh": "芝加哥艺术博物馆",
+      "en": "The Art Institute of Chicago"
+    },
+    "source": {
+      "zh": "芝加哥艺术博物馆开放资源（CC0），公有领域",
+      "en": "The Art Institute of Chicago (CC0), public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下路灯、撑伞的夫妇、石板路和远处的楼房看介绍 · 点“画面的四格”，看路灯和地平线怎样把画面分开 · 地上发光的圆点 = 卡耶博特的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the lamppost, the couple, the cobblestones or the buildings to learn more · Tap “Four parts” to see how the lamppost and the horizon divide the picture · The glowing circle = Caillebotte's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": 0,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "rain-cobbles",
+  "colors": {
+    "line": "#2a2a2c",
+    "cobbles": "#8c8a86",
+    "ground": "#8c8a86",
+    "sky": "#c4c6c8",
+    "stone": "#cfc6b6",
+    "roof": "#6a6e78",
+    "iron": "#2a2c30",
+    "lamp": "#dcd8c8",
+    "coat": "#26272c",
+    "trousers": "#2a2a2e",
+    "dress": "#3a3436",
+    "umbrella": "#2c2e34",
+    "horse": "#5a4636",
+    "skin": "#e2c6ae"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（路口），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -60,
+      60,
+      -80,
+      20
+    ],
+    "bounds": [
+      -6,
+      6,
+      -12,
+      3
+    ],
+    "groundCard": "wet",
+    "skyCard": "winter",
+    "skyRadius": 110,
+    "walkSpeed": 0.9
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "wet",
+      "_": "湿漉漉的石板路",
+      "pts": [
+        [
+          -40,
+          0.01,
+          6
+        ],
+        [
+          -40,
+          0.01,
+          -80
+        ],
+        [
+          40,
+          0.01,
+          -80
+        ],
+        [
+          40,
+          0.01,
+          6
+        ]
+      ],
+      "color": "cobbles"
+    },
+    {
+      "type": "boxes",
+      "card": "lamppost",
+      "x": 0,
+      "z": -6,
+      "_": "中间的路灯",
+      "boxes": [
+        [
+          0.12,
+          3.6,
+          0.12,
+          "iron",
+          0,
+          1.8,
+          0
+        ],
+        [
+          0.45,
+          0.5,
+          0.45,
+          "lamp",
+          0,
+          3.8,
+          0
+        ],
+        [
+          0.3,
+          0.25,
+          0.3,
+          "iron",
+          0,
+          0.12,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "newparis",
+      "x": -6,
+      "z": -45,
+      "_": "远处新建的奥斯曼式楼房（中间那座尖角楼）",
+      "boxes": [
+        [
+          10,
+          16,
+          8,
+          "stone",
+          0,
+          8,
+          0
+        ],
+        [
+          11,
+          1.2,
+          9,
+          "roof",
+          0,
+          16.6,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "newparis",
+      "x": -26,
+      "z": -40,
+      "_": "左边的楼房",
+      "boxes": [
+        [
+          18,
+          15,
+          8,
+          "stone",
+          0,
+          7.5,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "newparis",
+      "x": 16,
+      "z": -30,
+      "_": "右边的楼房",
+      "boxes": [
+        [
+          14,
+          15,
+          8,
+          "stone",
+          0,
+          7.5,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 1.3,
+      "z": -3.2,
+      "rot": 0.2,
+      "card": "couple",
+      "_": "前景戴高帽子的男人"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "dress",
+      "legs": "dress",
+      "x": 1.75,
+      "z": -3.0,
+      "rot": 0.2,
+      "scale": 0.95,
+      "card": "couple",
+      "_": "挽着他的女人"
+    },
+    {
+      "type": "boxes",
+      "card": "couple",
+      "x": 1.5,
+      "z": -3.1,
+      "_": "他们共撑的伞",
+      "boxes": [
+        [
+          1.4,
+          0.08,
+          1.4,
+          "umbrella",
+          0,
+          2.05,
+          0
+        ],
+        [
+          0.03,
+          0.7,
+          0.03,
+          "iron",
+          0,
+          1.7,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "winter",
+      "x": 0,
+      "z": -14,
+      "_": "中间远处撑伞走过的行人",
+      "boxes": [
+        [
+          0.45,
+          1.65,
+          0.35,
+          "coat",
+          -5,
+          0.82,
+          0
+        ],
+        [
+          0.45,
+          1.65,
+          0.35,
+          "coat",
+          -3.4,
+          0.82,
+          -2
+        ],
+        [
+          0.45,
+          1.65,
+          0.35,
+          "coat",
+          -1.6,
+          0.82,
+          1
+        ],
+        [
+          0.45,
+          1.65,
+          0.35,
+          "coat",
+          2.5,
+          0.82,
+          -1
+        ],
+        [
+          0.45,
+          1.65,
+          0.35,
+          "coat",
+          4.2,
+          0.82,
+          0.5
+        ],
+        [
+          1.2,
+          0.08,
+          1.2,
+          "umbrella",
+          -5,
+          1.95,
+          0
+        ],
+        [
+          1.2,
+          0.08,
+          1.2,
+          "umbrella",
+          -3.4,
+          1.95,
+          -2
+        ],
+        [
+          1.2,
+          0.08,
+          1.2,
+          "umbrella",
+          -1.6,
+          1.95,
+          1
+        ],
+        [
+          1.2,
+          0.08,
+          1.2,
+          "umbrella",
+          2.5,
+          1.95,
+          -1
+        ],
+        [
+          1.2,
+          0.08,
+          1.2,
+          "umbrella",
+          4.2,
+          1.95,
+          0.5
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "newparis",
+      "x": -12,
+      "z": -22,
+      "_": "远处的马车",
+      "boxes": [
+        [
+          2.4,
+          1.4,
+          1.2,
+          "coat",
+          0,
+          1.1,
+          0
+        ],
+        [
+          0.6,
+          1.2,
+          1.6,
+          "horse",
+          1.6,
+          0.9,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "lamppost": {
+      "title": {
+        "zh": "路灯",
+        "en": "The lamppost"
+      },
+      "text": {
+        "zh": "中间这根路灯和街道的地平线，把画面分成了四格。路灯也把前景和远处隔开。",
+        "en": "The lamppost and the horizon divide the picture into four parts. The lamppost also separates the foreground from the distance."
+      }
+    },
+    "couple": {
+      "title": {
+        "zh": "前景的一对",
+        "en": "The couple"
+      },
+      "text": {
+        "zh": "前景这对撑伞的夫妇，走在都灵街靠近莫斯科街的路口。",
+        "en": "The couple in the foreground are walking along the rue de Turin, near its corner with the rue de Moscou."
+      }
+    },
+    "wet": {
+      "title": {
+        "zh": "湿漉漉的街道",
+        "en": "The wet street"
+      },
+      "text": {
+        "zh": "在当时，画雨景很新鲜。卡耶博特借此画出了湿漉漉的石板路上的倒影。",
+        "en": "Painting a rainy scene was a new idea at the time. It let Caillebotte paint the reflections on the wet cobblestones."
+      }
+    },
+    "newparis": {
+      "title": {
+        "zh": "新的巴黎",
+        "en": "The new Paris"
+      },
+      "text": {
+        "zh": "画这个路口时，奥斯曼已经把巴黎从中世纪城市改造成了现代首都：宽阔的林荫大道、人行道和下水道。",
+        "en": "By the time this was painted, Haussmann had transformed Paris from a medieval city into a modern capital, with broad boulevards, pavements and sewers."
+      }
+    },
+    "winter": {
+      "title": {
+        "zh": "冬天的下午",
+        "en": "A winter afternoon"
+      },
+      "text": {
+        "zh": "艺术史学家认为，画里的光线说明这是一个冬天的下午。",
+        "en": "Art historians believe the light shows a winter afternoon."
+      }
+    },
+    "lines": {
+      "title": {
+        "zh": "清晰的线条",
+        "en": "Clear lines"
+      },
+      "text": {
+        "zh": "和其他印象派画家不同，卡耶博特的线条清晰、结构严谨，几乎看不到笔触。",
+        "en": "Unlike his fellow Impressionists, Caillebotte used clear lines and a strict structure, with brushstrokes that are barely visible."
+      }
+    },
+    "station": {
+      "title": {
+        "zh": "火车站旁边",
+        "en": "Near the station"
+      },
+      "text": {
+        "zh": "这个路口当时叫莫斯科路口，就在圣拉扎尔火车站东边，今天叫都柏林广场。",
+        "en": "This crossroads, then called the Carrefour de Moscou, lies just east of the Gare Saint-Lazare. Today it is the Place de Dublin."
+      },
+      "link": {
+        "scene": "gare-saint-lazare",
+        "href": "../gare-saint-lazare/",
+        "label": {
+          "zh": "莫奈《圣拉扎尔火车站》",
+          "en": "Monet's *The Gare Saint-Lazare*"
+        }
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“画面的四格”：开关打开后，画面上浮现两条线：中间的路灯（竖线）和街道的地平线（横线），把画面分成四格，并显示卡片“路灯”的文字。lines 写的是线在原画上的位置（0–1），从画家视角投出去；原画上传后照着原画量。",
+    "type": "toggles",
+    "label": {
+      "zh": "画面的四格",
+      "en": "Four parts"
+    },
+    "toggles": [
+      {
+        "id": "grid",
+        "label": {
+          "zh": "画面的四格",
+          "en": "Four parts"
+        },
+        "card": "lamppost",
+        "lines": [
+          [
+            0.5,
+            0.0,
+            0.5,
+            1.0
+          ],
+          [
+            0.0,
+            0.45,
+            1.0,
+            0.45
+          ]
+        ]
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/paris-street-rainy-day.jpg",
+        "alt": {
+          "zh": "卡耶博特《巴黎街道，雨天》1877，芝加哥艺术博物馆",
+          "en": "Gustave Caillebotte, Paris Street; Rainy Day, 1877, The Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1877年 · 芝加哥艺术博物馆",
+          "en": "1877 · The Art Institute of Chicago"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 新的巴黎",
+          "en": "The new Paris"
+        },
+        "text": {
+          "zh": "19世纪中叶，奥斯曼把巴黎改造成一座现代城市。卡耶博特选了圣拉扎尔火车站附近一个新建的路口，画下雨中的行人。",
+          "en": "In the mid-19th century, Haussmann rebuilt Paris as a modern city. Caillebotte chose a new crossroads near the Gare Saint-Lazare and painted people walking there in the rain."
+        }
+      },
+      {
+        "image": "images/paris-street-rainy-day.jpg",
+        "alt": {
+          "zh": "卡耶博特《巴黎街道，雨天》1877，芝加哥艺术博物馆",
+          "en": "Gustave Caillebotte, Paris Street; Rainy Day, 1877, The Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1877年 · 芝加哥艺术博物馆",
+          "en": "1877 · The Art Institute of Chicago"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 1877年的画展",
+          "en": "The 1877 exhibition"
+        },
+        "text": {
+          "zh": "1877年4月，这幅画在第三届印象派画展上展出。那次画展很大程度上是卡耶博特自己组织的。这幅画因为逼真和精确，广受好评。",
+          "en": "In April 1877, the painting was shown at the third Impressionist exhibition, which Caillebotte had largely organised himself. It was widely praised for its realism and precision."
+        }
+      },
+      {
+        "image": "images/paris-street-rainy-day.jpg",
+        "alt": {
+          "zh": "卡耶博特《巴黎街道，雨天》1877，芝加哥艺术博物馆",
+          "en": "Gustave Caillebotte, Paris Street; Rainy Day, 1877, The Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1877年 · 芝加哥艺术博物馆",
+          "en": "1877 · The Art Institute of Chicago"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 来到芝加哥",
+          "en": "In Chicago"
+        },
+        "text": {
+          "zh": "之后几十年，它一直留在卡耶博特家族手里，很少有人看到。1964年，芝加哥艺术博物馆买下了它，人们才重新认识了卡耶博特。",
+          "en": "For decades it stayed in the Caillebotte family, rarely seen. In 1964 the Art Institute of Chicago acquired it, and Caillebotte's work was rediscovered."
+        }
+      }
+    ],
+    "final": {
+      "zh": "雨中的新巴黎。",
+      "en": "The new Paris, in the rain."
+    },
+    "versions": [],
+    "museums": [
+      "art-institute-chicago"
+    ],
+    "exit": [
+      {
+        "scene": "umbrellas",
+        "href": "../umbrellas/",
+        "label": {
+          "zh": "同样的伞，不同的画法",
+          "en": "Same umbrellas, different styles"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸和作品页按芝加哥艺术博物馆官网补上。",
+    "artist": {
+      "zh": "古斯塔夫·卡耶博特（1848–1894）",
+      "en": "Gustave Caillebotte (1848–1894)"
+    },
+    "title": {
+      "zh": "巴黎街道，雨天",
+      "en": "Paris Street; Rainy Day"
+    },
+    "date": {
+      "zh": "1877年",
+      "en": "1877"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "212.2 × 276.2 cm",
+      "en": "212.2 × 276.2 cm"
+    },
+    "collection": {
+      "zh": "芝加哥艺术博物馆（1964年购入）",
+      "en": "The Art Institute of Chicago (acquired 1964)"
+    },
+    "creditLine": {
+      "zh": "Charles H. and Mary F. S. Worcester Collection",
+      "en": "Charles H. and Mary F. S. Worcester Collection"
+    },
+    "url": "https://www.artic.edu/artworks/20684/paris-street-rainy-day"
+  },
+  "zoom": {
+    "image": "images/paris-street-rainy-day.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：巴黎街道，雨天",
+          "en": "The Art Institute of Chicago: *Paris Street; Rainy Day*"
+        },
+        "url": "https://www.artic.edu/artworks/20684/paris-street-rainy-day"
+      },
+      {
+        "title": {
+          "zh": "维基百科：巴黎街道，雨天",
+          "en": "Wikipedia: *Paris Street; Rainy Day*"
+        },
+        "url": "https://en.wikipedia.org/wiki/Paris_Street;_Rainy_Day"
+      },
+      {
+        "title": {
+          "zh": "Chicago 杂志",
+          "en": "Chicago magazine"
+        },
+        "url": "https://www.chicagomag.com/?p=106"
+      },
+      {
+        "title": {
+          "zh": "DailyArt Magazine",
+          "en": "DailyArt Magazine"
+        },
+        "url": "https://dailyartmagazine.com/?p=117195"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 新的巴黎",
+          "en": "The new Paris"
+        },
+        "text": {
+          "zh": "19世纪中叶，奥斯曼把巴黎改造成一座现代城市。卡耶博特选了圣拉扎尔火车站附近一个新建的路口，画下雨中的行人。",
+          "en": "In the mid-19th century, Haussmann rebuilt Paris as a modern city. Caillebotte chose a new crossroads near the Gare Saint-Lazare and painted people walking there in the rain."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 1877年的画展",
+          "en": "The 1877 exhibition"
+        },
+        "text": {
+          "zh": "1877年4月，这幅画在第三届印象派画展上展出。那次画展很大程度上是卡耶博特自己组织的。这幅画因为逼真和精确，广受好评。",
+          "en": "In April 1877, the painting was shown at the third Impressionist exhibition, which Caillebotte had largely organised himself. It was widely praised for its realism and precision."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 来到芝加哥",
+          "en": "In Chicago"
+        },
+        "text": {
+          "zh": "之后几十年，它一直留在卡耶博特家族手里，很少有人看到。1964年，芝加哥艺术博物馆买下了它，人们才重新认识了卡耶博特。",
+          "en": "For decades it stayed in the Caillebotte family, rarely seen. In 1964 the Art Institute of Chicago acquired it, and Caillebotte's work was rediscovered."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}
