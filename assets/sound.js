@@ -194,6 +194,16 @@ const AMBIENCE = {
     const creak = t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(380, 600), q: 9, vol: 0.12, dur: rnd(0.12, 0.25), p: 0.3 });
     every(st, 12, 25, creak);
   },
+  // 安静的室内：远处隔壁房间轻轻的鲁特琴声（拨弦），偶尔纸张的声音（A quiet room, a lute next door）
+  'lute-room'(out, st) {
+    loopNoise('brown', out, { freq: 200, gain: 0.06 });
+    const far = ctx.createGain(); far.gain.value = 0.22; far.connect(pan(out, 0.15));   // 琴声在门那边，很轻
+    const notes = [196, 247, 294, 330, 294, 247, 220, 262];
+    const phrase = t => notes.forEach((f, i) => { tone(far, t + i * rnd(0.35, 0.5), { f0: f, type: 'triangle', vol: 0.05, attack: 0.004, dur: 1.4 }); tone(far, t + i * 0.42, { f0: f * 2, vol: 0.012, attack: 0.004, dur: 0.6 }); });
+    phrase(ctx.currentTime + 2); every(st, 9, 16, phrase);
+    const paper = t => { for (let i = 0; i < 4; i++) burst(out, t + i * rnd(0.05, 0.12), { kind: 'white', type: 'bandpass', freq: rnd(3000, 5200), q: 0.9, vol: 0.025, dur: rnd(0.06, 0.14), p: 0.1 }); };   // 展开信纸
+    every(st, 14, 28, paper);
+  },
   // 代尔夫特的河边：河水轻拍岸边，远处教堂的钟声，风和鸟叫（A riverside in Delft）
   'delft-river'(out, st) {
     const w = loopNoise('brown', out, { freq: 380, gain: 0.08 });

@@ -150,7 +150,8 @@ function buildDOM(S, R, meta) {
     <button class="close" data-close="loupe" aria-label="Close">×</button>
     <h3>${bi(S.exclusive.title || S.exclusive.label)}</h3>
     <div class="loupe-pic"><img src="${S.painting.image}" ${altAttr(S.painting.alt || '')} draggable="false" /><div class="loupe-lens"></div></div>
-    ${S.exclusive.note ? `<p class="loupe-note">${bi(S.exclusive.note, ' / ')}</p>` : ''}
+    ${S.exclusive.alt ? `<p style="margin:10px 0 0"><button class="btn" id="loupeAlt">✦ ${ui(S.exclusive.alt.label.zh, S.exclusive.alt.label.en)}</button></p>` : ''}
+    ${S.exclusive.note || S.exclusive.card ? `<p class="loupe-note" id="loupeNote">${bi(S.exclusive.note || S.cards[S.exclusive.card].text, ' / ')}</p>` : ''}
   </div>` : ''}
   ${S.exclusive && S.exclusive.type === 'count' ? `<div id="countPanel" class="panel hidden"><div id="countN"></div><div id="countDone" class="hidden">${bi(S.exclusive.done, ' / ')}</div></div>` : ''}
   ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
@@ -1148,7 +1149,22 @@ function run(S, R, meta) {
     };
     pic.addEventListener('pointerdown', e => { pic.setPointerCapture(e.pointerId); moveLens(e); });
     pic.addEventListener('pointermove', moveLens);
-    $('loupeBtn').onclick = () => { togglePopup('loupe'); if (popups.loupe.style.display === 'block') { track('exclusive-' + S.id); const r = pic.getBoundingClientRect(); moveLens({ clientX: r.left + r.width * (loupeObj.start ? loupeObj.start[0] : 0.5), clientY: r.top + r.height * (loupeObj.start ? loupeObj.start[1] : 0.5) }); } };
+    // alt：弹窗里多一个开关，把原画换成另一张图（比如示意图），说明文字也跟着换；card：说明文字用这张卡片的内容
+    if (loupeObj.alt) {
+      const img = pic.querySelector('img'), note = $('loupeNote'), A = loupeObj.alt;
+      const baseNote = loupeObj.note || S.cards[loupeObj.card].text;
+      let alt = false;
+      const show = () => {
+        const src = alt ? A.image : S.painting.image;
+        img.src = src; lens.style.backgroundImage = `url("${src}")`;
+        if (note) note.innerHTML = bi(alt ? A.note : baseNote, ' / ');
+        $('loupeAlt').innerHTML = `✦ ${alt ? ui(A.back.zh, A.back.en) : ui(A.label.zh, A.label.en)}`;
+      };
+      $('loupeAlt').onclick = () => { alt = !alt; show(); };
+      new Image().src = A.image;   // 先加载好，切换时不闪
+    }
+    // 有 card 时：弹窗里显示了这张卡片的文字，就算发现了这张卡片
+    $('loupeBtn').onclick = () => { togglePopup('loupe'); if (loupeObj.card && popups.loupe.style.display === 'block') { found.add(loupeObj.card); updateProgress(); }   if (popups.loupe.style.display === 'block') { track('exclusive-' + S.id); const r = pic.getBoundingClientRect(); moveLens({ clientX: r.left + r.width * (loupeObj.start ? loupeObj.start[0] : 0.5), clientY: r.top + r.height * (loupeObj.start ? loupeObj.start[1] : 0.5) }); } };
   }
 
   const mirrorObj = S.exclusive && S.exclusive.type === 'mirror' ? S.exclusive : null;
