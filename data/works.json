@@ -13,20 +13,6 @@
     "vermeer": [
       {
         "title": {
-          "zh": "绘画艺术",
-          "en": "The Art of Painting"
-        },
-        "year": {
-          "zh": "约1666–68",
-          "en": "c. 1666–68"
-        },
-        "museum": "khm",
-        "check": "ok",
-        "_": "维也纳艺术史博物馆作品页（Tia 提供）",
-        "url": "https://khm.at/en/object/2574"
-      },
-      {
-        "title": {
           "zh": "情书",
           "en": "The Love Letter"
         },

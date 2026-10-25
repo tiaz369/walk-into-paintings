@@ -17,7 +17,7 @@ walk-into-paintings/
 ├── map/                  地图页
 ├── artists/  themes/  moods/  periods/  museums/  timeline/   浏览页面
 ├── london/  versions/    专题页：在伦敦看真迹、同一幅画的几个版本
-├── collections/arles/    系列页（每个系列一个文件夹：arles、saint-remy、delft、national-gallery、stage）
+├── collections/arles/    系列页（每个系列一个文件夹：nuenen、arles、saint-remy、delft、paris-streets、stage）
 ├── scenes/
 │   └── bedroom/
 │       ├── index.html    场景页（只有几行，套用模板）
