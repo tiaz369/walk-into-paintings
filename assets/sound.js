@@ -204,6 +204,12 @@ const AMBIENCE = {
     const paper = t => { for (let i = 0; i < 4; i++) burst(out, t + i * rnd(0.05, 0.12), { kind: 'white', type: 'bandpass', freq: rnd(3000, 5200), q: 0.9, vol: 0.025, dur: rnd(0.06, 0.14), p: 0.1 }); };   // 展开信纸
     every(st, 14, 28, paper);
   },
+  // 非常安静的室内：花边线轴轻轻碰撞的声音（A very quiet room, bobbins clicking）
+  bobbins(out, st) {
+    loopNoise('brown', out, { freq: 170, gain: 0.045 });
+    const click = t => { const n = 1 + Math.floor(Math.random() * 3); for (let i = 0; i < n; i++) tone(out, t + i * rnd(0.08, 0.18), { f0: rnd(1800, 2600), type: 'triangle', vol: 0.02, attack: 0.001, dur: 0.05 }); };   // 木头线轴互相碰一下
+    every(st, 0.8, 2.6, click);
+  },
   // 代尔夫特的河边：河水轻拍岸边，远处教堂的钟声，风和鸟叫（A riverside in Delft）
   'delft-river'(out, st) {
     const w = loopNoise('brown', out, { freq: 380, gain: 0.08 });

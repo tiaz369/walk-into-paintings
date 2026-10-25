@@ -63,7 +63,7 @@ function buildDOM(S, R, meta) {
   const layersHTML = S.layers.map((l, i) => `<div class="layer" data-i="${i}" style="${l.clip ? `clip-path:polygon(${l.clip.map(([x, y]) => `${x * 100}% ${y * 100}%`).join(',')})` : ''}">
       <img src="${P.image}" alt="" draggable="false" /></div>`).join('');
   const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}" style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
-  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip';
+  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus';
   // 细节放大的热点（zooms：眼睛、嘴唇、珍珠……）；只有一个时也可以写成 zoom
   const ZOOMS = zoomsOf(X), ZL = X.zoomLabel || (X.zoom && X.zoom.label) || { zh: '放大看细节', en: 'Zoom in on details' };
   const zspotsHTML = ZOOMS.map((z, i) => `<button class="zspot" data-z="${i}" style="left:${z.x * 100}%;top:${z.y * 100}%">${ui(z.label.zh, z.label.en)}</button>`).join('');
@@ -97,7 +97,14 @@ function buildDOM(S, R, meta) {
     ${isMap ? `<button class="btn" id="mapBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isFlip ? `<button class="btn" id="flipBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isSlider ? `<button class="btn" id="sliderBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
+    ${isFocus ? `<button class="btn" id="focusBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
   </div>
+  ${isFocus ? `<div id="focusPanel" class="panel hidden">
+    <input type="range" id="focusRange" min="0" max="100" value="0" aria-label="${textOf(X.label, lang)}" />
+    <div class="focus-ends"><span>${ui(X.from.zh, X.from.en)}</span><span>${ui(X.to.zh, X.to.en)}</span></div>
+    ${X.note ? `<p>${bi(X.note, ' / ')}</p>` : ''}
+  </div>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="focusSharp"><feConvolveMatrix id="focusKernel" order="3" preserveAlpha="true" kernelMatrix="0 0 0 0 1 0 0 0 0" /></filter></svg>` : ''}
   <div id="status" class="ui">
     <div id="progress" class="panel"></div>
     <div id="leftHint" class="panel hidden"></div>
@@ -338,6 +345,24 @@ function run(S, R) {
     if ($('curtainNote')) $('curtainNote').classList.toggle('hidden', !on);
     if (on) track('exclusive-' + S.id);
   };
+  // 独家发现“移动焦点”：滑杆从维米尔的焦点（focus: "far" 的层，比如她的手）拖到前景（focus: "near" 的层）：
+  // 前景慢慢变清楚（锐化），原来的焦点慢慢变模糊；拖回去就恢复原画
+  if ($('focusBtn')) {
+    const X = S.exclusive, panel = $('focusPanel'), kern = $('focusKernel');
+    const near = layers.filter((l, i) => S.layers[i].focus === 'near'), far = layers.filter((l, i) => S.layers[i].focus === 'far');
+    const setFocus = v => {
+      const k = (0.9 * v).toFixed(3);
+      kern.setAttribute('kernelMatrix', `0 -${k} 0 -${k} ${(1 + 4 * 0.9 * v).toFixed(3)} -${k} 0 -${k} 0`);
+      near.forEach(l => { l.style.filter = v > 0.01 ? `url(#focusSharp) contrast(${1 + 0.12 * v}) saturate(${1 + 0.15 * v})` : ''; });
+      far.forEach(l => { l.style.filter = v > 0.01 ? `blur(${(X.blur || 3) * v}px)` : ''; });
+    };
+    $('focusRange').oninput = e => setFocus(e.target.value / 100);
+    $('focusBtn').onclick = () => {
+      const on = panel.classList.toggle('hidden') === false;
+      $('focusBtn').classList.toggle('on', on);
+      if (on) { if (zoomAt) zoomTo(null); track('exclusive-' + S.id); } else { $('focusRange').value = 0; setFocus(0); }
+    };
+  }
   function setFlip(on) {
     flipT = on ? 1 : 0;
     $('flipBtn').classList.toggle('on', on);

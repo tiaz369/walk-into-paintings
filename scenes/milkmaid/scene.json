@@ -11,14 +11,15 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片 1 还链接到主题“窗户与光”（不是场景，所以不列在这里）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《花边女工》互相链接（另一个专注做事的女子）。卡片 1 还链接到主题“窗户与光”（不是场景，所以不列在这里）。",
     "doors": [
       "little-street"
     ],
     "cards": [],
     "end": [
       "little-street",
-      "woman-reading-letter"
+      "woman-reading-letter",
+      "lacemaker"
     ]
   },
   "painting": {
@@ -821,6 +822,14 @@
         "label": {
           "zh": "同一家博物馆的另一幅维米尔",
           "en": "Another Vermeer in the same museum"
+        }
+      },
+      {
+        "scene": "lacemaker",
+        "href": "../lacemaker/",
+        "label": {
+          "zh": "另一个专注做事的女子：花边女工",
+          "en": "Another woman absorbed in her work: *The Lacemaker*"
         }
       }
     ]
