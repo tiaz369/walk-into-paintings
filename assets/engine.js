@@ -1268,6 +1268,7 @@ function run(S, R, meta) {
     };
   }
   // 独家发现：几个开关（toggles）。每个开关让 targets 里的物体（按 id）慢慢淡出 / 淡入；
+  //   lines：开关打开时浮现的线（原画上的位置，比如画面的分割线）；
   //   paintAlt：同时把投影的原画换成改过的那一版（示意）；note：打开时显示的说明；card：打开时显示的卡片；noPaint：这些物体不贴原画（比如窗框和铁栏）
   const togObj = S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive : null;
   const toggles = [];
@@ -1287,7 +1288,21 @@ function run(S, R, meta) {
       } else { o.material = o.material.clone(); o.material.transparent = true; }
       meshes.push(o);
     });
-    const T = { t, meshes, on: false, now: 0 }; toggles.push(T);
+    let lines = null;   // lines：开关打开时浮现的线，写的是原画上的两个点 [x1, y1, x2, y2]（0–1），从画家视角投出去
+    if (t.lines) {
+      const at = (fx, fy) => { const d = new THREE.Vector3(fx * 2 - 1, 1 - fy * 2, 0.5).unproject(projector).sub(projector.position).normalize(); return projector.position.clone().addScaledVector(d, 2); };
+      const pos = [], w = (t.lineWidth || 0.006) / 2;   // 每条线是一条细长的面（WebGL 的线只有 1 像素宽）
+      for (const [x1, y1, x2, y2] of t.lines) {
+        const A = at(x1, y1), Bp = at(x2, y2), n = projector.position.clone().sub(A.clone().add(Bp).multiplyScalar(0.5));
+        const side = Bp.clone().sub(A).cross(n).normalize().multiplyScalar(w);
+        const q = [A.clone().add(side), A.clone().sub(side), Bp.clone().sub(side), Bp.clone().add(side)];
+        for (const k of [0, 1, 2, 0, 2, 3]) pos.push(q[k].x, q[k].y, q[k].z);
+      }
+      const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3));
+      lines = new THREE.Mesh(g, new THREE.MeshBasicMaterial({ color: t.lineColor || '#fff3b0', transparent: true, opacity: 0, depthTest: false, side: THREE.DoubleSide }));
+      lines.renderOrder = 20; lines.visible = false; lines.userData.noPaint = true; lines.userData.noDepth = true; scene.add(lines);
+    }
+    const T = { t, meshes, lines, on: false, now: 0 }; toggles.push(T);
     const btn = document.querySelector(`[data-toggle="${i}"]`), note = document.querySelector(`[data-toggle-note="${i}"]`);
     btn.onclick = () => {
       T.on = !T.on; btn.classList.toggle('on', T.on); if (note) note.classList.toggle('hidden', !T.on);
@@ -1304,6 +1319,7 @@ function run(S, R, meta) {
         if (m.userData.paintMat) { m.userData.paintMat.uniforms.uAlpha.value = 1 - T.now; m.userData.paintMat.depthWrite = T.now < 0.05; }
         m.visible = T.now < 0.99;
       }
+      if (T.lines) { T.lines.material.opacity = T.now; T.lines.visible = T.now > 0.01; }
       if (T.t.paintAlt) projUniforms.uMixB.value = T.now;
       if (T.t.spot) projUniforms.uSpotK.value = T.now;
       if (Math.abs(target - T.now) < 0.001) renderProjectorDepth();   // 淡出 / 淡入完了：重新判断哪些表面能照到原画

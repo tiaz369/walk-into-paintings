@@ -11,11 +11,11 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《巴黎街道，雨天》（卡耶博特，还没开放）预留了互相链接，开放后自动出现。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和卡耶博特《巴黎街道，雨天》互相链接（“同样的伞，不同的画法”），对方开放后自动出现。",
     "doors": [],
     "cards": [],
     "end": [
-      "caillebotte-paris-street"
+      "paris-street-rainy-day"
     ]
   },
   "painting": {
@@ -629,11 +629,11 @@
     ],
     "exit": [
       {
-        "scene": "caillebotte-paris-street",
-        "href": "../caillebotte-paris-street/",
+        "scene": "paris-street-rainy-day",
+        "href": "../paris-street-rainy-day/",
         "label": {
-          "zh": "另一条雨中的巴黎街道",
-          "en": "Another rainy Paris street"
+          "zh": "同样的伞，不同的画法",
+          "en": "Same umbrellas, different styles"
         }
       }
     ]

@@ -186,6 +186,16 @@ const AMBIENCE = {
     const step = t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(500, 800), q: 4, vol: 0.06, dur: 0.05, p: rnd(-0.6, 0.6) });
     every(st, 0.4, 1.2, step);
   },
+  // 雨中的巴黎路口：小雨声，雨水打在伞上，马车轮子压过湿石板，远处的脚步声（A rainy crossroads）
+  'rain-cobbles'(out, st) {
+    loopNoise('white', out, { type: 'highpass', freq: 3200, gain: 0.04 });   // 小雨
+    loopNoise('brown', out, { freq: 260, gain: 0.06 });
+    const drop = t => burst(out, t, { type: 'bandpass', freq: rnd(1800, 3200), q: 3, vol: 0.05, dur: 0.02, p: rnd(-0.8, 0.8) });   // 雨点打在伞面上
+    every(st, 0.08, 0.3, drop);
+    hooves(out, ctx.currentTime + 3); every(st, 18, 35, t => hooves(out, t));   // 马车压过湿石板
+    const step = t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(500, 800), q: 4, vol: 0.04, dur: 0.05, p: rnd(-0.6, 0.6) });
+    every(st, 0.6, 1.6, step);
+  },
   // 夏日河边：水声，远处很低的蒸汽和工厂声，偶尔有人跳水的水花声（A summer riverside）
   riverside(out, st) {
     loopNoise('brown', out, { freq: 340, gain: 0.08 });
