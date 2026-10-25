@@ -1,0 +1,630 @@
+{
+  "_说明": "绘画艺术（室内房间，完整版）。所有事实文字由 Tia 提供（资料来自维也纳艺术史博物馆官网）。开场时，观众站在一块厚重的挂毯帘子后面；拉开帘子后，进入画家的工作室：画家背对着我们坐在画架前，模特站在窗边，墙上挂着大地图，天花板上挂着吊灯，光从左边的窗户照进来。“画家刚开始画”“挂毯帘子”是画面上能看到的描述。画家视角和物体位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "art-of-painting",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "window-left",
+    "label": {
+      "zh": "左边窗户照进来的光",
+      "en": "Light from a window on the left"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《读信的蓝衣女子》互相链接（维米尔画里的另一张地图）；卡片“画架上的画”链接到主题“窗户与光”。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "woman-reading-letter"
+    ]
+  },
+  "painting": {
+    "image": "images/art-of-painting.jpg",
+    "width": 1500,
+    "height": 1800,
+    "alt": {
+      "zh": "维米尔《绘画艺术》约1666/68，维也纳艺术史博物馆",
+      "en": "Johannes Vermeer, The Art of Painting, about 1666/68, Kunsthistorisches Museum, Vienna"
+    },
+    "_": "宽高是按 120 × 100 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "绘画艺术",
+      "en": "The Art of Painting"
+    },
+    "artist": {
+      "zh": "维米尔",
+      "en": "Johannes Vermeer"
+    },
+    "date": {
+      "zh": "约1666/68年",
+      "en": "About 1666/68"
+    },
+    "museum": {
+      "zh": "维也纳艺术史博物馆",
+      "en": "Kunsthistorisches Museum, Vienna"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>先点“拉开帘子”，走进画家的工作室 · 点一下画家、模特、地图和桌上的东西看介绍 · 点“找签名”，在地图下边找维米尔的名字 · 地上发光的圆点 = 维米尔的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>First tap “Draw back the curtain” to step into the studio · Tap the painter, the model, the map or the things on the table to learn more · Tap “Find the signature” to look for Vermeer's name on the map · The glowing circle = Vermeer's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.5,
+    "yaw": 0,
+    "pitch": 0,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "studio",
+  "colors": {
+    "line": "#2a2620",
+    "floor": "#d8d2c4",
+    "wall": "#d6cdb8",
+    "ceiling": "#c8bea6",
+    "wood": "#4a3424",
+    "tapestry": "#4a4a5a",
+    "cloth": "#5a4a6a",
+    "plaster": "#e0dcd2",
+    "book": "#c8a868",
+    "bluedress": "#5a7aa8",
+    "black": "#24242a",
+    "skin": "#e8cdb4",
+    "canvas": "#d8d0bc",
+    "map": "#b8a272",
+    "brass": "#b08a3a"
+  },
+  "room": {
+    "_说明": "房间形状（米）：画家的工作室。左墙 x=left（窗户在左墙上，被帘子挡着），前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 3.0,
+    "front": 1.2,
+    "left": -1.8,
+    "backLeft": [
+      -1.8,
+      -3.8
+    ],
+    "backRight": [
+      1.8,
+      -3.8
+    ],
+    "rightFront": [
+      1.8,
+      1.2
+    ],
+    "floorCard": "painter",
+    "wallCard": "map",
+    "walkSpeed": 0.6
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "id": "drape",
+      "noPaint": true,
+      "card": "curtain",
+      "x": -0.35,
+      "z": -0.7,
+      "_": "开场挡在面前的挂毯帘子（“拉开帘子”后淡出，只留下画里左边那一块）",
+      "boxes": [
+        [
+          1.9,
+          2.8,
+          0.06,
+          "tapestry",
+          0,
+          1.4,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "curtain",
+      "x": -1.25,
+      "z": -1.3,
+      "_": "画里左边被拉到一边的挂毯帘子",
+      "boxes": [
+        [
+          0.9,
+          2.8,
+          0.08,
+          "tapestry",
+          0,
+          1.4,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "table",
+      "x": -0.7,
+      "z": -2.4,
+      "_": "左边的桌子（雕塑模型、素描本）",
+      "boxes": [
+        [
+          1.0,
+          0.05,
+          0.8,
+          "wood",
+          0,
+          0.75,
+          0
+        ],
+        [
+          0.9,
+          0.7,
+          0.7,
+          "cloth",
+          0,
+          0.37,
+          0
+        ],
+        [
+          0.2,
+          0.2,
+          0.2,
+          "plaster",
+          -0.2,
+          0.88,
+          0
+        ],
+        [
+          0.3,
+          0.04,
+          0.22,
+          "book",
+          0.2,
+          0.8,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "bluedress",
+      "legs": "bluedress",
+      "x": -0.4,
+      "z": -3.2,
+      "rot": 0.6,
+      "card": "clio",
+      "_": "窗边装扮成克利俄的模特"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "black",
+      "x": 0.45,
+      "z": -2.2,
+      "rot": 3.14,
+      "card": "painter",
+      "_": "背对着我们作画的画家"
+    },
+    {
+      "type": "boxes",
+      "card": "easel",
+      "x": 0.2,
+      "z": -2.75,
+      "_": "画架和刚开始画的画布",
+      "boxes": [
+        [
+          0.06,
+          1.7,
+          0.06,
+          "wood",
+          -0.3,
+          0.85,
+          0
+        ],
+        [
+          0.06,
+          1.7,
+          0.06,
+          "wood",
+          0.3,
+          0.85,
+          0
+        ],
+        [
+          0.7,
+          0.85,
+          0.03,
+          "canvas",
+          0,
+          1.3,
+          0.04
+        ]
+      ]
+    },
+    {
+      "type": "wallBoxes",
+      "card": "map",
+      "wall": "back",
+      "x": 0.3,
+      "y": 1.9,
+      "z": -3.8,
+      "_": "墙上的尼德兰十七省地图（签名在下边框上）",
+      "boxes": [
+        [
+          2.4,
+          1.6,
+          0.03,
+          "map",
+          0,
+          0,
+          0.02,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "map",
+      "x": 0.3,
+      "y": 2.75,
+      "z": -2.8,
+      "_": "天花板上的吊灯",
+      "boxes": [
+        [
+          0.03,
+          0.6,
+          0.03,
+          "brass",
+          0,
+          0.3,
+          0
+        ],
+        [
+          0.6,
+          0.2,
+          0.6,
+          "brass",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "painter",
+      "x": -0.2,
+      "z": -1.6,
+      "_": "前面的椅子",
+      "boxes": [
+        [
+          0.45,
+          0.05,
+          0.45,
+          "wood",
+          0,
+          0.48,
+          0
+        ],
+        [
+          0.45,
+          0.6,
+          0.05,
+          "wood",
+          0,
+          0.8,
+          0.2
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "curtain": {
+      "title": {
+        "zh": "帘子",
+        "en": "The curtain"
+      },
+      "text": {
+        "zh": "一块厚重的挂毯帘子被拉到一边，好像邀请我们走进这个房间。",
+        "en": "A heavy tapestry curtain is drawn aside, as if inviting us into the room."
+      }
+    },
+    "painter": {
+      "title": {
+        "zh": "画家",
+        "en": "The painter"
+      },
+      "text": {
+        "zh": "画家背对着我们，坐在画架前作画。维米尔把一个工作室里的日常场景，变成了“绘画艺术”的寓言。",
+        "en": "The painter sits at his easel with his back to us. Vermeer turned an everyday studio scene into an allegory of the art of painting."
+      }
+    },
+    "clio": {
+      "title": {
+        "zh": "克利俄",
+        "en": "Clio"
+      },
+      "text": {
+        "zh": "模特装扮成历史女神克利俄。她启发画家，并宣告绘画的荣耀，把它写进历史之书。",
+        "en": "The model poses as Clio, Muse of history, who inspires the painter and proclaims the glory of painting, recording it in the book of history."
+      }
+    },
+    "easel": {
+      "title": {
+        "zh": "画架上的画",
+        "en": "On the easel"
+      },
+      "text": {
+        "zh": "画家刚开始画，画布上只画了一点点。",
+        "en": "The painter has only just begun; there is very little on the canvas so far."
+      },
+      "link": {
+        "href": "../../themes/?id=windows",
+        "label": {
+          "zh": "主题：窗户与光",
+          "en": "Theme: Windows and light"
+        }
+      }
+    },
+    "table": {
+      "title": {
+        "zh": "桌上的东西",
+        "en": "On the table"
+      },
+      "text": {
+        "zh": "桌上有雕塑模型和素描本。它们和画架上的画一起，表现了各门艺术的统一。",
+        "en": "On the table are a sculptor's model and a sketchbook. Together with the painting on the easel, they reflect the unity of the arts."
+      }
+    },
+    "map": {
+      "title": {
+        "zh": "地图",
+        "en": "The map"
+      },
+      "text": {
+        "zh": "墙上的地图，画的是南北分裂之前的尼德兰十七省，指向一片一直因绘画而闻名的土地。",
+        "en": "The map shows the 17 provinces of the Netherlands before they were divided into north and south, a land that had always owed its fame to painting."
+      }
+    },
+    "signature": {
+      "title": {
+        "zh": "地图上的签名",
+        "en": "The signature"
+      },
+      "text": {
+        "zh": "维米尔把自己的名字签在了地图下方的边框上：“I Ver-Meer”。",
+        "en": "Vermeer signed his name on the lower border of the map: \"I Ver-Meer\"."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现：①“拉开帘子”：开场时面前挡着一块挂毯帘子，只露出房间的一角；点一下，帘子淡出，完整的工作室出现。②“找签名”：画面上浮现一个框，圈出地图下方边框上的签名“I Ver-Meer”，并显示卡片7的文字（lines 是框在原画上的位置，原画上传后照着原画量）。",
+    "type": "toggles",
+    "label": {
+      "zh": "拉开帘子 · 找签名",
+      "en": "Draw back the curtain · Find the signature"
+    },
+    "toggles": [
+      {
+        "id": "curtain",
+        "label": {
+          "zh": "拉开帘子",
+          "en": "Draw back the curtain"
+        },
+        "targets": [
+          "drape"
+        ],
+        "card": "curtain"
+      },
+      {
+        "id": "signature",
+        "label": {
+          "zh": "找签名",
+          "en": "Find the signature"
+        },
+        "card": "signature",
+        "lines": [
+          [
+            0.45,
+            0.44,
+            0.6,
+            0.44
+          ],
+          [
+            0.6,
+            0.44,
+            0.6,
+            0.48
+          ],
+          [
+            0.6,
+            0.48,
+            0.45,
+            0.48
+          ],
+          [
+            0.45,
+            0.48,
+            0.45,
+            0.44
+          ]
+        ]
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/art-of-painting.jpg",
+        "alt": {
+          "zh": "维米尔《绘画艺术》约1666/68，维也纳艺术史博物馆",
+          "en": "Johannes Vermeer, The Art of Painting, about 1666/68, Kunsthistorisches Museum, Vienna"
+        },
+        "caption": {
+          "zh": "约1666/68年 · 维也纳艺术史博物馆",
+          "en": "About 1666/68 · Kunsthistorisches Museum, Vienna"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 画家的工作室",
+          "en": "The painter's studio"
+        },
+        "text": {
+          "zh": "大约1666到1668年，维米尔画下了一位在工作室里作画的画家。他让模特装扮成历史女神，把这个日常场景，变成了一首献给绘画的寓言。",
+          "en": "Around 1666–68, Vermeer painted an artist at work in his studio. Dressing the model as the Muse of history, he turned this everyday scene into an allegory of the art of painting."
+        }
+      },
+      {
+        "image": "images/art-of-painting.jpg",
+        "alt": {
+          "zh": "维米尔《绘画艺术》约1666/68，维也纳艺术史博物馆",
+          "en": "Johannes Vermeer, The Art of Painting, about 1666/68, Kunsthistorisches Museum, Vienna"
+        },
+        "caption": {
+          "zh": "约1666/68年 · 维也纳艺术史博物馆",
+          "en": "About 1666/68 · Kunsthistorisches Museum, Vienna"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 留在家里",
+          "en": "Kept at home"
+        },
+        "text": {
+          "zh": "维米尔去世后，这幅画留在他的遗孀卡塔琳娜手里。1676年，她把画转给了自己的母亲。第二年，它在代尔夫特被拍卖。",
+          "en": "After Vermeer's death, the painting remained with his widow, Catharina. In 1676 she passed it to her mother, and the following year it was auctioned in Delft."
+        }
+      },
+      {
+        "image": "images/art-of-painting.jpg",
+        "alt": {
+          "zh": "维米尔《绘画艺术》约1666/68，维也纳艺术史博物馆",
+          "en": "Johannes Vermeer, The Art of Painting, about 1666/68, Kunsthistorisches Museum, Vienna"
+        },
+        "caption": {
+          "zh": "约1666/68年 · 维也纳艺术史博物馆",
+          "en": "About 1666/68 · Kunsthistorisches Museum, Vienna"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 漫长的旅程",
+          "en": "A long journey"
+        },
+        "text": {
+          "zh": "它后来来到维也纳，1813年起属于切尔宁伯爵。1940年，它被希特勒占有；战后，1946年移交给艺术史博物馆，1958年正式成为馆藏。今天，它挂在第十二展厅。",
+          "en": "It later came to Vienna, and from 1813 belonged to Count Czernin. In 1940 it was acquired by Adolf Hitler. After the war, in 1946, it was handed over to the Kunsthistorisches Museum, and formally joined the collection in 1958. Today it hangs in Room XII."
+        }
+      }
+    ],
+    "final": {
+      "zh": "画家背对着我们，让我们看他作画。",
+      "en": "The painter turns his back to us, and lets us watch him paint."
+    },
+    "versions": [],
+    "museums": [
+      "khm"
+    ],
+    "exit": [
+      {
+        "scene": "woman-reading-letter",
+        "href": "../woman-reading-letter/",
+        "label": {
+          "zh": "维米尔画里的另一张地图",
+          "en": "Another map in a Vermeer"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（维也纳艺术史博物馆官网）。",
+    "artist": {
+      "zh": "约翰内斯·维米尔（1632–1675）",
+      "en": "Johannes Vermeer (1632–1675)"
+    },
+    "title": {
+      "zh": "绘画艺术",
+      "en": "The Art of Painting"
+    },
+    "date": {
+      "zh": "约1666/68年",
+      "en": "About 1666/68"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "120 × 100 cm",
+      "en": "120 × 100 cm"
+    },
+    "collection": {
+      "zh": "维也纳艺术史博物馆，绘画馆第十二展厅",
+      "en": "Kunsthistorisches Museum, Vienna, Picture Gallery, Room XII"
+    },
+    "url": "https://www.khm.at/en/artworks/the-art-of-painting-2574"
+  },
+  "zoom": {
+    "image": "images/art-of-painting.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "维也纳艺术史博物馆：绘画艺术",
+          "en": "Kunsthistorisches Museum: *The Art of Painting*"
+        },
+        "url": "https://www.khm.at/en/artworks/the-art-of-painting-2574"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 画家的工作室",
+          "en": "The painter's studio"
+        },
+        "text": {
+          "zh": "大约1666到1668年，维米尔画下了一位在工作室里作画的画家。他让模特装扮成历史女神，把这个日常场景，变成了一首献给绘画的寓言。",
+          "en": "Around 1666–68, Vermeer painted an artist at work in his studio. Dressing the model as the Muse of history, he turned this everyday scene into an allegory of the art of painting."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 留在家里",
+          "en": "Kept at home"
+        },
+        "text": {
+          "zh": "维米尔去世后，这幅画留在他的遗孀卡塔琳娜手里。1676年，她把画转给了自己的母亲。第二年，它在代尔夫特被拍卖。",
+          "en": "After Vermeer's death, the painting remained with his widow, Catharina. In 1676 she passed it to her mother, and the following year it was auctioned in Delft."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 漫长的旅程",
+          "en": "A long journey"
+        },
+        "text": {
+          "zh": "它后来来到维也纳，1813年起属于切尔宁伯爵。1940年，它被希特勒占有；战后，1946年移交给艺术史博物馆，1958年正式成为馆藏。今天，它挂在第十二展厅。",
+          "en": "It later came to Vienna, and from 1813 belonged to Count Czernin. In 1940 it was acquired by Adolf Hitler. After the war, in 1946, it was handed over to the Kunsthistorisches Museum, and formally joined the collection in 1958. Today it hangs in Room XII."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}

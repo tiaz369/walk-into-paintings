@@ -19,7 +19,8 @@
     "end": [
       "little-street",
       "milkmaid",
-      "pearl-earring"
+      "pearl-earring",
+      "art-of-painting"
     ]
   },
   "painting": {
@@ -794,6 +795,14 @@
         "label": {
           "zh": "维米尔的另一幅",
           "en": "Another Vermeer"
+        }
+      },
+      {
+        "scene": "art-of-painting",
+        "href": "../art-of-painting/",
+        "label": {
+          "zh": "维米尔画里的另一张地图：绘画艺术",
+          "en": "Another map in a Vermeer: *The Art of Painting*"
         }
       }
     ]

@@ -186,6 +186,14 @@ const AMBIENCE = {
     const step = t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(500, 800), q: 4, vol: 0.06, dur: 0.05, p: rnd(-0.6, 0.6) });
     every(st, 0.4, 1.2, step);
   },
+  // 安静的画室：画笔在画布上的轻响，偶尔木头椅子的声音（A quiet studio）
+  studio(out, st) {
+    loopNoise('brown', out, { freq: 190, gain: 0.07 });
+    const stroke = t => { for (let i = 0; i < 3; i++) burst(out, t + i * rnd(0.15, 0.3), { kind: 'white', type: 'bandpass', freq: rnd(2500, 4200), q: 1.2, vol: 0.03, dur: rnd(0.12, 0.25), p: 0.2 }); };   // 画笔划过画布
+    every(st, 2, 6, stroke);
+    const creak = t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(380, 600), q: 9, vol: 0.12, dur: rnd(0.12, 0.25), p: 0.3 });
+    every(st, 12, 25, creak);
+  },
   // 代尔夫特的河边：河水轻拍岸边，远处教堂的钟声，风和鸟叫（A riverside in Delft）
   'delft-river'(out, st) {
     const w = loopNoise('brown', out, { freq: 380, gain: 0.08 });
