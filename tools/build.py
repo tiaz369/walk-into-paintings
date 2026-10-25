@@ -138,9 +138,9 @@ def head(path, title, desc, image, image_alt, up, scene=False):
 </head>
 '''
 # 首页和浏览页的分享预览图：三幅画并排（tools/make_og.py 生成）；场景页用自己的原画
-OG_HOME = 'assets/og-share.jpg'   # tools/make_og.py 生成
+OG_HOME = 'assets/og-share-3.jpg'   # tools/make_og.py 生成
 OG_SIZE = '\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="630" />'
-OG_HOME_ALT = "梵高《星夜》，1889，纽约现代艺术博物馆 · Vincent van Gogh, The Starry Night, 1889, The Museum of Modern Art, New York"
+OG_HOME_ALT = "梵高《阿尔勒的卧室》、维米尔《戴珍珠耳环的少女》、梵高《向日葵》 · Vincent van Gogh, The Bedroom; Johannes Vermeer, Girl with a Pearl Earring; Vincent van Gogh, Sunflowers"
 def page(path, title, desc, static, script, image=OG_HOME, image_alt=OG_HOME_ALT, scene=False, up=None, noindex=False):
     if up is None: up = '../' * path.count('/')
     body = f'''<body class="lang-both">
@@ -178,12 +178,20 @@ T = lambda zh, en: f'{zh} · {en} — 走进名画 | Walk into Paintings'
 DESC = both(TAGLINE, ' ')
 
 # ---------- 首页 ----------
+# 本周新作：最近上线的一幅；一句话介绍用登记表的 tagline，没有就用场景故事的最后一句（和 site.js 一样）
+NEWEST = sorted(LIVE, key=lambda s: (s.get('added', ''), ORDER.index(s['id'])), reverse=True)[0]
+NEWEST_INTRO = NEWEST.get('tagline') or json.load(open(os.path.join(ROOT, NEWEST['path'], 'scene.json'), encoding='utf-8')).get('ending', {}).get('final')
+def col_home(c):   # 首页的系列：最多 4 幅已开放的作品，超过 4 幅加“查看全部”
+    lst = sorted([SCENES[x] for x in c['order'] if x in SCENES and SCENES[x]['status'] == 'live' and SCENES[x].get('cover')], key=open_year)
+    if not lst: return ''
+    more = f'<p><a href="collections/{c["id"]}/">查看全部 · See all →</a></p>' if len(lst) > 4 else ''
+    return f'<h3><a href="collections/{c["id"]}/">{e(both(c["name"]))}</a></h3><p>{e(both(c["desc"]))}</p>{scene_list(lst[:4], "")}{more}'
 s = f'''      <h1>{bi(NAME)}</h1>
       <p>{bi(TAGLINE)}</p>
       <h2>本周新作 · New this week</h2>
-      {scene_list(sorted(LIVE, key=lambda s: (s.get('added', ''), ORDER.index(s['id'])), reverse=True)[:1], '')}
+      {scene_list([NEWEST], '')}{f'<p>{bi(NEWEST_INTRO)}</p>' if NEWEST_INTRO else ''}
       <h2>系列 · Collections</h2>
-      {''.join(f'<h3><a href="collections/{c["id"]}/">{e(both(c["name"]))}</a></h3><p>{e(both(c["desc"]))}</p>{scene_list(sorted([SCENES[x] for x in c["order"] if x in SCENES], key=open_year), "")}' for c in R['collections'])}
+      {''.join(col_home(c) for c in R['collections'])}
       <h2>专题 · Features</h2>
       <ul><li><a href="timeline/">时间线 · Timeline</a></li><li><a href="london/">{e(both(LONDON['title']))}</a> — {e('；'.join(both(sec['title'], ' / ') for sec in LONDON['sections']))}</li><li><a href="versions/">同一幅画的几个版本 · One painting, many versions</a></li></ul>
       <h2>六种浏览方式 · Six ways to explore</h2>

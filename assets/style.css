@@ -606,3 +606,55 @@ body.clean #uncleanBtn:hover, body.clean #uncleanBtn:focus { opacity: 1; }
   box-shadow: 0 6px 20px rgba(0, 0, 0, .4); background-repeat: no-repeat; pointer-events: none; opacity: 0; transition: opacity .3s; }
 .loupe-note { margin: 10px 4px 0; font-size: 14px; }
 @media (max-width: 600px) { .loupe-lens { width: 110px; height: 110px; margin: -55px 0 0 -55px; } }
+
+/* ---------- 首页：本周新作（大图卡片 + 一句话介绍） ---------- */
+.feature { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 36px; align-items: center; text-decoration: none; color: inherit; }
+.feature-pic { display: flex; justify-content: center; background: var(--paper-2); border-radius: 6px; padding: 28px; }
+.feature-pic img { max-width: 100%; max-height: 520px; width: auto; height: auto; display: block; box-shadow: 0 10px 30px rgba(0,0,0,.18); transition: transform .6s ease; }
+.feature:hover .feature-pic img { transform: scale(1.015); }
+.feature-text { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+.feature-name { font-family: var(--serif); font-size: clamp(28px, 3.6vw, 40px); line-height: 1.15; }
+body.lang-both .feature-name > .en { display: block; font-size: .62em; color: var(--muted); font-style: italic; margin-top: 4px; }
+.feature-name .sep { display: none; }
+.feature-meta { font-size: 13px; color: var(--muted); }
+.feature-intro { font-family: var(--serif); font-size: 19px; line-height: 1.5; margin: 6px 0 8px; }
+.feature-intro:empty { display: none; }
+
+/* ---------- 首页：系列（每个系列最多 4 张缩略图，超过 4 幅显示“查看全部”） ---------- */
+.col-block { margin-top: 34px; }
+.col-block:first-of-type { margin-top: 8px; }
+.col-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; border-top: 3px solid var(--accent); padding-top: 12px; margin-bottom: 16px; }
+.col-head > a:first-child { text-decoration: none; color: inherit; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; }
+.col-name { font-family: var(--serif); font-size: 25px; line-height: 1.2; }
+.col-name .sep { display: none; }
+body.lang-both .col-name > .en { font-size: .7em; color: var(--muted); font-style: italic; margin-left: 8px; }
+.col-desc { font-size: 13px; color: var(--muted); }
+.see-all { font-size: 14px; white-space: nowrap; color: var(--ink); }
+.thumbs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.thumb { text-decoration: none; color: inherit; display: block; }
+.thumb-pic { display: flex; align-items: flex-end; justify-content: center; height: 190px; }
+.thumb-pic img { max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; border-radius: 2px; box-shadow: 0 4px 16px rgba(0,0,0,.14); transition: transform .5s ease; }
+.thumb:hover .thumb-pic img { transform: translateY(-3px); }
+.thumb-name { display: block; text-align: center; font-family: var(--serif); font-size: 16px; line-height: 1.3; margin-top: 10px; }
+.thumb-name .sep { display: none; }
+body.lang-both .thumb-name > .en { display: block; font-size: .82em; color: var(--muted); font-style: italic; }
+
+/* ---------- 首页：六种浏览方式（图标方块：电脑一行 3 个，手机一行 2 个） ---------- */
+.way-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.way-tiles a { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; min-height: 128px; text-decoration: none; color: inherit; border: 1px solid var(--line); border-radius: 8px; background: var(--paper-2); transition: border-color .4s, transform .4s; text-align: center; padding: 12px; }
+.way-tiles a:hover { border-color: var(--ink); transform: translateY(-2px); }
+.way-ico { color: var(--ink); opacity: .8; display: flex; }
+.way-name { font-family: var(--serif); font-size: 20px; line-height: 1.2; }
+.way-name .sep { display: none; }
+body.lang-both .way-name > .en { display: block; font-size: .7em; color: var(--muted); font-style: italic; }
+
+@media (max-width: 760px) {
+  .feature { grid-template-columns: 1fr; gap: 18px; }
+  .feature-pic { padding: 18px; }
+  .feature-pic img { max-height: 380px; }
+  .thumbs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 14px; }
+  .thumb-pic { height: 150px; }
+  .way-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .way-tiles a { min-height: 112px; }
+  .way-name { font-size: 18px; }
+}

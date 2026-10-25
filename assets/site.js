@@ -370,6 +370,17 @@ const WAYS = [
   { path: 'museums/', name: { zh: '按博物馆', en: 'By museum' }, ex: { zh: '梵高博物馆、荷兰国立博物馆、伦敦国家美术馆', en: 'Van Gogh Museum, Rijksmuseum, National Gallery' } }
 ];
 
+// 首页“六种浏览方式”的图标（线条图，颜色跟着文字走）
+const svg = d => `<svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const WAY_ICONS = {
+  'artists/': svg('<path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.6-.8 1.6-1.6 0-1.2-1-1.5-1-2.6 0-.9.7-1.6 1.6-1.6H16a5 5 0 0 0 5-5C21 6.4 17 3 12 3z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7" r="1"/>'),
+  'themes/': svg('<rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="7" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/><rect x="13.5" y="13.5" width="7" height="7" rx="1"/>'),
+  'moods/': svg('<path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/>'),
+  'periods/': svg('<path d="M7 3h10M7 21h10M8 3c0 5 8 5 8 9s-8 4-8 9M16 3c0 5-8 5-8 9s8 4 8 9"/>'),
+  'map/': svg('<path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>'),
+  'museums/': svg('<path d="M3 9.5 12 4l9 5.5M4.5 20h15M6 10.5V18M10 10.5V18M14 10.5V18M18 10.5V18"/>')
+};
+
 // 关于页的文字在 data/about.json（Tia 提供，原文照录）
 let ABOUT = null, LONDON = null;   // 伦敦参观路线的文字在 data/london.json
 const para = (p, cls = '') => `<p class="zh ${cls}">${p.label ? `<strong>${esc(p.label.zh)}</strong>` : ''}${esc(p.zh)}</p>
@@ -464,17 +475,28 @@ const PAGES = {
 
       <section class="section wrap" id="new">
         <h2>${ui('本周新作', 'New this week')}</h2>
-        <div class="cards" style="max-width:420px">${sceneCard(R, newest)}</div>
-        ${newest.tagline ? `<p class="lead" style="margin-top:12px">${bi(newest.tagline, ' / ')}</p>` : ''}
+        <a class="feature" href="${sceneUrl(newest)}">
+          <span class="feature-pic"><img src="${ROOT + newest.cover}" ${altAttr(newest.title)} /></span>
+          <span class="feature-text">
+            <span class="feature-name">${bi(newest.title)}</span>
+            <span class="feature-meta">${[R.artistById[newest.artist] && bi(R.artistById[newest.artist].name), bi(newest.year), R.museumById[newest.museum] && bi(R.museumById[newest.museum].name)].filter(Boolean).join(' · ')}</span>
+            <span class="feature-intro" id="newIntro">${newest.tagline ? bi(newest.tagline, ' / ') : ''}</span>
+            <span class="btn primary">${ui('走进画里', 'Step into the painting')} →</span>
+          </span>
+        </a>
       </section>
 
       <section class="section wrap" id="collections">
         <h2>${ui('系列', 'Collections')}</h2>
-        <div class="series">${R.collections.map(c => `
-          <a href="${ROOT}collections/${c.id}/" data-series="${c.accent || ''}">
-            <div class="name">${bi(c.name)}</div><div class="desc">${bi(c.desc)}</div>
-            <div class="count">${openLine(sortWorks(c.order.map(x => R.sceneById[x]).filter(Boolean)))}</div></a>`).join('')}
-        </div>
+        ${R.collections.map(c => {
+          const live = sortWorks(c.order.map(x => R.sceneById[x]).filter(s => s && s.status === 'live' && s.cover));
+          if (!live.length) return '';
+          const href = `${ROOT}collections/${c.id}/`;
+          return `<div class="col-block" data-series="${c.accent || ''}">
+          <div class="col-head"><a href="${href}"><span class="col-name">${bi(c.name)}</span><span class="col-desc">${bi(c.desc, ' / ')}</span></a>
+            ${live.length > 4 ? `<a class="see-all" href="${href}">${ui('查看全部', 'See all')} →</a>` : ''}</div>
+          <div class="thumbs">${live.slice(0, 4).map(s => `<a class="thumb" href="${sceneUrl(s)}"><span class="thumb-pic"><img src="${ROOT + s.cover}" ${altAttr(s.title)} loading="lazy" /></span><span class="thumb-name">${bi(s.title)}</span></a>`).join('')}</div>
+        </div>`; }).join('')}
       </section>
 
       <section class="section wrap" id="features">
@@ -488,7 +510,7 @@ const PAGES = {
 
       <section class="section wrap" id="browse">
         <h2>${ui('六种浏览方式', 'Six ways to explore')}</h2>
-        <div class="ways">${WAYS.map(w => `<a href="${ROOT + w.path}"><div class="name">${bi(w.name)}</div><div class="ex">${bi(w.ex, ' / ')}</div></a>`).join('')}</div>
+        <div class="way-tiles">${WAYS.map(w => `<a href="${ROOT + w.path}"><span class="way-ico" aria-hidden="true">${WAY_ICONS[w.path]}</span><span class="way-name">${bi(w.name)}</span></a>`).join('')}</div>
       </section>
 
       <section class="section wrap" id="map-preview">
@@ -501,6 +523,10 @@ const PAGES = {
         ${para(ABOUT.home, 'lead')}
         <a class="btn" href="${ROOT}about/">${ui('关于', 'About')} →</a>
       </section>`;
+    // 本周新作的一句话介绍：登记表里有 tagline 就用它，没有就用场景故事的最后一句（ending.final）
+    if (!newest.tagline) fetch(sceneUrl(newest) + 'scene.json').then(r => r.json()).then(d => {
+      const el = document.getElementById('newIntro'); if (el && d.ending && d.ending.final) el.innerHTML = bi(d.ending.final, ' / ');
+    }).catch(() => {});
     document.getElementById('surprise').onclick = () => { location.href = sceneUrl(R.live[Math.floor(Math.random() * R.live.length)]); };
     onLang(() => { const m = document.getElementById('mapBox'); if (m) m.innerHTML = mapSVG(R, { small: true }); });
   },

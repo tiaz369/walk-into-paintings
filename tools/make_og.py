@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # =====================================================================
-# 走进名画 · 生成首页和浏览页的分享预览图 assets/og-share.jpg（1200×630）
+# 走进名画 · 生成首页和浏览页的分享预览图 assets/og-share-3.jpg（1200×630）
 #
 # 用法：python3 tools/make_og.py
-# 一幅画放在正中、完整显示不裁切：梵高《星夜》（放在正中，聊天软件把预览裁成正方形时也能看到整幅画的主体）；
+# 三幅画并排、完整显示不裁切：梵高《阿尔勒的卧室》、维米尔《戴珍珠耳环的少女》、梵高《向日葵》；
 # 背景用网站的深色，下方一行标题。图片都用网站里已有的原画。想换画，改 PICS（可以放几幅，并排显示）。
 # 换图后文件名也换一个（OUT），聊天软件会缓存旧的预览图，换了名字才会显示新的。
 # =====================================================================
@@ -11,8 +11,8 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PICS = ['scenes/starry-night/images/starry-night.jpg']
-OUT = 'assets/og-share.jpg'
+PICS = ['scenes/bedroom/images/v1888.jpg', 'scenes/pearl-earring/images/pearl-earring.jpg', 'scenes/sunflowers/images/sunflowers.jpg']
+OUT = 'assets/og-share-3.jpg'
 W, H, BG, INK = 1200, 630, (28, 28, 30), (235, 229, 217)   # 网站深色模式的 --paper 和 --ink
 PAD, GAP, TITLE_H = 36, 22, 88
 ZH_FONT = '/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc'
