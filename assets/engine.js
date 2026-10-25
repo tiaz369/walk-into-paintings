@@ -120,13 +120,15 @@ function buildDOM(S, R, meta) {
   <div id="hint" class="panel"><span class="zh">${S.hint.zh}</span><span class="en-ui">${S.hint.en}</span></div>
 
   <div id="vpPanel" class="panel">
-    <p><span class="zh">${S.viewpoint.text.zh}</span><span class="en">${S.viewpoint.text.en}</span></p>
-    <label>${ui('原画叠加', 'Painting overlay')} <input id="vpSlider" type="range" min="0" max="100" value="0" aria-label="overlay" /> <span id="vpVal">0%</span></label>
+    <div class="vp-head"><b>${ui('原画叠加', 'Painting overlay')}</b><span class="vp-text">${ui(S.viewpoint.text.zh, S.viewpoint.text.en)}</span><span id="vpVal">0%</span>
+      <button class="vp-close" id="vpClose" aria-label="Close">×</button></div>
+    <input id="vpSlider" type="range" min="0" max="100" value="0" aria-label="overlay" />
   </div>
 
   <div id="tools" class="ui">
     <a class="btn" href="${ROOT}">← ${ui('走进名画', 'Home')}</a>
     <button class="btn" id="compareBtn">${ui('对照原画', 'Original painting')}</button>
+    <button class="btn" id="vpBtn">${ui('原画叠加', 'Painting overlay')}</button>
     <button class="btn" id="shotBtn">📷 ${ui('拍一张', 'Snapshot')}</button>
     <div class="seg${S.projection === false ? ' hidden' : ''}" id="modeSwitch">
       <button data-mode="paint" class="on">${ui('原画质感', 'Painted')}</button>
@@ -1093,9 +1095,22 @@ function run(S, R, meta) {
   vpSlider.oninput = () => { vpOverlay.style.opacity = vpSlider.value / 100; $('vpVal').textContent = vpSlider.value + '%'; };
   let view = 'none', needExit = false, alignFrom = null, alignT = 0, filmFov = null;
   function enterView() { view = 'aligning'; alignT = 0; alignFrom = { x: player.x, z: player.z, yaw: player.yaw, pitch: player.pitch, fov: camera.fov }; }
-  function leaveView() { if (view === 'none') return; view = 'none'; mirrorArmed = true; needExit = true; vpPanel.classList.remove('show'); vpOverlay.style.display = 'none'; }
+  // “原画叠加”面板：刚走进画里时不弹出（这时本来就站在视角点上）；离开过一次以后，再走到视角点上才自动弹出，
+  // 离开视角点 3 秒后自动收起。点 × 关闭后，这次参观不再自动弹出，只能点按钮栏里的“原画叠加”手动打开
+  let vpAuto = false, vpDismissed = false, vpTimer = null;
+  const vpShow = on => { clearTimeout(vpTimer); vpPanel.classList.toggle('show', on); $('vpBtn').classList.toggle('on', on); };
+  function leaveView() {
+    if (view === 'none') return; view = 'none'; mirrorArmed = true; needExit = true; vpOverlay.style.display = 'none';
+    vpAuto = true; clearTimeout(vpTimer); if (vpPanel.classList.contains('show')) vpTimer = setTimeout(() => vpShow(false), 3000);
+  }
+  $('vpClose').onclick = () => { vpDismissed = true; vpShow(false); };
+  $('vpBtn').onclick = () => {
+    if (vpPanel.classList.contains('show')) { vpShow(false); return; }
+    vpShow(true); if (view === 'none') enterView();   // 不在视角点上：先走回视角点
+  };
   function showAligned() {
-    view = 'aligned'; placeRect(vpOverlay); vpOverlay.style.display = 'block'; vpPanel.classList.add('show');
+    view = 'aligned'; placeRect(vpOverlay); vpOverlay.style.display = 'block';
+    if (vpAuto && !vpDismissed) vpShow(true); else clearTimeout(vpTimer);
     if (mirrorObj && mirrorArmed && !mirrorSeen) { mirrorSeen = true; togglePopup('mirror', true); track('exclusive-' + S.id); }   // 站到画家视角点：镜子放大
   }
   // 独家发现“镜子里的人”（mirror）：站到画家视角点时（或点按钮），把原画上 crop 这一块（镜子）放大显示，配上文字
