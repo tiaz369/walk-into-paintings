@@ -7,9 +7,9 @@
 - Google 艺术与文化：https://artsandculture.google.com/story/LAWBgBgDeYcJIA
 - 图片：Wikimedia Commons，公有领域（国家美术馆官网图片只限非商业使用）
 
-## 待 Tia 核对
+## 核对
 
-- 尺寸 51.7 × 45.2 cm、25号展厅：Claude 打不开国家美术馆网站，是在搜索结果里看到的国家美术馆作品页（https://www.nationalgallery.org.uk/paintings/NG1383）的内容。
+- 尺寸 51.7 × 45.2 cm、25号展厅：Tia 在国家美术馆作品页上确认过。
 
 ## 没有用的
 

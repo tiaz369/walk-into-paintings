@@ -25,8 +25,8 @@
     "width": 1280,
     "height": 1468,
     "alt": {
-      "zh": "维米尔《花边女工》约1669–70，巴黎卢浮宫",
-      "en": "Johannes Vermeer, The Lacemaker, c. 1669–70, Musée du Louvre, Paris"
+      "zh": "维米尔《花边女工》约1669–1671，巴黎卢浮宫",
+      "en": "Johannes Vermeer, The Lacemaker, c. 1669–71, Musée du Louvre, Paris"
     }
   },
   "label": {
@@ -40,8 +40,8 @@
       "en": "Johannes Vermeer"
     },
     "date": {
-      "zh": "约1669–70年",
-      "en": "c. 1669–70"
+      "zh": "约1669–1671年",
+      "en": "c. 1669–71"
     },
     "museum": {
       "zh": "巴黎卢浮宫",
@@ -328,12 +328,12 @@
         },
         "image": "images/lacemaker.jpg",
         "alt": {
-          "zh": "维米尔《花边女工》约1669–70，巴黎卢浮宫",
-          "en": "Johannes Vermeer, The Lacemaker, c. 1669–70, Musée du Louvre, Paris"
+          "zh": "维米尔《花边女工》约1669–1671，巴黎卢浮宫",
+          "en": "Johannes Vermeer, The Lacemaker, c. 1669–71, Musée du Louvre, Paris"
         },
         "caption": {
-          "zh": "约1669–70年 · 巴黎卢浮宫",
-          "en": "c. 1669–70 · Musée du Louvre, Paris"
+          "zh": "约1669–1671年 · 巴黎卢浮宫",
+          "en": "c. 1669–71 · Musée du Louvre, Paris"
         }
       },
       {
@@ -376,7 +376,7 @@
     ]
   },
   "record": {
-    "_说明": "作品档案表：Tia 提供。尺寸各处说法不一（24.5 × 21 cm 或 23.9 × 20.5 cm），卢浮宫官网核对不了，先标“待核对”不显示（_dimensions），等 Tia 核对后改成 dimensions。空着的行不显示。",
+    "_说明": "作品档案表：Tia 提供（尺寸、材质 Tia 核对过）。年份先写“约1669–1671年”，能访问卢浮宫官网时按官网修正。展厅留空。空着的行不显示。",
     "artist": {
       "zh": "约翰内斯·维米尔（1632–1675）",
       "en": "Johannes Vermeer (1632–1675)"
@@ -386,14 +386,17 @@
       "en": "The Lacemaker"
     },
     "date": {
-      "zh": "约1669–70年",
-      "en": "c. 1669–70"
+      "zh": "约1669–1671年",
+      "en": "c. 1669–71"
     },
     "medium": {
-      "zh": "布面油画",
-      "en": "Oil on canvas"
+      "zh": "布面油画，裱于木板",
+      "en": "Oil on canvas mounted on panel"
     },
-    "_dimensions": "待核对",
+    "dimensions": {
+      "zh": "24.5 × 21 cm",
+      "en": "24.5 × 21 cm"
+    },
     "collection": {
       "zh": "巴黎卢浮宫（1870年入藏）",
       "en": "Musée du Louvre, Paris (entered the Louvre in 1870)"

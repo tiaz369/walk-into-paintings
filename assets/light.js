@@ -63,7 +63,7 @@ function buildDOM(S, R, meta) {
   const layersHTML = S.layers.map((l, i) => `<div class="layer" data-i="${i}" style="${l.clip ? `clip-path:polygon(${l.clip.map(([x, y]) => `${x * 100}% ${y * 100}%`).join(',')})` : ''}">
       <img src="${P.image}" alt="" draggable="false" /></div>`).join('');
   const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}" style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
-  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus';
+  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus', isInsc = X.type === 'inscriptions';
   // 细节放大的热点（zooms：眼睛、嘴唇、珍珠……）；只有一个时也可以写成 zoom
   const ZOOMS = zoomsOf(X), ZL = X.zoomLabel || (X.zoom && X.zoom.label) || { zh: '放大看细节', en: 'Zoom in on details' };
   const zspotsHTML = ZOOMS.map((z, i) => `<button class="zspot" data-z="${i}" style="left:${z.x * 100}%;top:${z.y * 100}%">${ui(z.label.zh, z.label.en)}</button>`).join('');
@@ -73,7 +73,7 @@ function buildDOM(S, R, meta) {
   document.body.insertAdjacentHTML('beforeend', `
   <div class="grain"></div>
   ${S.petals ? petalsHTML(S.petals) : ''}
-  <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML.replace('</div>', '</div>' + curtainHTML)}<div id="spots">${spotsHTML}</div><div id="zspots">${zspotsHTML}</div></div></div>
+  <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML.replace('</div>', '</div>' + curtainHTML)}<div id="spots">${spotsHTML}</div><div id="zspots">${zspotsHTML}</div>${isInsc ? inscHTML(X) : ''}</div></div>
 
   <div id="intro">
     <img id="introImg" src="${P.image}" ${altAttr(P.alt || '')} />
@@ -98,6 +98,7 @@ function buildDOM(S, R, meta) {
     ${isFlip ? `<button class="btn" id="flipBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isSlider ? `<button class="btn" id="sliderBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isFocus ? `<button class="btn" id="focusBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
+    ${isInsc ? `<button class="btn" id="inscBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
   </div>
   ${isFocus ? `<div id="focusPanel" class="panel hidden">
     <input type="range" id="focusRange" min="0" max="100" value="0" aria-label="${textOf(X.label, lang)}" />
@@ -189,6 +190,11 @@ function petalsHTML(o) {
 }
 
 // 独家发现“对比滑块”：两张画叠在一起，拖动滑块，左边露出 before（默认是这幅画），右边露出 after
+// 独家发现“读懂画框”（inscriptions）：画框上的每一处铭文是一个可以点的框（x、y、w、h：在原画上的位置 0–1）
+function inscHTML(X) {
+  return `<div id="insc" class="insc-wrap">${X.items.map((it, i) => `<button class="insc" data-i="${i}" style="left:${it.x * 100}%;top:${it.y * 100}%;width:${it.w * 100}%;height:${it.h * 100}%;--insc-bg:${it.bg || '#5a4632'}" aria-label="${textOf(it.label || it.text, lang)}">
+    <span class="insc-cover"></span><span class="insc-text"></span></button>`).join('')}</div>`;
+}
 function sliderHTML(X, P) {
   const A = X.before || { image: P.image, alt: P.alt }, B = X.after;
   return `<div class="popup panel" id="slide">
@@ -362,6 +368,33 @@ function run(S, R) {
       $('focusBtn').classList.toggle('on', on);
       if (on) { if (zoomAt) zoomTo(null); track('exclusive-' + S.id); } else { $('focusRange').value = 0; setFocus(0); }
     };
+  }
+  // “读懂画框”：点一处铭文，原文从左到右被一个字一个字地换成翻译（中文 / 英文跟着语言设置），同时显示那张卡片
+  if ($('inscBtn')) {
+    const X = S.exclusive, wrap = $('insc'), boxes = [...wrap.querySelectorAll('.insc')];
+    const lineOf = it => lang === 'en' ? it.text.en : lang === 'zh' ? it.text.zh : it.text.zh + ' / ' + it.text.en;
+    const size = () => boxes.forEach(b => { b.style.fontSize = Math.max(9, b.offsetHeight * 0.42) + 'px'; });
+    function play(b) {
+      const it = X.items[+b.dataset.i], s = [...lineOf(it)], txt = b.querySelector('.insc-text'), cover = b.querySelector('.insc-cover');
+      clearInterval(b._t); b.classList.add('done');
+      b.style.fontSize = Math.max(9, b.offsetHeight * 0.42) + 'px'; txt.textContent = s.join('');   // 先量一下整句：放不下就把字缩小
+      if (txt.offsetWidth > b.clientWidth * 0.94) b.style.fontSize = parseFloat(b.style.fontSize) * b.clientWidth * 0.94 / txt.offsetWidth + 'px';
+      txt.textContent = ''; let n = 0;
+      b._t = setInterval(() => {
+        n++; txt.textContent = s.slice(0, n).join(''); cover.style.width = Math.min(100, n / s.length * 100) + '%';
+        if (n >= s.length) clearInterval(b._t);
+      }, Math.max(35, 1400 / s.length));
+      if (it.card) showCard(it.card);
+    }
+    function reset(b) { clearInterval(b._t); b.classList.remove('done'); b.querySelector('.insc-text').textContent = ''; b.querySelector('.insc-cover').style.width = '0'; }
+    boxes.forEach(b => b.onclick = e => { e.stopPropagation(); b.classList.contains('done') ? reset(b) : play(b); });
+    $('inscBtn').onclick = () => {
+      const on = !wrap.classList.contains('on');
+      wrap.classList.toggle('on', on); $('inscBtn').classList.toggle('on', on); size();
+      if (on) { if (zoomAt) zoomTo(null); track('exclusive-' + S.id); } else boxes.forEach(reset);
+    };
+    addEventListener('resize', size);
+    onLang(() => boxes.filter(b => b.classList.contains('done')).forEach(play));
   }
   function setFlip(on) {
     flipT = on ? 1 : 0;

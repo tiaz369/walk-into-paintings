@@ -218,6 +218,11 @@ const AMBIENCE = {
     const phrase = t => { const n = 2 + Math.floor(Math.random() * 4), s = Math.floor(Math.random() * 4); for (let i = 0; i < n; i++) pluck(t + i * rnd(0.25, 0.4), notes[(s + i) % notes.length]); };
     phrase(ctx.currentTime + 3); every(st, 12, 24, phrase);
   },
+  // 非常安静的室内：只有很低的房间底噪，偶尔木地板轻轻响一下（A very quiet room）
+  'quiet-room'(out, st) {
+    loopNoise('brown', out, { freq: 150, gain: 0.04 });
+    every(st, 25, 50, t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(300, 500), q: 8, vol: 0.05, dur: rnd(0.1, 0.2), p: rnd(-0.5, 0.5) }));
+  },
   // 代尔夫特的河边：河水轻拍岸边，远处教堂的钟声，风和鸟叫（A riverside in Delft）
   'delft-river'(out, st) {
     const w = loopNoise('brown', out, { freq: 380, gain: 0.08 });

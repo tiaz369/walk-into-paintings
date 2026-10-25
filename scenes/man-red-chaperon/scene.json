@@ -1,0 +1,449 @@
+{
+  "_说明": "戴红头巾的男子（人物肖像，轻量版：分层景深 + 细节放大）。所有事实文字由 Tia 提供（资料来自伦敦国家美术馆官网）。深色背景前，一个男人的半身像，头戴层层叠叠的红色头饰；画框完整显示，上下边框有铭文（图片要包含画框）。clip、spots 和铭文框的位置是先估的，原画上传后照着原画改，再把登记表里的 status 改成 live。",
+  "id": "man-red-chaperon",
+  "variant": "portrait",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（渲染用的设定说明，不在页面上显示）",
+    "type": "indoor",
+    "label": {
+      "zh": "左上方来的光",
+      "en": "Light from the upper left"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《阿尔诺芬尼夫妇像》互相链接（一年后，他在镜子上方签名）。伦敦参观路线页按登记表的展厅号自动列出（展厅等 Tia 确认后再填）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "arnolfini"
+    ]
+  },
+  "ambience": "quiet-room",
+  "painting": {
+    "image": "images/man-red-chaperon.jpg",
+    "width": 1000,
+    "height": 1300,
+    "alt": {
+      "zh": "扬·凡·艾克《戴红头巾的男子（自画像？）》1433年，伦敦国家美术馆",
+      "en": "Jan van Eyck, Portrait of a Man (Self Portrait?), 1433, The National Gallery, London"
+    },
+    "_": "宽高是先估的（含画框），上传原画后改成图片的真实像素"
+  },
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "戴红头巾的男子（自画像？）",
+      "en": "Portrait of a Man (Self Portrait?)"
+    },
+    "artist": {
+      "zh": "扬·凡·艾克",
+      "en": "Jan van Eyck"
+    },
+    "date": {
+      "zh": "1433年10月21日",
+      "en": "21 October 1433"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“读懂画框”，再点画框上方或下方的字 · 点“放大看细节”，再点头饰、眼睛或画框",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “Read the frame”, then the words on the top or bottom of the frame · Tap “Zoom in on details”, then the headdress, the eyes or the frame"
+  },
+  "parallax": 12,
+  "layers": [
+    {
+      "_说明": "背景（整张画，含画框和深色背景）",
+      "depth": 0
+    },
+    {
+      "_说明": "他的脸和衣服",
+      "depth": 0.5,
+      "clip": [
+        [
+          0.25,
+          0.4
+        ],
+        [
+          0.75,
+          0.4
+        ],
+        [
+          0.8,
+          0.88
+        ],
+        [
+          0.2,
+          0.88
+        ]
+      ]
+    },
+    {
+      "_说明": "红色头饰（最靠前）",
+      "depth": 0.9,
+      "clip": [
+        [
+          0.22,
+          0.12
+        ],
+        [
+          0.5,
+          0.08
+        ],
+        [
+          0.78,
+          0.14
+        ],
+        [
+          0.82,
+          0.35
+        ],
+        [
+          0.7,
+          0.45
+        ],
+        [
+          0.3,
+          0.45
+        ],
+        [
+          0.18,
+          0.32
+        ]
+      ]
+    }
+  ],
+  "spots": {
+    "who": {
+      "x": 0.5,
+      "y": 0.52,
+      "layer": 1
+    },
+    "chaperon": {
+      "x": 0.62,
+      "y": 0.22,
+      "layer": 2
+    },
+    "motto": {
+      "x": 0.5,
+      "y": 0.04,
+      "layer": 0
+    },
+    "date": {
+      "x": 0.5,
+      "y": 0.96,
+      "layer": 0
+    },
+    "frame": {
+      "x": 0.06,
+      "y": 0.5,
+      "layer": 0
+    },
+    "carved": {
+      "x": 0.8,
+      "y": 0.96,
+      "layer": 0
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“读懂画框”：打开后，画框上方和下方的铭文各是一个可以点的框（x、y、w、h：在原画上的位置 0–1；bg 是盖住原文的画框颜色）。点一下，原文从左到右被一个字一个字地换成翻译（跟着语言设置：中文、English 或两种），并显示卡片3或卡片4的文字；再点一下恢复原文。位置原画上传后照着原画量。",
+    "type": "inscriptions",
+    "label": {
+      "zh": "读懂画框",
+      "en": "Read the frame"
+    },
+    "items": [
+      {
+        "id": "top",
+        "label": {
+          "zh": "上方的格言",
+          "en": "The motto"
+        },
+        "x": 0.25,
+        "y": 0.01,
+        "w": 0.5,
+        "h": 0.05,
+        "card": "motto",
+        "text": {
+          "zh": "尽我所能",
+          "en": "As I can"
+        }
+      },
+      {
+        "id": "bottom",
+        "label": {
+          "zh": "下方的日期",
+          "en": "The date"
+        },
+        "x": 0.1,
+        "y": 0.94,
+        "w": 0.8,
+        "h": 0.05,
+        "card": "date",
+        "text": {
+          "zh": "扬·凡·艾克于1433年10月21日画了我",
+          "en": "Jan van Eyck made me on 21 October 1433"
+        }
+      }
+    ],
+    "zoomLabel": {
+      "zh": "放大看细节",
+      "en": "Zoom in on details"
+    },
+    "zooms": [
+      {
+        "id": "chaperon",
+        "label": {
+          "zh": "头饰",
+          "en": "Headdress"
+        },
+        "x": 0.6,
+        "y": 0.22,
+        "scale": 2.5,
+        "card": "chaperon"
+      },
+      {
+        "id": "eyes",
+        "label": {
+          "zh": "眼睛",
+          "en": "Eyes"
+        },
+        "x": 0.5,
+        "y": 0.45,
+        "scale": 3.5,
+        "card": "who"
+      },
+      {
+        "id": "frame",
+        "label": {
+          "zh": "画框",
+          "en": "Frame"
+        },
+        "x": 0.5,
+        "y": 0.96,
+        "scale": 3,
+        "card": "carved"
+      }
+    ]
+  },
+  "cards": {
+    "who": {
+      "title": {
+        "zh": "他是谁",
+        "en": "Who is he?"
+      },
+      "text": {
+        "zh": "这张平静的脸，几乎可以肯定就是扬·凡·艾克本人。",
+        "en": "This impassive face is almost certainly that of Jan van Eyck himself."
+      }
+    },
+    "chaperon": {
+      "title": {
+        "zh": "红色头饰",
+        "en": "The red chaperon"
+      },
+      "text": {
+        "zh": "他戴的不是头巾，而是一种叫“沙佩龙”的头饰，是15世纪流行的男士头饰。",
+        "en": "He is not wearing a turban but a chaperon, a headdress fashionable for men in the 15th century."
+      }
+    },
+    "motto": {
+      "title": {
+        "zh": "上方的格言",
+        "en": "The motto"
+      },
+      "text": {
+        "zh": "画框上方用希腊字母写着“Als Ich Can”，意思是“尽我所能”。其中的“Ich”（我），读音也像他的名字“Eyck”。",
+        "en": "On the upper frame, in Greek letters, is his motto “Als Ich Can”: “as I can”. The word “Ich” (I) also sounds like his name, Eyck."
+      }
+    },
+    "date": {
+      "title": {
+        "zh": "下方的日期",
+        "en": "The date"
+      },
+      "text": {
+        "zh": "画框下方用拉丁文写着：“扬·凡·艾克于1433年10月21日画了我。”",
+        "en": "On the lower frame, in Latin: “Jan van Eyck made me on 21 October 1433.”"
+      }
+    },
+    "frame": {
+      "title": {
+        "zh": "原装画框",
+        "en": "The original frame"
+      },
+      "text": {
+        "zh": "这幅画至今保留着15世纪的原装画框。",
+        "en": "The painting is still in its original 15th-century frame."
+      }
+    },
+    "carved": {
+      "title": {
+        "zh": "像刻出来的字",
+        "en": "Painted to look carved"
+      },
+      "text": {
+        "zh": "画框上的字是画上去的，但看起来像是刻出来的。",
+        "en": "The lettering on the frame is painted, but made to look carved."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "title": {
+          "zh": "一张脸",
+          "en": "A face"
+        },
+        "text": {
+          "zh": "1433年，在布鲁日，凡·艾克画了一个戴红色头饰的男人。这张平静的脸，几乎可以肯定就是他自己。",
+          "en": "In 1433, in Bruges, Van Eyck painted a man in a red headdress. The impassive face is almost certainly his own."
+        },
+        "image": "images/man-red-chaperon.jpg",
+        "alt": {
+          "zh": "扬·凡·艾克《戴红头巾的男子（自画像？）》1433年，伦敦国家美术馆",
+          "en": "Jan van Eyck, Portrait of a Man (Self Portrait?), 1433, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1433年10月21日 · 伦敦国家美术馆",
+          "en": "21 October 1433 · The National Gallery, London"
+        }
+      },
+      {
+        "title": {
+          "zh": "画框上的字",
+          "en": "Words on the frame"
+        },
+        "text": {
+          "zh": "他在画框上方写下自己的格言“尽我所能”，在下方写下日期：“扬·凡·艾克于1433年10月21日画了我。”这幅画，是他对自己技艺的一份宣言。",
+          "en": "On the upper frame he wrote his motto, “As I can”; on the lower, the date: “Jan van Eyck made me on 21 October 1433.” The painting is a statement of his skill."
+        }
+      },
+      {
+        "title": {
+          "zh": "一年之后",
+          "en": "A year later"
+        },
+        "text": {
+          "zh": "第二年，1434年，他画下了《阿尔诺芬尼夫妇像》，在镜子上方写下：“扬·凡·艾克来过这里。”",
+          "en": "The following year, in 1434, he painted *The Arnolfini Portrait* and wrote above the mirror: “Jan van Eyck was here.”"
+        }
+      }
+    ],
+    "final": {
+      "zh": "尽我所能。",
+      "en": "As I can."
+    },
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "arnolfini",
+        "href": "../arnolfini/",
+        "label": {
+          "zh": "一年后，他在镜子上方签名",
+          "en": "A year later, he signed above a mirror"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆）。尺寸 26 × 19 cm 是在搜索结果里看到的国家美术馆作品页内容，等 Tia 核对。",
+    "artist": {
+      "zh": "扬·凡·艾克（约1390–1441）",
+      "en": "Jan van Eyck (c. 1390–1441)"
+    },
+    "title": {
+      "zh": "戴红头巾的男子（自画像？）",
+      "en": "Portrait of a Man (Self Portrait?)"
+    },
+    "date": {
+      "zh": "1433年10月21日",
+      "en": "21 October 1433"
+    },
+    "medium": {
+      "zh": "橡木板油画",
+      "en": "Oil on oak"
+    },
+    "dimensions": {
+      "zh": "26 × 19 cm",
+      "en": "26 × 19 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆（编号 NG222）",
+      "en": "The National Gallery, London (NG222)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/jan-van-eyck-portrait-of-a-man-self-portrait"
+  },
+  "zoom": {
+    "image": "images/man-red-chaperon.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：戴红头巾的男子（自画像？）",
+          "en": "The National Gallery: *Portrait of a Man (Self Portrait?)*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/jan-van-eyck-portrait-of-a-man-self-portrait"
+      },
+      {
+        "title": {
+          "zh": "维基百科：戴红头巾的男子（英文）",
+          "en": "Wikipedia: *Portrait of a Man (Self Portrait?)*"
+        },
+        "url": "https://en.wikipedia.org/wiki/Portrait_of_a_Man_(Self_Portrait%3F)"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三段故事原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "一张脸",
+          "en": "A face"
+        },
+        "text": {
+          "zh": "1433年，在布鲁日，凡·艾克画了一个戴红色头饰的男人。这张平静的脸，几乎可以肯定就是他自己。",
+          "en": "In 1433, in Bruges, Van Eyck painted a man in a red headdress. The impassive face is almost certainly his own."
+        }
+      },
+      {
+        "title": {
+          "zh": "画框上的字",
+          "en": "Words on the frame"
+        },
+        "text": {
+          "zh": "他在画框上方写下自己的格言“尽我所能”，在下方写下日期：“扬·凡·艾克于1433年10月21日画了我。”这幅画，是他对自己技艺的一份宣言。",
+          "en": "On the upper frame he wrote his motto, “As I can”; on the lower, the date: “Jan van Eyck made me on 21 October 1433.” The painting is a statement of his skill."
+        }
+      },
+      {
+        "title": {
+          "zh": "一年之后",
+          "en": "A year later"
+        },
+        "text": {
+          "zh": "第二年，1434年，他画下了《阿尔诺芬尼夫妇像》，在镜子上方写下：“扬·凡·艾克来过这里。”",
+          "en": "The following year, in 1434, he painted *The Arnolfini Portrait* and wrote above the mirror: “Jan van Eyck was here.”"
+        }
+      }
+    ]
+  }
+}

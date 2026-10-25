@@ -18,7 +18,8 @@
       "vangogh-chair",
       "sunflowers",
       "folies-bergere",
-      "standing-virginal"
+      "standing-virginal",
+      "man-red-chaperon"
     ]
   },
   "painting": {
@@ -759,6 +760,14 @@
         "label": {
           "zh": "同一家美术馆的另一个房间",
           "en": "Another room in the same gallery"
+        }
+      },
+      {
+        "scene": "man-red-chaperon",
+        "href": "../man-red-chaperon/",
+        "label": {
+          "zh": "一年前，他在画框上签名：戴红头巾的男子",
+          "en": "A year earlier, he signed a frame: *Portrait of a Man (Self Portrait?)*"
         }
       }
     ]
