@@ -687,3 +687,8 @@ body.lang-both .col-row h3 .en { font-size: .68em; color: var(--muted); font-sty
 #focusPanel .focus-ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 2px; }
 #focusPanel p { font-size: 13px; margin: 8px 0 0; }
 .touch #focusPanel { bottom: 200px; }
+
+/* 独家发现“坐到空椅子上”：坐下后出现的一行字 */
+#sitNote { position: fixed; left: 50%; bottom: 112px; transform: translateX(-50%); z-index: 5; padding: 8px 16px; font-size: 14px; font-family: var(--serif); opacity: 0; pointer-events: none; transition: opacity 1s; max-width: min(520px, calc(100% - 32px)); text-align: center; }
+#sitNote.show { opacity: 1; }
+.touch #sitNote { bottom: 240px; }

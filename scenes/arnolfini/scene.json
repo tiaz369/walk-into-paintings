@@ -17,7 +17,8 @@
     "end": [
       "vangogh-chair",
       "sunflowers",
-      "folies-bergere"
+      "folies-bergere",
+      "standing-virginal"
     ]
   },
   "painting": {
@@ -750,6 +751,14 @@
         "label": {
           "zh": "另一面藏着秘密的镜子：女神游乐厅的吧台",
           "en": "Another mirror with a secret: *A Bar at the Folies-Bergère*"
+        }
+      },
+      {
+        "scene": "standing-virginal",
+        "href": "../standing-virginal/",
+        "label": {
+          "zh": "同一家美术馆的另一个房间",
+          "en": "Another room in the same gallery"
         }
       }
     ]

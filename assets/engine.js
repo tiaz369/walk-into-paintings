@@ -141,6 +141,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'light' ? `<button class="btn" id="lightBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'mirror' ? `<button class="btn" id="mirrorBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'loupe' ? `<button class="btn" id="loupeBtn">🔍 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'sit' ? `<button class="btn" id="sitBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'count' ? `<button class="btn" id="countBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.today ? `<div class="seg hidden" id="todaySwitch"><button data-today="0" class="on">${ui(S.exclusive.today.then.zh, S.exclusive.today.then.en)}</button><button data-today="1">${ui(S.exclusive.today.now.zh, S.exclusive.today.now.en)}</button></div>` : ''}
@@ -156,6 +157,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive.note || S.exclusive.card ? `<p class="loupe-note" id="loupeNote">${bi(S.exclusive.note || S.cards[S.exclusive.card].text, ' / ')}</p>` : ''}
   </div>` : ''}
   ${S.exclusive && S.exclusive.type === 'count' ? `<div id="countPanel" class="panel hidden"><div id="countN"></div><div id="countDone" class="hidden">${bi(S.exclusive.done, ' / ')}</div></div>` : ''}
+  ${S.exclusive && S.exclusive.type === 'sit' ? `<div id="sitNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   <div id="status" class="ui">
     <div id="progress" class="panel"></div>
@@ -1182,6 +1184,18 @@ function run(S, R, meta) {
     $('loupeBtn').onclick = () => { togglePopup('loupe'); if (loupeObj.card && popups.loupe.style.display === 'block') { found.add(loupeObj.card); updateProgress(); }   if (popups.loupe.style.display === 'block') { track('exclusive-' + S.id); const r = pic.getBoundingClientRect(); moveLens({ clientX: r.left + r.width * (loupeObj.start ? loupeObj.start[0] : 0.5), clientY: r.top + r.height * (loupeObj.start ? loupeObj.start[1] : 0.5) }); } };
   }
 
+  // 独家发现“坐到空椅子上”（sit）：走到 chair 旁边，镜头慢慢降到坐着的高度（eye），转头看向 look（画里的人），显示 note；一走动就站起来
+  const sitObj = S.exclusive && S.exclusive.type === 'sit' ? S.exclusive : null;
+  let seated = false, sitK = 0, sitMove = null;
+  function standUp() { if (!seated) return; seated = false; sitMove = null; $('sitNote').classList.remove('show'); $('sitBtn').classList.remove('on'); }
+  if (sitObj) $('sitBtn').onclick = () => {
+    if (seated) { standUp(); return; }
+    leaveView(); hideHint(); card.style.display = 'none';
+    const [cx, cz] = sitObj.chair, [lx, ly, lz] = sitObj.look, dx = lx - cx, dz = lz - cz;
+    sitMove = { t: 0, from: { x: player.x, z: player.z, yaw: player.yaw, pitch: player.pitch },
+      to: { x: cx, z: cz, yaw: Math.atan2(dx, -dz), pitch: Math.atan2(ly - sitObj.eye, Math.hypot(dx, dz)) } };
+    seated = true; $('sitBtn').classList.add('on'); track('exclusive-' + S.id);
+  };
   const mirrorObj = S.exclusive && S.exclusive.type === 'mirror' ? S.exclusive : null;
   let mirrorSeen = false, mirrorArmed = false;   // 刚走进画里时也站在视角点上：先不弹出，离开过一次再回来才弹出
   if (mirrorObj) {
@@ -1432,7 +1446,7 @@ function run(S, R, meta) {
       if (keys.KeyD || keys.ArrowRight) side += 1;
       if (keys.KeyA || keys.ArrowLeft) side -= 1;
       fwd -= joyMove.y; side += joyMove.x;
-      if (fwd || side) { hideHint(); leaveView(); }
+      if (fwd || side) { hideHint(); leaveView(); standUp(); }
       const speed = (RM.walkSpeed || 1.4) * dt, sin = Math.sin(player.yaw), cos = Math.cos(player.yaw);
       const dx = (side * cos + fwd * sin) * speed, dz = (side * sin - fwd * cos) * speed;
       if (!blocked(player.x + dx, player.z)) player.x += dx;
@@ -1487,6 +1501,17 @@ function run(S, R, meta) {
     if (RM.walkEye) {   // 画家视角的眼睛比一般人高（比如站在高处）：离开视角点后，慢慢降到走路的高度
       const t = Math.min(1, Math.hypot(player.x - VIEW.x, player.z - VIEW.z) / 2);
       player.eye = VIEW.eye + (RM.walkEye - VIEW.eye) * t * t * (3 - 2 * t);
+    }
+    if (sitObj) {   // 坐到椅子上：慢慢走过去、坐下、转头看她；站起来时眼睛慢慢升回去
+      if (sitMove) {
+        sitMove.t = Math.min(1, sitMove.t + dt / 2.5); const k = ease(sitMove.t), F = sitMove.from, T = sitMove.to;
+        player.x = F.x + (T.x - F.x) * k; player.z = F.z + (T.z - F.z) * k;
+        player.yaw = lerpAngle(F.yaw, T.yaw, k); player.pitch = F.pitch + (T.pitch - F.pitch) * k;
+        if (sitMove.t >= 1) { sitMove = null; $('sitNote').classList.add('show'); }
+      }
+      sitK += ((seated ? 1 : 0) - sitK) * (1 - Math.exp(-dt * (seated ? 2.2 : 3)));
+      const base = RM.walkEye ? player.eye : VIEW.eye;   // 站着时的眼睛高度（walkEye 每一帧都重新算）
+      player.eye = base + (sitObj.eye - base) * sitK;
     }
     camera.position.set(player.x, player.eye, player.z);
     camera.rotation.set(player.pitch, -player.yaw, 0, 'YXZ');

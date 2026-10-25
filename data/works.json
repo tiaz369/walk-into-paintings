@@ -10,36 +10,7 @@
   },
   "artists": {
     "van-gogh": [],
-    "vermeer": [
-      {
-        "title": {
-          "zh": "花边女工",
-          "en": "The Lacemaker"
-        },
-        "year": {
-          "zh": "约1669–70",
-          "en": "c. 1669–70"
-        },
-        "museum": "louvre",
-        "check": "ok",
-        "_": "卢浮宫藏品页：约1669–1670（MI 1448）",
-        "url": "https://collections.louvre.fr/en/ark:/53355/cl010064918"
-      },
-      {
-        "title": {
-          "zh": "站在维金纳琴前的年轻女子",
-          "en": "A Young Woman Standing at a Virginal"
-        },
-        "year": {
-          "zh": "约1670–72",
-          "en": "c. 1670–72"
-        },
-        "museum": "national-gallery",
-        "check": "ok",
-        "_": "伦敦国家美术馆作品页：about 1670–2",
-        "url": "https://www.nationalgallery.org.uk/paintings/johannes-vermeer-a-young-woman-standing-at-a-virginal"
-      }
-    ],
+    "vermeer": [],
     "van-eyck": [
       {
         "title": {
