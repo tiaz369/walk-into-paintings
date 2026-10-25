@@ -137,14 +137,14 @@
     },
     {
       "id": "night-cafe", "status": "live", "week": 2, "path": "scenes/night-cafe/", "cover": "scenes/night-cafe/images/night-cafe.jpg",
-      "title": { "zh": "夜间咖啡馆", "en": "The Night Café" },
+      "title": { "zh": "夜间咖啡馆", "en": "The Night Café" }, "artworkUrl": "https://artgallery.yale.edu/collections/objects/12507",
       "artist": "van-gogh", "year": "1888", "museum": "yale", "collection": "arles",
       "version": "full", "place": "arles", "themes": ["night", "cafes", "rooms"], "moods": ["night", "solitude"], "period": "post-impressionism", "added": "2026-10-16",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }
     },
     {
       "id": "cafe-terrace", "status": "live", "week": 3, "path": "scenes/cafe-terrace/", "cover": "scenes/cafe-terrace/images/cafe-terrace.jpg",
-      "title": { "zh": "夜晚露天咖啡座", "en": "Café Terrace at Night" },
+      "title": { "zh": "夜晚露天咖啡座", "en": "Café Terrace at Night" }, "artworkUrl": "https://krollermuller.nl/en/vincent-van-gogh-terrace-of-a-cafe-at-night-place-du-forum-1",
       "artist": "van-gogh", "year": "1888", "museum": "kroller-muller", "collection": "arles",
       "version": "full", "place": "arles", "themes": ["night", "cafes", "houses-streets"], "moods": ["night", "lively"], "period": "post-impressionism", "added": "2026-10-16",
       "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }

@@ -105,7 +105,7 @@ def head(path, title, desc, image, image_alt, up, scene=False):
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0{', maximum-scale=1.0, user-scalable=no' if scene else ''}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{e(title)}</title>
   <meta name="description" content="{e(desc)}" />
   <link rel="canonical" href="{url}" />
@@ -314,7 +314,6 @@ for meta in BUILT:
     L, E, up = S['label'], S['ending'], '../../'
     title = S.get('seo', {}).get('title') or f'{t(L["title"])} · 走进名画 | {t(L["title"], "en")} · Walk into Paintings'
     desc = S.get('seo', {}).get('description') or f'走进{t(L["artist"])}的《{t(L["title"])}》，{t(L["date"])}。Walk into {t(L["artist"], "en")}’s {t(L["title"], "en")}, {t(L["date"], "en")}.'
-    labelline = ' · '.join(both(L[k], ' / ') for k in ('title', 'artist', 'date', 'museum'))
     alt = both(S['painting'].get('alt'), ' · ')
     cards = itl(''.join(f'<h3>{bi(c["title"])}</h3>{bi(c["text"], "p")}' for c in S['cards'].values()))
     acts = itl(''.join(f'<h3>{e(a.get("kicker", ""))} {bi(a["title"])}</h3>{bi(a["text"], "p")}' + (f'<p>{e(both(a["caption"], " / "))}</p>' if a.get('caption') else '') for a in E['acts']))
@@ -322,9 +321,11 @@ for meta in BUILT:
     rec_html = ''
     if rec and any(both(v) for k, v in rec.items() if not k.startswith('_')):
         rows = ''.join(f'<tr><th>{zh} · {en}</th><td>{e(both(rec.get(k), " / "))}</td></tr>' for k, zh, en in REC if both(rec.get(k)))   # 空着的行不写
-        if rec.get('url'): rows += f'<tr><th>博物馆作品页 · Museum page</th><td><a href="{e(rec["url"])}">{e(rec["url"])}</a></td></tr>'
+        # 博物馆作品页只在“去现场看真迹”里出现一次（和 site.js 一样），作品档案里不再列
         rec_html = f'<h2>作品档案 · Artwork record</h2><table>{rows}</table>'
-    items = [i for i in (S.get('reading') or {}).get('items', []) if i.get('url')]
+    norm = lambda u: re.sub(r'^https?://(www\.)?', '', str(u or '').lower()).rstrip('/')
+    dup = {norm(u) for u in ((rec or {}).get('url'), meta.get('artworkUrl')) if u}   # 延伸阅读里和博物馆作品页相同的链接去掉
+    items = [i for i in (S.get('reading') or {}).get('items', []) if i.get('url') and norm(i['url']) not in dup]
     reading = ('<h2>延伸阅读与来源 · Further reading and sources</h2><ul>' + itl(''.join(f'<li><a href="{e(i["url"])}">{e(both(i["title"], " / "))}</a></li>' for i in items)) + '</ul>') if items else ''
     A = ARTISTS.get(meta['artist'])
     artist_html = f'<h2>关于画家 · About the artist</h2>{bi(A["bio"], "p")}<p><a href="{up}artists/?id={A["id"]}">更多{e(A["name"]["zh"])}的画 · More by {e(A["name"]["en"])}</a></p>' if A and A.get('bio') else ''
@@ -332,14 +333,16 @@ for meta in BUILT:
         m = MUSEUMS.get(x['museum'])
         if not m: return ''
         if x['museum'] in LONDON_MUSEUMS and x.get('onDisplay') is True:
-            return f'<li><a href="{up}london/#{x["museum"]}">{e(both(m["name"]))} — 参观路线 · Route by room</a></li>'
+            page = f' · <a href="{e(x["artworkUrl"])}">博物馆作品页 · Museum page</a>' if x.get('artworkUrl') else ''
+            return f'<li><a href="{up}london/#{x["museum"]}">{e(both(m["name"]))} — 参观路线 · Route by room</a>{page}</li>'
         url = x.get('artworkUrl') or m.get('url')
         return f'<li><a href="{e(url)}">{e(both(m["name"]))}</a></li>' if url else ''
     D = MUSEUMS.get((meta.get('displayAt') or {}).get('museum'))   # 借展到别的博物馆：先写现在能看到它的地方
     now = f'<li><a href="{e(D["url"])}">现在在 · Now at {e(both(D["name"]))}{" · " + e(both(meta["displayAt"]["note"])) if meta["displayAt"].get("note") else ""}</a></li>' if D and D.get('url') else ''
     museums = now + ''.join(see(x) for x in [meta] + meta.get('alsoAt', []))
+    sub = lambda l: ' · '.join(t(L[k], l) for k in ('artist', 'date', 'museum'))   # 大标题下面：画家 · 年份 · 收藏地（中英各一行，不再重复画名）
     s = f'''      <h1>{bi(L["title"])}</h1>
-      <p>{e(labelline)}</p>
+      <p><span lang="zh-CN">{e(sub("zh"))}</span><br><span lang="en">{e(sub("en"))}</span></p>
       <p>图片：{e(L["source"]["zh"])} / Image: {e(L["source"]["en"])}</p>
       <img src="{e(S["painting"]["image"])}" alt="{e(alt)}" width="{S["painting"]["width"]}" height="{S["painting"]["height"]}" />
       <h2>发现 · Discover</h2>

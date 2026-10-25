@@ -218,6 +218,9 @@ export function oneMinute(btn, seconds = 60) {
 }
 // 场景最后一屏“去现场看真迹”：收藏在伦敦这几家美术馆且在展的 → 伦敦参观路线页（那一节）；其他 → 博物馆作品页（没有作品页时用博物馆官网）
 export const LONDON_MUSEUMS = ['national-gallery', 'courtauld'];   // 和 data/london.json 的 sections 一致
+// 两个网址是不是同一页（忽略 http/https、www、结尾的 /）：用来去掉重复的博物馆链接
+const normUrl = u => String(u || '').toLowerCase().replace(/^https?:\/\/(www\.)?/, '').replace(/\/+$/, '');
+export const sameUrl = (u, ...others) => others.some(o => o && normUrl(o) === normUrl(u));
 export function seeInPersonHTML(R, meta) {
   if (!R || !meta) return '';
   const items = [meta].concat(meta.alsoAt || []);   // 这幅画，加上收藏在别处的其他版本
@@ -229,7 +232,8 @@ export function seeInPersonHTML(R, meta) {
     const year = items.length > 1 && x.year ? ' · ' + bi(x.year) : '';
     if (LONDON_MUSEUMS.includes(x.museum) && x.onDisplay === true) {
       const room = roomLabel(x.room);
-      return `<a class="btn primary" data-track="see-real-${meta.id}" href="${ROOT}london/#${x.museum}">${bi(m.name, ' · ')}${room ? ' · ' + bi(room) : ''} → ${ui('参观路线', 'Route by room')}</a>`;
+      const page = x.artworkUrl ? `<a class="btn" href="${x.artworkUrl}" target="_blank" rel="noopener">${ui('博物馆作品页', 'Museum page')} ↗</a>` : '';   // 伦敦在展的：参观路线 + 博物馆作品页
+      return `<a class="btn primary" data-track="see-real-${meta.id}" href="${ROOT}london/#${x.museum}">${bi(m.name, ' · ')}${room ? ' · ' + bi(room) : ''} → ${ui('参观路线', 'Route by room')}</a>` + page;
     }
     const url = x.artworkUrl || m.url;
     return url ? `<a class="btn" data-track="see-real-${meta.id}" href="${url}" target="_blank" rel="noopener">${bi(m.name, ' · ')}${year} ↗</a>` : '';
