@@ -186,6 +186,28 @@ const AMBIENCE = {
     const step = t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(500, 800), q: 4, vol: 0.06, dur: 0.05, p: rnd(-0.6, 0.6) });
     every(st, 0.4, 1.2, step);
   },
+  // 代尔夫特的河边：河水轻拍岸边，远处教堂的钟声，风和鸟叫（A riverside in Delft）
+  'delft-river'(out, st) {
+    const w = loopNoise('brown', out, { freq: 380, gain: 0.08 });
+    st.timers.push(setInterval(() => w.g.gain.setTargetAtTime(0.05 + 0.08 * Math.random(), ctx.currentTime, 1.5), 2500));
+    lap(out, ctx.currentTime + 0.5); every(st, 2.5, 5, t => lap(out, t));
+    every(st, 5, 12, t => bird(out, t));
+    const far = ctx.createGain(); far.gain.value = 0.25; far.connect(pan(out, 0.2));   // 远处的钟，很轻
+    const bells = t => [523, 392, 440, 330].forEach((f, i) => { tone(far, t + i * 1.1, { f0: f, vol: 0.06, attack: 0.005, dur: 3 }); tone(far, t + i * 1.1, { f0: f * 2.4, vol: 0.015, attack: 0.005, dur: 1.5 }); });
+    bells(ctx.currentTime + 4); every(st, 30, 50, bells);
+  },
+  // 音乐厅：热闹的人声、杯子碰撞，远处乐队的演奏，偶尔一阵掌声（A music hall）
+  'music-hall'(out, st) {
+    loopNoise('brown', out, { freq: 320, gain: 0.1 });
+    murmur(out, 0.12)(st);
+    every(st, 1.2, 4, t => clink(out, t));
+    const far = ctx.createGain(); far.gain.value = 0.35; far.connect(pan(out, -0.4));   // 乐队在远处
+    const chords = [[262, 330, 392], [294, 370, 440], [247, 311, 392], [262, 330, 392]];
+    const phrase = t => chords.forEach((c, i) => c.forEach(f => tone(far, t + i * 0.9, { f0: f, type: 'triangle', vol: 0.025, attack: 0.05, dur: 1.0 })));
+    phrase(ctx.currentTime + 1.5); every(st, 4, 8, phrase);
+    const applause = t => { for (let i = 0; i < 60; i++) burst(far, t + Math.random() * 2.5, { type: 'bandpass', freq: rnd(1500, 3500), q: 1.5, vol: 0.05, dur: 0.02, p: rnd(-0.8, 0.8) }); };
+    every(st, 25, 50, applause);
+  },
   // 雨中的巴黎路口：小雨声，雨水打在伞上，马车轮子压过湿石板，远处的脚步声（A rainy crossroads）
   'rain-cobbles'(out, st) {
     loopNoise('white', out, { type: 'highpass', freq: 3200, gain: 0.04 });   // 小雨

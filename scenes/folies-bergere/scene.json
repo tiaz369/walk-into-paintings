@@ -1,0 +1,578 @@
+{
+  "_说明": "女神游乐厅的吧台（室内房间，完整版）。所有事实文字由 Tia 提供（资料来自考陶尔德美术馆官网）。观众站在吧台前，就是顾客的位置；面前是女招待和摆满酒瓶的大理石吧台，她身后是一面巨大的金框镜子，镜子里是热闹的音乐厅、楼座上的人群和空中飞人（这些都画在镜子上，靠原画投影显示）。不写把女招待和风月场联系起来的学者解读。画家视角按原画估算：站在吧台前，眼睛和女招待的眼睛差不多高（视平线约在画面上方 17%）；吧台前沿离你不到一米，她站在吧台后面，镜子就在她身后。",
+  "id": "folies-bergere",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "night",
+    "label": {
+      "zh": "音乐厅里明亮的灯光",
+      "en": "Bright music-hall lights"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《阿尔诺芬尼夫妇像》互相链接（另一面藏着秘密的镜子），和《包扎耳朵的自画像》互相链接（同一个大厅）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "arnolfini",
+      "bandaged-ear"
+    ]
+  },
+  "painting": {
+    "image": "images/folies-bergere.jpg",
+    "width": 1920,
+    "height": 1410,
+    "alt": {
+      "zh": "马奈《女神游乐厅的吧台》1882，伦敦考陶尔德美术馆",
+      "en": "Édouard Manet, A Bar at the Folies-Bergère, 1882, The Courtauld, London"
+    }
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "女神游乐厅的吧台",
+      "en": "A Bar at the Folies-Bergère"
+    },
+    "artist": {
+      "zh": "马奈",
+      "en": "Édouard Manet"
+    },
+    "date": {
+      "zh": "1882年",
+      "en": "1882"
+    },
+    "museum": {
+      "zh": "伦敦考陶尔德美术馆（塞缪尔·考陶尔德信托）",
+      "en": "The Courtauld, London (Samuel Courtauld Trust)"
+    },
+    "source": {
+      "zh": "公有领域（考陶尔德美术馆标注本作品为公有领域）",
+      "en": "Public domain (as marked by The Courtauld)"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下女招待、吧台上的酒、镜子和镜子里的人看介绍 · 点“如果镜子是对的”，看按正常透视镜子里会是什么样子 · 地上发光的圆点 = 马奈的视角，也是顾客站的地方",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the barmaid, the bottles, the mirror or the people in it to learn more · Tap “If the mirror told the truth” to see what normal perspective would show · The glowing circle = Manet's viewpoint, where a customer would stand"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：按原画估算（吧台前沿、女招待的肩宽和头顶对齐原画）。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": -0.2986,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。你站在顾客的位置上。",
+      "en": "From here, you see what the painting sees. You are standing where a customer would."
+    }
+  },
+  "ambience": "music-hall",
+  "colors": {
+    "line": "#2a2420",
+    "floor": "#4a3a2c",
+    "wall": "#5a4a38",
+    "ceiling": "#3a3028",
+    "marble": "#d8d2c6",
+    "bar": "#5a4636",
+    "bottle": "#2e4030",
+    "bass": "#8a5a2a",
+    "glass": "#d89a3a",
+    "mirror": "#7a7462",
+    "gold": "#b8954a",
+    "darkdress": "#1e2030",
+    "skin": "#ecd2bc"
+  },
+  "room": {
+    "_说明": "房间形状（米）：吧台前的一小块地方，背后是镜子。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 3.2,
+    "front": 1.2,
+    "left": -1.8,
+    "backLeft": [
+      -1.8,
+      -1.6
+    ],
+    "backRight": [
+      1.8,
+      -1.6
+    ],
+    "rightFront": [
+      1.8,
+      1.2
+    ],
+    "floorCard": "studio",
+    "wallCard": "crowd",
+    "walkSpeed": 0.6
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "bar",
+      "x": 0,
+      "z": -0.95,
+      "_": "大理石吧台（前沿离画家视角约0.8米）",
+      "boxes": [
+        [
+          2.6,
+          0.05,
+          0.32,
+          "marble",
+          0,
+          1.03,
+          0
+        ],
+        [
+          2.6,
+          1.0,
+          0.3,
+          "bar",
+          0,
+          0.5,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "bar",
+      "x": 0,
+      "z": -0.86,
+      "_": "左边的酒瓶（香槟、葡萄酒、巴斯啤酒）",
+      "boxes": [
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          -0.49,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          -0.43,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          -0.37,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          -0.31,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.28,
+          0.07,
+          "bass",
+          -0.55,
+          1.19,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "bar",
+      "x": 0,
+      "z": -0.88,
+      "_": "右边的酒瓶、一盘橘子和花",
+      "boxes": [
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          0.34,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          0.4,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          0.46,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.28,
+          0.07,
+          "bass",
+          0.52,
+          1.19,
+          0
+        ],
+        [
+          0.24,
+          0.1,
+          0.24,
+          "glass",
+          0.21,
+          1.18,
+          0
+        ],
+        [
+          0.05,
+          0.18,
+          0.05,
+          "glass",
+          0.07,
+          1.14,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "darkdress",
+      "legs": "darkdress",
+      "x": 0,
+      "z": -1.15,
+      "rot": 0,
+      "scale": 1.05,
+      "card": "suzon",
+      "_": "吧台后面的女招待苏松"
+    },
+    {
+      "type": "wallBoxes",
+      "card": "mirror",
+      "wall": "back",
+      "x": 0,
+      "y": 1.95,
+      "z": -1.6,
+      "_": "她身后的金框大镜子（镜子里的音乐厅、人群和空中飞人都靠原画投影显示）",
+      "boxes": [
+        [
+          3.4,
+          2.3,
+          0.04,
+          "mirror",
+          0,
+          0,
+          0.02,
+          "cloth"
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "mirror": {
+      "title": {
+        "zh": "镜子",
+        "en": "The mirror"
+      },
+      "text": {
+        "zh": "她身后是一面巨大的金框镜子。背景里所有热闹的场面，其实都是镜子里的倒影。",
+        "en": "Behind her is a large gold-framed mirror. All the bustle in the background is in fact a reflection in it."
+      }
+    },
+    "boots": {
+      "title": {
+        "zh": "绿色的靴子",
+        "en": "Green boots"
+      },
+      "text": {
+        "zh": "左上角露出一双穿绿靴子的腿，是正在表演的空中飞人。",
+        "en": "In the top left, a pair of legs in green boots belongs to a trapeze artist mid-performance."
+      },
+      "_": "左上角"
+    },
+    "suzon": {
+      "title": {
+        "zh": "苏松",
+        "en": "Suzon"
+      },
+      "text": {
+        "zh": "吧台后面的女招待名叫苏松，是女神游乐厅真正的员工。她到马奈的画室，站在一个重建的吧台后面给他当模特。",
+        "en": "The barmaid is Suzon, who really worked at the Folies-Bergère. She came to Manet's studio to pose behind a reconstructed bar."
+      }
+    },
+    "misplaced": {
+      "title": {
+        "zh": "对不上的倒影",
+        "en": "A misplaced reflection"
+      },
+      "text": {
+        "zh": "她直直地看着我们，镜子里的她却在和一位男顾客说话。马奈无视正常的透视，把两人的倒影移到了右边。",
+        "en": "She looks straight at us, yet in the mirror she seems to be talking to a male customer. Ignoring normal perspective, Manet shifted their reflection to the right."
+      }
+    },
+    "bar": {
+      "title": {
+        "zh": "吧台上的酒",
+        "en": "On the bar"
+      },
+      "text": {
+        "zh": "台上摆着葡萄酒、香槟，还有带红色三角标志的英国巴斯啤酒。左边的酒瓶在镜子里也对不上。",
+        "en": "On the bar are wine, champagne and British Bass beer with its red triangle logo. The bottles on the left don't match their reflections either."
+      }
+    },
+    "crowd": {
+      "title": {
+        "zh": "楼座上的人群",
+        "en": "The crowd"
+      },
+      "text": {
+        "zh": "时髦的人群在楼座上走动，几笔就画了出来。",
+        "en": "A fashionable crowd mingles on the balcony, sketched in a few quick strokes."
+      }
+    },
+    "studio": {
+      "title": {
+        "zh": "在画室里画的",
+        "en": "Painted in the studio"
+      },
+      "text": {
+        "zh": "马奈在女神游乐厅画了草图，但这幅画完全是在他的画室里完成的。",
+        "en": "Manet made sketches at the Folies-Bergère, but painted this picture entirely in his studio."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“如果镜子是对的”：开关打开后，原画换成示意图（images/folies-bergere-mirror.jpg，是我们用原画做的示意，不是研究图片）：镜子右边女招待的背影和男顾客的倒影去掉，换成镜子里别处的人群和楼座（按正常透视，她的倒影应该在她正后方，被她自己挡住）；并显示说明。",
+    "type": "toggles",
+    "label": {
+      "zh": "如果镜子是对的",
+      "en": "If the mirror told the truth"
+    },
+    "toggles": [
+      {
+        "id": "mirror",
+        "label": {
+          "zh": "如果镜子是对的",
+          "en": "If the mirror told the truth"
+        },
+        "targets": [],
+        "card": "misplaced",
+        "note": {
+          "zh": "如果按正常的透视，镜子里应该几乎看不到她的倒影。马奈故意把它移开了。这是示意。",
+          "en": "With normal perspective, her reflection would be almost hidden behind her. Manet deliberately moved it. This is an illustration."
+        },
+        "paintAlt": "images/folies-bergere-mirror.jpg"
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/folies-bergere.jpg",
+        "alt": {
+          "zh": "马奈《女神游乐厅的吧台》1882，伦敦考陶尔德美术馆",
+          "en": "Édouard Manet, A Bar at the Folies-Bergère, 1882, The Courtauld, London"
+        },
+        "caption": {
+          "zh": "1882年 · 伦敦考陶尔德美术馆",
+          "en": "1882 · The Courtauld, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 巴黎的音乐厅",
+          "en": "A Paris music hall"
+        },
+        "text": {
+          "zh": "女神游乐厅开业大约十年后，已经成了巴黎最受欢迎的音乐厅之一，有音乐，也有马戏表演。马奈很熟悉这里，在现场画了草图。",
+          "en": "About a decade after opening, the Folies-Bergère had become one of the most popular music halls in Paris, with music and circus acts. Manet knew it well and made sketches there."
+        }
+      },
+      {
+        "image": "images/folies-bergere.jpg",
+        "alt": {
+          "zh": "马奈《女神游乐厅的吧台》1882，伦敦考陶尔德美术馆",
+          "en": "Édouard Manet, A Bar at the Folies-Bergère, 1882, The Courtauld, London"
+        },
+        "caption": {
+          "zh": "1882年 · 伦敦考陶尔德美术馆",
+          "en": "1882 · The Courtauld, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 画室里的吧台",
+          "en": "A bar in the studio"
+        },
+        "text": {
+          "zh": "那时马奈已经病得很重，几乎无法行动。他在画室里重建了一个吧台，请苏松来当模特，完成了这幅画。1882年，它在巴黎沙龙展出。",
+          "en": "By then Manet was very ill and could barely move. He rebuilt a bar in his studio, asked Suzon to pose, and finished the painting. It was shown at the Paris Salon in 1882."
+        }
+      },
+      {
+        "image": "images/folies-bergere.jpg",
+        "alt": {
+          "zh": "马奈《女神游乐厅的吧台》1882，伦敦考陶尔德美术馆",
+          "en": "Édouard Manet, A Bar at the Folies-Bergère, 1882, The Courtauld, London"
+        },
+        "caption": {
+          "zh": "1882年 · 伦敦考陶尔德美术馆",
+          "en": "1882 · The Courtauld, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 最后一幅",
+          "en": "His last major painting"
+        },
+        "text": {
+          "zh": "这是马奈最后一幅重要作品。1883年他去世时，它还在画室里。1934年，塞缪尔·考陶尔德把它捐给了考陶尔德。今天，它挂在考陶尔德美术馆3层的LVMH大厅。",
+          "en": "It was Manet's last major painting, still in his studio when he died in 1883. In 1934, Samuel Courtauld gave it to The Courtauld. Today it hangs in the LVMH Great Room, on Level 3 of The Courtauld Gallery."
+        }
+      }
+    ],
+    "final": {
+      "zh": "她看着我们，镜子里的她却在看着别人。",
+      "en": "She looks at us, but in the mirror she faces someone else."
+    },
+    "versions": [],
+    "museums": [
+      "courtauld"
+    ],
+    "exit": [
+      {
+        "scene": "arnolfini",
+        "href": "../arnolfini/",
+        "label": {
+          "zh": "另一面藏着秘密的镜子",
+          "en": "Another mirror with a secret"
+        }
+      },
+      {
+        "scene": "bandaged-ear",
+        "href": "../bandaged-ear/",
+        "label": {
+          "zh": "同一个大厅",
+          "en": "In the same room"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸按考陶尔德馆藏页（P.1934.SC.234）核对：画布 96 × 130 cm（虚拟导览上的 137.3 × 96 cm 不采用）。",
+    "artist": {
+      "zh": "爱德华·马奈（1832–1883）",
+      "en": "Édouard Manet (1832–1883)"
+    },
+    "title": {
+      "zh": "女神游乐厅的吧台",
+      "en": "A Bar at the Folies-Bergère"
+    },
+    "date": {
+      "zh": "1882年",
+      "en": "1882"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "96 × 130 cm",
+      "en": "96 × 130 cm"
+    },
+    "collection": {
+      "zh": "伦敦考陶尔德美术馆（塞缪尔·考陶尔德信托）",
+      "en": "The Courtauld, London (Samuel Courtauld Trust)"
+    },
+    "creditLine": {
+      "zh": "1934年塞缪尔·考陶尔德捐赠",
+      "en": "Samuel Courtauld gift, 1934"
+    },
+    "url": "https://gallerycollections.courtauld.ac.uk/object-p-1934-sc-234"
+  },
+  "zoom": {
+    "image": "images/folies-bergere.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "考陶尔德馆藏记录：女神游乐厅的吧台",
+          "en": "The Courtauld collection: *A Bar at the Folies-Bergère*"
+        },
+        "url": "https://gallerycollections.courtauld.ac.uk/object-p-1934-sc-234"
+      },
+      {
+        "title": {
+          "zh": "考陶尔德美术馆：女神游乐厅的吧台",
+          "en": "The Courtauld: *A Bar at the Folies-Bergère*"
+        },
+        "url": "https://courtauld.ac.uk/highlights/a-bar-at-the-folies-bergere/"
+      },
+      {
+        "title": {
+          "zh": "考陶尔德美术馆虚拟导览",
+          "en": "The Courtauld virtual tour"
+        },
+        "url": "https://virtualtour.courtauld.ac.uk/gal-hotspot/a-bar-at-the-folies-bergere-1882/"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 巴黎的音乐厅",
+          "en": "A Paris music hall"
+        },
+        "text": {
+          "zh": "女神游乐厅开业大约十年后，已经成了巴黎最受欢迎的音乐厅之一，有音乐，也有马戏表演。马奈很熟悉这里，在现场画了草图。",
+          "en": "About a decade after opening, the Folies-Bergère had become one of the most popular music halls in Paris, with music and circus acts. Manet knew it well and made sketches there."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 画室里的吧台",
+          "en": "A bar in the studio"
+        },
+        "text": {
+          "zh": "那时马奈已经病得很重，几乎无法行动。他在画室里重建了一个吧台，请苏松来当模特，完成了这幅画。1882年，它在巴黎沙龙展出。",
+          "en": "By then Manet was very ill and could barely move. He rebuilt a bar in his studio, asked Suzon to pose, and finished the painting. It was shown at the Paris Salon in 1882."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 最后一幅",
+          "en": "His last major painting"
+        },
+        "text": {
+          "zh": "这是马奈最后一幅重要作品。1883年他去世时，它还在画室里。1934年，塞缪尔·考陶尔德把它捐给了考陶尔德。今天，它挂在考陶尔德美术馆3层的LVMH大厅。",
+          "en": "It was Manet's last major painting, still in his studio when he died in 1883. In 1934, Samuel Courtauld gave it to The Courtauld. Today it hangs in the LVMH Great Room, on Level 3 of The Courtauld Gallery."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}

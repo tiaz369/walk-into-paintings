@@ -138,6 +138,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.map((t, i) => `<button class="btn" data-toggle="${i}">✦ ${ui(t.label.zh, t.label.en)}</button>`).join('') : ''}
     ${S.exclusive && S.exclusive.type === 'light' ? `<button class="btn" id="lightBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'mirror' ? `<button class="btn" id="mirrorBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'loupe' ? `<button class="btn" id="loupeBtn">🔍 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'count' ? `<button class="btn" id="countBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.today ? `<div class="seg hidden" id="todaySwitch"><button data-today="0" class="on">${ui(S.exclusive.today.then.zh, S.exclusive.today.then.en)}</button><button data-today="1">${ui(S.exclusive.today.now.zh, S.exclusive.today.now.en)}</button></div>` : ''}
@@ -145,6 +146,12 @@ function buildDOM(S, R, meta) {
       `<button data-opt="${i}" class="${i === 0 ? 'on' : ''}">${ui(o.label.zh, o.label.en)}</button>`).join('')}</div>` : ''}
   </div>
 
+  ${S.exclusive && S.exclusive.type === 'loupe' ? `<div class="popup panel" id="loupe">
+    <button class="close" data-close="loupe" aria-label="Close">×</button>
+    <h3>${bi(S.exclusive.title || S.exclusive.label)}</h3>
+    <div class="loupe-pic"><img src="${S.painting.image}" ${altAttr(S.painting.alt || '')} draggable="false" /><div class="loupe-lens"></div></div>
+    ${S.exclusive.note ? `<p class="loupe-note">${bi(S.exclusive.note, ' / ')}</p>` : ''}
+  </div>` : ''}
   ${S.exclusive && S.exclusive.type === 'count' ? `<div id="countPanel" class="panel hidden"><div id="countN"></div><div id="countDone" class="hidden">${bi(S.exclusive.done, ' / ')}</div></div>` : ''}
   ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   <div id="status" class="ui">
@@ -1123,6 +1130,25 @@ function run(S, R, meta) {
       if (counting) { card.style.display = 'none'; showCount(); track('exclusive-' + S.id); }
     };
     onLang(() => { if (counting) showCount(); });
+  }
+
+  // 独家发现“放大镜”（loupe）：弹出原画，手指或鼠标在画上移动，放大镜跟着放大那一块（zoom 倍）
+  const loupeObj = S.exclusive && S.exclusive.type === 'loupe' ? S.exclusive : null;
+  if (loupeObj) {
+    popups.loupe = $('loupe');
+    const pic = $('loupe').querySelector('.loupe-pic'), lens = pic.querySelector('.loupe-lens'), Z = loupeObj.zoom || 3.5;
+    lens.style.backgroundImage = `url("${S.painting.image}")`;
+    pic.style.maxWidth = `calc(70vh * ${S.painting.width / S.painting.height})`; pic.style.margin = '0 auto';   // 画不超过屏幕高度的 70%
+    const moveLens = e => {
+      const r = pic.getBoundingClientRect(), x = Math.max(0, Math.min(r.width, e.clientX - r.left)), y = Math.max(0, Math.min(r.height, e.clientY - r.top));
+      lens.style.left = x + 'px'; lens.style.top = y + 'px';
+      lens.style.backgroundSize = `${r.width * Z}px ${r.height * Z}px`;
+      lens.style.backgroundPosition = `${-(x * Z - lens.offsetWidth / 2)}px ${-(y * Z - lens.offsetHeight / 2)}px`;
+      lens.style.opacity = 1;
+    };
+    pic.addEventListener('pointerdown', e => { pic.setPointerCapture(e.pointerId); moveLens(e); });
+    pic.addEventListener('pointermove', moveLens);
+    $('loupeBtn').onclick = () => { togglePopup('loupe'); if (popups.loupe.style.display === 'block') { track('exclusive-' + S.id); const r = pic.getBoundingClientRect(); moveLens({ clientX: r.left + r.width * (loupeObj.start ? loupeObj.start[0] : 0.5), clientY: r.top + r.height * (loupeObj.start ? loupeObj.start[1] : 0.5) }); } };
   }
 
   const mirrorObj = S.exclusive && S.exclusive.type === 'mirror' ? S.exclusive : null;
