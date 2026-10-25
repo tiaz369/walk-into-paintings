@@ -1,0 +1,616 @@
+{
+  "_说明": "代尔夫特一景（户外风景，完整版）。所有事实文字由 Tia 提供（资料来自莫瑞泰斯官网）。站在河的这一边，岸上有几个人；对岸是代尔夫特：城墙、两座城门、新教堂的塔楼；天空大片的云，阳光穿过云层照亮塔楼，前景的房子在阴影里；水面有倒影。“黄色的墙”故意不设标准答案。画家视角和物体位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "view-of-delft",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "云间透出的阳光",
+      "en": "Sunlight through the clouds"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《小街》互相链接（维米尔的另一幅户外画）；卡片“阳光里的塔”链接到主题“窗户与光”。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "little-street"
+    ]
+  },
+  "painting": {
+    "image": "images/view-of-delft.jpg",
+    "width": 1800,
+    "height": 1501,
+    "alt": {
+      "zh": "维米尔《代尔夫特一景》约1660–61，海牙莫瑞泰斯皇家美术馆",
+      "en": "Johannes Vermeer, View of Delft, c. 1660–61, Mauritshuis, The Hague"
+    },
+    "_": "宽高是按 96.5 × 115.7 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "代尔夫特一景",
+      "en": "View of Delft"
+    },
+    "artist": {
+      "zh": "维米尔",
+      "en": "Johannes Vermeer"
+    },
+    "date": {
+      "zh": "约1660–1661年",
+      "en": "c. 1660–1661"
+    },
+    "museum": {
+      "zh": "海牙莫瑞泰斯皇家美术馆",
+      "en": "Mauritshuis, The Hague"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下城门、教堂的塔、云和水看介绍 · 点“找一找黄色的墙”，拿放大镜在画上找一找 · 地上发光的圆点 = 维米尔的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the gates, the church tower, the clouds or the water to learn more · Tap “Find the yellow wall” and search the painting with a magnifier · The glowing circle = Vermeer's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "x": 0,
+    "z": 0,
+    "eye": 2.0,
+    "yaw": 0,
+    "pitch": 0.05,
+    "fov": 45,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "delft-river",
+  "colors": {
+    "line": "#2a2c2a",
+    "sand": "#b8a678",
+    "water": "#6a7a74",
+    "ground": "#b8a678",
+    "sky": "#c8d2d8",
+    "brick": "#8a5a42",
+    "roof": "#5a3a30",
+    "tower": "#e2c97a",
+    "boat": "#3a3028",
+    "coat": "#2a2a30",
+    "dress": "#4a4a5a",
+    "skin": "#e0c8b0"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（这一边的沙岸），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -80,
+      80,
+      -100,
+      20
+    ],
+    "bounds": [
+      -10,
+      8,
+      -5,
+      3
+    ],
+    "groundCard": "adjusted",
+    "skyCard": "clouds",
+    "skyRadius": 130,
+    "walkSpeed": 1.0
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "adjusted",
+      "_": "这一边的沙岸",
+      "pts": [
+        [
+          -40,
+          0.02,
+          4
+        ],
+        [
+          -40,
+          0.02,
+          -6
+        ],
+        [
+          40,
+          0.02,
+          -6
+        ],
+        [
+          40,
+          0.02,
+          4
+        ]
+      ],
+      "color": "sand"
+    },
+    {
+      "type": "surface",
+      "card": "clouds",
+      "_": "河水（有倒影）",
+      "pts": [
+        [
+          -80,
+          0.0,
+          -6
+        ],
+        [
+          -80,
+          0.0,
+          -60
+        ],
+        [
+          80,
+          0.0,
+          -60
+        ],
+        [
+          80,
+          0.0,
+          -6
+        ]
+      ],
+      "color": "water"
+    },
+    {
+      "type": "boxes",
+      "card": "adjusted",
+      "x": -22,
+      "z": -62,
+      "_": "左边的城墙和房屋",
+      "boxes": [
+        [
+          30,
+          7,
+          4,
+          "brick",
+          0,
+          3.5,
+          0
+        ],
+        [
+          30,
+          2,
+          4,
+          "roof",
+          0,
+          8,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "gates",
+      "x": 12,
+      "z": -62,
+      "_": "右边的斯希丹门和鹿特丹门",
+      "boxes": [
+        [
+          8,
+          12,
+          6,
+          "brick",
+          -6,
+          6,
+          0
+        ],
+        [
+          3,
+          4,
+          3,
+          "roof",
+          -6,
+          13.5,
+          0
+        ],
+        [
+          8,
+          10,
+          6,
+          "brick",
+          10,
+          5,
+          0
+        ],
+        [
+          4,
+          3,
+          3,
+          "roof",
+          10,
+          11,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "church",
+      "x": 2,
+      "z": -80,
+      "_": "两门之间升起的新教堂塔楼（阳光照得最亮）",
+      "boxes": [
+        [
+          3,
+          24,
+          3,
+          "tower",
+          0,
+          12,
+          0
+        ],
+        [
+          1.5,
+          6,
+          1.5,
+          "tower",
+          0,
+          27,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "bells",
+      "x": 0,
+      "z": -66,
+      "_": "对岸的房屋",
+      "boxes": [
+        [
+          50,
+          6,
+          6,
+          "brick",
+          0,
+          3,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "adjusted",
+      "x": 10,
+      "z": -10,
+      "_": "右边停着的船",
+      "boxes": [
+        [
+          6,
+          1.2,
+          2,
+          "boat",
+          0,
+          0.6,
+          0
+        ],
+        [
+          6,
+          1.2,
+          2,
+          "boat",
+          3,
+          0.6,
+          -4
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "dress",
+      "x": -6,
+      "z": -4.5,
+      "rot": 0,
+      "card": "adjusted",
+      "_": "岸上的人"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "dress",
+      "legs": "dress",
+      "x": -5.2,
+      "z": -4.6,
+      "rot": 0.3,
+      "card": "adjusted",
+      "_": "岸上的人"
+    }
+  ],
+  "cards": {
+    "gates": {
+      "title": {
+        "zh": "两座城门",
+        "en": "The two gates"
+      },
+      "text": {
+        "zh": "对岸右边是斯希丹门和鹿特丹门。",
+        "en": "On the far bank, to the right, are the Schiedam and Rotterdam Gates."
+      }
+    },
+    "church": {
+      "title": {
+        "zh": "新教堂",
+        "en": "The New Church"
+      },
+      "text": {
+        "zh": "两座城门之间升起的，是新教堂的塔楼。这是代尔夫特最重要的建筑，里面有“国父”奥兰治亲王威廉的墓。",
+        "en": "Between the gates rises the tower of the New Church, the most important building in Delft, which holds the tomb of William of Orange, Father of the Fatherland."
+      }
+    },
+    "tower": {
+      "title": {
+        "zh": "阳光里的塔",
+        "en": "The sunlit tower"
+      },
+      "text": {
+        "zh": "阳光照得最亮的地方，维米尔用一层厚而平滑的黄色颜料，像雕塑一样塑造，让塔楼在阳光下闪闪发光。",
+        "en": "Where the sunlight is brightest, Vermeer applied a thick, smooth layer of yellow paint, almost modelling it, so that the tower seems to shimmer."
+      },
+      "link": {
+        "href": "../../themes/?id=windows",
+        "label": {
+          "zh": "主题：窗户与光",
+          "en": "Theme: Windows and light"
+        }
+      }
+    },
+    "bells": {
+      "title": {
+        "zh": "新的钟",
+        "en": "New bells"
+      },
+      "text": {
+        "zh": "就在维米尔画这幅画的时候，1660年到1661年，铸钟匠正在为这座塔挂上新钟。",
+        "en": "While Vermeer was painting this view, in 1660–61, a bell founder was hanging new bells in this very tower."
+      }
+    },
+    "clouds": {
+      "title": {
+        "zh": "云",
+        "en": "The clouds"
+      },
+      "text": {
+        "zh": "城市上空飘着大片的云，光好像是从云里发出来的。",
+        "en": "Great clouds float above the town, and the light seems to radiate from them."
+      }
+    },
+    "adjusted": {
+      "title": {
+        "zh": "调整过的现实",
+        "en": "Reality, adjusted"
+      },
+      "text": {
+        "zh": "为了让画面平衡、宁静，维米尔对真实的景色做了一点调整。和当时的地形图对比，就能看出来。",
+        "en": "To make the picture balanced and calm, Vermeer adjusted reality a little. You can see this by comparing it with topographical drawings of the spot."
+      }
+    },
+    "proust": {
+      "title": {
+        "zh": "世界上最美的画",
+        "en": "The most beautiful painting"
+      },
+      "text": {
+        "zh": "法国作家普鲁斯特称它为“世界上最美的画”。他至少看过它两次：1902年在海牙，1921年在巴黎。",
+        "en": "The French writer Marcel Proust called it \"the most beautiful painting in the world\". He saw it at least twice: in The Hague in 1902, and in Paris in 1921."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“找一找黄色的墙”：弹出原画，手指或鼠标在画上移动，放大镜跟着放大那一块。不设标准答案（有评论家认为画里根本没有完全符合普鲁斯特描写的那块墙），只显示说明。start 是放大镜一开始停在原画的哪里（0–1）。",
+    "type": "loupe",
+    "label": {
+      "zh": "找一找黄色的墙",
+      "en": "Find the yellow wall"
+    },
+    "title": {
+      "zh": "找一找黄色的墙",
+      "en": "Find the yellow wall"
+    },
+    "zoom": 3.5,
+    "start": [
+      0.5,
+      0.5
+    ],
+    "note": {
+      "zh": "普鲁斯特小说里的这块黄色的墙到底在哪里，人们至今还在争论。你觉得是哪一块？",
+      "en": "Where exactly is Proust's little patch of yellow wall? People still disagree. Which one do you think it is?"
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/view-of-delft.jpg",
+        "alt": {
+          "zh": "维米尔《代尔夫特一景》约1660–61，海牙莫瑞泰斯皇家美术馆",
+          "en": "Johannes Vermeer, View of Delft, c. 1660–61, Mauritshuis, The Hague"
+        },
+        "caption": {
+          "zh": "约1660–1661年 · 海牙莫瑞泰斯皇家美术馆",
+          "en": "c. 1660–1661 · Mauritshuis, The Hague"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 河对岸的城市",
+          "en": "A town across the water"
+        },
+        "text": {
+          "zh": "大约1660年，维米尔站在河的这一边，画下了对岸的家乡代尔夫特：城墙、城门，和阳光下的新教堂。这是17世纪荷兰最著名的城市风景画。",
+          "en": "Around 1660, Vermeer looked across the water and painted his home town of Delft: its walls, its gates, and the New Church in sunlight. It is the most celebrated cityscape of 17th-century Dutch art."
+        }
+      },
+      {
+        "image": "images/view-of-delft.jpg",
+        "alt": {
+          "zh": "维米尔《代尔夫特一景》约1660–61，海牙莫瑞泰斯皇家美术馆",
+          "en": "Johannes Vermeer, View of Delft, c. 1660–61, Mauritshuis, The Hague"
+        },
+        "caption": {
+          "zh": "约1660–1661年 · 海牙莫瑞泰斯皇家美术馆",
+          "en": "c. 1660–1661 · Mauritshuis, The Hague"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 一小块黄色的墙",
+          "en": "A little patch of yellow wall"
+        },
+        "text": {
+          "zh": "普鲁斯特非常喜爱这幅画。1921年，巴黎的荷兰绘画展特意借来了它，让病中的普鲁斯特能再看一眼。在他的小说里，一位作家在这幅画前，寻找一小块画得极其精致的黄色墙面。",
+          "en": "Proust loved this painting. In 1921, an exhibition of Dutch art in Paris included it so that the ailing writer could see it once more. In his novel, a writer stands before this painting, searching for an exquisitely painted little patch of yellow wall."
+        }
+      },
+      {
+        "image": "images/view-of-delft.jpg",
+        "alt": {
+          "zh": "维米尔《代尔夫特一景》约1660–61，海牙莫瑞泰斯皇家美术馆",
+          "en": "Johannes Vermeer, View of Delft, c. 1660–61, Mauritshuis, The Hague"
+        },
+        "caption": {
+          "zh": "约1660–1661年 · 海牙莫瑞泰斯皇家美术馆",
+          "en": "c. 1660–1661 · Mauritshuis, The Hague"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 回到海牙",
+          "en": "Back in The Hague"
+        },
+        "text": {
+          "zh": "1822年，莫瑞泰斯买下了这幅画。今天，它挂在莫瑞泰斯的15号展厅。",
+          "en": "In 1822, the Mauritshuis bought the painting. Today it hangs in Room 15."
+        }
+      }
+    ],
+    "final": {
+      "zh": "世界上最美的画。",
+      "en": "The most beautiful painting in the world."
+    },
+    "finalBy": {
+      "zh": "—— 普鲁斯特",
+      "en": "— Marcel Proust"
+    },
+    "versions": [],
+    "museums": [
+      "mauritshuis"
+    ],
+    "exit": [
+      {
+        "scene": "little-street",
+        "href": "../little-street/",
+        "label": {
+          "zh": "维米尔的另一幅户外画",
+          "en": "Another Vermeer outdoors"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸按莫瑞泰斯官网作品页补上；年份按官网写“约1660–1661年”。",
+    "artist": {
+      "zh": "约翰内斯·维米尔（1632–1675）",
+      "en": "Johannes Vermeer (1632–1675)"
+    },
+    "title": {
+      "zh": "代尔夫特一景",
+      "en": "View of Delft"
+    },
+    "date": {
+      "zh": "约1660–1661年",
+      "en": "c. 1660–1661"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "96.5 × 115.7 cm",
+      "en": "96.5 × 115.7 cm"
+    },
+    "collection": {
+      "zh": "海牙莫瑞泰斯皇家美术馆，15号展厅（1822年购入）",
+      "en": "Mauritshuis, The Hague, Room 15 (purchased 1822)"
+    },
+    "url": "https://www.mauritshuis.nl/en/our-collection/artworks/92-view-of-delft"
+  },
+  "zoom": {
+    "image": "images/view-of-delft.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "莫瑞泰斯：代尔夫特一景",
+          "en": "Mauritshuis: *View of Delft*"
+        },
+        "url": "https://www.mauritshuis.nl/en/our-collection/artworks/92-view-of-delft"
+      },
+      {
+        "title": {
+          "zh": "莫瑞泰斯：代尔夫特一景（中文）",
+          "en": "Mauritshuis: *View of Delft* (Chinese)"
+        },
+        "url": "https://mauritshuis.nl/cn/%E8%97%8F%E4%B9%A6/%E5%AF%BB%E6%89%BE%E8%97%8F%E4%B9%A6/92-%E5%BE%B7%E5%B0%94%E7%A6%8F%E8%BF%9C%E7%9C%BA/"
+      },
+      {
+        "title": {
+          "zh": "《纽约书评》：维米尔",
+          "en": "The New York Review of Books: Vermeer, first among equals"
+        },
+        "url": "https://www.nybooks.com/articles/2019/02/07/vermeer-first-among-equals/"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 河对岸的城市",
+          "en": "A town across the water"
+        },
+        "text": {
+          "zh": "大约1660年，维米尔站在河的这一边，画下了对岸的家乡代尔夫特：城墙、城门，和阳光下的新教堂。这是17世纪荷兰最著名的城市风景画。",
+          "en": "Around 1660, Vermeer looked across the water and painted his home town of Delft: its walls, its gates, and the New Church in sunlight. It is the most celebrated cityscape of 17th-century Dutch art."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 一小块黄色的墙",
+          "en": "A little patch of yellow wall"
+        },
+        "text": {
+          "zh": "普鲁斯特非常喜爱这幅画。1921年，巴黎的荷兰绘画展特意借来了它，让病中的普鲁斯特能再看一眼。在他的小说里，一位作家在这幅画前，寻找一小块画得极其精致的黄色墙面。",
+          "en": "Proust loved this painting. In 1921, an exhibition of Dutch art in Paris included it so that the ailing writer could see it once more. In his novel, a writer stands before this painting, searching for an exquisitely painted little patch of yellow wall."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 回到海牙",
+          "en": "Back in The Hague"
+        },
+        "text": {
+          "zh": "1822年，莫瑞泰斯买下了这幅画。今天，它挂在莫瑞泰斯的15号展厅。",
+          "en": "In 1822, the Mauritshuis bought the painting. Today it hangs in Room 15."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}

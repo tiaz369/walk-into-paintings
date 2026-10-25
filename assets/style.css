@@ -596,3 +596,13 @@ body.clean #uncleanBtn:hover, body.clean #uncleanBtn:focus { opacity: 1; }
 #countN { font-size: 15px; font-weight: 500; }
 #countDone { margin-top: 4px; font-size: 13px; }
 .touch #countPanel { bottom: 240px; }
+
+/* 独家发现“放大镜”：在原画上移动的圆形放大镜 */
+#loupe { width: min(820px, calc(100% - 32px)); }
+#loupe h3 { margin: 6px 0 10px; font-weight: 500; }
+.loupe-pic { position: relative; touch-action: none; cursor: none; user-select: none; }
+.loupe-pic img { display: block; width: 100%; height: auto; border-radius: 4px; pointer-events: none; }
+.loupe-lens { position: absolute; width: 150px; height: 150px; margin: -75px 0 0 -75px; border-radius: 50%; border: 3px solid #fff8e1;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .4); background-repeat: no-repeat; pointer-events: none; opacity: 0; transition: opacity .3s; }
+.loupe-note { margin: 10px 4px 0; font-size: 14px; }
+@media (max-width: 600px) { .loupe-lens { width: 110px; height: 110px; margin: -55px 0 0 -55px; } }

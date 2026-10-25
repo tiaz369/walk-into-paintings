@@ -16,7 +16,8 @@
     "cards": [],
     "end": [
       "woman-reading-letter",
-      "milkmaid"
+      "milkmaid",
+      "view-of-delft"
     ]
   },
   "painting": {
@@ -915,6 +916,14 @@
         "label": {
           "zh": "回到厨房",
           "en": "Back to the kitchen"
+        }
+      },
+      {
+        "scene": "view-of-delft",
+        "href": "../view-of-delft/",
+        "label": {
+          "zh": "维米尔的另一幅户外画：代尔夫特一景",
+          "en": "Another Vermeer outdoors: *View of Delft*"
         }
       }
     ]
