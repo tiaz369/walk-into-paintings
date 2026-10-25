@@ -395,20 +395,6 @@
     "manet": [
       {
         "title": {
-          "zh": "女神游乐厅的吧台",
-          "en": "A Bar at the Folies-Bergère"
-        },
-        "year": {
-          "zh": "1882",
-          "en": "1882"
-        },
-        "museum": "courtauld",
-        "check": "ok",
-        "_": "考陶尔德作品页：1882",
-        "url": "https://courtauld.ac.uk/highlights/a-bar-at-the-folies-bergere/"
-      },
-      {
-        "title": {
           "zh": "杜伊勒里花园的音乐会",
           "en": "Music in the Tuileries Gardens"
         },

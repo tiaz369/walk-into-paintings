@@ -1,5 +1,5 @@
 {
-  "_说明": "女神游乐厅的吧台（室内房间，完整版）。所有事实文字由 Tia 提供（资料来自考陶尔德美术馆官网）。观众站在吧台前，就是顾客的位置；面前是女招待和摆满酒瓶的大理石吧台，她身后是一面巨大的金框镜子，镜子里是热闹的音乐厅、楼座上的人群和空中飞人（这些都画在镜子上，靠原画投影显示）。不写把女招待和风月场联系起来的学者解读。画家视角和物体位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "_说明": "女神游乐厅的吧台（室内房间，完整版）。所有事实文字由 Tia 提供（资料来自考陶尔德美术馆官网）。观众站在吧台前，就是顾客的位置；面前是女招待和摆满酒瓶的大理石吧台，她身后是一面巨大的金框镜子，镜子里是热闹的音乐厅、楼座上的人群和空中飞人（这些都画在镜子上，靠原画投影显示）。不写把女招待和风月场联系起来的学者解读。画家视角按原画估算：站在吧台前，眼睛和女招待的眼睛差不多高（视平线约在画面上方 17%）；吧台前沿离你不到一米，她站在吧台后面，镜子就在她身后。",
   "id": "folies-bergere",
   "variant": "interior",
   "lighting": {
@@ -21,15 +21,14 @@
   },
   "painting": {
     "image": "images/folies-bergere.jpg",
-    "width": 1800,
-    "height": 1329,
+    "width": 1920,
+    "height": 1410,
     "alt": {
       "zh": "马奈《女神游乐厅的吧台》1882，伦敦考陶尔德美术馆",
       "en": "Édouard Manet, A Bar at the Folies-Bergère, 1882, The Courtauld, London"
-    },
-    "_": "宽高是按 96 × 130 cm 估的，上传原画后改成图片的真实像素"
+    }
   },
-  "projection": false,
+  "projection": true,
   "label": {
     "_说明": "展签：画名、画家、年份、收藏地",
     "title": {
@@ -49,8 +48,8 @@
       "en": "The Courtauld, London (Samuel Courtauld Trust)"
     },
     "source": {
-      "zh": "Wikimedia Commons，公有领域",
-      "en": "Wikimedia Commons, public domain"
+      "zh": "公有领域（考陶尔德美术馆标注本作品为公有领域）",
+      "en": "Public domain (as marked by The Courtauld)"
     }
   },
   "enter": {
@@ -59,16 +58,16 @@
   },
   "hint": {
     "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下女招待、吧台上的酒、镜子和镜子里的人看介绍 · 点“如果镜子是对的”，看按正常透视镜子里会是什么样子 · 地上发光的圆点 = 马奈的视角，也是顾客站的地方",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the barmaid, the bottles, the mirror or the people in it to learn more · Tap “If the mirror were right” to see what normal perspective would show · The glowing circle = Manet's viewpoint, where a customer would stand"
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the barmaid, the bottles, the mirror or the people in it to learn more · Tap “If the mirror told the truth” to see what normal perspective would show · The glowing circle = Manet's viewpoint, where a customer would stand"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "_说明": "画家视角：按原画估算（吧台前沿、女招待的肩宽和头顶对齐原画）。",
     "x": 0,
     "z": 0,
     "eye": 1.6,
     "yaw": 0,
-    "pitch": -0.05,
-    "fov": 55,
+    "pitch": -0.2986,
+    "fov": 50,
     "text": {
       "zh": "从这里看，就是画里的样子。你站在顾客的位置上。",
       "en": "From here, you see what the painting sees. You are standing where a customer would."
@@ -92,20 +91,20 @@
   },
   "room": {
     "_说明": "房间形状（米）：吧台前的一小块地方，背后是镜子。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
-    "height": 3.4,
-    "front": 1.5,
-    "left": -2.2,
+    "height": 3.2,
+    "front": 1.2,
+    "left": -1.8,
     "backLeft": [
-      -2.2,
-      -1.9
+      -1.8,
+      -1.6
     ],
     "backRight": [
-      2.2,
-      -1.9
+      1.8,
+      -1.6
     ],
     "rightFront": [
-      2.2,
-      1.5
+      1.8,
+      1.2
     ],
     "floorCard": "studio",
     "wallCard": "crowd",
@@ -116,13 +115,13 @@
       "type": "boxes",
       "card": "bar",
       "x": 0,
-      "z": -0.9,
-      "_": "大理石吧台",
+      "z": -0.95,
+      "_": "大理石吧台（前沿离画家视角约0.8米）",
       "boxes": [
         [
           2.6,
           0.05,
-          0.6,
+          0.32,
           "marble",
           0,
           1.03,
@@ -131,7 +130,7 @@
         [
           2.6,
           1.0,
-          0.55,
+          0.3,
           "bar",
           0,
           0.5,
@@ -143,62 +142,53 @@
       "type": "boxes",
       "card": "bar",
       "x": 0,
-      "z": -0.85,
+      "z": -0.86,
       "_": "左边的酒瓶（香槟、葡萄酒、巴斯啤酒）",
       "boxes": [
         [
-          0.08,
-          0.32,
-          0.08,
-          "bottle",
-          -1.15,
-          1.21,
-          0
-        ],
-        [
-          0.08,
-          0.32,
-          0.08,
-          "bottle",
-          -1.0399999999999998,
-          1.21,
-          0
-        ],
-        [
-          0.08,
-          0.32,
-          0.08,
-          "bottle",
-          -0.9299999999999999,
-          1.21,
-          0
-        ],
-        [
-          0.08,
-          0.32,
-          0.08,
-          "bottle",
-          -0.8199999999999998,
-          1.21,
-          0
-        ],
-        [
-          0.08,
-          0.32,
-          0.08,
-          "bottle",
-          -0.71,
-          1.21,
-          0
-        ],
-        [
-          0.08,
+          0.07,
           0.3,
-          0.08,
-          "bass",
-          -0.6,
+          0.07,
+          "bottle",
+          -0.49,
           1.2,
-          0.1
+          0
+        ],
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          -0.43,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          -0.37,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          -0.31,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.28,
+          0.07,
+          "bass",
+          -0.55,
+          1.19,
+          0
         ]
       ]
     },
@@ -206,44 +196,62 @@
       "type": "boxes",
       "card": "bar",
       "x": 0,
-      "z": -0.85,
-      "_": "右边的酒瓶和一盘橘子",
+      "z": -0.88,
+      "_": "右边的酒瓶、一盘橘子和花",
       "boxes": [
         [
-          0.08,
-          0.32,
-          0.08,
-          "bottle",
-          0.7,
-          1.21,
-          0
-        ],
-        [
-          0.08,
-          0.32,
-          0.08,
-          "bottle",
-          0.8099999999999999,
-          1.21,
-          0
-        ],
-        [
-          0.08,
-          0.32,
-          0.08,
-          "bottle",
-          0.9199999999999999,
-          1.21,
-          0
-        ],
-        [
+          0.07,
           0.3,
-          0.12,
+          0.07,
+          "bottle",
+          0.34,
+          1.2,
+          0
+        ],
+        [
+          0.07,
           0.3,
+          0.07,
+          "bottle",
+          0.4,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.3,
+          0.07,
+          "bottle",
+          0.46,
+          1.2,
+          0
+        ],
+        [
+          0.07,
+          0.28,
+          0.07,
+          "bass",
+          0.52,
+          1.19,
+          0
+        ],
+        [
+          0.24,
+          0.1,
+          0.24,
           "glass",
-          0.25,
-          1.12,
-          0.05
+          0.21,
+          1.18,
+          0
+        ],
+        [
+          0.05,
+          0.18,
+          0.05,
+          "glass",
+          0.07,
+          1.14,
+          0
         ]
       ]
     },
@@ -253,8 +261,9 @@
       "color": "darkdress",
       "legs": "darkdress",
       "x": 0,
-      "z": -1.35,
+      "z": -1.15,
       "rot": 0,
+      "scale": 1.05,
       "card": "suzon",
       "_": "吧台后面的女招待苏松"
     },
@@ -263,37 +272,19 @@
       "card": "mirror",
       "wall": "back",
       "x": 0,
-      "y": 1.9,
-      "z": -1.9,
-      "_": "她身后的金框大镜子",
+      "y": 1.95,
+      "z": -1.6,
+      "_": "她身后的金框大镜子（镜子里的音乐厅、人群和空中飞人都靠原画投影显示）",
       "boxes": [
         [
-          4.2,
-          2.6,
+          3.4,
+          2.3,
           0.04,
           "mirror",
           0,
           0,
           0.02,
           "cloth"
-        ],
-        [
-          4.3,
-          0.08,
-          0.06,
-          "gold",
-          0,
-          1.33,
-          0.03
-        ],
-        [
-          4.3,
-          0.08,
-          0.06,
-          "gold",
-          0,
-          -1.33,
-          0.03
         ]
       ]
     }
@@ -317,7 +308,8 @@
       "text": {
         "zh": "左上角露出一双穿绿靴子的腿，是正在表演的空中飞人。",
         "en": "In the top left, a pair of legs in green boots belongs to a trapeze artist mid-performance."
-      }
+      },
+      "_": "左上角"
     },
     "suzon": {
       "title": {
@@ -371,25 +363,26 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“如果镜子是对的”：开关打开后，原画换成示意图（images/folies-bergere-mirror.jpg，我们做的示意，不是研究图片）：镜子里女招待的倒影从右边移到她正后方，被她自己挡住；男顾客的倒影也消失；并显示说明。原画上传后再做示意图。",
+    "_说明": "独家发现“如果镜子是对的”：开关打开后，原画换成示意图（images/folies-bergere-mirror.jpg，是我们用原画做的示意，不是研究图片）：镜子右边女招待的背影和男顾客的倒影去掉，换成镜子里别处的人群和楼座（按正常透视，她的倒影应该在她正后方，被她自己挡住）；并显示说明。",
     "type": "toggles",
     "label": {
       "zh": "如果镜子是对的",
-      "en": "If the mirror were right"
+      "en": "If the mirror told the truth"
     },
     "toggles": [
       {
         "id": "mirror",
         "label": {
           "zh": "如果镜子是对的",
-          "en": "If the mirror were right"
+          "en": "If the mirror told the truth"
         },
         "targets": [],
         "card": "misplaced",
         "note": {
           "zh": "如果按正常的透视，镜子里应该几乎看不到她的倒影。马奈故意把它移开了。这是示意。",
           "en": "With normal perspective, her reflection would be almost hidden behind her. Manet deliberately moved it. This is an illustration."
-        }
+        },
+        "paintAlt": "images/folies-bergere-mirror.jpg"
       }
     ]
   },
@@ -449,7 +442,7 @@
         "kicker": "ACT III",
         "title": {
           "zh": "第三幕 · 最后一幅",
-          "en": "His last"
+          "en": "His last major painting"
         },
         "text": {
           "zh": "这是马奈最后一幅重要作品。1883年他去世时，它还在画室里。1934年，塞缪尔·考陶尔德把它捐给了考陶尔德。今天，它挂在考陶尔德美术馆3层的LVMH大厅。",
@@ -572,7 +565,7 @@
       {
         "title": {
           "zh": "第三幕 · 最后一幅",
-          "en": "His last"
+          "en": "His last major painting"
         },
         "text": {
           "zh": "这是马奈最后一幅重要作品。1883年他去世时，它还在画室里。1934年，塞缪尔·考陶尔德把它捐给了考陶尔德。今天，它挂在考陶尔德美术馆3层的LVMH大厅。",
