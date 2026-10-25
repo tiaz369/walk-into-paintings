@@ -9,7 +9,7 @@
 // 移动鼠标、拖动或转动手机时，前面的层移动得多一点，看起来像微微转动视角。
 // 文字、卡片、故事都写在 scene.json 里（结构和 3D 场景一样，按钮和样式也共用）。
 // =====================================================================
-import { bi, ui, escItalic, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
+import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupSound } from './sound.js';
 import { variantOf, VARIANTS } from './variants.js';
@@ -41,7 +41,7 @@ function buildDOM(S, R, meta) {
   const labelLine = { zh: [L.title.zh, L.artist.zh, L.date.zh, L.museum.zh].join(' · '), en: [L.title.en, L.artist.en, L.date.en, L.museum.en].join(' · ') };
   const imgLine = imageSourceHTML(L.source);
   const REC = [['artist', '画家（生卒年）', 'Artist (dates)'], ['title', '画名', 'Title'], ['date', '年份', 'Date'],
-    ['medium', '材质', 'Medium'], ['dimensions', '尺寸', 'Dimensions'], ['collection', '收藏地', 'Collection'], ['creditLine', '来源说明', 'Credit line'], ['url', '博物馆作品页', 'Museum page']];
+    ['medium', '材质', 'Medium'], ['dimensions', '尺寸', 'Dimensions'], ['collection', '收藏地', 'Collection'], ['creditLine', '来源说明', 'Credit line']];   // 博物馆作品页只在“去现场看真迹”里出现
   const rec = S.record || {};
   const rows = REC.map(([k, zh, en]) => {
     const v = rec[k];
@@ -49,7 +49,7 @@ function buildDOM(S, R, meta) {
     return val ? `<tr><th>${ui(zh, en)}</th><td>${val}</td></tr>` : '';
   }).join('');
   const recordHTML = rows ? `<table class="record">${rows}</table>` : '';
-  const readingItems = ((S.reading && S.reading.items) || []).filter(it => it.url && it.title);
+  const readingItems = ((S.reading && S.reading.items) || []).filter(it => it.url && it.title && !sameUrl(it.url, rec.url, meta && meta.artworkUrl));
   const artist = R && meta && R.artistById[meta.artist];
   const museumLinks = (E.museums || []).map(id => R && R.museumById[id]).filter(m => m && m.url)
     .map(m => `<a class="btn" href="${m.url}" target="_blank" rel="noopener">${bi(m.name, ' · ')}</a>`).join('');

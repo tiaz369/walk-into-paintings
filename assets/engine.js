@@ -9,7 +9,7 @@
 // 这个文件只负责“怎么做”，不放任何某一幅画的文字。
 // =====================================================================
 import * as THREE from 'three';
-import { bi, ui, escItalic, textOf, altAttr, removeStatic, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
+import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupSound } from './sound.js';
 import { variantOf, VARIANTS } from './variants.js';
@@ -46,9 +46,10 @@ function buildDOM(S, R, meta) {
   const extraCredits = [...new Map([...E.acts, ...E.versions].filter(x => x.credit).map(x => [x.credit.zh, bi(x.credit, ' / ')])).values()];
   const missing = file => ui(`（找不到 ${file}）`, `(Image not found: ${file})`);
 
-  // 作品档案表：画家（生卒年）、画名、年份、材质、尺寸、收藏地、博物馆作品页
+  // 作品档案表：画家（生卒年）、画名、年份、材质、尺寸、收藏地、来源说明
   const REC = [['artist', '画家（生卒年）', 'Artist (dates)'], ['title', '画名', 'Title'], ['date', '年份', 'Date'],
-    ['medium', '材质', 'Medium'], ['dimensions', '尺寸', 'Dimensions'], ['collection', '收藏地', 'Collection'], ['creditLine', '来源说明', 'Credit line'], ['url', '博物馆作品页', 'Museum page']];
+    ['medium', '材质', 'Medium'], ['dimensions', '尺寸', 'Dimensions'], ['collection', '收藏地', 'Collection'], ['creditLine', '来源说明', 'Credit line']];
+  // 博物馆作品页只在“去现场看真迹”里出现一次：作品档案里不再列，延伸阅读里同一个链接也去掉
   // 全部格子都空着时先不显示（等 Tia 提供数据）
   const hasRecord = S.record && REC.some(([k]) => k === 'url' ? S.record.url : S.record[k] && (S.record[k].zh || S.record[k].en));
   // 只显示已经有内容的行（空着的格子不显示）
@@ -60,7 +61,7 @@ function buildDOM(S, R, meta) {
   }).join('')}</table>`;
 
   // 延伸阅读与来源（页面最底部）
-  const readingItems = ((S.reading && S.reading.items) || []).filter(it => it.url && it.title && (it.title.zh || it.title.en));
+  const readingItems = ((S.reading && S.reading.items) || []).filter(it => it.url && it.title && (it.title.zh || it.title.en) && !sameUrl(it.url, (S.record || {}).url, meta && meta.artworkUrl));
   const readingHTML = !readingItems.length ? '' : `<section class="reading">
       <div class="section-title">${ui('延伸阅读与来源', 'Further reading and sources')}</div>
       <ul>${readingItems.map(it => `<li><a href="${it.url}" target="_blank" rel="noopener">${bi(it.title, ' / ')}</a> ↗</li>`).join('')}</ul>
