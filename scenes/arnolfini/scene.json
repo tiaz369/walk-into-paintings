@@ -11,9 +11,11 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《梵高的椅子》《向日葵》互相链接（同一家美术馆）。卡片“凸面镜”以后可以作为“镜子”主题的第一幅。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《梵高的椅子》《向日葵》互相链接（同一家美术馆）。卡片“凸面镜”以后可以作为“镜子”主题的第一幅。 和《戴红头巾的男子》互相链接：结尾按钮，以及卡片“墙上的签名”里的“同一个展厅”（都在52号展厅）。",
     "doors": [],
-    "cards": [],
+    "cards": [
+      "man-red-chaperon"
+    ],
     "end": [
       "vangogh-chair",
       "sunflowers",
@@ -570,6 +572,14 @@
       "text": {
         "zh": "镜子上方用拉丁文写着：“扬·凡·艾克来过这里。1434。”像一句涂鸦，宣告画家本人到过这里。",
         "en": "Above the mirror, in Latin: \"Jan van Eyck was here. 1434.\" Like graffiti, it announces that the painter himself was present."
+      },
+      "link": {
+        "scene": "man-red-chaperon",
+        "href": "../man-red-chaperon/",
+        "label": {
+          "zh": "同一个展厅",
+          "en": "In the same room"
+        }
       }
     },
     "beads": {
@@ -766,8 +776,8 @@
         "scene": "man-red-chaperon",
         "href": "../man-red-chaperon/",
         "label": {
-          "zh": "一年前，他在画框上签名：戴红头巾的男子",
-          "en": "A year earlier, he signed a frame: *Portrait of a Man (Self Portrait?)*"
+          "zh": "一年前，他在画框上写下格言：戴红头巾的男子",
+          "en": "A year earlier, he wrote his motto on a frame: *Portrait of a Man (Self Portrait?)*"
         }
       }
     ]
