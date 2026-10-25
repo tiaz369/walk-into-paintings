@@ -1,0 +1,430 @@
+{
+  "_说明": "花边女工（人物肖像，轻量版：分层景深 + 细节放大）。所有事实文字由 Tia 提供（资料来自几篇引用卢浮宫介绍的文章，只保留了几个来源一致的说法）。分层：最前面是模糊的缝纫垫和彩线，中间是桌子和她的双手，后面是她低头专注的脸和白墙。clip 和 spots 是先按构图估的，原画上传后照着原画改，再把登记表里的 status 改成 live。",
+  "id": "lacemaker",
+  "variant": "portrait",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（渲染用的设定说明，不在页面上显示）",
+    "type": "window",
+    "label": {
+      "zh": "左边窗户的光",
+      "en": "Light from a window on the left"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《倒牛奶的女仆》互相链接（另一个专注做事的女子）；卡片 1 还链接到主题“窗户与光”（不是场景，所以不列在这里）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "milkmaid"
+    ]
+  },
+  "ambience": "bobbins",
+  "painting": {
+    "image": "images/lacemaker.jpg",
+    "width": 1050,
+    "height": 1225,
+    "alt": {
+      "zh": "维米尔《花边女工》约1669–70，巴黎卢浮宫",
+      "en": "Johannes Vermeer, The Lacemaker, c. 1669–70, Musée du Louvre, Paris"
+    },
+    "_": "宽高是按 24.5 × 21 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "花边女工",
+      "en": "The Lacemaker"
+    },
+    "artist": {
+      "zh": "维米尔",
+      "en": "Johannes Vermeer"
+    },
+    "date": {
+      "zh": "约1669–70年",
+      "en": "c. 1669–70"
+    },
+    "museum": {
+      "zh": "巴黎卢浮宫",
+      "en": "Musée du Louvre, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“移动焦点”，拖动滑杆，看看清楚和模糊怎样交换 · 点“放大看细节”，再点线、彩线或她的脸",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “Move the focus” and drag the slider to swap what is sharp and what is blurred · Tap “Zoom in on details”, then the thread, the threads or her face"
+  },
+  "parallax": 14,
+  "layers": [
+    {
+      "_说明": "背景（整张画：她的脸和白墙）",
+      "depth": 0
+    },
+    {
+      "_说明": "中间：桌子和她的双手（维米尔的焦点：手指间的线）",
+      "depth": 0.5,
+      "focus": "far",
+      "clip": [
+        [
+          0.3,
+          0.45
+        ],
+        [
+          0.75,
+          0.42
+        ],
+        [
+          0.86,
+          0.6
+        ],
+        [
+          0.78,
+          0.74
+        ],
+        [
+          0.34,
+          0.74
+        ]
+      ]
+    },
+    {
+      "_说明": "最前面：模糊的缝纫垫和彩线",
+      "depth": 1,
+      "focus": "near",
+      "clip": [
+        [
+          0,
+          0.6
+        ],
+        [
+          0.42,
+          0.58
+        ],
+        [
+          0.5,
+          0.76
+        ],
+        [
+          0.46,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    }
+  ],
+  "spots": {
+    "smallest": {
+      "x": 0.88,
+      "y": 0.9,
+      "layer": 0
+    },
+    "thread": {
+      "x": 0.56,
+      "y": 0.56,
+      "layer": 1
+    },
+    "foreground": {
+      "x": 0.3,
+      "y": 0.9,
+      "layer": 2
+    },
+    "threads": {
+      "x": 0.18,
+      "y": 0.74,
+      "layer": 2
+    },
+    "book": {
+      "x": 0.1,
+      "y": 0.6,
+      "layer": 0
+    },
+    "absorbed": {
+      "x": 0.6,
+      "y": 0.26,
+      "layer": 0
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“移动焦点”：屏幕下方出现一个滑杆，从“她手里的线”拖到“前景的彩线”：focus 为 near 的层（缝纫垫和彩线）慢慢变清楚（锐化，是效果，不是原画），focus 为 far 的层（她的手和线）慢慢变模糊；拖回去就是原画。zooms 是“放大看细节”的热点（x、y 是在原画上的位置 0–1，原画上传后照着原画改）。",
+    "type": "focus",
+    "label": {
+      "zh": "移动焦点",
+      "en": "Move the focus"
+    },
+    "from": {
+      "zh": "她手里的线",
+      "en": "The thread in her hands"
+    },
+    "to": {
+      "zh": "前景的彩线",
+      "en": "The threads in front"
+    },
+    "blur": 3,
+    "note": {
+      "zh": "维米尔把焦点放在她手指间的线上，连离我们最近的东西都是模糊的。",
+      "en": "Vermeer focused on the thread between her fingers; even the things closest to us are blurred."
+    },
+    "zoomLabel": {
+      "zh": "放大看细节",
+      "en": "Zoom in on details"
+    },
+    "zooms": [
+      {
+        "id": "thread",
+        "label": {
+          "zh": "线",
+          "en": "Thread"
+        },
+        "x": 0.56,
+        "y": 0.56,
+        "scale": 4,
+        "card": "thread"
+      },
+      {
+        "id": "threads",
+        "label": {
+          "zh": "彩线",
+          "en": "Threads"
+        },
+        "x": 0.18,
+        "y": 0.74,
+        "scale": 3.5,
+        "card": "threads"
+      },
+      {
+        "id": "face",
+        "label": {
+          "zh": "她的脸",
+          "en": "Her face"
+        },
+        "x": 0.6,
+        "y": 0.26,
+        "scale": 3,
+        "card": "absorbed"
+      }
+    ]
+  },
+  "cards": {
+    "smallest": {
+      "title": {
+        "zh": "最小的一幅",
+        "en": "The smallest"
+      },
+      "text": {
+        "zh": "这是维米尔最小的画之一，你得走得很近，才看得清细节。",
+        "en": "This is one of Vermeer's smallest paintings. You have to come very close to see the details."
+      },
+      "link": {
+        "href": "../../themes/?id=windows",
+        "label": {
+          "zh": "主题：窗户与光",
+          "en": "Theme: Windows and light"
+        }
+      }
+    },
+    "thread": {
+      "title": {
+        "zh": "拉紧的线",
+        "en": "The taut thread"
+      },
+      "text": {
+        "zh": "画面的焦点，是她手指间拉紧的那根细白线，画得非常清楚。",
+        "en": "The focus of the picture is the fine white thread stretched between her fingers, painted with great precision."
+      }
+    },
+    "foreground": {
+      "title": {
+        "zh": "模糊的前景",
+        "en": "A blurred foreground"
+      },
+      "text": {
+        "zh": "离焦点越远，形状越模糊。奇怪的是，连离我们最近的东西也是模糊的。",
+        "en": "The further from the focus, the more blurred the forms. Strangely, even the things closest to us are out of focus."
+      }
+    },
+    "threads": {
+      "title": {
+        "zh": "流动的彩线",
+        "en": "Flowing threads"
+      },
+      "text": {
+        "zh": "缝纫垫里垂下的红线和白线，画得像流动的颜料，几乎是抽象的。",
+        "en": "The red and white threads spilling from the sewing cushion are painted like flowing paint, almost abstract."
+      }
+    },
+    "book": {
+      "title": {
+        "zh": "祈祷书",
+        "en": "The prayer book"
+      },
+      "text": {
+        "zh": "桌上有一本小小的祈祷书。当时的荷兰绘画，常把勤劳当作一种家庭美德。",
+        "en": "On the table is a small prayer book. Dutch painting of the time often presented industriousness as a domestic virtue."
+      }
+    },
+    "absorbed": {
+      "title": {
+        "zh": "她的专注",
+        "en": "Absorbed"
+      },
+      "text": {
+        "zh": "她低着头，全部注意力都在手上的活计里，完全没有注意到我们。",
+        "en": "Head bowed, she is completely absorbed in her work and pays us no attention at all."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "title": {
+          "zh": "一个安静的手艺",
+          "en": "A quiet craft"
+        },
+        "text": {
+          "zh": "17世纪60–70年代，花边女工是代尔夫特很受欢迎的绘画题材。维米尔画下了一位在家里做花边的年轻女子。",
+          "en": "In the 1660s and 1670s, lacemakers were a popular subject in Delft. Vermeer painted a young woman making lace at home."
+        },
+        "image": "images/lacemaker.jpg",
+        "alt": {
+          "zh": "维米尔《花边女工》约1669–70，巴黎卢浮宫",
+          "en": "Johannes Vermeer, The Lacemaker, c. 1669–70, Musée du Louvre, Paris"
+        },
+        "caption": {
+          "zh": "约1669–70年 · 巴黎卢浮宫",
+          "en": "c. 1669–70 · Musée du Louvre, Paris"
+        }
+      },
+      {
+        "title": {
+          "zh": "清楚与模糊",
+          "en": "Sharp and soft"
+        },
+        "text": {
+          "zh": "他让手指间的线清清楚楚，让离我们最近的彩线模糊得像流动的颜料。有人认为，他也许借助了暗箱这种光学装置。",
+          "en": "He made the thread between her fingers crisp, and the threads nearest to us blur like flowing paint. Some believe he may have used a camera obscura, an optical device."
+        }
+      },
+      {
+        "title": {
+          "zh": "来到卢浮宫",
+          "en": "To the Louvre"
+        },
+        "text": {
+          "zh": "1870年，这幅小小的画进入了卢浮宫。",
+          "en": "In 1870, this small painting entered the Louvre."
+        }
+      }
+    ],
+    "final": {
+      "zh": "要走近一点，才看得清。",
+      "en": "You have to come closer to see."
+    },
+    "museums": [
+      "louvre"
+    ],
+    "exit": [
+      {
+        "scene": "milkmaid",
+        "href": "../milkmaid/",
+        "label": {
+          "zh": "另一个专注做事的女子",
+          "en": "Another woman absorbed in her work"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸各处说法不一（24.5 × 21 cm 或 23.9 × 20.5 cm），卢浮宫官网核对不了，先标“待核对”不显示（_dimensions），等 Tia 核对后改成 dimensions。空着的行不显示。",
+    "artist": {
+      "zh": "约翰内斯·维米尔（1632–1675）",
+      "en": "Johannes Vermeer (1632–1675)"
+    },
+    "title": {
+      "zh": "花边女工",
+      "en": "The Lacemaker"
+    },
+    "date": {
+      "zh": "约1669–70年",
+      "en": "c. 1669–70"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "_dimensions": "待核对",
+    "collection": {
+      "zh": "巴黎卢浮宫（1870年入藏）",
+      "en": "Musée du Louvre, Paris (entered the Louvre in 1870)"
+    },
+    "url": "https://collections.louvre.fr/en/ark:/53355/cl010064918"
+  },
+  "zoom": {
+    "image": "images/lacemaker.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "卢浮宫藏品库：花边女工",
+          "en": "Louvre collections: *The Lacemaker*"
+        },
+        "url": "https://collections.louvre.fr/en/ark:/53355/cl010064918"
+      },
+      {
+        "title": {
+          "zh": "Art Dependence：维米尔的《花边女工》借给卢浮宫朗斯分馆一年",
+          "en": "Art Dependence: Vermeer's *The Lacemaker* will join the Louvre-Lens for one year"
+        },
+        "url": "https://artdependence.com/articles/vermeers-lacemaker-will-join-the-louvre-lens-for-one-year"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三段故事原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "一个安静的手艺",
+          "en": "A quiet craft"
+        },
+        "text": {
+          "zh": "17世纪60–70年代，花边女工是代尔夫特很受欢迎的绘画题材。维米尔画下了一位在家里做花边的年轻女子。",
+          "en": "In the 1660s and 1670s, lacemakers were a popular subject in Delft. Vermeer painted a young woman making lace at home."
+        }
+      },
+      {
+        "title": {
+          "zh": "清楚与模糊",
+          "en": "Sharp and soft"
+        },
+        "text": {
+          "zh": "他让手指间的线清清楚楚，让离我们最近的彩线模糊得像流动的颜料。有人认为，他也许借助了暗箱这种光学装置。",
+          "en": "He made the thread between her fingers crisp, and the threads nearest to us blur like flowing paint. Some believe he may have used a camera obscura, an optical device."
+        }
+      },
+      {
+        "title": {
+          "zh": "来到卢浮宫",
+          "en": "To the Louvre"
+        },
+        "text": {
+          "zh": "1870年，这幅小小的画进入了卢浮宫。",
+          "en": "In 1870, this small painting entered the Louvre."
+        }
+      }
+    ]
+  }
+}

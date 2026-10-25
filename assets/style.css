@@ -677,3 +677,10 @@ body.lang-both .col-row h3 .en { font-size: .68em; color: var(--muted); font-sty
   .col-row h3 { padding-right: 0; font-size: 21px; }
   .icon-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px 8px; }
 }
+
+/* 轻量版独家发现“移动焦点”：屏幕下方的滑杆 */
+#focusPanel { position: fixed; left: 50%; bottom: 96px; transform: translateX(-50%); z-index: 6; width: min(460px, calc(100% - 32px)); padding: 12px 16px; text-align: center; }
+#focusPanel input { width: 100%; }
+#focusPanel .focus-ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 2px; }
+#focusPanel p { font-size: 13px; margin: 8px 0 0; }
+.touch #focusPanel { bottom: 200px; }
