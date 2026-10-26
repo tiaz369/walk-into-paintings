@@ -10,6 +10,7 @@ import { hasGuide } from './guide.js';   // 关于页：有没有语音导览
 
 // 网站根目录（不管网站放在哪个网址下面都能找到）
 export const ROOT = new URL('../', import.meta.url).href;
+import { stamps, clearStamps, saved, heart } from './personal.js';   // 看画护照、我的画廊（只存在观众自己的浏览器里）
 
 // ---------- 双语文字 ----------
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -252,11 +253,17 @@ const NAV = [
   ['map/', '地图', 'Map'], ['museums/', '博物馆', 'Museums'], ['timeline/', '时间线', 'Timeline'],
   ['london/', '伦敦', 'London'], ['paris/', '巴黎', 'Paris'], ['amsterdam/', '阿姆斯特丹', 'Amsterdam'], ['about/', '关于', 'About']
 ];
+// 页眉右边的两个小图标：看画护照、我的画廊（不占主导航的位置）
+const ME = [
+  ['passport/', '看画护照', 'Passport', `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10.5" r="3.2"/><path d="M8.5 17h7"/></svg>`],
+  ['my-gallery/', '我的画廊', 'My gallery', heart(false).replace('width="16" height="16"', 'width="20" height="20"')]
+];
 export function chrome(active) {
   const header = document.createElement('header');
   header.className = 'wrap site-header';
   header.innerHTML = `<a class="brand" href="${ROOT}">${ui('走进名画', 'Walk into Paintings')}<small class="zh">Walk into Paintings</small></a>
-    <nav class="site-nav">${NAV.slice(1).map(([p, zh, en]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}">${ui(zh, en)}</a>`).join('')}</nav>`;
+    <nav class="site-nav">${NAV.slice(1).map(([p, zh, en]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}">${ui(zh, en)}</a>`).join('')}</nav>
+    <span class="nav-icons">${ME.map(([p, zh, en, icon]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}" title="${zh} · ${en}" aria-label="${zh} · ${en}">${icon}</a>`).join('')}</span>`;
   document.body.prepend(header);
   const footer = document.createElement('footer');
   footer.className = 'wrap site-footer';
@@ -742,6 +749,57 @@ const PAGES = {
       }).join('')}`;
     const cg = groups.find(g => g.type === 'compare');
     if (cg && main.querySelector('#cmp')) compareSlider(main, (cg.S.ending.versions || []).filter(v => v.image), cg.base);
+  },
+
+  // ---------- 看画护照：走到场景结尾就盖章（personal.js）；按城市和画家显示，集齐一组有徽章（文字在 data/passport.json） ----------
+  async passport(R, main) {
+    const T = await getJSON('passport.json'), got = stamps();
+    const cityOf = s => { const m = R.museumById[s.museum]; return m && (m.city || T.museumCity[m.id]); };
+    const cityName = id => (R.cityById[id] && R.cityById[id].name) || T.extraCities[id] || { zh: id, en: id };
+    const groupsBy = (keyOf, nameOf, kind) => {
+      const map = new Map();
+      for (const s of R.live) { const k = keyOf(s); if (!k) continue; if (!map.has(k)) map.set(k, []); map.get(k).push(s); }
+      return [...map].map(([k, list]) => ({ key: kind + ':' + k, name: nameOf(k), list, done: list.filter(s => got[s.id]).length }));
+    };
+    const cities = groupsBy(cityOf, cityName, 'city').sort((a, b) => b.list.length - a.list.length);
+    const artists = groupsBy(s => s.artist, k => (R.artistById[k] || {}).name || { zh: k, en: k }, 'artist').sort((a, b) => b.list.length - a.list.length);
+    const places = groupsBy(s => s.place, k => (R.placeById[k] || {}).name || { zh: k, en: k }, 'place');
+    const badgeName = g => T.badges[g.key] || { zh: '集齐' + g.name.zh, en: 'All of ' + g.name.en };
+    const badges = [...places, ...cities, ...artists].filter(g => g.list.length >= 2 && g.done === g.list.length);
+    const tile = s => { const on = !!got[s.id]; return `<a class="stamp${on ? ' on' : ''}" href="${sceneUrl(s)}" title="${esc(s.title.zh)} · ${esc(s.title.en)}">
+      <img src="${ROOT + s.cover}" ${altAttr(s.title)} loading="lazy" />${on ? `<span class="stamp-mark" aria-label="stamped">✓</span>` : ''}<span class="stamp-name">${bi(s.title)}</span></a>`; };
+    const group = g => `<div class="group pass-group"><h3>${bi(g.name)} <small class="pass-count">${g.done} / ${g.list.length}</small>${g.list.length >= 2 && g.done === g.list.length ? ` <span class="badge-mini">★ ${bi(badgeName(g))}</span>` : ''}</h3>
+      <div class="stamps">${g.list.map(tile).join('')}</div></div>`;
+    const total = Object.keys(got).filter(id => R.sceneById[id] && R.sceneById[id].status === 'live').length;
+    main.innerHTML = `<div class="wrap page-title"><h1>${bi(T.title)}</h1><p class="lead-sm">${bi(T.intro, ' / ')}</p>
+        <p class="pass-total">${ui(`已盖章 ${total} / ${R.live.length}`, `Stamped ${total} of ${R.live.length}`)}</p>
+        ${badges.length ? `<div class="badges">${badges.map(g => `<span class="badge">★ ${bi(badgeName(g))}</span>`).join('')}</div>` : ''}</div>
+      <section class="section wrap"><h2>${ui('按城市', 'By city')}<small class="sub">${ui('在哪里看真迹', 'Where to see them')}</small></h2>${cities.map(group).join('')}</section>
+      <section class="section wrap"><h2>${ui('按画家', 'By artist')}</h2>${artists.map(group).join('')}</section>
+      <section class="section wrap"><p><button class="btn" id="clearStamps">${bi(T.clear, ' / ')}</button></p></section>`;
+    main.querySelector('#clearStamps').onclick = () => { if (confirm(T.clearConfirm.zh + '\n' + T.clearConfirm.en)) { clearStamps(); PAGES.passport(R, main).then(() => setLang(lang)); } };
+  },
+
+  // ---------- 我的画廊：收藏的场景（personal.js）；?ids=a,b,c 是别人分享的画廊（只读）（文字在 data/my-gallery.json） ----------
+  async 'my-gallery'(R, main) {
+    const T = await getJSON('my-gallery.json');
+    const shared = param('ids');
+    const ids = (shared != null ? shared.split(',') : saved()).filter(id => R.sceneById[id] && R.sceneById[id].status === 'live');
+    const list = ids.map(id => R.sceneById[id]);
+    main.innerHTML = `<div class="wrap page-title"><h1>${bi(shared != null ? T.sharedTitle : T.title)}</h1>
+        <p class="lead-sm">${bi(shared != null ? T.sharedIntro : T.intro, ' / ')}</p>
+        ${shared == null && list.length ? `<p class="london-links"><button class="btn primary" id="shareGallery">${bi(T.share, ' / ')}</button><span id="shareOut" class="share-out"></span></p>` : ''}
+        ${shared != null ? `<p class="london-links"><a class="btn" href="${ROOT}my-gallery/">${bi(T.mine, ' / ')} →</a></p>` : ''}</div>
+      <section class="section wrap">${list.length ? `<div class="stamps gallery-grid">${list.map(s => `<a class="stamp on" href="${sceneUrl(s)}"><img src="${ROOT + s.cover}" ${altAttr(s.title)} loading="lazy" /><span class="stamp-name">${bi(s.title)}</span></a>`).join('')}</div>`
+        : `<p class="soon">${bi(T.empty, ' / ')}</p>`}</section>`;
+    const btn = main.querySelector('#shareGallery');
+    if (btn) btn.onclick = async () => {
+      const url = `${ROOT}my-gallery/?ids=${ids.join(',')}`;
+      track('share-gallery');
+      try { if (navigator.share) { await navigator.share({ title: textOf(T.title, lang), url }); return; } } catch (e) { if (e && e.name === 'AbortError') return; }
+      try { await navigator.clipboard.writeText(url); } catch (e) {}
+      main.querySelector('#shareOut').innerHTML = `${bi(T.copied, ' / ')}<br><a href="${url}">${esc(url)}</a>`;
+    };
   },
 
   // ---------- 在伦敦看真迹：按展厅的参观路线（文字在 data/london.json） ----------

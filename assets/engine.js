@@ -12,6 +12,7 @@ import * as THREE from 'three';
 import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupShareCard, shareBtnHTML } from './share.js';
+import { setupPersonal, saveBtnHTML } from './personal.js';
 import { setupSound } from './sound.js';
 import { variantOf, VARIANTS } from './variants.js';
 
@@ -133,6 +134,7 @@ function buildDOM(S, R, meta) {
     <button class="btn" id="vpBtn">${ui('原画叠加', 'Painting overlay')}</button>
     <button class="btn" id="shotBtn">📷 ${ui('拍一张', 'Snapshot')}</button>
     ${shareBtnHTML()}
+    ${saveBtnHTML()}
     <div class="seg${S.projection === false ? ' hidden' : ''}" id="modeSwitch">
       <button data-mode="paint" class="on">${ui('原画质感', 'Painted')}</button>
       <button data-mode="flat">${ui('简笔画', 'Simple view')}</button>
@@ -1277,6 +1279,7 @@ function run(S, R, meta) {
   oneMinute($('oneMin'));   // 一分钟看一幅画（可选）
   cleanToggle($('tools'));   // 隐藏按钮（录屏、截图用）
   setupShareCard(S);   // 分享卡片（share.js）
+  setupPersonal(S);    // 收藏、看画护照盖章（personal.js）
   addEventListener('pointerdown', () => { if (document.body.classList.contains('in-room')) hideHint(); });
   function finishIntro() {
     intro.style.display = 'none'; walking = true;
