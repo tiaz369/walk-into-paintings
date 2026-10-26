@@ -1,0 +1,35 @@
+{
+  "_说明": "我的画廊（/my-gallery/）的文字。收藏只保存在观众自己的浏览器里；“分享我的画廊”生成一个带场景编号的链接（?ids=场景1,场景2），别人打开后看到同样的画廊（只读）。",
+  "title": {
+    "zh": "我的画廊",
+    "en": "My gallery"
+  },
+  "intro": {
+    "zh": "在场景里点“收藏”（心形），作品就会出现在这里。收藏只保存在你自己的浏览器里。",
+    "en": "Tap “Save” (the heart) in a scene and it appears here. Your gallery stays in your own browser."
+  },
+  "empty": {
+    "zh": "还没有收藏。去走进一幅画，点心形收藏吧。",
+    "en": "Nothing saved yet. Step into a painting and tap the heart."
+  },
+  "share": {
+    "zh": "分享我的画廊",
+    "en": "Share my gallery"
+  },
+  "copied": {
+    "zh": "链接已复制",
+    "en": "Link copied"
+  },
+  "sharedTitle": {
+    "zh": "别人分享的画廊",
+    "en": "A shared gallery"
+  },
+  "sharedIntro": {
+    "zh": "这是别人收藏的作品（只读）。",
+    "en": "These are someone else's favourites (read only)."
+  },
+  "mine": {
+    "zh": "看我自己的画廊",
+    "en": "See my own gallery"
+  }
+}

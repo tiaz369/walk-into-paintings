@@ -12,6 +12,7 @@ import * as THREE from 'three';
 import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupShareCard, shareBtnHTML } from './share.js';
+import { setupPersonal, saveBtnHTML } from './personal.js';
 import { setupSound } from './sound.js';
 import { variantOf, VARIANTS } from './variants.js';
 
@@ -133,6 +134,7 @@ function buildDOM(S, R, meta) {
     <button class="btn" id="vpBtn">${ui('原画叠加', 'Painting overlay')}</button>
     <button class="btn" id="shotBtn">📷 ${ui('拍一张', 'Snapshot')}</button>
     ${shareBtnHTML()}
+    ${saveBtnHTML()}
     <div class="seg${S.projection === false ? ' hidden' : ''}" id="modeSwitch">
       <button data-mode="paint" class="on">${ui('原画质感', 'Painted')}</button>
       <button data-mode="flat">${ui('简笔画', 'Simple view')}</button>
@@ -147,6 +149,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'sit' ? `<button class="btn" id="sitBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'count' ? `<button class="btn" id="countBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && (S.exclusive.type === 'grayscale' || S.exclusive.type === 'colorPicker') ? `<button class="btn" id="exBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'ceilingLight' ? `<button class="btn" id="ceilBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button><div class="seg hidden" id="ceilSwitch"><button data-ceil="0">${ui(S.exclusive.then.zh, S.exclusive.then.en)}</button><button data-ceil="1" class="on">${ui(S.exclusive.now.zh, S.exclusive.now.en)}</button></div>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.today ? `<div class="seg hidden" id="todaySwitch"><button data-today="0" class="on">${ui(S.exclusive.today.then.zh, S.exclusive.today.then.en)}</button><button data-today="1">${ui(S.exclusive.today.now.zh, S.exclusive.today.now.en)}</button></div>` : ''}
     ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
@@ -205,6 +208,16 @@ function buildDOM(S, R, meta) {
     ${S.exclusive.note ? `<p>${bi(S.exclusive.note, ' / ')}</p>` : ''}
     ${S.exclusive.credit ? `<p><small>${bi(S.exclusive.credit, ' / ')}</small></p>` : ''}
   </div>` : ''}
+  ${S.exclusive && S.exclusive.type === 'grayscale' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
+  ${S.exclusive && S.exclusive.type === 'colorPicker' ? (X => `<div class="popup panel" id="picker">
+    <button class="close" data-close="picker" aria-label="Close">×</button>
+    <h3>${bi(X.label)}</h3>
+    <div class="pick-wrap"><img id="pickImg" src="${X.image || P.image}" ${altAttr(P.alt || '')} draggable="false" /><div id="pickDots"></div></div>
+    <p class="pick-hint">${ui('点一下画上的地方，取出那里的颜色', 'Tap the painting to pick a colour')}</p>
+    <div id="pickSwatches" class="pick-swatches"></div>
+    <p id="pickFound" class="pick-found"></p>
+    ${X.note ? `<p class="pick-note">${bi(X.note, ' / ')}</p>` : ''}
+  </div>`)(S.exclusive) : ''}
   ${S.exclusive && S.exclusive.type === 'mirror' ? (M => `<div class="popup panel" id="mirror">
     <button class="close" data-close="mirror" aria-label="Close">×</button>
     <h3>${bi(M.label)}</h3>
@@ -455,6 +468,7 @@ function run(S, R, meta) {
 
   // ---------- 家具和墙上的东西（种类见下面 BUILD） ----------
   const blocks = [];   // 走路时不能穿过的地方
+  const openers = [];  // 会自己打开的窗（casement）
   const ovals = [];    // 椭圆形展厅（ovalRoom）：只能在椭圆里面和 room.passages（门之间的通道，[x0, x1, z0, z1]）里走
   const wallFrame = (wallName, x, z) => wallName === 'back' ? { pos: [x, backZ(x) + 0.03], rot: BACK_ROT }
     : wallName === 'right' ? { pos: [rightX(z) - 0.03, z], rot: RIGHT_ROT } : { pos: [L + 0.03, z], rot: Math.PI / 2 };
@@ -649,6 +663,26 @@ function run(S, R, meta) {
       const m = quad(o.pts, paint(col(o.color), o.tex || 'wall').clone(), o.card, 0);
       m.material.side = THREE.DoubleSide; m.userData.double = true;
       if (o.id) named[o.id] = m;
+    },
+    // 一扇会自己打开的窗（比如《日出·印象》：开场站在酒店房间的窗前，走进去时两扇窗页往里打开）。
+    //   x, y, z：窗洞中心；w, h：窗洞宽高；wall：窗所在的墙往左右、上下各延伸多少米；color：窗框，wallColor：墙
+    casement(o) {
+      const g = group(o.x, o.y, o.z, 0, o.card), fw = 0.07, W2 = o.w / 2, H2 = o.h / 2, ext = o.wall ?? 2.5;
+      const parts = [];
+      for (const sgn of [-1, 1]) {
+        parts.push(box(fw, o.h + fw * 2, 0.1, o.color, sgn * (W2 + fw / 2), 0, 0, g));   // 左右窗框
+        parts.push(box(o.w + fw * 2, fw, 0.1, o.color, 0, sgn * (H2 + fw / 2), 0, g));   // 上下窗框
+        parts.push(box(ext, o.h + ext * 2, 0.08, o.wallColor || o.color, sgn * (W2 + fw + ext / 2), 0, 0.02, g, 'wall'));   // 窗两边的墙
+        parts.push(box(o.w + fw * 2, ext, 0.08, o.wallColor || o.color, 0, sgn * (H2 + fw + ext / 2), 0.02, g, 'wall'));   // 窗上下的墙
+      }
+      const leaves = [-1, 1].map(sgn => {   // 两扇窗页：铰链在窗洞左右两边
+        const hinge = new THREE.Group(); hinge.position.set(sgn * W2, 0, 0.02); g.add(hinge);
+        const leaf = box(W2, o.h, 0.04, o.leaf || o.color, -sgn * W2 / 2, 0, 0, hinge);
+        parts.push(leaf, box(W2 - 0.16, o.h - 0.16, 0.02, o.glass || '#cfd6da', -sgn * W2 / 2, 0, 0.025, hinge, 'cloth'));
+        return { hinge, sgn };
+      });
+      for (const m of parts) m.traverse(x => { x.userData.noPaint = true; });
+      openers.push({ leaves, t: 0, delay: o.delay ?? 0.4, angle: o.angle ?? 1.75 });
     },
     // 椭圆形展厅（比如橘园的睡莲展厅）：中心 x, z，半轴 a（左右）、b（前后），墙高 h。
     //   doors：门口的角度（度，0 = 往 -z 那一头，180 = 往 +z 那一头），门宽 doorWidth；
@@ -1277,6 +1311,7 @@ function run(S, R, meta) {
   oneMinute($('oneMin'));   // 一分钟看一幅画（可选）
   cleanToggle($('tools'));   // 隐藏按钮（录屏、截图用）
   setupShareCard(S);   // 分享卡片（share.js）
+  setupPersonal(S);    // 收藏、看画护照盖章（personal.js）
   addEventListener('pointerdown', () => { if (document.body.classList.contains('in-room')) hideHint(); });
   function finishIntro() {
     intro.style.display = 'none'; walking = true;
@@ -1498,6 +1533,53 @@ function run(S, R, meta) {
       if (!on) setCeil(1); else if (ceilObj.card) showCard(ceilObj.card);
     };
   }
+  // 独家发现“黑白”（grayscale）：整个画面变成黑白（看看颜色和亮度的关系，比如《日出·印象》里的太阳）
+  const grayObj = S.exclusive && S.exclusive.type === 'grayscale' ? S.exclusive : null;
+  if (grayObj) {
+    let used = false;
+    $('exBtn').onclick = () => {
+      const on = document.body.classList.toggle('bw');
+      $('exBtn').classList.toggle('on', on);
+      if ($('revealNote')) $('revealNote').classList.toggle('show', on);
+      if (on && !used) { used = true; track('exclusive-' + S.id); }
+      if (on && grayObj.card) showCard(grayObj.card);
+    };
+  }
+  // 独家发现“取色”（colorPicker）：点原画上的地方，读出那一小块像素的平均颜色，排成色块，并按色相归类（不预设答案）
+  const pickObj = S.exclusive && S.exclusive.type === 'colorPicker' ? S.exclusive : null;
+  if (pickObj) {
+    popups.picker = $('picker');
+    const img = $('pickImg'), cv = document.createElement('canvas'), names = new Set();
+    let g2 = null;
+    const ready = () => { cv.width = img.naturalWidth; cv.height = img.naturalHeight; g2 = cv.getContext('2d', { willReadFrequently: true }); g2.drawImage(img, 0, 0); };
+    if (img.complete && img.naturalWidth) ready(); else img.addEventListener('load', ready);
+    const HUES = [[15, '红', 'red'], [45, '橙', 'orange'], [70, '黄', 'yellow'], [165, '绿', 'green'], [255, '蓝', 'blue'], [300, '紫', 'violet'], [345, '粉', 'pink'], [361, '红', 'red']];
+    const nameOf = (r, gg, b) => {   // RGB → 颜色名（色相分段；很淡的算白或灰）
+      const mx = Math.max(r, gg, b) / 255, mn = Math.min(r, gg, b) / 255, l = (mx + mn) / 2, d = mx - mn;
+      const sat = d === 0 ? 0 : d / (1 - Math.abs(2 * l - 1));
+      if (sat < 0.1 || d < 0.04) return l > 0.75 ? ['白', 'white'] : l < 0.2 ? ['黑', 'black'] : ['灰', 'grey'];
+      let h = mx === r / 255 ? ((gg - b) / 255 / d) % 6 : mx === gg / 255 ? (b - r) / 255 / d + 2 : (r - gg) / 255 / d + 4;
+      h = (h * 60 + 360) % 360;
+      const [, zh, en] = HUES.find(([t]) => h < t); return [zh, en];
+    };
+    let used = false;
+    img.addEventListener('click', e => {
+      if (!g2) return;
+      const r = img.getBoundingClientRect(), fx = (e.clientX - r.left) / r.width, fy = (e.clientY - r.top) / r.height;
+      const px = Math.round(fx * cv.width), py = Math.round(fy * cv.height), R = Math.max(2, Math.round(cv.width / 300));
+      const d = g2.getImageData(Math.max(0, px - R), Math.max(0, py - R), R * 2 + 1, R * 2 + 1).data;
+      let rr = 0, gg = 0, bb = 0, n = 0; for (let i = 0; i < d.length; i += 4) { rr += d[i]; gg += d[i + 1]; bb += d[i + 2]; n++; }
+      rr = Math.round(rr / n); gg = Math.round(gg / n); bb = Math.round(bb / n);
+      const [zh, en] = nameOf(rr, gg, bb), hex = '#' + [rr, gg, bb].map(v => v.toString(16).padStart(2, '0')).join('');
+      const dot = document.createElement('span'); dot.className = 'pick-dot'; dot.style.left = fx * 100 + '%'; dot.style.top = fy * 100 + '%'; dot.style.background = hex; $('pickDots').append(dot);
+      const sw = document.createElement('span'); sw.className = 'pick-swatch'; sw.style.background = hex; sw.title = `${zh} · ${en} · ${hex}`; sw.innerHTML = `<span>${ui(zh, en)}</span>`; $('pickSwatches').append(sw);
+      names.add(zh + '|' + en);
+      const list = [...names].map(x => x.split('|'));
+      $('pickFound').innerHTML = ui(`你找到了 ${list.length} 种：${list.map(x => x[0]).join('、')}`, `You found ${list.length}: ${list.map(x => x[1]).join(', ')}`);
+      if (!used) { used = true; track('exclusive-' + S.id); }
+    });
+    $('exBtn').onclick = () => { togglePopup('picker'); if (pickObj.card) showCard(pickObj.card); };
+  }
   function stepCeil(dt) {   // 慢慢变暗 / 变亮（约 2 秒）
     if (!ceilObj || Math.abs(ceilTarget - ceilNow) < 0.001) return;
     ceilNow += Math.sign(ceilTarget - ceilNow) * Math.min(Math.abs(ceilTarget - ceilNow), dt / 2);
@@ -1520,8 +1602,8 @@ function run(S, R, meta) {
       revealGroup.visible = revealK > 0.01;
       for (const [m, full] of revealMats) m.opacity = full * revealK;
     }
-    if (windObj) {   // 起风了：慢慢变强 / 变弱
-      windK += ((windOn ? 1 : 0) - windK) * Math.min(1, dt * 1.5);
+    if (windObj || RM.breeze) {   // 起风了：慢慢变强 / 变弱；room.breeze：一直有一点风（比如《撑阳伞的女人》）
+      windK += ((windObj && windOn ? 1 : (RM.breeze || 0)) - windK) * Math.min(1, dt * 1.5);
       const t = clock.elapsedTime; projUniforms.uWind.value = windK; projUniforms.uTime.value = t;
       for (const w of swayers) { w.g.rotation.z = windK * w.amp * Math.sin(t * 2.1 + w.phase); w.g.rotation.x = windK * w.amp * 0.4 * Math.sin(t * 1.6 + w.phase * 1.3); }
     }
@@ -1562,6 +1644,11 @@ function run(S, R, meta) {
     wallMat.color.lerp(wallTarget, 1 - Math.exp(-dt * 4));
     stepToggles(dt);
     stepCeil(dt);
+    for (const op of openers) if (walking && op.t < 1) {   // 窗页慢慢往里打开（约 1.8 秒）
+      op.delay -= dt; if (op.delay > 0) continue;
+      op.t = Math.min(1, op.t + dt / 1.8); const k = ease(op.t);
+      for (const l of op.leaves) l.hinge.rotation.y = l.sgn * op.angle * k;
+    }
     if (todayObj && Math.abs(todayTarget - todayNow) > 0.001) {   // “今天”：其他部分慢慢淡出（约 2 秒）
       todayNow += Math.sign(todayTarget - todayNow) * Math.min(Math.abs(todayTarget - todayNow), dt / 2);
       for (const m of todayMeshes) {

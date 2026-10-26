@@ -236,6 +236,28 @@ const AMBIENCE = {
     murmur(voices, 0.05)(st);
     every(st, 18, 40, t => { voices.gain.setTargetAtTime(1, t, 0.4); voices.gain.setTargetAtTime(0, t + rnd(2.5, 4.5), 0.6); });   // 低语：几秒钟，又安静下来
   },
+  // 清晨的港口：水声，远处的船笛和海鸥，偶尔划桨的声音（A harbour at dawn）
+  harbour(out, st) {
+    const w = loopNoise('brown', out, { freq: 330, gain: 0.08 });
+    st.timers.push(setInterval(() => w.g.gain.setTargetAtTime(0.05 + 0.06 * Math.random(), ctx.currentTime, 2), 3000));
+    lap(out, ctx.currentTime + 0.6); every(st, 3, 6, t => lap(out, t));
+    const far = ctx.createGain(); far.gain.value = 0.3; far.connect(pan(out, 0.4));
+    const horn = t => { tone(far, t, { f0: 98, type: 'triangle', vol: 0.12, attack: 0.4, dur: 2.6 }); tone(far, t, { f0: 147, type: 'triangle', vol: 0.05, attack: 0.4, dur: 2.6 }); };   // 远处的船笛：低沉的长音
+    horn(ctx.currentTime + 6); every(st, 35, 70, horn);
+    const gull = t => { const p = rnd(-0.8, 0.8), n = 2 + Math.floor(Math.random() * 3); for (let k = 0; k < n; k++) tone(out, t + k * rnd(0.25, 0.4), { f0: rnd(1500, 1900), f1: rnd(900, 1200), type: 'triangle', vol: 0.025, attack: 0.02, dur: rnd(0.25, 0.4), p }); };   // 海鸥：几声往下滑的叫声
+    every(st, 8, 18, gull);
+    const oar = t => { for (let k = 0; k < 3; k++) burst(out, t + k * 1.6, { kind: 'white', type: 'bandpass', freq: rnd(600, 900), q: 1.2, vol: 0.05, dur: 0.35, p: -0.3 }); };   // 划桨：三下慢慢的水声
+    every(st, 20, 40, oar);
+  },
+  // 夏日的草坡：风声，草叶沙沙作响，远处的鸟叫（A summer hillside）
+  'summer-slope'(out, st) {
+    const w = loopNoise('brown', out, { freq: 480, gain: 0.14 });
+    st.timers.push(setInterval(() => w.g.gain.setTargetAtTime(0.08 + 0.14 * Math.random(), ctx.currentTime, 1.2), 2200));   // 一阵一阵的风
+    const grass = loopNoise('white', out, { type: 'highpass', freq: 3500, gain: 0.012 });
+    st.timers.push(setInterval(() => grass.g.gain.setTargetAtTime(0.004 + 0.02 * Math.random(), ctx.currentTime, 0.8), 1700));   // 草叶沙沙
+    const far = ctx.createGain(); far.gain.value = 0.4; far.connect(out);
+    every(st, 4, 10, t => bird(far, t));
+  },
   // 火车站的车棚里：蒸汽喷出的嘶嘶声，远处的汽笛，铁轮滚过铁轨，月台上的人声（Inside the station shed）
   station(out, st) {
     loopNoise('brown', out, { freq: 260, gain: 0.08 });

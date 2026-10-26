@@ -97,7 +97,7 @@ CREDIT = ('<p><span lang="zh-CN">创意、故事与文字：<a href="https://tia
 NAV = [('', '首页', 'Home'), ('artists/', '画家', 'Artists'), ('themes/', '主题', 'Themes'), ('moods/', '心情', 'Moods'), ('periods/', '时期', 'Periods'),
        ('map/', '地图', 'Map'), ('museums/', '博物馆', 'Museums'), ('timeline/', '时间线', 'Timeline'),
        ('london/', '伦敦', 'London'), ('paris/', '巴黎', 'Paris'), ('amsterdam/', '阿姆斯特丹', 'Amsterdam'), ('about/', '关于', 'About')]
-def nav(up): return '<nav>' + ' · '.join(f'<a href="{up}{p}">{zh} {en}</a>' for p, zh, en in NAV) + '</nav>'
+def nav(up): return '<nav>' + ' · '.join(f'<a href="{up}{p}">{zh} {en}</a>' for p, zh, en in NAV) + f' · <a href="{up}passport/">看画护照 Passport</a> · <a href="{up}my-gallery/">我的画廊 My gallery</a></nav>'
 
 # ---------- 页面外壳 ----------
 def head(path, title, desc, image, image_alt, up, scene=False):
@@ -297,6 +297,11 @@ def ldn_section(sec, live_only=False):   # live_only（巴黎、阿姆斯特丹�
     return f'<section id="{sec["museum"]}"><h2>{bi(sec["title"])}</h2><p>{e(both(sec["subtitle"], " / "))}</p><ul>{links}</ul>{ls}</section>'
 PAGES.append(page('london/', T(LONDON['title']['zh'], LONDON['title']['en']), f'{both(LONDON["title"])}：' + '；'.join(both(sec["subtitle"], " / ") for sec in LONDON['sections']),
                   f'      <h1>{bi(LONDON["title"])}</h1>\n      <p>{e(both(LONDON["notice"], " / "))}</p>\n      ' + ''.join(ldn_section(sec) for sec in LONDON['sections']), site_script('../', 'london')))
+# ---------- 看画护照、我的画廊：内容在观众自己的浏览器里，这里只写标题和说明 ----------
+for key, f in (('passport', 'passport.json'), ('my-gallery', 'my-gallery.json')):
+    PT = json.load(open(os.path.join(ROOT, 'data', f), encoding='utf-8'))
+    PAGES.append(page(key + '/', T(PT['title']['zh'], PT['title']['en']), f'{both(PT["title"])}：{both(PT["intro"], " / ")}',
+                      f'      <h1>{bi(PT["title"])}</h1>\n      <p>{e(both(PT["intro"], " / "))}</p>', site_script('../', key)))
 for c, CT in CITIES.items():
     PAGES.append(page(c + '/', T(CT['title']['zh'], CT['title']['en']), f'{both(CT["title"])}：' + '；'.join(both(sec["subtitle"], " / ") for sec in CT['sections']),
                       f'      <h1>{bi(CT["title"])}</h1>\n      <p>{e(both(CT["notice"], " / "))}</p>\n      ' + ''.join(ldn_section(sec, True) for sec in CT['sections']), site_script('../', c)))

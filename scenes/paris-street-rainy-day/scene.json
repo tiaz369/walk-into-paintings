@@ -18,7 +18,8 @@
     ],
     "end": [
       "umbrellas",
-      "gare-saint-lazare"
+      "gare-saint-lazare",
+      "woman-parasol"
     ]
   },
   "painting": {
@@ -778,6 +779,14 @@
         "label": {
           "zh": "路口旁边的车站，同一场画展",
           "en": "The station next door, the same exhibition"
+        }
+      },
+      {
+        "scene": "woman-parasol",
+        "href": "../woman-parasol/",
+        "label": {
+          "zh": "同属“雨伞与阳伞”：莫奈《撑阳伞的女人》",
+          "en": "Also in Umbrellas & Parasols: Monet's *Woman with a Parasol*"
         }
       }
     ]

@@ -1,0 +1,66 @@
+{
+  "_说明": "看画护照（/passport/）的文字。场景按“在哪座城市看真迹”（博物馆所在城市）和画家分组；集齐一组里全部已上线的场景（至少2个）就显示一枚徽章。cities：data/scenes.json 里没有写 city 的博物馆，在这里补上城市（只给护照用，不影响地图）。badges：徽章的名字，没写的用默认的“集齐…… / All of ……”。places 是画里的地方（场景的 place），也有徽章。",
+  "title": {
+    "zh": "看画护照",
+    "en": "Passport"
+  },
+  "intro": {
+    "zh": "走到一个场景的最后一屏，就会自动盖一个章。记录只保存在你自己的浏览器里。",
+    "en": "Reach the last screen of a scene and it gets stamped here. Your stamps stay in your own browser."
+  },
+  "extraCities": {
+    "vienna": {
+      "zh": "维也纳",
+      "en": "Vienna"
+    },
+    "los-angeles": {
+      "zh": "洛杉矶",
+      "en": "Los Angeles"
+    },
+    "boston": {
+      "zh": "波士顿",
+      "en": "Boston"
+    },
+    "ghent": {
+      "zh": "根特",
+      "en": "Ghent"
+    }
+  },
+  "museumCity": {
+    "orangerie": "paris",
+    "louvre": "paris",
+    "british-museum": "london",
+    "phillips": "washington",
+    "khm": "vienna",
+    "belvedere": "vienna",
+    "getty": "los-angeles",
+    "mfa-boston": "boston",
+    "st-bavo": "ghent"
+  },
+  "badges": {
+    "place:arles": {
+      "zh": "阿尔勒的一年",
+      "en": "A year in Arles"
+    },
+    "place:saint-remy": {
+      "zh": "圣雷米的花园",
+      "en": "The garden at Saint-Rémy"
+    },
+    "place:delft": {
+      "zh": "代尔夫特的光",
+      "en": "The light of Delft"
+    },
+    "place:nuenen": {
+      "zh": "纽南的农舍",
+      "en": "A cottage in Nuenen"
+    }
+  },
+  "clear": {
+    "zh": "清除记录",
+    "en": "Clear my stamps"
+  },
+  "clearConfirm": {
+    "zh": "确定要清除所有盖章记录吗？",
+    "en": "Clear all your stamps?"
+  }
+}
