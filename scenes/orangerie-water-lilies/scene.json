@@ -1,0 +1,560 @@
+{
+  "_说明": "睡莲（室内，完整版：橘园美术馆的两个椭圆形展厅，360度环绕）。所有事实文字由 Tia 提供（资料主要来自橘园美术馆官网）。8幅画板的图从 Wikimedia Commons 下载（Google Art Project 的公有领域扫描图，不用有观众的展厅照片）。这个场景没有“画家视角”（viewpoint.painter: false）：观众站在第一个展厅里，可以转身360度，也可以穿过门口走到第二个展厅。图片上传前，画板先用接近原画的颜色代替；上传后把每幅的 _file 改成 image，再把登记表里的 status 改成 live。展厅里画的排列和门的位置是示意，不是精确的平面图。",
+  "id": "orangerie-water-lilies",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "磨砂玻璃天花板透下来的自然光",
+      "en": "Natural light through a frosted glass ceiling"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮。和《睡莲池》互相链接（二十多年后，同一片池塘）；和《日出·印象》互相链接（从“印象”开始，到睡莲结束；《日出·印象》上线后按钮才出现）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "water-lily-pond",
+      "impression-sunrise"
+    ]
+  },
+  "painting": {
+    "image": "images/water-lilies.jpg",
+    "width": 1600,
+    "height": 1000,
+    "alt": {
+      "zh": "莫奈《睡莲》，橘园美术馆",
+      "en": "Claude Monet, Water Lilies, Musée de l'Orangerie"
+    },
+    "_": "封面图：上传8幅画板以后，把它们拼成一张（两个展厅各四幅），宽高改成真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "睡莲",
+      "en": "Water Lilies"
+    },
+    "artist": {
+      "zh": "莫奈",
+      "en": "Claude Monet"
+    },
+    "date": {
+      "zh": "1914–1926年",
+      "en": "1914–26"
+    },
+    "museum": {
+      "zh": "巴黎橘园美术馆",
+      "en": "Musée de l'Orangerie, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons（Google Art Project），公有领域",
+      "en": "Wikimedia Commons (Google Art Project), public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进展厅",
+    "en": "Step into the rooms"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>转一圈，看看四周的睡莲 · 穿过门口，走到第二个展厅 · 点画、墙和天花板看介绍 · 点“找回的光”，比较1960年代和今天的光",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Turn all the way round to see the water lilies · Walk through the doorway into the second room · Tap the paintings, the walls or the ceiling to learn more · Tap “The light restored” to compare the 1960s with today"
+  },
+  "viewpoint": {
+    "_说明": "这个场景没有画家视角（painter: false）：这里是观众刚走进第一个展厅时站的地方，面向右边的墙。",
+    "painter": false,
+    "x": -1.4,
+    "z": 2.5,
+    "eye": 1.6,
+    "yaw": 1.5708,
+    "pitch": 0.06,
+    "fov": 70,
+    "text": {
+      "zh": "站在展厅中间，被睡莲包围。",
+      "en": "Stand in the middle of the room, surrounded by water lilies."
+    }
+  },
+  "ambience": "gallery",
+  "colors": {
+    "line": "#6f6a60",
+    "floor": "#cfc6b4",
+    "wall": "#f2efe6",
+    "bench": "#8a7a66"
+  },
+  "room": {
+    "_说明": "房间形状（米）：两个椭圆形展厅外面的一个大长方形（只在门口看得到一点）。第一个展厅的中心在 z=0，第二个在 z=-23.4；passages 是门口的通道（只能在椭圆里和通道里走）。",
+    "height": 5,
+    "front": 13,
+    "left": -8,
+    "backLeft": [
+      -8,
+      -36
+    ],
+    "backRight": [
+      8,
+      -36
+    ],
+    "rightFront": [
+      8,
+      13
+    ],
+    "floorCard": "orange",
+    "wallCard": "orange",
+    "walkSpeed": 1.4,
+    "walkEye": 1.6,
+    "passages": [
+      [
+        -1.2,
+        1.2,
+        9.3,
+        12.8
+      ],
+      [
+        -1.2,
+        1.2,
+        -12.7,
+        -9.3
+      ]
+    ]
+  },
+  "objects": [
+    {
+      "type": "ovalRoom",
+      "_": "第一个展厅：门在两头（180° 往入口，0° 往第二个展厅）；右边一段挂《早晨》和《落日》，左边一段挂《云》和《绿色的倒影》",
+      "x": 0,
+      "z": 0,
+      "a": 5.6,
+      "b": 10,
+      "h": 4.4,
+      "panelY": 0.7,
+      "doors": [
+        0,
+        180
+      ],
+      "doorWidth": 2.4,
+      "card": "ovals",
+      "ceilingCard": "light",
+      "ceilingId": "ceil1",
+      "runs": [
+        [
+          {
+            "id": "p-matin",
+            "_file": "images/matin.jpg",
+            "_title": "早晨 / Morning",
+            "w": 12.75,
+            "h": 2,
+            "color": "#9fb7b4",
+            "card": "wave"
+          },
+          {
+            "id": "p-soleil",
+            "_file": "images/soleil-couchant.jpg",
+            "_title": "落日 / Setting Sun",
+            "w": 6,
+            "h": 2,
+            "color": "#c9a873",
+            "card": "peace"
+          }
+        ],
+        [
+          {
+            "id": "p-nuages",
+            "_file": "images/nuages.jpg",
+            "_title": "云 / The Clouds",
+            "w": 12.75,
+            "h": 2,
+            "color": "#b4c2cf",
+            "card": "metres"
+          },
+          {
+            "id": "p-verts",
+            "_file": "images/reflets-verts.jpg",
+            "_title": "绿色的倒影 / Green Reflections",
+            "w": 8.5,
+            "h": 2,
+            "color": "#7f9e86",
+            "card": "wave"
+          }
+        ]
+      ]
+    },
+    {
+      "type": "ovalRoom",
+      "_": "第二个展厅：只有一个门（180° 往第一个展厅），四幅画沿墙一圈",
+      "x": 0,
+      "z": -23.4,
+      "a": 6.1,
+      "b": 11.4,
+      "h": 4.4,
+      "panelY": 0.7,
+      "doors": [
+        180
+      ],
+      "doorWidth": 2.4,
+      "card": "ovals",
+      "ceilingCard": "light",
+      "ceilingId": "ceil2",
+      "runs": [
+        [
+          {
+            "id": "p-arbres",
+            "_file": "images/reflets-arbres.jpg",
+            "_title": "树的倒影 / Tree Reflections",
+            "w": 8.5,
+            "h": 2,
+            "color": "#6f8a80",
+            "card": "metres"
+          },
+          {
+            "id": "p-matin-clair",
+            "_file": "images/matin-clair-saules.jpg",
+            "_title": "柳树下晴朗的早晨 / Clear Morning with Willows",
+            "w": 12.75,
+            "h": 2,
+            "color": "#a9c0b8",
+            "card": "peace"
+          },
+          {
+            "id": "p-deux",
+            "_file": "images/deux-saules.jpg",
+            "_title": "两棵柳树 / The Two Willows",
+            "w": 17,
+            "h": 2,
+            "color": "#8ea49a",
+            "card": "wave"
+          },
+          {
+            "id": "p-matin-saules",
+            "_file": "images/matin-saules.jpg",
+            "_title": "柳树下的早晨 / Morning with Willows",
+            "w": 12.75,
+            "h": 2,
+            "color": "#9db0a6",
+            "card": "metres"
+          }
+        ]
+      ]
+    },
+    {
+      "type": "building",
+      "_": "第一个展厅中间的长椅",
+      "x": 0,
+      "z": 1.6,
+      "w": 0.7,
+      "h": 0.45,
+      "d": 3.2,
+      "color": "bench",
+      "card": "ovals"
+    },
+    {
+      "type": "building",
+      "_": "第二个展厅中间的长椅",
+      "x": 0,
+      "z": -21.8,
+      "w": 0.7,
+      "h": 0.45,
+      "d": 3.2,
+      "color": "bench",
+      "card": "ovals"
+    }
+  ],
+  "cards": {
+    "peace": {
+      "title": {
+        "zh": "和平的礼物",
+        "en": "A gift for peace"
+      },
+      "text": {
+        "zh": "1918年11月11日停战后的第二天，莫奈写信给总理克列孟梭，把睡莲作为和平的象征献给法国。",
+        "en": "The day after the Armistice of 11 November 1918, Monet wrote to the prime minister, Georges Clemenceau, offering the Water Lilies to France as a symbol of peace."
+      }
+    },
+    "ovals": {
+      "title": {
+        "zh": "两个椭圆",
+        "en": "Two ovals"
+      },
+      "text": {
+        "zh": "莫奈亲自设计了这两个椭圆形展厅，画沿着弧形的墙面一圈排开。",
+        "en": "Monet himself designed these two oval rooms, with the paintings following their curved walls."
+      }
+    },
+    "wave": {
+      "title": {
+        "zh": "没有岸的波浪",
+        "en": "A wave without shore"
+      },
+      "text": {
+        "zh": "他说，他想给观众“一个无边无际的整体、一片没有地平线也没有岸的波浪”的错觉。",
+        "en": "He wanted to give viewers “the illusion of an endless whole, of a wave without horizon and without shore”."
+      }
+    },
+    "metres": {
+      "title": {
+        "zh": "91米",
+        "en": "91 metres"
+      },
+      "text": {
+        "zh": "8幅画，每幅高约2米，加起来总长超过91米。",
+        "en": "Eight compositions, each about two metres high, stretch over 91 metres in total."
+      }
+    },
+    "light": {
+      "title": {
+        "zh": "自然光",
+        "en": "Natural light"
+      },
+      "text": {
+        "zh": "光从磨砂玻璃天花板上洒下来，天气和时间不同，画也会跟着变。",
+        "en": "Light falls from a frosted glass ceiling, so the paintings change with the weather and the time of day."
+      }
+    },
+    "orange": {
+      "title": {
+        "zh": "橙树的温室",
+        "en": "A home for orange trees"
+      },
+      "text": {
+        "zh": "橘园建于1852年，原本是给杜乐丽花园里的橙树过冬的温室。",
+        "en": "The Orangerie was built in 1852 to shelter the orange trees of the Tuileries Garden in winter."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“找回的光”：在“1960年代”（天花板被盖住，展厅变暗，只有人工灯光）和“今天”（自然光从磨砂玻璃天花板洒下）之间切换。这是示意，不是当年的真实样子。打开就算发现了卡片“自然光”。",
+    "type": "ceilingLight",
+    "label": {
+      "zh": "找回的光",
+      "en": "The light restored"
+    },
+    "then": {
+      "zh": "1960年代",
+      "en": "1960s"
+    },
+    "now": {
+      "zh": "今天",
+      "en": "Today"
+    },
+    "card": "light",
+    "ceiling": [
+      "ceil1",
+      "ceil2"
+    ],
+    "covered": "#3e3b36",
+    "lamps": [
+      [
+        0,
+        3.9,
+        6
+      ],
+      [
+        0,
+        3.9,
+        -6
+      ],
+      [
+        0,
+        3.9,
+        -16
+      ],
+      [
+        0,
+        3.9,
+        -23.4
+      ],
+      [
+        0,
+        3.9,
+        -30
+      ]
+    ],
+    "lampColor": "#ffcf8f",
+    "lampPower": 1.4,
+    "note": {
+      "zh": "20世纪60年代的翻修挡住了自然光，2006年才重新找回莫奈想要的光。这是示意。",
+      "en": "Renovations in the 1960s blocked the natural light. In 2006, the light Monet wanted was restored. This is an illustration."
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/water-lilies.jpg",
+        "alt": {
+          "zh": "莫奈《睡莲》，橘园美术馆",
+          "en": "Claude Monet, Water Lilies, Musée de l'Orangerie"
+        },
+        "caption": {
+          "zh": "1914–1926年 · 巴黎橘园美术馆",
+          "en": "1914–26 · Musée de l'Orangerie, Paris"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 三十年的睡莲",
+          "en": "Thirty years of water lilies"
+        },
+        "text": {
+          "zh": "从19世纪90年代末到1926年去世，莫奈用了将近三十年画他吉维尼花园里的睡莲池。这组巨大的画，是整个系列的顶峰。",
+          "en": "From the late 1890s until his death in 1926, Monet spent nearly thirty years painting the water-lily pond in his garden at Giverny. These huge paintings are the summit of that cycle."
+        }
+      },
+      {
+        "image": "images/water-lilies.jpg",
+        "alt": {
+          "zh": "莫奈《睡莲》，橘园美术馆",
+          "en": "Claude Monet, Water Lilies, Musée de l'Orangerie"
+        },
+        "caption": {
+          "zh": "1914–1926年 · 巴黎橘园美术馆",
+          "en": "1914–26 · Musée de l'Orangerie, Paris"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 停战后的第二天",
+          "en": "The day after the Armistice"
+        },
+        "text": {
+          "zh": "1918年11月12日，第一次世界大战停战后的第二天，莫奈写信给克列孟梭，要把这些画作为和平的象征献给国家。",
+          "en": "On 12 November 1918, the day after the Armistice ended the First World War, Monet wrote to Clemenceau, offering these paintings to the nation as a symbol of peace."
+        }
+      },
+      {
+        "image": "images/water-lilies.jpg",
+        "alt": {
+          "zh": "莫奈《睡莲》，橘园美术馆",
+          "en": "Claude Monet, Water Lilies, Musée de l'Orangerie"
+        },
+        "caption": {
+          "zh": "1914–1926年 · 巴黎橘园美术馆",
+          "en": "1914–26 · Musée de l'Orangerie, Paris"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 找回的光",
+          "en": "The light restored"
+        },
+        "text": {
+          "zh": "1927年，莫奈去世几个月后，展厅按他的设计开放。20世纪60年代的翻修挡住了自然光，直到2006年，展厅才恢复了莫奈想要的样子。",
+          "en": "In 1927, a few months after Monet's death, the rooms opened according to his design. Renovations in the 1960s blocked out the natural light; only in 2006 were the rooms restored as Monet intended."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一片没有地平线也没有岸的波浪。",
+      "en": "A wave without horizon and without shore."
+    },
+    "versions": [],
+    "museums": [
+      "orangerie"
+    ],
+    "exit": [
+      {
+        "scene": "water-lily-pond",
+        "href": "../water-lily-pond/",
+        "label": {
+          "zh": "二十多年后，同一片池塘",
+          "en": "The same pond, two decades later"
+        }
+      },
+      {
+        "scene": "impression-sunrise",
+        "href": "../impression-sunrise/",
+        "label": {
+          "zh": "从“印象”开始，到睡莲结束",
+          "en": "From Impression to the Water Lilies"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。年份按橘园官网的单幅作品页写 1914–1926（不加“约”）。",
+    "artist": {
+      "zh": "克劳德·莫奈（1840–1926）",
+      "en": "Claude Monet (1840–1926)"
+    },
+    "title": {
+      "zh": "睡莲",
+      "en": "Water Lilies (Les Nymphéas)"
+    },
+    "date": {
+      "zh": "1914–1926年",
+      "en": "1914–26"
+    },
+    "medium": {
+      "zh": "布面油画，8幅组画，每幅高约2米，总长超过91米",
+      "en": "Oil on canvas, 8 compositions, each about 2 m high, over 91 m in total"
+    },
+    "collection": {
+      "zh": "巴黎橘园美术馆（1927年起展出）",
+      "en": "Musée de l'Orangerie, Paris (on display since 1927)"
+    },
+    "url": "https://www.musee-orangerie.fr/en/node/33"
+  },
+  "zoom": {
+    "image": "images/water-lilies.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "橘园美术馆：睡莲系列的历史",
+          "en": "Musée de l'Orangerie: History of the Water Lilies cycle"
+        },
+        "url": "https://www.musee-orangerie.fr/en/node/33"
+      },
+      {
+        "title": {
+          "zh": "橘园美术馆：莫奈的睡莲",
+          "en": "Musée de l'Orangerie: The Water Lilies by Claude Monet"
+        },
+        "url": "https://www.musee-orangerie.fr/en/node/197502"
+      },
+      {
+        "title": {
+          "zh": "巴黎大区旅游局：橘园美术馆",
+          "en": "Visit Paris Region: Musée de l'Orangerie"
+        },
+        "url": "https://www.visitparisregion.com/en/musee-de-l-orangerie"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 三十年的睡莲",
+          "en": "Thirty years of water lilies"
+        },
+        "text": {
+          "zh": "从19世纪90年代末到1926年去世，莫奈用了将近三十年画他吉维尼花园里的睡莲池。这组巨大的画，是整个系列的顶峰。",
+          "en": "From the late 1890s until his death in 1926, Monet spent nearly thirty years painting the water-lily pond in his garden at Giverny. These huge paintings are the summit of that cycle."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 停战后的第二天",
+          "en": "The day after the Armistice"
+        },
+        "text": {
+          "zh": "1918年11月12日，第一次世界大战停战后的第二天，莫奈写信给克列孟梭，要把这些画作为和平的象征献给国家。",
+          "en": "On 12 November 1918, the day after the Armistice ended the First World War, Monet wrote to Clemenceau, offering these paintings to the nation as a symbol of peace."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 找回的光",
+          "en": "The light restored"
+        },
+        "text": {
+          "zh": "1927年，莫奈去世几个月后，展厅按他的设计开放。20世纪60年代的翻修挡住了自然光，直到2006年，展厅才恢复了莫奈想要的样子。",
+          "en": "In 1927, a few months after Monet's death, the rooms opened according to his design. Renovations in the 1960s blocked out the natural light; only in 2006 were the rooms restored as Monet intended."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}

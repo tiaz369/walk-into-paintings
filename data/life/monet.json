@@ -1,0 +1,61 @@
+{
+  "_说明": "画家页的“生平 / Life”一节（莫奈）。结构和 van-gogh.json 一样；文字由 Tia 提供（来自她发的各个场景的资料）。scenes 写场景 id：已上线的显示缩略图、可以点进去；还没上线的不显示。英文里用 *星号* 包住的是画名，会显示成斜体。",
+  "entries": [
+    {
+      "date": {
+        "zh": "1840",
+        "en": "1840"
+      },
+      "text": {
+        "zh": "生于巴黎",
+        "en": "Born in Paris"
+      }
+    },
+    {
+      "date": {
+        "zh": "1877年1月",
+        "en": "January 1877"
+      },
+      "text": {
+        "zh": "开始画圣拉扎尔火车站，大约四个月画了12幅",
+        "en": "Begins painting the Gare Saint-Lazare, completing twelve views in about four months"
+      },
+      "scenes": [
+        "gare-saint-lazare"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1918年11月12日",
+        "en": "12 November 1918"
+      },
+      "text": {
+        "zh": "把睡莲献给国家",
+        "en": "Offers the *Water Lilies* to the nation"
+      }
+    },
+    {
+      "date": {
+        "zh": "1926",
+        "en": "1926"
+      },
+      "text": {
+        "zh": "在吉维尼去世，终年86岁",
+        "en": "Dies at Giverny, aged 86"
+      }
+    },
+    {
+      "date": {
+        "zh": "1927",
+        "en": "1927"
+      },
+      "text": {
+        "zh": "睡莲展厅开放",
+        "en": "The Water Lilies rooms open"
+      },
+      "scenes": [
+        "orangerie-water-lilies"
+      ]
+    }
+  ]
+}

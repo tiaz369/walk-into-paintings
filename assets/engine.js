@@ -145,6 +145,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'sit' ? `<button class="btn" id="sitBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'count' ? `<button class="btn" id="countBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'ceilingLight' ? `<button class="btn" id="ceilBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button><div class="seg hidden" id="ceilSwitch"><button data-ceil="0">${ui(S.exclusive.then.zh, S.exclusive.then.en)}</button><button data-ceil="1" class="on">${ui(S.exclusive.now.zh, S.exclusive.now.en)}</button></div>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.today ? `<div class="seg hidden" id="todaySwitch"><button data-today="0" class="on">${ui(S.exclusive.today.then.zh, S.exclusive.today.then.en)}</button><button data-today="1">${ui(S.exclusive.today.now.zh, S.exclusive.today.now.en)}</button></div>` : ''}
     ${S.exclusive && S.exclusive.options ? `<div class="seg" id="wallSwitch">${S.exclusive.options.map((o, i) =>
       `<button data-opt="${i}" class="${i === 0 ? 'on' : ''}">${ui(o.label.zh, o.label.en)}</button>`).join('')}</div>` : ''}
@@ -159,6 +160,7 @@ function buildDOM(S, R, meta) {
   </div>` : ''}
   ${S.exclusive && S.exclusive.type === 'count' ? `<div id="countPanel" class="panel hidden"><div id="countN"></div><div id="countDone" class="hidden">${bi(S.exclusive.done, ' / ')}</div></div>` : ''}
   ${S.exclusive && S.exclusive.type === 'sit' ? `<div id="sitNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
+  ${S.exclusive && S.exclusive.type === 'ceilingLight' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   <div id="status" class="ui">
     <div id="progress" class="panel"></div>
@@ -451,6 +453,7 @@ function run(S, R, meta) {
 
   // ---------- 家具和墙上的东西（种类见下面 BUILD） ----------
   const blocks = [];   // 走路时不能穿过的地方
+  const ovals = [];    // 椭圆形展厅（ovalRoom）：只能在椭圆里面和 room.passages（门之间的通道，[x0, x1, z0, z1]）里走
   const wallFrame = (wallName, x, z) => wallName === 'back' ? { pos: [x, backZ(x) + 0.03], rot: BACK_ROT }
     : wallName === 'right' ? { pos: [rightX(z) - 0.03, z], rot: RIGHT_ROT } : { pos: [L + 0.03, z], rot: Math.PI / 2 };
   const BUILD = {
@@ -645,6 +648,56 @@ function run(S, R, meta) {
       m.material.side = THREE.DoubleSide; m.userData.double = true;
       if (o.id) named[o.id] = m;
     },
+    // 椭圆形展厅（比如橘园的睡莲展厅）：中心 x, z，半轴 a（左右）、b（前后），墙高 h。
+    //   doors：门口的角度（度，0 = 往 -z 那一头，180 = 往 +z 那一头），门宽 doorWidth；
+    //   runs：两个门之间的每一段墙上依次挂的画（从角度小的门开始），每幅 { image, w, h, color, card, id }，画之间的空隙自动平均分；
+    //   画的下沿离地 panelY 米；天花板是一块发光的磨砂玻璃（ceilingId：给独家发现用）
+    ovalRoom(o) {
+      const N = 360, TAU = Math.PI * 2, A = o.a, B = o.b, HH = o.h;
+      const at = t => [o.x + A * Math.sin(t), o.z - B * Math.cos(t)];
+      const arc = [0];
+      for (let i = 1; i <= N; i++) { const p = at((i - 1) / N * TAU), q = at(i / N * TAU); arc.push(arc[i - 1] + Math.hypot(q[0] - p[0], q[1] - p[1])); }
+      const P = arc[N], sOf = deg => arc[Math.round(((deg % 360) + 360) % 360 / 360 * N)];
+      const tOf = s => {   // 弧长 → 角度
+        s = ((s % P) + P) % P; let i = Math.min(N - 1, Math.floor(s / P * N));
+        while (i > 0 && arc[i] > s) i--; while (i < N - 1 && arc[i + 1] < s) i++;
+        return (i + (s - arc[i]) / (arc[i + 1] - arc[i])) / N * TAU;
+      };
+      // 沿墙的一条弧形带子（从弧长 s0 到 s1，高度 y0 到 y1，往里收 inset 米）
+      function band(s0, s1, y0, y1, mat, inset, card) {
+        const n = Math.max(2, Math.ceil((s1 - s0) / 0.25)), pos = [], uv = [], idx = [];
+        for (let i = 0; i <= n; i++) {
+          const t = tOf(s0 + (s1 - s0) * i / n), [x, z] = at(t);
+          let nx = -(x - o.x) / (A * A), nz = -(z - o.z) / (B * B); const l = Math.hypot(nx, nz); nx /= l; nz /= l;
+          pos.push(x + nx * inset, y0, z + nz * inset, x + nx * inset, y1, z + nz * inset); uv.push(i / n, 0, i / n, 1);
+          if (i < n) { const k = i * 2; idx.push(k, k + 2, k + 1, k + 1, k + 2, k + 3); }
+        }
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('uv', new THREE.Float32BufferAttribute(uv, 2));
+        geo.setIndex(idx); geo.computeVertexNormals();
+        const m = new THREE.Mesh(geo, mat); if (card) m.userData.card = card; m.userData.noPaint = true; scene.add(m); return m;
+      }
+      const dw = o.doorWidth || 2.4, doors = (o.doors || []).map(sOf).sort((p, q) => p - q);
+      const gaps = doors.length ? doors.map((d, i) => [d + dw / 2, (i + 1 < doors.length ? doors[i + 1] : doors[0] + P) - dw / 2]) : [[0, P]];
+      const wm = new THREE.MeshToonMaterial({ color: col(o.color || 'wall'), gradientMap: gradient, map: TEX.wall, side: THREE.DoubleSide });
+      for (const [s0, s1] of gaps) band(s0, s1, 0, HH, wm, 0, o.card);
+      (o.runs || []).forEach((run, r) => {
+        const [s0, s1] = gaps[r % gaps.length], total = run.reduce((a, p) => a + p.w, 0), gap = (s1 - s0 - total) / (run.length + 1);
+        let s = s0 + gap;
+        for (const p of run) {
+          const mat = new THREE.MeshLambertMaterial({ color: p.image ? '#ffffff' : col(p.color || '#9fb3a0'), side: THREE.DoubleSide });
+          if (p.image) { const tx = imageTex(p.image); tx.anisotropy = 8; mat.map = tx; }
+          const m = band(s, s + p.w, o.panelY ?? 0.75, (o.panelY ?? 0.75) + (p.h || 2), mat, 0.02, p.card);
+          if (p.id) named[p.id] = m;
+          s += p.w + gap;
+        }
+      });
+      const ell = new THREE.Shape(); ell.absellipse(0, 0, A, B, 0, TAU);
+      const ceil = new THREE.Mesh(new THREE.ShapeGeometry(ell, 64), new THREE.MeshBasicMaterial({ color: col(o.ceiling || '#f6f4ec'), side: THREE.DoubleSide }));
+      ceil.rotation.x = -Math.PI / 2; ceil.position.set(o.x, HH, o.z); ceil.userData.card = o.ceilingCard || null; ceil.userData.noPaint = true; scene.add(ceil);
+      if (o.ceilingId) named[o.ceilingId] = ceil;
+      ovals.push({ x: o.x, z: o.z, a: A, b: B });
+    },
     boxes(o) {
       const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card);
       if (o.sway) swayers.push({ g, amp: o.sway, phase: o.x * 0.7 + o.z * 0.3 });
@@ -714,7 +767,7 @@ function run(S, R, meta) {
 
   // ---------- 柔和的光（简化色块模式用） ----------
   const hemi = new THREE.HemisphereLight('#fff4d6', '#b5533c', 1.6); scene.add(hemi);
-  scene.add(new THREE.AmbientLight('#ffffff', 0.6));
+  const ambient = new THREE.AmbientLight('#ffffff', 0.6); scene.add(ambient);
   const sun = new THREE.DirectionalLight('#fff1c4', 1.2);
   if (OUT) sun.position.set(-30, 60, 20); else sun.position.set(-0.3, 2.2, BL.z - 2);
   sun.target.position.set(0.5, 0, -1); scene.add(sun, sun.target);
@@ -726,6 +779,7 @@ function run(S, R, meta) {
   vpDot.rotation.x = -Math.PI / 2; vpDot.position.set(VIEW.x, 0.011, VIEW.z);
   vpRing.userData.noPaint = vpDot.userData.noPaint = true;
   scene.add(vpRing, vpDot);
+  if (VIEW.painter === false) { vpRing.visible = vpDot.visible = false; $('vpBtn').style.display = 'none'; }   // 没有画家视角：不显示圆点和“原画叠加”
 
   // ---------- 投影贴图：把原画从画家视角“投”到墙、地板和家具上 ----------
   const projector = new THREE.PerspectiveCamera(VIEW.fov, VIEW.aspect, 0.3, OUT ? (RM.projectFar || 220) : (RM.projectFar || 14));   // 户外看得更远
@@ -864,6 +918,10 @@ function run(S, R, meta) {
     if (OUT) { const b = RM.bounds; if (x < b[0] + r || x > b[1] - r || z < b[2] + r || z > b[3] - r) return true; }
     else if (x < L + r || x > rightX(z) - r || z > FRONT - r || z < backZ(x) + r) return true;
     for (const [x0, x1, z0, z1] of blocks) if (x > x0 - r && x < x1 + r && z > z0 - r && z < z1 + r) return true;
+    if (ovals.length) {
+      const m = r + 0.3, inOval = ovals.some(v => ((x - v.x) / (v.a - m)) ** 2 + ((z - v.z) / (v.b - m)) ** 2 < 1);
+      if (!inOval && !(RM.passages || []).some(([x0, x1, z0, z1]) => x > x0 + r && x < x1 - r && z > z0 && z < z1)) return true;
+    }
     return false;
   }
   let dragId = null, lastX = 0, lastY = 0, downX = 0, downY = 0;
@@ -1089,6 +1147,7 @@ function run(S, R, meta) {
   // ---------- 画家视角：站上去 → 对准原画构图 + 叠加滑杆 ----------
   function paintingRect() {
     const W = window.innerWidth, Hh = window.innerHeight, A = W / Hh;
+    if (VIEW.painter === false) return { x: 0, y: 0, w: W, h: Hh, fov: VIEW.fov };   // 没有画家视角的场景（比如橘园的睡莲展厅）：整个屏幕
     if (A >= VIEW.aspect) { const w = Hh * VIEW.aspect; return { x: (W - w) / 2, y: 0, w, h: Hh, fov: VIEW.fov }; }
     const h = W / VIEW.aspect, fov = 2 * Math.atan(Math.tan(VIEW.fov * Math.PI / 360) * VIEW.aspect / A) * 180 / Math.PI;
     return { x: 0, y: (Hh - h) / 2, w: W, h, fov };
@@ -1416,6 +1475,34 @@ function run(S, R, meta) {
     };
     setLight(lightObj.start ?? 0.5);
   }
+  // 独家发现“找回的光”（ceilingLight）：在 then（比如 1960 年代：天花板被盖住，只有人工灯光）和 now（今天：自然光从磨砂玻璃天花板洒下）之间切换（示意）
+  //   ceiling：天花板的 id（ovalRoom 的 ceilingId，可以几个）；covered：盖住时天花板的颜色；lamps：人工灯的位置 [[x, y, z], ...]
+  const ceilObj = S.exclusive && S.exclusive.type === 'ceilingLight' ? S.exclusive : null;
+  let ceilTarget = 1, ceilNow = 1;
+  const ceilMeshes = [], ceilLamps = [], ceilDay = new THREE.Color(), ceilNight = new THREE.Color(), hemi0 = hemi.intensity, amb0 = ambient.intensity;
+  if (ceilObj) {
+    for (const id of [].concat(ceilObj.ceiling || [])) if (named[id]) ceilMeshes.push(named[id]);
+    if (ceilMeshes[0]) ceilDay.copy(ceilMeshes[0].material.color);
+    ceilNight.set(col(ceilObj.covered || '#4a4844'));
+    for (const p of ceilObj.lamps || []) { const l = new THREE.PointLight(col(ceilObj.lampColor || '#ffd49a'), 0, 14, 1); l.position.set(...p); scene.add(l); ceilLamps.push(l); }
+    let used = false;
+    const setCeil = v => { ceilTarget = v; document.querySelectorAll('[data-ceil]').forEach(b => b.classList.toggle('on', +b.dataset.ceil === v)); };
+    document.querySelectorAll('[data-ceil]').forEach(b => b.onclick = () => { setCeil(+b.dataset.ceil); if (!used) { used = true; track('exclusive-' + S.id); } });
+    $('ceilBtn').onclick = () => {
+      const on = $('ceilSwitch').classList.toggle('hidden') === false;
+      $('ceilBtn').classList.toggle('on', on);
+      if ($('revealNote')) $('revealNote').classList.toggle('show', on);
+      if (!on) setCeil(1); else if (ceilObj.card) showCard(ceilObj.card);
+    };
+  }
+  function stepCeil(dt) {   // 慢慢变暗 / 变亮（约 2 秒）
+    if (!ceilObj || Math.abs(ceilTarget - ceilNow) < 0.001) return;
+    ceilNow += Math.sign(ceilTarget - ceilNow) * Math.min(Math.abs(ceilTarget - ceilNow), dt / 2);
+    const k = ceilNow;   // 1 = 今天，0 = 被盖住
+    for (const m of ceilMeshes) m.material.color.copy(ceilNight).lerp(ceilDay, k);
+    hemi.intensity = hemi0 * (0.15 + 0.85 * k); ambient.intensity = amb0 * (0.25 + 0.75 * k);
+    for (const l of ceilLamps) l.intensity = (ceilObj.lampPower ?? 1.6) * (1 - k);
+  }
   function setToday(v) {   // “1658 / 今天”
     todayTarget = v;
     document.querySelectorAll('[data-today]').forEach(b => b.classList.toggle('on', +b.dataset.today === v));
@@ -1471,6 +1558,7 @@ function run(S, R, meta) {
     vpRing.material.opacity = pulse; vpDot.material.opacity = pulse * 0.4;
     wallMat.color.lerp(wallTarget, 1 - Math.exp(-dt * 4));
     stepToggles(dt);
+    stepCeil(dt);
     if (todayObj && Math.abs(todayTarget - todayNow) > 0.001) {   // “今天”：其他部分慢慢淡出（约 2 秒）
       todayNow += Math.sign(todayTarget - todayNow) * Math.min(Math.abs(todayTarget - todayNow), dt / 2);
       for (const m of todayMeshes) {

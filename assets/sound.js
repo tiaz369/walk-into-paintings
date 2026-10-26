@@ -223,6 +223,19 @@ const AMBIENCE = {
     loopNoise('brown', out, { freq: 150, gain: 0.04 });
     every(st, 25, 50, t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(300, 500), q: 8, vol: 0.05, dur: rnd(0.1, 0.2), p: rnd(-0.5, 0.5) }));
   },
+  // 非常安静的美术馆展厅：很轻的底噪，偶尔远处的脚步声（在石头地上慢慢走过）和几句低语（A very quiet gallery）
+  gallery(out, st) {
+    loopNoise('brown', out, { freq: 170, gain: 0.05 });
+    const far = ctx.createGain(); far.gain.value = 0.4; far.connect(out);
+    const walk = t => {
+      const n = 6 + Math.floor(Math.random() * 6), cad = rnd(0.55, 0.7), p0 = rnd(-0.9, 0.9), p1 = rnd(-0.9, 0.9);
+      for (let k = 0; k < n; k++) { const x = k / (n - 1); burst(far, t + k * cad, { kind: 'white', type: 'bandpass', freq: rnd(1500, 2200), q: 2, vol: 0.05 * Math.sin(Math.PI * (0.15 + 0.7 * x)), dur: 0.045, p: p0 + (p1 - p0) * x }); }
+    };
+    walk(ctx.currentTime + 3); every(st, 12, 26, walk);
+    const voices = ctx.createGain(); voices.gain.value = 0; voices.connect(far);
+    murmur(voices, 0.05)(st);
+    every(st, 18, 40, t => { voices.gain.setTargetAtTime(1, t, 0.4); voices.gain.setTargetAtTime(0, t + rnd(2.5, 4.5), 0.6); });   // 低语：几秒钟，又安静下来
+  },
   // 火车站的车棚里：蒸汽喷出的嘶嘶声，远处的汽笛，铁轮滚过铁轨，月台上的人声（Inside the station shed）
   station(out, st) {
     loopNoise('brown', out, { freq: 260, gain: 0.08 });
