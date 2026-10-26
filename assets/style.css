@@ -725,3 +725,5 @@ body:has(#gallery.show) #langSwitch:hover, body:has(#gallery.show) #langSwitch:f
   #gallery .act { padding-left: 22px; padding-right: 22px; padding-bottom: 104px; }
   .act p { font-size: 15px; }
 }
+
+.london-note { font-style: italic; color: var(--ink); }

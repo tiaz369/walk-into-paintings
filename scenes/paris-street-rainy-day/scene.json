@@ -11,13 +11,14 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和雷诺阿《伞》互相链接；卡片“火车站旁边”预留了莫奈《圣拉扎尔火车站》的链接（开放后自动出现）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和雷诺阿《伞》互相链接；和莫奈《圣拉扎尔火车站》互相链接：卡片“火车站旁边”和结尾按钮（同一场画展）。",
     "doors": [],
     "cards": [
       "gare-saint-lazare"
     ],
     "end": [
-      "umbrellas"
+      "umbrellas",
+      "gare-saint-lazare"
     ]
   },
   "painting": {
@@ -653,7 +654,7 @@
         "href": "../gare-saint-lazare/",
         "label": {
           "zh": "莫奈《圣拉扎尔火车站》",
-          "en": "Monet's *The Gare Saint-Lazare*"
+          "en": "Monet's *The Saint-Lazare Station*"
         }
       }
     }
@@ -769,6 +770,14 @@
         "label": {
           "zh": "同样的伞，不同的画法",
           "en": "Same umbrellas, different styles"
+        }
+      },
+      {
+        "scene": "gare-saint-lazare",
+        "href": "../gare-saint-lazare/",
+        "label": {
+          "zh": "路口旁边的车站，同一场画展",
+          "en": "The station next door, the same exhibition"
         }
       }
     ]

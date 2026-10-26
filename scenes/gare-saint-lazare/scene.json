@@ -1,0 +1,571 @@
+{
+  "_说明": "圣拉扎尔火车站（室内，完整版：巨大的车棚内部）。所有事实文字由 Tia 提供（资料主要来自芝加哥艺术博物馆官网）。站在车站月台上，头顶是巨大的玻璃和铁的人字形车棚；火车头喷出的蓝白色蒸汽在棚子里翻滚，日光从玻璃屋顶透进来；远处车棚外是巴黎的楼房。画家视角和物体位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "gare-saint-lazare",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "玻璃屋顶透进来的日光和蒸汽",
+      "en": "Daylight through the glass roof, and steam"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和卡耶博特《巴黎街道，雨天》互相链接（车站旁边的路口，同一场画展；卡耶博特场景卡片“火车站旁边”里预留的链接接上了）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "paris-street-rainy-day"
+    ]
+  },
+  "painting": {
+    "image": "images/gare-saint-lazare.jpg",
+    "width": 1500,
+    "height": 1074,
+    "alt": {
+      "zh": "莫奈《圣拉扎尔火车站》1877年，巴黎奥赛博物馆",
+      "en": "Claude Monet, The Saint-Lazare Station, 1877, Musée d'Orsay, Paris"
+    },
+    "_": "宽高是按 75 × 105 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "圣拉扎尔火车站",
+      "en": "The Saint-Lazare Station"
+    },
+    "artist": {
+      "zh": "莫奈",
+      "en": "Claude Monet"
+    },
+    "date": {
+      "zh": "1877年",
+      "en": "1877"
+    },
+    "museum": {
+      "zh": "巴黎奥赛博物馆",
+      "en": "Musée d'Orsay, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下车棚、蒸汽、火车头和远处的楼房看介绍 · 点“同一个车站，另一种样子”，拖动滑块比较两幅 · 地上发光的圆点 = 莫奈的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the roof, the steam, the locomotives or the buildings beyond to learn more · Tap “The same station, another view” and drag the slider to compare · The glowing circle = Monet's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": 0.05,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "station",
+  "colors": {
+    "line": "#2a2620",
+    "floor": "#8a8478",
+    "wall": "#b9bcc0",
+    "ceiling": "#9aa6b0",
+    "iron": "#3a4048",
+    "glass": "#cfd8de",
+    "steam": "#dfe6ee",
+    "loco": "#2a2c30",
+    "city": "#c9c0ae",
+    "platform": "#9c958a"
+  },
+  "room": {
+    "_说明": "房间形状（米）：车棚内部，很高很长。左墙 x=left，前墙 z=front；后墙（车棚外的巴黎楼房）从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 22,
+    "front": 4,
+    "left": -18,
+    "backLeft": [
+      -18,
+      -70
+    ],
+    "backRight": [
+      18,
+      -70
+    ],
+    "rightFront": [
+      18,
+      4
+    ],
+    "floorCard": "modern",
+    "wallCard": "glass",
+    "walkSpeed": 1.6,
+    "walkEye": 1.6
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "modern",
+      "x": -9,
+      "z": -30,
+      "_": "左边的月台",
+      "boxes": [
+        [
+          6,
+          0.9,
+          60,
+          "platform",
+          0,
+          0.45,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "modern",
+      "x": 10,
+      "z": -30,
+      "_": "右边的月台",
+      "boxes": [
+        [
+          5,
+          0.9,
+          60,
+          "platform",
+          0,
+          0.45,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "steam",
+      "x": -1.5,
+      "z": -26,
+      "_": "左边的火车头",
+      "boxes": [
+        [
+          3,
+          3.6,
+          9,
+          "loco",
+          0,
+          1.8,
+          0
+        ],
+        [
+          1,
+          1.6,
+          1,
+          "loco",
+          0,
+          4.4,
+          -3.6
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "steam",
+      "x": 4,
+      "z": -34,
+      "_": "右边远一点的火车头",
+      "boxes": [
+        [
+          3,
+          3.4,
+          8,
+          "loco",
+          0,
+          1.7,
+          0
+        ],
+        [
+          0.9,
+          1.4,
+          0.9,
+          "loco",
+          0,
+          4.1,
+          -3.2
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "steam",
+      "x": 0,
+      "y": 8,
+      "z": -30,
+      "_": "困在车棚里的蒸汽（示意的大块）",
+      "boxes": [
+        [
+          14,
+          6,
+          10,
+          "steam",
+          0,
+          0,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "glass",
+      "x": 0,
+      "y": 20,
+      "z": -30,
+      "_": "玻璃和铁的车棚屋顶（人字形，先用横梁表示）",
+      "boxes": [
+        [
+          36,
+          0.4,
+          0.4,
+          "iron",
+          0,
+          0,
+          -20
+        ],
+        [
+          36,
+          0.4,
+          0.4,
+          "iron",
+          0,
+          0,
+          -10
+        ],
+        [
+          36,
+          0.4,
+          0.4,
+          "iron",
+          0,
+          0,
+          0
+        ],
+        [
+          36,
+          0.4,
+          0.4,
+          "iron",
+          0,
+          0,
+          10
+        ],
+        [
+          36,
+          0.4,
+          0.4,
+          "iron",
+          0,
+          0,
+          20
+        ]
+      ]
+    },
+    {
+      "type": "wallBoxes",
+      "card": "city",
+      "wall": "back",
+      "x": 0,
+      "y": 8,
+      "z": -70,
+      "_": "车棚外的巴黎楼房",
+      "boxes": [
+        [
+          30,
+          12,
+          0.5,
+          "city",
+          0,
+          0,
+          0.3,
+          "cloth"
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "glass": {
+      "title": {
+        "zh": "玻璃和铁",
+        "en": "Glass and iron"
+      },
+      "text": {
+        "zh": "头顶是玻璃和铁搭成的巨大车棚。在当时，这是最现代的建筑。",
+        "en": "Overhead is a huge shed of glass and iron, the most modern kind of building at the time."
+      }
+    },
+    "steam": {
+      "title": {
+        "zh": "被困住的蒸汽",
+        "en": "Trapped steam"
+      },
+      "text": {
+        "zh": "火车头升起的蒸汽，被困在车棚里翻滚。",
+        "en": "Steam rising from the locomotives is trapped inside the shed."
+      }
+    },
+    "light": {
+      "title": {
+        "zh": "屋顶的光",
+        "en": "Light from the roof"
+      },
+      "text": {
+        "zh": "日光从屋顶大片的玻璃透进来，和蒸汽混在一起。莫奈最着迷的，正是这种人工和自然效果的组合。",
+        "en": "Daylight pours through the great glazed sections of the roof and mixes with the steam. It was this combination of artificial and natural effects that fascinated Monet."
+      }
+    },
+    "modern": {
+      "title": {
+        "zh": "现代的巴黎",
+        "en": "Modern Paris"
+      },
+      "text": {
+        "zh": "印象派最前卫的一点，是画现代的工业化巴黎：铁桥、展览馆、火车站。",
+        "en": "One of the most avant-garde things about the Impressionists was their choice of modern, industrial Paris as a subject: iron bridges, exhibition halls, train stations."
+      }
+    },
+    "twelve": {
+      "title": {
+        "zh": "十二幅",
+        "en": "Twelve paintings"
+      },
+      "text": {
+        "zh": "1877年1月，他开始画这个车站，大约四个月就画了12幅。",
+        "en": "In January 1877 he began painting this station, and completed twelve paintings in about four months."
+      }
+    },
+    "city": {
+      "title": {
+        "zh": "车站里的车站",
+        "en": "A station inside a station"
+      },
+      "text": {
+        "zh": "今天，这幅画挂在奥赛博物馆，而奥赛本身就是一座改建的火车站。",
+        "en": "Today the painting hangs in the Musée d'Orsay, which is itself a converted railway station."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“同一个车站，另一种样子”：对比滑块，左边是奥赛这一幅，右边是芝加哥艺术博物馆的《诺曼底火车进站》（CC0，images/normandy-train.jpg，Tia 上传）。打开就算发现了卡片“十二幅”。",
+    "type": "compare",
+    "label": {
+      "zh": "同一个车站，另一种样子",
+      "en": "The same station, another view"
+    },
+    "card": "twelve",
+    "note": {
+      "zh": "同一个车站，他在四个月里画了12次。",
+      "en": "The same station, painted twelve times in four months."
+    },
+    "versions": [
+      {
+        "image": "images/gare-saint-lazare.jpg",
+        "short": {
+          "zh": "奥赛 · 1877",
+          "en": "Orsay · 1877"
+        },
+        "caption": {
+          "zh": "《圣拉扎尔火车站》，1877年 · 巴黎奥赛博物馆",
+          "en": "*The Saint-Lazare Station*, 1877 · Musée d'Orsay, Paris"
+        }
+      },
+      {
+        "image": "images/normandy-train.jpg",
+        "short": {
+          "zh": "芝加哥 · 1877",
+          "en": "Chicago · 1877"
+        },
+        "caption": {
+          "zh": "《诺曼底火车进站，圣拉扎尔火车站》，1877年 · 芝加哥艺术博物馆",
+          "en": "*Arrival of the Normandy Train, Gare Saint-Lazare*, 1877 · The Art Institute of Chicago"
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/gare-saint-lazare.jpg",
+        "alt": {
+          "zh": "莫奈《圣拉扎尔火车站》1877年，巴黎奥赛博物馆",
+          "en": "Claude Monet, The Saint-Lazare Station, 1877, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1877年 · 巴黎奥赛博物馆",
+          "en": "1877 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 巴黎最繁忙的车站",
+          "en": "The busiest station in Paris"
+        },
+        "text": {
+          "zh": "1877年1月，莫奈开始画圣拉扎尔火车站，当时巴黎最大、最繁忙的车站。大约四个月里，他画了12幅。",
+          "en": "In January 1877, Monet began painting the Gare Saint-Lazare, then the largest and busiest station in Paris. In about four months, he painted twelve views."
+        }
+      },
+      {
+        "image": "images/gare-saint-lazare.jpg",
+        "alt": {
+          "zh": "莫奈《圣拉扎尔火车站》1877年，巴黎奥赛博物馆",
+          "en": "Claude Monet, The Saint-Lazare Station, 1877, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1877年 · 巴黎奥赛博物馆",
+          "en": "1877 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 1877年的画展",
+          "en": "The 1877 exhibition"
+        },
+        "text": {
+          "zh": "那年4月，他在第三届印象派画展上展出了其中好几幅。作家左拉称赞他画出了现代火车站的兴奋和活力。同一场画展上，还有卡耶博特的《巴黎街道，雨天》。",
+          "en": "That April, he showed several of them at the third Impressionist exhibition. The writer Émile Zola praised him for capturing the excitement and energy of the modern station. At the same exhibition was Caillebotte's *Paris Street; Rainy Day*."
+        }
+      },
+      {
+        "image": "images/gare-saint-lazare.jpg",
+        "alt": {
+          "zh": "莫奈《圣拉扎尔火车站》1877年，巴黎奥赛博物馆",
+          "en": "Claude Monet, The Saint-Lazare Station, 1877, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1877年 · 巴黎奥赛博物馆",
+          "en": "1877 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 最后一次画城市",
+          "en": "The last time he painted the city"
+        },
+        "text": {
+          "zh": "这组车站画开启了莫奈一生的做法：一次又一次画同一个主题，捕捉光线的变化。但这也是他最后一次画城市生活，从此以后，他几乎只画风景。",
+          "en": "This group of station paintings began a lifelong habit for Monet: painting the same subject again and again to capture the changing light. But it was also his last attempt to paint city life. From then on, he devoted himself almost entirely to landscape."
+        }
+      }
+    ],
+    "final": {
+      "zh": "蒸汽、玻璃和光。",
+      "en": "Steam, glass and light."
+    },
+    "versions": [],
+    "museums": [
+      "orsay"
+    ],
+    "exit": [
+      {
+        "scene": "paris-street-rainy-day",
+        "href": "../paris-street-rainy-day/",
+        "label": {
+          "zh": "车站旁边的路口，同一场画展",
+          "en": "The crossroads next door, the same exhibition"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸先不显示（_dimensions）：Tia 写的是 75 × 105 cm，法国文化部 POP 藏品库写的是 75.5 × 104 cm，等 Tia 在奥赛官网核对。作品页等 Tia 提供。",
+    "artist": {
+      "zh": "克劳德·莫奈（1840–1926）",
+      "en": "Claude Monet (1840–1926)"
+    },
+    "title": {
+      "zh": "圣拉扎尔火车站",
+      "en": "The Saint-Lazare Station (La Gare Saint-Lazare)"
+    },
+    "date": {
+      "zh": "1877年",
+      "en": "1877"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "_dimensions": "待核对",
+    "collection": {
+      "zh": "巴黎奥赛博物馆",
+      "en": "Musée d'Orsay, Paris"
+    }
+  },
+  "zoom": {
+    "image": "images/gare-saint-lazare.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：诺曼底火车进站，圣拉扎尔火车站",
+          "en": "The Art Institute of Chicago: *Arrival of the Normandy Train, Gare Saint-Lazare*"
+        },
+        "url": "https://www.artic.edu/artworks/16571/arrival-of-the-normandy-train-gare-saint-lazare"
+      },
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：莫奈作品图录",
+          "en": "The Art Institute of Chicago: Monet catalogue"
+        },
+        "url": "https://publications.artic.edu/node/135550"
+      },
+      {
+        "title": {
+          "zh": "维基百科：圣拉扎尔火车站系列（英文）",
+          "en": "Wikipedia: *Gare Saint-Lazare* (Monet series)"
+        },
+        "url": "https://en.wikipedia.org/wiki/Gare_Saint-Lazare_(Monet_series)"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 巴黎最繁忙的车站",
+          "en": "The busiest station in Paris"
+        },
+        "text": {
+          "zh": "1877年1月，莫奈开始画圣拉扎尔火车站，当时巴黎最大、最繁忙的车站。大约四个月里，他画了12幅。",
+          "en": "In January 1877, Monet began painting the Gare Saint-Lazare, then the largest and busiest station in Paris. In about four months, he painted twelve views."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 1877年的画展",
+          "en": "The 1877 exhibition"
+        },
+        "text": {
+          "zh": "那年4月，他在第三届印象派画展上展出了其中好几幅。作家左拉称赞他画出了现代火车站的兴奋和活力。同一场画展上，还有卡耶博特的《巴黎街道，雨天》。",
+          "en": "That April, he showed several of them at the third Impressionist exhibition. The writer Émile Zola praised him for capturing the excitement and energy of the modern station. At the same exhibition was Caillebotte's *Paris Street; Rainy Day*."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 最后一次画城市",
+          "en": "The last time he painted the city"
+        },
+        "text": {
+          "zh": "这组车站画开启了莫奈一生的做法：一次又一次画同一个主题，捕捉光线的变化。但这也是他最后一次画城市生活，从此以后，他几乎只画风景。",
+          "en": "This group of station paintings began a lifelong habit for Monet: painting the same subject again and again to capture the changing light. But it was also his last attempt to paint city life. From then on, he devoted himself almost entirely to landscape."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}
