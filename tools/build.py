@@ -231,8 +231,9 @@ def artist_cover(a):   # 画家卡片的封面：cover 里第一个已开放的�
     if ci and os.path.exists(os.path.join(ROOT, ci['src'])): return f'<p><img src="../{ci["src"]}" alt="{e(both(ci["title"], " / "))}" width="96" loading="lazy" /></p>'
     return ''
 WORKS = json.load(open(os.path.join(ROOT, 'data/works.json'), encoding='utf-8'))   # 其他代表作
-def more_works(aid):   # 只列核对过的（check 为 ok）
-    lst = [x for x in WORKS['artists'].get(aid, []) if x.get('check') == 'ok']
+SCENE_STATUS = {s['id']: s['status'] for s in R['scenes']}
+def more_works(aid):   # 只列核对过的（check 为 ok）；写了 scene 的，场景做好以后（soon / live）就不再列
+    lst = [x for x in WORKS['artists'].get(aid, []) if x.get('check') == 'ok' and SCENE_STATUS.get(x.get('scene'), 'planned') == 'planned']
     if not lst: return ''
     def li(x):
         m = MUSEUMS.get(x['museum']); url = x.get('url') or (m or {}).get('url')

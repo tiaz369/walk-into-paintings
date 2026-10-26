@@ -118,7 +118,8 @@ const sortWorks = list => [...list].sort(byOpenYear);
 const artistCover = (R, a) => [].concat(a.cover || []).map(id => R.sceneById[id]).find(s => s && s.status === 'live' && s.cover)
   || (a.coverImage && { cover: a.coverImage.src, title: a.coverImage.title });
 // 其他代表作：只显示核对过的（check 为 ok）
-const artistWorks = (W, id) => ((W && W.artists[id]) || []).filter(x => x.check === 'ok');
+// 其他代表作：只列核对过的（check 为 ok）；写了 scene 的，那个场景一做好（即将开放或已上线）就不再列在这里，免得和“可以走进去的画”重复
+const artistWorks = (W, id, R) => ((W && W.artists[id]) || []).filter(x => x.check === 'ok' && !(x.scene && R && R.sceneById[x.scene] && R.sceneById[x.scene].status !== 'planned'));
 const workLine = (R, x) => {
   const m = R.museumById[x.museum], url = x.url || (m && m.url);
   const where = x.museumNote ? bi(x.museumNote) : m ? bi(m.name) : '';
@@ -539,7 +540,7 @@ const PAGES = {
     const coverHTML = (a, tag) => (c => c ? `<${tag} class="artist-cover"${tag === 'a' ? ` href="?id=${a.id}"` : ''}><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" onerror="this.parentNode.remove()" /></${tag}>` : '')(artistCover(R, a));
     // 一位画家的作品：可以走进去的画（已上线 + 最多3个即将开放）；其他代表作（只显示作品名、年份、收藏地，链接到博物馆官网）
     const worksOf = a => {
-      const sc = scenesOf(R, 'artist', a.id), more = artistWorks(W, a.id);
+      const sc = scenesOf(R, 'artist', a.id), more = artistWorks(W, a.id, R);
       if (!sc.length && !more.length) return LATER();
       return (sc.length ? `<h4 class="works-title">${ui('可以走进去的画', 'Paintings you can step into')}</h4>${cardsHTML(R, capSoon(sc), { hideArtist: true, bothTitle: true })}` : '')
         + (more.length ? `<h4 class="works-title">${bi(W.title, ' / ')}</h4><p class="note">${bi(W.note, ' / ')}</p>
