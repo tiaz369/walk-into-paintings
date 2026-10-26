@@ -1,5 +1,5 @@
 {
-  "_说明": "睡莲（室内，完整版：橘园美术馆的两个椭圆形展厅，360度环绕）。所有事实文字由 Tia 提供（资料主要来自橘园美术馆官网）。8幅画板的图从 Wikimedia Commons 下载（Google Art Project 的公有领域扫描图，不用有观众的展厅照片）。这个场景没有“画家视角”（viewpoint.painter: false）：观众站在第一个展厅里，可以转身360度，也可以穿过门口走到第二个展厅。图片上传前，画板先用接近原画的颜色代替；上传后把每幅的 _file 改成 image，再把登记表里的 status 改成 live。展厅里画的排列和门的位置是示意，不是精确的平面图。",
+  "_说明": "睡莲（室内，完整版：橘园美术馆的两个椭圆形展厅，360度环绕）。所有事实文字由 Tia 提供（资料主要来自橘园美术馆官网）。8幅画板的图从 Wikimedia Commons 下载（Google Art Project 的公有领域扫描图，不用有观众的展厅照片）。这个场景没有“画家视角”（viewpoint.painter: false）：观众站在第一个展厅里，可以转身360度，也可以穿过门口走到第二个展厅。图片：Tia 从 Wikimedia Commons 下载（7幅 Google Art Project 扫描图；《柳树下的早晨》暂时只有 675 × 114 的小图，已经裁掉白边，以后找到高清再换）。展厅里画的排列和门的位置是示意，不是精确的平面图。",
   "id": "orangerie-water-lilies",
   "variant": "interior",
   "lighting": {
@@ -27,7 +27,7 @@
       "zh": "莫奈《睡莲》，橘园美术馆",
       "en": "Claude Monet, Water Lilies, Musée de l'Orangerie"
     },
-    "_": "封面图：上传8幅画板以后，把它们拼成一张（两个展厅各四幅），宽高改成真实像素"
+    "_": "封面图：8幅画板拼成一张（左列第一个展厅，右列第二个展厅，每幅取中间一段）"
   },
   "projection": false,
   "label": {
@@ -49,8 +49,8 @@
       "en": "Musée de l'Orangerie, Paris"
     },
     "source": {
-      "zh": "Wikimedia Commons（Google Art Project），公有领域",
-      "en": "Wikimedia Commons (Google Art Project), public domain"
+      "zh": "Wikimedia Commons（Google Art Project 等），公有领域",
+      "en": "Wikimedia Commons (Google Art Project and others), public domain"
     }
   },
   "enter": {
@@ -140,44 +140,45 @@
         [
           {
             "id": "p-matin",
-            "_file": "images/matin.jpg",
             "_title": "早晨 / Morning",
             "w": 12.75,
             "h": 2,
             "color": "#9fb7b4",
-            "card": "wave"
+            "card": "wave",
+            "image": "images/matin.jpg"
           },
           {
             "id": "p-soleil",
-            "_file": "images/soleil-couchant.jpg",
             "_title": "落日 / Setting Sun",
             "w": 6,
             "h": 2,
             "color": "#c9a873",
-            "card": "peace"
+            "card": "peace",
+            "image": "images/soleil-couchant.jpg"
           }
         ],
         [
           {
             "id": "p-nuages",
-            "_file": "images/nuages.jpg",
             "_title": "云 / The Clouds",
             "w": 12.75,
             "h": 2,
             "color": "#b4c2cf",
-            "card": "metres"
+            "card": "metres",
+            "image": "images/nuages.jpg"
           },
           {
             "id": "p-verts",
-            "_file": "images/reflets-verts.jpg",
             "_title": "绿色的倒影 / Green Reflections",
             "w": 8.5,
             "h": 2,
             "color": "#7f9e86",
-            "card": "wave"
+            "card": "wave",
+            "image": "images/reflets-verts.jpg"
           }
         ]
-      ]
+      ],
+      "plain": true
     },
     {
       "type": "ovalRoom",
@@ -199,42 +200,43 @@
         [
           {
             "id": "p-arbres",
-            "_file": "images/reflets-arbres.jpg",
             "_title": "树的倒影 / Tree Reflections",
             "w": 8.5,
             "h": 2,
             "color": "#6f8a80",
-            "card": "metres"
+            "card": "metres",
+            "image": "images/reflets-arbres.jpg"
           },
           {
             "id": "p-matin-clair",
-            "_file": "images/matin-clair-saules.jpg",
             "_title": "柳树下晴朗的早晨 / Clear Morning with Willows",
             "w": 12.75,
             "h": 2,
             "color": "#a9c0b8",
-            "card": "peace"
+            "card": "peace",
+            "image": "images/matin-clair-saules.jpg"
           },
           {
             "id": "p-deux",
-            "_file": "images/deux-saules.jpg",
             "_title": "两棵柳树 / The Two Willows",
             "w": 17,
             "h": 2,
             "color": "#8ea49a",
-            "card": "wave"
+            "card": "wave",
+            "image": "images/deux-saules.jpg"
           },
           {
             "id": "p-matin-saules",
-            "_file": "images/matin-saules.jpg",
             "_title": "柳树下的早晨 / Morning with Willows",
             "w": 12.75,
             "h": 2,
             "color": "#9db0a6",
-            "card": "metres"
+            "card": "metres",
+            "image": "images/matin-saules.jpg"
           }
         ]
-      ]
+      ],
+      "plain": true
     },
     {
       "type": "building",

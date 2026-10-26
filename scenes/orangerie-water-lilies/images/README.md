@@ -1,15 +1,17 @@
-# 图片（待上传）
+# 图片
 
-8幅画板，都从 Wikimedia Commons 下载（Google Art Project 扫描图，公有领域）。文件名不用改，上传后我来改名：
+Tia 从 Wikimedia Commons 下载（公有领域）。
 
 第一个展厅
-- Claude Monet - The Water Lilies - Setting Sun - Google Art Project.jpg →（落日）
-- Claude Monet - The Water Lilies - Morning - Google Art Project.jpg →（早晨）
-- Claude Monet - The Water Lilies - The Clouds - Google Art Project.jpg →（云）
-- Claude Monet - The Water Lilies - Green Reflections - Google Art Project.jpg →（绿色的倒影）
+- `soleil-couchant.jpg`：落日 / Setting Sun（Google Art Project）
+- `matin.jpg`：早晨 / Morning（Google Art Project）
+- `nuages.jpg`：云 / The Clouds（Google Art Project）
+- `reflets-verts.jpg`：绿色的倒影 / Green Reflections（Google Art Project）
 
 第二个展厅
-- Claude Monet - The Water Lilies - Tree Reflections - Google Art Project.jpg →（树的倒影）
-- Claude Monet - The Water Lilies - Clear Morning with Willows - Google Art Project.jpg →（柳树下晴朗的早晨）
-- Claude Monet - The Water Lilies - The Two Willows - Google Art Project.jpg →（两棵柳树）
-- Nymphéas, le Matin aux saules (1914-1926) de Claude Monet - Musée de l'Orangerie.jpg →（柳树下的早晨，暂时用小图）
+- `reflets-arbres.jpg`：树的倒影 / Tree Reflections（Google Art Project）
+- `matin-clair-saules.jpg`：柳树下晴朗的早晨 / Clear Morning with Willows（Google Art Project）
+- `deux-saules.jpg`：两棵柳树 / The Two Willows（Google Art Project）
+- `matin-saules.jpg`：柳树下的早晨 / Morning with Willows（Commons 上只有 675 × 114 的小图，裁掉了白边；以后找到高清再换）
+
+- `water-lilies.jpg`：封面，8幅拼成一张（Claude 生成）

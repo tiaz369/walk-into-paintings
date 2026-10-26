@@ -681,7 +681,7 @@ function run(S, R, meta) {
         parts.push(leaf, box(W2 - 0.16, o.h - 0.16, 0.02, o.glass || '#cfd6da', -sgn * W2 / 2, 0, 0.025, hinge, 'cloth'));
         return { hinge, sgn };
       });
-      for (const m of parts) m.traverse(x => { x.userData.noPaint = true; });
+      for (const m of parts) m.traverse(x => { x.userData.noPaint = true; x.userData.noDepth = true; });   // 窗本身不贴原画，也不挡住投影（开场时窗页是关着的）
       openers.push({ leaves, t: 0, delay: o.delay ?? 0.4, angle: o.angle ?? 1.75 });
     },
     // 椭圆形展厅（比如橘园的睡莲展厅）：中心 x, z，半轴 a（左右）、b（前后），墙高 h。
@@ -715,7 +715,7 @@ function run(S, R, meta) {
       }
       const dw = o.doorWidth || 2.4, doors = (o.doors || []).map(sOf).sort((p, q) => p - q);
       const gaps = doors.length ? doors.map((d, i) => [d + dw / 2, (i + 1 < doors.length ? doors[i + 1] : doors[0] + P) - dw / 2]) : [[0, P]];
-      const wm = new THREE.MeshToonMaterial({ color: col(o.color || 'wall'), gradientMap: gradient, map: TEX.wall, side: THREE.DoubleSide });
+      const wm = new THREE.MeshToonMaterial({ color: col(o.color || 'wall'), gradientMap: gradient, map: o.plain ? null : TEX.wall, side: THREE.DoubleSide });   // plain：纯色的墙（没有笔触纹理）
       for (const [s0, s1] of gaps) band(s0, s1, 0, HH, wm, 0, o.card);
       (o.runs || []).forEach((run, r) => {
         const [s0, s1] = gaps[r % gaps.length], total = run.reduce((a, p) => a + p.w, 0), gap = (s1 - s0 - total) / (run.length + 1);
