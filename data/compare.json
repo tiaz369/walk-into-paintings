@@ -1,0 +1,54 @@
+{
+  "_说明": "对比两幅画（/compare/）：每组用对比滑块（左右拖动），配一句说明（Tia 提供；没给说明的组不写）。每组下面两个“走进去”按钮。还没上线的场景所在的组不显示。",
+  "title": {
+    "zh": "对比两幅画",
+    "en": "Compare"
+  },
+  "intro": {
+    "zh": "把两幅画放在一起，左右拖动看看。",
+    "en": "Put two paintings side by side, and drag to compare."
+  },
+  "pairs": [
+    {
+      "id": "two-starry-nights",
+      "title": {
+        "zh": "两个星夜",
+        "en": "Two starry nights"
+      },
+      "scenes": [
+        "starry-night-rhone",
+        "starry-night"
+      ],
+      "note": {
+        "zh": "一幅安静，一幅翻涌。",
+        "en": "One calm, one turbulent."
+      }
+    },
+    {
+      "id": "two-umbrellas",
+      "title": {
+        "zh": "巴黎的两种伞",
+        "en": "Two kinds of umbrella"
+      },
+      "scenes": [
+        "umbrellas",
+        "paris-street-rainy-day"
+      ],
+      "note": {
+        "zh": "同样的伞，不同的画法。",
+        "en": "Same umbrellas, different styles."
+      }
+    },
+    {
+      "id": "two-mirrors",
+      "title": {
+        "zh": "两面藏着秘密的镜子",
+        "en": "Two mirrors with secrets"
+      },
+      "scenes": [
+        "arnolfini",
+        "folies-bergere"
+      ]
+    }
+  ]
+}

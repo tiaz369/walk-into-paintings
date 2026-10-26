@@ -1,0 +1,69 @@
+{
+  "_说明": "画中侦探（/detective/）：把现有场景里“找一找”类型的互动集中在一起。点卡片进入场景（?play=…），走进去后自动打开对应的互动。play 的值见 assets/journey.js 里的 PLAY。还没上线的场景不显示。",
+  "title": {
+    "zh": "画中侦探",
+    "en": "Art Detective"
+  },
+  "intro": {
+    "zh": "每幅画里都藏着一点东西。走进去，把它找出来。",
+    "en": "Each painting hides something. Step inside and find it."
+  },
+  "items": [
+    {
+      "scene": "view-of-delft",
+      "label": {
+        "zh": "找一找黄色的墙",
+        "en": "Find the yellow wall"
+      },
+      "play": "loupe"
+    },
+    {
+      "scene": "dance-class",
+      "label": {
+        "zh": "数一数",
+        "en": "Count them"
+      },
+      "play": "count"
+    },
+    {
+      "scene": "art-of-painting",
+      "label": {
+        "zh": "找签名",
+        "en": "Find the signature"
+      },
+      "play": "toggle-1"
+    },
+    {
+      "scene": "arnolfini",
+      "label": {
+        "zh": "镜子里的人",
+        "en": "Who's in the mirror?"
+      },
+      "play": "mirror"
+    },
+    {
+      "scene": "folies-bergere",
+      "label": {
+        "zh": "如果镜子说的是真话",
+        "en": "If the mirror told the truth"
+      },
+      "play": "toggle-0"
+    },
+    {
+      "scene": "lacemaker",
+      "label": {
+        "zh": "移动焦点",
+        "en": "Move the focus"
+      },
+      "play": "focus"
+    },
+    {
+      "scene": "man-red-chaperon",
+      "label": {
+        "zh": "读懂画框",
+        "en": "Read the frame"
+      },
+      "play": "insc"
+    }
+  ]
+}
