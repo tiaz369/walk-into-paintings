@@ -118,7 +118,8 @@ const sortWorks = list => [...list].sort(byOpenYear);
 const artistCover = (R, a) => [].concat(a.cover || []).map(id => R.sceneById[id]).find(s => s && s.status === 'live' && s.cover)
   || (a.coverImage && { cover: a.coverImage.src, title: a.coverImage.title });
 // 其他代表作：只显示核对过的（check 为 ok）
-const artistWorks = (W, id) => ((W && W.artists[id]) || []).filter(x => x.check === 'ok');
+// 其他代表作：只列核对过的（check 为 ok）；写了 scene 的，那个场景一做好（即将开放或已上线）就不再列在这里，免得和“可以走进去的画”重复
+const artistWorks = (W, id, R) => ((W && W.artists[id]) || []).filter(x => x.check === 'ok' && !(x.scene && R && R.sceneById[x.scene] && R.sceneById[x.scene].status !== 'planned'));
 const workLine = (R, x) => {
   const m = R.museumById[x.museum], url = x.url || (m && m.url);
   const where = x.museumNote ? bi(x.museumNote) : m ? bi(m.name) : '';
@@ -248,7 +249,8 @@ const capSoon = list => { let n = 0; return list.filter(x => ((x.s || x).status 
 const NAV = [
   ['', '首页', 'Home'],
   ['artists/', '画家', 'Artists'], ['themes/', '主题', 'Themes'], ['moods/', '心情', 'Moods'], ['periods/', '时期', 'Periods'],
-  ['map/', '地图', 'Map'], ['museums/', '博物馆', 'Museums'], ['timeline/', '时间线', 'Timeline'], ['about/', '关于', 'About']
+  ['map/', '地图', 'Map'], ['museums/', '博物馆', 'Museums'], ['timeline/', '时间线', 'Timeline'],
+  ['london/', '伦敦', 'London'], ['paris/', '巴黎', 'Paris'], ['amsterdam/', '阿姆斯特丹', 'Amsterdam'], ['about/', '关于', 'About']
 ];
 export function chrome(active) {
   const header = document.createElement('header');
@@ -368,7 +370,9 @@ const param = k => new URLSearchParams(location.search).get(k);
 const START_HERE = [
   { href: 'artists/?id=van-gogh', scene: 'sunflowers', name: { zh: '梵高', en: 'Van Gogh' } },
   { href: 'artists/?id=vermeer', scene: 'pearl-earring', name: { zh: '维米尔', en: 'Vermeer' } },
-  { href: 'london/', scene: 'arnolfini', name: { zh: '在伦敦看真迹', en: 'See them in London' } }
+  { href: 'london/', scene: 'arnolfini', name: { zh: '在伦敦看真迹', en: 'See them in London' } },
+  { href: 'paris/', scene: 'gare-saint-lazare', name: { zh: '在巴黎看真迹', en: 'See them in Paris' } },
+  { href: 'amsterdam/', scene: 'milkmaid', name: { zh: '在阿姆斯特丹看真迹', en: 'See them in Amsterdam' } }
 ];
 // 首页底部一行小图标链接
 const HOME_LINKS = [
@@ -539,7 +543,7 @@ const PAGES = {
     const coverHTML = (a, tag) => (c => c ? `<${tag} class="artist-cover"${tag === 'a' ? ` href="?id=${a.id}"` : ''}><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" onerror="this.parentNode.remove()" /></${tag}>` : '')(artistCover(R, a));
     // 一位画家的作品：可以走进去的画（已上线 + 最多3个即将开放）；其他代表作（只显示作品名、年份、收藏地，链接到博物馆官网）
     const worksOf = a => {
-      const sc = scenesOf(R, 'artist', a.id), more = artistWorks(W, a.id);
+      const sc = scenesOf(R, 'artist', a.id), more = artistWorks(W, a.id, R);
       if (!sc.length && !more.length) return LATER();
       return (sc.length ? `<h4 class="works-title">${ui('可以走进去的画', 'Paintings you can step into')}</h4>${cardsHTML(R, capSoon(sc), { hideArtist: true, bothTitle: true })}` : '')
         + (more.length ? `<h4 class="works-title">${bi(W.title, ' / ')}</h4><p class="note">${bi(W.note, ' / ')}</p>
@@ -741,25 +745,35 @@ const PAGES = {
   },
 
   // ---------- 在伦敦看真迹：按展厅的参观路线（文字在 data/london.json） ----------
-  london(R, main) {
-    const L = LONDON, key = r => typeof r === 'object' ? r.en : String(r);
-    const section = sec => {   // 每家美术馆一节：标题、链接，再按展厅分组
-      const m = R.museumById[sec.museum];
-      const list = R.allScenes.filter(s => s.museum === sec.museum && s.onDisplay === true && s.room != null && s.room !== '');
-      const rooms = [...new Map(list.map(s => [key(s.room), s.room])).values()]
-        .sort((a, b) => (typeof a === 'object') - (typeof b === 'object') || (parseInt(key(a)) || 0) - (parseInt(key(b)) || 0));
-      return `<section class="section wrap london" id="${sec.museum}"><h2>${bi(sec.title)}<small class="sub">${bi(sec.subtitle)}</small></h2>
-        <p class="london-links">${sec.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${bi(l.label)} ↗</a>`).join('')}${m && m.url ? `<a href="${m.url}" target="_blank" rel="noopener">${bi(m.name)} ↗</a>` : ''}</p>
-        ${rooms.map(r => `<div class="group"><h3>${bi(roomLabel(r))}</h3>
-        <div class="rows">${list.filter(s => key(s.room) === key(r)).sort(byOpenYear).map(s => londonRow(R, s)).join('')}</div></div>`).join('') || SOON()}</section>`;
-    };
-    main.innerHTML = `<div class="wrap page-title"><h1>${bi(L.title)}</h1>
-        <p class="notice">${bi(L.notice, ' / ')}</p>
-        <p class="london-links"><button class="btn" onclick="print()">${ui('打印', 'Print')}</button></p></div>
-      ${L.sections.map(section).join('')}`;
-    if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
-  }
+  london(R, main) { routePage(R, main, LONDON); },
+  // ---------- 在巴黎 / 阿姆斯特丹看真迹：结构和伦敦一样（文字在 data/paris.json、data/amsterdam.json） ----------
+  async paris(R, main) { routePage(R, main, await getJSON('paris.json')); },
+  async amsterdam(R, main) { routePage(R, main, await getJSON('amsterdam.json')); }
 };
+
+// 城市参观路线页：每家博物馆一节（标题、参观链接），再按展厅分组。
+//   伦敦：收藏在这里、onDisplay 为 true、写了展厅的作品（包括还没做成场景的）；
+//   liveOnly（巴黎、阿姆斯特丹）：只列已上线的场景，借出去的不列；写了展厅的按展厅分组，没写的放在最后、不显示展厅号
+function routePage(R, main, L) {
+  const key = r => r == null || r === '' ? '' : typeof r === 'object' ? r.en : String(r);
+  const section = sec => {
+    const m = R.museumById[sec.museum];
+    const list = L.liveOnly
+      ? R.allScenes.filter(s => s.museum === sec.museum && s.status === 'live' && s.onDisplay !== false && !s.displayAt)
+      : R.allScenes.filter(s => s.museum === sec.museum && s.onDisplay === true && s.room != null && s.room !== '');
+    const rooms = [...new Map(list.map(s => [key(s.room), s.room])).values()]
+      .sort((a, b) => (key(a) === '') - (key(b) === '') || (typeof a === 'object') - (typeof b === 'object') || (parseInt(key(a)) || 0) - (parseInt(key(b)) || 0));
+    return `<section class="section wrap london" id="${sec.museum}"><h2>${bi(sec.title)}<small class="sub">${bi(sec.subtitle)}</small></h2>
+      <p class="london-links">${sec.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${bi(l.label)} ↗</a>`).join('')}${m && m.url && !L.liveOnly && !sec.links.some(l => sameUrl(l.url, m.url)) ? `<a href="${m.url}" target="_blank" rel="noopener">${bi(m.name)} ↗</a>` : ''}</p>
+      ${rooms.map(r => `<div class="group">${key(r) ? `<h3>${bi(roomLabel(r))}</h3>` : ''}
+      <div class="rows">${list.filter(s => key(s.room) === key(r)).sort(byOpenYear).map(s => londonRow(R, s)).join('')}</div></div>`).join('') || SOON()}</section>`;
+  };
+  main.innerHTML = `<div class="wrap page-title"><h1>${bi(L.title)}</h1>
+      <p class="notice">${bi(L.notice, ' / ')}</p>
+      <p class="london-links"><button class="btn" onclick="print()">${ui('打印', 'Print')}</button></p></div>
+    ${L.sections.map(section).join('')}`;
+  if (location.hash) { const el = document.getElementById(location.hash.slice(1)); if (el) el.scrollIntoView(); }
+}
 
 export async function renderPage(kind, opts = {}) {
   removeStatic();

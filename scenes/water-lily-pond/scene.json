@@ -11,14 +11,15 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是场景里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片“日本桥”链接到卧室的“地板”卡片（浮世绘）；和《向日葵》互相链接（同属“花与花园”）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是场景里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片“日本桥”链接到卧室的“地板”卡片（浮世绘）；和《向日葵》互相链接（同属“花与花园”）。和橘园《睡莲》互相链接（二十多年后，同一片池塘；橘园上线后按钮才出现）。",
     "doors": [],
     "cards": [
       "bedroom"
     ],
     "end": [
       "sunflowers",
-      "bathers-asnieres"
+      "bathers-asnieres",
+      "orangerie-water-lilies"
     ]
   },
   "painting": {
@@ -1472,6 +1473,14 @@
         "label": {
           "zh": "同属“水”：阿涅尔的浴场",
           "en": "Also by the water: *Bathers at Asnières*"
+        }
+      },
+      {
+        "scene": "orangerie-water-lilies",
+        "href": "../orangerie-water-lilies/",
+        "label": {
+          "zh": "二十多年后，同一片池塘",
+          "en": "The same pond, two decades later"
         }
       }
     ]

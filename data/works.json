@@ -1,5 +1,5 @@
 {
-  "_说明": "画家页的“其他代表作”（不能走进去，只显示作品名、年份、收藏地，并链接到博物馆官网；没有 url 的链接到博物馆首页）。名单由 Tia 提供；年份和收藏地以收藏方博物馆官网为准；check 为 ok 的是核对过的，“待核对”的先不显示，等 Tia 确认后改成 ok。_ 里写着核对的来源。已经在“可以走进去的画”里的作品不重复列。",
+  "_说明": "画家页的“其他代表作”（不能走进去，只显示作品名、年份、收藏地，并链接到博物馆官网；没有 url 的链接到博物馆首页）。名单由 Tia 提供；年份和收藏地以收藏方博物馆官网为准；check 为 ok 的是核对过的，“待核对”的先不显示，等 Tia 确认后改成 ok。_ 里写着核对的来源。scene 写对应的场景 id：那个场景做好以后（即将开放或已上线）自动不再列在这里，免得和“可以走进去的画”重复。",
   "title": {
     "zh": "其他代表作",
     "en": "More famous works"
@@ -38,7 +38,8 @@
         },
         "museum": "marmottan",
         "check": "ok",
-        "_": "玛摩丹·莫奈美术馆（维基百科等）"
+        "_": "玛摩丹·莫奈美术馆（维基百科等）",
+        "scene": "impression-sunrise"
       },
       {
         "title": {
@@ -51,7 +52,8 @@
         },
         "museum": "nga-washington",
         "check": "ok",
-        "_": "多处来源：1875，华盛顿国家美术馆"
+        "_": "多处来源：1875，华盛顿国家美术馆",
+        "scene": "woman-parasol"
       },
       {
         "title": {
@@ -64,7 +66,8 @@
         },
         "museum": "orsay",
         "check": "ok",
-        "_": "奥赛：1877，1896年卡耶博特遗赠"
+        "_": "奥赛：1877，1896年卡耶博特遗赠",
+        "scene": "gare-saint-lazare"
       },
       {
         "title": {
@@ -74,7 +77,8 @@
         "year": null,
         "museum": "orangerie",
         "check": "ok",
-        "_": "1927年安放在橘园美术馆两个椭圆展厅"
+        "_": "1927年安放在橘园美术馆两个椭圆展厅",
+        "scene": "orangerie-water-lilies"
       },
       {
         "title": {
@@ -124,7 +128,8 @@
         "museum": "orsay",
         "check": "ok",
         "_": "奥赛作品页：between 1873 and 1876",
-        "url": "https://www.musee-orsay.fr/en/artworks/la-classe-de-danse-1151"
+        "url": "https://www.musee-orsay.fr/en/artworks/la-classe-de-danse-1151",
+        "scene": "dance-class-orsay"
       },
       {
         "title": {
@@ -138,7 +143,8 @@
         "museum": "orsay",
         "check": "ok",
         "_": "奥赛作品页：vers 1876–1877（Tia 确认）",
-        "url": "https://www.musee-orsay.fr/en/artworks/ballet-2084"
+        "url": "https://www.musee-orsay.fr/en/artworks/ballet-2084",
+        "scene": "the-star"
       },
       {
         "title": {
@@ -152,7 +158,8 @@
         "museum": "orsay",
         "check": "ok",
         "_": "奥赛作品页：entre 1875 et 1876",
-        "url": "https://www.musee-orsay.fr/en/artworks/dans-un-cafe-1147"
+        "url": "https://www.musee-orsay.fr/en/artworks/dans-un-cafe-1147",
+        "scene": "absinthe"
       },
       {
         "title": {
@@ -197,7 +204,8 @@
         },
         "museum": "art-institute-chicago",
         "check": "ok",
-        "_": "维基百科：1884–1886，芝加哥艺术博物馆"
+        "_": "维基百科：1884–1886，芝加哥艺术博物馆",
+        "scene": "grande-jatte"
       },
       {
         "title": {
@@ -210,7 +218,8 @@
         },
         "museum": "orsay",
         "check": "ok",
-        "_": "奥赛：1891，1927年约翰·奎因遗赠"
+        "_": "奥赛：1891，1927年约翰·奎因遗赠",
+        "scene": "the-circus"
       }
     ],
     "renoir": [
@@ -226,7 +235,8 @@
         "museum": "orsay",
         "url": "https://www.musee-orsay.fr/en/artworks/bal-du-moulin-de-la-galette-497",
         "check": "ok",
-        "_": "奥赛作品页：1876"
+        "_": "奥赛作品页：1876",
+        "scene": "renoir-moulin-galette"
       },
       {
         "title": {
@@ -239,7 +249,8 @@
         },
         "museum": "phillips",
         "check": "ok",
-        "_": "维基百科等：1880–81，菲利普斯收藏馆（芝加哥艺术博物馆一篇文章写1882）"
+        "_": "维基百科等：1880–81，菲利普斯收藏馆（芝加哥艺术博物馆一篇文章写1882）",
+        "scene": "boating-party"
       },
       {
         "title": {
@@ -253,7 +264,8 @@
         "museum": "courtauld",
         "check": "ok",
         "_": "考陶尔德作品页：1874",
-        "url": "https://courtauld.ac.uk/highlights/la-loge-the-theatre-box/"
+        "url": "https://courtauld.ac.uk/highlights/la-loge-the-theatre-box/",
+        "scene": "la-loge"
       },
       {
         "title": {
@@ -266,7 +278,8 @@
         },
         "museum": "art-institute-chicago",
         "check": "ok",
-        "_": "芝加哥艺术博物馆目录：1881，1933.455"
+        "_": "芝加哥艺术博物馆目录：1881，1933.455",
+        "scene": "two-sisters"
       },
       {
         "title": {
@@ -294,7 +307,8 @@
         },
         "museum": "art-institute-chicago",
         "check": "ok",
-        "_": "芝加哥艺术博物馆导览"
+        "_": "芝加哥艺术博物馆导览",
+        "scene": "paris-street-rainy-day"
       },
       {
         "title": {

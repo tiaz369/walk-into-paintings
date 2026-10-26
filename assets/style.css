@@ -634,7 +634,7 @@ body.lang-both .feature-name > .en { display: block; font-size: .62em; color: va
 .feature-intro:empty { display: none; }
 
 /* 3. 从这里开始：三张大卡片（画家页封面卡片的样式放大） */
-.start-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.start-cards { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
 .start-card { display: block; text-decoration: none; color: inherit; }
 .start-card .artist-cover { display: block; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.18); aspect-ratio: 4 / 5; }
 .start-card .artist-cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .8s ease; }
@@ -727,3 +727,11 @@ body:has(#gallery.show) #langSwitch:hover, body:has(#gallery.show) #langSwitch:f
 }
 
 .london-note { font-style: italic; color: var(--ink); }
+
+/* 分享卡片（share.js）：弹出生成的图片；手机上长按保存，电脑上下载 */
+.share-pop { position: fixed; inset: 0; z-index: 30; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, .6); padding: 16px; }
+.share-pop.hidden { display: none; }
+.share-box { position: relative; max-width: min(440px, 100%); max-height: 100%; overflow: auto; padding: 16px; text-align: center; }
+.share-box img { display: block; width: 100%; height: auto; border-radius: 6px; -webkit-touch-callout: default; user-select: auto; }
+.share-box .close { position: absolute; top: 6px; right: 6px; }
+.share-tip { margin: 12px 0 2px; font-size: 14px; color: var(--muted); }
