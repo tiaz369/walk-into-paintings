@@ -1,5 +1,5 @@
 {
-  "_说明": "圣拉扎尔火车站（室内，完整版：巨大的车棚内部）。所有事实文字由 Tia 提供（资料主要来自芝加哥艺术博物馆官网）。站在车站月台上，头顶是巨大的玻璃和铁的人字形车棚；火车头喷出的蓝白色蒸汽在棚子里翻滚，日光从玻璃屋顶透进来；远处车棚外是巴黎的楼房。画家视角和物体位置是先按构图估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "_说明": "圣拉扎尔火车站（室内，完整版：巨大的车棚内部）。所有事实文字由 Tia 提供（资料主要来自芝加哥艺术博物馆官网）。站在车站月台上，头顶是玻璃和铁的人字形车棚；火车头喷出的蓝白色蒸汽在棚子里翻滚；车棚尽头外面是巴黎的楼房。画家视角和物体位置已对照原画（Wikimedia Commons，1920×1404）计算。",
   "id": "gare-saint-lazare",
   "variant": "interior",
   "lighting": {
@@ -20,15 +20,14 @@
   },
   "painting": {
     "image": "images/gare-saint-lazare.jpg",
-    "width": 1500,
-    "height": 1074,
+    "width": 1920,
+    "height": 1404,
     "alt": {
       "zh": "莫奈《圣拉扎尔火车站》1877年，巴黎奥赛博物馆",
       "en": "Claude Monet, The Saint-Lazare Station, 1877, Musée d'Orsay, Paris"
-    },
-    "_": "宽高是按 75 × 105 cm 估的，上传原画后改成图片的真实像素"
+    }
   },
-  "projection": false,
+  "projection": true,
   "label": {
     "_说明": "展签：画名、画家、年份、收藏地",
     "title": {
@@ -61,12 +60,12 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the roof, the steam, the locomotives or the buildings beyond to learn more · Tap “The same station, another view” and drag the slider to compare · The glowing circle = Monet's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估的，上传原画后对照原画重新计算。",
+    "_说明": "画家视角：对照原画计算（视野 50°，地平线在画面高度 81% 处，莫奈站着、稍微抬头看车棚）。",
     "x": 0,
     "z": 0,
     "eye": 1.6,
     "yaw": 0,
-    "pitch": 0.05,
+    "pitch": 0.2814,
     "fov": 50,
     "text": {
       "zh": "从这里看，就是画里的样子。",
@@ -84,133 +83,313 @@
     "steam": "#dfe6ee",
     "loco": "#2a2c30",
     "city": "#c9c0ae",
-    "platform": "#9c958a"
+    "platform": "#9c958a",
+    "coat": "#2b2a2c",
+    "trousers": "#2c2b2e",
+    "skin": "#c9a88e"
   },
   "room": {
-    "_说明": "房间形状（米）：车棚内部，很高很长。左墙 x=left，前墙 z=front；后墙（车棚外的巴黎楼房）从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
-    "height": 22,
+    "_说明": "房间形状（米）：车棚内部和车棚尽头外面的一段。后墙 z=-45 是车棚外的巴黎楼房（原画投影上去）。房间很大，所以看得远一点（far：能看多远；projectFar：原画投影能投多远）。",
+    "height": 38,
     "front": 4,
-    "left": -18,
+    "left": -36,
     "backLeft": [
-      -18,
-      -70
+      -36,
+      -45
     ],
     "backRight": [
-      18,
-      -70
+      36,
+      -45
     ],
     "rightFront": [
-      18,
+      36,
       4
     ],
+    "far": 90,
     "floorCard": "modern",
-    "wallCard": "glass",
+    "wallCard": "city",
     "walkSpeed": 1.6,
-    "walkEye": 1.6
+    "walkEye": 1.6,
+    "projectFar": 90
   },
   "objects": [
     {
+      "type": "surface",
+      "card": "glass",
+      "color": "glass",
+      "_": "车棚屋顶左半边（玻璃和铁，人字形）",
+      "pts": [
+        [
+          -19,
+          12.5,
+          4
+        ],
+        [
+          -19,
+          12.5,
+          -27
+        ],
+        [
+          0,
+          22.7,
+          -27
+        ],
+        [
+          0,
+          22.7,
+          4
+        ]
+      ]
+    },
+    {
+      "type": "surface",
+      "card": "glass",
+      "color": "glass",
+      "_": "车棚屋顶右半边",
+      "pts": [
+        [
+          0,
+          22.7,
+          4
+        ],
+        [
+          0,
+          22.7,
+          -27
+        ],
+        [
+          16,
+          11.4,
+          -27
+        ],
+        [
+          16,
+          11.4,
+          4
+        ]
+      ]
+    },
+    {
+      "type": "surface",
+      "card": "light",
+      "color": "iron",
+      "_": "车棚尽头的人字形边（左）",
+      "pts": [
+        [
+          -19,
+          12.5,
+          -27
+        ],
+        [
+          -19,
+          11.6,
+          -27
+        ],
+        [
+          0,
+          21.8,
+          -27
+        ],
+        [
+          0,
+          22.7,
+          -27
+        ]
+      ]
+    },
+    {
+      "type": "surface",
+      "card": "light",
+      "color": "iron",
+      "_": "车棚尽头的人字形边（右）",
+      "pts": [
+        [
+          0,
+          22.7,
+          -27
+        ],
+        [
+          0,
+          21.8,
+          -27
+        ],
+        [
+          16,
+          10.5,
+          -27
+        ],
+        [
+          16,
+          11.4,
+          -27
+        ]
+      ]
+    },
+    {
       "type": "boxes",
-      "card": "modern",
-      "x": -9,
-      "z": -30,
-      "_": "左边的月台",
+      "card": "glass",
+      "x": 0,
+      "z": 0,
+      "_": "撑着车棚的铁柱",
       "boxes": [
         [
-          6,
-          0.9,
-          60,
-          "platform",
-          0,
-          0.45,
-          0
+          0.4,
+          11.4,
+          0.4,
+          "iron",
+          14.3,
+          5.7,
+          -27
+        ],
+        [
+          0.4,
+          11.4,
+          0.4,
+          "iron",
+          15,
+          5.7,
+          -12
+        ],
+        [
+          0.4,
+          11.4,
+          0.4,
+          "iron",
+          15.6,
+          5.7,
+          2
+        ],
+        [
+          0.4,
+          12.4,
+          0.4,
+          "iron",
+          -17,
+          6.2,
+          -27
+        ],
+        [
+          0.4,
+          12.4,
+          0.4,
+          "iron",
+          -17.6,
+          6.2,
+          -12
+        ],
+        [
+          0.4,
+          12.4,
+          0.4,
+          "iron",
+          -18.2,
+          6.2,
+          2
         ]
       ]
     },
     {
       "type": "boxes",
       "card": "modern",
-      "x": 10,
-      "z": -30,
-      "_": "右边的月台",
+      "x": -17,
+      "z": -36,
+      "_": "左边月台的雨棚",
       "boxes": [
         [
-          5,
-          0.9,
-          60,
-          "platform",
+          10,
+          0.5,
+          18,
+          "iron",
           0,
-          0.45,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "boxes",
-      "card": "steam",
-      "x": -1.5,
-      "z": -26,
-      "_": "左边的火车头",
-      "boxes": [
-        [
-          3,
-          3.6,
-          9,
-          "loco",
-          0,
-          1.8,
+          13.8,
           0
         ],
         [
-          1,
-          1.6,
-          1,
+          0.3,
+          13.6,
+          0.3,
+          "iron",
+          5,
+          6.8,
+          -8
+        ],
+        [
+          0.3,
+          13.6,
+          0.3,
+          "iron",
+          5,
+          6.8,
+          0
+        ],
+        [
+          0.3,
+          13.6,
+          0.3,
+          "iron",
+          5,
+          6.8,
+          8
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "modern",
+      "x": -8.2,
+      "z": -33,
+      "_": "左边停着的车厢",
+      "boxes": [
+        [
+          4.7,
+          6,
+          12,
           "loco",
           0,
-          4.4,
-          -3.6
+          3,
+          0
         ]
       ]
     },
     {
       "type": "boxes",
       "card": "steam",
-      "x": 4,
-      "z": -34,
-      "_": "右边远一点的火车头",
+      "x": -1,
+      "z": -42,
+      "_": "中间进站的火车头",
       "boxes": [
         [
-          3,
-          3.4,
+          3.9,
+          4.4,
           8,
           "loco",
           0,
-          1.7,
+          2.2,
           0
         ],
         [
           0.9,
-          1.4,
+          2.4,
           0.9,
           "loco",
           0,
-          4.1,
-          -3.2
+          5.4,
+          3
         ]
       ]
     },
     {
       "type": "boxes",
       "card": "steam",
-      "x": 0,
-      "y": 8,
-      "z": -30,
-      "_": "困在车棚里的蒸汽（示意的大块）",
+      "x": -3.6,
+      "y": 16,
+      "z": -31,
+      "_": "困在车棚里的蒸汽（示意的一大团）",
       "boxes": [
         [
-          14,
-          6,
-          10,
+          12,
+          12,
+          3,
           "steam",
           0,
           0,
@@ -220,80 +399,14 @@
       ]
     },
     {
-      "type": "boxes",
-      "card": "glass",
-      "x": 0,
-      "y": 20,
-      "z": -30,
-      "_": "玻璃和铁的车棚屋顶（人字形，先用横梁表示）",
-      "boxes": [
-        [
-          36,
-          0.4,
-          0.4,
-          "iron",
-          0,
-          0,
-          -20
-        ],
-        [
-          36,
-          0.4,
-          0.4,
-          "iron",
-          0,
-          0,
-          -10
-        ],
-        [
-          36,
-          0.4,
-          0.4,
-          "iron",
-          0,
-          0,
-          0
-        ],
-        [
-          36,
-          0.4,
-          0.4,
-          "iron",
-          0,
-          0,
-          10
-        ],
-        [
-          36,
-          0.4,
-          0.4,
-          "iron",
-          0,
-          0,
-          20
-        ]
-      ]
-    },
-    {
-      "type": "wallBoxes",
-      "card": "city",
-      "wall": "back",
-      "x": 0,
-      "y": 8,
-      "z": -70,
-      "_": "车棚外的巴黎楼房",
-      "boxes": [
-        [
-          30,
-          12,
-          0.5,
-          "city",
-          0,
-          0,
-          0.3,
-          "cloth"
-        ]
-      ]
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 3.2,
+      "z": -11.4,
+      "card": "modern",
+      "_": "右边月台上的男人"
     }
   ],
   "cards": {
@@ -389,8 +502,8 @@
           "en": "Chicago · 1877"
         },
         "caption": {
-          "zh": "《诺曼底火车进站，圣拉扎尔火车站》，1877年 · 芝加哥艺术博物馆",
-          "en": "*Arrival of the Normandy Train, Gare Saint-Lazare*, 1877 · The Art Institute of Chicago"
+          "zh": "《诺曼底火车进站》，1877年 · 芝加哥艺术博物馆",
+          "en": "*Arrival of the Normandy Train, Gare Saint-Lazare*, 1877 · Art Institute of Chicago"
         }
       }
     ]
@@ -451,7 +564,7 @@
         "kicker": "ACT III",
         "title": {
           "zh": "第三幕 · 最后一次画城市",
-          "en": "The last time he painted the city"
+          "en": "Farewell to the city"
         },
         "text": {
           "zh": "这组车站画开启了莫奈一生的做法：一次又一次画同一个主题，捕捉光线的变化。但这也是他最后一次画城市生活，从此以后，他几乎只画风景。",
@@ -558,7 +671,7 @@
       {
         "title": {
           "zh": "第三幕 · 最后一次画城市",
-          "en": "The last time he painted the city"
+          "en": "Farewell to the city"
         },
         "text": {
           "zh": "这组车站画开启了莫奈一生的做法：一次又一次画同一个主题，捕捉光线的变化。但这也是他最后一次画城市生活，从此以后，他几乎只画风景。",

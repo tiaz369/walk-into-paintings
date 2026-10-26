@@ -298,7 +298,7 @@ function run(S, R, meta) {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(C.line);
   const OUT = S.room.kind === 'outdoor';   // 户外场景（广场、街道）：没有墙和天花板，有天空
-  const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, OUT ? 400 : 50);
+  const camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.05, OUT ? 400 : (S.room.far || 50));
 
   // ---------- 房间形状 ----------
   const RM = S.room, VIEW = { ...S.viewpoint, aspect: S.painting.width / S.painting.height };
@@ -728,7 +728,7 @@ function run(S, R, meta) {
   scene.add(vpRing, vpDot);
 
   // ---------- 投影贴图：把原画从画家视角“投”到墙、地板和家具上 ----------
-  const projector = new THREE.PerspectiveCamera(VIEW.fov, VIEW.aspect, 0.3, OUT ? (RM.projectFar || 220) : 14);   // 户外看得更远
+  const projector = new THREE.PerspectiveCamera(VIEW.fov, VIEW.aspect, 0.3, OUT ? (RM.projectFar || 220) : (RM.projectFar || 14));   // 户外看得更远
   projector.position.set(VIEW.x, VIEW.eye, VIEW.z);
   projector.rotation.set(VIEW.pitch, -VIEW.yaw, 0, 'YXZ');
   projector.updateMatrixWorld(); projector.updateProjectionMatrix();
