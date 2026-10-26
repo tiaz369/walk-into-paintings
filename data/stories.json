@@ -1,0 +1,80 @@
+{
+  "_说明": "艺术故事（/stories/）：用现有场景串成一条路线。文字由 Tia 提供。每一站：时间、场景 id；页面上显示场景缩略图、场景最后一屏的那句话和“走进去”按钮。从故事页进入场景（?story=故事 id）时，场景结尾显示“继续这段故事”，指向下一站。还没上线的场景不显示。",
+  "title": {
+    "zh": "艺术故事",
+    "en": "Stories"
+  },
+  "intro": {
+    "zh": "用几幅画，串起一段故事。",
+    "en": "A few paintings, one story."
+  },
+  "stories": [
+    {
+      "id": "a-day-in-arles",
+      "cover": "yellow-house",
+      "title": {
+        "zh": "阿尔勒的一天",
+        "en": "A Day in Arles"
+      },
+      "subtitle": {
+        "zh": "一条想象的路线，串起梵高1888年画下的地方。",
+        "en": "An imagined route through the places Van Gogh painted in 1888."
+      },
+      "note": {
+        "zh": "这些画不是在同一天画的。这条路线按一天的时间排列，只是为了让你走一遍他的阿尔勒。",
+        "en": "These paintings were not made on a single day. The route follows the hours of one day, simply to walk you through his Arles."
+      },
+      "stops": [
+        {
+          "time": {
+            "zh": "早上",
+            "en": "Morning"
+          },
+          "scene": "yellow-house"
+        },
+        {
+          "time": {
+            "zh": "中午",
+            "en": "Midday"
+          },
+          "scene": "sunflowers"
+        },
+        {
+          "time": {
+            "zh": "下午",
+            "en": "Afternoon"
+          },
+          "scene": "vangogh-chair"
+        },
+        {
+          "time": {
+            "zh": "傍晚",
+            "en": "Evening"
+          },
+          "scene": "cafe-terrace"
+        },
+        {
+          "time": {
+            "zh": "深夜",
+            "en": "Late night"
+          },
+          "scene": "night-cafe"
+        },
+        {
+          "time": {
+            "zh": "午夜",
+            "en": "Midnight"
+          },
+          "scene": "starry-night-rhone"
+        },
+        {
+          "time": {
+            "zh": "回家",
+            "en": "Home"
+          },
+          "scene": "bedroom"
+        }
+      ]
+    }
+  ]
+}

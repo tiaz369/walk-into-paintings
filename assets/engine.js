@@ -13,6 +13,7 @@ import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang
 import { setupGuide } from './guide.js';
 import { setupShareCard, shareBtnHTML } from './share.js';
 import { setupPersonal, saveBtnHTML } from './personal.js';
+import { setupJourney } from './journey.js';
 import { setupSound } from './sound.js';
 import { variantOf, VARIANTS } from './variants.js';
 
@@ -1312,6 +1313,7 @@ function run(S, R, meta) {
   cleanToggle($('tools'));   // 隐藏按钮（录屏、截图用）
   setupShareCard(S);   // 分享卡片（share.js）
   setupPersonal(S);    // 收藏、看画护照盖章（personal.js）
+  setupJourney(S);     // 从“艺术故事”“画中侦探”进来（journey.js）
   addEventListener('pointerdown', () => { if (document.body.classList.contains('in-room')) hideHint(); });
   function finishIntro() {
     intro.style.display = 'none'; walking = true;

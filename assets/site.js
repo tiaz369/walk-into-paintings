@@ -381,6 +381,12 @@ const START_HERE = [
   { href: 'paris/', scene: 'gare-saint-lazare', name: { zh: '在巴黎看真迹', en: 'See them in Paris' } },
   { href: 'amsterdam/', scene: 'milkmaid', name: { zh: '在阿姆斯特丹看真迹', en: 'See them in Amsterdam' } }
 ];
+// 首页“从这里开始”下面的三张卡片：艺术故事、画中侦探、对比两幅画
+const FEATURES = [
+  { href: 'stories/', scene: 'yellow-house', name: { zh: '艺术故事', en: 'Stories' } },
+  { href: 'detective/', scene: 'arnolfini', name: { zh: '画中侦探', en: 'Art Detective' } },
+  { href: 'compare/', scene: 'starry-night', name: { zh: '对比两幅画', en: 'Compare' } }
+];
 // 首页底部一行小图标链接
 const HOME_LINKS = [
   { path: 'themes/', name: { zh: '主题', en: 'Themes' } },
@@ -507,6 +513,9 @@ const PAGES = {
       <section class="section wrap" id="start">
         <h2>${ui('从这里开始', 'Start here')}</h2>
         <div class="start-cards">${start.map(x => `<a class="start-card" href="${ROOT + x.href}">
+          <span class="artist-cover"><img src="${ROOT + x.s.cover}" ${altAttr(x.s.title)} loading="lazy" /></span>
+          <span class="start-name">${bi(x.name)}</span></a>`).join('')}</div>
+        <div class="start-cards feature-cards">${FEATURES.map(x => ({ ...x, s: cover(x.scene) })).filter(x => x.s).map(x => `<a class="start-card" href="${ROOT + x.href}">
           <span class="artist-cover"><img src="${ROOT + x.s.cover}" ${altAttr(x.s.title)} loading="lazy" /></span>
           <span class="start-name">${bi(x.name)}</span></a>`).join('')}</div>
       </section>
@@ -750,6 +759,55 @@ const PAGES = {
       }).join('')}`;
     const cg = groups.find(g => g.type === 'compare');
     if (cg && main.querySelector('#cmp')) compareSlider(main, (cg.S.ending.versions || []).filter(v => v.image), cg.base);
+  },
+
+  // ---------- 艺术故事：用现有场景串成路线（data/stories.json）；?id= 打开一个故事 ----------
+  async stories(R, main, opts = {}) {
+    const D = await getJSON('stories.json');
+    const live = id => R.sceneById[id] && R.sceneById[id].status === 'live' ? R.sceneById[id] : null;
+    const st = D.stories.find(x => x.id === (opts.id || param('id')));
+    if (!st) {   // 故事列表
+      main.innerHTML = `<div class="wrap page-title"><h1>${bi(D.title)}</h1><p class="lead-sm">${bi(D.intro, ' / ')}</p></div>
+        <section class="section wrap"><div class="start-cards story-cards">${D.stories.map(x => { const c = live(x.cover); return `<a class="start-card" href="${ROOT}stories/${x.id}/">
+          ${c ? `<span class="artist-cover"><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" /></span>` : ''}
+          <span class="start-name">${bi(x.title)}</span><span class="story-sub">${bi(x.subtitle, ' / ')}</span></a>`; }).join('')}</div></section>`;
+      return;
+    }
+    const stops = st.stops.map(x => ({ ...x, s: live(x.scene) })).filter(x => x.s);
+    const finals = await Promise.all(stops.map(x => fetch(ROOT + x.s.path + 'scene.json', { cache: 'no-cache' }).then(r => r.json()).then(S => S.ending && S.ending.final).catch(() => null)));
+    main.innerHTML = `<div class="wrap page-title"><p class="story-back"><a href="${ROOT}stories/">← ${ui('艺术故事', 'Stories')}</a></p>
+        <h1>${bi(st.title)}<small class="sub">${bi(st.subtitle)}</small></h1>
+        <p class="story-note">${bi(st.note, ' / ')}</p></div>
+      <section class="section wrap"><ol class="story-route">${stops.map((x, i) => `<li class="story-stop">
+        <span class="story-time"><b>${i + 1}</b> <span class="zh">${esc(x.time.zh)}</span><span class="en">${esc(x.time.en)}</span></span>
+        <a class="story-pic" href="${ROOT + x.s.path}?story=${st.id}"><img src="${ROOT + x.s.cover}" ${altAttr(x.s.title)} loading="lazy" /></a>
+        <span class="story-text"><span class="story-title">${bi(x.s.title)}</span>
+          ${finals[i] ? `<span class="story-final"><span class="zh">${finals[i].zh}</span><span class="en">${finals[i].en}</span></span>` : ''}
+          <a class="btn primary" href="${ROOT + x.s.path}?story=${st.id}">${ui('走进去', 'Step inside')} →</a></span></li>`).join('')}</ol></section>`;
+  },
+
+  // ---------- 画中侦探：现有场景里“找一找”类型的互动（data/detective.json） ----------
+  async detective(R, main) {
+    const D = await getJSON('detective.json');
+    const items = D.items.map(x => ({ ...x, s: R.sceneById[x.scene] })).filter(x => x.s && x.s.status === 'live');
+    main.innerHTML = `<div class="wrap page-title"><h1>${bi(D.title)}</h1><p class="lead-sm">${bi(D.intro, ' / ')}</p></div>
+      <section class="section wrap"><div class="cards">${items.map(x => `<a class="card detect-card" href="${ROOT + x.s.path}?play=${x.play}">
+        <div class="pic"><img src="${ROOT + x.s.cover}" ${altAttr(x.s.title)} loading="lazy" /></div>
+        <div class="detect-task">✦ ${bi(x.label)}</div>
+        <div class="name">${bi(x.s.title)}</div></a>`).join('')}</div></section>`;
+  },
+
+  // ---------- 对比两幅画：每组一个对比滑块（data/compare.json） ----------
+  async compare(R, main) {
+    const D = await getJSON('compare.json');
+    const pairs = D.pairs.map(p => ({ ...p, ss: p.scenes.map(id => R.sceneById[id]) })).filter(p => p.ss.every(s => s && s.status === 'live'));
+    main.innerHTML = `<div class="wrap page-title"><h1>${bi(D.title)}</h1><p class="lead-sm">${bi(D.intro, ' / ')}</p></div>
+      ${pairs.map(p => `<section class="section wrap pair-cmp" id="${p.id}"><h2>${bi(p.title)}</h2>${p.note ? `<p class="lead-sm">${bi(p.note, ' / ')}</p>` : ''}
+        <div class="cmp-pick"><select id="cmpA" aria-label="A"></select><span>↔</span><select id="cmpB" aria-label="B"></select></div>
+        <div id="cmp" class="cmp-contain"><img id="cmpImgA" alt="" /><img id="cmpImgB" alt="" /><div id="cmpLine"></div>
+          <span class="cmp-tag" id="cmpTagA" style="left:8px"></span><span class="cmp-tag" id="cmpTagB" style="right:8px"></span></div>
+        <p class="pair-btns">${p.ss.map(s => `<a class="btn primary" href="${sceneUrl(s)}">${ui('走进去', 'Step inside')}：${bi(s.title)} →</a>`).join('')}</p></section>`).join('')}`;
+    pairs.forEach(p => compareSlider(main.querySelector('#' + p.id), p.ss.map(s => ({ image: s.cover, short: s.title })), ROOT));
   },
 
   // ---------- 看画护照：走到场景结尾就盖章（personal.js）；按城市和画家显示，集齐一组有徽章（文字在 data/passport.json） ----------

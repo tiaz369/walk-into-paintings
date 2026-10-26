@@ -798,3 +798,31 @@ body.bw canvas, body.bw #vpOverlay, body.bw #compare img { filter: grayscale(1);
 .pick-swatches:not(:empty) { margin-bottom: 26px; }
 .pick-found { font-family: var(--serif); font-size: 17px !important; text-align: center; margin-top: 14px !important; }
 .pick-note { font-size: 13px !important; text-align: center; }
+
+/* ---------- 艺术故事、画中侦探、对比两幅画 ---------- */
+.feature-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 22px; }
+.feature-cards .artist-cover img { aspect-ratio: 3 / 2; }
+.story-cards { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+.story-sub { display: block; margin-top: 6px; font-size: 13px; color: var(--muted); }
+.story-back { margin: 0 0 6px; font-size: 13px; } .story-back a { color: var(--muted); text-decoration: none; }
+.story-note { max-width: 36em; margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+.story-route { list-style: none; margin: 0; padding: 0; }
+.story-stop { display: grid; grid-template-columns: 110px 220px 1fr; gap: 18px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.story-time { font-family: var(--serif); font-size: 20px; }
+.story-time b { display: inline-flex; align-items: center; justify-content: center; width: 1.5em; height: 1.5em; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font-size: .7em; font-family: var(--sans); font-weight: 500; margin-right: 4px; vertical-align: middle; }
+body.lang-both .story-time .en { display: block; margin-left: 1.6em; font-size: .7em; color: var(--muted); font-style: italic; }
+.story-pic img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 4px; }
+.story-title { display: block; font-family: var(--serif); font-size: 20px; }
+.story-final { display: block; margin: 6px 0 12px; font-family: var(--serif); font-size: 17px; line-height: 1.5; }
+.story-final .en { display: block; font-family: var(--text-serif); color: var(--ink-en); font-size: 16px; }
+@media (max-width: 640px) {
+  .story-stop { grid-template-columns: 1fr; gap: 10px; }
+  .feature-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 18px 0 0; padding: 0; overflow: visible; }
+  .feature-cards .start-name { font-size: 16px; }
+}
+.story-next { margin: 18px auto 0; text-align: center; }
+.story-of { font-size: 13px; color: var(--muted); margin: 0 0 8px; }
+.detect-task { display: block; margin-top: 10px; color: var(--accent); font-size: 14px; }
+.cmp-contain img { object-fit: contain !important; background: var(--paper-2); }
+.pair-btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 14px; }
+.pair-cmp .cmp-pick { margin-top: 10px; }

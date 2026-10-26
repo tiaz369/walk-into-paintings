@@ -297,6 +297,26 @@ def ldn_section(sec, live_only=False):   # live_only（巴黎、阿姆斯特丹�
     return f'<section id="{sec["museum"]}"><h2>{bi(sec["title"])}</h2><p>{e(both(sec["subtitle"], " / "))}</p><ul>{links}</ul>{ls}</section>'
 PAGES.append(page('london/', T(LONDON['title']['zh'], LONDON['title']['en']), f'{both(LONDON["title"])}：' + '；'.join(both(sec["subtitle"], " / ") for sec in LONDON['sections']),
                   f'      <h1>{bi(LONDON["title"])}</h1>\n      <p>{e(both(LONDON["notice"], " / "))}</p>\n      ' + ''.join(ldn_section(sec) for sec in LONDON['sections']), site_script('../', 'london')))
+# ---------- 艺术故事、画中侦探、对比两幅画（用现有场景；数据在 data/stories.json、detective.json、compare.json） ----------
+STO = json.load(open(os.path.join(ROOT, 'data/stories.json'), encoding='utf-8'))
+LIVE_IDS = {s['id'] for s in LIVE}
+PAGES.append(page('stories/', T(STO['title']['zh'], STO['title']['en']), both(STO['intro'], ' / '),
+                  f'      <h1>{bi(STO["title"])}</h1>\n      <p>{e(both(STO["intro"], " / "))}</p>\n      <ul>' + ''.join(f'<li><a href="{x["id"]}/">{e(both(x["title"]))}</a> — {e(both(x["subtitle"], " / "))}</li>' for x in STO['stories']) + '</ul>', site_script('../', 'stories')))
+for st in STO['stories']:
+    lis = ''
+    for x in st['stops']:
+        sc = SCENES.get(x['scene'])
+        if not sc or x['scene'] not in LIVE_IDS: continue
+        fin = json.load(open(os.path.join(ROOT, sc['path'], 'scene.json'), encoding='utf-8')).get('ending', {}).get('final')
+        lis += f'<li>{e(both(x["time"]))} · <a href="../../{sc["path"]}?story={st["id"]}">{e(both(sc["title"]))}</a>' + (f' — {e(both(fin, " / "))}' if fin else '') + '</li>'
+    PAGES.append(page(f'stories/{st["id"]}/', T(st['title']['zh'], st['title']['en']), f'{both(st["title"])}：{both(st["subtitle"], " / ")}',
+                      f'      <h1>{bi(st["title"])}</h1>\n      <p>{e(both(st["subtitle"], " / "))}</p>\n      <p>{e(both(st["note"], " / "))}</p>\n      <ol>{lis}</ol>', site_script('../../', 'stories', f", {{ id: '{st['id']}' }}")))
+DET = json.load(open(os.path.join(ROOT, 'data/detective.json'), encoding='utf-8'))
+PAGES.append(page('detective/', T(DET['title']['zh'], DET['title']['en']), both(DET['intro'], ' / '),
+                  f'      <h1>{bi(DET["title"])}</h1>\n      <p>{e(both(DET["intro"], " / "))}</p>\n      <ul>' + ''.join(f'<li><a href="../{SCENES[x["scene"]]["path"]}?play={x["play"]}">{e(both(x["label"]))}</a> — {e(both(SCENES[x["scene"]]["title"]))}</li>' for x in DET['items'] if x['scene'] in LIVE_IDS) + '</ul>', site_script('../', 'detective')))
+CMP = json.load(open(os.path.join(ROOT, 'data/compare.json'), encoding='utf-8'))
+PAGES.append(page('compare/', T(CMP['title']['zh'], CMP['title']['en']), both(CMP['intro'], ' / '),
+                  f'      <h1>{bi(CMP["title"])}</h1>\n      <p>{e(both(CMP["intro"], " / "))}</p>\n      ' + ''.join(f'<h2>{e(both(p["title"]))}</h2>' + (f'<p>{e(both(p["note"], " / "))}</p>' if p.get('note') else '') + '<ul>' + ''.join(f'<li><a href="../{SCENES[i]["path"]}">{e(both(SCENES[i]["title"]))}</a></li>' for i in p['scenes']) + '</ul>' for p in CMP['pairs'] if all(i in LIVE_IDS for i in p['scenes'])), site_script('../', 'compare')))
 # ---------- 看画护照、我的画廊：内容在观众自己的浏览器里，这里只写标题和说明 ----------
 for key, f in (('passport', 'passport.json'), ('my-gallery', 'my-gallery.json')):
     PT = json.load(open(os.path.join(ROOT, 'data', f), encoding='utf-8'))
