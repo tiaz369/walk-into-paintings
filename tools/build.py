@@ -89,12 +89,14 @@ def para(p):
     return out
 LONDON = json.load(open(os.path.join(ROOT, 'data/london.json'), encoding='utf-8'))
 LONDON_MUSEUMS = [sec['museum'] for sec in LONDON['sections']]
+CITIES = {c: json.load(open(os.path.join(ROOT, f'data/{c}.json'), encoding='utf-8')) for c in ('paris', 'amsterdam')}   # 巴黎、阿姆斯特丹的参观路线（结构和伦敦一样）
 LIFE = {a['id']: json.load(open(f, encoding='utf-8')) for a in R['artists'] if os.path.exists(f := os.path.join(ROOT, 'data/life', a['id'] + '.json'))}   # 画家页的“生平”
 HAS_AUDIO = any(os.path.exists(os.path.join(ROOT, s['path'], 'audio', f)) for s in LIVE for f in ('guide-zh.mp3', 'guide-en.mp3'))   # 有录音了才写“语音导览由 Tia 录制”
 CREDIT = ('<p><span lang="zh-CN">创意、故事与文字：<a href="https://tiaz369.github.io">Tia</a> · 使用 Claude 制作</span><br>'
           '<span lang="en">Concept, stories and texts by <a href="https://tiaz369.github.io">Tia</a> · Built with Claude</span></p>')
 NAV = [('', '首页', 'Home'), ('artists/', '画家', 'Artists'), ('themes/', '主题', 'Themes'), ('moods/', '心情', 'Moods'), ('periods/', '时期', 'Periods'),
-       ('map/', '地图', 'Map'), ('museums/', '博物馆', 'Museums'), ('timeline/', '时间线', 'Timeline'), ('about/', '关于', 'About')]
+       ('map/', '地图', 'Map'), ('museums/', '博物馆', 'Museums'), ('timeline/', '时间线', 'Timeline'),
+       ('london/', '伦敦', 'London'), ('paris/', '巴黎', 'Paris'), ('amsterdam/', '阿姆斯特丹', 'Amsterdam'), ('about/', '关于', 'About')]
 def nav(up): return '<nav>' + ' · '.join(f'<a href="{up}{p}">{zh} {en}</a>' for p, zh, en in NAV) + '</nav>'
 
 # ---------- 页面外壳 ----------
@@ -185,7 +187,7 @@ def col_home(c):   # 首页的系列：一行已开放的作品（只写画名�
     lst = sorted([SCENES[x] for x in c['order'] if x in SCENES and SCENES[x]['status'] == 'live' and SCENES[x].get('cover')], key=open_year)
     if not lst: return ''
     return f'<h3><a href="collections/{c["id"]}/">{e(both(c["name"]))}</a></h3><ul>' + ''.join(f'<li><a href="{s["path"]}">{e(both(s["title"]))}</a></li>' for s in lst) + '</ul>'
-START_HERE = [('artists/?id=van-gogh', '梵高', 'Van Gogh'), ('artists/?id=vermeer', '维米尔', 'Vermeer'), ('london/', LONDON['title']['zh'], LONDON['title']['en'])]   # 和 site.js 的 START_HERE 一致
+START_HERE = [('artists/?id=van-gogh', '梵高', 'Van Gogh'), ('artists/?id=vermeer', '维米尔', 'Vermeer'), ('london/', LONDON['title']['zh'], LONDON['title']['en'])] + [(c + '/', CITIES[c]['title']['zh'], CITIES[c]['title']['en']) for c in CITIES]   # 和 site.js 的 START_HERE 一致
 HOME_LINKS = [('themes/', '主题', 'Themes'), ('moods/', '心情', 'Moods'), ('periods/', '时期', 'Periods'), ('map/', '地图', 'Map'), ('museums/', '博物馆', 'Museums'), ('timeline/', '时间线', 'Timeline')]
 ABOUT_ONE = {'zh': ABOUT['home']['zh'].split('。')[0] + '。', 'en': ABOUT['home']['en'].split('. ')[0].rstrip('.') + '.'}   # 项目介绍的第一句
 s = f'''      <h1>{bi(NAME)}</h1>
@@ -284,14 +286,20 @@ def ldn_li(x):
     step = f' — <a href="../{x["path"]}">先走进去看看 · Step inside first</a>' if x['status'] == 'live' else ''
     note = f' — {e(both(x["londonNote"], " / "))}' if x.get('londonNote') else ''   # 路线页上的一句提示
     return f'<li>{e(line)}{step}{note}</li>'
-def ldn_section(sec):
-    ldn = sorted([x for x in ALL if x['museum'] == sec['museum'] and x.get('onDisplay') is True and x.get('room') not in (None, '')], key=lambda x: open_year(x, x.get('year')))
-    rooms = sorted({rkey(x['room']): x['room'] for x in ldn}.values(), key=lambda r: (isinstance(r, dict), int(r) if str(r).isdigit() else 0))
-    ls = ''.join(f'<h3>{e(both(r, " / ") if isinstance(r, dict) else f"{r}号展厅 / Room {r}")}</h3><ul>' + ''.join(ldn_li(x) for x in ldn if rkey(x['room']) == rkey(r)) + '</ul>' for r in rooms)
+def ldn_section(sec, live_only=False):   # live_only（巴黎、阿姆斯特丹）：只列已上线、没借出去的场景；没写展厅的放在最后，不显示展厅号
+    if live_only: ldn = [x for x in ALL if x['museum'] == sec['museum'] and x['status'] == 'live' and x.get('onDisplay') is not False and not x.get('displayAt')]
+    else: ldn = [x for x in ALL if x['museum'] == sec['museum'] and x.get('onDisplay') is True and x.get('room') not in (None, '')]
+    ldn = sorted(ldn, key=lambda x: open_year(x, x.get('year')))
+    rk = lambda x: rkey(x['room']) if x.get('room') not in (None, '') else ''
+    rooms = sorted({rk(x): x.get('room') for x in ldn}.values(), key=lambda r: (r in (None, ''), isinstance(r, dict), int(r) if str(r).isdigit() else 0))
+    ls = ''.join((f'<h3>{e(both(r, " / ") if isinstance(r, dict) else f"{r}号展厅 / Room {r}")}</h3>' if r not in (None, '') else '') + '<ul>' + ''.join(ldn_li(x) for x in ldn if rk(x) == (rkey(r) if r not in (None, '') else '')) + '</ul>' for r in rooms)
     links = ''.join(f'<li><a href="{e(l["url"])}">{e(both(l["label"]))}</a></li>' for l in sec['links'])
     return f'<section id="{sec["museum"]}"><h2>{bi(sec["title"])}</h2><p>{e(both(sec["subtitle"], " / "))}</p><ul>{links}</ul>{ls}</section>'
 PAGES.append(page('london/', T(LONDON['title']['zh'], LONDON['title']['en']), f'{both(LONDON["title"])}：' + '；'.join(both(sec["subtitle"], " / ") for sec in LONDON['sections']),
                   f'      <h1>{bi(LONDON["title"])}</h1>\n      <p>{e(both(LONDON["notice"], " / "))}</p>\n      ' + ''.join(ldn_section(sec) for sec in LONDON['sections']), site_script('../', 'london')))
+for c, CT in CITIES.items():
+    PAGES.append(page(c + '/', T(CT['title']['zh'], CT['title']['en']), f'{both(CT["title"])}：' + '；'.join(both(sec["subtitle"], " / ") for sec in CT['sections']),
+                      f'      <h1>{bi(CT["title"])}</h1>\n      <p>{e(both(CT["notice"], " / "))}</p>\n      ' + ''.join(ldn_section(sec, True) for sec in CT['sections']), site_script('../', c)))
 
 # ---------- 同一幅画的几个版本 ----------
 VERS = json.load(open(os.path.join(ROOT, 'data/versions.json'), encoding='utf-8'))

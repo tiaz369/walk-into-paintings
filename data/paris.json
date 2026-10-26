@@ -1,0 +1,94 @@
+{
+  "_说明": "“在巴黎看真迹”参观路线（/paris/），结构和 data/london.json 一样。作品列表自动从 data/scenes.json 里取：收藏在这家博物馆、已上线（status 为 live）的场景；借出去了（onDisplay 为 false，或者写了 displayAt）的不列。写了展厅 room 的按展厅分组，没写的放在最后、不显示展厅号。参观链接先用博物馆官网（英文版首页），具体的参观信息页等 Tia 核对后再换。",
+  "title": {
+    "zh": "在巴黎看真迹",
+    "en": "See them in Paris"
+  },
+  "notice": {
+    "zh": "展厅安排可能变动，出发前请查看博物馆官网。",
+    "en": "Rooms may change. Please check the museum's website before you go."
+  },
+  "liveOnly": true,
+  "sections": [
+    {
+      "museum": "orsay",
+      "title": {
+        "zh": "奥赛博物馆",
+        "en": "Musée d'Orsay"
+      },
+      "subtitle": {
+        "zh": "巴黎奥赛博物馆，由火车站改建",
+        "en": "Musée d'Orsay, Paris, in a former railway station"
+      },
+      "links": [
+        {
+          "label": {
+            "zh": "官网 · 参观信息",
+            "en": "Official website · Plan your visit"
+          },
+          "url": "https://www.musee-orsay.fr/en"
+        }
+      ]
+    },
+    {
+      "museum": "orangerie",
+      "title": {
+        "zh": "橘园美术馆",
+        "en": "Musée de l'Orangerie"
+      },
+      "subtitle": {
+        "zh": "橘园美术馆，杜乐丽花园",
+        "en": "Musée de l'Orangerie, Tuileries Garden"
+      },
+      "links": [
+        {
+          "label": {
+            "zh": "官网 · 参观信息",
+            "en": "Official website · Plan your visit"
+          },
+          "url": "https://www.musee-orangerie.fr/en"
+        }
+      ]
+    },
+    {
+      "museum": "marmottan",
+      "title": {
+        "zh": "玛摩丹·莫奈美术馆",
+        "en": "Musée Marmottan Monet"
+      },
+      "subtitle": {
+        "zh": "玛摩丹·莫奈美术馆",
+        "en": "Musée Marmottan Monet, Paris"
+      },
+      "links": [
+        {
+          "label": {
+            "zh": "官网 · 参观信息",
+            "en": "Official website · Plan your visit"
+          },
+          "url": "https://www.marmottan.fr"
+        }
+      ]
+    },
+    {
+      "museum": "louvre",
+      "title": {
+        "zh": "卢浮宫",
+        "en": "Musée du Louvre"
+      },
+      "subtitle": {
+        "zh": "巴黎卢浮宫",
+        "en": "Musée du Louvre, Paris"
+      },
+      "links": [
+        {
+          "label": {
+            "zh": "官网 · 参观信息",
+            "en": "Official website · Plan your visit"
+          },
+          "url": "https://www.louvre.fr/en"
+        }
+      ]
+    }
+  ]
+}

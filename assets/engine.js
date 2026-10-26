@@ -11,6 +11,7 @@
 import * as THREE from 'three';
 import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
+import { setupShareCard, shareBtnHTML } from './share.js';
 import { setupSound } from './sound.js';
 import { variantOf, VARIANTS } from './variants.js';
 
@@ -131,6 +132,7 @@ function buildDOM(S, R, meta) {
     <button class="btn" id="compareBtn">${ui('对照原画', 'Original painting')}</button>
     <button class="btn" id="vpBtn">${ui('原画叠加', 'Painting overlay')}</button>
     <button class="btn" id="shotBtn">📷 ${ui('拍一张', 'Snapshot')}</button>
+    ${shareBtnHTML()}
     <div class="seg${S.projection === false ? ' hidden' : ''}" id="modeSwitch">
       <button data-mode="paint" class="on">${ui('原画质感', 'Painted')}</button>
       <button data-mode="flat">${ui('简笔画', 'Simple view')}</button>
@@ -260,7 +262,7 @@ function buildDOM(S, R, meta) {
         <span class="cmp-tag" id="cmpTagB" style="right:8px"></span>
       </div>` : ''}
       ${hasRecord ? `<div class="section-title">${ui('作品档案', 'Artwork record')}<small class="en-sub">Artwork record</small></div>${recordHTML()}` : ''}
-      <p class="zoom-row"><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button></p>
+      <p class="zoom-row"><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button> ${shareBtnHTML()}</p>
       ${artistHTML}
       <div class="section-title">${ui('去现场看真迹', 'See it in person')}<small class="en-sub">See it in person</small></div>
       <div class="links">${seeInPersonHTML(R, meta) || museumLinks}</div>
@@ -1274,6 +1276,7 @@ function run(S, R, meta) {
   $('enter').onclick = () => { intro.classList.add('fade'); introT = 0; track('step-inside-' + S.id); };
   oneMinute($('oneMin'));   // 一分钟看一幅画（可选）
   cleanToggle($('tools'));   // 隐藏按钮（录屏、截图用）
+  setupShareCard(S);   // 分享卡片（share.js）
   addEventListener('pointerdown', () => { if (document.body.classList.contains('in-room')) hideHint(); });
   function finishIntro() {
     intro.style.display = 'none'; walking = true;

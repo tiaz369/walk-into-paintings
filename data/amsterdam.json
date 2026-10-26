@@ -1,0 +1,54 @@
+{
+  "_说明": "“在阿姆斯特丹看真迹”参观路线（/amsterdam/），结构和 data/london.json 一样。作品列表自动从 data/scenes.json 里取：收藏在这家博物馆、已上线（status 为 live）的场景；借出去了（onDisplay 为 false，或者写了 displayAt）的不列。写了展厅 room 的按展厅分组，没写的放在最后、不显示展厅号。参观链接先用博物馆官网（英文版首页），具体的参观信息页等 Tia 核对后再换。",
+  "title": {
+    "zh": "在阿姆斯特丹看真迹",
+    "en": "See them in Amsterdam"
+  },
+  "notice": {
+    "zh": "展厅安排可能变动，出发前请查看博物馆官网。",
+    "en": "Rooms may change. Please check the museum's website before you go."
+  },
+  "liveOnly": true,
+  "sections": [
+    {
+      "museum": "van-gogh-museum",
+      "title": {
+        "zh": "梵高博物馆",
+        "en": "Van Gogh Museum"
+      },
+      "subtitle": {
+        "zh": "阿姆斯特丹梵高博物馆",
+        "en": "Van Gogh Museum, Amsterdam"
+      },
+      "links": [
+        {
+          "label": {
+            "zh": "官网 · 参观信息",
+            "en": "Official website · Plan your visit"
+          },
+          "url": "https://www.vangoghmuseum.nl/en"
+        }
+      ]
+    },
+    {
+      "museum": "rijksmuseum",
+      "title": {
+        "zh": "荷兰国立博物馆",
+        "en": "Rijksmuseum"
+      },
+      "subtitle": {
+        "zh": "阿姆斯特丹荷兰国立博物馆",
+        "en": "Rijksmuseum, Amsterdam"
+      },
+      "links": [
+        {
+          "label": {
+            "zh": "官网 · 参观信息",
+            "en": "Official website · Plan your visit"
+          },
+          "url": "https://www.rijksmuseum.nl/en"
+        }
+      ]
+    }
+  ]
+}

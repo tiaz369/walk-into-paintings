@@ -11,6 +11,7 @@
 // =====================================================================
 import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
+import { setupShareCard, shareBtnHTML } from './share.js';
 import { setupSound } from './sound.js';
 import { variantOf, VARIANTS } from './variants.js';
 
@@ -91,6 +92,7 @@ function buildDOM(S, R, meta) {
   <div id="tools" class="ui">
     <a class="btn" href="${ROOT}">← ${ui('走进名画', 'Home')}</a>
     <button class="btn" id="compareBtn">${ui('对照原画', 'Original painting')}</button>
+    ${shareBtnHTML()}
     ${isCurtain ? `<button class="btn" id="curtainBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${ZOOMS.length ? `<button class="btn" id="zoomBtn">🔍 ${ui(ZL.zh, ZL.en)}</button>`
       : VARIANTS[variantOf(S)].zoomFirst ? `<a class="btn" id="zoomBtn" href="${(S.zoom && S.zoom.image) || P.image}" target="_blank" rel="noopener">🔍 ${ui('放大看细节', 'Zoom in on details')}</a>` : ''}
@@ -161,6 +163,7 @@ function buildDOM(S, R, meta) {
     </section>`).join('')}
     <section class="act final" id="actEnd">
       <h2 class="reveal"><span class="zh">${E.final.zh}</span><small class="en">${E.final.en}</small>${E.finalBy ? `<small class="final-by">${bi(E.finalBy, ' / ')}</small>` : ''}</h2>
+      <p class="zoom-row">${shareBtnHTML()}</p>
       ${recordHTML ? `<div class="section-title">${ui('作品档案', 'Artwork record')}<small class="en-sub">Artwork record</small></div>${recordHTML}` : ''}
       ${artist && artist.bio ? `<section class="artist-bio">
         <div class="section-title">${ui('关于画家', 'About the artist')}</div>
@@ -283,6 +286,7 @@ function run(S, R) {
   const hint = $('hint');
   oneMinute($('oneMin'));   // 一分钟看一幅画（可选）
   cleanToggle($('tools'));   // 隐藏按钮（录屏、截图用）
+  setupShareCard(S);   // 分享卡片（share.js）
   addEventListener('pointerdown', () => { if (document.body.classList.contains('in-room')) hint.style.opacity = 0; });   // 点任意处，操作提示就淡出
   $('enter').onclick = () => {
     track('step-inside-' + S.id);   // 访问统计：走进画里
