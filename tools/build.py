@@ -18,7 +18,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://tiaz369.github.io/walk-into-paintings/'
 NAME = {'zh': '走进名画', 'en': 'Walk into Paintings'}
 TAGLINE = {'zh': '走进世界名画的内部。', 'en': "Step inside the world's great paintings."}
-FONTS = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap'
+FONTS = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap'
 THREE = 'assets/vendor/three.module.js'   # three.js 0.160.0，放在自己的仓库里（不依赖外部 CDN，中国大陆也能打开）
 
 R = json.load(open(os.path.join(ROOT, 'data/scenes.json'), encoding='utf-8'))

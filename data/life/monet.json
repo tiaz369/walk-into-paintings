@@ -13,6 +13,62 @@
     },
     {
       "date": {
+        "zh": "1870–71",
+        "en": "1870–71"
+      },
+      "text": {
+        "zh": "普法战争期间移居伦敦",
+        "en": "Moves to London during the Franco-Prussian War"
+      }
+    },
+    {
+      "date": {
+        "zh": "1871年底",
+        "en": "Late 1871"
+      },
+      "text": {
+        "zh": "在马奈帮助下搬到阿让特伊",
+        "en": "Moves to Argenteuil, with Manet's help"
+      }
+    },
+    {
+      "date": {
+        "zh": "1872年11月",
+        "en": "November 1872"
+      },
+      "text": {
+        "zh": "在勒阿弗尔画下《日出·印象》",
+        "en": "Paints *Impression, Sunrise* in Le Havre"
+      },
+      "scenes": [
+        "impression-sunrise"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1874年4月",
+        "en": "April 1874"
+      },
+      "text": {
+        "zh": "第一次印象派画展，“印象派”由此得名",
+        "en": "First Impressionist exhibition; the movement is named"
+      }
+    },
+    {
+      "date": {
+        "zh": "1875",
+        "en": "1875"
+      },
+      "text": {
+        "zh": "画下《撑阳伞的女人》",
+        "en": "Paints *Woman with a Parasol*"
+      },
+      "scenes": [
+        "woman-parasol"
+      ]
+    },
+    {
+      "date": {
         "zh": "1877年1月",
         "en": "January 1877"
       },
@@ -22,6 +78,39 @@
       },
       "scenes": [
         "gare-saint-lazare"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1883",
+        "en": "1883"
+      },
+      "text": {
+        "zh": "搬到吉维尼",
+        "en": "Moves to Giverny"
+      }
+    },
+    {
+      "date": {
+        "zh": "1893",
+        "en": "1893"
+      },
+      "text": {
+        "zh": "在吉维尼建水上花园",
+        "en": "Creates the water garden at Giverny"
+      }
+    },
+    {
+      "date": {
+        "zh": "1899",
+        "en": "1899"
+      },
+      "text": {
+        "zh": "画下《睡莲池》",
+        "en": "Paints *The Water-Lily Pond*"
+      },
+      "scenes": [
+        "water-lily-pond"
       ]
     },
     {
@@ -36,11 +125,11 @@
     },
     {
       "date": {
-        "zh": "1926",
-        "en": "1926"
+        "zh": "1926年12月",
+        "en": "December 1926"
       },
       "text": {
-        "zh": "在吉维尼去世，终年86岁",
+        "zh": "在吉维尼去世，享年86岁",
         "en": "Dies at Giverny, aged 86"
       }
     },

@@ -14,6 +14,8 @@
   --accent:  #8a6a2c;   /* 默认点缀色；每个系列的主色写在 data/scenes.json 的 collections → color */
   --accent-ink: #ffffff;
   --serif: 'Cormorant Garamond', 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', Georgia, 'Times New Roman', serif;   /* 谷歌字体打不开时，用系统里的宋体、衬线体 */
+  --text-serif: 'EB Garamond', 'Source Serif 4', Georgia, 'Times New Roman', serif;   /* 英文正文（故事、卡片）：比 Cormorant 粗一点，小字也好读 */
+  --ink-en:  #5a5449;   /* 英文正文：比中文浅一点，和背景的对比度 6.6:1（WCAG AA 要求至少 4.5:1） */
   --sans:  'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;   /* 谷歌字体打不开时，用系统里的苹方、微软雅黑 */
   --slow: .9s;
   color-scheme: light;
@@ -21,12 +23,12 @@
 /* 深色模式：跟随系统，除非手动选了浅色 */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #1c1c1e; --paper-2: #26262a; --ink: #ebe5d9; --muted: #9b958a; --line: #36363b;
+    --paper: #1c1c1e; --paper-2: #26262a; --ink: #ebe5d9; --muted: #9b958a; --line: #36363b; --ink-en: #b4ada1;
     --veil: rgba(28, 28, 30, .88); --accent: #c9a24a; --accent-ink: #1c1c1e; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #1c1c1e; --paper-2: #26262a; --ink: #ebe5d9; --muted: #9b958a; --line: #36363b;
+  --paper: #1c1c1e; --paper-2: #26262a; --ink: #ebe5d9; --muted: #9b958a; --line: #36363b; --ink-en: #b4ada1;
   --veil: rgba(28, 28, 30, .88); --accent: #c9a24a; --accent-ink: #1c1c1e; color-scheme: dark;
 }
 
@@ -703,11 +705,18 @@ body.lang-both .col-row h3 .en { font-size: .68em; color: var(--muted); font-sty
 @keyframes inscPulse { 50% { outline-color: rgba(255, 243, 176, .35); } }
 
 /* ---------- 故事和卡片的正文排版（所有场景） ----------
-   标题、英文副标题居中；正文左对齐（中文两端对齐），每行不太长；中英文之间空得多一点 */
+   标题、英文副标题居中；中英文正文一样宽（约 36em）、都左对齐、左边在同一条线上；行高都是 1.75；中英文之间空得多一点。
+   英文正文用衬线体（EB Garamond），比中文大一点（衬线英文看起来偏小），颜色比中文浅一点但对比度够。
+   中文：text-wrap: pretty（避免最后一行只剩一个字）；英文不用它（会让行尾提前换行，右边空太多）。
+   中文原来两端对齐，字间距会被拉开（大多数浏览器不支持 text-justify: inter-character），所以也改成左对齐 */
 .act-text { width: 100%; max-width: 36em; margin: 0 auto; text-align: center; }
-.act-text p, #card p, .artist-bio p { text-align: left; text-wrap: pretty; hyphens: manual; }
+.act-text p, #card p, .artist-bio p { text-align: left; hyphens: manual; line-height: 1.75; }
 .artist-bio p .zh { display: block; }
-.act-text p.zh, #card p.zh, .artist-bio p .zh { text-align: justify; text-justify: inter-character; }
+.act-text p.zh, #card p.zh, .artist-bio p .zh { text-align: left; text-justify: inter-character; text-wrap: pretty; }
+.act-text p.en, #card p.en, .artist-bio p .en { font-family: var(--text-serif); color: var(--ink-en); text-wrap: wrap; }
+.act-text p.en { font-size: 16.5px; }   /* 中文 15px 的 1.1 倍 */
+#card p.en { font-size: 15px; }         /* 中文 14px 的约 1.07 倍 */
+.artist-bio p .en { font-size: 1.08em; }
 .act-text p { margin: 0 0 .5em; }
 .act-text p.zh + p.en { margin-top: 1.1em; }   /* 中文和英文之间：明显的间距 */
 .act-text p.en + p.en, .act-text p.zh + p.zh { margin-top: .5em; }   /* 同一种语言的段落之间：小一点 */
