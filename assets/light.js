@@ -157,7 +157,7 @@ function buildDOM(S, R, meta) {
       <div class="act-text reveal">
         <h3><small>${a.kicker || ''}</small>${bi(a.title)}</h3>
         <p class="zh">${a.text.zh}</p>
-        <p class="en">${a.text.en}</p>
+        <p class="en">${a.text.en.replace(/\*([^*]+)\*/g, '<i>$1</i>')}</p>
       </div>
       <button class="btn reveal next" data-next="${i + 1 < E.acts.length ? 'act' + (i + 2) : 'actEnd'}">${ui('下一段', 'Next')} ↓</button>
     </section>`).join('')}
