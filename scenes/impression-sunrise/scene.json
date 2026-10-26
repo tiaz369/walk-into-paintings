@@ -1,0 +1,597 @@
+{
+  "_说明": "日出·印象（户外，完整版）。所有事实文字由 Tia 提供（来源见 sources.md）。开场站在勒阿弗尔港边一家酒店房间的窗前，窗页慢慢往里打开（casement），外面是清晨雾中的港口：灰蓝色的水和天空，前景两条小划船，远处的船桅、吊车和烟囱，一轮橙红色的太阳和水上的倒影。画家视角和物体位置是先估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "impression-sunrise",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "dawn",
+    "label": {
+      "zh": "清晨雾里的太阳",
+      "en": "The sun through the morning mist"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是场景里的门，cards 是卡片里的链接，end 是故事结尾的按钮。和《睡莲池》互相链接（莫奈的另一片水）；和橘园《睡莲》互相链接（从“印象”开始，到睡莲结束）；时期“印象派”的介绍里有入口（这个画派的名字，来自这幅画）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "water-lily-pond",
+      "orangerie-water-lilies"
+    ]
+  },
+  "painting": {
+    "image": "images/impression-sunrise.jpg",
+    "width": 1600,
+    "height": 1219,
+    "alt": {
+      "zh": "莫奈《日出·印象》1872年，巴黎玛摩丹·莫奈美术馆",
+      "en": "Claude Monet, Impression, Sunrise, 1872, Musée Marmottan Monet, Paris"
+    },
+    "_": "宽高是按 48 × 63 cm 估的，上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "日出·印象",
+      "en": "Impression, Sunrise"
+    },
+    "artist": {
+      "zh": "莫奈",
+      "en": "Claude Monet"
+    },
+    "date": {
+      "zh": "1872年",
+      "en": "1872"
+    },
+    "museum": {
+      "zh": "巴黎玛摩丹·莫奈美术馆",
+      "en": "Musée Marmottan Monet, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "推开窗",
+    "en": "Open the window"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下太阳、小船、远处的港口和水面看介绍 · 点“太阳去哪了”，把画变成黑白 · 地上发光的圆点 = 莫奈的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the sun, the boats, the port or the water to learn more · Tap “Where did the sun go?” to turn the painting black and white · The glowing circle = Monet's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的（站在酒店楼上的窗前，往下看港口），上传原画后对照原画重新计算。",
+    "x": 0,
+    "z": 0,
+    "eye": 8,
+    "yaw": 0,
+    "pitch": -0.05,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "harbour",
+  "colors": {
+    "line": "#2a3038",
+    "water": "#5f7480",
+    "ground": "#5f7480",
+    "sky": "#8fa2ac",
+    "boat": "#26303a",
+    "port": "#6f8090",
+    "sun": "#e8622c",
+    "frame": "#e6dfd2",
+    "wallpaper": "#c9bba3",
+    "floor": "#7a5a40",
+    "glass": "#cfd6da"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面（这里是港口的水面），bounds 是可以走动的范围（只能在酒店房间里，窗前一小块），都写 [x最小, x最大, z最小, z最大]，单位是米。观众站在楼上，走路时眼睛也保持在 8 米高（walkEye）。",
+    "kind": "outdoor",
+    "ground": [
+      -300,
+      300,
+      -420,
+      40
+    ],
+    "bounds": [
+      -1.3,
+      1.3,
+      -0.55,
+      1.6
+    ],
+    "groundCard": "reflections",
+    "skyCard": "title",
+    "skyRadius": 380,
+    "walkSpeed": 0.6,
+    "walkEye": 8,
+    "projectFar": 420
+  },
+  "objects": [
+    {
+      "type": "casement",
+      "card": "window",
+      "_": "酒店房间的窗：走进去时两扇窗页往里打开",
+      "x": 0,
+      "y": 8,
+      "z": -1.0,
+      "w": 1.24,
+      "h": 0.95,
+      "wall": 2.4,
+      "color": "frame",
+      "wallColor": "wallpaper",
+      "leaf": "frame",
+      "glass": "glass",
+      "delay": 0.5
+    },
+    {
+      "type": "boxes",
+      "card": "window",
+      "x": 0,
+      "y": 6.4,
+      "z": 0.3,
+      "_": "酒店房间：地板、两边的墙、后墙和天花板",
+      "boxes": [
+        [
+          3.4,
+          0.1,
+          3.0,
+          "floor",
+          0,
+          0,
+          0
+        ],
+        [
+          0.1,
+          3.2,
+          3.0,
+          "wallpaper",
+          -1.65,
+          1.6,
+          0,
+          "wall"
+        ],
+        [
+          0.1,
+          3.2,
+          3.0,
+          "wallpaper",
+          1.65,
+          1.6,
+          0,
+          "wall"
+        ],
+        [
+          3.4,
+          3.2,
+          0.1,
+          "wallpaper",
+          0,
+          1.6,
+          1.5,
+          "wall"
+        ],
+        [
+          3.4,
+          0.1,
+          3.0,
+          "wallpaper",
+          0,
+          3.2,
+          0,
+          "wall"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "boats",
+      "x": -4,
+      "z": -40,
+      "_": "前景的两条小划船（示意）",
+      "boxes": [
+        [
+          1.2,
+          0.5,
+          3.5,
+          "boat",
+          0,
+          0.25,
+          0
+        ],
+        [
+          0.1,
+          1.6,
+          0.1,
+          "boat",
+          0,
+          1.0,
+          0.6
+        ],
+        [
+          1.0,
+          0.4,
+          3.0,
+          "boat",
+          9,
+          0.2,
+          -22
+        ],
+        [
+          0.1,
+          1.4,
+          0.1,
+          "boat",
+          9,
+          0.9,
+          -21.5
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "port",
+      "x": 0,
+      "z": -260,
+      "_": "远处雾里的船桅、吊车和烟囱（示意）",
+      "boxes": [
+        [
+          0.6,
+          40,
+          0.6,
+          "port",
+          -70,
+          20,
+          0
+        ],
+        [
+          0.6,
+          34,
+          0.6,
+          "port",
+          -55,
+          17,
+          -6
+        ],
+        [
+          0.6,
+          30,
+          0.6,
+          "port",
+          -40,
+          15,
+          4
+        ],
+        [
+          14,
+          1,
+          1,
+          "port",
+          -46,
+          30,
+          0
+        ],
+        [
+          3,
+          26,
+          3,
+          "port",
+          60,
+          13,
+          0
+        ],
+        [
+          3,
+          20,
+          3,
+          "port",
+          72,
+          10,
+          -8
+        ],
+        [
+          0.6,
+          36,
+          0.6,
+          "port",
+          95,
+          18,
+          0
+        ],
+        [
+          40,
+          6,
+          6,
+          "port",
+          -55,
+          3,
+          0
+        ],
+        [
+          50,
+          5,
+          6,
+          "port",
+          70,
+          2.5,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "sun",
+      "x": -12,
+      "y": 44,
+      "z": -330,
+      "_": "橙红色的太阳（示意）",
+      "boxes": [
+        [
+          9,
+          9,
+          0.5,
+          "sun",
+          0,
+          0,
+          0,
+          "cloth"
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "sun": {
+      "title": {
+        "zh": "橙色的太阳",
+        "en": "The orange sun"
+      },
+      "text": {
+        "zh": "雾里升起一轮橙红色的太阳，这是整幅画的焦点。",
+        "en": "An orange-red sun rises through the mist, the focal point of the whole painting."
+      }
+    },
+    "boats": {
+      "title": {
+        "zh": "两条小船",
+        "en": "Two small boats"
+      },
+      "text": {
+        "zh": "前景是两条小划船，在灰蓝色的水面上，只用几笔就画了出来。",
+        "en": "In the foreground are two small rowing boats, painted in just a few strokes on the grey-blue water."
+      }
+    },
+    "port": {
+      "title": {
+        "zh": "雾里的港口",
+        "en": "A port in the mist"
+      },
+      "text": {
+        "zh": "远处的船桅、吊车和烟囱，在雾里若隐若现。这是一个现代的工业港口。",
+        "en": "Masts, cranes and chimneys loom through the mist in the distance. This is a modern industrial port."
+      }
+    },
+    "reflections": {
+      "title": {
+        "zh": "水上的倒影",
+        "en": "Reflections"
+      },
+      "text": {
+        "zh": "太阳在水面上留下一道道橙色的倒影。莫奈最感兴趣的，是光和水上的倒影。",
+        "en": "The sun leaves streaks of orange on the water. What interested Monet most was light and its reflections on water."
+      }
+    },
+    "window": {
+      "title": {
+        "zh": "窗口",
+        "en": "From a window"
+      },
+      "text": {
+        "zh": "1872年11月，莫奈在家乡勒阿弗尔，从港口边一家酒店的窗口画下了这片景色。",
+        "en": "In November 1872, in his home town of Le Havre, Monet painted this view from the window of a hotel on the quayside."
+      }
+    },
+    "title": {
+      "title": {
+        "zh": "“写‘印象’吧”",
+        "en": "“Put Impression”"
+      },
+      "text": {
+        "zh": "有人问他画名，他觉得这实在不像勒阿弗尔的风景，就说：“写‘印象’吧。”",
+        "en": "Asked for a title, he felt it could hardly pass for a view of Le Havre, so he said: “Put Impression.”"
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“太阳去哪了”：开关打开后，整个画面（3D、原画叠加、对照原画）变成黑白。文字用 Tia 提供的完整说法（神经科学家玛格丽特·利文斯通的研究，来源见 sources.md）。打开就算发现了卡片“橙色的太阳”。",
+    "type": "grayscale",
+    "label": {
+      "zh": "太阳去哪了",
+      "en": "Where did the sun go?"
+    },
+    "card": "sun",
+    "note": {
+      "zh": "在黑白里，太阳几乎消失了：它和周围天空的亮度差不多。我们看到太阳，靠的是颜色，而不是亮度。",
+      "en": "In black and white, the sun almost disappears: it is about as bright as the sky around it. We see the sun because of its colour, not its brightness."
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/impression-sunrise.jpg",
+        "alt": {
+          "zh": "莫奈《日出·印象》1872年，巴黎玛摩丹·莫奈美术馆",
+          "en": "Claude Monet, Impression, Sunrise, 1872, Musée Marmottan Monet, Paris"
+        },
+        "caption": {
+          "zh": "1872年 · 巴黎玛摩丹·莫奈美术馆",
+          "en": "1872 · Musée Marmottan Monet, Paris"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 港口的早晨",
+          "en": "Morning at the port"
+        },
+        "text": {
+          "zh": "1872年11月，莫奈回到家乡勒阿弗尔。一天清晨，他推开酒店的窗户，画下了雾中苏醒的港口。",
+          "en": "In November 1872, Monet was back in his home town of Le Havre. Early one morning, he opened his hotel window and painted the port waking up in the mist."
+        }
+      },
+      {
+        "image": "images/impression-sunrise.jpg",
+        "alt": {
+          "zh": "莫奈《日出·印象》1872年，巴黎玛摩丹·莫奈美术馆",
+          "en": "Claude Monet, Impression, Sunrise, 1872, Musée Marmottan Monet, Paris"
+        },
+        "caption": {
+          "zh": "1872年 · 巴黎玛摩丹·莫奈美术馆",
+          "en": "1872 · Musée Marmottan Monet, Paris"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 一个名字",
+          "en": "A name"
+        },
+        "text": {
+          "zh": "1874年，这幅画在巴黎的一次独立画展上展出。评论家路易·勒鲁瓦借用画名，写了一篇嘲讽的评论，标题是“印象派画家的展览”。没想到，“印象派”从此成了这个画派的名字。",
+          "en": "In 1874, the painting was shown at an independent exhibition in Paris. The critic Louis Leroy borrowed its title for a mocking review, “The Exhibition of the Impressionists”. The name stuck, and gave the movement its name."
+        }
+      },
+      {
+        "image": "images/impression-sunrise.jpg",
+        "alt": {
+          "zh": "莫奈《日出·印象》1872年，巴黎玛摩丹·莫奈美术馆",
+          "en": "Claude Monet, Impression, Sunrise, 1872, Musée Marmottan Monet, Paris"
+        },
+        "caption": {
+          "zh": "1872年 · 巴黎玛摩丹·莫奈美术馆",
+          "en": "1872 · Musée Marmottan Monet, Paris"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 被偷走又回来",
+          "en": "Stolen and returned"
+        },
+        "text": {
+          "zh": "1985年10月，几个持枪的人在大白天闯进玛摩丹美术馆，偷走了这幅画。五年后，它被找了回来，1991年重新回到展厅。",
+          "en": "In October 1985, armed men broke into the Musée Marmottan in broad daylight and stole the painting. It was recovered five years later, and returned to the galleries in 1991."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一个印象，成了一个画派的名字。",
+      "en": "One impression gave a movement its name."
+    },
+    "versions": [],
+    "museums": [
+      "marmottan"
+    ],
+    "exit": [
+      {
+        "scene": "water-lily-pond",
+        "href": "../water-lily-pond/",
+        "label": {
+          "zh": "莫奈的另一片水",
+          "en": "Another of Monet's waters"
+        }
+      },
+      {
+        "scene": "orangerie-water-lilies",
+        "href": "../orangerie-water-lilies/",
+        "label": {
+          "zh": "从“印象”开始，到睡莲结束",
+          "en": "From Impression to the Water Lilies"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。作品页等 Tia 提供。",
+    "artist": {
+      "zh": "克劳德·莫奈（1840–1926）",
+      "en": "Claude Monet (1840–1926)"
+    },
+    "title": {
+      "zh": "日出·印象",
+      "en": "Impression, Sunrise (Impression, soleil levant)"
+    },
+    "date": {
+      "zh": "1872年",
+      "en": "1872"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "48 × 63 厘米",
+      "en": "48 × 63 cm"
+    },
+    "collection": {
+      "zh": "巴黎玛摩丹·莫奈美术馆",
+      "en": "Musée Marmottan Monet, Paris"
+    }
+  },
+  "zoom": {
+    "image": "images/impression-sunrise.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "维基百科：日出·印象（英文）",
+          "en": "Wikipedia: *Impression, Sunrise*"
+        },
+        "url": "https://en.wikipedia.org/wiki/Impression,_Sunrise"
+      },
+      {
+        "title": {
+          "zh": "诺曼底旅游局：《日出·印象》的故事",
+          "en": "Normandy Tourism: The history of *Impression, Sunrise*"
+        },
+        "url": "https://en.normandie-tourisme.fr/discover/culture/impressionism/history-of-impression-sunrise/"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 港口的早晨",
+          "en": "Morning at the port"
+        },
+        "text": {
+          "zh": "1872年11月，莫奈回到家乡勒阿弗尔。一天清晨，他推开酒店的窗户，画下了雾中苏醒的港口。",
+          "en": "In November 1872, Monet was back in his home town of Le Havre. Early one morning, he opened his hotel window and painted the port waking up in the mist."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 一个名字",
+          "en": "A name"
+        },
+        "text": {
+          "zh": "1874年，这幅画在巴黎的一次独立画展上展出。评论家路易·勒鲁瓦借用画名，写了一篇嘲讽的评论，标题是“印象派画家的展览”。没想到，“印象派”从此成了这个画派的名字。",
+          "en": "In 1874, the painting was shown at an independent exhibition in Paris. The critic Louis Leroy borrowed its title for a mocking review, “The Exhibition of the Impressionists”. The name stuck, and gave the movement its name."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 被偷走又回来",
+          "en": "Stolen and returned"
+        },
+        "text": {
+          "zh": "1985年10月，几个持枪的人在大白天闯进玛摩丹美术馆，偷走了这幅画。五年后，它被找了回来，1991年重新回到展厅。",
+          "en": "In October 1985, armed men broke into the Musée Marmottan in broad daylight and stole the painting. It was recovered five years later, and returned to the galleries in 1991."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}

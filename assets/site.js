@@ -628,7 +628,8 @@ const PAGES = {
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按时期', 'By period')}</h1></div>
       <section class="section wrap"><div class="timeline">${R.periods.map(pd => {
         const list = scenesOf(R, 'period', pd.id);
-        return `<div class="group" id="${pd.id}"><h3>${bi(pd.name)}</h3>${list.length ? cardsHTML(R, capSoon(list)) : SOON()}</div>`;
+        const ln = pd.link && R.sceneById[pd.link.scene] && R.sceneById[pd.link.scene].status === 'live' ? R.sceneById[pd.link.scene] : null;   // 时期介绍里的入口（比如印象派 → 《日出·印象》），场景上线后才显示
+        return `<div class="group" id="${pd.id}"><h3>${bi(pd.name)}</h3>${ln ? `<p><a class="btn" href="${sceneUrl(ln)}">${ui(pd.link.label.zh, pd.link.label.en)} →</a></p>` : ''}${list.length ? cardsHTML(R, capSoon(list)) : SOON()}</div>`;
       }).join('')}</div></section>`;
   },
 

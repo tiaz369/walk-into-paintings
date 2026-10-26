@@ -19,7 +19,8 @@
     "end": [
       "sunflowers",
       "bathers-asnieres",
-      "orangerie-water-lilies"
+      "orangerie-water-lilies",
+      "impression-sunrise"
     ]
   },
   "painting": {
@@ -1481,6 +1482,14 @@
         "label": {
           "zh": "二十多年后，同一片池塘",
           "en": "The same pond, two decades later"
+        }
+      },
+      {
+        "scene": "impression-sunrise",
+        "href": "../impression-sunrise/",
+        "label": {
+          "zh": "莫奈的另一片水",
+          "en": "Another of Monet's waters"
         }
       }
     ]

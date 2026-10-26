@@ -1,0 +1,572 @@
+{
+  "_说明": "撑阳伞的女人（户外，完整版）。所有事实文字由 Tia 提供（来源见 sources.md）。夏日的草坡，观众站在坡下往上看；卡米耶撑着阳伞站在坡顶，背后是蓝天白云，她身后稍远处是儿子让；风吹动她的裙子、面纱和草（room.breeze：一直有一点风）。画家视角和物体位置是先估的；原画上传后要对照原画重新计算，再打开 projection、把登记表里的 status 改成 live。",
+  "id": "woman-parasol",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "从她身后照过来的夏日阳光",
+      "en": "Summer sunlight from behind her"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是场景里的门，cards 是卡片里的链接，end 是故事结尾的按钮。主题“雨伞与阳伞”的第三幅：和雷诺阿《伞》、卡耶博特《巴黎街道，雨天》互相链接；和《睡莲池》《日出·印象》同属莫奈。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "umbrellas",
+      "paris-street-rainy-day",
+      "impression-sunrise",
+      "water-lily-pond"
+    ]
+  },
+  "painting": {
+    "image": "images/woman-parasol.jpg",
+    "width": 1300,
+    "height": 1600,
+    "alt": {
+      "zh": "莫奈《撑阳伞的女人——莫奈夫人和她的儿子》1875年，华盛顿国家美术馆",
+      "en": "Claude Monet, Woman with a Parasol – Madame Monet and Her Son, 1875, National Gallery of Art, Washington"
+    },
+    "_": "宽高先估的（竖幅），上传原画后改成图片的真实像素"
+  },
+  "projection": false,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "撑阳伞的女人——莫奈夫人和她的儿子",
+      "en": "Woman with a Parasol – Madame Monet and Her Son"
+    },
+    "artist": {
+      "zh": "莫奈",
+      "en": "Claude Monet"
+    },
+    "date": {
+      "zh": "1875年",
+      "en": "1875"
+    },
+    "museum": {
+      "zh": "华盛顿国家美术馆",
+      "en": "National Gallery of Art, Washington"
+    },
+    "source": {
+      "zh": "华盛顿国家美术馆开放资源，公有领域",
+      "en": "National Gallery of Art Open Access, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下卡米耶、阳伞、让、草和天空看介绍 · 点“白裙子里有几种颜色”，在裙子上取色 · 地上发光的圆点 = 莫奈的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap Camille, the parasol, Jean, the grass or the sky to learn more · Tap “How many colours in a white dress?” and pick colours from the dress · The glowing circle = Monet's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估的（站在坡下往上看，稍微抬头），上传原画后对照原画重新计算。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.3,
+    "yaw": 0,
+    "pitch": 0.28,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "summer-slope",
+  "colors": {
+    "line": "#3a4a3a",
+    "ground": "#8fa266",
+    "grass": "#9cae6a",
+    "flowers": "#d8c468",
+    "sky": "#9ec3e0",
+    "dress": "#eef0ee",
+    "coat": "#4a5a70",
+    "skin": "#e6c9b0",
+    "parasol": "#5e7a5c",
+    "veil": "#f2f2ee",
+    "jean": "#c8c0a8"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（坡下一小块），都写 [x最小, x最大, z最小, z最大]，单位是米。breeze：一直有一点风（草、裙子和面纱轻轻摆动）。",
+    "kind": "outdoor",
+    "ground": [
+      -200,
+      200,
+      -260,
+      40
+    ],
+    "bounds": [
+      -6,
+      6,
+      -2,
+      3
+    ],
+    "groundCard": "wildflowers",
+    "skyCard": "hours",
+    "skyRadius": 300,
+    "walkSpeed": 1.0,
+    "walkEye": 1.3,
+    "breeze": 0.35
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "wildflowers",
+      "color": "grass",
+      "_": "草坡：从脚下往上升到坡顶",
+      "pts": [
+        [
+          -40,
+          4.2,
+          -14
+        ],
+        [
+          -40,
+          0,
+          2
+        ],
+        [
+          40,
+          0,
+          2
+        ],
+        [
+          40,
+          4.2,
+          -14
+        ]
+      ]
+    },
+    {
+      "type": "surface",
+      "card": "wildflowers",
+      "color": "grass",
+      "_": "坡顶后面的平地",
+      "pts": [
+        [
+          -60,
+          4.2,
+          -80
+        ],
+        [
+          -60,
+          4.2,
+          -14
+        ],
+        [
+          60,
+          4.2,
+          -14
+        ],
+        [
+          60,
+          4.2,
+          -80
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "dress",
+      "legs": "dress",
+      "x": 0,
+      "y": 3.6,
+      "z": -11.5,
+      "rot": -0.3,
+      "card": "family",
+      "_": "坡顶撑阳伞的卡米耶"
+    },
+    {
+      "type": "boxes",
+      "card": "backlight",
+      "x": 0.35,
+      "y": 3.6,
+      "z": -11.5,
+      "sway": 0.06,
+      "_": "阳伞（伞柄和伞面，示意）",
+      "boxes": [
+        [
+          0.04,
+          1.2,
+          0.04,
+          "line",
+          0,
+          1.9,
+          0
+        ],
+        [
+          1.5,
+          0.12,
+          1.5,
+          "parasol",
+          0,
+          2.5,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "wind",
+      "x": -0.3,
+      "y": 3.6,
+      "z": -11.5,
+      "sway": 0.12,
+      "_": "被风吹起的面纱和裙摆（示意）",
+      "boxes": [
+        [
+          0.6,
+          0.5,
+          0.05,
+          "veil",
+          0.25,
+          1.55,
+          0,
+          "cloth"
+        ],
+        [
+          0.9,
+          0.5,
+          0.4,
+          "dress",
+          -0.15,
+          0.25,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "jean",
+      "legs": "jean",
+      "x": 2.6,
+      "y": 4.2,
+      "z": -16,
+      "scale": 0.6,
+      "card": "jean",
+      "_": "稍远处的小让"
+    },
+    {
+      "type": "boxes",
+      "card": "wind",
+      "x": 0,
+      "z": -5,
+      "sway": 0.18,
+      "_": "前面被风吹动的草（示意）",
+      "boxes": [
+        [
+          1.5,
+          0.6,
+          0.3,
+          "grass",
+          -3,
+          1.5,
+          0,
+          "cloth"
+        ],
+        [
+          1.2,
+          0.5,
+          0.3,
+          "flowers",
+          1.5,
+          1.3,
+          1,
+          "cloth"
+        ],
+        [
+          1.6,
+          0.6,
+          0.3,
+          "grass",
+          4,
+          1.6,
+          -1,
+          "cloth"
+        ],
+        [
+          1.4,
+          0.5,
+          0.3,
+          "flowers",
+          -1,
+          1.9,
+          -2.5,
+          "cloth"
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "family": {
+      "title": {
+        "zh": "卡米耶和让",
+        "en": "Camille and Jean"
+      },
+      "text": {
+        "zh": "画中是莫奈的妻子卡米耶和他们的儿子让，正走在阿让特伊的一片草坡上。",
+        "en": "This is Monet's wife, Camille, and their son, Jean, walking on a grassy slope in Argenteuil."
+      }
+    },
+    "backlight": {
+      "title": {
+        "zh": "背后的阳光",
+        "en": "Sunlight from behind"
+      },
+      "text": {
+        "zh": "阳光从她身后照过来，把阳伞顶部和她身后飘动的布照得发白。",
+        "en": "Sunlight shines from behind her, whitening the top of the parasol and the cloth flowing at her back."
+      }
+    },
+    "wildflowers": {
+      "title": {
+        "zh": "野花的颜色",
+        "en": "The colour of wildflowers"
+      },
+      "text": {
+        "zh": "她身前，被下面野花的颜色映上了一层黄色。",
+        "en": "Below, the wildflowers cast a touch of yellow onto her front."
+      }
+    },
+    "wind": {
+      "title": {
+        "zh": "风",
+        "en": "The wind"
+      },
+      "text": {
+        "zh": "风好像在她周围打转，把面纱吹向右边，她面前的草却朝相反的方向吹。",
+        "en": "The wind seems to swirl around her, blowing her veil to the right, while the grass in front of her blows the other way."
+      }
+    },
+    "jean": {
+      "title": {
+        "zh": "小让",
+        "en": "Little Jean"
+      },
+      "text": {
+        "zh": "儿子让站在稍远处，似乎完全没有感觉到风。",
+        "en": "Jean stands a little further back and doesn't seem to feel the wind at all."
+      }
+    },
+    "hours": {
+      "title": {
+        "zh": "几个小时",
+        "en": "A few hours"
+      },
+      "text": {
+        "zh": "这幅画是在户外画的，很可能一次就画完了，只用了几个小时。",
+        "en": "It was painted outdoors, probably in a single session lasting a few hours."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“白裙子里有几种颜色”：打开后显示原画，观众点卡米耶的“白色”裙子，每点一处就从图片像素读出那一小块的平均颜色，排成色块，按色相归类（蓝、黄、紫、绿……），最后列出找到了几种。不预设答案。",
+    "type": "colorPicker",
+    "label": {
+      "zh": "白裙子里有几种颜色",
+      "en": "How many colours in a white dress?"
+    },
+    "note": {
+      "zh": "这条裙子看起来是白色的，其实里面有蓝、黄、紫、绿……你找到了几种？",
+      "en": "The dress looks white, but it holds blues, yellows, violets, greens… How many did you find?"
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/woman-parasol.jpg",
+        "alt": {
+          "zh": "莫奈《撑阳伞的女人——莫奈夫人和她的儿子》1875年，华盛顿国家美术馆",
+          "en": "Claude Monet, Woman with a Parasol – Madame Monet and Her Son, 1875, National Gallery of Art, Washington"
+        },
+        "caption": {
+          "zh": "1875年 · 华盛顿国家美术馆",
+          "en": "1875 · National Gallery of Art, Washington"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 阿让特伊",
+          "en": "Argenteuil"
+        },
+        "text": {
+          "zh": "1871年底，在马奈的帮助下，莫奈搬到了巴黎郊区的阿让特伊。在这里，他度过了创作最丰富的时期之一。",
+          "en": "At the end of 1871, with Manet's help, Monet moved to Argenteuil, a suburb of Paris. It began one of the most productive periods of his career."
+        }
+      },
+      {
+        "image": "images/woman-parasol.jpg",
+        "alt": {
+          "zh": "莫奈《撑阳伞的女人——莫奈夫人和她的儿子》1875年，华盛顿国家美术馆",
+          "en": "Claude Monet, Woman with a Parasol – Madame Monet and Her Son, 1875, National Gallery of Art, Washington"
+        },
+        "caption": {
+          "zh": "1875年 · 华盛顿国家美术馆",
+          "en": "1875 · National Gallery of Art, Washington"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 草坡上的一刻",
+          "en": "A moment on the slope"
+        },
+        "text": {
+          "zh": "1875年，他在户外画下了妻子和儿子，很可能只用了几个小时。他想抓住的，是风吹过、阳光闪过的那一刻。",
+          "en": "In 1875, he painted his wife and son outdoors, probably in just a few hours. What he wanted to catch was the moment the wind blew and the sunlight flashed."
+        }
+      },
+      {
+        "image": "images/woman-parasol.jpg",
+        "alt": {
+          "zh": "莫奈《撑阳伞的女人——莫奈夫人和她的儿子》1875年，华盛顿国家美术馆",
+          "en": "Claude Monet, Woman with a Parasol – Madame Monet and Her Son, 1875, National Gallery of Art, Washington"
+        },
+        "caption": {
+          "zh": "1875年 · 华盛顿国家美术馆",
+          "en": "1875 · National Gallery of Art, Washington"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 像画风景一样画人",
+          "en": "Painting a person like a landscape"
+        },
+        "text": {
+          "zh": "他画卡米耶的脸，就像画周围的草和云一样自由，完全不同于当时学院派肖像的规矩。",
+          "en": "He painted Camille's face as freely as the grass and clouds around her, quite unlike the formal rules of academic portraiture at the time."
+        }
+      }
+    ],
+    "final": {
+      "zh": "风吹过的一刻。",
+      "en": "The moment the wind blew."
+    },
+    "versions": [],
+    "museums": [
+      "nga-washington"
+    ],
+    "exit": [
+      {
+        "scene": "umbrellas",
+        "href": "../umbrellas/",
+        "label": {
+          "zh": "同属“雨伞与阳伞”：雷诺阿《伞》",
+          "en": "Also in Umbrellas & Parasols: Renoir's *The Umbrellas*"
+        }
+      },
+      {
+        "scene": "paris-street-rainy-day",
+        "href": "../paris-street-rainy-day/",
+        "label": {
+          "zh": "同属“雨伞与阳伞”：卡耶博特《巴黎街道，雨天》",
+          "en": "Also in Umbrellas & Parasols: Caillebotte's *Paris Street; Rainy Day*"
+        }
+      },
+      {
+        "scene": "impression-sunrise",
+        "href": "../impression-sunrise/",
+        "label": {
+          "zh": "莫奈的另一幅：《日出·印象》",
+          "en": "Another Monet: *Impression, Sunrise*"
+        }
+      },
+      {
+        "scene": "water-lily-pond",
+        "href": "../water-lily-pond/",
+        "label": {
+          "zh": "莫奈的另一幅：《睡莲池》",
+          "en": "Another Monet: *The Water-Lily Pond*"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸先不显示（_dimensions），等 Tia 在华盛顿国家美术馆官网核对后提供；作品页等 Tia 提供。",
+    "artist": {
+      "zh": "克劳德·莫奈（1840–1926）",
+      "en": "Claude Monet (1840–1926)"
+    },
+    "title": {
+      "zh": "撑阳伞的女人——莫奈夫人和她的儿子",
+      "en": "Woman with a Parasol – Madame Monet and Her Son"
+    },
+    "date": {
+      "zh": "1875年",
+      "en": "1875"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "_dimensions": "待核对",
+    "collection": {
+      "zh": "华盛顿国家美术馆",
+      "en": "National Gallery of Art, Washington"
+    }
+  },
+  "zoom": {
+    "image": "images/woman-parasol.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "谷歌艺术与文化：撑阳伞的女人",
+          "en": "Google Arts & Culture: *Woman with a Parasol*"
+        },
+        "url": "https://artsandculture.google.com/asset/EwHxeymQQnprMg"
+      },
+      {
+        "title": {
+          "zh": "华盛顿国家美术馆儿童导览（PDF，英文）",
+          "en": "National Gallery of Art guide for children (PDF)"
+        },
+        "url": "https://corpora.tika.apache.org/base/docs/govdocs1/913/913842.pdf"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 阿让特伊",
+          "en": "Argenteuil"
+        },
+        "text": {
+          "zh": "1871年底，在马奈的帮助下，莫奈搬到了巴黎郊区的阿让特伊。在这里，他度过了创作最丰富的时期之一。",
+          "en": "At the end of 1871, with Manet's help, Monet moved to Argenteuil, a suburb of Paris. It began one of the most productive periods of his career."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 草坡上的一刻",
+          "en": "A moment on the slope"
+        },
+        "text": {
+          "zh": "1875年，他在户外画下了妻子和儿子，很可能只用了几个小时。他想抓住的，是风吹过、阳光闪过的那一刻。",
+          "en": "In 1875, he painted his wife and son outdoors, probably in just a few hours. What he wanted to catch was the moment the wind blew and the sunlight flashed."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 像画风景一样画人",
+          "en": "Painting a person like a landscape"
+        },
+        "text": {
+          "zh": "他画卡米耶的脸，就像画周围的草和云一样自由，完全不同于当时学院派肖像的规矩。",
+          "en": "He painted Camille's face as freely as the grass and clouds around her, quite unlike the formal rules of academic portraiture at the time."
+        }
+      }
+    ]
+  },
+  "softEdge": true
+}

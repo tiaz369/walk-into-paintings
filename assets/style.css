@@ -781,3 +781,20 @@ body.lang-both .pass-group h3 > .en { display: inline; font-size: .7em; margin-l
 .stamp-note { margin: 6px 0 0; font-size: 13px; text-align: center; opacity: 0; transition: opacity 1s; }
 .stamp-note.show { opacity: 1; }
 .stamp-note a { color: var(--accent); text-decoration: none; }
+
+/* 独家发现“黑白”（grayscale）：3D 画面、原画叠加和对照原画都变成黑白 */
+canvas, #vpOverlay, #compare img { transition: filter 1.2s ease; }
+body.bw canvas, body.bw #vpOverlay, body.bw #compare img { filter: grayscale(1); }
+/* 独家发现“取色”（colorPicker） */
+#picker { width: min(560px, calc(100% - 24px)); max-height: calc(100% - 24px); overflow-y: auto; }
+#picker h3 { margin: 0 32px 10px; text-align: center; }
+.pick-wrap { position: relative; width: fit-content; max-width: 100%; margin: 0 auto; }   /* 和图片一样大，圆点才对得准 */
+.pick-wrap img { display: block; width: auto; max-width: 100%; height: auto; max-height: 56vh; cursor: crosshair; user-select: none; -webkit-user-select: none; }
+.pick-dot { position: absolute; width: 14px; height: 14px; margin: -7px 0 0 -7px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(0,0,0,.4); pointer-events: none; }
+.pick-hint { text-align: center; color: var(--muted); font-size: 12px !important; }
+.pick-swatches { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 8px; }
+.pick-swatch { position: relative; width: 44px; height: 44px; border-radius: 6px; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+.pick-swatch span { position: absolute; left: 0; right: 0; bottom: -16px; text-align: center; font-size: 10px; color: var(--muted); }
+.pick-swatches:not(:empty) { margin-bottom: 26px; }
+.pick-found { font-family: var(--serif); font-size: 17px !important; text-align: center; margin-top: 14px !important; }
+.pick-note { font-size: 13px !important; text-align: center; }

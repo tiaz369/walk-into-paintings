@@ -15,7 +15,8 @@
     "doors": [],
     "cards": [],
     "end": [
-      "paris-street-rainy-day"
+      "paris-street-rainy-day",
+      "woman-parasol"
     ]
   },
   "painting": {
@@ -634,6 +635,14 @@
         "label": {
           "zh": "同样的伞，不同的画法",
           "en": "Same umbrellas, different styles"
+        }
+      },
+      {
+        "scene": "woman-parasol",
+        "href": "../woman-parasol/",
+        "label": {
+          "zh": "同属“雨伞与阳伞”：莫奈《撑阳伞的女人》",
+          "en": "Also in Umbrellas & Parasols: Monet's *Woman with a Parasol*"
         }
       }
     ]
