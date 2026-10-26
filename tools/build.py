@@ -281,7 +281,8 @@ def ldn_li(x):
     a = ARTISTS.get(x['artist'])
     line = ' · '.join(v for v in [both(x['title']), a and both(a['name']), x.get('loan') and '借展 / On loan'] if v)
     step = f' — <a href="../{x["path"]}">先走进去看看 · Step inside first</a>' if x['status'] == 'live' else ''
-    return f'<li>{e(line)}{step}</li>'
+    note = f' — {e(both(x["londonNote"], " / "))}' if x.get('londonNote') else ''   # 路线页上的一句提示
+    return f'<li>{e(line)}{step}{note}</li>'
 def ldn_section(sec):
     ldn = sorted([x for x in ALL if x['museum'] == sec['museum'] and x.get('onDisplay') is True and x.get('room') not in (None, '')], key=lambda x: open_year(x, x.get('year')))
     rooms = sorted({rkey(x['room']): x['room'] for x in ldn}.values(), key=lambda r: (isinstance(r, dict), int(r) if str(r).isdigit() else 0))

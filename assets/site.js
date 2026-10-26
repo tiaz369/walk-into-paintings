@@ -431,8 +431,9 @@ function londonRow(R, s) {
   const meta = [a && bi(a.name), loanLabel(s)].filter(Boolean).join(' · ');   // 展厅号已经写在分组标题上
   const side = (live ? `<a class="btn primary" href="${sceneUrl(s)}">${ui('先走进去看看', 'Step inside first')}</a>` : '')
     + (s.artworkUrl ? `<a class="work-link" href="${s.artworkUrl}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '');
+  const note = s.londonNote ? `<span class="row-meta london-note">${bi(s.londonNote, ' / ')}</span>` : '';   // 路线页上的一句提示（比如“想看莫奈的车站，不用去巴黎”）
   return `<div class="row"><span class="row-main"><span class="row-pic">${live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>
-    <span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span></span></span>${side ? `<span class="row-side">${side}</span>` : ''}</div>`;
+    <span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span>${note}</span></span>${side ? `<span class="row-side">${side}</span>` : ''}</div>`;
 }
 
 // “找不同”对比滑块（和场景最后一屏的一样）：两个下拉选版本，左右拖动

@@ -223,6 +223,18 @@ const AMBIENCE = {
     loopNoise('brown', out, { freq: 150, gain: 0.04 });
     every(st, 25, 50, t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(300, 500), q: 8, vol: 0.05, dur: rnd(0.1, 0.2), p: rnd(-0.5, 0.5) }));
   },
+  // 火车站的车棚里：蒸汽喷出的嘶嘶声，远处的汽笛，铁轮滚过铁轨，月台上的人声（Inside the station shed）
+  station(out, st) {
+    loopNoise('brown', out, { freq: 260, gain: 0.08 });
+    murmur(out, 0.07)(st);
+    const hiss = t => burst(out, t, { kind: 'white', type: 'highpass', freq: rnd(2500, 4000), q: 0.7, vol: 0.09, dur: rnd(1.2, 2.6), p: rnd(-0.5, 0.5) });   // 蒸汽
+    hiss(ctx.currentTime + 1); every(st, 5, 11, hiss);
+    const far = ctx.createGain(); far.gain.value = 0.3; far.connect(pan(out, -0.3));
+    const whistle = t => { tone(far, t, { f0: 880, type: 'triangle', vol: 0.05, attack: 0.05, dur: 1.1 }); tone(far, t, { f0: 1108, type: 'triangle', vol: 0.03, attack: 0.05, dur: 1.1 }); };
+    every(st, 30, 60, whistle);
+    const wheels = t => { for (let i = 0; i < 10; i++) burst(out, t + i * 0.42 + (i % 2) * 0.12, { kind: 'brown', type: 'bandpass', freq: rnd(140, 220), q: 3, vol: 0.06, dur: 0.07, p: 0.2 }); };   // 铁轮压过铁轨的接缝
+    every(st, 18, 35, wheels);
+  },
   // 代尔夫特的河边：河水轻拍岸边，远处教堂的钟声，风和鸟叫（A riverside in Delft）
   'delft-river'(out, st) {
     const w = loopNoise('brown', out, { freq: 380, gain: 0.08 });

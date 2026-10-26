@@ -959,7 +959,7 @@ function run(S, R, meta) {
     tc.addEventListener('pointermove', e => { if (td) tAt(e); });
     tc.addEventListener('pointerup', () => { td = false; }); tc.addEventListener('pointercancel', () => { td = false; });
     setTwin(50);
-    $('twinBtn').onclick = () => togglePopup('twin');
+    $('twinBtn').onclick = () => { togglePopup('twin'); if (TW.card && popups.twin.style.display === 'block' && S.cards[TW.card]) { found.add(TW.card); updateProgress(); } };   // card：打开对比滑块就算发现了这张卡片
     if (TW.versions) {   // 换版本
       const pick = () => {
         const a = TW.versions[$('twinPickA').value], b = TW.versions[$('twinPickB').value];
