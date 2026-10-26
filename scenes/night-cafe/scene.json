@@ -449,7 +449,10 @@
   ],
   "cards": {
     "lamps": {
-      "letter": { "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。", "url": "" },
+      "letter": {
+        "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。",
+        "url": ""
+      },
       "title": {
         "zh": "煤气灯",
         "en": "Gas lamps"
@@ -460,7 +463,9 @@
       }
     },
     "colours": {
-      "letter": { "url": "https://vangoghmuseum.nl/en/highlights/letters/676" },
+      "letter": {
+        "url": "https://vangoghmuseum.nl/en/highlights/letters/676"
+      },
       "title": {
         "zh": "红与绿",
         "en": "Red and green"
@@ -501,7 +506,9 @@
       }
     },
     "nights": {
-      "letter": { "url": "https://vangoghmuseum.nl/en/highlights/letters/676" },
+      "letter": {
+        "url": "https://vangoghmuseum.nl/en/highlights/letters/676"
+      },
       "title": {
         "zh": "三个通宵",
         "en": "Three nights"
@@ -687,5 +694,31 @@
         }
       }
     ]
-  }
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "梵高书信：致提奥，1888年8–9月",
+        "en": "Van Gogh's letters to Theo, August–September 1888"
+      },
+      "url": "https://www.vangoghletters.org"
+    },
+    {
+      "title": {
+        "zh": "《基督教科学箴言报》：耶鲁为何能保留这幅画（2014）",
+        "en": "The Christian Science Monitor: why Yale can keep the painting (2014)"
+      },
+      "url": "https://www.csmonitor.com/layout/set/amphtml/USA/Latest-News-Wires/2014/0322/Van-Gogh-painting-Why-Yale-can-keep-120-million-painting"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

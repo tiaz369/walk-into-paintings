@@ -744,5 +744,41 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：伞",
+        "en": "The National Gallery: *The Umbrellas*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/pierre-auguste-renoir-the-umbrellas"
+    },
+    {
+      "title": {
+        "zh": "国家美术馆技术简报：雷诺阿《伞》的研究（PDF）",
+        "en": "National Gallery Technical Bulletin: Renoir's *The Umbrellas* (PDF)"
+      },
+      "url": "https://www.nationalgallery.org.uk/upload/pdf/Roy-Billinge-Riopelle_2012.pdf"
+    },
+    {
+      "title": {
+        "zh": "休·莱恩美术馆：伞",
+        "en": "Hugh Lane Gallery: *Les Parapluies*"
+      },
+      "url": "https://onlinecollection.hughlane.ie/objects/1707/les-parapluies"
+    },
+    {
+      "url": "https://hughlane.ie"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

@@ -633,5 +633,31 @@
         }
       }
     ]
-  }
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "莫瑞泰斯皇家美术馆：戴珍珠耳环的少女",
+        "en": "Mauritshuis: Girl with a Pearl Earring"
+      },
+      "url": "https://www.mauritshuis.nl/en/our-collection/artworks/670-girl-with-a-pearl-earring"
+    },
+    {
+      "title": {
+        "zh": "Timeless Travels：揭开《戴珍珠耳环的少女》的秘密",
+        "en": "Timeless Travels: Secrets of Vermeer's Girl with a Pearl Earring revealed"
+      },
+      "url": "https://www.timeless-travels.co.uk/post/secrets-of-vermeer-s-girl-with-a-pearl-earring-revealed"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "莫瑞泰斯皇家美术馆，公有领域",
+      "en": "Mauritshuis, The Hague, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

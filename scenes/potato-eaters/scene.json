@@ -762,5 +762,48 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "梵高博物馆：吃土豆的人",
+        "en": "Van Gogh Museum: The Potato Eaters"
+      },
+      "url": "https://www.vangoghmuseum.nl/en/collection/s0005V1962"
+    },
+    {
+      "title": {
+        "zh": "克勒勒-米勒博物馆：吃土豆的人",
+        "en": "Kröller-Müller Museum: The Potato Eaters"
+      },
+      "url": "https://krollermuller.nl/en/vincent-van-gogh-the-potato-eaters-1"
+    },
+    {
+      "title": {
+        "zh": "提森-博内米萨博物馆：吃土豆的人",
+        "en": "Museo Thyssen-Bornemisza: The Potato Eaters"
+      },
+      "url": "https://www.museothyssen.org/en/collection/artists/gogh-vincent-van/potato-eaters"
+    },
+    {
+      "title": {
+        "zh": "世界历史百科：吃土豆的人",
+        "en": "World History Encyclopedia: The Potato Eaters"
+      },
+      "url": "https://www.worldhistory.org/image/15462/the-potato-eaters-by-van-gogh/"
+    },
+    {
+      "url": "https://vangoghletters.org/vg/letters/let409/letter.html"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "梵高博物馆，公有领域",
+      "en": "Van Gogh Museum, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

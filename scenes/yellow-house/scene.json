@@ -411,7 +411,10 @@
       }
     },
     "sky": {
-      "letter": { "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。", "url": "" },
+      "letter": {
+        "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。",
+        "url": ""
+      },
       "title": {
         "zh": "蓝天",
         "en": "The sky"
@@ -621,5 +624,31 @@
         }
       }
     ]
-  }
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "梵高博物馆作品页",
+        "en": "Van Gogh Museum: artwork page"
+      },
+      "url": "https://www.vangoghmuseum.nl/en/collection/s0032V1962"
+    },
+    {
+      "title": {
+        "zh": "梵高致提奥，约1888年9月29日",
+        "en": "Van Gogh to Theo, c. 29 September 1888"
+      },
+      "url": "http://www.vangoghletters.org/vg/letters/let691/letter.html"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

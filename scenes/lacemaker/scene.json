@@ -460,5 +460,34 @@
         }
       }
     ]
-  }
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "卢浮宫藏品库：花边女工",
+        "en": "Louvre collections: *The Lacemaker*"
+      },
+      "url": "https://collections.louvre.fr/en/ark:/53355/cl010064918"
+    },
+    {
+      "title": {
+        "zh": "Art Dependence：维米尔的《花边女工》借给卢浮宫朗斯分馆一年",
+        "en": "Art Dependence: Vermeer's *The Lacemaker* will join the Louvre-Lens for one year"
+      },
+      "url": "https://artdependence.com/articles/vermeers-lacemaker-will-join-the-louvre-lens-for-one-year"
+    },
+    {
+      "url": "https://rosecreek.jordandistrict.org/wp-content/uploads/sites/34/ArtMasterpiece_1H.pdf"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

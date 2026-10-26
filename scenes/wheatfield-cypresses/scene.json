@@ -1814,5 +1814,41 @@
       "image": "images/crops/wheat.jpg",
       "size": 3
     }
-  }
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：麦田与柏树",
+        "en": "The National Gallery: A Wheatfield, with Cypresses"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-a-wheatfield-with-cypresses"
+    },
+    {
+      "title": {
+        "zh": "大都会博物馆：麦田与柏树（现场习作）",
+        "en": "The Met: Wheat Field with Cypresses (the study)"
+      },
+      "url": "https://www.metmuseum.org/toah/works-of-art/1993.132"
+    },
+    {
+      "title": {
+        "zh": "梵高书信：致妹妹威尔，1889年7月2日",
+        "en": "Van Gogh's letters: to his sister Wil, 2 July 1889"
+      },
+      "url": "https://www.vangoghletters.org"
+    },
+    {
+      "url": "https://smartify.org/artworks/vincent-van-gogh-a-wheatfield-with-cypresses"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

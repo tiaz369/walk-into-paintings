@@ -633,5 +633,41 @@
       "size": 1
     }
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：梵高的椅子",
+        "en": "The National Gallery: Van Gogh's Chair"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-van-gogh-s-chair"
+    },
+    {
+      "title": {
+        "zh": "The Art Newspaper：梵高的空椅子",
+        "en": "The Art Newspaper: the story of Van Gogh's empty chairs"
+      },
+      "url": "https://theartnewspaper.com/blog/the-story-of-van-gogh-s-empty-chairs"
+    },
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：向日葵（七个版本）",
+        "en": "The National Gallery: Sunflowers (the seven versions)"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/NG3863"
+    },
+    {
+      "url": "https://nationalgallery.org.uk/paintings/NG3862"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

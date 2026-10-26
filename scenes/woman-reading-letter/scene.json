@@ -902,5 +902,31 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "荷兰国立博物馆作品页：读信的蓝衣女子",
+        "en": "Rijksmuseum: Woman Reading a Letter"
+      },
+      "url": "https://www.rijksmuseum.nl/en/collection/SK-C-251"
+    },
+    {
+      "title": {
+        "zh": "荷兰国立博物馆：关于《读信的蓝衣女子》的10件事",
+        "en": "Rijksmuseum: 10 things about Vermeer's Woman Reading a Letter"
+      },
+      "url": "https://www.rijksmuseum.nl/en/stories/10-things/story/10-things-about-vermeer-woman-reading-letter"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

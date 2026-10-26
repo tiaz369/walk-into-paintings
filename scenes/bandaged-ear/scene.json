@@ -535,5 +535,38 @@
         }
       }
     ]
-  }
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "考陶尔德美术馆：包扎耳朵的自画像",
+        "en": "The Courtauld: *Self-Portrait with Bandaged Ear*"
+      },
+      "url": "https://courtauld.ac.uk/highlights/self-portrait-with-bandaged-ear/"
+    },
+    {
+      "title": {
+        "zh": "考陶尔德美术馆虚拟导览",
+        "en": "The Courtauld virtual tour"
+      },
+      "url": "https://virtualtour.courtauld.ac.uk/gal-hotspot/self-portrait-with-bandaged-ear-1889/"
+    },
+    {
+      "title": {
+        "zh": "考陶尔德馆藏记录",
+        "en": "The Courtauld collection record"
+      },
+      "url": "https://gallerycollections.courtauld.ac.uk/object-p-1948-sc-175"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

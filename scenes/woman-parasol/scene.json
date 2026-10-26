@@ -590,5 +590,31 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "谷歌艺术与文化：撑阳伞的女人",
+        "en": "Google Arts & Culture: *Woman with a Parasol*"
+      },
+      "url": "https://artsandculture.google.com/asset/EwHxeymQQnprMg"
+    },
+    {
+      "title": {
+        "zh": "华盛顿国家美术馆儿童导览（PDF，英文）",
+        "en": "National Gallery of Art guide for children (PDF)"
+      },
+      "url": "https://corpora.tika.apache.org/base/docs/govdocs1/913/913842.pdf"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "华盛顿国家美术馆开放资源，公有领域",
+      "en": "National Gallery of Art Open Access, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

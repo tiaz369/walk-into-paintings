@@ -926,5 +926,52 @@
         }
       }
     ]
-  }
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "梵高博物馆作品页",
+        "en": "Van Gogh Museum: artwork page"
+      },
+      "url": "https://vangoghmuseum.nl/en/collection/s0047v1962"
+    },
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆作品页",
+        "en": "Art Institute of Chicago: artwork page"
+      },
+      "url": "https://www.artic.edu/artworks/28560/the-bedroom"
+    },
+    {
+      "title": {
+        "zh": "奥赛博物馆作品页",
+        "en": "Musée d'Orsay: artwork page"
+      },
+      "url": "https://www.musee-orsay.fr/en/artworks/la-chambre-de-van-gogh-arles-746"
+    },
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆文章：卧室墙上的画",
+        "en": "Art Institute of Chicago article: On the wall of Van Gogh's bedroom"
+      },
+      "url": "https://www.artic.edu/articles/572/on-the-wall-of-van-goghs-bedroom"
+    },
+    {
+      "title": {
+        "zh": "梵高给提奥的信，附卧室草图",
+        "en": "Van Gogh's letter to Theo, with a sketch of the bedroom"
+      },
+      "url": "https://www.vangoghmuseum.nl/en/letters/collection/ba0009"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

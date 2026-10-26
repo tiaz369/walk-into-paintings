@@ -633,5 +633,44 @@
         }
       }
     ]
-  }
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "维基百科：向日葵（梵高系列）",
+        "en": "Wikipedia: Sunflowers (Van Gogh series)"
+      },
+      "url": "https://en.wikipedia.org/wiki/Sunflowers_(Van_Gogh_series)"
+    },
+    {
+      "title": {
+        "zh": "澳大利亚国家美术馆：七幅向日葵",
+        "en": "National Gallery of Australia: The seven Sunflowers"
+      },
+      "url": "https://nga.gov.au/stories-ideas/the-seven-sunflowers"
+    },
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：向日葵",
+        "en": "The National Gallery: Sunflowers"
+      },
+      "url": "https://data.ng.ac.uk/0GE6-0001-0000-0000"
+    },
+    {
+      "url": "https://nigelip.com/2014/04/22/national-gallery-sunflowers/"
+    },
+    {
+      "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-sunflowers"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }
