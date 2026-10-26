@@ -488,5 +488,41 @@
         }
       }
     ]
-  }
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "梵高博物馆：杏花",
+        "en": "Van Gogh Museum: *Almond Blossom*"
+      },
+      "url": "https://www.vangoghmuseum.nl/en/collection/s0176V1962"
+    },
+    {
+      "title": {
+        "zh": "梵高博物馆：开花的梅园（临摹广重）",
+        "en": "Van Gogh Museum: *Flowering Plum Orchard (after Hiroshige)*"
+      },
+      "url": "https://www.vangoghmuseum.nl/en/collection/s0115V1962"
+    },
+    {
+      "title": {
+        "zh": "DailyArt Magazine：梵高的《杏花》",
+        "en": "DailyArt Magazine: Van Gogh's *Almond Blossom*"
+      },
+      "url": "https://www.dailyartmagazine.com/van-gogh-almond-blossom/"
+    },
+    {
+      "url": "https://omekas.prattsi.org/s/Flowers_in_Paintings/item/2741"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "梵高博物馆，公有领域",
+      "en": "Van Gogh Museum, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

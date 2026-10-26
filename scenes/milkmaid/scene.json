@@ -920,5 +920,31 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "荷兰国立博物馆新闻稿：《倒牛奶的女仆》的重大发现",
+        "en": "Rijksmuseum press release: major discoveries on Vermeer's The Milkmaid"
+      },
+      "url": "https://www.rijksmuseum.nl/en/press/press-releases/rijksmuseum-reveals-major-discoveries-on-vermeer-s-painting-the-milkmaid"
+    },
+    {
+      "title": {
+        "zh": "大都会艺术博物馆：海尔布伦艺术史年表",
+        "en": "The Met: Heilbrunn Timeline of Art History"
+      },
+      "url": "https://www.metmuseum.org/toah/hd/milk/hd_milk.htm"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

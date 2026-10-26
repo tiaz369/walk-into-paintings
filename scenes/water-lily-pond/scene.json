@@ -1587,5 +1587,38 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：睡莲池",
+        "en": "The National Gallery: The Water-Lily Pond"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/claude-monet-the-water-lily-pond"
+    },
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：语音描述",
+        "en": "The National Gallery: audio description"
+      },
+      "url": "https://www.nationalgallery.org.uk/audio/audio-descriptions/claude-monet-s-the-water-lily-pond"
+    },
+    {
+      "title": {
+        "zh": "谷歌艺术与文化：睡莲池",
+        "en": "Google Arts & Culture: The Water-Lily Pond"
+      },
+      "url": "https://artsandculture.google.com/asset/nQExbyttj8z58A"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

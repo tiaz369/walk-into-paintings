@@ -801,5 +801,38 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "大都会艺术博物馆：舞蹈课",
+        "en": "The Met: *The Dance Class*"
+      },
+      "url": "https://www.metmuseum.org/art/collection/search/438817"
+    },
+    {
+      "title": {
+        "zh": "大都会艺术史年表：舞蹈课",
+        "en": "The Met Heilbrunn Timeline: *The Dance Class*"
+      },
+      "url": "https://www.metmuseum.org/toah/works-of-art/1987.47.1"
+    },
+    {
+      "title": {
+        "zh": "奥赛博物馆：舞蹈课（另一版本）",
+        "en": "Musée d'Orsay: *The Dance Class* (the variant)"
+      },
+      "url": "https://www.musee-orsay.fr/en/artworks/la-classe-de-danse-1151"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "大都会艺术博物馆开放资源（CC0），公有领域",
+      "en": "The Met Open Access (CC0), public domain"
+    },
+    "url": "",
+    "license": "CC0"
+  },
+  "lastVerified": "2026-10-26"
 }

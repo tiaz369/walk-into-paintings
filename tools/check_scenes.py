@@ -78,6 +78,9 @@ def check():
         amb = S.get('ambience', S.get('sound'))
         if 'ambience' not in S: say('缺少 ambience（环境音）')
         elif amb is not None and amb not in kinds: say(f'ambience {amb!r} 不在 assets/sound.js 的 AMBIENCE 里')
+        if not isinstance(S.get('sources'), list): say('缺少 sources（资料来源列表）')
+        if not isinstance(S.get('imageSource'), dict): say('缺少 imageSource（图片来源和授权）')
+        if not S.get('lastVerified'): say('缺少 lastVerified（最后核实日期）')
         L = S.get('lighting') or {}
         if not L.get('type') or not L.get('label'): say('缺少 lighting（光线设定：type 和 label）')
         # 衔接：一览要和真正的设置一致

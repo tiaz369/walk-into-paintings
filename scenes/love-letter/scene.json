@@ -732,5 +732,38 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "荷兰国立博物馆：情书",
+        "en": "Rijksmuseum: *The Love Letter*"
+      },
+      "url": "https://www.rijksmuseum.nl/en/collection/SK-A-1595"
+    },
+    {
+      "title": {
+        "zh": "Google 艺术与文化：荷兰国立博物馆的介绍（一）",
+        "en": "Google Arts & Culture: Rijksmuseum story (1)"
+      },
+      "url": "https://artsandculture.google.com/story/CgVR2jmZi452Lg"
+    },
+    {
+      "title": {
+        "zh": "Google 艺术与文化：荷兰国立博物馆的介绍（二）",
+        "en": "Google Arts & Culture: Rijksmuseum story (2)"
+      },
+      "url": "https://artsandculture.google.com/story/fgXBDxyCMeVtJw"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

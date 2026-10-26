@@ -574,5 +574,38 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "考陶尔德馆藏记录：女神游乐厅的吧台",
+        "en": "The Courtauld collection: *A Bar at the Folies-Bergère*"
+      },
+      "url": "https://gallerycollections.courtauld.ac.uk/object-p-1934-sc-234"
+    },
+    {
+      "title": {
+        "zh": "考陶尔德美术馆：女神游乐厅的吧台",
+        "en": "The Courtauld: *A Bar at the Folies-Bergère*"
+      },
+      "url": "https://courtauld.ac.uk/highlights/a-bar-at-the-folies-bergere/"
+    },
+    {
+      "title": {
+        "zh": "考陶尔德美术馆虚拟导览",
+        "en": "The Courtauld virtual tour"
+      },
+      "url": "https://virtualtour.courtauld.ac.uk/gal-hotspot/a-bar-at-the-folies-bergere-1882/"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "公有领域（考陶尔德美术馆标注本作品为公有领域）",
+      "en": "Public domain (as marked by The Courtauld)"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

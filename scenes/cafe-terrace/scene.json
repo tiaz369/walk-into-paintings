@@ -542,7 +542,10 @@
       }
     },
     "familiar": {
-      "letter": { "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。", "url": "" },
+      "letter": {
+        "_说明": "读原信：填 vangoghletters.org 上对应这封信的网址；空着时不显示。",
+        "url": ""
+      },
       "title": {
         "zh": "常去的咖啡馆",
         "en": "A familiar café"
@@ -741,5 +744,34 @@
         }
       }
     ]
-  }
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "克勒勒-米勒博物馆：这幅画的介绍",
+        "en": "Kröller-Müller Museum: about the painting"
+      },
+      "url": "https://www.museum.nl/en/kroller-muller-museum/showpiece/terrace-of-a-cafe-van-gogh"
+    },
+    {
+      "title": {
+        "zh": "梵高书信：致妹妹威尔（1888年9月）、致欧仁·博赫（1888年10月2日）",
+        "en": "Van Gogh's letters to his sister Wil (September 1888) and to Eugène Boch (2 October 1888)"
+      },
+      "url": "https://www.vangoghletters.org"
+    },
+    {
+      "url": "https://krollermuller.nl/en/vincent-van-gogh-terrace-of-a-cafe-at-night-place-du-forum-1"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

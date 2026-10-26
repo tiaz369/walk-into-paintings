@@ -602,5 +602,37 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "维基百科：日出·印象（英文）",
+        "en": "Wikipedia: *Impression, Sunrise*"
+      },
+      "url": "https://en.wikipedia.org/wiki/Impression,_Sunrise"
+    },
+    {
+      "title": {
+        "zh": "诺曼底旅游局：《日出·印象》的故事",
+        "en": "Normandy Tourism: The history of *Impression, Sunrise*"
+      },
+      "url": "https://en.normandie-tourisme.fr/discover/culture/impressionism/history-of-impression-sunrise/"
+    },
+    {
+      "url": "https://www.apa.org/monitor/2010/02/painters"
+    },
+    {
+      "url": "https://www.harvardmagazine.com/2003/07/the-neurobiology-of-art-html"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

@@ -680,5 +680,41 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：诺曼底火车进站，圣拉扎尔火车站",
+        "en": "The Art Institute of Chicago: *Arrival of the Normandy Train, Gare Saint-Lazare*"
+      },
+      "url": "https://www.artic.edu/artworks/16571/arrival-of-the-normandy-train-gare-saint-lazare"
+    },
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：莫奈作品图录",
+        "en": "The Art Institute of Chicago: Monet catalogue"
+      },
+      "url": "https://publications.artic.edu/node/135550"
+    },
+    {
+      "title": {
+        "zh": "维基百科：圣拉扎尔火车站系列（英文）",
+        "en": "Wikipedia: *Gare Saint-Lazare* (Monet series)"
+      },
+      "url": "https://en.wikipedia.org/wiki/Gare_Saint-Lazare_(Monet_series)"
+    },
+    {
+      "url": "https://pop.culture.gouv.fr/notice/joconde/000PE003946"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

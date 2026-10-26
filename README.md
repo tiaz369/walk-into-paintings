@@ -94,6 +94,8 @@ walk-into-paintings/
 6. **发布**：Claude Code 开一个 Pull Request → 在 GitHub 上点 **Merge pull request** → **Confirm merge** → 等 1–2 分钟，强制刷新网站（Ctrl+Shift+R）。
    上线前再检查一遍（来自网站蓝图的“内容与版权规则”）：公有领域、图片来源已注明、文字由 Tia 提供并核对、解读性内容标明“有人认为”、中英文都检查过。
    **年份和收藏地**：不同来源写的不一样时，以收藏这幅画的博物馆官网为准。官网核对不了的，标“待核对”，先不显示（画家页的“其他代表作”在 `data/works.json` 里，`check` 写 `ok` 才显示）。
+   **示意类效果**：所有“示意”类的效果（画面上加出来、改出来的东西，比如褪色前的颜色、天亮、风吹、灯光变化、被移走的物体），页面上必须标注“这是示意 / This is an illustration”（写在独家发现的说明 note 里）。
+   **资料记录**：每个 `scene.json` 都要有 `sources`（资料来源列表，每项写 `url`，可以加 `title`）、`imageSource`（图片来源：`text` 说明、`url` 原图网址、`license` 授权）和 `lastVerified`（最后核实日期，YYYY-MM-DD）。核对过资料就更新 `lastVerified`。
    **英文画名的格式**：画名出现在句子里时用斜体（卡片、故事、按钮、图注、时间线、延伸阅读里都一样，在 json 里写成 `*Irises*`）；展签、作品档案里单独一栏的画名不用斜体；括号里的补充说明用正体，例如 `*Irises* (in a vase)`。
 
 首页、系列页、浏览页、时间线和地图会自动出现新场景，不用改它们。

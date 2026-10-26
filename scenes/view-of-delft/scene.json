@@ -689,5 +689,41 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "莫瑞泰斯：代尔夫特一景",
+        "en": "Mauritshuis: *View of Delft*"
+      },
+      "url": "https://www.mauritshuis.nl/en/our-collection/artworks/92-view-of-delft"
+    },
+    {
+      "title": {
+        "zh": "莫瑞泰斯：代尔夫特一景（中文）",
+        "en": "Mauritshuis: *View of Delft* (Chinese)"
+      },
+      "url": "https://mauritshuis.nl/cn/%E8%97%8F%E4%B9%A6/%E5%AF%BB%E6%89%BE%E8%97%8F%E4%B9%A6/92-%E5%BE%B7%E5%B0%94%E7%A6%8F%E8%BF%9C%E7%9C%BA/"
+    },
+    {
+      "title": {
+        "zh": "《纽约书评》：维米尔",
+        "en": "The New York Review of Books: Vermeer, first among equals"
+      },
+      "url": "https://www.nybooks.com/articles/2019/02/07/vermeer-first-among-equals/"
+    },
+    {
+      "url": "https://mauritshuis.nl/cn/"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

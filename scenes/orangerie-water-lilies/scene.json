@@ -558,5 +558,41 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "橘园美术馆：睡莲系列的历史",
+        "en": "Musée de l'Orangerie: History of the Water Lilies cycle"
+      },
+      "url": "https://www.musee-orangerie.fr/en/node/33"
+    },
+    {
+      "title": {
+        "zh": "橘园美术馆：莫奈的睡莲",
+        "en": "Musée de l'Orangerie: The Water Lilies by Claude Monet"
+      },
+      "url": "https://www.musee-orangerie.fr/en/node/197502"
+    },
+    {
+      "title": {
+        "zh": "巴黎大区旅游局：橘园美术馆",
+        "en": "Visit Paris Region: Musée de l'Orangerie"
+      },
+      "url": "https://www.visitparisregion.com/en/musee-de-l-orangerie"
+    },
+    {
+      "url": "https://www.musee-orangerie.fr/en/artworks/le-matin-aux-saules-196307"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons（Google Art Project 等），公有领域",
+      "en": "Wikimedia Commons (Google Art Project and others), public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }

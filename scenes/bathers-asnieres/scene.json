@@ -795,5 +795,38 @@
       }
     ]
   },
-  "softEdge": true
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：阿涅尔的浴场",
+        "en": "The National Gallery: *Bathers at Asnières*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/georges-seurat-bathers-at-asnieres"
+    },
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：Take One Picture 2014",
+        "en": "The National Gallery: Take One Picture 2014"
+      },
+      "url": "https://www.nationalgallery.org.uk/exhibitions/past/take-one-picture-2014"
+    },
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：大碗岛的星期天下午",
+        "en": "The Art Institute of Chicago: *A Sunday on La Grande Jatte — 1884*"
+      },
+      "url": "https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "",
+    "license": "公有领域 / public domain"
+  },
+  "lastVerified": "2026-10-26"
 }
