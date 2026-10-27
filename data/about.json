@@ -1,5 +1,5 @@
 {
-  "_说明": "关于页的文字（Tia 提供，原文照录）。首页“关于这个项目”用 home；关于页从上到下：title（居中大标题）、intro（正文）、how（小标题 + 一行）、care（小标题 + 三段）、credit（署名）、analytics（页面最底部的小字）。",
+  "_说明": "关于页的文字（Tia 提供，原文照录）。首页“关于这个项目”用 home；关于页从上到下：title（居中大标题）、picture（标题下的原画，完整显示不裁切，caption 是下方小字）、intro（正文）、how（小标题 + 四列：word 一个词、text 一行小字；手机上两列）、care（小标题 + 三段）、credit（署名）、links（署名下的两个链接；url 空着时不显示）、analytics（页面最底部的小字）。关于页的页脚不再重复署名。",
   "home": {
     "zh": "走进名画，是一座可以走进去的线上美术馆。在画里走一走，发现细节，听听画背后的故事，然后去博物馆看看真迹。",
     "en": "An online gallery you can step inside. Walk into a painting, discover its details, hear its story, then go and see the real thing."
@@ -7,6 +7,17 @@
   "title": {
     "zh": "每一幅名画，都是一扇门。",
     "en": "Every great painting is a door."
+  },
+  "picture": {
+    "image": "scenes/love-letter/images/love-letter.jpg",
+    "alt": {
+      "zh": "维米尔《情书》",
+      "en": "Johannes Vermeer, The Love Letter"
+    },
+    "caption": {
+      "zh": "维米尔《情书》，约1669–1670年 · 阿姆斯特丹荷兰国立博物馆",
+      "en": "Johannes Vermeer, The Love Letter, c. 1669–70 · Rijksmuseum, Amsterdam"
+    }
   },
   "intro": [
     {
@@ -23,10 +34,48 @@
       "zh": "怎么看一幅画",
       "en": "How to look"
     },
-    "text": {
-      "zh": "看见 · 发现 · 理解 · 走进",
-      "en": "See · Notice · Understand · Step inside"
-    }
+    "steps": [
+      {
+        "word": {
+          "zh": "看见",
+          "en": "See"
+        },
+        "text": {
+          "zh": "先完整地看原画",
+          "en": "Look at the whole painting first"
+        }
+      },
+      {
+        "word": {
+          "zh": "发现",
+          "en": "Notice"
+        },
+        "text": {
+          "zh": "找一个容易忽略的细节",
+          "en": "Find a detail that's easy to miss"
+        }
+      },
+      {
+        "word": {
+          "zh": "理解",
+          "en": "Understand"
+        },
+        "text": {
+          "zh": "听画背后的故事",
+          "en": "Hear the story behind it"
+        }
+      },
+      {
+        "word": {
+          "zh": "走进",
+          "en": "Step inside"
+        },
+        "text": {
+          "zh": "走进画里，再去看真迹",
+          "en": "Step inside, then go and see the real thing"
+        }
+      }
+    ]
   },
   "care": {
     "heading": {
@@ -52,6 +101,19 @@
     "zh": "由 Tia 创作与策划",
     "en": "Created and curated by Tia"
   },
+  "links": [
+    {
+      "zh": "走进第一幅画 →",
+      "en": "Step into your first painting →",
+      "url": "scenes/bedroom/"
+    },
+    {
+      "zh": "想走进哪一幅画？告诉我",
+      "en": "Which painting should we step into next? Tell me",
+      "url": "",
+      "_": "Tia 的 X 账号，例如 https://x.com/账号名；空着时不显示"
+    }
+  ],
   "analytics": {
     "zh": "本站使用 GoatCounter 统计访问量，不使用 cookie，不收集个人信息。",
     "en": "This site uses GoatCounter for simple visit counts. No cookies, no personal data."

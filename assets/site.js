@@ -291,7 +291,7 @@ export function chrome(active) {
   footer.className = 'wrap site-footer';
   const social = SOCIAL.filter(s => s.url).map(s => `<a href="${s.url}" target="_blank" rel="noopener">${bi(s.name)}</a>`).join(' · ');
   footer.innerHTML = `<div class="prefs">${themeSwitchHTML()}</div>
-    ${social ? social + '<br>' : ''}${creditHTML()}`;
+    ${social ? social + '<br>' : ''}${active === 'about/' ? '' : creditHTML()}`;   // 关于页正文里已经有署名，页脚不再重复
   document.body.append(footer);
   wirePrefs();
 }
@@ -680,14 +680,17 @@ const PAGES = {
   about(R, main) {
     const A = ABOUT, line = (o, cls = '') => `<p class="zh ${cls}">${esc(o.zh)}</p><p class="en ${cls}">${esc(o.en)}</p>`,
       head = o => `<span class="zh">${esc(o.zh)}</span><span class="en">${esc(o.en)}</span>`;
-    main.innerHTML = `<div class="wrap about-hero"><h1>${head(A.title)}</h1></div>
+    const P = A.picture, links = (A.links || []).filter(l => l.url);
+    main.innerHTML = `<div class="wrap about-hero"><h1>${head(A.title)}</h1>
+        ${P ? `<figure class="about-pic"><img src="${ROOT + P.image}" ${altAttr(P.alt)} /><figcaption>${head(P.caption)}</figcaption></figure>` : ''}</div>
       <section class="wrap about">
         ${A.intro.map(p => line(p)).join('')}
         <h2>${head(A.how.heading)}</h2>
-        ${line(A.how.text, 'about-steps')}
+        <div class="about-steps">${A.how.steps.map(s => `<div class="step"><p class="step-word">${head(s.word)}</p><p class="step-text">${head(s.text)}</p></div>`).join('')}</div>
         <h2>${head(A.care.heading)}</h2>
         ${A.care.items.map(p => line(p)).join('')}
-        <div class="about-credit">${line(A.credit)}</div>
+        <div class="about-credit">${line(A.credit)}
+          ${links.length ? `<p class="about-links">${links.map(l => `<a href="${/^https?:/.test(l.url) ? l.url : ROOT + l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ''}>${head(l)}</a>`).join('')}</p>` : ''}</div>
         ${A.analytics ? `<div class="about-note">${line(A.analytics)}</div>` : ''}
       </section>`;
   },

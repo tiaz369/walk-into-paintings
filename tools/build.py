@@ -151,7 +151,7 @@ def page(path, title, desc, static, script, image=OG_HOME, image_alt=OG_HOME_ALT
     <main>
 {static}
     </main>
-    <footer>{CREDIT}</footer>
+    <footer>{'' if path == 'about/' else CREDIT}</footer>
   </div>
   <!-- ↑ 自动生成结束 -->
   <script type="module">
@@ -260,10 +260,10 @@ PAGES.append(page('map/', T('地图', 'Map'), '画在哪里、现在在哪里 ·
 mus = ''.join(f'<h2 id="{m["id"]}">{e(both(m["name"]))}</h2>' + (f'<p><a href="{e(m["url"])}">参观官网 · Visit website</a></p>' if m.get('url') else '') + ul(cap_soon(museum_items(m['id']), lambda x: x[0])) for m in R['museums'] if museum_items(m['id']))   # 没有作品的博物馆不显示
 PAGES.append(page('museums/', T('博物馆', 'Museums'), '按博物馆浏览：去哪里看真迹 · Browse by museum: where to see the real paintings', '      <h1>按博物馆 · By museum</h1>\n      ' + mus, site_script('../', 'museums')))
 PAGES.append(page('about/', T('关于', 'About'), t(ABOUT['intro'][0]) + ' ' + t(ABOUT['intro'][0], 'en'),
-                  '      <h1>' + e(both(ABOUT['title'])) + '</h1>\n      ' + ''.join(para(p) for p in ABOUT['intro'])
-                  + '<h2>' + e(both(ABOUT['how']['heading'])) + '</h2>' + para(ABOUT['how']['text'])
+                  '      <h1>' + e(both(ABOUT['title'])) + '</h1>\n      ' + (f'<p><img src="../{ABOUT["picture"]["image"]}" alt="{e(both(ABOUT["picture"]["alt"]))}"></p>' + para(ABOUT['picture']['caption']) if ABOUT.get('picture') else '') + ''.join(para(p) for p in ABOUT['intro'])
+                  + '<h2>' + e(both(ABOUT['how']['heading'])) + '</h2>' + ''.join(para({'zh': s['word']['zh'] + '：' + s['text']['zh'], 'en': s['word']['en'] + ': ' + s['text']['en']}) for s in ABOUT['how']['steps'])
                   + '<h2>' + e(both(ABOUT['care']['heading'])) + '</h2>' + ''.join(para(p) for p in ABOUT['care']['items'])
-                  + para(ABOUT['credit']) + (para(ABOUT['analytics']) if ABOUT.get('analytics') else ''), site_script('../', 'about')))
+                  + para(ABOUT['credit']) + ''.join(f'<p><a href="{l["url"] if l["url"].startswith("http") else "../" + l["url"]}">{e(both(l))}</a></p>' for l in ABOUT.get('links', []) if l.get('url')) + (para(ABOUT['analytics']) if ABOUT.get('analytics') else ''), site_script('../', 'about')))
 
 # ---------- 生平（画家页）和时间线 ----------
 def year_of(s):
