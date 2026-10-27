@@ -20,7 +20,8 @@
       "sunflowers",
       "bathers-asnieres",
       "orangerie-water-lilies",
-      "impression-sunrise"
+      "impression-sunrise",
+      "rouen-cathedral"
     ]
   },
   "painting": {
@@ -1490,6 +1491,14 @@
         "label": {
           "zh": "莫奈的另一片水",
           "en": "Another of Monet's waters"
+        }
+      },
+      {
+        "scene": "rouen-cathedral",
+        "href": "../rouen-cathedral/",
+        "label": {
+          "zh": "同样的执着，不同的主题",
+          "en": "The same obsession, a different subject"
         }
       }
     ]

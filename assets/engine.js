@@ -144,6 +144,7 @@ function buildDOM(S, R, meta) {
     ${TW ? `<button class="btn" id="twinBtn">✦ ${ui(TW.label.zh, TW.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'wind' ? `<button class="btn" id="windBtn">🌬 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.map((t, i) => `<button class="btn" data-toggle="${i}">✦ ${ui(t.label.zh, t.label.en)}</button>`).join('') : ''}
+    ${S.exclusive && S.exclusive.type === 'series' ? `<button class="btn" id="seriesBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'names' ? `<button class="btn" id="namesBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'light' ? `<button class="btn" id="lightBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'mirror' ? `<button class="btn" id="mirrorBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
@@ -228,6 +229,11 @@ function buildDOM(S, R, meta) {
     <p>${bi(M.text, ' / ')}</p>
   </div>`)(S.exclusive) : ''}
   ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.filter(t => t.note).map(t => `<div class="panel toggle-note hidden" data-toggle-note="${S.exclusive.toggles.indexOf(t)}">${bi(t.note, ' / ')}</div>`).join('') : ''}
+  ${S.exclusive && S.exclusive.type === 'series' ? `<div id="seriesPanel" class="panel series-panel hidden">
+    <input type="range" id="seriesRange" min="0" max="${(S.exclusive.items.length - 1) * 100}" value="${(S.exclusive.start || 0) * 100}" aria-label="${textOf(S.exclusive.label, lang)}" />
+    <div class="series-ends"><span>${ui(S.exclusive.from.zh, S.exclusive.from.en)}</span><span>${ui(S.exclusive.to.zh, S.exclusive.to.en)}</span></div>
+    <p id="seriesCap" class="series-cap"></p>
+    <p class="series-note">${bi(S.exclusive.note, ' / ')}</p></div>` : ''}
   ${S.exclusive && S.exclusive.type === 'names' ? `<div id="namesNote" class="panel toggle-note hidden">${bi(S.exclusive.note, ' / ')}</div><div id="nameTags" class="name-tags hidden">${S.exclusive.people.map((pp, i) => `<button class="name-tag" data-name="${i}">${ui(pp.name.zh, pp.name.en)}</button>`).join('')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'light' ? `<div id="lightPanel" class="panel hidden">
     <input type="range" id="lightRange" min="0" max="1000" value="${Math.round((S.exclusive.start ?? 0.5) * 1000)}" aria-label="${textOf(S.exclusive.label, lang)}" />
@@ -830,6 +836,8 @@ function run(S, R, meta) {
   const paintingTex = imageTex(S.painting.image); paintingTex.anisotropy = 4;
   const paintAlt = S.exclusive && S.exclusive.type === 'toggles' && (S.exclusive.toggles.find(t => t.paintAlt) || {}).paintAlt;
   const paintingTexB = paintAlt ? imageTex(paintAlt) : paintingTex;   // 独家发现“去掉想象”用的另一版原画
+  // 独家发现“一天的光”（series）：同一个系列里几幅真实的原画（items，按一天的时间排），滑杆在相邻两幅之间渐变
+  const seriesTex = S.exclusive && S.exclusive.type === 'series' ? S.exclusive.items.map(it => it.image === S.painting.image ? paintingTex : imageTex(it.image)) : null;
   const depthRT = new THREE.WebGLRenderTarget(1024, 812);
   depthRT.depthTexture = new THREE.DepthTexture(1024, 812); depthRT.depthTexture.type = THREE.UnsignedIntType;
   const projUniforms = {
@@ -1495,6 +1503,22 @@ function run(S, R, meta) {
     const btn = $('namesBtn'), note = $('namesNote'), tags = $('nameTags');
     btn.onclick = () => { namesOn = !namesOn; btn.classList.toggle('on', namesOn); note.classList.toggle('hidden', !namesOn); tags.classList.toggle('hidden', !namesOn); if (namesOn) track('exclusive-' + S.id); };
     tags.querySelectorAll('.name-tag').forEach(b => b.onclick = () => showCard(namesObj.people[+b.dataset.name].card));
+  }
+  if (seriesTex) {
+    const X = S.exclusive, range = $('seriesRange'), cap = $('seriesCap'), panel = $('seriesPanel'), main = X.start || 0;
+    const setSeries = v => {
+      const i = Math.min(Math.floor(v), X.items.length - 2), f = v - i;
+      projUniforms.uPaint.value = seriesTex[i]; projUniforms.uPaintB.value = seriesTex[i + 1]; projUniforms.uMixB.value = f;
+      const it = X.items[Math.round(v)];
+      cap.innerHTML = `<b>${bi(it.title, ' / ')}</b><br>${bi(it.date, ' / ')} · ${bi(it.museum, ' / ')}`;
+    };
+    range.oninput = () => setSeries(range.value / 100);
+    $('seriesBtn').onclick = () => {
+      const on = panel.classList.toggle('hidden') === false;
+      $('seriesBtn').classList.toggle('on', on);
+      if (on) { setSeries(range.value / 100); track('exclusive-' + S.id); }
+      else { range.value = main * 100; setSeries(main); }   // 关掉时回到这一幅
+    };
   }
   function stepNames() {
     if (!namesOn) return;

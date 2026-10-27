@@ -1,0 +1,798 @@
+{
+  "_说明": "鲁昂大教堂（户外风景，完整版）。所有事实文字由 Tia 提供（资料主要来自华盛顿国家美术馆官网）。开场站在大教堂对面二楼的窗前，走进去时窗打开，巨大的哥特式立面几乎占满视野；窗下是街道。原画还没上传：现在的立面和画家视角是先按画面描述摆的，上传后照原画重新对准。",
+  "id": "rouen-cathedral",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "changing-day",
+    "label": {
+      "zh": "一天里不断变化的光",
+      "en": "Light that changes through the day"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）。和《圣拉扎尔火车站》互相链接（“莫奈的另一个系列”）；和《睡莲池》互相链接（“同样的执着，不同的主题”）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "gare-saint-lazare",
+      "water-lily-pond"
+    ]
+  },
+  "painting": {
+    "image": "images/rouen-west-facade.jpg",
+    "width": 1300,
+    "height": 1976,
+    "alt": {
+      "zh": "莫奈《鲁昂大教堂，西立面》1894，华盛顿国家美术馆",
+      "en": "Claude Monet, Rouen Cathedral, West Façade, 1894, National Gallery of Art, Washington"
+    },
+    "_": "宽高是按尺寸比例（100.1 × 65.9 cm）先填的，原画上传后改成实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "鲁昂大教堂，西立面",
+      "en": "Rouen Cathedral, West Façade"
+    },
+    "artist": {
+      "zh": "莫奈",
+      "en": "Claude Monet"
+    },
+    "date": {
+      "zh": "1894年",
+      "en": "1894"
+    },
+    "museum": {
+      "zh": "华盛顿国家美术馆",
+      "en": "National Gallery of Art, Washington"
+    },
+    "source": {
+      "zh": "华盛顿国家美术馆开放资源，公有领域",
+      "en": "National Gallery of Art Open Access, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下立面、街道和窗户看介绍 · 点“一天的光”，拖动滑杆，从早晨到傍晚 · 地上发光的圆点 = 莫奈的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the façade, the street or the window to learn more · Tap “Light through the day” and drag from morning to evening · The glowing circle = Monet's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先按画面描述估算（站在对面二楼的窗前，眼睛离地约5.5米，稍微往上看），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 5.5,
+    "yaw": 0,
+    "pitch": 0.28,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "cathedral-square",
+  "colors": {
+    "line": "#2a2a30",
+    "stone": "#b8a890",
+    "street": "#8a8278",
+    "ground": "#8a8278",
+    "sky": "#c8ccd0",
+    "house": "#a89a88",
+    "frame": "#e8e2d4",
+    "wallpaper": "#c8b8a0",
+    "glass": "#d8e4e8",
+    "floor": "#7a5a40"
+  },
+  "room": {
+    "_说明": "户外：ground 是街道，bounds 是可以走动的范围（只能在房间里，窗前一小块），观众站在楼上，走路时眼睛也保持在5.5米高（walkEye）。",
+    "kind": "outdoor",
+    "ground": [
+      -60,
+      60,
+      -80,
+      20
+    ],
+    "bounds": [
+      -1.3,
+      1.3,
+      -0.55,
+      1.6
+    ],
+    "groundCard": "winters",
+    "skyCard": "air",
+    "skyRadius": 160,
+    "walkSpeed": 0.6,
+    "walkEye": 5.5,
+    "projectFar": 200
+  },
+  "objects": [
+    {
+      "type": "casement",
+      "card": "room",
+      "_": "对面房间的窗：走进去时两扇窗页往里打开",
+      "x": 0,
+      "y": 5.46,
+      "z": -1.0,
+      "w": 1.2,
+      "h": 1.6,
+      "wall": 3.0,
+      "color": "frame",
+      "wallColor": "wallpaper",
+      "leaf": "frame",
+      "glass": "glass",
+      "delay": 0.5
+    },
+    {
+      "type": "boxes",
+      "card": "room",
+      "x": 0,
+      "y": 4.4,
+      "z": 0.3,
+      "_": "莫奈租的房间：地板、两边的墙、后墙和天花板",
+      "boxes": [
+        [
+          3.4,
+          0.1,
+          3.0,
+          "floor",
+          0,
+          0,
+          0
+        ],
+        [
+          0.1,
+          3.2,
+          3.0,
+          "wallpaper",
+          -1.65,
+          1.6,
+          0,
+          "wall"
+        ],
+        [
+          0.1,
+          3.2,
+          3.0,
+          "wallpaper",
+          1.65,
+          1.6,
+          0,
+          "wall"
+        ],
+        [
+          3.4,
+          3.2,
+          0.1,
+          "wallpaper",
+          0,
+          1.6,
+          1.5,
+          "wall"
+        ],
+        [
+          3.4,
+          0.1,
+          3.0,
+          "wallpaper",
+          0,
+          3.2,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "road",
+      "card": "winters",
+      "x0": -25,
+      "x1": 25,
+      "z0": -34,
+      "z1": -2,
+      "color": "street"
+    },
+    {
+      "type": "surface",
+      "card": "facade",
+      "color": "stone",
+      "_": "大教堂的西立面（原画投影上去）",
+      "pts": [
+        [
+          -14,
+          46,
+          -34
+        ],
+        [
+          -14,
+          0,
+          -34
+        ],
+        [
+          14,
+          0,
+          -34
+        ],
+        [
+          14,
+          46,
+          -34
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "stone",
+      "x": 0,
+      "z": -33,
+      "_": "立面上的大门、尖拱和雕刻（凸出来的部分）",
+      "boxes": [
+        [
+          6,
+          11,
+          1.2,
+          "stone",
+          0,
+          5.5,
+          0
+        ],
+        [
+          2.2,
+          24,
+          1.0,
+          "stone",
+          -6,
+          12,
+          0
+        ],
+        [
+          2.2,
+          24,
+          1.0,
+          "stone",
+          6,
+          12,
+          0
+        ],
+        [
+          8,
+          4,
+          0.8,
+          "stone",
+          0,
+          15,
+          0
+        ],
+        [
+          3,
+          7,
+          0.6,
+          "stone",
+          0,
+          21,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "air",
+      "x": 0,
+      "z": -34.5,
+      "_": "两边被画面切掉的塔楼",
+      "boxes": [
+        [
+          7,
+          50,
+          6,
+          "stone",
+          -13,
+          25,
+          -3
+        ],
+        [
+          7,
+          46,
+          6,
+          "stone",
+          13,
+          23,
+          -3
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "signature",
+      "x": -8,
+      "z": -33.2,
+      "_": "左下角的签名处（立面底部）",
+      "boxes": [
+        [
+          3,
+          1.5,
+          0.3,
+          "stone",
+          0,
+          0.75,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "building",
+      "card": "winters",
+      "_": "街两边的房子",
+      "x": -20,
+      "z": -18,
+      "w": 8,
+      "d": 20,
+      "h": 12,
+      "color": "house"
+    },
+    {
+      "type": "building",
+      "card": "winters",
+      "_": "街两边的房子",
+      "x": 20,
+      "z": -18,
+      "w": 8,
+      "d": 20,
+      "h": 12,
+      "color": "house"
+    }
+  ],
+  "cards": {
+    "facade": {
+      "title": {
+        "zh": "填满画面的立面",
+        "en": "A façade that fills the canvas"
+      },
+      "text": {
+        "zh": "大教堂的石头立面几乎填满了整张画布，两边都被切掉了。",
+        "en": "The stone façade fills almost the entire canvas, cropped at both sides."
+      }
+    },
+    "room": {
+      "title": {
+        "zh": "对面的房间",
+        "en": "The room across the street"
+      },
+      "text": {
+        "zh": "1892年初，莫奈在大教堂对面租下了房间，从窗口画它。",
+        "en": "In early 1892, Monet rented rooms across from the cathedral and painted it from the window."
+      }
+    },
+    "winters": {
+      "title": {
+        "zh": "两个冬天",
+        "en": "Two winters"
+      },
+      "text": {
+        "zh": "他在1892年和1893年的2月到4月都来画，一共画了30多幅。",
+        "en": "He came to paint it from February to April in both 1892 and 1893, making more than 30 views in all."
+      }
+    },
+    "air": {
+      "title": {
+        "zh": "真正画的是空气",
+        "en": "Painting the air"
+      },
+      "text": {
+        "zh": "他真正想画的，不是石雕本身，而是包围着建筑的那层空气和光。",
+        "en": "What he really wanted to paint was not the carved stone, but the air and light that surrounded the building."
+      }
+    },
+    "stone": {
+      "title": {
+        "zh": "像石头一样的颜料",
+        "en": "Paint like stone"
+      },
+      "text": {
+        "zh": "画面上厚厚的颜料，好像在模仿教堂石雕的质感。",
+        "en": "The thick, rich paint seems to imitate the texture of the cathedral's carved stone."
+      }
+    },
+    "signature": {
+      "title": {
+        "zh": "签名",
+        "en": "The signature"
+      },
+      "text": {
+        "zh": "左下角签着“Claude Monet 94”。整个系列，他是1894年在吉维尼的画室里完成的。",
+        "en": "Lower left is the signature \"Claude Monet 94\". He finished the whole series in his studio at Giverny in 1894."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“一天的光”：滑杆从早晨拖到傍晚，投影的原画在系列里几幅真实的原画之间渐变，并显示那一幅的画名、年份和收藏地。用的都是真实的原画，不是示意效果，所以不加“这是示意”。items 是 Claude 先按能找到的公有领域版本排的，等 Tia 确认；画名、年份以收藏方官网为准。start 是这一幅（华盛顿国家美术馆的西立面）在 items 里的位置。",
+    "type": "series",
+    "label": {
+      "zh": "一天的光",
+      "en": "Light through the day"
+    },
+    "from": {
+      "zh": "早晨",
+      "en": "Morning"
+    },
+    "to": {
+      "zh": "傍晚",
+      "en": "Evening"
+    },
+    "start": 2,
+    "note": {
+      "zh": "同一面墙，他画了30多次。这里每一幅，都是他真实画下的原画。",
+      "en": "The same wall, painted more than 30 times. Every image here is one of his original paintings."
+    },
+    "items": [
+      {
+        "image": "images/series-orsay-effet-du-matin.jpg",
+        "title": {
+          "zh": "鲁昂大教堂：大门和圣罗曼塔，早晨的效果（白色的和谐）",
+          "en": "Rouen Cathedral: The Portal and the Tour Saint-Romain, Morning Effect (Harmony in White)"
+        },
+        "date": {
+          "zh": "1893年",
+          "en": "1893"
+        },
+        "museum": {
+          "zh": "巴黎奥赛博物馆",
+          "en": "Musée d'Orsay, Paris"
+        },
+        "license": "Wikimedia Commons，PD-Art",
+        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-et-la-tour-saint-romain-effet-du-matin-1289"
+      },
+      {
+        "image": "images/series-getty-morning.jpg",
+        "title": {
+          "zh": "晨光中的鲁昂大教堂大门",
+          "en": "The Portal of Rouen Cathedral in Morning Light"
+        },
+        "date": {
+          "zh": "1894年",
+          "en": "1894"
+        },
+        "museum": {
+          "zh": "洛杉矶盖蒂博物馆",
+          "en": "J. Paul Getty Museum, Los Angeles"
+        },
+        "license": "盖蒂开放内容，CC0",
+        "url": "https://www.getty.edu/art/collection/object/108HGY"
+      },
+      {
+        "image": "images/rouen-west-facade.jpg",
+        "title": {
+          "zh": "鲁昂大教堂，西立面",
+          "en": "Rouen Cathedral, West Façade"
+        },
+        "date": {
+          "zh": "1894年",
+          "en": "1894"
+        },
+        "museum": {
+          "zh": "华盛顿国家美术馆",
+          "en": "National Gallery of Art, Washington"
+        },
+        "license": "华盛顿国家美术馆开放资源，CC0",
+        "url": "https://www.nga.gov/collection/art-object-page.46524.html"
+      },
+      {
+        "image": "images/series-nga-sunlight.jpg",
+        "title": {
+          "zh": "鲁昂大教堂，西立面，阳光",
+          "en": "Rouen Cathedral, West Façade, Sunlight"
+        },
+        "date": {
+          "zh": "1894年",
+          "en": "1894"
+        },
+        "museum": {
+          "zh": "华盛顿国家美术馆",
+          "en": "National Gallery of Art, Washington"
+        },
+        "license": "华盛顿国家美术馆开放资源，CC0",
+        "url": "https://www.nga.gov/artworks/46654-rouen-cathedral-west-facade-sunlight"
+      },
+      {
+        "image": "images/series-met-sunlight.jpg",
+        "title": {
+          "zh": "鲁昂大教堂：大门（阳光）",
+          "en": "Rouen Cathedral: The Portal (Sunlight)"
+        },
+        "date": {
+          "zh": "1894年",
+          "en": "1894"
+        },
+        "museum": {
+          "zh": "纽约大都会艺术博物馆",
+          "en": "The Metropolitan Museum of Art, New York"
+        },
+        "license": "大都会开放资源，CC0",
+        "url": "https://www.metmuseum.org/art/collection/search/437124"
+      },
+      {
+        "image": "images/series-orsay-temps-gris.jpg",
+        "title": {
+          "zh": "鲁昂大教堂：大门，阴天（灰色的和谐）",
+          "en": "Rouen Cathedral: The Portal, Grey Weather (Harmony in Grey)"
+        },
+        "date": {
+          "zh": "1892年",
+          "en": "1892"
+        },
+        "museum": {
+          "zh": "巴黎奥赛博物馆",
+          "en": "Musée d'Orsay, Paris"
+        },
+        "license": "Wikimedia Commons，PD-Art",
+        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-temps-gris-1288"
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/rouen-west-facade.jpg",
+        "alt": {
+          "zh": "莫奈《鲁昂大教堂，西立面》1894，华盛顿国家美术馆",
+          "en": "Claude Monet, Rouen Cathedral, West Façade, 1894, National Gallery of Art, Washington"
+        },
+        "caption": {
+          "zh": "1894年 · 华盛顿国家美术馆",
+          "en": "1894 · National Gallery of Art, Washington"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 窗外的大教堂",
+          "en": "The cathedral outside the window"
+        },
+        "text": {
+          "zh": "1892年初，莫奈来到鲁昂，在大教堂对面租下房间。他一次又一次地画同一面墙，从早上画到傍晚。",
+          "en": "In early 1892, Monet came to Rouen and rented rooms opposite the cathedral. He painted the same wall again and again, from morning to evening."
+        }
+      },
+      {
+        "image": "images/rouen-west-facade.jpg",
+        "alt": {
+          "zh": "莫奈《鲁昂大教堂，西立面》1894，华盛顿国家美术馆",
+          "en": "Claude Monet, Rouen Cathedral, West Façade, 1894, National Gallery of Art, Washington"
+        },
+        "caption": {
+          "zh": "1894年 · 华盛顿国家美术馆",
+          "en": "1894 · National Gallery of Art, Washington"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 三十多种光",
+          "en": "More than thirty kinds of light"
+        },
+        "text": {
+          "zh": "第二年冬天，他又回来了，一共画了30多幅。他说：“对我来说，主题本身无关紧要。我想画的，是主题和我之间存在的东西。”",
+          "en": "He returned the next winter and made more than 30 views in all. \"To me the motif itself is an insignificant factor,\" he said. \"What I want to reproduce is what exists between the motif and me.\""
+        }
+      },
+      {
+        "image": "images/rouen-west-facade.jpg",
+        "alt": {
+          "zh": "莫奈《鲁昂大教堂，西立面》1894，华盛顿国家美术馆",
+          "en": "Claude Monet, Rouen Cathedral, West Façade, 1894, National Gallery of Art, Washington"
+        },
+        "caption": {
+          "zh": "1894年 · 华盛顿国家美术馆",
+          "en": "1894 · National Gallery of Art, Washington"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 二十幅一起",
+          "en": "Twenty together"
+        },
+        "text": {
+          "zh": "1895年，他把其中20幅放在一起，在巴黎画商杜兰-鲁埃的画廊展出。今天，这些画分散在世界各地的博物馆里，奥赛博物馆常设展出其中5幅。",
+          "en": "In 1895, he showed 20 of them together at the gallery of his dealer, Durand-Ruel, in Paris. Today they are scattered across museums around the world; the Musée d'Orsay has five on permanent display."
+        }
+      }
+    ],
+    "final": {
+      "zh": "我想画的，是主题和我之间存在的东西。",
+      "en": "What I want to reproduce is what exists between the motif and me."
+    },
+    "finalBy": {
+      "zh": "莫奈",
+      "en": "Claude Monet"
+    },
+    "versions": [],
+    "museums": [
+      "nga-washington"
+    ],
+    "exit": [
+      {
+        "scene": "gare-saint-lazare",
+        "href": "../gare-saint-lazare/",
+        "label": {
+          "zh": "莫奈的另一个系列",
+          "en": "Another of Monet's series"
+        }
+      },
+      {
+        "scene": "water-lily-pond",
+        "href": "../water-lily-pond/",
+        "label": {
+          "zh": "同样的执着，不同的主题",
+          "en": "The same obsession, a different subject"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供；尺寸按华盛顿国家美术馆作品页（100.1 × 65.9 cm，编号 1963.10.49），等 Tia 核对。",
+    "artist": {
+      "zh": "克劳德·莫奈（1840–1926）",
+      "en": "Claude Monet (1840–1926)"
+    },
+    "title": {
+      "zh": "鲁昂大教堂，西立面",
+      "en": "Rouen Cathedral, West Façade"
+    },
+    "date": {
+      "zh": "1894年",
+      "en": "1894"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "100.1 × 65.9 cm",
+      "en": "100.1 × 65.9 cm"
+    },
+    "collection": {
+      "zh": "华盛顿国家美术馆",
+      "en": "National Gallery of Art, Washington"
+    },
+    "url": "https://www.nga.gov/collection/art-object-page.46524.html"
+  },
+  "zoom": {
+    "image": "images/rouen-west-facade.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "华盛顿国家美术馆：鲁昂大教堂，西立面",
+          "en": "National Gallery of Art: *Rouen Cathedral, West Façade*"
+        },
+        "url": "https://www.nga.gov/collection/art-object-page.46524.html"
+      },
+      {
+        "title": {
+          "zh": "维基百科：鲁昂大教堂（莫奈系列）",
+          "en": "Wikipedia: *Rouen Cathedral* (Monet series)"
+        },
+        "url": "https://en.wikipedia.org/wiki/Rouen_Cathedral_(Monet_series)"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 窗外的大教堂",
+          "en": "The cathedral outside the window"
+        },
+        "text": {
+          "zh": "1892年初，莫奈来到鲁昂，在大教堂对面租下房间。他一次又一次地画同一面墙，从早上画到傍晚。",
+          "en": "In early 1892, Monet came to Rouen and rented rooms opposite the cathedral. He painted the same wall again and again, from morning to evening."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 三十多种光",
+          "en": "More than thirty kinds of light"
+        },
+        "text": {
+          "zh": "第二年冬天，他又回来了，一共画了30多幅。他说：“对我来说，主题本身无关紧要。我想画的，是主题和我之间存在的东西。”",
+          "en": "He returned the next winter and made more than 30 views in all. \"To me the motif itself is an insignificant factor,\" he said. \"What I want to reproduce is what exists between the motif and me.\""
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 二十幅一起",
+          "en": "Twenty together"
+        },
+        "text": {
+          "zh": "1895年，他把其中20幅放在一起，在巴黎画商杜兰-鲁埃的画廊展出。今天，这些画分散在世界各地的博物馆里，奥赛博物馆常设展出其中5幅。",
+          "en": "In 1895, he showed 20 of them together at the gallery of his dealer, Durand-Ruel, in Paris. Today they are scattered across museums around the world; the Musée d'Orsay has five on permanent display."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "华盛顿国家美术馆：鲁昂大教堂，西立面",
+        "en": "National Gallery of Art: *Rouen Cathedral, West Façade*"
+      },
+      "url": "https://www.nga.gov/collection/art-object-page.46524.html"
+    },
+    {
+      "title": {
+        "zh": "维基百科：鲁昂大教堂（莫奈系列）",
+        "en": "Wikipedia: *Rouen Cathedral* (Monet series)"
+      },
+      "url": "https://en.wikipedia.org/wiki/Rouen_Cathedral_(Monet_series)"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "华盛顿国家美术馆开放资源，公有领域",
+      "en": "National Gallery of Art Open Access, public domain"
+    },
+    "url": "https://www.nga.gov/collection/art-object-page.46524.html",
+    "license": "CC0 / 公有领域",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "series-orsay-effet-du-matin.jpg",
+        "from": "巴黎奥赛博物馆（还没上传）",
+        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-et-la-tour-saint-romain-effet-du-matin-1289",
+        "license": "Wikimedia Commons，PD-Art",
+        "status": "符合",
+        "note": "等 Tia 确认并上传",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "series-getty-morning.jpg",
+        "from": "洛杉矶盖蒂博物馆（还没上传）",
+        "url": "https://www.getty.edu/art/collection/object/108HGY",
+        "license": "盖蒂开放内容，CC0",
+        "status": "符合",
+        "note": "等 Tia 确认并上传",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "rouen-west-facade.jpg",
+        "from": "华盛顿国家美术馆（还没上传）",
+        "url": "https://www.nga.gov/collection/art-object-page.46524.html",
+        "license": "华盛顿国家美术馆开放资源，CC0",
+        "status": "符合",
+        "note": "等 Tia 确认并上传",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "series-nga-sunlight.jpg",
+        "from": "华盛顿国家美术馆（还没上传）",
+        "url": "https://www.nga.gov/artworks/46654-rouen-cathedral-west-facade-sunlight",
+        "license": "华盛顿国家美术馆开放资源，CC0",
+        "status": "符合",
+        "note": "等 Tia 确认并上传",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "series-met-sunlight.jpg",
+        "from": "纽约大都会艺术博物馆（还没上传）",
+        "url": "https://www.metmuseum.org/art/collection/search/437124",
+        "license": "大都会开放资源，CC0",
+        "status": "符合",
+        "note": "等 Tia 确认并上传",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "series-orsay-temps-gris.jpg",
+        "from": "巴黎奥赛博物馆（还没上传）",
+        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-temps-gris-1288",
+        "license": "Wikimedia Commons，PD-Art",
+        "status": "符合",
+        "note": "等 Tia 确认并上传",
+        "verified": "2026-10-27"
+      }
+    ]
+  },
+  "lastVerified": "2026-10-27"
+}
