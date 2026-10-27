@@ -183,22 +183,18 @@ DESC = both(TAGLINE, ' ')
 # 本周新作：最近上线的一幅；一句话介绍用登记表的 tagline，没有就用场景故事的最后一句（和 site.js 一样）
 NEWEST = sorted(LIVE, key=lambda s: (s.get('added', ''), ORDER.index(s['id'])), reverse=True)[0]
 NEWEST_INTRO = NEWEST.get('tagline') or json.load(open(os.path.join(ROOT, NEWEST['path'], 'scene.json'), encoding='utf-8')).get('ending', {}).get('final')
-def col_home(c):   # 首页的系列：一行已开放的作品（只写画名）
-    lst = sorted([SCENES[x] for x in c['order'] if x in SCENES and SCENES[x]['status'] == 'live' and SCENES[x].get('cover')], key=open_year)
-    if not lst: return ''
-    return f'<h3><a href="collections/{c["id"]}/">{e(both(c["name"]))}</a></h3><ul>' + ''.join(f'<li><a href="{s["path"]}">{e(both(s["title"]))}</a></li>' for s in lst) + '</ul>'
-START_HERE = [('artists/?id=van-gogh', '梵高', 'Van Gogh'), ('artists/?id=vermeer', '维米尔', 'Vermeer'), ('london/', LONDON['title']['zh'], LONDON['title']['en'])] + [(c + '/', CITIES[c]['title']['zh'], CITIES[c]['title']['en']) for c in CITIES]   # 和 site.js 的 START_HERE 一致
-HOME_LINKS = [('themes/', '主题', 'Themes'), ('moods/', '心情', 'Moods'), ('periods/', '时期', 'Periods'), ('map/', '地图', 'Map'), ('museums/', '博物馆', 'Museums'), ('timeline/', '时间线', 'Timeline')]
+def col_home(c):   # 首页的系列：系列名 · 作品数量（和 site.js 一样，不列每一幅画）
+    n = len([x for x in c['order'] if x in SCENES and SCENES[x]['status'] == 'live' and SCENES[x].get('cover')])
+    return f'<li><a href="collections/{c["id"]}/">{e(c["name"]["zh"])} · {n}幅 / {e(c["name"]["en"])} · {n} {"work" if n == 1 else "works"}</a></li>' if n else ''
+DOORS = [('artists/', '走进一幅画', 'Step into a painting'), ('stories/', '发现一段故事', 'Discover a story')]   # 首页的三扇门（第三扇“去看真迹”是三座城市）
 ABOUT_ONE = {'zh': ABOUT['home']['zh'].split('。')[0] + '。', 'en': ABOUT['home']['en'].split('. ')[0].rstrip('.') + '.'}   # 项目介绍的第一句
 s = f'''      <h1>{bi(NAME)}</h1>
       <p>{bi(TAGLINE)}</p>
       <h2>本周新作 · New this week</h2>
       {scene_list([NEWEST], '')}{f'<p>{bi(NEWEST_INTRO)}</p>' if NEWEST_INTRO else ''}
-      <h2>从这里开始 · Start here</h2>
-      <ul>{''.join(f'<li><a href="{p}">{zh} · {en}</a></li>' for p, zh, en in START_HERE)}</ul>
+      <ul>{''.join(f'<li><a href="{p}">{zh} · {en}</a></li>' for p, zh, en in DOORS)}<li>去看真迹 · See the real thing：<a href="london/">伦敦 London</a> · <a href="paris/">巴黎 Paris</a> · <a href="amsterdam/">阿姆斯特丹 Amsterdam</a></li></ul>
       <h2>系列 · Collections</h2>
-      {''.join(col_home(c) for c in R['collections'])}
-      <p>{' · '.join(f'<a href="{p}">{zh} {en}</a>' for p, zh, en in HOME_LINKS)}</p>
+      <ul>{''.join(col_home(c) for c in R['collections'])}</ul>
       <p>{bi(ABOUT_ONE)} <a href="about/">关于 · About</a></p>'''
 PAGES.append(page('', '走进名画 · Walk into Paintings', DESC, s, site_script('', 'home')))
 

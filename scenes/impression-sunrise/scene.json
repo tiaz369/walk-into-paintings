@@ -26,7 +26,8 @@
     "alt": {
       "zh": "莫奈《日出·印象》1872年，巴黎玛摩丹·莫奈美术馆",
       "en": "Claude Monet, Impression, Sunrise, 1872, Musée Marmottan Monet, Paris"
-    }
+    },
+    "_": "原画 48 × 63 cm 是先估的比例；Tia 核对后的尺寸是 50 × 65 cm（图片按原图像素，不受影响）"
   },
   "projection": true,
   "label": {
@@ -518,7 +519,7 @@
     ]
   },
   "record": {
-    "_说明": "作品档案表：Tia 提供。作品页等 Tia 提供。",
+    "_说明": "作品档案表：Tia 提供。尺寸和作品页由 Tia 在玛摩丹美术馆官网核对（2026年10月）；展厅不显示。",
     "artist": {
       "zh": "克劳德·莫奈（1840–1926）",
       "en": "Claude Monet (1840–1926)"
@@ -536,13 +537,14 @@
       "en": "Oil on canvas"
     },
     "dimensions": {
-      "zh": "48 × 63 厘米",
-      "en": "48 × 63 cm"
+      "zh": "50 × 65 厘米",
+      "en": "50 × 65 cm"
     },
     "collection": {
       "zh": "巴黎玛摩丹·莫奈美术馆",
       "en": "Musée Marmottan Monet, Paris"
-    }
+    },
+    "url": "https://www.marmottan.fr/en/notice/4014/"
   },
   "zoom": {
     "image": "images/impression-sunrise.jpg"
@@ -631,8 +633,8 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "",
+    "url": "待补",
     "license": "公有领域 / public domain"
   },
-  "lastVerified": "2026-10-26"
+  "lastVerified": "2026-10-27"
 }

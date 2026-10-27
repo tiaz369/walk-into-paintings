@@ -253,6 +253,13 @@ const NAV = [
   ['map/', '地图', 'Map'], ['museums/', '博物馆', 'Museums'], ['timeline/', '时间线', 'Timeline'],
   ['london/', '伦敦', 'London'], ['paris/', '巴黎', 'Paris'], ['amsterdam/', '阿姆斯特丹', 'Amsterdam'], ['about/', '关于', 'About']
 ];
+// 导航栏：四项，前三项是下拉菜单（手机上点“菜单”展开）
+const NAV_GROUPS = [
+  { name: ['探索', 'Explore'], items: [['artists/', '画家', 'Artists'], ['themes/', '主题', 'Themes'], ['moods/', '心情', 'Moods'], ['periods/', '时期', 'Periods'], ['timeline/', '时间线', 'Timeline']] },
+  { name: ['故事', 'Stories'], items: [['stories/', '艺术故事', 'Stories'], ['detective/', '画中侦探', 'Art Detective'], ['compare/', '对比两幅画', 'Compare']] },
+  { name: ['看真迹', 'Visit'], items: [['london/', '伦敦', 'London'], ['paris/', '巴黎', 'Paris'], ['amsterdam/', '阿姆斯特丹', 'Amsterdam'], ['museums/', '博物馆', 'Museums'], ['map/', '地图', 'Map']] },
+  { name: ['关于', 'About'], href: 'about/' }
+];
 // 页眉右边的两个小图标：看画护照、我的画廊（不占主导航的位置）
 const ME = [
   ['passport/', '看画护照', 'Passport', `<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10.5" r="3.2"/><path d="M8.5 17h7"/></svg>`],
@@ -262,13 +269,29 @@ export function chrome(active) {
   const header = document.createElement('header');
   header.className = 'wrap site-header';
   header.innerHTML = `<a class="brand" href="${ROOT}">${ui('走进名画', 'Walk into Paintings')}<small class="zh">Walk into Paintings</small></a>
-    <nav class="site-nav">${NAV.slice(1).map(([p, zh, en]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}">${ui(zh, en)}</a>`).join('')}</nav>
-    <span class="nav-icons">${ME.map(([p, zh, en, icon]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}" title="${zh} · ${en}" aria-label="${zh} · ${en}">${icon}</a>`).join('')}</span>`;
+    <nav class="site-nav" id="siteNav">${NAV_GROUPS.map(g => g.href
+      ? `<a class="nav-top${active === g.href ? ' on' : ''}" href="${ROOT + g.href}">${ui(g.name[0], g.name[1])}</a>`
+      : `<div class="nav-group${g.items.some(([p]) => p === active) ? ' on' : ''}"><button class="nav-top" aria-expanded="false">${ui(g.name[0], g.name[1])} <span class="caret" aria-hidden="true">▾</span></button>
+        <div class="nav-menu">${g.items.map(([p, zh, en]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}">${ui(zh, en)}</a>`).join('')}</div></div>`).join('')}
+      <div class="nav-lang-m">${langSwitchHTML()}</div></nav>
+    <span class="nav-icons">${ME.map(([p, zh, en, icon]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}" title="${zh} · ${en}" aria-label="${zh} · ${en}">${icon}</a>`).join('')}
+      <span class="nav-lang">${langSwitchHTML()}</span>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">☰</button></span>`;
   document.body.prepend(header);
+  // 下拉菜单：电脑上鼠标移上去或点一下打开；手机上点“☰”展开整个菜单，再点分组展开
+  const groups = [...header.querySelectorAll('.nav-group')];
+  groups.forEach(g => g.querySelector('.nav-top').onclick = e => {
+    e.stopPropagation();
+    const open = !g.classList.contains('open');
+    groups.forEach(x => { x.classList.remove('open'); x.querySelector('.nav-top').setAttribute('aria-expanded', 'false'); });
+    if (open) { g.classList.add('open'); g.querySelector('.nav-top').setAttribute('aria-expanded', 'true'); }
+  });
+  document.addEventListener('click', e => { if (!header.contains(e.target)) groups.forEach(x => x.classList.remove('open')); });
+  header.querySelector('.nav-toggle').onclick = () => { const on = header.classList.toggle('nav-open'); header.querySelector('.nav-toggle').setAttribute('aria-expanded', on); };
   const footer = document.createElement('footer');
   footer.className = 'wrap site-footer';
   const social = SOCIAL.filter(s => s.url).map(s => `<a href="${s.url}" target="_blank" rel="noopener">${bi(s.name)}</a>`).join(' · ');
-  footer.innerHTML = `<div class="prefs">${langSwitchHTML()}${themeSwitchHTML()}</div>
+  footer.innerHTML = `<div class="prefs">${themeSwitchHTML()}</div>
     ${social ? social + '<br>' : ''}${creditHTML()}`;
   document.body.append(footer);
   wirePrefs();
@@ -373,40 +396,7 @@ const labelOf = (R, s) => {   // 展签：画名 · 画家 · 年份 · 收藏�
 };
 const param = k => new URLSearchParams(location.search).get(k);
 
-// 首页“从这里开始”的三张大卡片（封面用场景的原画）
-const START_HERE = [
-  { href: 'artists/?id=van-gogh', scene: 'sunflowers', name: { zh: '梵高', en: 'Van Gogh' } },
-  { href: 'artists/?id=vermeer', scene: 'pearl-earring', name: { zh: '维米尔', en: 'Vermeer' } },
-  { href: 'london/', scene: 'arnolfini', name: { zh: '在伦敦看真迹', en: 'See them in London' } },
-  { href: 'paris/', scene: 'gare-saint-lazare', name: { zh: '在巴黎看真迹', en: 'See them in Paris' } },
-  { href: 'amsterdam/', scene: 'milkmaid', name: { zh: '在阿姆斯特丹看真迹', en: 'See them in Amsterdam' } }
-];
-// 首页“从这里开始”下面的三张卡片：艺术故事、画中侦探、对比两幅画
-const FEATURES = [
-  { href: 'stories/', scene: 'yellow-house', name: { zh: '艺术故事', en: 'Stories' } },
-  { href: 'detective/', scene: 'arnolfini', name: { zh: '画中侦探', en: 'Art Detective' } },
-  { href: 'compare/', scene: 'starry-night', name: { zh: '对比两幅画', en: 'Compare' } }
-];
-// 首页底部一行小图标链接
-const HOME_LINKS = [
-  { path: 'themes/', name: { zh: '主题', en: 'Themes' } },
-  { path: 'moods/', name: { zh: '心情', en: 'Moods' } },
-  { path: 'periods/', name: { zh: '时期', en: 'Periods' } },
-  { path: 'map/', name: { zh: '地图', en: 'Map' } },
-  { path: 'museums/', name: { zh: '博物馆', en: 'Museums' } },
-  { path: 'timeline/', name: { zh: '时间线', en: 'Timeline' } }
-];
 
-// 首页底部图标（线条图，颜色跟着文字走）
-const svg = d => `<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
-const HOME_ICONS = {
-  'themes/': svg('<rect x="3.5" y="3.5" width="7" height="7" rx="1"/><rect x="13.5" y="3.5" width="7" height="7" rx="1"/><rect x="3.5" y="13.5" width="7" height="7" rx="1"/><rect x="13.5" y="13.5" width="7" height="7" rx="1"/>'),
-  'moods/': svg('<path d="M12 20s-7.5-4.6-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.4-7.5 10-7.5 10z"/>'),
-  'periods/': svg('<path d="M7 3h10M7 21h10M8 3c0 5 8 5 8 9s-8 4-8 9M16 3c0 5-8 5-8 9s8 4 8 9"/>'),
-  'map/': svg('<path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>'),
-  'museums/': svg('<path d="M3 9.5 12 4l9 5.5M4.5 20h15M6 10.5V18M10 10.5V18M14 10.5V18M18 10.5V18"/>'),
-  'timeline/': svg('<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>')
-};
 
 // 关于页的文字在 data/about.json（Tia 提供，原文照录）
 let ABOUT = null, LONDON = null;   // 伦敦参观路线的文字在 data/london.json
@@ -484,8 +474,11 @@ const PAGES = {
     // 本周新作：最近上线的（同一天上线的，登记表里排在后面的算更新）
     const newest = R.live.map(s => [s, R.allScenes.indexOf(s)]).sort((a, b) => (b[0].added || '').localeCompare(a[0].added || '') || b[1] - a[1])[0][0];
     const cover = id => R.sceneById[id] && R.sceneById[id].status === 'live' ? R.sceneById[id] : null;
-    const start = START_HERE.map(x => ({ ...x, s: cover(x.scene) })).filter(x => x.s);
     const firstSentence = o => ({ zh: o.zh.split('。')[0] + '。', en: o.en.split('. ')[0].replace(/\.?$/, '.') });
+    const a = R.artistById[newest.artist], yr = typeof newest.year === 'object' ? newest.year : { zh: newest.year, en: newest.year };
+    // 三扇门：走进一幅画 → 画家页；发现一段故事 → 艺术故事；去看真迹 → 三座城市
+    const door = (sc, name, inner) => { const c = cover(sc); return c ? `<div class="door"><span class="artist-cover door-pic"><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" /></span>
+      <span class="door-name">${bi(name)}</span>${inner}</div>` : ''; };
     main.innerHTML = `
       <section class="hero hero-full">
         ${heroMedia}
@@ -493,7 +486,7 @@ const PAGES = {
           <div class="t-en en">Step inside the world's great paintings.</div>
           <div class="t-zh zh">走进世界名画的内部。</div>
           <div class="hero-btns"><a class="btn primary" href="${sceneUrl(pick)}">${ui('走进画里', 'Step into the painting')}</a>
-            <button class="btn" id="surprise" data-track="surprise-me">🎲 ${ui('今天看哪幅', 'Surprise me')}</button></div>
+            <button class="btn" id="surprise" data-track="surprise-me">🎲 ${ui('今天看哪幅', 'Which one today?')}</button></div>
           <div class="label">${labelOf(R, pick)}${pick.imageSource ? '<br>' + imageSourceHTML(pick.imageSource) : ''}</div>
         </div>
       </section>
@@ -504,34 +497,32 @@ const PAGES = {
           <span class="artist-cover feature-pic"><img src="${ROOT + newest.cover}" ${altAttr(newest.title)} /></span>
           <span class="feature-text">
             <span class="feature-name">${bi(newest.title)}</span>
+            <span class="feature-meta">${ui([a && a.name.zh, yr.zh].filter(Boolean).join(' · '), [a && a.name.en, yr.en].filter(Boolean).join(' · '))}</span>
             <span class="feature-intro" id="newIntro">${newest.tagline ? bi(newest.tagline, ' / ') : ''}</span>
             <span class="btn primary">${ui('走进画里', 'Step into the painting')} →</span>
           </span>
         </a>
       </section>
 
-      <section class="section wrap" id="start">
-        <h2>${ui('从这里开始', 'Start here')}</h2>
-        <div class="start-cards">${start.map(x => `<a class="start-card" href="${ROOT + x.href}">
-          <span class="artist-cover"><img src="${ROOT + x.s.cover}" ${altAttr(x.s.title)} loading="lazy" /></span>
-          <span class="start-name">${bi(x.name)}</span></a>`).join('')}</div>
-        <div class="start-cards feature-cards">${FEATURES.map(x => ({ ...x, s: cover(x.scene) })).filter(x => x.s).map(x => `<a class="start-card" href="${ROOT + x.href}">
-          <span class="artist-cover"><img src="${ROOT + x.s.cover}" ${altAttr(x.s.title)} loading="lazy" /></span>
-          <span class="start-name">${bi(x.name)}</span></a>`).join('')}</div>
+      <section class="section wrap" id="doors">
+        <div class="doors">
+          ${door('sunflowers', { zh: '走进一幅画', en: 'Step into a painting' }, `<span class="btn primary door-btn">${ui('按画家找', 'By artist')} →</span>`).replace('<div class="door">', `<a class="door" href="${ROOT}artists/">`).replace(/<\/div>$/, '</a>')}
+          ${door('cafe-terrace', { zh: '发现一段故事', en: 'Discover a story' }, `<span class="btn primary door-btn">${ui('艺术故事', 'Stories')} →</span>`).replace('<div class="door">', `<a class="door" href="${ROOT}stories/">`).replace(/<\/div>$/, '</a>')}
+          ${door('arnolfini', { zh: '去看真迹', en: 'See the real thing' }, `<span class="door-links"><a href="${ROOT}london/">${ui('伦敦', 'London')}</a> · <a href="${ROOT}paris/">${ui('巴黎', 'Paris')}</a> · <a href="${ROOT}amsterdam/">${ui('阿姆斯特丹', 'Amsterdam')}</a></span>`)}
+        </div>
       </section>
 
       <section class="section wrap" id="collections">
         <h2>${ui('系列', 'Collections')}</h2>
-        ${R.collections.map(c => {
-          const live = sortWorks(c.order.map(x => R.sceneById[x]).filter(s => s && s.status === 'live' && s.cover));
-          return live.length ? `<div class="col-row" data-series="${c.accent || ''}">
-            <h3><a href="${ROOT}collections/${c.id}/">${bi(c.name)}</a></h3>
-            <div class="tl-wrap"><button class="tl-nav prev" aria-label="Back">←</button><button class="tl-nav next" aria-label="More">→</button>
-              <ol class="vg-tl home-strip">${live.map(s => `<li>${tlPic(R, s.id)}</li>`).join('')}</ol></div></div>` : ''; }).join('')}
+        <div class="series-cards">${R.collections.map(c => {
+          const live = c.order.map(x => R.sceneById[x]).filter(s => s && s.status === 'live' && s.cover);
+          const cv = (c.cover && live.find(s => s.id === c.cover)) || live[0];
+          return live.length ? `<a class="series-card" href="${ROOT}collections/${c.id}/" data-series="${c.accent || ''}">
+            <span class="artist-cover"><img src="${ROOT + cv.cover}" ${altAttr(cv.title)} loading="lazy" /></span>
+            <span class="series-name">${ui(`${c.name.zh} · ${live.length}幅`, `${c.name.en} · ${live.length} ${live.length === 1 ? 'work' : 'works'}`)}</span></a>` : ''; }).join('')}</div>
       </section>
 
       <section class="section wrap home-bottom" id="more">
-        <nav class="icon-links">${HOME_LINKS.map(w => `<a href="${ROOT + w.path}"><span class="way-ico" aria-hidden="true">${HOME_ICONS[w.path]}</span><span>${ui(w.name.zh, w.name.en)}</span></a>`).join('')}</nav>
         <p class="home-intro">${bi(firstSentence(ABOUT.home), ' ')} <a href="${ROOT}about/">${ui('关于', 'About')} →</a></p>
       </section>`;
     document.getElementById('surprise').onclick = () => { location.href = sceneUrl(R.live[Math.floor(Math.random() * R.live.length)]); };

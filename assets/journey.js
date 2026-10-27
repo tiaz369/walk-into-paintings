@@ -43,7 +43,7 @@ export async function setupJourney(S) {
   box.className = 'story-next';
   box.innerHTML = `<p class="story-of">${bi(st.title)} · ${i + 1} / ${stops.length}</p>`
     + (nextScene ? `<a class="btn primary" href="${ROOT + nextScene.path}?story=${st.id}">${ui('继续这段故事', 'Continue the story')} → ${bi(next.time, ' · ')} · ${bi(nextScene.title)}</a>`
-      : `<a class="btn primary" href="${storyUrl}">${ui('故事讲完了，回到故事', 'The end — back to the story')} →</a>`);
+      : `<a class="btn primary" href="${storyUrl}">${ui('故事结束 · 回到故事页', 'The end · Back to the story page')} →</a>`);
   const end = document.getElementById('actEnd');
   if (!end) return;
   const h = end.querySelector('h2');

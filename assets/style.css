@@ -826,3 +826,57 @@ body.lang-both .story-time .en { display: block; margin-left: 1.6em; font-size: 
 .cmp-contain img { object-fit: contain !important; background: var(--paper-2); }
 .pair-btns { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 14px; }
 .pair-cmp .cmp-pick { margin-top: 10px; }
+
+/* ---------- 导航栏：四项（探索、故事、看真迹三个下拉菜单 + 关于）；右边：护照、画廊、语言 ---------- */
+.site-header { flex-wrap: nowrap; position: relative; z-index: 20; }
+.site-nav { margin-left: auto; align-items: center; gap: 4px 6px; font-size: 14px; flex-wrap: nowrap; }
+.nav-top { display: inline-flex; align-items: center; gap: 4px; padding: 6px 10px; border: 0; background: none; color: var(--muted); font: inherit; cursor: pointer; text-decoration: none; border-radius: 6px; white-space: nowrap; }
+.nav-top:hover, .nav-group.open > .nav-top, .nav-group.on > .nav-top, a.nav-top.on { color: var(--ink); }
+.nav-top .caret { font-size: 10px; opacity: .7; }
+.nav-group { position: relative; }
+.nav-menu { display: none; position: absolute; top: 100%; left: 0; min-width: 170px; padding: 8px; background: var(--paper); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,.12); z-index: 30; }
+.nav-menu a { display: block; padding: 7px 10px; border-radius: 5px; color: var(--ink); text-decoration: none; white-space: nowrap; }
+.nav-menu a:hover, .nav-menu a.on { background: var(--paper-2); }
+.nav-group.open .nav-menu { display: block; }
+@media (hover: hover) and (min-width: 761px) { .nav-group:hover .nav-menu { display: block; } }
+.nav-icons { gap: 8px; }
+.nav-lang .seg button { padding: 3px 8px; font-size: 11px; }
+.nav-toggle { display: none; border: 1px solid var(--line); background: none; color: var(--ink); border-radius: 6px; width: 34px; height: 32px; font-size: 16px; cursor: pointer; }
+.nav-lang-m { display: none; }
+@media (max-width: 760px) {
+  .site-header { flex-wrap: wrap; }
+  .site-nav { display: none; order: 3; width: 100%; margin: 6px 0 0; flex-direction: column; align-items: stretch; gap: 0; border-top: 1px solid var(--line); padding-top: 6px; }
+  .site-header.nav-open .site-nav { display: flex; }
+  .nav-toggle { display: inline-block; }
+  .nav-lang { display: none; }
+  .nav-icons { margin-left: auto; }
+  .nav-top { width: 100%; justify-content: space-between; padding: 12px 4px; font-size: 16px; color: var(--ink); border-bottom: 1px solid var(--line); border-radius: 0; }
+  .nav-menu { position: static; box-shadow: none; border: 0; padding: 0 0 8px 12px; background: none; min-width: 0; }
+  .nav-menu a { padding: 9px 4px; font-size: 15px; }
+  .nav-lang-m { display: block; padding: 14px 4px 6px; }
+}
+
+/* ---------- 首页：三扇门、系列封面卡片 ---------- */
+.feature-meta { display: block; font-size: 14px; color: var(--muted); margin-top: 4px; }
+.doors { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.door { display: flex; flex-direction: column; text-decoration: none; color: inherit; }
+.door-pic img { aspect-ratio: 4 / 5; }
+.door-name { display: block; font-family: var(--serif); font-size: 24px; line-height: 1.2; margin-top: 12px; }
+body.lang-both .door-name > .en { display: block; font-size: .66em; color: var(--muted); font-style: italic; margin-top: 2px; }
+.door-btn { align-self: flex-start; margin-top: 10px; }
+.door-links { display: block; margin-top: 12px; font-size: 15px; }
+.door-links a { color: var(--accent); text-decoration: none; }
+.door-links a:hover { text-decoration: underline; }
+.series-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 14px; }
+.series-card { display: block; text-decoration: none; color: inherit; }
+.series-card img { aspect-ratio: 3 / 2; }
+.series-name { display: block; font-family: var(--serif); font-size: 19px; margin-top: 10px; }
+@media (max-width: 640px) {
+  .doors { grid-template-columns: 1fr; gap: 26px; }
+  .door-pic img { aspect-ratio: 3 / 2; }
+  .series-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+  .series-name { font-size: 16px; }
+}
+.door-pic, .series-card .artist-cover { display: block; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,.18); }
+.door-pic img, .series-card .artist-cover img { display: block; width: 100%; object-fit: cover; }
+@media (max-width: 760px) { .site-nav a.nav-top { color: var(--ink); } }

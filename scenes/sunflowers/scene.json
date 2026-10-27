@@ -669,8 +669,9 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "",
-    "license": "公有领域 / public domain"
+    "url": "待补",
+    "license": "公有领域 / public domain",
+    "_问题": "原画图片的原文件名是 N-3863-00-000095-wpu.jpg，这是伦敦国家美术馆官网的图片编号（官网的图只限非商业使用）。按规则要换成 Wikimedia Commons 的公有领域版本，等 Tia 重新上传。"
   },
   "lastVerified": "2026-10-26"
 }

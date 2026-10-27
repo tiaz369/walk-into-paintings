@@ -13,7 +13,9 @@
   "links": {
     "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和卡耶博特《巴黎街道，雨天》互相链接（车站旁边的路口，同一场画展；卡耶博特场景卡片“火车站旁边”里预留的链接接上了）。",
     "doors": [],
-    "cards": [],
+    "cards": [
+      "paris-street-rainy-day"
+    ],
     "end": [
       "paris-street-rainy-day"
     ]
@@ -335,7 +337,7 @@
     },
     {
       "type": "boxes",
-      "card": "modern",
+      "card": "caillebotte",
       "x": -8.2,
       "z": -33,
       "_": "左边停着的车厢",
@@ -469,6 +471,24 @@
         "zh": "今天，这幅画挂在奥赛博物馆，而奥赛本身就是一座改建的火车站。",
         "en": "Today the painting hangs in the Musée d'Orsay, which is itself a converted railway station."
       }
+    },
+    "caillebotte": {
+      "title": {
+        "zh": "曾经属于卡耶博特",
+        "en": "Once Caillebotte's"
+      },
+      "text": {
+        "zh": "在进入奥赛之前，这幅画曾经属于卡耶博特。",
+        "en": "Before it came to the Musée d'Orsay, this painting belonged to Caillebotte."
+      },
+      "link": {
+        "scene": "paris-street-rainy-day",
+        "href": "../paris-street-rainy-day/",
+        "label": {
+          "zh": "卡耶博特《巴黎街道，雨天》",
+          "en": "Caillebotte's *Paris Street; Rainy Day*"
+        }
+      }
     }
   },
   "exclusive": {
@@ -592,7 +612,7 @@
     ]
   },
   "record": {
-    "_说明": "作品档案表：Tia 提供。尺寸先不显示（_dimensions）：Tia 写的是 75 × 105 cm，法国文化部 POP 藏品库写的是 75.5 × 104 cm，等 Tia 在奥赛官网核对。作品页等 Tia 提供。",
+    "_说明": "作品档案表：Tia 提供。尺寸和作品页由 Tia 在奥赛官网核对（2026年10月）。",
     "artist": {
       "zh": "克劳德·莫奈（1840–1926）",
       "en": "Claude Monet (1840–1926)"
@@ -609,11 +629,15 @@
       "zh": "布面油画",
       "en": "Oil on canvas"
     },
-    "_dimensions": "待核对",
+    "dimensions": {
+      "zh": "75.5 × 104 厘米",
+      "en": "75.5 × 104 cm"
+    },
     "collection": {
       "zh": "巴黎奥赛博物馆",
       "en": "Musée d'Orsay, Paris"
-    }
+    },
+    "url": "https://www.musee-orsay.fr/fr/oeuvres/10897"
   },
   "zoom": {
     "image": "images/gare-saint-lazare.jpg"
@@ -713,8 +737,8 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "",
+    "url": "待补",
     "license": "公有领域 / public domain"
   },
-  "lastVerified": "2026-10-26"
+  "lastVerified": "2026-10-27"
 }
