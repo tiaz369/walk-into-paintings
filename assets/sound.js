@@ -345,6 +345,18 @@ const AMBIENCE = {
     walk(ctx.currentTime + 3); every(st, 14, 30, walk);
     every(st, 25, 55, t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(300, 500), q: 6, vol: 0.05, dur: rnd(0.15, 0.3), p: rnd(-0.6, 0.6) }));   // 远处的长椅轻响
   },
+  // 大教堂前的广场：城市街道的声音（脚步、远处的马车），隔一会儿响起的大教堂钟声（A cathedral square）
+  'cathedral-square'(out, st) {
+    loopNoise('brown', out, { freq: 280, gain: 0.07 });
+    murmur(out, 0.04)(st);
+    const step = t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(500, 800), q: 4, vol: 0.035, dur: 0.05, p: rnd(-0.6, 0.6) });
+    every(st, 0.7, 1.8, step);
+    hooves(out, ctx.currentTime + 6); every(st, 25, 45, t => hooves(out, t));
+    const bell = ctx.createGain(); bell.gain.value = 0.35; bell.connect(pan(out, 0));
+    const toll = t => { for (let k = 0; k < 4; k++) { tone(bell, t + k * 2.4, { f0: 196, vol: 0.09, attack: 0.005, dur: 4.5 }); tone(bell, t + k * 2.4, { f0: 196 * 2.4, vol: 0.03, attack: 0.005, dur: 2.5 }); tone(bell, t + k * 2.4, { f0: 196 * 3.0, vol: 0.015, attack: 0.005, dur: 1.8 }); } };
+    toll(ctx.currentTime + 3); every(st, 40, 70, toll);
+    every(st, 10, 22, t => bird(out, t));
+  },
   // 雨中的巴黎路口：小雨声，雨水打在伞上，马车轮子压过湿石板，远处的脚步声（A rainy crossroads）
   'rain-cobbles'(out, st) {
     loopNoise('white', out, { type: 'highpass', freq: 3200, gain: 0.04 });   // 小雨

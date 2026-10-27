@@ -18,7 +18,8 @@
       "moulin-galette"
     ],
     "end": [
-      "paris-street-rainy-day"
+      "paris-street-rainy-day",
+      "rouen-cathedral"
     ]
   },
   "painting": {
@@ -618,6 +619,14 @@
         "label": {
           "zh": "车站旁边的路口，同一场画展",
           "en": "The crossroads next door, the same exhibition"
+        }
+      },
+      {
+        "scene": "rouen-cathedral",
+        "href": "../rouen-cathedral/",
+        "label": {
+          "zh": "莫奈的另一个系列",
+          "en": "Another of Monet's series"
         }
       }
     ]

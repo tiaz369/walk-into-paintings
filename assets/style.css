@@ -930,3 +930,11 @@ body.lang-both .door-name > .en { display: block; font-size: .66em; color: var(-
 #altBtn .alt-close-l, #altBtn.on .alt-open-l { display: none; }
 #altBtn.on .alt-close-l { display: inline; }
 .light #stage .wing ~ #spots, .light #stage .wing ~ #zspots { z-index: 5; }
+
+/* 独家发现“一天的光”（engine.js 的 series）：滑杆在系列的几幅原画之间渐变 */
+.series-panel { position: fixed; left: 50%; bottom: 64px; transform: translateX(-50%); width: min(560px, calc(100vw - 32px)); z-index: 6; }
+.series-panel.hidden { display: none; }
+.series-panel input { width: 100%; }
+.series-ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+.series-cap { margin: 8px 0 4px; font-size: 13px; line-height: 1.5; }
+.series-note { margin: 0; font-size: 12px; color: var(--muted); }
