@@ -40,8 +40,8 @@
   "kind": "light",
   "painting": {
     "image": "images/sunflowers.jpg",
-    "width": 629,
-    "height": 800,
+    "width": 1268,
+    "height": 1613,
     "alt": {
       "zh": "梵高《向日葵》1888，伦敦国家美术馆",
       "en": "Vincent van Gogh, Sunflowers, 1888, The National Gallery, London"
@@ -664,14 +664,13 @@
     }
   ],
   "imageSource": {
-    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "_说明": "图片来源：原图网址和授权。图片是 Tia 从 Wikimedia Commons / Wikipedia 下载的公有领域版本；原图网址等 Tia 核对后补上。",
     "text": {
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
     "url": "待补",
-    "license": "公有领域 / public domain",
-    "_问题": "原画图片的原文件名是 N-3863-00-000095-wpu.jpg，这是伦敦国家美术馆官网的图片编号（官网的图只限非商业使用）。按规则要换成 Wikimedia Commons 的公有领域版本，等 Tia 重新上传。"
+    "license": "公有领域 / public domain"
   },
   "lastVerified": "2026-10-26"
 }
