@@ -1,6 +1,6 @@
 # 全站版权检查表
 
-检查日期：2026-10-27（同一天更新：珍珠耳环、吃土豆的人已换成 Commons 版）。规则见 README 的“版权规则”。🔴 的先不删除，等 Tia 确认替换方案。
+检查日期：2026-10-27（同一天更新：珍珠耳环、吃土豆的人已换成 Commons 版；莫奈、德加、修拉、卡耶博特的画家封面已换成场景里合格的图）。规则见 README 的“版权规则”。🔴 的先不删除，等 Tia 确认替换方案。
 
 “待补”= 还没记下原图网页。“待决定”= Wikimedia Commons 上标为公有领域，但图片来自 Google 艺术与文化（Google Art Project），和禁止第 2 条冲突，请 Tia 决定。
 
@@ -80,11 +80,11 @@
 |---|---|---|---|---|---|
 | assets/og-share-4.jpg | 我们用 bedroom/v1888、pearl-earring、sunflowers 拼成的分享图（tools/make_og.py） | — | 跟着三张原图 | 🔴 来源不明 | 珍珠耳环和向日葵已换成 Commons 版（2026-10-27 重新生成）；只剩 v1888 来源不明 |
 | assets/hero/bedroom-walk.jpg / .mp4 / .webm | 我们录的卧室 3D 场景画面 | — | 自制（画面跟着 v1888.jpg 和 crops/） | 🔴 来源不明 | 跟着 bedroom/v1888.jpg |
-| assets/artists/monet.jpg | 没有记录（Tia 上传） | 待补 | 待核对 | 🔴 来源不明 | 《日出·印象》；可改用 scenes/impression-sunrise 里的 Commons 图 |
-| assets/artists/degas.jpg | 没有记录（Tia 上传，大都会 1874 版） | 待补 | 待核对 | 🔴 来源不明 | 可改用 scenes/dance-class 里的大都会 CC0 图 |
-| assets/artists/seurat.jpg | 没有记录（Tia 上传） | 待补 | 待核对 | 🔴 来源不明 | 芝加哥艺术博物馆这幅是 CC0；可改用 bathers-asnieres/grande-jatte.jpg |
+| assets/artists/monet.jpg | scenes/impression-sunrise 原画缩小（Wikimedia Commons）（2026-10-27 更换） | — | 公有领域（PD-Art） | ✅ 符合 |  |
+| assets/artists/degas.jpg | scenes/dance-class 原画缩小（大都会）（2026-10-27 更换） | — | CC0 | ✅ 符合 |  |
+| assets/artists/seurat.jpg | scenes/bathers-asnieres/grande-jatte.jpg 缩小（芝加哥艺术博物馆）（2026-10-27 更换） | — | CC0 | ✅ 符合 |  |
 | assets/artists/renoir.jpg | 没有记录（Tia 上传） | 待补 | 待核对 | 🔴 来源不明 | 《煎饼磨坊的舞会》，奥赛：要确认不是奥赛 / RMN 官网的图 |
-| assets/artists/caillebotte.jpg | 没有记录（Tia 上传） | 待补 | 待核对 | 🔴 来源不明 | 可改用 scenes/paris-street-rainy-day 里的芝加哥 CC0 图 |
+| assets/artists/caillebotte.jpg | scenes/paris-street-rainy-day 原画缩小（芝加哥艺术博物馆）（2026-10-27 更换） | — | CC0 | ✅ 符合 |  |
 | assets/artists/manet.jpg | 没有记录（Tia 上传） | 待补 | 待核对 | 🔴 来源不明 | 《女神游乐厅的吧台》，考陶尔德：要确认不是考陶尔德官网的图 |
 | favicon.svg | 自己画的图标 | — | 自制 | ✅ 符合 |  |
 
@@ -108,6 +108,6 @@
 ## 合计
 
 - 🔴 不符合：5
-- ✅ 符合：30
-- 🔴 来源不明：28
+- ✅ 符合：34
+- 🔴 来源不明：24
 - 🔴 待决定：11

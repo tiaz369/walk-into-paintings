@@ -14,3 +14,10 @@
 图片还没放进来时，画家页上不显示封面。
 
 现在 6 张都已经放好（Tia 上传，缩小到宽 900 像素以内）。德加用的是大都会艺术博物馆 1874 年版《舞蹈课》（奥赛另有一版）。
+
+2026-10-27 按版权规则更换（原来的 4 张没有记下来源）：
+- `monet.jpg` 用 scenes/impression-sunrise 的原画缩小（Wikimedia Commons，公有领域）
+- `degas.jpg` 用 scenes/dance-class 的原画缩小（大都会艺术博物馆，CC0）
+- `seurat.jpg` 用 scenes/bathers-asnieres/images/grande-jatte.jpg 缩小（芝加哥艺术博物馆，CC0）
+- `caillebotte.jpg` 用 scenes/paris-street-rainy-day 的原画缩小（芝加哥艺术博物馆，CC0）
+- `renoir.jpg`、`manet.jpg` 来源还没确认（见 copyright-check.md）
