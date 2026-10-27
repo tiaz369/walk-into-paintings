@@ -11,12 +11,13 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和卡耶博特《巴黎街道，雨天》互相链接（“同样的伞，不同的画法”），对方开放后自动出现。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和卡耶博特《巴黎街道，雨天》互相链接（“同样的伞，不同的画法”），对方开放后自动出现。和雷诺阿《煎饼磨坊的舞会》互相链接（“雷诺阿的另一幅巴黎”），对方开放后自动出现。",
     "doors": [],
     "cards": [],
     "end": [
       "paris-street-rainy-day",
-      "woman-parasol"
+      "woman-parasol",
+      "moulin-galette"
     ]
   },
   "painting": {
@@ -643,6 +644,14 @@
         "label": {
           "zh": "同属“雨伞与阳伞”：莫奈《撑阳伞的女人》",
           "en": "Also in Umbrellas & Parasols: Monet's *Woman with a Parasol*"
+        }
+      },
+      {
+        "scene": "moulin-galette",
+        "href": "../moulin-galette/",
+        "label": {
+          "zh": "雷诺阿的另一幅巴黎",
+          "en": "Another of Renoir's Paris"
         }
       }
     ]

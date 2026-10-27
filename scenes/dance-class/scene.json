@@ -11,10 +11,12 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。本场景是主题“舞蹈”的第一幅。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。本场景是主题“舞蹈”的第一幅；和雷诺阿《煎饼磨坊的舞会》互相链接（“另一种舞蹈”），对方开放后自动出现。",
     "doors": [],
     "cards": [],
-    "end": []
+    "end": [
+      "moulin-galette"
+    ]
   },
   "painting": {
     "image": "images/dance-class.jpg",
@@ -702,7 +704,16 @@
     "museums": [
       "met"
     ],
-    "exit": []
+    "exit": [
+      {
+        "scene": "moulin-galette",
+        "href": "../moulin-galette/",
+        "label": {
+          "zh": "另一种舞蹈",
+          "en": "Another kind of dance"
+        }
+      }
+    ]
   },
   "record": {
     "_说明": "作品档案表：Tia 提供（大都会艺术博物馆作品页）。",

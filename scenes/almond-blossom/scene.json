@@ -543,6 +543,24 @@
         "status": "不符合",
         "note": "梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请",
         "verified": "2026-10-27"
+      },
+      {
+        "file": "IMG_0520.jpeg",
+        "from": "Tia 上传（杏花，看不出是哪个 Commons 文件）",
+        "url": "待补",
+        "license": "待核对",
+        "status": "来源不明",
+        "note": "网站没有用这张；等 Tia 重新下载后删除",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "IMG_0521.jpeg",
+        "from": "Tia 上传（梅园，比例和 Google Art Project 版一致）",
+        "url": "待补",
+        "license": "待核对",
+        "status": "待决定",
+        "note": "网站没有用这张；等 Tia 重新下载后删除",
+        "verified": "2026-10-27"
       }
     ]
   },

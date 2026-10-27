@@ -1,0 +1,1182 @@
+{
+  "_说明": "煎饼磨坊的舞会（户外风景，完整版）。所有事实文字由 Tia 提供（资料来自奥赛博物馆官网、拉鲁斯百科、维基百科）。星期天下午蒙马特煎饼磨坊的露天舞场：头顶是洋槐树，阳光透过树叶在人身上和地上洒下光斑；前景右边一张桌子坐着几个人，中间和后面是跳舞的人群，远处有煤气灯。原画还没上传：现在的房间、人物和画家视角是先按画面描述摆的，上传后照原画重新对准（和其他场景一样）。",
+  "id": "moulin-galette",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "dappled-sun",
+    "label": {
+      "zh": "树下斑驳的阳光",
+      "en": "Dappled sunlight under the trees"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和德加《舞蹈课》互相链接（同属“舞蹈”）；和雷诺阿《伞》互相链接；卡片“卡耶博特的画”链接到卡耶博特的场景和《圣拉扎尔火车站》的同名卡片。",
+    "doors": [],
+    "cards": [
+      "paris-street-rainy-day",
+      "gare-saint-lazare"
+    ],
+    "end": [
+      "dance-class",
+      "umbrellas"
+    ]
+  },
+  "painting": {
+    "image": "images/moulin-galette.jpg",
+    "width": 1600,
+    "height": 1197,
+    "alt": {
+      "zh": "雷诺阿《煎饼磨坊的舞会》1876，巴黎奥赛博物馆",
+      "en": "Pierre-Auguste Renoir, Dance at Le Moulin de la Galette, 1876, Musée d'Orsay, Paris"
+    },
+    "_": "宽高是按尺寸比例先填的，原画上传后改成实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "煎饼磨坊的舞会",
+      "en": "Dance at Le Moulin de la Galette"
+    },
+    "artist": {
+      "zh": "雷诺阿",
+      "en": "Pierre-Auguste Renoir"
+    },
+    "date": {
+      "zh": "1876年",
+      "en": "1876"
+    },
+    "museum": {
+      "zh": "巴黎奥赛博物馆",
+      "en": "Musée d'Orsay, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下跳舞的人、桌边的人和头顶的树看介绍 · 点“树影”，看没有光斑的下午 · 地上发光的圆点 = 雷诺阿的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the dancers, the people at the table or the trees overhead to learn more · Tap “Leaf shadows” to see the afternoon without the dappled light · The glowing circle = Renoir's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先按画面描述估算，原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": -0.12,
+    "fov": 60,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "dance-garden",
+  "colors": {
+    "line": "#2a2a30",
+    "yard": "#9a8a74",
+    "sunspot": "#f2e6c4",
+    "acacia": "#4f6a4a",
+    "house": "#a8a294",
+    "mill": "#8a7a66",
+    "bench": "#5a4a3a",
+    "coat": "#26283a",
+    "trousers": "#2a2a32",
+    "darkdress": "#2e3446",
+    "bluedress": "#6f88b8",
+    "pinkdress": "#d9a6b0",
+    "stripes": "#c9a2b2",
+    "skin": "#e8c8b0",
+    "tableTop": "#6a5a48",
+    "lampShade": "#dcd8c8",
+    "lampLight": "#fff3d0",
+    "wood": "#5a4636",
+    "seat": "#8a7a5a",
+    "trunk": "#5b4430",
+    "ground": "#8f8270",
+    "sky": "#c8d2c0"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（院子），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -40,
+      40,
+      -40,
+      20
+    ],
+    "bounds": [
+      -5,
+      5,
+      -9,
+      3
+    ],
+    "groundCard": "sunday",
+    "skyCard": "dapple",
+    "skyRadius": 60,
+    "walkSpeed": 0.8
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "sunday",
+      "_": "舞场的院子（土地）",
+      "pts": [
+        [
+          -14,
+          0.01,
+          4
+        ],
+        [
+          -14,
+          0.01,
+          -24
+        ],
+        [
+          14,
+          0.01,
+          -24
+        ],
+        [
+          14,
+          0.01,
+          4
+        ]
+      ],
+      "color": "yard"
+    },
+    {
+      "type": "boxes",
+      "id": "dapples",
+      "card": "dapple",
+      "x": 0,
+      "z": 0,
+      "_": "树叶间漏下的光斑（地上和人身上一块块亮的地方）；独家发现“树影”打开时淡出",
+      "boxes": [
+        [
+          0.7,
+          0.02,
+          0.5,
+          "sunspot",
+          -1.6,
+          0.025,
+          -2.2
+        ],
+        [
+          0.5,
+          0.02,
+          0.4,
+          "sunspot",
+          -0.4,
+          0.025,
+          -1.4
+        ],
+        [
+          0.9,
+          0.02,
+          0.6,
+          "sunspot",
+          0.6,
+          0.025,
+          -3.1
+        ],
+        [
+          0.4,
+          0.02,
+          0.3,
+          "sunspot",
+          1.8,
+          0.025,
+          -2.4
+        ],
+        [
+          0.6,
+          0.02,
+          0.5,
+          "sunspot",
+          -2.6,
+          0.025,
+          -4.0
+        ],
+        [
+          0.8,
+          0.02,
+          0.5,
+          "sunspot",
+          0.0,
+          0.025,
+          -5.2
+        ],
+        [
+          0.5,
+          0.02,
+          0.4,
+          "sunspot",
+          2.4,
+          0.025,
+          -4.6
+        ],
+        [
+          0.7,
+          0.02,
+          0.4,
+          "sunspot",
+          -1.0,
+          0.025,
+          -6.4
+        ],
+        [
+          0.5,
+          0.02,
+          0.5,
+          "sunspot",
+          1.3,
+          0.025,
+          -7.0
+        ],
+        [
+          0.6,
+          0.02,
+          0.4,
+          "sunspot",
+          -3.2,
+          0.025,
+          -6.8
+        ],
+        [
+          0.28,
+          0.22,
+          0.02,
+          "sunspot",
+          -0.95,
+          1.25,
+          -2.62
+        ],
+        [
+          0.28,
+          0.22,
+          0.02,
+          "sunspot",
+          0.15,
+          1.1,
+          -3.42
+        ],
+        [
+          0.28,
+          0.22,
+          0.02,
+          "sunspot",
+          1.05,
+          1.0,
+          -1.72
+        ],
+        [
+          0.28,
+          0.22,
+          0.02,
+          "sunspot",
+          -0.25,
+          1.35,
+          -4.72
+        ]
+      ]
+    },
+    {
+      "type": "roundTable",
+      "card": "real",
+      "x": 1.25,
+      "z": -1.6,
+      "r": 0.45,
+      "chairs": [
+        2.4,
+        3.6
+      ],
+      "color": "tableTop",
+      "_": "前景右边的桌子"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 1.75,
+      "z": -1.35,
+      "rot": -1.6,
+      "card": "real",
+      "_": "桌边坐着的男人（据说是雷诺阿的朋友）"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 0.95,
+      "z": -2.05,
+      "rot": 0.4,
+      "card": "real",
+      "_": "桌边背对着的人"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "stripes",
+      "legs": "stripes",
+      "x": 0.55,
+      "z": -1.25,
+      "rot": -0.6,
+      "card": "stripes",
+      "_": "前景中间穿条纹裙的女孩（据说是埃丝特尔）"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "darkdress",
+      "legs": "darkdress",
+      "x": 0.3,
+      "z": -1.65,
+      "rot": -0.9,
+      "card": "stripes",
+      "_": "靠在她身后的女孩",
+      "scale": 0.97
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "bluedress",
+      "legs": "darkdress",
+      "x": -1.18,
+      "z": -2.7,
+      "rot": 0.8,
+      "card": "real",
+      "_": "跳舞的一对：女伴",
+      "scale": 1
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": -0.8200000000000001,
+      "z": -2.6500000000000004,
+      "rot": -2.3,
+      "card": "real",
+      "_": "跳舞的一对：男伴",
+      "scale": 1.04
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "pinkdress",
+      "legs": "darkdress",
+      "x": -0.28,
+      "z": -3.5,
+      "rot": 0.8,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 1
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 0.07999999999999999,
+      "z": -3.45,
+      "rot": -2.3,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 1.04
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "bluedress",
+      "legs": "darkdress",
+      "x": -2.2800000000000002,
+      "z": -3.9,
+      "rot": 0.8,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 1
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": -1.9200000000000002,
+      "z": -3.85,
+      "rot": -2.3,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 1.04
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "pinkdress",
+      "legs": "darkdress",
+      "x": 0.72,
+      "z": -4.4,
+      "rot": 0.8,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.91
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 1.08,
+      "z": -4.3500000000000005,
+      "rot": -2.3,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 0.95
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "bluedress",
+      "legs": "darkdress",
+      "x": -1.38,
+      "z": -5.0,
+      "rot": 0.8,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.88
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": -1.02,
+      "z": -4.95,
+      "rot": -2.3,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 0.92
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "pinkdress",
+      "legs": "darkdress",
+      "x": -2.7800000000000002,
+      "z": -5.8,
+      "rot": 0.8,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.85
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": -2.42,
+      "z": -5.75,
+      "rot": -2.3,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 0.88
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "bluedress",
+      "legs": "darkdress",
+      "x": 0.020000000000000018,
+      "z": -6.1,
+      "rot": 0.8,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.82
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 0.38,
+      "z": -6.05,
+      "rot": -2.3,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 0.85
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "pinkdress",
+      "legs": "darkdress",
+      "x": 1.62,
+      "z": -6.6,
+      "rot": 0.8,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.79
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 1.98,
+      "z": -6.55,
+      "rot": -2.3,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 0.82
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "bluedress",
+      "legs": "darkdress",
+      "x": -1.08,
+      "z": -7.4,
+      "rot": 0.8,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.76
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": -0.72,
+      "z": -7.3500000000000005,
+      "rot": -2.3,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 0.79
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "pinkdress",
+      "legs": "darkdress",
+      "x": -3.3800000000000003,
+      "z": -7.9,
+      "rot": 0.8,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.75
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": -3.02,
+      "z": -7.8500000000000005,
+      "rot": -2.3,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 0.78
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "bluedress",
+      "legs": "darkdress",
+      "x": 0.8200000000000001,
+      "z": -8.4,
+      "rot": 0.8,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.75
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 1.18,
+      "z": -8.35,
+      "rot": -2.3,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 0.78
+    },
+    {
+      "type": "tree",
+      "card": "dapple",
+      "x": -4.5,
+      "z": -3,
+      "h": 5.5,
+      "r": 3.2,
+      "color": "acacia",
+      "sway": 0.02,
+      "_": "洋槐树（树叶在头顶连成一片）"
+    },
+    {
+      "type": "tree",
+      "card": "dapple",
+      "x": 3.8,
+      "z": -5,
+      "h": 6,
+      "r": 3.4,
+      "color": "acacia",
+      "sway": 0.02,
+      "_": "洋槐树（树叶在头顶连成一片）"
+    },
+    {
+      "type": "tree",
+      "card": "dapple",
+      "x": -2,
+      "z": -9.5,
+      "h": 6.5,
+      "r": 3.6,
+      "color": "acacia",
+      "sway": 0.02,
+      "_": "洋槐树（树叶在头顶连成一片）"
+    },
+    {
+      "type": "tree",
+      "card": "dapple",
+      "x": 2.5,
+      "z": -11,
+      "h": 6,
+      "r": 3.2,
+      "color": "acacia",
+      "sway": 0.02,
+      "_": "洋槐树（树叶在头顶连成一片）"
+    },
+    {
+      "type": "tree",
+      "card": "dapple",
+      "x": -6,
+      "z": -8,
+      "h": 5.5,
+      "r": 3,
+      "color": "acacia",
+      "sway": 0.02,
+      "_": "洋槐树（树叶在头顶连成一片）"
+    },
+    {
+      "type": "tree",
+      "card": "dapple",
+      "x": 5.5,
+      "z": -1.5,
+      "h": 5,
+      "r": 2.8,
+      "color": "acacia",
+      "sway": 0.02,
+      "_": "洋槐树（树叶在头顶连成一片）"
+    },
+    {
+      "type": "boxes",
+      "card": "canvas",
+      "x": -2.4,
+      "z": -9.2,
+      "_": "远处的煤气灯：细灯柱",
+      "boxes": [
+        [
+          0.08,
+          3.2,
+          0.08,
+          "line",
+          0,
+          1.6,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "lamp",
+      "card": "canvas",
+      "x": -2.4,
+      "y": 3.0,
+      "z": -9.2,
+      "halo": 0.9,
+      "cord": 0.1,
+      "shade": "lampShade",
+      "light": "lampLight",
+      "_": "远处的煤气灯：灯罩"
+    },
+    {
+      "type": "boxes",
+      "card": "canvas",
+      "x": 0.6,
+      "z": -10.2,
+      "_": "远处的煤气灯：细灯柱",
+      "boxes": [
+        [
+          0.08,
+          3.2,
+          0.08,
+          "line",
+          0,
+          1.6,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "lamp",
+      "card": "canvas",
+      "x": 0.6,
+      "y": 3.0,
+      "z": -10.2,
+      "halo": 0.9,
+      "cord": 0.1,
+      "shade": "lampShade",
+      "light": "lampLight",
+      "_": "远处的煤气灯：灯罩"
+    },
+    {
+      "type": "boxes",
+      "card": "canvas",
+      "x": 3.0,
+      "z": -9.6,
+      "_": "远处的煤气灯：细灯柱",
+      "boxes": [
+        [
+          0.08,
+          3.2,
+          0.08,
+          "line",
+          0,
+          1.6,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "lamp",
+      "card": "canvas",
+      "x": 3.0,
+      "y": 3.0,
+      "z": -9.6,
+      "halo": 0.9,
+      "cord": 0.1,
+      "shade": "lampShade",
+      "light": "lampLight",
+      "_": "远处的煤气灯：灯罩"
+    },
+    {
+      "type": "boxes",
+      "card": "galette",
+      "x": 0,
+      "z": -14,
+      "_": "院子尽头的房子和磨坊（煎饼磨坊）",
+      "boxes": [
+        [
+          18,
+          5,
+          1,
+          "house",
+          0,
+          2.5,
+          0
+        ],
+        [
+          2.2,
+          9,
+          2.2,
+          "mill",
+          6,
+          4.5,
+          -3
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "caillebotte",
+      "x": -6.5,
+      "z": -4,
+      "_": "左边的长椅和栏杆",
+      "boxes": [
+        [
+          0.4,
+          0.45,
+          3,
+          "bench",
+          0,
+          0.22,
+          0
+        ],
+        [
+          0.06,
+          1.0,
+          6,
+          "line",
+          -0.5,
+          0.5,
+          -1
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "sunday": {
+      "title": {
+        "zh": "星期天下午",
+        "en": "Sunday afternoon"
+      },
+      "text": {
+        "zh": "星期天下午，巴黎人会打扮好来到这里，跳舞、喝酒、吃煎饼，一直玩到晚上。",
+        "en": "On Sunday afternoons, Parisians dressed up and came here to dance, drink and eat galettes until evening."
+      }
+    },
+    "galette": {
+      "title": {
+        "zh": "煎饼",
+        "en": "The galette"
+      },
+      "text": {
+        "zh": "“煎饼磨坊”的名字，来自这里的招牌点心：一种叫“galette”的煎饼。",
+        "en": "The Moulin de la Galette took its name from its speciality, a kind of flat cake called a galette."
+      }
+    },
+    "dapple": {
+      "title": {
+        "zh": "树下的光斑",
+        "en": "Dappled light"
+      },
+      "text": {
+        "zh": "阳光透过洋槐树的叶子，在人们的衣服和地上洒下一块块光斑。这是印象派很喜欢画的效果。",
+        "en": "Sunlight filters through the acacia leaves, scattering patches of light on clothes and ground, an effect the Impressionists loved to paint."
+      }
+    },
+    "stripes": {
+      "title": {
+        "zh": "条纹裙的女孩",
+        "en": "The girl in stripes"
+      },
+      "text": {
+        "zh": "前景中间穿条纹裙的女孩，据说是雷诺阿的模特让娜的姐姐埃丝特尔。",
+        "en": "The girl in the striped dress in the centre foreground is said to be Estelle, the sister of Renoir's model Jeanne."
+      }
+    },
+    "real": {
+      "title": {
+        "zh": "真实的人",
+        "en": "Real people"
+      },
+      "text": {
+        "zh": "和马奈画杜伊勒里花园一样，雷诺阿在画里放进了不少真实的人物肖像，有的是他的朋友。",
+        "en": "As Manet had done in his painting of the Tuileries, Renoir included a number of real portraits, some of them his friends."
+      }
+    },
+    "canvas": {
+      "title": {
+        "zh": "搬来搬去的画布",
+        "en": "A canvas on the move"
+      },
+      "text": {
+        "zh": "据他的朋友回忆，每到合适的时候，朋友们就帮雷诺阿把这张大画布从画室搬到舞场。",
+        "en": "According to a friend, whenever the moment was right, Renoir's friends helped him carry this large canvas from his studio to the dance garden."
+      }
+    },
+    "caillebotte": {
+      "title": {
+        "zh": "卡耶博特的画",
+        "en": "Caillebotte's painting"
+      },
+      "text": {
+        "zh": "1879年到1894年，这幅画属于画家卡耶博特。他去世后，它成为法国国家财产。",
+        "en": "From 1879 to 1894, the painting belonged to the painter Caillebotte. After his death, it became the property of the French state."
+      },
+      "links": [
+        {
+          "scene": "paris-street-rainy-day",
+          "href": "../paris-street-rainy-day/",
+          "label": {
+            "zh": "卡耶博特《巴黎街道，雨天》",
+            "en": "Caillebotte's *Paris Street; Rainy Day*"
+          }
+        },
+        {
+          "scene": "gare-saint-lazare",
+          "href": "../gare-saint-lazare/?card=caillebotte",
+          "label": {
+            "zh": "《圣拉扎尔火车站》也曾属于他",
+            "en": "*The Saint-Lazare Station* was his too"
+          }
+        }
+      ]
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“树影”：开关打开后，地上和人身上的光斑慢慢淡出（原画上传后再加一张光线均匀的示意图 paintAlt），并显示说明。",
+    "type": "toggles",
+    "label": {
+      "zh": "树影",
+      "en": "Leaf shadows"
+    },
+    "toggles": [
+      {
+        "id": "shade",
+        "label": {
+          "zh": "树影",
+          "en": "Leaf shadows"
+        },
+        "targets": [
+          "dapples"
+        ],
+        "card": "dapple",
+        "note": {
+          "zh": "没有了树叶间漏下的光斑，这个下午就没有那么闪闪发亮了。这是示意。",
+          "en": "Without the light filtering through the leaves, the afternoon loses its sparkle. This is an illustration."
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/moulin-galette.jpg",
+        "alt": {
+          "zh": "雷诺阿《煎饼磨坊的舞会》1876，巴黎奥赛博物馆",
+          "en": "Pierre-Auguste Renoir, Dance at Le Moulin de la Galette, 1876, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1876年 · 巴黎奥赛博物馆",
+          "en": "1876 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 蒙马特的星期天",
+          "en": "A Sunday in Montmartre"
+        },
+        "text": {
+          "zh": "19世纪70年代，蒙马特还像个乡村。山顶附近的煎饼磨坊，是附近居民和年轻人星期天下午跳舞的地方，也有不少画家来这里。",
+          "en": "In the 1870s, Montmartre was still almost rural. The Moulin de la Galette, near the top of the hill, was where local people and young couples danced on Sunday afternoons, and where artists came too."
+        }
+      },
+      {
+        "image": "images/moulin-galette.jpg",
+        "alt": {
+          "zh": "雷诺阿《煎饼磨坊的舞会》1876，巴黎奥赛博物馆",
+          "en": "Pierre-Auguste Renoir, Dance at Le Moulin de la Galette, 1876, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1876年 · 巴黎奥赛博物馆",
+          "en": "1876 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 在现场画",
+          "en": "Painted on the spot"
+        },
+        "text": {
+          "zh": "1876年，雷诺阿决定画下这里的舞会。他的朋友回忆，这幅画是完全在现场画的。不过雷诺阿还画了一幅较小的版本，到底哪一幅是在现场画的，至今仍有疑问。",
+          "en": "In 1876, Renoir decided to paint the dancing here. A friend recalled that it was painted entirely on the spot. But Renoir also painted a smaller version, and which one was painted on site is still uncertain."
+        }
+      },
+      {
+        "image": "images/moulin-galette.jpg",
+        "alt": {
+          "zh": "雷诺阿《煎饼磨坊的舞会》1876，巴黎奥赛博物馆",
+          "en": "Pierre-Auguste Renoir, Dance at Le Moulin de la Galette, 1876, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1876年 · 巴黎奥赛博物馆",
+          "en": "1876 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 从卡耶博特到奥赛",
+          "en": "From Caillebotte to the Musée d'Orsay"
+        },
+        "text": {
+          "zh": "这幅画后来属于卡耶博特。他去世后，它进入了法国国家收藏，先后挂在卢森堡博物馆和卢浮宫，1986年起在奥赛博物馆。",
+          "en": "The painting later belonged to Caillebotte. After his death it entered the French national collection, hanging at the Musée du Luxembourg and then the Louvre, before moving to the Musée d'Orsay in 1986."
+        }
+      }
+    ],
+    "final": {
+      "zh": "阳光、音乐和一个星期天的下午。",
+      "en": "Sunlight, music and a Sunday afternoon."
+    },
+    "versions": [],
+    "museums": [
+      "orsay"
+    ],
+    "exit": [
+      {
+        "scene": "dance-class",
+        "href": "../dance-class/",
+        "label": {
+          "zh": "另一种舞蹈",
+          "en": "Another kind of dance"
+        }
+      },
+      {
+        "scene": "umbrellas",
+        "href": "../umbrellas/",
+        "label": {
+          "zh": "雷诺阿的另一幅巴黎",
+          "en": "Another of Renoir's Paris"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供；尺寸按奥赛官网作品页（131.5 × 176.5 cm，编号 RF 2739）。遗赠年份：奥赛“卡耶博特遗赠”页面写1894年，作品页写“Legs Gustave Caillebotte, 1896”，先按 Tia 的文字写1894年，待 Tia 决定。",
+    "artist": {
+      "zh": "皮埃尔-奥古斯特·雷诺阿（1841–1919）",
+      "en": "Pierre-Auguste Renoir (1841–1919)"
+    },
+    "title": {
+      "zh": "煎饼磨坊的舞会",
+      "en": "Dance at Le Moulin de la Galette (Bal du moulin de la Galette)"
+    },
+    "date": {
+      "zh": "1876年",
+      "en": "1876"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "131.5 × 176.5 cm",
+      "en": "131.5 × 176.5 cm"
+    },
+    "collection": {
+      "zh": "巴黎奥赛博物馆（卡耶博特遗赠，1894年）",
+      "en": "Musée d'Orsay, Paris (Gustave Caillebotte bequest, 1894)"
+    },
+    "url": "https://www.musee-orsay.fr/en/artworks/bal-du-moulin-de-la-galette-497"
+  },
+  "zoom": {
+    "image": "images/moulin-galette.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "奥赛博物馆：卡耶博特遗赠",
+          "en": "Musée d'Orsay: The Caillebotte bequest"
+        },
+        "url": "https://www.musee-orsay.fr/en/program/whats-on/exhibitions/caillebotte-bequest"
+      },
+      {
+        "title": {
+          "zh": "奥赛博物馆：煎饼磨坊的舞会",
+          "en": "Musée d'Orsay: *Bal du moulin de la Galette*"
+        },
+        "url": "https://www.musee-orsay.fr/en/artworks/bal-du-moulin-de-la-galette-497"
+      },
+      {
+        "title": {
+          "zh": "拉鲁斯百科：煎饼磨坊",
+          "en": "Larousse: *Moulin de la Galette*"
+        },
+        "url": "https://www.larousse.fr/encyclopedie/oeuvre/Moulin_de_la_Galette/126778"
+      },
+      {
+        "title": {
+          "zh": "维基百科：煎饼磨坊的舞会",
+          "en": "Wikipedia: *Bal du moulin de la Galette*"
+        },
+        "url": "https://en.wikipedia.org/wiki/Bal_du_moulin_de_la_Galette"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 蒙马特的星期天",
+          "en": "A Sunday in Montmartre"
+        },
+        "text": {
+          "zh": "19世纪70年代，蒙马特还像个乡村。山顶附近的煎饼磨坊，是附近居民和年轻人星期天下午跳舞的地方，也有不少画家来这里。",
+          "en": "In the 1870s, Montmartre was still almost rural. The Moulin de la Galette, near the top of the hill, was where local people and young couples danced on Sunday afternoons, and where artists came too."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 在现场画",
+          "en": "Painted on the spot"
+        },
+        "text": {
+          "zh": "1876年，雷诺阿决定画下这里的舞会。他的朋友回忆，这幅画是完全在现场画的。不过雷诺阿还画了一幅较小的版本，到底哪一幅是在现场画的，至今仍有疑问。",
+          "en": "In 1876, Renoir decided to paint the dancing here. A friend recalled that it was painted entirely on the spot. But Renoir also painted a smaller version, and which one was painted on site is still uncertain."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 从卡耶博特到奥赛",
+          "en": "From Caillebotte to the Musée d'Orsay"
+        },
+        "text": {
+          "zh": "这幅画后来属于卡耶博特。他去世后，它进入了法国国家收藏，先后挂在卢森堡博物馆和卢浮宫，1986年起在奥赛博物馆。",
+          "en": "The painting later belonged to Caillebotte. After his death it entered the French national collection, hanging at the Musée du Luxembourg and then the Louvre, before moving to the Musée d'Orsay in 1986."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "奥赛博物馆：卡耶博特遗赠",
+        "en": "Musée d'Orsay: The Caillebotte bequest"
+      },
+      "url": "https://www.musee-orsay.fr/en/program/whats-on/exhibitions/caillebotte-bequest"
+    },
+    {
+      "title": {
+        "zh": "奥赛博物馆：煎饼磨坊的舞会",
+        "en": "Musée d'Orsay: *Bal du moulin de la Galette*"
+      },
+      "url": "https://www.musee-orsay.fr/en/artworks/bal-du-moulin-de-la-galette-497"
+    },
+    {
+      "title": {
+        "zh": "拉鲁斯百科：煎饼磨坊",
+        "en": "Larousse: *Moulin de la Galette*"
+      },
+      "url": "https://www.larousse.fr/encyclopedie/oeuvre/Moulin_de_la_Galette/126778"
+    },
+    {
+      "title": {
+        "zh": "维基百科：煎饼磨坊的舞会",
+        "en": "Wikipedia: *Bal du moulin de la Galette*"
+      },
+      "url": "https://en.wikipedia.org/wiki/Bal_du_moulin_de_la_Galette"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir,_Le_Moulin_de_la_Galette.jpg",
+    "license": "公有领域（PD-Art） / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "moulin-galette.jpg",
+        "from": "Wikimedia Commons（还没上传）",
+        "url": "https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir,_Le_Moulin_de_la_Galette.jpg",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "note": "等 Tia 上传",
+        "verified": "2026-10-27"
+      }
+    ]
+  },
+  "lastVerified": "2026-10-27"
+}
