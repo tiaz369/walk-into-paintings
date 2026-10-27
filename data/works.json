@@ -191,6 +191,81 @@
         },
         "check": "ok",
         "_": "华盛顿国家美术馆：蜡像 1878–1881"
+      },
+      {
+        "title": {
+          "zh": "芭蕾舞者（后台）",
+          "en": "Ballet Dancers (Room 42)"
+        },
+        "year": {
+          "zh": "",
+          "en": ""
+        },
+        "museum": "national-gallery",
+        "check": "ok",
+        "_": "伦敦国家美术馆作品页：42号展厅；年份等 Tia 提供",
+        "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-ballet-dancers-1",
+        "scene": "ballet-dancers-backstage"
+      },
+      {
+        "title": {
+          "zh": "芭蕾舞者（白色纱裙）",
+          "en": "Ballet Dancers (Room 43)"
+        },
+        "year": {
+          "zh": "",
+          "en": ""
+        },
+        "museum": "national-gallery",
+        "check": "ok",
+        "_": "伦敦国家美术馆作品页：43号展厅；年份等 Tia 提供",
+        "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-ballet-dancers",
+        "scene": "ballet-dancers"
+      },
+      {
+        "title": {
+          "zh": "梳头",
+          "en": "Combing the Hair ('La Coiffure')"
+        },
+        "year": {
+          "zh": "",
+          "en": ""
+        },
+        "museum": "national-gallery",
+        "check": "ok",
+        "_": "伦敦国家美术馆作品页：45号展厅；年份等 Tia 提供",
+        "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-combing-the-hair-la-coiffure",
+        "scene": "combing-hair"
+      },
+      {
+        "title": {
+          "zh": "埃莱娜·鲁阿尔在父亲的书房",
+          "en": "Hélène Rouart in her Father's Study"
+        },
+        "year": {
+          "zh": "",
+          "en": ""
+        },
+        "museum": "national-gallery",
+        "check": "ok",
+        "_": "伦敦国家美术馆作品页：41号展厅；年份等 Tia 提供",
+        "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-helene-rouart-in-her-father-s-study",
+        "scene": "helene-rouart"
+      },
+      {
+        "title": {
+          "zh": "海滩一景",
+          "en": "Beach Scene"
+        },
+        "year": {
+          "zh": "",
+          "en": ""
+        },
+        "museum": "national-gallery",
+        "check": "ok",
+        "_": "伦敦国家美术馆作品页：41号展厅；年份等 Tia 提供",
+        "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-beach-scene",
+        "scene": "beach-scene"
       }
     ],
     "seurat": [
