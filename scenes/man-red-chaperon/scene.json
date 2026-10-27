@@ -18,7 +18,8 @@
       "arnolfini"
     ],
     "end": [
-      "arnolfini"
+      "arnolfini",
+      "ghent-altarpiece"
     ]
   },
   "ambience": "quiet-room",
@@ -421,6 +422,14 @@
         "label": {
           "zh": "一年后，他在镜子上方签名",
           "en": "A year later, he signed above a mirror"
+        }
+      },
+      {
+        "scene": "ghent-altarpiece",
+        "href": "../ghent-altarpiece/",
+        "label": {
+          "zh": "扬·凡·艾克的《根特祭坛画》",
+          "en": "Jan van Eyck's *The Ghent Altarpiece*"
         }
       }
     ]

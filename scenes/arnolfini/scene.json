@@ -21,7 +21,8 @@
       "sunflowers",
       "folies-bergere",
       "standing-virginal",
-      "man-red-chaperon"
+      "man-red-chaperon",
+      "ghent-altarpiece"
     ]
   },
   "painting": {
@@ -778,6 +779,14 @@
         "label": {
           "zh": "一年前，他在画框上写下格言：戴红头巾的男子",
           "en": "A year earlier, he wrote his motto on a frame: *Portrait of a Man (Self Portrait?)*"
+        }
+      },
+      {
+        "scene": "ghent-altarpiece",
+        "href": "../ghent-altarpiece/",
+        "label": {
+          "zh": "两年前，在根特：《根特祭坛画》",
+          "en": "Two years earlier, in Ghent: *The Ghent Altarpiece*"
         }
       }
     ]

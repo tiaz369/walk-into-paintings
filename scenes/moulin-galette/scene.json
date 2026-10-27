@@ -1,5 +1,5 @@
 {
-  "_说明": "煎饼磨坊的舞会（户外风景，完整版）。所有事实文字由 Tia 提供（资料来自奥赛博物馆官网、拉鲁斯百科、维基百科）。星期天下午蒙马特煎饼磨坊的露天舞场：头顶是洋槐树，阳光透过树叶在人身上和地上洒下光斑；前景右边一张桌子坐着几个人，中间和后面是跳舞的人群，远处有煤气灯。原画还没上传：现在的房间、人物和画家视角是先按画面描述摆的，上传后照原画重新对准（和其他场景一样）。",
+  "_说明": "煎饼磨坊的舞会（户外风景，完整版）。所有事实文字由 Tia 提供（资料来自奥赛博物馆官网、拉鲁斯百科、维基百科）。星期天下午蒙马特煎饼磨坊的露天舞场：头顶是洋槐树，阳光透过树叶在人身上和地上洒下光斑；前景右边一张桌子坐着几个人，中间和后面是跳舞的人群，远处有煤气灯。画家视角按原画估算：站着看（眼睛约1.75米，视平线约在画面上方22%），离前景长椅上的女孩约两米。人物、桌子、长椅、树和煤气灯按它们在原画上的位置摆放。",
   "id": "moulin-galette",
   "variant": "outdoor",
   "lighting": {
@@ -19,18 +19,18 @@
     ],
     "end": [
       "dance-class",
-      "umbrellas"
+      "umbrellas",
+      "boating-party"
     ]
   },
   "painting": {
     "image": "images/moulin-galette.jpg",
-    "width": 1600,
-    "height": 1197,
+    "width": 1920,
+    "height": 1430,
     "alt": {
       "zh": "雷诺阿《煎饼磨坊的舞会》1876，巴黎奥赛博物馆",
       "en": "Pierre-Auguste Renoir, Dance at Le Moulin de la Galette, 1876, Musée d'Orsay, Paris"
-    },
-    "_": "宽高是按尺寸比例先填的，原画上传后改成实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -61,17 +61,17 @@
     "en": "Step into the painting"
   },
   "hint": {
-    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下跳舞的人、桌边的人和头顶的树看介绍 · 点“树影”，看没有光斑的下午 · 地上发光的圆点 = 雷诺阿的视角",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the dancers, the people at the table or the trees overhead to learn more · Tap “Leaf shadows” to see the afternoon without the dappled light · The glowing circle = Renoir's viewpoint"
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下跳舞的人、桌边的人和头顶的树看介绍 · 点“树间的光”，看没有光斑的下午 · 地上发光的圆点 = 雷诺阿的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the dancers, the people at the table or the trees overhead to learn more · Tap “Light through the leaves” to see the afternoon without the dappled light · The glowing circle = Renoir's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先按画面描述估算，原画上传后对准。",
+    "_说明": "画家视角：按原画估算（前景长椅、桌子、跳舞的人和视平线对齐原画）。",
     "x": 0,
     "z": 0,
-    "eye": 1.6,
+    "eye": 1.75,
     "yaw": 0,
-    "pitch": -0.12,
-    "fov": 60,
+    "pitch": -0.2554,
+    "fov": 50,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -85,7 +85,7 @@
     "acacia": "#4f6a4a",
     "house": "#a8a294",
     "mill": "#8a7a66",
-    "bench": "#5a4a3a",
+    "bench": "#24443e",
     "coat": "#26283a",
     "trousers": "#2a2a32",
     "darkdress": "#2e3446",
@@ -93,14 +93,18 @@
     "pinkdress": "#d9a6b0",
     "stripes": "#c9a2b2",
     "skin": "#e8c8b0",
-    "tableTop": "#6a5a48",
+    "tableTop": "#284040",
     "lampShade": "#dcd8c8",
     "lampLight": "#fff3d0",
     "wood": "#5a4636",
     "seat": "#8a7a5a",
     "trunk": "#5b4430",
     "ground": "#8f8270",
-    "sky": "#c8d2c0"
+    "sky": "#c8d2c0",
+    "whitedress": "#d8dce8",
+    "greendress": "#3f6a6a",
+    "glass": "#c8d8d0",
+    "roof": "#3e6a52"
   },
   "room": {
     "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（院子），都写 [x最小, x最大, z最小, z最大]，单位是米。",
@@ -157,16 +161,34 @@
       "card": "dapple",
       "x": 0,
       "z": 0,
-      "_": "树叶间漏下的光斑（地上和人身上一块块亮的地方）；独家发现“树影”打开时淡出",
+      "_": "树叶间漏下的光斑（地上和人身上一块块亮的地方）；独家发现打开时淡出",
       "boxes": [
         [
-          0.7,
+          0.6,
           0.02,
-          0.5,
+          0.4,
           "sunspot",
           -1.6,
           0.025,
-          -2.2
+          -2.7
+        ],
+        [
+          0.5,
+          0.02,
+          0.35,
+          "sunspot",
+          -0.7,
+          0.025,
+          -3.0
+        ],
+        [
+          0.8,
+          0.02,
+          0.5,
+          "sunspot",
+          -1.9,
+          0.025,
+          -3.9
         ],
         [
           0.5,
@@ -175,130 +197,272 @@
           "sunspot",
           -0.4,
           0.025,
-          -1.4
-        ],
-        [
-          0.9,
-          0.02,
-          0.6,
-          "sunspot",
-          0.6,
-          0.025,
-          -3.1
-        ],
-        [
-          0.4,
-          0.02,
-          0.3,
-          "sunspot",
-          1.8,
-          0.025,
-          -2.4
-        ],
-        [
-          0.6,
-          0.02,
-          0.5,
-          "sunspot",
-          -2.6,
-          0.025,
-          -4.0
-        ],
-        [
-          0.8,
-          0.02,
-          0.5,
-          "sunspot",
-          0.0,
-          0.025,
-          -5.2
-        ],
-        [
-          0.5,
-          0.02,
-          0.4,
-          "sunspot",
-          2.4,
-          0.025,
-          -4.6
+          -3.8
         ],
         [
           0.7,
           0.02,
           0.4,
           "sunspot",
-          -1.0,
+          -2.6,
           0.025,
-          -6.4
+          -4.6
         ],
         [
           0.5,
           0.02,
           0.5,
           "sunspot",
-          1.3,
+          -1.5,
           0.025,
-          -7.0
+          -5.6
         ],
         [
           0.6,
           0.02,
           0.4,
           "sunspot",
-          -3.2,
+          -0.2,
           0.025,
-          -6.8
+          -5.0
         ],
         [
-          0.28,
-          0.22,
+          0.5,
           0.02,
+          0.3,
           "sunspot",
-          -0.95,
-          1.25,
-          -2.62
+          -3.4,
+          0.025,
+          -6.3
         ],
         [
-          0.28,
-          0.22,
+          0.6,
           0.02,
+          0.4,
           "sunspot",
-          0.15,
-          1.1,
-          -3.42
+          0.6,
+          0.025,
+          -6.4
         ],
         [
-          0.28,
-          0.22,
+          0.4,
+          0.02,
+          0.3,
+          "sunspot",
+          1.2,
+          0.025,
+          -3.3
+        ],
+        [
+          0.24,
+          0.2,
           0.02,
           "sunspot",
-          1.05,
+          -1.3,
+          1.15,
+          -3.05
+        ],
+        [
+          0.24,
+          0.2,
+          0.02,
+          "sunspot",
+          -0.15,
           1.0,
-          -1.72
+          -1.85
         ],
         [
-          0.28,
-          0.22,
+          0.24,
+          0.2,
           0.02,
           "sunspot",
-          -0.25,
-          1.35,
-          -4.72
+          0.55,
+          1.05,
+          -2.0
+        ],
+        [
+          0.24,
+          0.2,
+          0.02,
+          "sunspot",
+          -1.05,
+          1.3,
+          -4.95
+        ],
+        [
+          0.24,
+          0.2,
+          0.02,
+          "sunspot",
+          1.6,
+          1.3,
+          -4.35
         ]
       ]
     },
     {
+      "type": "boxes",
+      "card": "stripes",
+      "x": 0,
+      "z": 0,
+      "_": "前景的长椅（深绿色）",
+      "boxes": [
+        [
+          2.2,
+          0.06,
+          0.45,
+          "bench",
+          -0.75,
+          0.45,
+          -1.95
+        ],
+        [
+          2.2,
+          0.35,
+          0.05,
+          "bench",
+          -0.75,
+          0.7,
+          -1.72
+        ],
+        [
+          0.06,
+          0.45,
+          0.06,
+          "line",
+          -1.7,
+          0.22,
+          -1.95
+        ],
+        [
+          0.06,
+          0.45,
+          0.06,
+          "line",
+          0.2,
+          0.22,
+          -1.95
+        ]
+      ],
+      "rot": 0.55
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "stripes",
+      "legs": "stripes",
+      "x": 0.02,
+      "z": -2.0,
+      "rot": 0,
+      "card": "stripes",
+      "_": "长椅上穿条纹裙的女孩（据说是埃丝特尔）"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "darkdress",
+      "legs": "darkdress",
+      "x": -0.05,
+      "z": -2.35,
+      "rot": 0,
+      "card": "stripes",
+      "_": "俯身靠在她身后的女子",
+      "scale": 0.88
+    },
+    {
+      "type": "chair",
+      "card": "real",
+      "_": "背对我们的男人坐的黄色椅子",
+      "back": [
+        [
+          0.45,
+          -1.95
+        ],
+        [
+          0.8,
+          -1.95
+        ]
+      ],
+      "front": [
+        [
+          0.45,
+          -2.3
+        ],
+        [
+          0.8,
+          -2.3
+        ]
+      ],
+      "seat": 0.45,
+      "top": 0.95
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 0.63,
+      "z": -2.15,
+      "rot": 0,
+      "card": "real",
+      "_": "背对我们坐着的男人"
+    },
+    {
       "type": "roundTable",
       "card": "real",
-      "x": 1.25,
-      "z": -1.6,
-      "r": 0.45,
-      "chairs": [
-        2.4,
-        3.6
-      ],
+      "x": 1.3,
+      "z": -2.3,
+      "r": 0.5,
+      "chairs": [],
       "color": "tableTop",
-      "_": "前景右边的桌子"
+      "_": "右边的桌子"
+    },
+    {
+      "type": "boxes",
+      "card": "real",
+      "x": 1.3,
+      "z": -2.3,
+      "_": "桌上的酒杯和瓶子",
+      "boxes": [
+        [
+          0.06,
+          0.14,
+          0.06,
+          "glass",
+          -0.25,
+          0.83,
+          0.2
+        ],
+        [
+          0.07,
+          0.22,
+          0.07,
+          "glass",
+          -0.05,
+          0.87,
+          0.1
+        ],
+        [
+          0.06,
+          0.16,
+          0.06,
+          "glass",
+          0.2,
+          0.84,
+          0.15
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 1.4,
+      "z": -2.85,
+      "rot": 0,
+      "card": "real",
+      "_": "桌边抽烟斗的男人"
     },
     {
       "type": "figure",
@@ -306,137 +470,172 @@
       "color": "coat",
       "legs": "trousers",
       "x": 1.75,
-      "z": -1.35,
-      "rot": -1.6,
+      "z": -2.5,
+      "rot": 0,
       "card": "real",
-      "_": "桌边坐着的男人（据说是雷诺阿的朋友）"
+      "_": "桌边戴草帽的男人"
     },
     {
       "type": "figure",
-      "pose": "sitting",
+      "pose": "standing",
+      "color": "greendress",
+      "legs": "greendress",
+      "x": 1.64,
+      "z": -4.48,
+      "rot": 0,
+      "card": "sunday",
+      "_": "站在树旁的女子"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
       "color": "coat",
       "legs": "trousers",
-      "x": 0.95,
-      "z": -2.05,
-      "rot": 0.4,
-      "card": "real",
-      "_": "桌边背对着的人"
+      "x": 1.46,
+      "z": -6.1,
+      "rot": 0,
+      "card": "sunday",
+      "_": "树下的小男孩",
+      "scale": 0.6
     },
     {
       "type": "figure",
-      "pose": "sitting",
-      "color": "stripes",
-      "legs": "stripes",
-      "x": 0.55,
-      "z": -1.25,
-      "rot": -0.6,
-      "card": "stripes",
-      "_": "前景中间穿条纹裙的女孩（据说是埃丝特尔）"
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 2.5,
+      "z": -4.0,
+      "rot": 0,
+      "card": "real",
+      "_": "右边戴草帽的男人"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 2.9,
+      "z": -5.0,
+      "rot": 0,
+      "card": "sunday",
+      "_": "右边戴高帽的男人"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "pinkdress",
+      "legs": "pinkdress",
+      "x": -1.42,
+      "z": -3.18,
+      "rot": 0,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 1
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": -1.08,
+      "z": -3.23,
+      "rot": 0,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 1.05
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "whitedress",
+      "legs": "whitedress",
+      "x": -1.18,
+      "z": -5.09,
+      "rot": 0,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.98
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": -0.84,
+      "z": -5.14,
+      "rot": 0,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 1.03
     },
     {
       "type": "figure",
       "pose": "standing",
       "color": "darkdress",
       "legs": "darkdress",
-      "x": 0.3,
-      "z": -1.65,
-      "rot": -0.9,
-      "card": "stripes",
-      "_": "靠在她身后的女孩",
+      "x": -3.4,
+      "z": -5.76,
+      "rot": 0,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.96
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": -3.06,
+      "z": -5.81,
+      "rot": 0,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
+      "scale": 1.01
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "bluedress",
+      "legs": "bluedress",
+      "x": -2.17,
+      "z": -6.8,
+      "rot": 0,
+      "card": "sunday",
+      "_": "跳舞的一对：女伴",
+      "scale": 0.92
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": -1.83,
+      "z": -6.85,
+      "rot": 0,
+      "card": "sunday",
+      "_": "跳舞的一对：男伴",
       "scale": 0.97
     },
     {
       "type": "figure",
       "pose": "standing",
-      "color": "bluedress",
-      "legs": "darkdress",
-      "x": -1.18,
-      "z": -2.7,
-      "rot": 0.8,
-      "card": "real",
-      "_": "跳舞的一对：女伴",
-      "scale": 1
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": -0.8200000000000001,
-      "z": -2.6500000000000004,
-      "rot": -2.3,
-      "card": "real",
-      "_": "跳舞的一对：男伴",
-      "scale": 1.04
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
       "color": "pinkdress",
-      "legs": "darkdress",
-      "x": -0.28,
-      "z": -3.5,
-      "rot": 0.8,
+      "legs": "pinkdress",
+      "x": -0.37,
+      "z": -7.4,
+      "rot": 0,
       "card": "sunday",
       "_": "跳舞的一对：女伴",
-      "scale": 1
+      "scale": 0.9
     },
     {
       "type": "figure",
       "pose": "standing",
       "color": "coat",
       "legs": "trousers",
-      "x": 0.07999999999999999,
-      "z": -3.45,
-      "rot": -2.3,
-      "card": "sunday",
-      "_": "跳舞的一对：男伴",
-      "scale": 1.04
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "bluedress",
-      "legs": "darkdress",
-      "x": -2.2800000000000002,
-      "z": -3.9,
-      "rot": 0.8,
-      "card": "sunday",
-      "_": "跳舞的一对：女伴",
-      "scale": 1
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": -1.9200000000000002,
-      "z": -3.85,
-      "rot": -2.3,
-      "card": "sunday",
-      "_": "跳舞的一对：男伴",
-      "scale": 1.04
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "pinkdress",
-      "legs": "darkdress",
-      "x": 0.72,
-      "z": -4.4,
-      "rot": 0.8,
-      "card": "sunday",
-      "_": "跳舞的一对：女伴",
-      "scale": 0.91
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": 1.08,
-      "z": -4.3500000000000005,
-      "rot": -2.3,
+      "x": -0.03,
+      "z": -7.45,
+      "rot": 0,
       "card": "sunday",
       "_": "跳舞的一对：男伴",
       "scale": 0.95
@@ -444,11 +643,11 @@
     {
       "type": "figure",
       "pose": "standing",
-      "color": "bluedress",
+      "color": "darkdress",
       "legs": "darkdress",
-      "x": -1.38,
-      "z": -5.0,
-      "rot": 0.8,
+      "x": -3.77,
+      "z": -8.2,
+      "rot": 0,
       "card": "sunday",
       "_": "跳舞的一对：女伴",
       "scale": 0.88
@@ -458,364 +657,369 @@
       "pose": "standing",
       "color": "coat",
       "legs": "trousers",
-      "x": -1.02,
-      "z": -4.95,
-      "rot": -2.3,
+      "x": -3.43,
+      "z": -8.25,
+      "rot": 0,
       "card": "sunday",
       "_": "跳舞的一对：男伴",
       "scale": 0.92
     },
     {
-      "type": "figure",
-      "pose": "standing",
-      "color": "pinkdress",
-      "legs": "darkdress",
-      "x": -2.7800000000000002,
-      "z": -5.8,
-      "rot": 0.8,
+      "type": "boxes",
       "card": "sunday",
-      "_": "跳舞的一对：女伴",
-      "scale": 0.85
+      "x": 0,
+      "z": -10,
+      "_": "后面的人群",
+      "boxes": [
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          -4.5,
+          0.8,
+          0
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          -3.6,
+          0.8,
+          -0.5
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          -2.8,
+          0.8,
+          0.3
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          -1.9,
+          0.8,
+          -0.4
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          -1.0,
+          0.8,
+          0.2
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          -0.1,
+          0.8,
+          -0.6
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          0.8,
+          0.8,
+          0.1
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          1.6,
+          0.8,
+          -0.3
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          2.5,
+          0.8,
+          0.4
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          3.4,
+          0.8,
+          -0.2
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          -2.2,
+          0.8,
+          -1.5
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          0.4,
+          0.8,
+          -1.6
+        ],
+        [
+          0.45,
+          1.6,
+          0.35,
+          "coat",
+          2.0,
+          0.8,
+          -1.4
+        ]
+      ]
     },
     {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": -2.42,
-      "z": -5.75,
-      "rot": -2.3,
-      "card": "sunday",
-      "_": "跳舞的一对：男伴",
-      "scale": 0.88
+      "type": "tree",
+      "card": "dapple",
+      "x": 1.86,
+      "z": -7.2,
+      "h": 7,
+      "r": 3.6,
+      "color": "acacia",
+      "sway": 0.02,
+      "_": "洋槐树"
     },
     {
-      "type": "figure",
-      "pose": "standing",
-      "color": "bluedress",
-      "legs": "darkdress",
-      "x": 0.020000000000000018,
-      "z": -6.1,
-      "rot": 0.8,
-      "card": "sunday",
-      "_": "跳舞的一对：女伴",
-      "scale": 0.82
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": 0.38,
-      "z": -6.05,
-      "rot": -2.3,
-      "card": "sunday",
-      "_": "跳舞的一对：男伴",
-      "scale": 0.85
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "pinkdress",
-      "legs": "darkdress",
-      "x": 1.62,
-      "z": -6.6,
-      "rot": 0.8,
-      "card": "sunday",
-      "_": "跳舞的一对：女伴",
-      "scale": 0.79
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": 1.98,
-      "z": -6.55,
-      "rot": -2.3,
-      "card": "sunday",
-      "_": "跳舞的一对：男伴",
-      "scale": 0.82
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "bluedress",
-      "legs": "darkdress",
-      "x": -1.08,
-      "z": -7.4,
-      "rot": 0.8,
-      "card": "sunday",
-      "_": "跳舞的一对：女伴",
-      "scale": 0.76
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": -0.72,
-      "z": -7.3500000000000005,
-      "rot": -2.3,
-      "card": "sunday",
-      "_": "跳舞的一对：男伴",
-      "scale": 0.79
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "pinkdress",
-      "legs": "darkdress",
-      "x": -3.3800000000000003,
-      "z": -7.9,
-      "rot": 0.8,
-      "card": "sunday",
-      "_": "跳舞的一对：女伴",
-      "scale": 0.75
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": -3.02,
-      "z": -7.8500000000000005,
-      "rot": -2.3,
-      "card": "sunday",
-      "_": "跳舞的一对：男伴",
-      "scale": 0.78
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "bluedress",
-      "legs": "darkdress",
-      "x": 0.8200000000000001,
-      "z": -8.4,
-      "rot": 0.8,
-      "card": "sunday",
-      "_": "跳舞的一对：女伴",
-      "scale": 0.75
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": 1.18,
-      "z": -8.35,
-      "rot": -2.3,
-      "card": "sunday",
-      "_": "跳舞的一对：男伴",
-      "scale": 0.78
+      "type": "tree",
+      "card": "dapple",
+      "x": 3.6,
+      "z": -5.5,
+      "h": 7,
+      "r": 3.2,
+      "color": "acacia",
+      "sway": 0.02,
+      "_": "洋槐树"
     },
     {
       "type": "tree",
       "card": "dapple",
       "x": -4.5,
-      "z": -3,
-      "h": 5.5,
-      "r": 3.2,
-      "color": "acacia",
-      "sway": 0.02,
-      "_": "洋槐树（树叶在头顶连成一片）"
-    },
-    {
-      "type": "tree",
-      "card": "dapple",
-      "x": 3.8,
-      "z": -5,
-      "h": 6,
-      "r": 3.4,
-      "color": "acacia",
-      "sway": 0.02,
-      "_": "洋槐树（树叶在头顶连成一片）"
-    },
-    {
-      "type": "tree",
-      "card": "dapple",
-      "x": -2,
-      "z": -9.5,
-      "h": 6.5,
-      "r": 3.6,
-      "color": "acacia",
-      "sway": 0.02,
-      "_": "洋槐树（树叶在头顶连成一片）"
-    },
-    {
-      "type": "tree",
-      "card": "dapple",
-      "x": 2.5,
       "z": -11,
-      "h": 6,
-      "r": 3.2,
+      "h": 7.5,
+      "r": 4,
       "color": "acacia",
       "sway": 0.02,
-      "_": "洋槐树（树叶在头顶连成一片）"
-    },
-    {
-      "type": "tree",
-      "card": "dapple",
-      "x": -6,
-      "z": -8,
-      "h": 5.5,
-      "r": 3,
-      "color": "acacia",
-      "sway": 0.02,
-      "_": "洋槐树（树叶在头顶连成一片）"
+      "_": "洋槐树"
     },
     {
       "type": "tree",
       "card": "dapple",
       "x": 5.5,
-      "z": -1.5,
-      "h": 5,
-      "r": 2.8,
+      "z": -10,
+      "h": 7,
+      "r": 3.5,
       "color": "acacia",
       "sway": 0.02,
-      "_": "洋槐树（树叶在头顶连成一片）"
+      "_": "洋槐树"
+    },
+    {
+      "type": "tree",
+      "card": "dapple",
+      "x": -1,
+      "z": -15,
+      "h": 8,
+      "r": 4.5,
+      "color": "acacia",
+      "sway": 0.02,
+      "_": "洋槐树"
     },
     {
       "type": "boxes",
       "card": "canvas",
-      "x": -2.4,
-      "z": -9.2,
-      "_": "远处的煤气灯：细灯柱",
+      "x": -1.8,
+      "z": -12,
+      "_": "煤气灯柱",
       "boxes": [
         [
           0.08,
-          3.2,
+          3.0,
           0.08,
           "line",
           0,
-          1.6,
+          1.5,
           0
         ]
       ]
+    },
+    {
+      "type": "lamp",
+      "card": "canvas",
+      "x": -1.8,
+      "y": 2.9,
+      "z": -12,
+      "halo": 0.8,
+      "cord": 0.1,
+      "_": "煤气灯（白色灯球）"
+    },
+    {
+      "type": "boxes",
+      "card": "canvas",
+      "x": 4.4,
+      "z": -12,
+      "_": "煤气灯柱",
+      "boxes": [
+        [
+          0.08,
+          3.0,
+          0.08,
+          "line",
+          0,
+          1.5,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "lamp",
+      "card": "canvas",
+      "x": 4.4,
+      "y": 2.9,
+      "z": -12,
+      "halo": 0.8,
+      "cord": 0.1,
+      "_": "煤气灯（白色灯球）"
+    },
+    {
+      "type": "boxes",
+      "card": "canvas",
+      "x": -4.6,
+      "z": -12.5,
+      "_": "煤气灯柱",
+      "boxes": [
+        [
+          0.08,
+          3.0,
+          0.08,
+          "line",
+          0,
+          1.5,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "lamp",
+      "card": "canvas",
+      "x": -4.6,
+      "y": 2.9,
+      "z": -12.5,
+      "halo": 0.8,
+      "cord": 0.1,
+      "_": "煤气灯（白色灯球）"
+    },
+    {
+      "type": "lamp",
+      "card": "canvas",
+      "x": -3.9,
+      "y": 2.8,
+      "z": -12.2,
+      "halo": 0.6,
+      "cord": 0.2,
+      "_": "一圈煤气灯球"
+    },
+    {
+      "type": "lamp",
+      "card": "canvas",
+      "x": -3.4,
+      "y": 2.9,
+      "z": -12.2,
+      "halo": 0.6,
+      "cord": 0.2,
+      "_": "一圈煤气灯球"
+    },
+    {
+      "type": "lamp",
+      "card": "canvas",
+      "x": -2.9,
+      "y": 2.8,
+      "z": -12.2,
+      "halo": 0.6,
+      "cord": 0.2,
+      "_": "一圈煤气灯球"
     },
     {
       "type": "lamp",
       "card": "canvas",
       "x": -2.4,
-      "y": 3.0,
-      "z": -9.2,
-      "halo": 0.9,
-      "cord": 0.1,
-      "shade": "lampShade",
-      "light": "lampLight",
-      "_": "远处的煤气灯：灯罩"
-    },
-    {
-      "type": "boxes",
-      "card": "canvas",
-      "x": 0.6,
-      "z": -10.2,
-      "_": "远处的煤气灯：细灯柱",
-      "boxes": [
-        [
-          0.08,
-          3.2,
-          0.08,
-          "line",
-          0,
-          1.6,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "lamp",
-      "card": "canvas",
-      "x": 0.6,
-      "y": 3.0,
-      "z": -10.2,
-      "halo": 0.9,
-      "cord": 0.1,
-      "shade": "lampShade",
-      "light": "lampLight",
-      "_": "远处的煤气灯：灯罩"
-    },
-    {
-      "type": "boxes",
-      "card": "canvas",
-      "x": 3.0,
-      "z": -9.6,
-      "_": "远处的煤气灯：细灯柱",
-      "boxes": [
-        [
-          0.08,
-          3.2,
-          0.08,
-          "line",
-          0,
-          1.6,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "lamp",
-      "card": "canvas",
-      "x": 3.0,
-      "y": 3.0,
-      "z": -9.6,
-      "halo": 0.9,
-      "cord": 0.1,
-      "shade": "lampShade",
-      "light": "lampLight",
-      "_": "远处的煤气灯：灯罩"
+      "y": 2.9,
+      "z": -12.2,
+      "halo": 0.6,
+      "cord": 0.2,
+      "_": "一圈煤气灯球"
     },
     {
       "type": "boxes",
       "card": "galette",
       "x": 0,
-      "z": -14,
-      "_": "院子尽头的房子和磨坊（煎饼磨坊）",
+      "z": -15,
+      "_": "后面的舞厅亭子（绿色屋顶）和房子",
       "boxes": [
         [
-          18,
-          5,
+          9,
+          3.2,
           1,
           "house",
-          0,
-          2.5,
+          -3,
+          1.6,
           0
         ],
         [
-          2.2,
           9,
-          2.2,
-          "mill",
-          6,
-          4.5,
-          -3
+          0.6,
+          2.5,
+          "roof",
+          -3,
+          3.6,
+          0
+        ],
+        [
+          10,
+          3,
+          1,
+          "house",
+          5,
+          1.5,
+          -1
         ]
       ]
     },
     {
       "type": "boxes",
       "card": "caillebotte",
-      "x": -6.5,
-      "z": -4,
-      "_": "左边的长椅和栏杆",
+      "x": -1.9,
+      "z": -2.2,
+      "_": "左下角的人和长椅",
       "boxes": [
         [
           0.4,
           0.45,
-          3,
+          1.6,
           "bench",
           0,
           0.22,
           0
-        ],
-        [
-          0.06,
-          1.0,
-          6,
-          "line",
-          -0.5,
-          0.5,
-          -1
         ]
       ]
     }
@@ -903,26 +1107,26 @@
           "scene": "gare-saint-lazare",
           "href": "../gare-saint-lazare/?card=caillebotte",
           "label": {
-            "zh": "《圣拉扎尔火车站》也曾属于他",
-            "en": "*The Saint-Lazare Station* was his too"
+            "zh": "卡耶博特也收藏过《圣拉扎尔火车站》",
+            "en": "Caillebotte also owned *The Saint-Lazare Station*"
           }
         }
       ]
     }
   },
   "exclusive": {
-    "_说明": "独家发现“树影”：开关打开后，地上和人身上的光斑慢慢淡出（原画上传后再加一张光线均匀的示意图 paintAlt），并显示说明。",
+    "_说明": "独家发现“树间的光”：开关打开后，地上和人身上的光斑慢慢淡出；原画换成示意图（images/moulin-galette-even.jpg，是我们用原画做的示意：把树叶间漏下的亮斑压成周围的平均亮度，笔触保留），并显示说明。",
     "type": "toggles",
     "label": {
-      "zh": "树影",
-      "en": "Leaf shadows"
+      "zh": "树间的光",
+      "en": "Light through the leaves"
     },
     "toggles": [
       {
         "id": "shade",
         "label": {
-          "zh": "树影",
-          "en": "Leaf shadows"
+          "zh": "树间的光",
+          "en": "Light through the leaves"
         },
         "targets": [
           "dapples"
@@ -931,7 +1135,8 @@
         "note": {
           "zh": "没有了树叶间漏下的光斑，这个下午就没有那么闪闪发亮了。这是示意。",
           "en": "Without the light filtering through the leaves, the afternoon loses its sparkle. This is an illustration."
-        }
+        },
+        "paintAlt": "images/moulin-galette-even.jpg"
       }
     ]
   },
@@ -1023,11 +1228,19 @@
           "zh": "雷诺阿的另一幅巴黎",
           "en": "Another of Renoir's Paris"
         }
+      },
+      {
+        "scene": "boating-party",
+        "href": "../boating-party/",
+        "label": {
+          "zh": "同属“巴黎的闲暇时光”：《游艇上的午宴》",
+          "en": "Also in Paris at Leisure: *Luncheon of the Boating Party*"
+        }
       }
     ]
   },
   "record": {
-    "_说明": "作品档案表：Tia 提供；尺寸按奥赛官网作品页（131.5 × 176.5 cm，编号 RF 2739）。遗赠年份：奥赛“卡耶博特遗赠”页面写1894年，作品页写“Legs Gustave Caillebotte, 1896”，先按 Tia 的文字写1894年，待 Tia 决定。",
+    "_说明": "作品档案表：Tia 提供；尺寸、编号和遗赠年份按奥赛官网作品页（131.5 × 176.5 cm，RF 2739，Legs Gustave Caillebotte, 1896：卡耶博特1894年去世，国家1896年接收遗赠）。",
     "artist": {
       "zh": "皮埃尔-奥古斯特·雷诺阿（1841–1919）",
       "en": "Pierre-Auguste Renoir (1841–1919)"
@@ -1049,8 +1262,8 @@
       "en": "131.5 × 176.5 cm"
     },
     "collection": {
-      "zh": "巴黎奥赛博物馆（卡耶博特遗赠，1894年）",
-      "en": "Musée d'Orsay, Paris (Gustave Caillebotte bequest, 1894)"
+      "zh": "巴黎奥赛博物馆（卡耶博特遗赠，1896年）",
+      "en": "Musée d'Orsay, Paris (Gustave Caillebotte bequest, 1896)"
     },
     "url": "https://www.musee-orsay.fr/en/artworks/bal-du-moulin-de-la-galette-497"
   },
@@ -1169,11 +1382,18 @@
     "files": [
       {
         "file": "moulin-galette.jpg",
-        "from": "Wikimedia Commons（还没上传）",
+        "from": "Wikimedia Commons（Tia 上传的 IMG_0530.jpeg，2026-10-27）",
         "url": "https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir,_Le_Moulin_de_la_Galette.jpg",
         "license": "公有领域（PD-Art）",
         "status": "符合",
-        "note": "等 Tia 上传",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "moulin-galette-even.jpg",
+        "from": "我们用 moulin-galette.jpg 做的示意图",
+        "url": "",
+        "license": "同 moulin-galette.jpg",
+        "status": "符合",
         "verified": "2026-10-27"
       }
     ]

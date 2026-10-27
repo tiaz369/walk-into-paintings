@@ -1,0 +1,504 @@
+{
+  "_说明": "根特祭坛画（静物类轻量版：分层景深 + 细节放大 + 卡片 + 短故事，加“打开 / 合上祭坛”）。所有事实文字由 Tia 提供（资料来自 New Statesman、比利时通讯社、Lonely Planet）。它不是一幅画，而是由很多块画板组成、可以打开和合上的祭坛画，所以不做走动的3D场景。painting.image 是打开时的整组（ghent-open.jpg）；exclusive.closed.image 是合上时的样子（ghent-closed.jpg，宽度是打开时的一半）。原画还没上传：圆点、放大的位置和“缺了的一块”的框，是先按祭坛画的布局估的，上传后照原画重新对准。",
+  "id": "ghent-altarpiece",
+  "variant": "still-life",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "church",
+    "label": {
+      "zh": "教堂里安静的光",
+      "en": "Quiet light in the cathedral"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮。和《阿尔诺芬尼夫妇像》《戴红头巾的男子》互相链接（“两年后，在布鲁日”，1432 → 1434）。",
+    "doors": [],
+    "cards": [
+      "arnolfini"
+    ],
+    "end": [
+      "arnolfini",
+      "man-red-chaperon"
+    ]
+  },
+  "ambience": "cathedral",
+  "painting": {
+    "image": "images/ghent-open.jpg",
+    "width": 2000,
+    "height": 1440,
+    "alt": {
+      "zh": "休伯特和扬·凡·艾克《根特祭坛画》（打开），1432年完成，根特圣巴夫主教座堂",
+      "en": "Hubert and Jan van Eyck, The Ghent Altarpiece (open), completed 1432, St Bavo's Cathedral, Ghent"
+    },
+    "_": "宽高是按打开时的比例先填的，原画上传后改成实际像素"
+  },
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "根特祭坛画",
+      "en": "The Ghent Altarpiece"
+    },
+    "artist": {
+      "zh": "休伯特和扬·凡·艾克",
+      "en": "Hubert and Jan van Eyck"
+    },
+    "date": {
+      "zh": "1432年完成",
+      "en": "Completed 1432"
+    },
+    "museum": {
+      "zh": "比利时根特圣巴夫主教座堂",
+      "en": "St Bavo's Cathedral, Ghent"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走近祭坛",
+    "en": "Approach the altarpiece"
+  },
+  "hint": {
+    "zh": "点“打开祭坛”，看翼板慢慢打开 · 点发光的圆点看介绍 · 点“放大看细节”，看羔羊、上方的人物和左下角的“正义的法官” · 点“缺了的一块”，看1934年被偷走的那块画板",
+    "en": "Tap “Open the altarpiece” to watch the wings swing open · Tap the glowing dots to learn more · Tap “Zoom in on details” for the Lamb, the figures above and the Just Judges · Tap “The missing panel” to see the panel stolen in 1934"
+  },
+  "parallax": 6,
+  "layers": [
+    {
+      "_说明": "整组祭坛画（打开时）",
+      "depth": 0
+    }
+  ],
+  "spots": {
+    "closed": {
+      "x": 0.5,
+      "y": 0.45,
+      "layer": 0,
+      "state": "closed"
+    },
+    "brothers": {
+      "x": 0.36,
+      "y": 0.9,
+      "layer": 0,
+      "state": "closed"
+    },
+    "lamb": {
+      "x": 0.42,
+      "y": 0.8,
+      "layer": 0,
+      "state": "open"
+    },
+    "face": {
+      "x": 0.5,
+      "y": 0.665,
+      "layer": 0,
+      "state": "open"
+    },
+    "judges": {
+      "x": 0.065,
+      "y": 0.78,
+      "layer": 0,
+      "state": "open"
+    },
+    "stolen": {
+      "x": 0.93,
+      "y": 0.8,
+      "layer": 0,
+      "state": "open"
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现：①“打开祭坛”：开场是合上的祭坛，点按钮，两块翼板向两边慢慢转开，露出里面的整组画面；再点一次合上。②“缺了的一块”：开关打开后，左下角“正义的法官”那一块变成半透明，并显示卡片4的文字（没打开时会先打开）。③“放大看细节”：羔羊、上方的人物、左下角的“正义的法官”。位置是打开时整组画上的 0–1 坐标。",
+    "type": "altarpiece",
+    "label": {
+      "zh": "打开祭坛",
+      "en": "Open the altarpiece"
+    },
+    "closeLabel": {
+      "zh": "合上祭坛",
+      "en": "Close the altarpiece"
+    },
+    "closed": {
+      "image": "images/ghent-closed.jpg",
+      "alt": {
+        "zh": "休伯特和扬·凡·艾克《根特祭坛画》（合上），1432年完成，根特圣巴夫主教座堂",
+        "en": "Hubert and Jan van Eyck, The Ghent Altarpiece (closed), completed 1432, St Bavo's Cathedral, Ghent"
+      }
+    },
+    "missing": {
+      "label": {
+        "zh": "缺了的一块",
+        "en": "The missing panel"
+      },
+      "x": 0.0,
+      "y": 0.52,
+      "w": 0.13,
+      "h": 0.48,
+      "card": "judges"
+    },
+    "zoomLabel": {
+      "zh": "放大看细节",
+      "en": "Zoom in on details"
+    },
+    "zooms": [
+      {
+        "id": "lamb",
+        "label": {
+          "zh": "羔羊",
+          "en": "The Lamb"
+        },
+        "x": 0.5,
+        "y": 0.68,
+        "scale": 4,
+        "card": "face"
+      },
+      {
+        "id": "above",
+        "label": {
+          "zh": "上方的人物",
+          "en": "The figures above"
+        },
+        "x": 0.5,
+        "y": 0.25,
+        "scale": 2.2
+      },
+      {
+        "id": "judges",
+        "label": {
+          "zh": "正义的法官",
+          "en": "The Just Judges"
+        },
+        "x": 0.065,
+        "y": 0.78,
+        "scale": 3.5,
+        "card": "judges"
+      }
+    ]
+  },
+  "cards": {
+    "lamb": {
+      "title": {
+        "zh": "神秘的羔羊",
+        "en": "The Mystic Lamb"
+      },
+      "text": {
+        "zh": "打开祭坛，正中间是站在祭坛上的羔羊，四周的人们正向它走来。",
+        "en": "Open the altarpiece, and at its centre stands the Lamb on an altar, with crowds approaching from all sides."
+      }
+    },
+    "brothers": {
+      "title": {
+        "zh": "兄弟俩",
+        "en": "Two brothers"
+      },
+      "text": {
+        "zh": "这组祭坛画由哥哥休伯特开始，1426年他去世后，弟弟扬接手，在1432年完成。据画框上的一段铭文，扬称哥哥“比任何人都伟大”，自己“在艺术上排第二”。",
+        "en": "It was begun by Hubert van Eyck. After his death in 1426, his younger brother Jan took over and completed it in 1432. According to an inscription on the frame, Jan called Hubert \"greater than anyone\", and himself \"second in art\"."
+      },
+      "links": [
+        {
+          "scene": "arnolfini",
+          "href": "../arnolfini/",
+          "label": {
+            "zh": "两年后，在布鲁日",
+            "en": "Two years later, in Bruges"
+          }
+        }
+      ]
+    },
+    "face": {
+      "title": {
+        "zh": "羔羊的脸",
+        "en": "The Lamb's face"
+      },
+      "text": {
+        "zh": "修复发现，羔羊的脸在16世纪被重新画过，让它更像一只真实的动物。原来的脸更像人，目光锐利，现在已经恢复。",
+        "en": "Restoration revealed that the Lamb's face had been repainted in the 16th century to look more like a real animal. The original face, more human, with a piercing gaze, has now been uncovered."
+      }
+    },
+    "judges": {
+      "title": {
+        "zh": "被偷走的法官",
+        "en": "The stolen Judges"
+      },
+      "text": {
+        "zh": "1934年，左下角的一块画板被偷，正面是“正义的法官”，背面是施洗约翰。施洗约翰后来找到了，“正义的法官”至今下落不明。你现在看到的，是一幅复制品。",
+        "en": "In 1934, the panel at the lower left was stolen: the Just Judges on one side, John the Baptist on the other. John the Baptist was found; the Just Judges has never been recovered. What you see today is a copy."
+      }
+    },
+    "stolen": {
+      "title": {
+        "zh": "被偷了很多次",
+        "en": "Stolen again and again"
+      },
+      "text": {
+        "zh": "这组祭坛画至少被偷过十二次，是世界上最常被偷的艺术品之一。",
+        "en": "The altarpiece has been stolen at least twelve times, making it one of the most stolen artworks in the world."
+      }
+    },
+    "closed": {
+      "title": {
+        "zh": "合上的样子",
+        "en": "When it is closed"
+      },
+      "text": {
+        "zh": "合上时，外侧的翼板上也画着人物，和打开后的鲜艳色彩完全不同。",
+        "en": "When closed, the outer wings show figures too, quite different from the brilliant colours inside."
+      }
+    }
+  },
+  "bioExtra": {
+    "zh": "这组祭坛画由他的哥哥休伯特开始，扬在1432年完成。",
+    "en": "This altarpiece was begun by his brother Hubert and completed by Jan in 1432."
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/ghent-closed.jpg",
+        "alt": {
+          "zh": "休伯特和扬·凡·艾克《根特祭坛画》（合上），1432年完成，根特圣巴夫主教座堂",
+          "en": "Hubert and Jan van Eyck, The Ghent Altarpiece (closed), completed 1432, St Bavo's Cathedral, Ghent"
+        },
+        "caption": {
+          "zh": "1432年完成 · 根特圣巴夫主教座堂",
+          "en": "Completed 1432 · St Bavo's Cathedral, Ghent"
+        },
+        "kicker": "I",
+        "title": {
+          "zh": "两兄弟",
+          "en": "Two brothers"
+        },
+        "text": {
+          "zh": "15世纪20年代，休伯特·凡·艾克开始画这组祭坛画。1426年他去世，弟弟扬接手，在1432年完成。它很快就名声大噪。",
+          "en": "In the 1420s, Hubert van Eyck began this altarpiece. He died in 1426, and his younger brother Jan completed it in 1432. It became famous almost at once."
+        }
+      },
+      {
+        "image": "images/ghent-open.jpg",
+        "alt": {
+          "zh": "休伯特和扬·凡·艾克《根特祭坛画》（打开），1432年完成，根特圣巴夫主教座堂",
+          "en": "Hubert and Jan van Eyck, The Ghent Altarpiece (open), completed 1432, St Bavo's Cathedral, Ghent"
+        },
+        "caption": {
+          "zh": "1432年完成 · 根特圣巴夫主教座堂",
+          "en": "Completed 1432 · St Bavo's Cathedral, Ghent"
+        },
+        "kicker": "II",
+        "title": {
+          "zh": "最常被偷的画",
+          "en": "The most stolen painting"
+        },
+        "text": {
+          "zh": "几百年来，它至少被偷过十二次。1934年的一个夜里，盗贼偷走了左下角的一块画板，“正义的法官”至今下落不明。",
+          "en": "Over the centuries it was stolen at least twelve times. One night in 1934, thieves took the panel at the lower left. The Just Judges has never been found."
+        }
+      },
+      {
+        "image": "images/ghent-open.jpg",
+        "alt": {
+          "zh": "休伯特和扬·凡·艾克《根特祭坛画》（打开），1432年完成，根特圣巴夫主教座堂",
+          "en": "Hubert and Jan van Eyck, The Ghent Altarpiece (open), completed 1432, St Bavo's Cathedral, Ghent"
+        },
+        "caption": {
+          "zh": "1432年完成 · 根特圣巴夫主教座堂",
+          "en": "Completed 1432 · St Bavo's Cathedral, Ghent"
+        },
+        "kicker": "III",
+        "title": {
+          "zh": "找回来的脸",
+          "en": "A face recovered"
+        },
+        "text": {
+          "zh": "2012年开始的修复，去掉了16世纪的重画，让羔羊原来那张更像人的脸重新露了出来。",
+          "en": "Restoration begun in 2012 removed 16th-century overpainting and revealed the Lamb's original, more human face."
+        }
+      }
+    ],
+    "final": {
+      "zh": "最常被偷的画，至今还少了一块。",
+      "en": "One of the most stolen artworks, still missing a piece."
+    },
+    "versions": [],
+    "museums": [
+      "st-bavo"
+    ],
+    "exit": [
+      {
+        "scene": "arnolfini",
+        "href": "../arnolfini/",
+        "label": {
+          "zh": "两年后，在布鲁日",
+          "en": "Two years later, in Bruges"
+        }
+      },
+      {
+        "scene": "man-red-chaperon",
+        "href": "../man-red-chaperon/",
+        "label": {
+          "zh": "扬·凡·艾克的另一幅：《戴红头巾的男子》",
+          "en": "Another Jan van Eyck: *Portrait of a Man (Self Portrait?)*"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸待核对（3.4 × 4.6 米是新闻报道里从英尺换算的；其他资料写 3.75 × 5.2 米或 3.3 × 4.4 米，都不是教堂官方资料），先不显示。",
+    "artist": {
+      "zh": "休伯特·凡·艾克和扬·凡·艾克",
+      "en": "Hubert and Jan van Eyck"
+    },
+    "title": {
+      "zh": "根特祭坛画（神秘羔羊的崇拜）",
+      "en": "The Ghent Altarpiece (The Adoration of the Mystic Lamb)"
+    },
+    "date": {
+      "zh": "1432年完成",
+      "en": "Completed 1432"
+    },
+    "medium": {
+      "zh": "木板油画，多块画板组成",
+      "en": "Oil on panel, polyptych"
+    },
+    "collection": {
+      "zh": "比利时根特圣巴夫主教座堂",
+      "en": "St Bavo's Cathedral, Ghent"
+    },
+    "url": "https://www.sintbaafskathedraal.be"
+  },
+  "zoom": {
+    "image": "images/ghent-open.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "New Statesman：根特祭坛画如何被偷、又如何留存下来",
+          "en": "New Statesman: how the Ghent Altarpiece was stolen and survived"
+        },
+        "url": "https://www.newstatesman.com/long-reads/2020/02/van-eyck-ghent-altarpiece-stolen-survived"
+      },
+      {
+        "title": {
+          "zh": "比利时通讯社：88年过去了，根特祭坛画还能完整吗？",
+          "en": "Belga News Agency: 88 years and counting, will the Ghent Altarpiece ever be complete again?"
+        },
+        "url": "https://www.belganewsagency.eu/88-years-and-counting-will-the-ghent-altarpiece-ever-be-complete-again"
+      },
+      {
+        "title": {
+          "zh": "Lonely Planet：根特祭坛画参观",
+          "en": "Lonely Planet: a Ghent Altarpiece tour"
+        },
+        "url": "https://www.lonelyplanet.com/articles/ghent-altarpiece-tour"
+      },
+      {
+        "title": {
+          "zh": "根特圣巴夫主教座堂",
+          "en": "St Bavo's Cathedral, Ghent"
+        },
+        "url": "https://www.sintbaafskathedraal.be"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三段故事原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "两兄弟",
+          "en": "Two brothers"
+        },
+        "text": {
+          "zh": "15世纪20年代，休伯特·凡·艾克开始画这组祭坛画。1426年他去世，弟弟扬接手，在1432年完成。它很快就名声大噪。",
+          "en": "In the 1420s, Hubert van Eyck began this altarpiece. He died in 1426, and his younger brother Jan completed it in 1432. It became famous almost at once."
+        }
+      },
+      {
+        "title": {
+          "zh": "最常被偷的画",
+          "en": "The most stolen painting"
+        },
+        "text": {
+          "zh": "几百年来，它至少被偷过十二次。1934年的一个夜里，盗贼偷走了左下角的一块画板，“正义的法官”至今下落不明。",
+          "en": "Over the centuries it was stolen at least twelve times. One night in 1934, thieves took the panel at the lower left. The Just Judges has never been found."
+        }
+      },
+      {
+        "title": {
+          "zh": "找回来的脸",
+          "en": "A face recovered"
+        },
+        "text": {
+          "zh": "2012年开始的修复，去掉了16世纪的重画，让羔羊原来那张更像人的脸重新露了出来。",
+          "en": "Restoration begun in 2012 removed 16th-century overpainting and revealed the Lamb's original, more human face."
+        }
+      }
+    ]
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "New Statesman：根特祭坛画如何被偷、又如何留存下来",
+        "en": "New Statesman: how the Ghent Altarpiece was stolen and survived"
+      },
+      "url": "https://www.newstatesman.com/long-reads/2020/02/van-eyck-ghent-altarpiece-stolen-survived"
+    },
+    {
+      "title": {
+        "zh": "比利时通讯社：88年过去了，根特祭坛画还能完整吗？",
+        "en": "Belga News Agency: 88 years and counting, will the Ghent Altarpiece ever be complete again?"
+      },
+      "url": "https://www.belganewsagency.eu/88-years-and-counting-will-the-ghent-altarpiece-ever-be-complete-again"
+    },
+    {
+      "title": {
+        "zh": "Lonely Planet：根特祭坛画参观",
+        "en": "Lonely Planet: a Ghent Altarpiece tour"
+      },
+      "url": "https://www.lonelyplanet.com/articles/ghent-altarpiece-tour"
+    },
+    {
+      "title": {
+        "zh": "根特圣巴夫主教座堂",
+        "en": "St Bavo's Cathedral, Ghent"
+      },
+      "url": "https://www.sintbaafskathedraal.be"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art） / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "ghent-open.jpg",
+        "from": "Wikimedia Commons（还没上传）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "note": "等 Tia 上传；不用 KIK-IRPA “Closer to Van Eyck”的图片，也不用教堂里的现场照片",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "ghent-closed.jpg",
+        "from": "Wikimedia Commons（还没上传）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "note": "同上",
+        "verified": "2026-10-27"
+      }
+    ]
+  },
+  "lastVerified": "2026-10-27"
+}

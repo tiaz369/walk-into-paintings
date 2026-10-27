@@ -93,10 +93,8 @@ CITIES = {c: json.load(open(os.path.join(ROOT, f'data/{c}.json'), encoding='utf-
 LIFE = {a['id']: json.load(open(f, encoding='utf-8')) for a in R['artists'] if os.path.exists(f := os.path.join(ROOT, 'data/life', a['id'] + '.json'))}   # 画家页的“生平”
 CREDIT = ('<p><span lang="zh-CN">由 <a href="https://tiaz369.github.io">Tia</a> 创作与策划</span><br>'
           '<span lang="en">Created and curated by <a href="https://tiaz369.github.io">Tia</a></span></p>')
-NAV = [('', '首页', 'Home'), ('artists/', '画家', 'Artists'), ('themes/', '主题', 'Themes'), ('moods/', '心情', 'Moods'), ('periods/', '时期', 'Periods'),
-       ('map/', '地图', 'Map'), ('museums/', '博物馆', 'Museums'), ('timeline/', '时间线', 'Timeline'),
-       ('london/', '伦敦', 'London'), ('paris/', '巴黎', 'Paris'), ('amsterdam/', '阿姆斯特丹', 'Amsterdam'), ('about/', '关于', 'About')]
-def nav(up): return '<nav>' + ' · '.join(f'<a href="{up}{p}">{zh} {en}</a>' for p, zh, en in NAV) + f' · <a href="{up}passport/">看画护照 Passport</a> · <a href="{up}my-gallery/">我的画廊 My gallery</a></nav>'
+NAV = [('artists/', '探索', 'Explore'), ('stories/', '故事', 'Stories'), ('museums/', '看真迹', 'Visit'), ('about/', '关于', 'About')]   # 和 assets/site.js 的 NAV_GROUPS 一样只有 4 项（不运行 JavaScript 时显示）
+def nav(up): return '<nav>' + ' · '.join(f'<a href="{up}{p}">{zh} {en}</a>' for p, zh, en in NAV) + '</nav>'
 
 # ---------- 页面外壳 ----------
 def head(path, title, desc, image, image_alt, up, scene=False):

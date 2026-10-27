@@ -324,6 +324,27 @@ const AMBIENCE = {
     waltz(ctx.currentTime + 1); every(st, 4.8, 5.2, waltz);
     every(st, 8, 20, t => bird(out, t));
   },
+  // 河边餐厅的阳台：人声、笑声、酒杯碰撞，栏杆外的河水，远处的划桨声（A riverside restaurant terrace）
+  'river-restaurant'(out, st) {
+    loopNoise('brown', out, { freq: 320, gain: 0.07 });
+    murmur(out, 0.1)(st);
+    every(st, 1.5, 4, t => clink(out, t));
+    every(st, 6, 14, t => giggle(out, t));
+    lap(out, ctx.currentTime + 0.6); every(st, 3, 6, t => lap(out, t));
+    const oar = t => { for (let k = 0; k < 4; k++) burst(out, t + k * 1.5, { kind: 'white', type: 'bandpass', freq: rnd(600, 900), q: 1.2, vol: 0.04, dur: 0.35, p: -0.5 }); };   // 远处划桨：几下慢慢的水声
+    every(st, 12, 25, oar);
+    every(st, 8, 18, t => bird(out, t));
+  },
+  // 大教堂：很低、很长的回声底噪，远处慢慢走过的脚步声（有回声），偶尔一声很轻的咳嗽或椅子声（A quiet cathedral）
+  cathedral(out, st) {
+    loopNoise('brown', out, { type: 'lowpass', freq: 140, gain: 0.08 });
+    const air = loopNoise('brown', out, { type: 'bandpass', freq: 420, q: 0.4, gain: 0.02 });
+    st.timers.push(setInterval(() => air.g.gain.setTargetAtTime(0.01 + 0.025 * Math.random(), ctx.currentTime, 3), 5000));
+    const echoStep = (t, p) => { for (const [d, v] of [[0, 0.06], [0.18, 0.025], [0.42, 0.012]]) burst(out, t + d, { kind: 'brown', type: 'bandpass', freq: rnd(450, 700), q: 3, vol: v, dur: 0.06, p }); };
+    const walk = t => { const n = 6 + Math.floor(Math.random() * 6), p0 = rnd(-0.8, 0.8); for (let k = 0; k < n; k++) echoStep(t + k * rnd(0.55, 0.7), p0 * (1 - k / n)); };
+    walk(ctx.currentTime + 3); every(st, 14, 30, walk);
+    every(st, 25, 55, t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(300, 500), q: 6, vol: 0.05, dur: rnd(0.15, 0.3), p: rnd(-0.6, 0.6) }));   // 远处的长椅轻响
+  },
   // 雨中的巴黎路口：小雨声，雨水打在伞上，马车轮子压过湿石板，远处的脚步声（A rainy crossroads）
   'rain-cobbles'(out, st) {
     loopNoise('white', out, { type: 'highpass', freq: 3200, gain: 0.04 });   // 小雨
