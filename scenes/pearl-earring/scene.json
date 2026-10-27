@@ -657,7 +657,19 @@
       "en": "Mauritshuis, The Hague, public domain"
     },
     "url": "待补",
-    "license": "公有领域 / public domain"
+    "license": "公有领域 / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
+    "files": [
+      {
+        "file": "pearl-earring.jpg",
+        "from": "莫瑞泰斯官网（Tia 下载，原文件名 0670_repro_2.jpg）",
+        "url": "待补",
+        "license": "公有领域（官网要求注明 Mauritshuis, The Hague）",
+        "status": "不符合",
+        "note": "莫瑞泰斯官网的图（禁止第 1 条）；分享图也用到这张",
+        "verified": "2026-10-27"
+      }
+    ]
   },
   "lastVerified": "2026-10-26"
 }

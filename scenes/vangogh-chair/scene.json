@@ -667,7 +667,51 @@
       "en": "Wikimedia Commons, public domain"
     },
     "url": "待补",
-    "license": "公有领域 / public domain"
+    "license": "公有领域 / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
+    "files": [
+      {
+        "file": "vangogh-chair.jpg",
+        "from": "Wikimedia Commons（Tia 下载）（经维基百科，2026-10-27 换掉国家美术馆官网的图）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "gauguin-chair.jpg",
+        "from": "梵高博物馆官网（Tia 下载）",
+        "url": "待补",
+        "license": "只限非商业使用",
+        "status": "不符合",
+        "note": "梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "crops/door.jpg",
+        "from": "从 vangogh-chair.jpg 裁出",
+        "url": "",
+        "license": "同 vangogh-chair.jpg",
+        "status": "符合",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "crops/floor.jpg",
+        "from": "从 vangogh-chair.jpg 裁出",
+        "url": "",
+        "license": "同 vangogh-chair.jpg",
+        "status": "符合",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "crops/wall.jpg",
+        "from": "从 vangogh-chair.jpg 裁出",
+        "url": "",
+        "license": "同 vangogh-chair.jpg",
+        "status": "符合",
+        "verified": "2026-10-27"
+      }
+    ]
   },
   "lastVerified": "2026-10-26"
 }

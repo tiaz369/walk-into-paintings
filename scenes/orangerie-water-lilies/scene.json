@@ -592,7 +592,91 @@
       "en": "Wikimedia Commons (Google Art Project and others), public domain"
     },
     "url": "待补",
-    "license": "公有领域 / public domain"
+    "license": "公有领域 / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
+    "files": [
+      {
+        "file": "soleil-couchant.jpg",
+        "from": "Wikimedia Commons（Tia 下载），Google Art Project 版本",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "note": "文件在 Commons 上标为公有领域，但图片本身来自 Google 艺术与文化（禁止第 2 条）",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "matin.jpg",
+        "from": "Wikimedia Commons（Tia 下载），Google Art Project 版本",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "note": "文件在 Commons 上标为公有领域，但图片本身来自 Google 艺术与文化（禁止第 2 条）",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "nuages.jpg",
+        "from": "Wikimedia Commons（Tia 下载），Google Art Project 版本",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "note": "文件在 Commons 上标为公有领域，但图片本身来自 Google 艺术与文化（禁止第 2 条）",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "reflets-verts.jpg",
+        "from": "Wikimedia Commons（Tia 下载），Google Art Project 版本",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "note": "文件在 Commons 上标为公有领域，但图片本身来自 Google 艺术与文化（禁止第 2 条）",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "reflets-arbres.jpg",
+        "from": "Wikimedia Commons（Tia 下载），Google Art Project 版本",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "note": "文件在 Commons 上标为公有领域，但图片本身来自 Google 艺术与文化（禁止第 2 条）",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "matin-clair-saules.jpg",
+        "from": "Wikimedia Commons（Tia 下载），Google Art Project 版本",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "note": "文件在 Commons 上标为公有领域，但图片本身来自 Google 艺术与文化（禁止第 2 条）",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "deux-saules.jpg",
+        "from": "Wikimedia Commons（Tia 下载），Google Art Project 版本",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "note": "文件在 Commons 上标为公有领域，但图片本身来自 Google 艺术与文化（禁止第 2 条）",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "matin-saules.jpg",
+        "from": "Wikimedia Commons（Tia 下载）（675 × 114 的小图）",
+        "url": "待补",
+        "license": "待核对",
+        "status": "来源不明",
+        "note": "没有记下 Commons 文件页，看不出原图来源",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "water-lilies.jpg",
+        "from": "我们用上面 8 幅拼成的封面",
+        "url": "",
+        "license": "同上面 8 幅",
+        "status": "待决定",
+        "note": "跟着上面 8 幅",
+        "verified": "2026-10-27"
+      }
+    ]
   },
   "lastVerified": "2026-10-26"
 }

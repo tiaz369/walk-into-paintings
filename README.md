@@ -85,7 +85,7 @@ walk-into-paintings/
    - **衔接**：`links`，以及真正的门（`objects` 里的 `portal`）、卡片链接（`cards` 的 `link`）、结尾按钮（`ending.exit`）
    - 完整版还要：`viewpoint`（画家视角，可以请 Claude Code 对照原画计算）、`room` 和 `objects`（房间和家具，种类见 `assets/engine.js` 里的 `BUILD`）；轻量版要：`layers`（分层）和 `spots`（卡片的位置）
    - **来源**：在场景文件夹的 `sources.md` 里写下每条事实的出处；`reading` 是页面最底部的“延伸阅读与来源”
-3. **放图片**：原画放进 `scenes/新场景/images/`，在 `images/README.md` 里写图片来源和授权（只用公有领域的画作）。
+3. **放图片**：原画放进 `scenes/新场景/images/`，在 `images/README.md` 里写图片来源和授权，并在 `scene.json` 的 `imageSource.files` 里给每张图片记一条（见下面的“版权规则”）。
 4. **登记到 `data/scenes.json`**：在 `scenes` 里找到（或新加）这一条，`status` 改成 `live`，加上 `path`、`cover`、`added`（上线日期），以及 `collection`、`themes`、`moods`（心情）、`period`、`place`、`museum`；在伦敦国家美术馆展出的，加 `onDisplay` 和 `room`。新系列在 `collections` 里加一条，写上 `color`（主色）。
 5. **重新生成静态页面**：运行 `python3 tools/build.py`（Claude Code 会帮你运行）。
    它根据 `data/scenes.json` 和每个 `scene.json`，重新生成所有浏览页（画家、主题、时期、心情、博物馆、地图、时间线）、场景页、sitemap 和 404 的静态 HTML（不运行 JavaScript 时看到的内容，也是搜索引擎读到的内容），规则和 JavaScript 版完全一样。
@@ -95,10 +95,35 @@ walk-into-paintings/
    上线前再检查一遍（来自网站蓝图的“内容与版权规则”）：公有领域、图片来源已注明、文字由 Tia 提供并核对、解读性内容标明“有人认为”、中英文都检查过。
    **年份和收藏地**：不同来源写的不一样时，以收藏这幅画的博物馆官网为准。官网核对不了的，标“待核对”，先不显示（画家页的“其他代表作”在 `data/works.json` 里，`check` 写 `ok` 才显示）。
    **示意类效果**：只要改变了原画外观的效果（画面上加出来、改出来、拿走的东西，比如褪色前的颜色、天亮、风吹、灯光变化、被移走的物体），页面上都必须加一句“这是示意。/ This is an illustration.”（写在独家发现的说明 note 里，打开效果时显示）。
-   **资料记录**：每个 `scene.json` 都要有 `sources`（资料来源列表，每项写 `url`，可以加 `title`）、`imageSource`（图片来源：`text` 说明、`url` 原图网址、`license` 授权）和 `lastVerified`（最后核实日期，YYYY-MM-DD）。核对过资料就更新 `lastVerified`。
+   **资料记录**：每个 `scene.json` 都要有 `sources`（资料来源列表，每项写 `url`，可以加 `title`）、`imageSource`（图片来源：`text` 说明、`url` 原图网址、`license` 授权；`files` 里每张图片一条：`file`、`from` 来源、`url`、`license`、`status`、`verified` 核对日期）和 `lastVerified`（最后核实日期，YYYY-MM-DD）。核对过资料就更新 `lastVerified`。
    **英文画名的格式**：画名出现在句子里时用斜体（卡片、故事、按钮、图注、时间线、延伸阅读里都一样，在 json 里写成 `*Irises*`）；展签、作品档案里单独一栏的画名不用斜体；括号里的补充说明用正体，例如 `*Irises* (in a vase)`。
 
 首页、系列页、浏览页、时间线和地图会自动出现新场景，不用改它们。
+
+## 版权规则
+
+**允许**
+1. 画作：画家去世超过 70 年。
+2. 图片只来自：
+   - a. 博物馆开放授权（CC0 / 公有领域）：芝加哥艺术博物馆、大都会博物馆、华盛顿国家美术馆、荷兰国立博物馆等；
+   - b. Wikimedia Commons 上标注为 PD-Art 的平面画作翻拍。
+3. 自制内容：3D 场景、示意效果、代码合成的声音、自己写的文字。
+4. 开源字体（如 Google Fonts，OFL 授权）。
+
+**禁止**
+1. 伦敦国家美术馆、考陶尔德、维也纳艺术史博物馆、莫瑞泰斯、RMN 等官网下载的限制用途图片。
+2. Google 艺术与文化上的图片。
+3. 含人物、展厅设施的照片，以及雕塑等立体作品的照片（除非是 CC0）。
+4. 现代实景照片。
+5. 电影剧照、纸币图案、书籍封面、博物馆标志。
+6. 仍在版权期内的作品。
+7. 长篇引用受版权保护的译文（只引短句并注明出处，其余用链接）。
+
+**记录和检查**
+- 每张图片（包括裁出来的小图和我们做的示意图）都要在 `scene.json` 的 `imageSource.files` 里记一条：`file` 文件名、`from` 来源、`url` 原图网址（还没记下写“待补”）、`license` 授权、`status`（符合 / 不符合 / 来源不明 / 待决定）、`verified` 核对日期。`tools/check_scenes.py` 会检查 `images/` 里每个文件都有记录。
+- 分享图（`assets/og-*.jpg`）、分享卡片、首页动画和画家封面（`assets/artists/`）用的图片也要符合规则。
+- 音频只能是代码合成的，或确认为 CC0 / 公有领域的录音。
+- 最近一次全站检查的结果在 `copyright-check.md`。
 
 ## 本地预览
 
