@@ -1016,9 +1016,10 @@ function run(S, R, meta) {
     $('cardTitle').textContent = t.title.zh; $('cardTitleEn').textContent = t.title.en;
     $('cardZh').textContent = t.text.zh; $('cardEn').innerHTML = escItalic(t.text.en);   // 英文里的 *画名* 显示成斜体
     // 卡片里的链接（比如“去卧室看博赫的画像”）
-    const linkOn = t.link && (!t.link.scene || (R && R.sceneById[t.link.scene] && R.sceneById[t.link.scene].status === 'live'));
-    $('cardLinkP').classList.toggle('hidden', !linkOn);
-    if (t.link) { $('cardLink').href = t.link.href; $('cardLink').innerHTML = ui(t.link.label.zh, t.link.label.en) + ' →'; }
+    // 一张卡片可以有几个链接（links），只显示已开放的场景
+    const links = [].concat(t.links || t.link || []).filter(l => !l.scene || (R && R.sceneById[l.scene] && R.sceneById[l.scene].status === 'live'));
+    $('cardLinkP').classList.toggle('hidden', !links.length);
+    $('cardLinkP').innerHTML = links.map(l => `<a class="btn" href="${l.href}">${ui(l.label.zh, l.label.en)} →</a>`).join(' ');
     if (constGroup && key === constObj.card) constGroup.visible = true;   // 星空连线
     const letter = t.letter && t.letter.url;   // 卡片引用了书信：“读原信”链接到 vangoghletters.org
     $('cardLetterP').classList.toggle('hidden', !letter);

@@ -292,6 +292,38 @@ const AMBIENCE = {
     const applause = t => { for (let i = 0; i < 60; i++) burst(far, t + Math.random() * 2.5, { type: 'bandpass', freq: rnd(1500, 3500), q: 1.5, vol: 0.05, dur: 0.02, p: rnd(-0.8, 0.8) }); };
     every(st, 25, 50, applause);
   },
+  // 露天舞场：树下的人声和笑声，杯子碰撞，树叶沙沙，远处乐队演奏的圆舞曲（三拍子）（An open-air dance garden）
+  'dance-garden'(out, st) {
+    loopNoise('brown', out, { freq: 300, gain: 0.08 });
+    const leaves = loopNoise('brown', out, { type: 'bandpass', freq: 900, q: 0.5, gain: 0.03 });   // 洋槐树叶沙沙
+    st.timers.push(setInterval(() => leaves.g.gain.setTargetAtTime(0.02 + 0.04 * Math.random(), ctx.currentTime, 1.5), 3000));
+    murmur(out, 0.11)(st);
+    every(st, 1.5, 4.5, t => clink(out, t));
+    const laugh = t => {   // 大人的笑声：几声短短的“哈哈”，比孩子的低
+      const n = 3 + Math.floor(Math.random() * 3), base = rnd(220, 330), p = rnd(-0.7, 0.7);
+      const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = rnd(800, 1100); f.Q.value = 1.1; f.connect(pan(out, p));
+      for (let k = 0; k < n; k++) {
+        const tk = t + k * rnd(0.15, 0.2), fr = base * (1 - k * 0.04);
+        const o = ctx.createOscillator(); o.type = 'triangle'; o.frequency.setValueAtTime(fr * 1.1, tk); o.frequency.exponentialRampToValueAtTime(fr, tk + 0.12);
+        const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, tk); g.gain.exponentialRampToValueAtTime(0.045, tk + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, tk + 0.13);
+        o.connect(g).connect(f); o.start(tk); o.stop(tk + 0.15);
+      }
+    };
+    every(st, 4, 10, laugh);
+    const far = ctx.createGain(); far.gain.value = 0.3; far.connect(pan(out, 0.35));   // 乐队在院子另一头
+    const bars = [[196, [262, 330, 392]], [196, [262, 330, 392]], [147, [247, 294, 392]], [196, [262, 330, 392]]];   // 低音 + 两下和弦：嘭、嚓、嚓
+    const tune = [523, 587, 659, 587, 523, 494, 523, 392];
+    const waltz = t => {
+      bars.forEach(([b, ch], i) => {
+        const tb = t + i * 1.2;
+        tone(far, tb, { f0: b, type: 'triangle', vol: 0.05, attack: 0.01, dur: 0.35 });
+        for (const k of [1, 2]) ch.forEach(f => tone(far, tb + k * 0.4, { f0: f, type: 'triangle', vol: 0.016, attack: 0.01, dur: 0.25 }));
+      });
+      tune.forEach((f, i) => tone(far, t + i * 0.6, { f0: f, type: 'sine', vol: 0.03, attack: 0.03, dur: 0.55 }));
+    };
+    waltz(ctx.currentTime + 1); every(st, 4.8, 5.2, waltz);
+    every(st, 8, 20, t => bird(out, t));
+  },
   // 雨中的巴黎路口：小雨声，雨水打在伞上，马车轮子压过湿石板，远处的脚步声（A rainy crossroads）
   'rain-cobbles'(out, st) {
     loopNoise('white', out, { type: 'highpass', freq: 3200, gain: 0.04 });   // 小雨

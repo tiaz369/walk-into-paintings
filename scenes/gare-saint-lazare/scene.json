@@ -14,7 +14,8 @@
     "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和卡耶博特《巴黎街道，雨天》互相链接（车站旁边的路口，同一场画展；卡耶博特场景卡片“火车站旁边”里预留的链接接上了）。",
     "doors": [],
     "cards": [
-      "paris-street-rainy-day"
+      "paris-street-rainy-day",
+      "moulin-galette"
     ],
     "end": [
       "paris-street-rainy-day"
@@ -481,14 +482,24 @@
         "zh": "在进入奥赛之前，这幅画曾经属于卡耶博特。",
         "en": "Before it came to the Musée d'Orsay, this painting belonged to Caillebotte."
       },
-      "link": {
-        "scene": "paris-street-rainy-day",
-        "href": "../paris-street-rainy-day/",
-        "label": {
-          "zh": "卡耶博特《巴黎街道，雨天》",
-          "en": "Caillebotte's *Paris Street; Rainy Day*"
+      "links": [
+        {
+          "scene": "paris-street-rainy-day",
+          "href": "../paris-street-rainy-day/",
+          "label": {
+            "zh": "卡耶博特《巴黎街道，雨天》",
+            "en": "Caillebotte's *Paris Street; Rainy Day*"
+          }
+        },
+        {
+          "scene": "moulin-galette",
+          "href": "../moulin-galette/?card=caillebotte",
+          "label": {
+            "zh": "《煎饼磨坊的舞会》也曾属于他",
+            "en": "*Dance at Le Moulin de la Galette* was his too"
+          }
         }
-      }
+      ]
     }
   },
   "exclusive": {
