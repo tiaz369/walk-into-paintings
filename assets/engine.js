@@ -209,6 +209,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive.note ? `<p>${bi(S.exclusive.note, ' / ')}</p>` : ''}
     ${S.exclusive.credit ? `<p><small>${bi(S.exclusive.credit, ' / ')}</small></p>` : ''}
   </div>` : ''}
+  ${S.exclusive && ['wallFade', 'fadeObject', 'wind', 'dawn'].includes(S.exclusive.type) && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'grayscale' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'colorPicker' ? (X => `<div class="popup panel" id="picker">
     <button class="close" data-close="picker" aria-label="Close">×</button>
@@ -1082,6 +1083,7 @@ function run(S, R, meta) {
     document.querySelectorAll('#wallSwitch button').forEach(x => x.classList.toggle('on', x === b));
     const o = S.exclusive.options[+b.dataset.opt];
     if (fadeObj) fadeTarget = o.fade || 0; else { wallTarget.set(o.color); violetTarget = o.tint || 0; }
+    if ($('revealNote')) $('revealNote').classList.toggle('show', +b.dataset.opt !== 0);   // 切到示意的那一个（不是第一个）时：“这是示意”
   });
 
   // ---------- 小提示条（几秒后自动消失） ----------
@@ -1389,6 +1391,7 @@ function run(S, R, meta) {
   let windOn = false, windK = 0;
   if (windObj) $('windBtn').onclick = () => {
     windOn = !windOn; $('windBtn').classList.toggle('on', windOn);
+    if ($('revealNote')) $('revealNote').classList.toggle('show', windOn);   // “这是示意”
     if (windOn && windObj.card) showCard(windObj.card);
   };
   // 独家发现“画布下的秘密”（reveal）：打开后，后来被画家盖掉的东西以半透明轮廓出现（自己画的示意图）
@@ -1678,6 +1681,7 @@ function run(S, R, meta) {
       for (const h of halos) h.material.opacity = 0.55 * (1 - 0.85 * dawn);
       for (const m of dawnGlass) m.material.color.copy(nightGlass).lerp(dawnGlassC, dawn);
       if (dawn >= 1 && !dawnShown) { dawnShown = true; showToast(dawnObj.message); }
+      if (dawn > 0.02 && $('revealNote') && !$('revealNote').classList.contains('show')) $('revealNote').classList.add('show');   // 开始变亮时：“这是示意”
     }
     if (RM.walkEye) {   // 画家视角的眼睛比一般人高（比如站在高处）：离开视角点后，慢慢降到走路的高度
       const t = Math.min(1, Math.hypot(player.x - VIEW.x, player.z - VIEW.z) / 2);

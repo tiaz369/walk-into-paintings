@@ -42,10 +42,6 @@
       "zh": "阿尔勒的一年",
       "en": "A year in Arles"
     },
-    "place:saint-remy": {
-      "zh": "圣雷米的花园",
-      "en": "The garden at Saint-Rémy"
-    },
     "place:delft": {
       "zh": "代尔夫特的光",
       "en": "The light of Delft"
@@ -53,6 +49,10 @@
     "place:nuenen": {
       "zh": "纽南的农舍",
       "en": "A cottage in Nuenen"
+    },
+    "place:saint-remy": {
+      "zh": "圣雷米的一年",
+      "en": "A year in Saint-Rémy"
     }
   },
   "clear": {

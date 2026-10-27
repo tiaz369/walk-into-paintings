@@ -509,7 +509,7 @@
     ]
   },
   "record": {
-    "_说明": "作品档案表：Tia 提供。尺寸先不显示（_dimensions），等 Tia 在华盛顿国家美术馆官网核对后提供；作品页等 Tia 提供。",
+    "_说明": "作品档案表：Tia 提供。作品页由 Tia 提供；尺寸先不显示（_dimensions），等 Tia 核对。",
     "artist": {
       "zh": "克劳德·莫奈（1840–1926）",
       "en": "Claude Monet (1840–1926)"
@@ -530,7 +530,8 @@
     "collection": {
       "zh": "华盛顿国家美术馆",
       "en": "National Gallery of Art, Washington"
-    }
+    },
+    "url": "https://www.nga.gov/collection/art-object-page.61379.html"
   },
   "zoom": {
     "image": "images/woman-parasol.jpg"
@@ -613,8 +614,8 @@
       "zh": "华盛顿国家美术馆开放资源，公有领域",
       "en": "National Gallery of Art Open Access, public domain"
     },
-    "url": "",
+    "url": "待补",
     "license": "公有领域 / public domain"
   },
-  "lastVerified": "2026-10-26"
+  "lastVerified": "2026-10-27"
 }
