@@ -938,3 +938,13 @@ body.lang-both .door-name > .en { display: block; font-size: .66em; color: var(-
 .series-ends { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
 .series-cap { margin: 8px 0 4px; font-size: 13px; line-height: 1.5; }
 .series-note { margin: 0; font-size: 12px; color: var(--muted); }
+.series-cap .series-tag { display: block; font-family: var(--serif); font-size: 18px; color: var(--ink); margin-bottom: 2px; }
+
+/* 独家发现“像1891年那样挂一排”（engine.js 的 gallery）：走到哪一幅前，就在屏幕上放大那一幅 */
+#galleryBtn .g-out, #galleryBtn.on .g-in { display: none; }
+#galleryBtn.on .g-out { display: inline; }
+.gallery-now { position: fixed; left: 50%; top: 14px; transform: translateX(-50%); width: min(420px, calc(100vw - 32px)); z-index: 6; text-align: center; }
+.gallery-now.hidden { display: none; }
+.gallery-now img { width: 100%; height: auto; display: block; border-radius: 4px; }
+.gallery-now .g-cap { margin: 8px 0 0; font-size: 13px; line-height: 1.5; }
+#galleryNote { position: fixed; left: 50%; bottom: 64px; transform: translateX(-50%); width: min(520px, calc(100vw - 32px)); z-index: 6; }

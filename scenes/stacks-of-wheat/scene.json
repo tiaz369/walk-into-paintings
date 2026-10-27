@@ -1,0 +1,775 @@
+{
+  "_说明": "干草堆（户外开场 + 室内展厅，完整版）。所有事实文字由 Tia 提供（资料来自芝加哥艺术博物馆的研究出版物）。开场站在吉维尼的田野里，眼前是主画《干草堆（夏末）》里的两个草堆；点“走进展厅”，来到旁边的一间展厅（x=100 一带），6幅芝加哥收藏的草堆在一面长墙上排成一排，像1891年的画展那样。原画还没上传：草堆的位置和画家视角是先按画面描述摆的，上传后照原画重新对准。用户外的场景类型（outdoor），因为开场是田野（需要天空和远处）；展厅是田野旁边另一块可以走的地方（room.zones）。",
+  "id": "stacks-of-wheat",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "late-summer",
+    "label": {
+      "zh": "夏末的田野",
+      "en": "A field at the end of summer"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）。和《鲁昂大教堂》互相链接（“莫奈的另一个系列”）；和《圣拉扎尔火车站》互相链接（“系列画，从车站开始”）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "rouen-cathedral",
+      "gare-saint-lazare"
+    ]
+  },
+  "painting": {
+    "image": "images/stacks-end-of-summer.jpg",
+    "width": 2000,
+    "height": 1194,
+    "alt": {
+      "zh": "莫奈《干草堆（夏末）》1890/91，芝加哥艺术博物馆",
+      "en": "Claude Monet, Stacks of Wheat (End of Summer), 1890/91, Art Institute of Chicago"
+    },
+    "_": "宽高是按尺寸比例（60 × 100.5 cm）先填的，原画上传后改成实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "干草堆（夏末）",
+      "en": "Stacks of Wheat (End of Summer)"
+    },
+    "artist": {
+      "zh": "莫奈",
+      "en": "Claude Monet"
+    },
+    "date": {
+      "zh": "1890/91年",
+      "en": "1890/91"
+    },
+    "museum": {
+      "zh": "芝加哥艺术博物馆",
+      "en": "Art Institute of Chicago"
+    },
+    "source": {
+      "zh": "芝加哥艺术博物馆开放资源（CC0），公有领域",
+      "en": "Art Institute of Chicago, CC0 public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下草堆和田野看介绍 · 点“走进展厅”，沿着长墙走，看6幅草堆排成一排 · 地上发光的圆点 = 莫奈的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the stacks and the field to learn more · Tap “Into the gallery” and walk along the wall past six stacks in a row · The glowing circle = Monet's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先按画面描述估算（站在田野里，眼睛约1.6米），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": -0.05,
+    "fov": 40,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "field-gallery",
+  "colors": {
+    "line": "#2a2a30",
+    "field": "#b8a46a",
+    "ground": "#b8a46a",
+    "sky": "#c8d4dc",
+    "stack": "#c89a5a",
+    "trees": "#5a6a4a",
+    "house": "#c8b8a0",
+    "hills": "#8a9aa8",
+    "galleryFloor": "#8a6a4a",
+    "galleryWall": "#e8e2d6",
+    "galleryCeil": "#f2eee6",
+    "bench": "#5a4636",
+    "frame": "#8a6a3a",
+    "leaves": "#5a6a4a"
+  },
+  "room": {
+    "_说明": "户外：ground 是田野，bounds 是田野里可以走动的范围；zones 是另外可以走的地方（展厅），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -80,
+      140,
+      -140,
+      30
+    ],
+    "bounds": [
+      -6,
+      8,
+      -9,
+      4
+    ],
+    "zones": [
+      [
+        90.2,
+        109.8,
+        -3.8,
+        3.8
+      ]
+    ],
+    "groundCard": "giverny",
+    "skyCard": "seasons",
+    "skyRadius": 150,
+    "walkSpeed": 0.8
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "giverny",
+      "_": "吉维尼的田野（原画投影上去）",
+      "pts": [
+        [
+          -60,
+          0.01,
+          10
+        ],
+        [
+          -60,
+          0.01,
+          -120
+        ],
+        [
+          60,
+          0.01,
+          -120
+        ],
+        [
+          60,
+          0.01,
+          10
+        ]
+      ],
+      "color": "field"
+    },
+    {
+      "type": "tree",
+      "shape": "bush",
+      "card": "giverny",
+      "_": "左边的草堆（大的那个）",
+      "x": -1.6,
+      "z": -12,
+      "h": 4.2,
+      "r": 2.4,
+      "color": "stack"
+    },
+    {
+      "type": "tree",
+      "shape": "bush",
+      "card": "seasons",
+      "_": "右边的草堆",
+      "x": 3.6,
+      "z": -17,
+      "h": 3.4,
+      "r": 2.0,
+      "color": "stack"
+    },
+    {
+      "type": "boxes",
+      "card": "count",
+      "x": 0,
+      "z": -60,
+      "_": "远处的树林、房子和山丘",
+      "boxes": [
+        [
+          90,
+          6,
+          2,
+          "trees",
+          0,
+          3,
+          0
+        ],
+        [
+          8,
+          5,
+          4,
+          "house",
+          -14,
+          2.5,
+          2
+        ],
+        [
+          6,
+          4,
+          4,
+          "house",
+          12,
+          2,
+          2
+        ],
+        [
+          120,
+          14,
+          2,
+          "hills",
+          0,
+          7,
+          -10
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "row",
+      "x": 100,
+      "z": 0,
+      "_": "展厅：地板、长墙、对面的墙、两头的墙和天花板",
+      "boxes": [
+        [
+          20,
+          0.1,
+          8,
+          "galleryFloor",
+          0,
+          0,
+          0
+        ],
+        [
+          20,
+          4,
+          0.2,
+          "galleryWall",
+          0,
+          2,
+          -4.1
+        ],
+        [
+          20,
+          4,
+          0.2,
+          "galleryWall",
+          0,
+          2,
+          4.1
+        ],
+        [
+          0.2,
+          4,
+          8,
+          "galleryWall",
+          -10.1,
+          2,
+          0
+        ],
+        [
+          0.2,
+          4,
+          8,
+          "galleryWall",
+          10.1,
+          2,
+          0
+        ],
+        [
+          20,
+          0.1,
+          8,
+          "galleryCeil",
+          0,
+          4,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "sold",
+      "x": 100,
+      "z": 3.5,
+      "_": "展厅中间的长凳",
+      "boxes": [
+        [
+          3,
+          0.45,
+          0.6,
+          "bench",
+          0,
+          0.22,
+          -3.2
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "giverny": {
+      "title": {
+        "zh": "吉维尼的草堆",
+        "en": "The stacks at Giverny"
+      },
+      "text": {
+        "zh": "法文原名是“吉维尼的草堆”。这些草堆就在莫奈家附近的田野里。",
+        "en": "The original French title means \"The Stacks at Giverny\". They stood in the fields near Monet's home."
+      }
+    },
+    "count": {
+      "title": {
+        "zh": "大约25幅",
+        "en": "About 25 canvases"
+      },
+      "text": {
+        "zh": "从1890年夏末秋初到1891年2月，莫奈大约画了25幅草堆。",
+        "en": "Between late summer or early autumn 1890 and February 1891, Monet painted about 25 canvases of the stacks."
+      }
+    },
+    "seasons": {
+      "title": {
+        "zh": "季节和天气",
+        "en": "Seasons and weather"
+      },
+      "text": {
+        "zh": "同样的草堆，他画了夏末、秋天的日暮、雪天、阴天、融雪和日落。",
+        "en": "He painted the same stacks at the end of summer, at the end of an autumn day, in snow, on overcast days, in a thaw and at sunset."
+      }
+    },
+    "studio": {
+      "title": {
+        "zh": "户外和画室",
+        "en": "Outdoors and in the studio"
+      },
+      "text": {
+        "zh": "他先在户外画，后来又回到画室修改，让整个系列在对比中保持和谐。",
+        "en": "He began painting outdoors, then revised the canvases in his studio, to strengthen contrasts and keep the series in harmony."
+      }
+    },
+    "row": {
+      "title": {
+        "zh": "排成一排",
+        "en": "Hung in a row"
+      },
+      "text": {
+        "zh": "1891年5月，画商杜兰-鲁埃把其中15幅排成一排展出。观众讨论最多的，就是这种挂法。",
+        "en": "In May 1891, his dealer Durand-Ruel showed 15 of them hung in a row. It was the installation that people talked about most."
+      }
+    },
+    "sold": {
+      "title": {
+        "zh": "一个月内卖光",
+        "en": "Sold within a month"
+      },
+      "text": {
+        "zh": "展出后，大部分作品在一个月内就卖掉了。芝加哥收藏家帕尔默夫妇买下了其中6幅。",
+        "en": "After the exhibition, most of the paintings sold within a month. The Chicago collectors Potter and Bertha Palmer bought six."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“像1891年那样挂一排”：点“走进展厅”，来到田野旁边的展厅，6幅芝加哥收藏的草堆在长墙上排成一排（真实的原画，芝加哥艺术博物馆 CC0）；走到哪一幅前，屏幕上放大那一幅并显示画名；6幅都看过后显示 note。不是示意效果。wallZ 是长墙的位置；每幅画的 x、y 是在墙上的中心，w、h 是大小（米，h 按原画比例，上传后按实际像素改）。",
+    "type": "gallery",
+    "label": {
+      "zh": "走进展厅",
+      "en": "Into the gallery"
+    },
+    "backLabel": {
+      "zh": "回到田野",
+      "en": "Back to the field"
+    },
+    "spawn": {
+      "x": 91.9,
+      "z": -0.4,
+      "yaw": 0
+    },
+    "wallZ": -4.0,
+    "note": {
+      "zh": "1891年，莫奈的15幅草堆也是这样排成一排展出的。这里的每一幅，都是他真实画下的原画。",
+      "en": "In 1891, fifteen of Monet's stacks were shown like this, side by side. Every painting here is an original."
+    },
+    "paintings": [
+      {
+        "image": "images/stacks-end-of-summer.jpg",
+        "title": {
+          "zh": "干草堆（夏末）",
+          "en": "Stacks of Wheat (End of Summer)"
+        },
+        "date": {
+          "zh": "1890/91年",
+          "en": "1890/91"
+        },
+        "museum": {
+          "zh": "芝加哥艺术博物馆",
+          "en": "Art Institute of Chicago"
+        },
+        "x": 91.9,
+        "y": 1.55,
+        "w": 1.5,
+        "h": 0.896
+      },
+      {
+        "image": "images/stacks-end-of-day-autumn.jpg",
+        "title": {
+          "zh": "干草堆（日暮，秋天）",
+          "en": "Stacks of Wheat (End of Day, Autumn)"
+        },
+        "date": {
+          "zh": "1890/91年",
+          "en": "1890/91"
+        },
+        "museum": {
+          "zh": "芝加哥艺术博物馆",
+          "en": "Art Institute of Chicago"
+        },
+        "x": 95.14,
+        "y": 1.55,
+        "w": 1.5,
+        "h": 0.977
+      },
+      {
+        "image": "images/stack-snow-overcast.jpg",
+        "title": {
+          "zh": "干草堆（雪景，阴天）",
+          "en": "Stack of Wheat (Snow Effect, Overcast Day)"
+        },
+        "date": {
+          "zh": "1890/91年",
+          "en": "1890/91"
+        },
+        "museum": {
+          "zh": "芝加哥艺术博物馆",
+          "en": "Art Institute of Chicago"
+        },
+        "x": 98.38,
+        "y": 1.55,
+        "w": 1.5,
+        "h": 1.02
+      },
+      {
+        "image": "images/stacks-sunset-snow.jpg",
+        "title": {
+          "zh": "干草堆（日落，雪景）",
+          "en": "Stacks of Wheat (Sunset, Snow Effect)"
+        },
+        "date": {
+          "zh": "1890/91年",
+          "en": "1890/91"
+        },
+        "museum": {
+          "zh": "芝加哥艺术博物馆",
+          "en": "Art Institute of Chicago"
+        },
+        "x": 101.62,
+        "y": 1.55,
+        "w": 1.5,
+        "h": 0.975
+      },
+      {
+        "image": "images/stack-thaw-sunset.jpg",
+        "title": {
+          "zh": "干草堆（融雪，日落）",
+          "en": "Stack of Wheat (Thaw, Sunset)"
+        },
+        "date": {
+          "zh": "1890/91年",
+          "en": "1890/91"
+        },
+        "museum": {
+          "zh": "芝加哥艺术博物馆",
+          "en": "Art Institute of Chicago"
+        },
+        "x": 104.86,
+        "y": 1.55,
+        "w": 1.5,
+        "h": 1.05
+      },
+      {
+        "image": "images/stack-of-wheat.jpg",
+        "title": {
+          "zh": "干草堆",
+          "en": "Stack of Wheat"
+        },
+        "date": {
+          "zh": "1890/91年",
+          "en": "1890/91"
+        },
+        "museum": {
+          "zh": "芝加哥艺术博物馆",
+          "en": "Art Institute of Chicago"
+        },
+        "x": 108.1,
+        "y": 1.55,
+        "w": 1.5,
+        "h": 1.05
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/stacks-end-of-summer.jpg",
+        "alt": {
+          "zh": "莫奈《干草堆（夏末）》1890/91，芝加哥艺术博物馆",
+          "en": "Claude Monet, Stacks of Wheat (End of Summer), 1890/91, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1890/91年 · 芝加哥艺术博物馆",
+          "en": "1890/91 · Art Institute of Chicago"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 家门口的田野",
+          "en": "The fields by his home"
+        },
+        "text": {
+          "zh": "1890年夏末，莫奈开始画吉维尼家附近田野里的草堆。他想抓住光线、季节和天气在同一个主题上留下的变化。",
+          "en": "At the end of summer 1890, Monet began painting the stacks in the fields near his home in Giverny. He wanted to capture how light, season and weather changed the same subject."
+        }
+      },
+      {
+        "image": "images/stacks-end-of-summer.jpg",
+        "alt": {
+          "zh": "莫奈《干草堆（夏末）》1890/91，芝加哥艺术博物馆",
+          "en": "Claude Monet, Stacks of Wheat (End of Summer), 1890/91, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1890/91年 · 芝加哥艺术博物馆",
+          "en": "1890/91 · Art Institute of Chicago"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 一个冬天",
+          "en": "One winter"
+        },
+        "text": {
+          "zh": "从秋天到第二年2月，他画了大约25幅：日暮、雪天、融雪、日落。他先在户外画，再回到画室修改。",
+          "en": "From autumn into the following February, he painted about 25 canvases: end of day, snow, thaw, sunset. He began outdoors, then reworked them in his studio."
+        }
+      },
+      {
+        "image": "images/stacks-end-of-summer.jpg",
+        "alt": {
+          "zh": "莫奈《干草堆（夏末）》1890/91，芝加哥艺术博物馆",
+          "en": "Claude Monet, Stacks of Wheat (End of Summer), 1890/91, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1890/91年 · 芝加哥艺术博物馆",
+          "en": "1890/91 · Art Institute of Chicago"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 排成一排",
+          "en": "Side by side"
+        },
+        "text": {
+          "zh": "1891年5月，其中15幅在巴黎排成一排展出，这改变了莫奈展示作品的方式。今天，芝加哥艺术博物馆收藏了其中6幅，也把它们挂在一起。",
+          "en": "In May 1891, fifteen of them were shown side by side in Paris, changing the way Monet presented his work. Today the Art Institute of Chicago owns six and displays them together."
+        }
+      }
+    ],
+    "final": {
+      "zh": "同样的草堆，不同的季节。",
+      "en": "The same stacks, a different season."
+    },
+    "versions": [],
+    "museums": [
+      "art-institute-chicago"
+    ],
+    "exit": [
+      {
+        "scene": "rouen-cathedral",
+        "href": "../rouen-cathedral/",
+        "label": {
+          "zh": "莫奈的另一个系列",
+          "en": "Another of Monet's series"
+        }
+      },
+      {
+        "scene": "gare-saint-lazare",
+        "href": "../gare-saint-lazare/",
+        "label": {
+          "zh": "系列画，从车站开始",
+          "en": "Series painting began at the station"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供；尺寸、编号按芝加哥艺术博物馆作品页（60 × 100.5 cm，1985.1103），等 Tia 核对。",
+    "artist": {
+      "zh": "克劳德·莫奈（1840–1926）",
+      "en": "Claude Monet (1840–1926)"
+    },
+    "title": {
+      "zh": "干草堆（夏末）",
+      "en": "Stacks of Wheat (End of Summer)"
+    },
+    "date": {
+      "zh": "1890/91年",
+      "en": "1890/91"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "60 × 100.5 cm",
+      "en": "60 × 100.5 cm"
+    },
+    "collection": {
+      "zh": "芝加哥艺术博物馆",
+      "en": "Art Institute of Chicago"
+    },
+    "url": "https://www.artic.edu/artworks/64818/stacks-of-wheat-end-of-summer"
+  },
+  "zoom": {
+    "image": "images/stacks-end-of-summer.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：莫奈的油画和素描，第27–33号：干草堆（1890/91）",
+          "en": "Art Institute of Chicago: Monet Paintings and Drawings, Cats. 27–33, *Stacks of Wheat*, 1890/91"
+        },
+        "url": "https://www.artic.edu/digital-publications/48/monet-paintings-and-drawings-at-the-art-institute-of-chicago-2/398/cats-27-33-stacks-of-wheat-189091"
+      },
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：干草堆（夏末）",
+          "en": "Art Institute of Chicago: *Stacks of Wheat (End of Summer)*"
+        },
+        "url": "https://www.artic.edu/artworks/64818/stacks-of-wheat-end-of-summer"
+      },
+      {
+        "title": {
+          "zh": "维基百科：干草堆（莫奈系列）",
+          "en": "Wikipedia: *Haystacks* (Monet series)"
+        },
+        "url": "https://en.wikipedia.org/wiki/Haystacks_(Monet_series)"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 家门口的田野",
+          "en": "The fields by his home"
+        },
+        "text": {
+          "zh": "1890年夏末，莫奈开始画吉维尼家附近田野里的草堆。他想抓住光线、季节和天气在同一个主题上留下的变化。",
+          "en": "At the end of summer 1890, Monet began painting the stacks in the fields near his home in Giverny. He wanted to capture how light, season and weather changed the same subject."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 一个冬天",
+          "en": "One winter"
+        },
+        "text": {
+          "zh": "从秋天到第二年2月，他画了大约25幅：日暮、雪天、融雪、日落。他先在户外画，再回到画室修改。",
+          "en": "From autumn into the following February, he painted about 25 canvases: end of day, snow, thaw, sunset. He began outdoors, then reworked them in his studio."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 排成一排",
+          "en": "Side by side"
+        },
+        "text": {
+          "zh": "1891年5月，其中15幅在巴黎排成一排展出，这改变了莫奈展示作品的方式。今天，芝加哥艺术博物馆收藏了其中6幅，也把它们挂在一起。",
+          "en": "In May 1891, fifteen of them were shown side by side in Paris, changing the way Monet presented his work. Today the Art Institute of Chicago owns six and displays them together."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：莫奈的油画和素描，第27–33号：干草堆（1890/91）",
+        "en": "Art Institute of Chicago: Monet Paintings and Drawings, Cats. 27–33, *Stacks of Wheat*, 1890/91"
+      },
+      "url": "https://www.artic.edu/digital-publications/48/monet-paintings-and-drawings-at-the-art-institute-of-chicago-2/398/cats-27-33-stacks-of-wheat-189091"
+    },
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：干草堆（夏末）",
+        "en": "Art Institute of Chicago: *Stacks of Wheat (End of Summer)*"
+      },
+      "url": "https://www.artic.edu/artworks/64818/stacks-of-wheat-end-of-summer"
+    },
+    {
+      "title": {
+        "zh": "维基百科：干草堆（莫奈系列）",
+        "en": "Wikipedia: *Haystacks* (Monet series)"
+      },
+      "url": "https://en.wikipedia.org/wiki/Haystacks_(Monet_series)"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "芝加哥艺术博物馆开放资源（CC0），公有领域",
+      "en": "Art Institute of Chicago, CC0 public domain"
+    },
+    "url": "https://www.artic.edu/artworks/64818/stacks-of-wheat-end-of-summer",
+    "license": "CC0",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "stacks-end-of-summer.jpg",
+        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "url": "https://www.artic.edu/artworks/64818/stacks-of-wheat-end-of-summer",
+        "license": "CC0",
+        "status": "符合",
+        "note": "等 Tia 上传；编号 1985.1103",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "stacks-end-of-day-autumn.jpg",
+        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "url": "https://www.artic.edu/artworks/14624/stacks-of-wheat-end-of-day-autumn",
+        "license": "CC0",
+        "status": "符合",
+        "note": "等 Tia 上传；编号 1933.444",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "stack-snow-overcast.jpg",
+        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "url": "https://www.artic.edu/artworks/16560/stack-of-wheat-snow-effect-overcast-day",
+        "license": "CC0",
+        "status": "符合",
+        "note": "等 Tia 上传",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "stacks-sunset-snow.jpg",
+        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "url": "https://www.artic.edu/artworks/81545/stacks-of-wheat-sunset-snow-effect",
+        "license": "CC0",
+        "status": "符合",
+        "note": "等 Tia 上传",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "stack-thaw-sunset.jpg",
+        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "url": "https://www.artic.edu/artworks/100191/stack-of-wheat-thaw-sunset",
+        "license": "CC0",
+        "status": "符合",
+        "note": "等 Tia 上传；编号 1983.166",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "stack-of-wheat.jpg",
+        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "url": "https://www.artic.edu/artworks/111318/stack-of-wheat",
+        "license": "CC0",
+        "status": "符合",
+        "note": "等 Tia 上传；编号 1983.29",
+        "verified": "2026-10-27"
+      }
+    ]
+  },
+  "lastVerified": "2026-10-27"
+}

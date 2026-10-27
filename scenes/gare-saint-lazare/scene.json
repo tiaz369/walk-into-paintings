@@ -19,7 +19,8 @@
     ],
     "end": [
       "paris-street-rainy-day",
-      "rouen-cathedral"
+      "rouen-cathedral",
+      "stacks-of-wheat"
     ]
   },
   "painting": {
@@ -627,6 +628,14 @@
         "label": {
           "zh": "莫奈的另一个系列",
           "en": "Another of Monet's series"
+        }
+      },
+      {
+        "scene": "stacks-of-wheat",
+        "href": "../stacks-of-wheat/",
+        "label": {
+          "zh": "系列画，从车站开始：干草堆",
+          "en": "Series painting began at the station: *Stacks of Wheat*"
         }
       }
     ]

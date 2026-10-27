@@ -16,7 +16,8 @@
     "cards": [],
     "end": [
       "gare-saint-lazare",
-      "water-lily-pond"
+      "water-lily-pond",
+      "stacks-of-wheat"
     ]
   },
   "painting": {
@@ -58,8 +59,8 @@
     "en": "Step into the painting"
   },
   "hint": {
-    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下立面、街道和窗户看介绍 · 点“一天的光”，拖动滑杆，从早晨到傍晚 · 地上发光的圆点 = 莫奈的视角",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the façade, the street or the window to learn more · Tap “Light through the day” and drag from morning to evening · The glowing circle = Monet's viewpoint"
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下立面、街道和窗户看介绍 · 点“同一面墙，不同的光”，拖动滑杆看六种光 · 地上发光的圆点 = 莫奈的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the façade, the street or the window to learn more · Tap “One wall, many lights” and drag through six kinds of light · The glowing circle = Monet's viewpoint"
   },
   "viewpoint": {
     "_说明": "画家视角：先按画面描述估算（站在对面二楼的窗前，眼睛离地约5.5米，稍微往上看），原画上传后对准。",
@@ -406,19 +407,11 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“一天的光”：滑杆从早晨拖到傍晚，投影的原画在系列里几幅真实的原画之间渐变，并显示那一幅的画名、年份和收藏地。用的都是真实的原画，不是示意效果，所以不加“这是示意”。items 是 Claude 先按能找到的公有领域版本排的，等 Tia 确认；画名、年份以收藏方官网为准。start 是这一幅（华盛顿国家美术馆的西立面）在 items 里的位置。",
+    "_说明": "独家发现“同一面墙，不同的光”：拖动滑杆，投影的原画在系列里几幅真实的原画之间渐变，并显示那一幅的画名、年份和收藏地。用的都是真实的原画，不是示意效果，所以不加“这是示意”。items 是 Tia 确认的6幅（2026-10-27），按这个顺序；tag 是每一幅的标签（滑杆两端不标字）；画名、年份以收藏方官网为准。start 是这一幅（华盛顿国家美术馆的西立面）在 items 里的位置。",
     "type": "series",
     "label": {
-      "zh": "一天的光",
-      "en": "Light through the day"
-    },
-    "from": {
-      "zh": "早晨",
-      "en": "Morning"
-    },
-    "to": {
-      "zh": "傍晚",
-      "en": "Evening"
+      "zh": "同一面墙，不同的光",
+      "en": "One wall, many lights"
     },
     "start": 2,
     "note": {
@@ -441,7 +434,11 @@
           "en": "Musée d'Orsay, Paris"
         },
         "license": "Wikimedia Commons，PD-Art",
-        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-et-la-tour-saint-romain-effet-du-matin-1289"
+        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-et-la-tour-saint-romain-effet-du-matin-1289",
+        "tag": {
+          "zh": "晨雾",
+          "en": "Morning mist"
+        }
       },
       {
         "image": "images/series-getty-morning.jpg",
@@ -458,7 +455,11 @@
           "en": "J. Paul Getty Museum, Los Angeles"
         },
         "license": "盖蒂开放内容，CC0",
-        "url": "https://www.getty.edu/art/collection/object/108HGY"
+        "url": "https://www.getty.edu/art/collection/object/108HGY",
+        "tag": {
+          "zh": "晨光",
+          "en": "Morning light"
+        }
       },
       {
         "image": "images/rouen-west-facade.jpg",
@@ -475,7 +476,11 @@
           "en": "National Gallery of Art, Washington"
         },
         "license": "华盛顿国家美术馆开放资源，CC0",
-        "url": "https://www.nga.gov/collection/art-object-page.46524.html"
+        "url": "https://www.nga.gov/collection/art-object-page.46524.html",
+        "tag": {
+          "zh": "正午",
+          "en": "Midday"
+        }
       },
       {
         "image": "images/series-nga-sunlight.jpg",
@@ -492,7 +497,11 @@
           "en": "National Gallery of Art, Washington"
         },
         "license": "华盛顿国家美术馆开放资源，CC0",
-        "url": "https://www.nga.gov/artworks/46654-rouen-cathedral-west-facade-sunlight"
+        "url": "https://www.nga.gov/artworks/46654-rouen-cathedral-west-facade-sunlight",
+        "tag": {
+          "zh": "阳光",
+          "en": "Sunlight"
+        }
       },
       {
         "image": "images/series-met-sunlight.jpg",
@@ -509,7 +518,11 @@
           "en": "The Metropolitan Museum of Art, New York"
         },
         "license": "大都会开放资源，CC0",
-        "url": "https://www.metmuseum.org/art/collection/search/437124"
+        "url": "https://www.metmuseum.org/art/collection/search/437124",
+        "tag": {
+          "zh": "阳光",
+          "en": "Sunlight"
+        }
       },
       {
         "image": "images/series-orsay-temps-gris.jpg",
@@ -526,7 +539,11 @@
           "en": "Musée d'Orsay, Paris"
         },
         "license": "Wikimedia Commons，PD-Art",
-        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-temps-gris-1288"
+        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-temps-gris-1288",
+        "tag": {
+          "zh": "阴天",
+          "en": "Grey day"
+        }
       }
     ]
   },
@@ -621,6 +638,14 @@
         "label": {
           "zh": "同样的执着，不同的主题",
           "en": "The same obsession, a different subject"
+        }
+      },
+      {
+        "scene": "stacks-of-wheat",
+        "href": "../stacks-of-wheat/",
+        "label": {
+          "zh": "莫奈的另一个系列：干草堆",
+          "en": "Another of Monet's series: *Stacks of Wheat*"
         }
       }
     ]
