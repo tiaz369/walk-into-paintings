@@ -139,7 +139,7 @@ def head(path, title, desc, image, image_alt, up, scene=False):
 </head>
 '''
 # 首页和浏览页的分享预览图：三幅画并排（tools/make_og.py 生成）；场景页用自己的原画
-OG_HOME = 'assets/og-share-3.jpg'   # tools/make_og.py 生成
+OG_HOME = 'assets/og-share-4.jpg'   # tools/make_og.py 生成
 OG_SIZE = '\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="630" />'
 OG_HOME_ALT = "梵高《阿尔勒的卧室》、维米尔《戴珍珠耳环的少女》、梵高《向日葵》 · Vincent van Gogh, The Bedroom; Johannes Vermeer, Girl with a Pearl Earring; Vincent van Gogh, Sunflowers"
 def page(path, title, desc, static, script, image=OG_HOME, image_alt=OG_HOME_ALT, scene=False, up=None, noindex=False):

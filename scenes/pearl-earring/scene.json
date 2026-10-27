@@ -22,8 +22,8 @@
   "ambience": "quiet",
   "painting": {
     "image": "images/pearl-earring.jpg",
-    "width": 2112,
-    "height": 2500,
+    "width": 1280,
+    "height": 1516,
     "alt": {
       "zh": "维米尔《戴珍珠耳环的少女》约1665，海牙莫瑞泰斯皇家美术馆",
       "en": "Johannes Vermeer, Girl with a Pearl Earring, c. 1665, Mauritshuis, The Hague"
@@ -48,8 +48,8 @@
       "en": "Mauritshuis, The Hague"
     },
     "source": {
-      "zh": "莫瑞泰斯皇家美术馆，公有领域",
-      "en": "Mauritshuis, The Hague, public domain"
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
     }
   },
   "enter": {
@@ -653,20 +653,19 @@
   "imageSource": {
     "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
     "text": {
-      "zh": "莫瑞泰斯皇家美术馆，公有领域",
-      "en": "Mauritshuis, The Hague, public domain"
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
     },
-    "url": "待补",
-    "license": "公有领域 / public domain",
+    "url": "https://commons.wikimedia.org/wiki/File:1665_Girl_with_a_Pearl_Earring.jpg",
+    "license": "公有领域（PD-Art） / public domain",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
     "files": [
       {
         "file": "pearl-earring.jpg",
-        "from": "莫瑞泰斯官网（Tia 下载，原文件名 0670_repro_2.jpg）",
-        "url": "待补",
-        "license": "公有领域（官网要求注明 Mauritshuis, The Hague）",
-        "status": "不符合",
-        "note": "莫瑞泰斯官网的图（禁止第 1 条）；分享图也用到这张",
+        "from": "Wikimedia Commons（Tia 从维基百科下载，2026-10-27 换掉官网的图）",
+        "url": "https://commons.wikimedia.org/wiki/File:1665_Girl_with_a_Pearl_Earring.jpg",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
         "verified": "2026-10-27"
       }
     ]

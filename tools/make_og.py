@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # =====================================================================
-# 走进名画 · 生成首页和浏览页的分享预览图 assets/og-share-3.jpg（1200×630）
+# 走进名画 · 生成首页和浏览页的分享预览图 assets/og-share-4.jpg（1200×630）
 #
 # 用法：python3 tools/make_og.py
 # 三幅画并排、完整显示不裁切：梵高《阿尔勒的卧室》、维米尔《戴珍珠耳环的少女》、梵高《向日葵》；
@@ -12,7 +12,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PICS = ['scenes/bedroom/images/v1888.jpg', 'scenes/pearl-earring/images/pearl-earring.jpg', 'scenes/sunflowers/images/sunflowers.jpg']
-OUT = 'assets/og-share-3.jpg'
+OUT = 'assets/og-share-4.jpg'
 W, H, BG, INK = 1200, 630, (28, 28, 30), (235, 229, 217)   # 网站深色模式的 --paper 和 --ink
 PAD, GAP, TITLE_H = 36, 22, 88
 ZH_FONT = '/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc'

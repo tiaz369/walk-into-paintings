@@ -1,6 +1,6 @@
 # 全站版权检查表
 
-检查日期：2026-10-27。规则见 README 的“版权规则”。🔴 的先不删除，等 Tia 确认替换方案。
+检查日期：2026-10-27（同一天更新：珍珠耳环、吃土豆的人已换成 Commons 版）。规则见 README 的“版权规则”。🔴 的先不删除，等 Tia 确认替换方案。
 
 “待补”= 还没记下原图网页。“待决定”= Wikimedia Commons 上标为公有领域，但图片来自 Google 艺术与文化（Google Art Project），和禁止第 2 条冲突，请 Tia 决定。
 
@@ -51,8 +51,8 @@
 | orangerie-water-lilies | matin-saules.jpg | Wikimedia Commons（Tia 下载）（675 × 114 的小图） | 待补 | 待核对 | 🔴 来源不明 | 没有记下 Commons 文件页，看不出原图来源 |
 | orangerie-water-lilies | water-lilies.jpg | 我们用上面 8 幅拼成的封面 | — | 同上面 8 幅 | 🔴 待决定 | 跟着上面 8 幅 |
 | paris-street-rainy-day | paris-street-rainy-day.jpg | 芝加哥艺术博物馆官网（Tia 下载） | https://www.artic.edu/artworks/20684 | CC0 | ✅ 符合 |  |
-| pearl-earring | pearl-earring.jpg | 莫瑞泰斯官网（Tia 下载，原文件名 0670_repro_2.jpg） | 待补 | 公有领域（官网要求注明 Mauritshuis, The Hague） | 🔴 不符合 | 莫瑞泰斯官网的图（禁止第 1 条）；分享图也用到这张 |
-| potato-eaters | potato-eaters.jpg | 梵高博物馆官网（Tia 下载） | https://www.vangoghmuseum.nl/en/collection/s0005V1962 | 只限非商业使用 | 🔴 不符合 | 梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请 |
+| pearl-earring | pearl-earring.jpg | Wikimedia Commons（Tia 从维基百科下载，2026-10-27 换掉官网的图） | https://commons.wikimedia.org/wiki/File:1665_Girl_with_a_Pearl_Earring.jpg | 公有领域（PD-Art） | ✅ 符合 |  |
+| potato-eaters | potato-eaters.jpg | Wikimedia Commons（Tia 从维基百科下载，2026-10-27 换掉官网的图） | https://commons.wikimedia.org/wiki/File:De_aardappeleters_-_s0005V1962_-_Van_Gogh_Museum.jpg | 公有领域（PD-Art） | ✅ 符合 |  |
 | standing-virginal | standing-virginal.jpg | Wikimedia Commons（Tia 下载） | 待补 | 公有领域（PD-Art） | ✅ 符合 |  |
 | starry-night | starry-night.jpg | Wikimedia Commons（Tia 下载），Google Art Project 版本 | 待补 | 公有领域（PD-Art） | 🔴 待决定 | 文件在 Commons 上标为公有领域，但图片本身来自 Google 艺术与文化（禁止第 2 条） |
 | starry-night | starry-night-no-village.jpg | 我们用 starry-night.jpg 做的示意图 | — | 同 starry-night.jpg | 🔴 待决定 | 跟着 starry-night.jpg |
@@ -78,7 +78,7 @@
 
 | 文件 | 来源 | 原图网址 | 授权 | 结果 | 备注 |
 |---|---|---|---|---|---|
-| assets/og-share-3.jpg | 我们用 bedroom/v1888、pearl-earring、sunflowers 拼成的分享图（tools/make_og.py） | — | 跟着三张原图 | 🔴 不符合 | 向日葵已换成新的 Commons 版（2026-10-27 重新生成）；还有莫瑞泰斯官网的珍珠耳环（不符合）和来源不明的 v1888 |
+| assets/og-share-4.jpg | 我们用 bedroom/v1888、pearl-earring、sunflowers 拼成的分享图（tools/make_og.py） | — | 跟着三张原图 | 🔴 来源不明 | 珍珠耳环和向日葵已换成 Commons 版（2026-10-27 重新生成）；只剩 v1888 来源不明 |
 | assets/hero/bedroom-walk.jpg / .mp4 / .webm | 我们录的卧室 3D 场景画面 | — | 自制（画面跟着 v1888.jpg 和 crops/） | 🔴 来源不明 | 跟着 bedroom/v1888.jpg |
 | assets/artists/monet.jpg | 没有记录（Tia 上传） | 待补 | 待核对 | 🔴 来源不明 | 《日出·印象》；可改用 scenes/impression-sunrise 里的 Commons 图 |
 | assets/artists/degas.jpg | 没有记录（Tia 上传，大都会 1874 版） | 待补 | 待核对 | 🔴 来源不明 | 可改用 scenes/dance-class 里的大都会 CC0 图 |
@@ -107,7 +107,7 @@
 
 ## 合计
 
-- 🔴 不符合：8
-- ✅ 符合：28
-- 🔴 来源不明：27
+- 🔴 不符合：5
+- ✅ 符合：30
+- 🔴 来源不明：28
 - 🔴 待决定：11
