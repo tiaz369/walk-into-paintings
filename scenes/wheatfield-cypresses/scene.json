@@ -23,8 +23,8 @@
   },
   "painting": {
     "image": "images/wheatfield-cypresses.jpg",
-    "width": 800,
-    "height": 636,
+    "width": 1910,
+    "height": 1518,
     "alt": {
       "zh": "梵高《麦田与柏树》1889，伦敦国家美术馆",
       "en": "Vincent van Gogh, A Wheatfield, with Cypresses, 1889, The National Gallery, London"
@@ -1846,14 +1846,32 @@
     }
   ],
   "imageSource": {
-    "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
+    "_说明": "图片来源：原图网址和授权。图片是 Tia 从 Wikimedia Commons / Wikipedia 下载的公有领域版本；原图网址等 Tia 核对后补上。",
     "text": {
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
     "url": "待补",
     "license": "公有领域 / public domain",
-    "_问题": "原画图片的原文件名是 N-3861-00-000045-wpu.jpg，这是伦敦国家美术馆官网的图片编号（官网的图只限非商业使用）。按规则要换成 Wikimedia Commons 的公有领域版本，等 Tia 重新上传。"
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
+    "files": [
+      {
+        "file": "wheatfield-cypresses.jpg",
+        "from": "Wikimedia Commons（Tia 下载）（经维基百科，2026-10-27 换掉国家美术馆官网的图）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "crops/wheat.jpg",
+        "from": "从 wheatfield-cypresses.jpg 裁出",
+        "url": "",
+        "license": "同 wheatfield-cypresses.jpg",
+        "status": "符合",
+        "verified": "2026-10-27"
+      }
+    ]
   },
   "lastVerified": "2026-10-27"
 }

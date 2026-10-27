@@ -975,7 +975,91 @@
       "en": "Wikimedia Commons, public domain"
     },
     "url": "待补",
-    "license": "公有领域 / public domain"
+    "license": "公有领域 / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
+    "files": [
+      {
+        "file": "v1888.jpg",
+        "from": "没有记录（旧版卧室页面时放进来的）",
+        "url": "待补",
+        "license": "待核对",
+        "status": "来源不明",
+        "note": "分享图、首页动画和 crops/ 都用到这张",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "v1889-chicago.jpg",
+        "from": "没有记录（旧版卧室页面时放进来的）",
+        "url": "待补",
+        "license": "待核对",
+        "status": "来源不明",
+        "note": "芝加哥艺术博物馆这幅有 CC0 官方图，可以换成官网下载的",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "v1889-orsay.jpg",
+        "from": "Wikimedia Commons，图片注明 © Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt",
+        "url": "待补",
+        "license": "© RMN-Grand Palais",
+        "status": "不符合",
+        "note": "RMN 的照片（禁止第 1 条）",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "crops/boch.jpg",
+        "from": "从 v1888.jpg 裁出",
+        "url": "",
+        "license": "同 v1888.jpg",
+        "status": "来源不明",
+        "note": "跟着 v1888.jpg",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "crops/landscape.jpg",
+        "from": "从 v1888.jpg 裁出",
+        "url": "",
+        "license": "同 v1888.jpg",
+        "status": "来源不明",
+        "note": "跟着 v1888.jpg",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "crops/milliet.jpg",
+        "from": "从 v1888.jpg 裁出",
+        "url": "",
+        "license": "同 v1888.jpg",
+        "status": "来源不明",
+        "note": "跟着 v1888.jpg",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "crops/mirror.jpg",
+        "from": "从 v1888.jpg 裁出",
+        "url": "",
+        "license": "同 v1888.jpg",
+        "status": "来源不明",
+        "note": "跟着 v1888.jpg",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "crops/printA.jpg",
+        "from": "从 v1888.jpg 裁出",
+        "url": "",
+        "license": "同 v1888.jpg",
+        "status": "来源不明",
+        "note": "跟着 v1888.jpg",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "crops/printB.jpg",
+        "from": "从 v1888.jpg 裁出",
+        "url": "",
+        "license": "同 v1888.jpg",
+        "status": "来源不明",
+        "note": "跟着 v1888.jpg",
+        "verified": "2026-10-27"
+      }
+    ]
   },
   "lastVerified": "2026-10-27"
 }

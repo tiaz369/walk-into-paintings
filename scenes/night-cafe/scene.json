@@ -722,7 +722,19 @@
       "en": "Wikimedia Commons, public domain"
     },
     "url": "待补",
-    "license": "公有领域 / public domain"
+    "license": "公有领域 / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
+    "files": [
+      {
+        "file": "night-cafe.jpg",
+        "from": "Tia 上传，没有记下从哪里下载",
+        "url": "待补",
+        "license": "待核对",
+        "status": "来源不明",
+        "note": "展签写着 Wikimedia Commons，需要确认",
+        "verified": "2026-10-27"
+      }
+    ]
   },
   "lastVerified": "2026-10-27"
 }

@@ -533,7 +533,27 @@
       "en": "Getty Open Content, public domain"
     },
     "url": "待补",
-    "license": "公有领域 / public domain"
+    "license": "公有领域 / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
+    "files": [
+      {
+        "file": "irises.jpg",
+        "from": "盖蒂博物馆开放内容（Tia 下载）",
+        "url": "待补",
+        "license": "公有领域（盖蒂开放内容）",
+        "status": "符合",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "irises-vase.jpg",
+        "from": "梵高博物馆官网（Tia 下载）",
+        "url": "待补",
+        "license": "只限非商业使用",
+        "status": "不符合",
+        "note": "梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请",
+        "verified": "2026-10-27"
+      }
+    ]
   },
   "lastVerified": "2026-10-26"
 }

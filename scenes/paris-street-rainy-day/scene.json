@@ -934,7 +934,18 @@
     },
     "url": "https://www.artic.edu/artworks/20684",
     "license": "CC0",
-    "_来源": "芝加哥艺术博物馆官网（CC0），原文件 1964.336 - Paris Street; Rainy Day.jpg"
+    "_来源": "芝加哥艺术博物馆官网（CC0），原文件 1964.336 - Paris Street; Rainy Day.jpg",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
+    "files": [
+      {
+        "file": "paris-street-rainy-day.jpg",
+        "from": "芝加哥艺术博物馆官网（Tia 下载）",
+        "url": "https://www.artic.edu/artworks/20684",
+        "license": "CC0",
+        "status": "符合",
+        "verified": "2026-10-27"
+      }
+    ]
   },
   "lastVerified": "2026-10-26"
 }

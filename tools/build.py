@@ -91,9 +91,8 @@ LONDON = json.load(open(os.path.join(ROOT, 'data/london.json'), encoding='utf-8'
 LONDON_MUSEUMS = [sec['museum'] for sec in LONDON['sections']]
 CITIES = {c: json.load(open(os.path.join(ROOT, f'data/{c}.json'), encoding='utf-8')) for c in ('paris', 'amsterdam')}   # 巴黎、阿姆斯特丹的参观路线（结构和伦敦一样）
 LIFE = {a['id']: json.load(open(f, encoding='utf-8')) for a in R['artists'] if os.path.exists(f := os.path.join(ROOT, 'data/life', a['id'] + '.json'))}   # 画家页的“生平”
-HAS_AUDIO = any(os.path.exists(os.path.join(ROOT, s['path'], 'audio', f)) for s in LIVE for f in ('guide-zh.mp3', 'guide-en.mp3'))   # 有录音了才写“语音导览由 Tia 录制”
-CREDIT = ('<p><span lang="zh-CN">创意、故事与文字：<a href="https://tiaz369.github.io">Tia</a> · 使用 Claude 制作</span><br>'
-          '<span lang="en">Concept, stories and texts by <a href="https://tiaz369.github.io">Tia</a> · Built with Claude</span></p>')
+CREDIT = ('<p><span lang="zh-CN">由 <a href="https://tiaz369.github.io">Tia</a> 创作与策划</span><br>'
+          '<span lang="en">Created and curated by <a href="https://tiaz369.github.io">Tia</a></span></p>')
 NAV = [('', '首页', 'Home'), ('artists/', '画家', 'Artists'), ('themes/', '主题', 'Themes'), ('moods/', '心情', 'Moods'), ('periods/', '时期', 'Periods'),
        ('map/', '地图', 'Map'), ('museums/', '博物馆', 'Museums'), ('timeline/', '时间线', 'Timeline'),
        ('london/', '伦敦', 'London'), ('paris/', '巴黎', 'Paris'), ('amsterdam/', '阿姆斯特丹', 'Amsterdam'), ('about/', '关于', 'About')]
@@ -261,7 +260,10 @@ PAGES.append(page('map/', T('地图', 'Map'), '画在哪里、现在在哪里 ·
 mus = ''.join(f'<h2 id="{m["id"]}">{e(both(m["name"]))}</h2>' + (f'<p><a href="{e(m["url"])}">参观官网 · Visit website</a></p>' if m.get('url') else '') + ul(cap_soon(museum_items(m['id']), lambda x: x[0])) for m in R['museums'] if museum_items(m['id']))   # 没有作品的博物馆不显示
 PAGES.append(page('museums/', T('博物馆', 'Museums'), '按博物馆浏览：去哪里看真迹 · Browse by museum: where to see the real paintings', '      <h1>按博物馆 · By museum</h1>\n      ' + mus, site_script('../', 'museums')))
 PAGES.append(page('about/', T('关于', 'About'), t(ABOUT['intro'][0]) + ' ' + t(ABOUT['intro'][0], 'en'),
-                  '      <h1>关于 · About</h1>\n      ' + ''.join(para(p) for p in ABOUT['intro']) + para(ABOUT['me']) + para(ABOUT['principles']) + (para(ABOUT['audioCredit']) if HAS_AUDIO and ABOUT.get('audioCredit') else '') + (para(ABOUT['analytics']) if ABOUT.get('analytics') else ''), site_script('../', 'about')))
+                  '      <h1>' + e(both(ABOUT['title'])) + '</h1>\n      ' + ''.join(para(p) for p in ABOUT['intro'])
+                  + '<h2>' + e(both(ABOUT['how']['heading'])) + '</h2>' + para(ABOUT['how']['text'])
+                  + '<h2>' + e(both(ABOUT['care']['heading'])) + '</h2>' + ''.join(para(p) for p in ABOUT['care']['items'])
+                  + para(ABOUT['credit']) + (para(ABOUT['analytics']) if ABOUT.get('analytics') else ''), site_script('../', 'about')))
 
 # ---------- 生平（画家页）和时间线 ----------
 def year_of(s):

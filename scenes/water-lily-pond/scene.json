@@ -1618,7 +1618,19 @@
       "en": "Wikimedia Commons, public domain"
     },
     "url": "待补",
-    "license": "公有领域 / public domain"
+    "license": "公有领域 / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
+    "files": [
+      {
+        "file": "water-lily-pond.jpg",
+        "from": "Tia 上传的 IMG_0471.png，没有记下从哪里下载",
+        "url": "待补",
+        "license": "待核对",
+        "status": "来源不明",
+        "note": "要确认不是国家美术馆官网的图",
+        "verified": "2026-10-27"
+      }
+    ]
   },
   "lastVerified": "2026-10-26"
 }

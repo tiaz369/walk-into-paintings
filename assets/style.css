@@ -83,6 +83,16 @@ body.lang-both :is(h1, .card .name, .series .name, .ways .name, .group h3, .grou
 .page-title h1 { font-size: 44px; margin: 0; line-height: 1.15; }
 .soon { color: var(--muted); font-size: 13px; letter-spacing: .04em; }
 .about p { max-width: 680px; }
+.about-hero { text-align: center; padding: 120px 16px 72px; }
+.about-hero h1 { font-size: 48px; line-height: 1.25; margin: 0; font-weight: 400; }
+.about-hero h1 span { display: block; }
+body.lang-both .about-hero h1 .en { font-size: .6em; margin-top: 14px; color: var(--muted); font-style: italic; }
+.about { max-width: 680px; padding-bottom: 72px; }
+.about h2 { margin: 64px 0 16px; font-size: 22px; }
+.about h2 span { display: block; }
+body.lang-both .about h2 .en { font-size: 15px; color: var(--muted); font-family: var(--sans); font-weight: 400; margin-top: 2px; }
+.about .about-credit { margin-top: 64px; }
+@media (max-width: 760px) { .about-hero { padding: 72px 16px 48px; } .about-hero h1 { font-size: 28px; } }
 .about p strong { font-weight: 500; color: var(--ink); }
 body.lang-both p.lead.zh + p.lead.en { margin-top: -20px; }
 body.lang-both .about p.zh:not(.lead) { margin-bottom: 4px; }
@@ -550,7 +560,7 @@ body.looking :is(#introBottom, #sceneHome, #langSwitch), body.looking #introBott
 .tl-soon small { margin-top: 4px; font-size: 10px; color: var(--muted); }
 .vg-tl .tl-pics { gap: 10px; }
 .life h2 { margin-bottom: 40px; }
-.about-note { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.about-note { margin-top: 96px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
 .about-note p { font-size: 13px; color: var(--muted); }
 
 /* 首屏短片、“今天看哪幅” */

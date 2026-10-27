@@ -80,6 +80,16 @@ def check():
         elif amb is not None and amb not in kinds: say(f'ambience {amb!r} 不在 assets/sound.js 的 AMBIENCE 里')
         if not isinstance(S.get('sources'), list): say('缺少 sources（资料来源列表）')
         if not isinstance(S.get('imageSource'), dict): say('缺少 imageSource（图片来源和授权）')
+        else:   # 版权规则：images/ 里每个文件都要在 imageSource.files 里有一条记录
+            files = {f.get('file'): f for f in S['imageSource'].get('files', [])}
+            img = os.path.join(ROOT, 'scenes', sid, 'images')
+            for r, _, fs in os.walk(img):
+                for f in fs:
+                    rel = os.path.relpath(os.path.join(r, f), img)
+                    if f != 'README.md' and rel not in files: say(f'imageSource.files 里没有 {rel} 的来源记录')
+            for f, x in files.items():
+                miss = [k for k in ('from', 'url', 'license', 'status', 'verified') if k not in x]
+                if miss: say(f'imageSource.files 里 {f} 缺少 {"、".join(miss)}')
         if not S.get('lastVerified'): say('缺少 lastVerified（最后核实日期）')
         L = S.get('lighting') or {}
         if not L.get('type') or not L.get('label'): say('缺少 lighting（光线设定：type 和 label）')
