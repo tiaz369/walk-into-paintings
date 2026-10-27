@@ -144,6 +144,7 @@ function buildDOM(S, R, meta) {
     ${TW ? `<button class="btn" id="twinBtn">✦ ${ui(TW.label.zh, TW.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'wind' ? `<button class="btn" id="windBtn">🌬 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.map((t, i) => `<button class="btn" data-toggle="${i}">✦ ${ui(t.label.zh, t.label.en)}</button>`).join('') : ''}
+    ${S.exclusive && S.exclusive.type === 'names' ? `<button class="btn" id="namesBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'light' ? `<button class="btn" id="lightBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'mirror' ? `<button class="btn" id="mirrorBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'loupe' ? `<button class="btn" id="loupeBtn">🔍 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
@@ -227,6 +228,7 @@ function buildDOM(S, R, meta) {
     <p>${bi(M.text, ' / ')}</p>
   </div>`)(S.exclusive) : ''}
   ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.filter(t => t.note).map(t => `<div class="panel toggle-note hidden" data-toggle-note="${S.exclusive.toggles.indexOf(t)}">${bi(t.note, ' / ')}</div>`).join('') : ''}
+  ${S.exclusive && S.exclusive.type === 'names' ? `<div id="namesNote" class="panel toggle-note hidden">${bi(S.exclusive.note, ' / ')}</div><div id="nameTags" class="name-tags hidden">${S.exclusive.people.map((pp, i) => `<button class="name-tag" data-name="${i}">${ui(pp.name.zh, pp.name.en)}</button>`).join('')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'light' ? `<div id="lightPanel" class="panel hidden">
     <input type="range" id="lightRange" min="0" max="1000" value="${Math.round((S.exclusive.start ?? 0.5) * 1000)}" aria-label="${textOf(S.exclusive.label, lang)}" />
     <div class="light-labels">${S.exclusive.stops.map(st => `<span>${ui(st.label.zh, st.label.en)}</span>`).join('')}</div>
@@ -640,6 +642,7 @@ function run(S, R, meta) {
     figure(o) {
       const g = group(o.x, o.y || 0, o.z, o.rot || 0, o.card), c = col(o.color || 'coat');
       if (o.scale) g.scale.setScalar(o.scale);   // 孩子、远处的人可以小一点
+      if (o.id) named[o.id] = g;
       if (o.pose === 'standing') {
         cyl(0.2, 0.24, 1.1, c, 0, 0.95, 0, g); cyl(0.09, 0.09, 0.5, col(o.legs || 'trousers'), -0.08, 0.25, 0, g); cyl(0.09, 0.09, 0.5, col(o.legs || 'trousers'), 0.08, 0.25, 0, g);
         const h = new THREE.Mesh(new THREE.SphereGeometry(0.13, 16, 12), paint(col('skin'))); h.position.y = 1.65; g.add(outline(h));
@@ -1485,6 +1488,25 @@ function run(S, R, meta) {
       if (T.on) track('exclusive-' + S.id + '-' + (t.id || i));
     };
   });
+  // 独家发现“桌边的人”（names）：开关打开后，只在 people 里写到的几个人物头上显示名字（target 是物体的 id，y 是名字的高度），点名字打开 card；其余人物不标注
+  const namesObj = S.exclusive && S.exclusive.type === 'names' ? S.exclusive : null;
+  let namesOn = false;
+  if (namesObj) {
+    const btn = $('namesBtn'), note = $('namesNote'), tags = $('nameTags');
+    btn.onclick = () => { namesOn = !namesOn; btn.classList.toggle('on', namesOn); note.classList.toggle('hidden', !namesOn); tags.classList.toggle('hidden', !namesOn); if (namesOn) track('exclusive-' + S.id); };
+    tags.querySelectorAll('.name-tag').forEach(b => b.onclick = () => showCard(namesObj.people[+b.dataset.name].card));
+  }
+  function stepNames() {
+    if (!namesOn) return;
+    const v = new THREE.Vector3();
+    namesObj.people.forEach((pp, i) => {
+      const el = document.querySelector(`.name-tag[data-name="${i}"]`), g = named[pp.target]; if (!g) return;
+      g.getWorldPosition(v); v.y += pp.y ?? 1.9; v.project(camera);
+      const on = v.z < 1 && Math.abs(v.x) < 1.1 && Math.abs(v.y) < 1.1;
+      el.style.display = on ? '' : 'none';
+      if (on) { el.style.left = ((v.x + 1) / 2 * innerWidth) + 'px'; el.style.top = ((1 - v.y) / 2 * innerHeight) + 'px'; }
+    });
+  }
   function stepToggles(dt) {
     for (const T of toggles) {
       const target = T.on ? 1 : 0; if (Math.abs(target - T.now) < 0.001) continue;
@@ -1649,6 +1671,7 @@ function run(S, R, meta) {
     vpRing.material.opacity = pulse; vpDot.material.opacity = pulse * 0.4;
     wallMat.color.lerp(wallTarget, 1 - Math.exp(-dt * 4));
     stepToggles(dt);
+    stepNames();
     stepCeil(dt);
     for (const op of openers) if (walking && op.t < 1) {   // 窗页慢慢往里打开（约 1.8 秒）
       op.delay -= dt; if (op.delay > 0) continue;

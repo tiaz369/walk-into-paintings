@@ -65,18 +65,24 @@ function buildDOM(S, R, meta) {
   // 每一层：同一张原画，按 clip（原画上的 0–1 坐标，多边形）切出来
   const layersHTML = S.layers.map((l, i) => `<div class="layer" data-i="${i}" style="${l.clip ? `clip-path:polygon(${l.clip.map(([x, y]) => `${x * 100}% ${y * 100}%`).join(',')})` : ''}">
       <img src="${P.image}" alt="" draggable="false" /></div>`).join('');
-  const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}" style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
-  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus', isInsc = X.type === 'inscriptions';
+  const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}"${s.state ? ` data-state="${s.state}"` : ''} style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
+  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus', isInsc = X.type === 'inscriptions', isAlt = X.type === 'altarpiece';
   // 细节放大的热点（zooms：眼睛、嘴唇、珍珠……）；只有一个时也可以写成 zoom
   const ZOOMS = zoomsOf(X), ZL = X.zoomLabel || (X.zoom && X.zoom.label) || { zh: '放大看细节', en: 'Zoom in on details' };
   const zspotsHTML = ZOOMS.map((z, i) => `<button class="zspot" data-z="${i}" style="left:${z.x * 100}%;top:${z.y * 100}%">${ui(z.label.zh, z.label.en)}</button>`).join('');
   // 独家发现“帘子回来了”：示意的帘子放在背景（第 0 层）上面、人物各层下面
+  // 独家发现“打开祭坛”（altarpiece）：原画（painting.image）是打开时的整组；closed.image 是合上时的样子（宽度是打开时的一半）。
+  // 合上时，中间一半被两块翼板盖住（翼板正面是合上的样子）；打开时翼板向两边转开，背面露出打开后左右两边的画板。
+  // missing：缺了的那一块（打开时的位置 x、y、w、h，0–1），开关打开后变成半透明
+  const altHTML = isAlt ? `<div class="wing wing-l"><div class="face front" style="background-image:url('${X.closed.image}')"></div><div class="face back" style="background-image:url('${P.image}')"></div></div>
+    <div class="wing wing-r"><div class="face front" style="background-image:url('${X.closed.image}')"></div><div class="face back" style="background-image:url('${P.image}')"></div></div>
+    ${X.missing ? `<div id="missing" class="missing" style="left:${X.missing.x * 100}%;top:${X.missing.y * 100}%;width:${X.missing.w * 100}%;height:${X.missing.h * 100}%"></div>` : ''}` : '';
   const curtainHTML = isCurtain ? `<div id="curtain" class="curtain" style="--curtain:${X.color || '#3c5a3a'};--curtain-on:${X.opacity ?? 0.75}"></div>` : '';
 
   document.body.insertAdjacentHTML('beforeend', `
   <div class="grain"></div>
   ${S.petals ? petalsHTML(S.petals) : ''}
-  <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML.replace('</div>', '</div>' + curtainHTML)}<div id="spots">${spotsHTML}</div><div id="zspots">${zspotsHTML}</div>${isInsc ? inscHTML(X) : ''}</div></div>
+  <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML.replace('</div>', '</div>' + curtainHTML)}${altHTML}<div id="spots">${spotsHTML}</div><div id="zspots">${zspotsHTML}</div>${isInsc ? inscHTML(X) : ''}</div></div>
 
   <div id="intro">
     <img id="introImg" src="${P.image}" ${altAttr(P.alt || '')} />
@@ -103,6 +109,8 @@ function buildDOM(S, R, meta) {
     ${isFlip ? `<button class="btn" id="flipBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isSlider ? `<button class="btn" id="sliderBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isFocus ? `<button class="btn" id="focusBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
+    ${isAlt ? `<button class="btn" id="altBtn">✦ <span class="alt-open-l">${ui(X.label.zh, X.label.en)}</span><span class="alt-close-l">${ui(X.closeLabel.zh, X.closeLabel.en)}</span></button>` : ''}
+    ${isAlt && X.missing ? `<button class="btn" id="missBtn">✦ ${ui(X.missing.label.zh, X.missing.label.en)}</button>` : ''}
     ${isInsc ? `<button class="btn" id="inscBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
   </div>
   ${isFocus ? `<div id="focusPanel" class="panel hidden">
@@ -170,7 +178,7 @@ function buildDOM(S, R, meta) {
       ${recordHTML ? `<div class="section-title">${ui('作品档案', 'Artwork record')}<small class="en-sub">Artwork record</small></div>${recordHTML}` : ''}
       ${artist && artist.bio ? `<section class="artist-bio">
         <div class="section-title">${ui('关于画家', 'About the artist')}</div>
-        <p><span class="zh">${artist.bio.zh}</span><span class="en">${artist.bio.en}</span></p>
+        <p><span class="zh">${artist.bio.zh}${S.bioExtra ? S.bioExtra.zh : ''}</span><span class="en">${artist.bio.en}${S.bioExtra ? ' ' + S.bioExtra.en : ''}</span></p>
         <p><a class="btn" href="${ROOT}artists/?id=${artist.id}">${ui('更多' + artist.name.zh + '的画', 'More by ' + artist.name.en)} →</a></p>
       </section>` : ''}
       <div class="section-title">${ui('去现场看真迹', 'See it in person')}<small class="en-sub">See it in person</small></div>
@@ -412,6 +420,26 @@ function run(S, R) {
     if (on) { if (zoomAt) zoomTo(null); track('exclusive-' + S.id); }
   }
   if ($('flipBtn')) $('flipBtn').onclick = () => setFlip(!flipT);
+  // 打开 / 合上祭坛：翼板转开约 2.4 秒；合上时两边的画板先隐藏（翼板转回来时露出空白）
+  let altOpen = false, altTimer = 0;
+  function setAlt(on) {
+    if (!$('altBtn') || on === altOpen) return;
+    altOpen = on; clearTimeout(altTimer);
+    stage.classList.toggle('alt-open', on); $('altBtn').classList.toggle('on', on);
+    if (on) altTimer = setTimeout(() => stage.classList.remove('alt-shut'), 2400);
+    else { stage.classList.add('alt-shut'); setMiss(false); if (zoomAt) zoomTo(null); }
+    if (on) track('exclusive-' + S.id + '-open');
+  }
+  function setMiss(on) {
+    if (!$('missBtn')) return;
+    stage.classList.toggle('miss-on', on); $('missBtn').classList.toggle('on', on);
+    if (on) { setAlt(true); if (S.exclusive.missing.card) showCard(S.exclusive.missing.card); track('exclusive-' + S.id + '-missing'); }
+  }
+  if ($('altBtn')) {
+    stage.classList.add('alt-shut');
+    $('altBtn').onclick = () => setAlt(!altOpen);
+    if ($('missBtn')) $('missBtn').onclick = () => setMiss(!stage.classList.contains('miss-on'));
+  }
   // 细节放大：点按钮，画上出现热点；点热点放大到那里（有卡片的显示卡片文字）；放大时再点按钮缩回去
   // 放大热点自己的说明：text（自己写的一段话），或 cards（几张卡片的文字放在一起，打开就算发现了这几张）
   function showZoomNote(z) {
@@ -427,6 +455,7 @@ function run(S, R) {
   }
   function zoomTo(z) {
     if (z && flipT) setFlip(false);   // 放大细节时先翻回来
+    if (z && $('altBtn') && !altOpen && z.state !== 'closed') setAlt(true);   // 祭坛：放大里面的细节时先打开
     zoomAt = z; zoomT = z ? 1 : 0;
     if (z && zoomK < 0.01) { zx = z.x; zy = z.y; zs = z.scale || 4; }
     document.body.classList.toggle('zoomed', !!z);

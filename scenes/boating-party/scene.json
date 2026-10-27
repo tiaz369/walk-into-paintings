@@ -1,0 +1,1024 @@
+{
+  "_说明": "游艇上的午宴（户外风景，完整版：餐厅阳台）。所有事实文字由 Tia 提供（资料来自菲利普斯收藏馆官网和 Artnet）。塞纳河边沙图富尔奈斯餐厅的阳台：头顶是红白条纹的遮阳篷，一张长桌上摆着酒瓶、酒杯和葡萄，周围坐着、站着十几个朋友；栏杆外是河、树和远处的船。原画还没上传：现在的人物和画家视角是先按画面描述摆的，上传后照原画重新对准。",
+  "id": "boating-party",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "summer-awning",
+    "label": {
+      "zh": "遮阳篷下的夏日午后",
+      "en": "A summer afternoon under the awning"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《煎饼磨坊的舞会》互相链接（同属“巴黎的闲暇时光”）；卡片“反坐椅子的卡耶博特”链接到卡耶博特的场景。",
+    "doors": [],
+    "cards": [
+      "paris-street-rainy-day"
+    ],
+    "end": [
+      "moulin-galette"
+    ]
+  },
+  "painting": {
+    "image": "images/boating-party.jpg",
+    "width": 1600,
+    "height": 1195,
+    "alt": {
+      "zh": "雷诺阿《游艇上的午宴》1880–1881，华盛顿菲利普斯收藏馆",
+      "en": "Pierre-Auguste Renoir, Luncheon of the Boating Party, 1880–81, The Phillips Collection, Washington, DC"
+    },
+    "_": "宽高是按尺寸比例先填的，原画上传后改成实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "游艇上的午宴",
+      "en": "Luncheon of the Boating Party"
+    },
+    "artist": {
+      "zh": "雷诺阿",
+      "en": "Pierre-Auguste Renoir"
+    },
+    "date": {
+      "zh": "1880–1881年",
+      "en": "1880–81"
+    },
+    "museum": {
+      "zh": "华盛顿菲利普斯收藏馆",
+      "en": "The Phillips Collection, Washington, DC"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下桌边的人、桌上的东西和栏杆看介绍 · 点“桌边的人”，看看他们是谁 · 地上发光的圆点 = 雷诺阿的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the people, the table or the railing to learn more · Tap “Who's at the table” to see who they are · The glowing circle = Renoir's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先按画面描述估算，原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": -0.2,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "river-restaurant",
+  "colors": {
+    "line": "#2a2a30",
+    "deck": "#a08c70",
+    "ground": "#a08c70",
+    "sky": "#cfd8d8",
+    "river": "#7a9aa0",
+    "rail": "#d8d0c0",
+    "awningRed": "#c0504a",
+    "awningWhite": "#eee8dc",
+    "cloth": "#e8e4da",
+    "bottle": "#3a5a3a",
+    "glass": "#d0dcd8",
+    "grapes": "#5a3a5a",
+    "dog": "#7a5a3a",
+    "darkdress": "#2e3446",
+    "whiteshirt": "#e8e6e0",
+    "coat": "#26283a",
+    "trousers": "#2a2a32",
+    "skin": "#e8c8b0",
+    "leaves": "#5a7a4a",
+    "boat": "#e8e0d0",
+    "sail": "#f0ece0",
+    "wood": "#6a5040",
+    "seat": "#8a7a5a",
+    "trunk": "#5b4430",
+    "tableTop": "#e8e4da",
+    "table": "#e8e4da"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（阳台），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -40,
+      40,
+      -60,
+      20
+    ],
+    "bounds": [
+      -2,
+      3.5,
+      -4.5,
+      1.5
+    ],
+    "groundCard": "restaurant",
+    "skyCard": "restaurant",
+    "skyRadius": 60,
+    "walkSpeed": 0.7
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "restaurant",
+      "_": "阳台的木地板",
+      "pts": [
+        [
+          -3,
+          0.01,
+          2
+        ],
+        [
+          -3,
+          0.01,
+          -6
+        ],
+        [
+          5,
+          0.01,
+          -6
+        ],
+        [
+          5,
+          0.01,
+          2
+        ]
+      ],
+      "color": "deck"
+    },
+    {
+      "type": "surface",
+      "card": "restaurant",
+      "_": "栏杆外的塞纳河",
+      "pts": [
+        [
+          -40,
+          -0.6,
+          -5
+        ],
+        [
+          -40,
+          -0.6,
+          -60
+        ],
+        [
+          40,
+          -0.6,
+          -60
+        ],
+        [
+          40,
+          -0.6,
+          -5
+        ]
+      ],
+      "color": "river"
+    },
+    {
+      "type": "boxes",
+      "card": "railing",
+      "x": 0,
+      "z": 0,
+      "_": "阳台栏杆（从左前方斜向后面）",
+      "boxes": [
+        [
+          0.08,
+          1.0,
+          0.08,
+          "rail",
+          -2.6,
+          0.5,
+          -1.2
+        ],
+        [
+          0.08,
+          1.0,
+          0.08,
+          "rail",
+          -2.1,
+          0.5,
+          -1.75
+        ],
+        [
+          0.08,
+          1.0,
+          0.08,
+          "rail",
+          -1.6,
+          0.5,
+          -2.3
+        ],
+        [
+          0.08,
+          1.0,
+          0.08,
+          "rail",
+          -1.1,
+          0.5,
+          -2.85
+        ],
+        [
+          0.08,
+          1.0,
+          0.08,
+          "rail",
+          -0.6000000000000001,
+          0.5,
+          -3.4000000000000004
+        ],
+        [
+          0.08,
+          1.0,
+          0.08,
+          "rail",
+          -0.10000000000000009,
+          0.5,
+          -3.95
+        ],
+        [
+          0.08,
+          1.0,
+          0.08,
+          "rail",
+          0.3999999999999999,
+          0.5,
+          -4.5
+        ],
+        [
+          0.08,
+          1.0,
+          0.08,
+          "rail",
+          0.8999999999999999,
+          0.5,
+          -5.050000000000001
+        ],
+        [
+          0.08,
+          1.0,
+          0.08,
+          "rail",
+          1.4,
+          0.5,
+          -5.6000000000000005
+        ],
+        [
+          0.1,
+          0.06,
+          5.6,
+          "rail",
+          -0.6,
+          1.02,
+          -3.4
+        ]
+      ],
+      "rot": -0.75
+    },
+    {
+      "type": "boxes",
+      "card": "restaurant",
+      "x": 0.6,
+      "z": -2.6,
+      "_": "头顶红白条纹的遮阳篷",
+      "boxes": [
+        [
+          0.5,
+          0.04,
+          4.5,
+          "awningRed",
+          -2.0,
+          2.9,
+          0
+        ],
+        [
+          0.5,
+          0.04,
+          4.5,
+          "awningWhite",
+          -1.5,
+          2.9,
+          0
+        ],
+        [
+          0.5,
+          0.04,
+          4.5,
+          "awningRed",
+          -1.0,
+          2.9,
+          0
+        ],
+        [
+          0.5,
+          0.04,
+          4.5,
+          "awningWhite",
+          -0.5,
+          2.9,
+          0
+        ],
+        [
+          0.5,
+          0.04,
+          4.5,
+          "awningRed",
+          0.0,
+          2.9,
+          0
+        ],
+        [
+          0.5,
+          0.04,
+          4.5,
+          "awningWhite",
+          0.5,
+          2.9,
+          0
+        ],
+        [
+          0.5,
+          0.04,
+          4.5,
+          "awningRed",
+          1.0,
+          2.9,
+          0
+        ],
+        [
+          0.5,
+          0.04,
+          4.5,
+          "awningWhite",
+          1.5,
+          2.9,
+          0
+        ],
+        [
+          0.5,
+          0.04,
+          4.5,
+          "awningRed",
+          2.0,
+          2.9,
+          0
+        ],
+        [
+          0.5,
+          0.04,
+          4.5,
+          "awningWhite",
+          2.5,
+          2.9,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "table",
+      "card": "table",
+      "_": "长桌",
+      "nearLeft": [
+        -0.5,
+        -2.0
+      ],
+      "nearRight": [
+        1.3,
+        -2.0
+      ],
+      "farLeft": [
+        -0.5,
+        -2.85
+      ],
+      "farRight": [
+        1.3,
+        -2.85
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "table",
+      "x": 0.4,
+      "z": -2.4,
+      "_": "桌上的酒瓶、酒杯和葡萄",
+      "boxes": [
+        [
+          0.08,
+          0.3,
+          0.08,
+          "bottle",
+          -0.5,
+          0.89,
+          0.1
+        ],
+        [
+          0.08,
+          0.3,
+          0.08,
+          "bottle",
+          -0.2,
+          0.89,
+          -0.1
+        ],
+        [
+          0.06,
+          0.12,
+          0.06,
+          "glass",
+          0.1,
+          0.8,
+          0.2
+        ],
+        [
+          0.06,
+          0.12,
+          0.06,
+          "glass",
+          0.35,
+          0.8,
+          -0.1
+        ],
+        [
+          0.06,
+          0.12,
+          0.06,
+          "glass",
+          -0.35,
+          0.8,
+          0.25
+        ],
+        [
+          0.18,
+          0.08,
+          0.14,
+          "grapes",
+          0.05,
+          0.78,
+          0.05
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "darkdress",
+      "legs": "darkdress",
+      "x": -0.75,
+      "z": -1.6,
+      "rot": 0,
+      "card": "aline",
+      "_": "左下角逗小狗的艾琳·夏里戈",
+      "id": "aline"
+    },
+    {
+      "type": "boxes",
+      "card": "aline",
+      "x": -0.6,
+      "z": -1.35,
+      "_": "桌上的小狗",
+      "boxes": [
+        [
+          0.22,
+          0.16,
+          0.3,
+          "dog",
+          0,
+          0.86,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "whiteshirt",
+      "legs": "trousers",
+      "x": 1.6,
+      "z": -1.5,
+      "rot": 0,
+      "card": "caillebotte",
+      "_": "右下角反坐在椅子上的卡耶博特",
+      "id": "caillebotte"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "whiteshirt",
+      "legs": "trousers",
+      "x": -1.5,
+      "z": -2.8,
+      "rot": 0,
+      "card": "railing",
+      "_": "靠在栏杆上的小阿方斯·富尔奈斯",
+      "id": "alphonse"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "darkdress",
+      "legs": "darkdress",
+      "x": -1.2,
+      "z": -3.4,
+      "rot": 0,
+      "card": "railing",
+      "_": "靠在栏杆边的女子",
+      "scale": 0.95
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 0.0,
+      "z": -3.1,
+      "rot": 0,
+      "card": "walks",
+      "_": "桌后的人"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "darkdress",
+      "legs": "darkdress",
+      "x": 0.6,
+      "z": -3.2,
+      "rot": 0,
+      "card": "walks",
+      "_": "桌后的女子"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 1.2,
+      "z": -3.0,
+      "rot": 0,
+      "card": "walks",
+      "_": "桌后的男人"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "darkdress",
+      "legs": "darkdress",
+      "x": 1.9,
+      "z": -2.4,
+      "rot": 0,
+      "card": "walks",
+      "_": "右边的女子"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 2.2,
+      "z": -3.0,
+      "rot": 0,
+      "card": "walks",
+      "_": "右边站着的男人"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 1.4,
+      "z": -4.0,
+      "rot": 0,
+      "card": "walks",
+      "_": "后面戴高帽的男人"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "darkdress",
+      "legs": "darkdress",
+      "x": 0.6,
+      "z": -4.3,
+      "rot": 0,
+      "card": "walks",
+      "_": "后面的女子"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 2.4,
+      "z": -4.2,
+      "rot": 0,
+      "card": "walks",
+      "_": "后面站着的男人"
+    },
+    {
+      "type": "tree",
+      "card": "restaurant",
+      "x": -6,
+      "z": -14,
+      "h": 7,
+      "r": 4,
+      "color": "leaves",
+      "sway": 0.015,
+      "_": "河对岸的树"
+    },
+    {
+      "type": "tree",
+      "card": "restaurant",
+      "x": -10,
+      "z": -18,
+      "h": 8,
+      "r": 4.5,
+      "color": "leaves",
+      "sway": 0.015,
+      "_": "河对岸的树"
+    },
+    {
+      "type": "tree",
+      "card": "restaurant",
+      "x": -3,
+      "z": -20,
+      "h": 7,
+      "r": 4,
+      "color": "leaves",
+      "sway": 0.015,
+      "_": "河对岸的树"
+    },
+    {
+      "type": "boxes",
+      "card": "restaurant",
+      "x": -6,
+      "z": -9,
+      "_": "河上的船和帆",
+      "boxes": [
+        [
+          2.2,
+          0.3,
+          0.7,
+          "boat",
+          0,
+          -0.45,
+          0
+        ],
+        [
+          0.05,
+          2.2,
+          0.05,
+          "line",
+          0.2,
+          0.8,
+          0
+        ],
+        [
+          0.04,
+          1.6,
+          0.9,
+          "sail",
+          0.2,
+          0.9,
+          0.3
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "restaurant": {
+      "title": {
+        "zh": "河边的餐厅",
+        "en": "A restaurant on the river"
+      },
+      "text": {
+        "zh": "这是沙图的富尔奈斯餐厅，就在塞纳河边，划船的人可以直接把船划过来吃饭。",
+        "en": "This is the Maison Fournaise in Chatou, right on the Seine, where rowers could paddle up and stop for a meal."
+      }
+    },
+    "aline": {
+      "title": {
+        "zh": "艾琳和小狗",
+        "en": "Aline and her dog"
+      },
+      "text": {
+        "zh": "左下角逗着小狗的女子，是女裁缝艾琳·夏里戈。后来，她嫁给了雷诺阿。",
+        "en": "The woman cooing at her little dog, lower left, is Aline Charigot, a seamstress. She later married Renoir."
+      }
+    },
+    "caillebotte": {
+      "title": {
+        "zh": "反坐椅子的卡耶博特",
+        "en": "Caillebotte, sitting backwards"
+      },
+      "text": {
+        "zh": "右下角反坐在椅子上、望向艾琳的，是画家卡耶博特。他也是一位经验丰富的帆船手。",
+        "en": "Sitting backwards on his chair at the lower right, looking across at Aline, is the painter Caillebotte, also a keen and experienced sailor."
+      },
+      "link": {
+        "scene": "paris-street-rainy-day",
+        "href": "../paris-street-rainy-day/",
+        "label": {
+          "zh": "卡耶博特画的巴黎",
+          "en": "Caillebotte's own Paris"
+        }
+      }
+    },
+    "railing": {
+      "title": {
+        "zh": "靠在栏杆上的人",
+        "en": "Leaning on the railing"
+      },
+      "text": {
+        "zh": "靠在阳台栏杆上的魁梧男子，是餐厅老板的儿子小阿方斯·富尔奈斯。",
+        "en": "The burly man leaning on the balcony railing is Alphonse Fournaise Jr., son of the restaurant's owner."
+      }
+    },
+    "table": {
+      "title": {
+        "zh": "桌上的午餐",
+        "en": "On the table"
+      },
+      "text": {
+        "zh": "桌上还留着酒瓶、酒杯和一串葡萄，午餐已经吃完，大家还不想走。",
+        "en": "Bottles, glasses and a bunch of grapes are still on the table: lunch is over, but no one wants to leave."
+      }
+    },
+    "walks": {
+      "title": {
+        "zh": "各行各业的人",
+        "en": "All walks of life"
+      },
+      "text": {
+        "zh": "在这家餐厅，艺术家、演员、商人、上流社会的女士和工人，都可以坐下来吃饭、聊天。",
+        "en": "Here, artists, actors, businessmen, society ladies and working people could all sit down to eat and talk."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“桌边的人”：开关打开后，只在有可靠来源的三位人物头上显示名字（艾琳·夏里戈、卡耶博特、小阿方斯·富尔奈斯，菲利普斯收藏馆官网），点名字打开对应的卡片；其余人物不标注。",
+    "type": "names",
+    "label": {
+      "zh": "桌边的人",
+      "en": "Who's at the table"
+    },
+    "note": {
+      "zh": "雷诺阿请朋友们来当模特。有些人的身份，至今还不能完全确定。",
+      "en": "Renoir asked his friends to pose. Some of them have still not been identified for certain."
+    },
+    "people": [
+      {
+        "target": "aline",
+        "card": "aline",
+        "name": {
+          "zh": "艾琳·夏里戈",
+          "en": "Aline Charigot"
+        },
+        "y": 1.45
+      },
+      {
+        "target": "caillebotte",
+        "card": "caillebotte",
+        "name": {
+          "zh": "卡耶博特",
+          "en": "Caillebotte"
+        },
+        "y": 1.45
+      },
+      {
+        "target": "alphonse",
+        "card": "railing",
+        "name": {
+          "zh": "小阿方斯·富尔奈斯",
+          "en": "Alphonse Fournaise Jr."
+        },
+        "y": 1.95
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/boating-party.jpg",
+        "alt": {
+          "zh": "雷诺阿《游艇上的午宴》1880–1881，华盛顿菲利普斯收藏馆",
+          "en": "Pierre-Auguste Renoir, Luncheon of the Boating Party, 1880–81, The Phillips Collection, Washington, DC"
+        },
+        "caption": {
+          "zh": "1880–1881年 · 华盛顿菲利普斯收藏馆",
+          "en": "1880–81 · The Phillips Collection, Washington, DC"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 阳台上的夏天",
+          "en": "Summer on the balcony"
+        },
+        "text": {
+          "zh": "1880年夏天，雷诺阿在塞纳河边富尔奈斯餐厅的阳台上，请朋友们来当模特，画下了这场午宴。",
+          "en": "In the summer of 1880, on the balcony of the Maison Fournaise by the Seine, Renoir asked his friends to pose and painted this lunch party."
+        }
+      },
+      {
+        "image": "images/boating-party.jpg",
+        "alt": {
+          "zh": "雷诺阿《游艇上的午宴》1880–1881，华盛顿菲利普斯收藏馆",
+          "en": "Pierre-Auguste Renoir, Luncheon of the Boating Party, 1880–81, The Phillips Collection, Washington, DC"
+        },
+        "caption": {
+          "zh": "1880–1881年 · 华盛顿菲利普斯收藏馆",
+          "en": "1880–81 · The Phillips Collection, Washington, DC"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 最复杂的一幅",
+          "en": "His most complex canvas"
+        },
+        "text": {
+          "zh": "这是雷诺阿画过的最大、也最复杂的画布之一。他把十几位朋友，一个一个画进了同一个下午。",
+          "en": "It is among the largest and most complex canvases Renoir ever painted. He brought more than a dozen friends, one by one, into a single afternoon."
+        }
+      },
+      {
+        "image": "images/boating-party.jpg",
+        "alt": {
+          "zh": "雷诺阿《游艇上的午宴》1880–1881，华盛顿菲利普斯收藏馆",
+          "en": "Pierre-Auguste Renoir, Luncheon of the Boating Party, 1880–81, The Phillips Collection, Washington, DC"
+        },
+        "caption": {
+          "zh": "1880–1881年 · 华盛顿菲利普斯收藏馆",
+          "en": "1880–81 · The Phillips Collection, Washington, DC"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 十二年的等待",
+          "en": "Twelve years of waiting"
+        },
+        "text": {
+          "zh": "美国收藏家邓肯·菲利普斯1911年第一次看到这幅画，就一直想得到它。1923年，他终于买下了它。他写道：“我们将拥有世界上最伟大的画作之一。”",
+          "en": "The American collector Duncan Phillips first saw this painting in 1911 and wanted it ever since. In 1923 he finally bought it, writing that his gallery was \"to be the possessor of one of the greatest paintings in the world\"."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一个夏天的午后，一群朋友。",
+      "en": "A summer afternoon, among friends."
+    },
+    "versions": [],
+    "museums": [
+      "phillips"
+    ],
+    "exit": [
+      {
+        "scene": "moulin-galette",
+        "href": "../moulin-galette/",
+        "label": {
+          "zh": "同属“巴黎的闲暇时光”：《煎饼磨坊的舞会》",
+          "en": "Also in Paris at Leisure: *Dance at Le Moulin de la Galette*"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供；尺寸、编号按菲利普斯收藏馆作品页（130.2 × 175.6 cm，编号 1637）。",
+    "artist": {
+      "zh": "皮埃尔-奥古斯特·雷诺阿（1841–1919）",
+      "en": "Pierre-Auguste Renoir (1841–1919)"
+    },
+    "title": {
+      "zh": "游艇上的午宴",
+      "en": "Luncheon of the Boating Party (Le Déjeuner des canotiers)"
+    },
+    "date": {
+      "zh": "1880–1881年",
+      "en": "1880–81"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "130.2 × 175.6 cm",
+      "en": "130.2 × 175.6 cm"
+    },
+    "collection": {
+      "zh": "华盛顿菲利普斯收藏馆（1923年购入）",
+      "en": "The Phillips Collection, Washington, DC (Acquired 1923)"
+    },
+    "url": "https://www.phillipscollection.org/node/3672"
+  },
+  "zoom": {
+    "image": "images/boating-party.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "菲利普斯收藏馆：游艇上的午宴",
+          "en": "The Phillips Collection: *Luncheon of the Boating Party*"
+        },
+        "url": "https://www.phillipscollection.org/node/3672"
+      },
+      {
+        "title": {
+          "zh": "菲利普斯收藏馆：《游艇上的午宴》回馆（新闻稿，2026年8月）",
+          "en": "The Phillips Collection: return of *Luncheon of the Boating Party* (press release, August 2026)"
+        },
+        "url": "https://www.phillipscollection.org/press/phillips-collection-announces-return-renoirs-luncheon-boating-party"
+      },
+      {
+        "title": {
+          "zh": "Artnet：关于《游艇上的午宴》你可能不知道的三件事",
+          "en": "Artnet: three things you might not know about *Luncheon of the Boating Party*"
+        },
+        "url": "https://news.artnet.com/art-world/renoirs-luncheon-of-the-boating-three-things-you-might-not-know-1900119"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 阳台上的夏天",
+          "en": "Summer on the balcony"
+        },
+        "text": {
+          "zh": "1880年夏天，雷诺阿在塞纳河边富尔奈斯餐厅的阳台上，请朋友们来当模特，画下了这场午宴。",
+          "en": "In the summer of 1880, on the balcony of the Maison Fournaise by the Seine, Renoir asked his friends to pose and painted this lunch party."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 最复杂的一幅",
+          "en": "His most complex canvas"
+        },
+        "text": {
+          "zh": "这是雷诺阿画过的最大、也最复杂的画布之一。他把十几位朋友，一个一个画进了同一个下午。",
+          "en": "It is among the largest and most complex canvases Renoir ever painted. He brought more than a dozen friends, one by one, into a single afternoon."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 十二年的等待",
+          "en": "Twelve years of waiting"
+        },
+        "text": {
+          "zh": "美国收藏家邓肯·菲利普斯1911年第一次看到这幅画，就一直想得到它。1923年，他终于买下了它。他写道：“我们将拥有世界上最伟大的画作之一。”",
+          "en": "The American collector Duncan Phillips first saw this painting in 1911 and wanted it ever since. In 1923 he finally bought it, writing that his gallery was \"to be the possessor of one of the greatest paintings in the world\"."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "菲利普斯收藏馆：游艇上的午宴",
+        "en": "The Phillips Collection: *Luncheon of the Boating Party*"
+      },
+      "url": "https://www.phillipscollection.org/node/3672"
+    },
+    {
+      "title": {
+        "zh": "菲利普斯收藏馆：《游艇上的午宴》回馆（新闻稿，2026年8月）",
+        "en": "The Phillips Collection: return of *Luncheon of the Boating Party* (press release, August 2026)"
+      },
+      "url": "https://www.phillipscollection.org/press/phillips-collection-announces-return-renoirs-luncheon-boating-party"
+    },
+    {
+      "title": {
+        "zh": "Artnet：关于《游艇上的午宴》你可能不知道的三件事",
+        "en": "Artnet: three things you might not know about *Luncheon of the Boating Party*"
+      },
+      "url": "https://news.artnet.com/art-world/renoirs-luncheon-of-the-boating-three-things-you-might-not-know-1900119"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art） / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "boating-party.jpg",
+        "from": "Wikimedia Commons（还没上传）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "note": "等 Tia 上传；不用 Google Art Project 或 Bridgeman 的版本",
+        "verified": "2026-10-27"
+      }
+    ]
+  },
+  "lastVerified": "2026-10-27"
+}

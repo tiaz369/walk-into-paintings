@@ -8,7 +8,7 @@
     { "id": "delft", "cover": "pearl-earring", "name": { "zh": "维米尔的代尔夫特", "en": "Vermeer's Delft" }, "desc": { "zh": "安静的室内和光", "en": "Quiet interiors and light" }, "accent": "delft", "color": { "accent": "#2f5597", "ink": "#ffffff", "_": "代尔夫特蓝" }, "order": ["milkmaid", "woman-reading-letter", "little-street", "view-of-delft", "pearl-earring", "art-of-painting", "love-letter", "lacemaker", "standing-virginal"] },
     { "id": "paris-streets", "cover": "paris-street-rainy-day", "name": { "zh": "巴黎街头", "en": "Paris Streets" }, "desc": { "zh": "雨中的伞与街道", "en": "Umbrellas and streets in the rain" }, "accent": "", "order": ["paris-street-rainy-day", "umbrellas"] },
     { "id": "stage", "cover": "dance-class", "name": { "zh": "舞台与排练", "en": "Stage and Rehearsal" }, "desc": { "zh": "德加的芭蕾世界", "en": "Degas's world of ballet" }, "accent": "", "order": ["dance-class"] },
-    { "id": "paris-leisure", "cover": "moulin-galette", "name": { "zh": "巴黎的闲暇时光", "en": "Paris at Leisure" }, "desc": { "zh": "舞会、午宴，和河边的午后", "en": "Dances, long lunches and afternoons by the river" }, "accent": "", "order": ["moulin-galette"], "_": "之后的《游艇上的午宴》也放进这个系列" }
+    { "id": "paris-leisure", "cover": "moulin-galette", "name": { "zh": "巴黎的闲暇时光", "en": "Paris at Leisure" }, "desc": { "zh": "舞会、午宴，和河边的午后", "en": "Dances, long lunches and afternoons by the river" }, "accent": "", "order": ["moulin-galette", "boating-party"] }
   ],
 
   "artists": [
@@ -42,7 +42,7 @@
     { "id": "moma",             "name": { "zh": "纽约现代艺术博物馆", "en": "The Museum of Modern Art (MoMA), New York" }, "url": "https://www.moma.org", "city": "new-york", "lat": 40.7614, "lon": -73.9776 },
     { "id": "marmottan",        "name": { "zh": "玛摩丹·莫奈美术馆", "en": "Musée Marmottan Monet, Paris" }, "url": "https://www.marmottan.fr", "city": "paris", "lat": 48.8597, "lon": 2.2674 },
     { "id": "nga-washington",   "name": { "zh": "华盛顿国家美术馆", "en": "National Gallery of Art, Washington" }, "url": "https://www.nga.gov", "city": "washington", "lat": 38.8913, "lon": -77.0199 },
-    { "id": "phillips",         "name": { "zh": "菲利普斯收藏馆", "en": "The Phillips Collection, Washington" }, "url": "https://www.phillipscollection.org" },
+    { "id": "phillips",         "name": { "zh": "华盛顿菲利普斯收藏馆", "en": "The Phillips Collection, Washington, DC" }, "url": "https://www.phillipscollection.org", "city": "washington", "lat": 38.9115, "lon": -77.0469 },
     { "id": "orangerie",        "name": { "zh": "橘园美术馆", "en": "Musée de l'Orangerie, Paris" }, "url": "https://www.musee-orangerie.fr" },
     { "id": "khm",              "name": { "zh": "维也纳艺术史博物馆", "en": "Kunsthistorisches Museum, Vienna" }, "url": "https://www.khm.at" },
     { "id": "belvedere",        "name": { "zh": "维也纳美景宫", "en": "Belvedere, Vienna" }, "url": "https://www.belvedere.at" },
@@ -50,7 +50,7 @@
     { "id": "getty",            "name": { "zh": "洛杉矶盖蒂博物馆", "en": "J. Paul Getty Museum, Los Angeles" }, "url": "https://www.getty.edu" },
     { "id": "louvre",           "name": { "zh": "巴黎卢浮宫", "en": "Musée du Louvre, Paris" }, "url": "https://www.louvre.fr" },
     { "id": "mfa-boston",       "name": { "zh": "波士顿美术馆", "en": "Museum of Fine Arts, Boston" }, "url": "https://www.mfa.org" },
-    { "id": "st-bavo",          "name": { "zh": "根特圣巴夫主教座堂", "en": "St Bavo's Cathedral, Ghent" }, "url": "https://www.sintbaafskathedraal.be" },
+    { "id": "st-bavo",          "name": { "zh": "根特圣巴夫主教座堂", "en": "St Bavo's Cathedral, Ghent" }, "url": "https://www.sintbaafskathedraal.be", "city": "ghent", "lat": 51.0529, "lon": 3.727 },
     { "id": "hugh-lane",        "name": { "zh": "都柏林休·莱恩美术馆", "en": "Hugh Lane Gallery, Dublin" }, "url": "https://hughlane.ie", "city": "dublin", "lat": 53.3545, "lon": -6.2647 }
   ],
 
@@ -109,7 +109,8 @@
     { "id": "new-haven",  "name": { "zh": "纽黑文", "en": "New Haven" }, "lat": 41.31, "lon": -72.92, "label": "t" },
     { "id": "new-york",   "name": { "zh": "纽约", "en": "New York" }, "lat": 40.78, "lon": -73.96, "label": "b" },
     { "id": "washington", "name": { "zh": "华盛顿", "en": "Washington" }, "lat": 38.89, "lon": -77.02, "label": "b" },
-    { "id": "dublin", "name": { "zh": "都柏林", "en": "Dublin" }, "lat": 53.35, "lon": -6.26, "label": "l" }
+    { "id": "dublin", "name": { "zh": "都柏林", "en": "Dublin" }, "lat": 53.35, "lon": -6.26, "label": "l" },
+    { "id": "ghent", "name": { "zh": "根特", "en": "Ghent" }, "lat": 51.05, "lon": 3.72, "label": "b" }
   ],
 
   "scenes": [
@@ -242,7 +243,8 @@
     { "id": "two-dancers-stage", "status": "planned", "title": { "zh": "舞台上的两位舞者", "en": "Two Dancers on a Stage" }, "artist": "degas", "year": "1874", "museum": "courtauld", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
     {"id": "combing-hair", "status": "planned", "title": {"zh": "梳头", "en": "Combing the Hair ('La Coiffure')"}, "artist": "degas", "year": {"zh": "约1896", "en": "c. 1896"}, "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": ["london"], "period": null, "artworkUrl": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-combing-the-hair-la-coiffure", "onDisplay": true, "room": "45"},
     { "id": "la-loge", "status": "planned", "title": { "zh": "包厢", "en": "La Loge (The Theatre Box)" }, "artist": "renoir", "year": "1874", "museum": "courtauld", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
-    { "id": "boating-party", "status": "planned", "title": { "zh": "游艇上的午宴", "en": "Luncheon of the Boating Party" }, "artist": "renoir", "year": "1880–81", "museum": "phillips", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "boating-party", "status": "soon", "title": { "zh": "游艇上的午宴", "en": "Luncheon of the Boating Party" }, "artist": "renoir", "year": "1880–81", "museum": "phillips", "collection": "paris-leisure", "version": "full", "place": null, "themes": ["cafes", "water"], "moods": ["lively", "sunlight"], "period": "impressionism", "onDisplay": true, "room": { "zh": "201展厅", "en": "Gallery 201" },
+      "path": "scenes/boating-party/", "cover": "scenes/boating-party/images/boating-party.jpg", "artworkUrl": "https://www.phillipscollection.org/node/3672", "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }, "_": "完整版（户外：塞纳河边富尔奈斯餐厅的阳台）。在展：菲利普斯收藏馆新闻稿（2026-08-06）说8月11日起回到201展厅。原画上传后 status 改成 live 并填 added" },
     { "id": "two-sisters", "status": "planned", "title": { "zh": "两姐妹", "en": "Two Sisters (On the Terrace)" }, "artist": "renoir", "year": "1881", "museum": "art-institute-chicago", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
     { "id": "orangerie-water-lilies", "status": "live", "added": "2026-10-26", "title": { "zh": "睡莲", "en": "Water Lilies" }, "artist": "monet", "year": { "zh": "1914–1926", "en": "1914–26" }, "museum": "orangerie", "collection": null, "version": "full", "place": null, "themes": ["gardens", "water"], "moods": ["quiet", "nature"], "period": "impressionism", "onDisplay": true, "room": { "zh": "睡莲展厅（两个椭圆形展厅）", "en": "Water Lilies Rooms" },
       "path": "scenes/orangerie-water-lilies/", "cover": "scenes/orangerie-water-lilies/images/water-lilies.jpg", "artworkUrl": "https://www.musee-orangerie.fr/en/node/33", "imageSource": { "zh": "Wikimedia Commons（Google Art Project 等），公有领域", "en": "Wikimedia Commons (Google Art Project and others), public domain" }, "_": "完整版（室内：两个椭圆形展厅，360度环绕）。8幅画板的图从 Wikimedia Commons 下载（Google Art Project 扫描图）。年份按橘园官网的单幅作品页写 1914–1926。《柳树下的早晨》暂时用小图" },
@@ -258,6 +260,8 @@
     { "id": "standing-virginal", "status": "live", "added": "2026-10-25", "title": { "zh": "站在维金纳琴前的年轻女子", "en": "A Young Woman standing at a Virginal" }, "artist": "vermeer", "year": { "zh": "约1670–72", "en": "about 1670–2" }, "museum": "national-gallery", "collection": "delft", "version": "full", "place": null, "themes": ["rooms", "windows", "london"], "moods": ["waiting"], "period": "dutch-golden-age", "onDisplay": true, "room": "25",
       "path": "scenes/standing-virginal/", "cover": "scenes/standing-virginal/images/standing-virginal.jpg", "artworkUrl": "https://www.nationalgallery.org.uk/paintings/johannes-vermeer-a-young-woman-standing-at-a-virginal", "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }, "_": "完整版（室内）。图片从 Wikimedia Commons 下载（国家美术馆官网图片只限非商业使用）。展厅 25 Tia 确认过。图片由 Tia 从 Wikimedia Commons 下载。" },
     { "id": "the-circus", "status": "planned", "title": { "zh": "马戏团", "en": "The Circus" }, "artist": "seurat", "year": "1891", "museum": "orsay", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },
+    { "id": "ghent-altarpiece", "status": "soon", "title": { "zh": "根特祭坛画", "en": "The Ghent Altarpiece" }, "artist": "van-eyck", "year": { "zh": "1432年完成", "en": "completed 1432" }, "museum": "st-bavo", "collection": null, "version": "light", "place": null, "themes": [], "moods": ["quiet"], "period": "northern-renaissance", "onDisplay": true,
+      "path": "scenes/ghent-altarpiece/", "cover": "scenes/ghent-altarpiece/images/ghent-open.jpg", "artworkUrl": "https://www.sintbaafskathedraal.be", "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }, "_": "轻量版（静物类，加“打开 / 合上祭坛”）。主题暂不归类（“在教堂里看真迹”以后再建）。room 留空。原画上传后 status 改成 live 并填 added" },
     { "id": "man-red-chaperon", "status": "live", "added": "2026-10-25", "title": { "zh": "戴红头巾的男子（自画像？）", "en": "Portrait of a Man (Self Portrait?)" }, "artist": "van-eyck", "year": { "zh": "1433", "en": "1433" }, "museum": "national-gallery", "collection": null, "version": "light", "place": null, "themes": ["london"], "moods": ["quiet"], "period": "northern-renaissance", "onDisplay": true, "room": "52",
       "path": "scenes/man-red-chaperon/", "cover": "scenes/man-red-chaperon/images/man-red-chaperon.jpg", "artworkUrl": "https://www.nationalgallery.org.uk/paintings/jan-van-eyck-portrait-of-a-man-self-portrait", "imageSource": { "zh": "Wikimedia Commons，公有领域", "en": "Wikimedia Commons, public domain" }, "_": "轻量版（人物肖像）。英文用国家美术馆的正式画名，中文保留“戴红头巾的男子”。52号展厅（Tia 确认），伦敦路线页里和《阿尔诺芬尼夫妇像》在同一组。图片由 Tia 从 Wikimedia Commons 下载（带框版本）。" },
     { "id": "fighting-temeraire", "status": "planned", "title": { "zh": "被拖去解体的战舰无畏号", "en": "The Fighting Temeraire" }, "artist": "turner", "year": "", "museum": "national-gallery", "collection": null, "version": null, "place": null, "themes": [], "period": null, "artworkUrl": "" },

@@ -19,7 +19,8 @@
     ],
     "end": [
       "dance-class",
-      "umbrellas"
+      "umbrellas",
+      "boating-party"
     ]
   },
   "painting": {
@@ -1226,6 +1227,14 @@
         "label": {
           "zh": "雷诺阿的另一幅巴黎",
           "en": "Another of Renoir's Paris"
+        }
+      },
+      {
+        "scene": "boating-party",
+        "href": "../boating-party/",
+        "label": {
+          "zh": "同属“巴黎的闲暇时光”：《游艇上的午宴》",
+          "en": "Also in Paris at Leisure: *Luncheon of the Boating Party*"
         }
       }
     ]
