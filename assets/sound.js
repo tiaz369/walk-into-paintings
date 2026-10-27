@@ -357,6 +357,20 @@ const AMBIENCE = {
     toll(ctx.currentTime + 3); every(st, 40, 70, toll);
     every(st, 10, 22, t => bird(out, t));
   },
+  // 吉维尼的田野（风声、鸟叫）和一间安静的展厅（偶尔的脚步声）：opts.zone() 是 'gallery' 时换成展厅的声音（Fields at Giverny / a quiet gallery）
+  'field-gallery'(out, st, opts) {
+    const field = ctx.createGain(), room = ctx.createGain(); field.connect(out); room.connect(out); room.gain.value = 0;
+    const wind = loopNoise('brown', field, { type: 'bandpass', freq: 500, q: 0.4, gain: 0.08 });
+    st.timers.push(setInterval(() => wind.g.gain.setTargetAtTime(0.04 + 0.08 * Math.random(), ctx.currentTime, 1.5), 2500));
+    every(st, 4, 10, t => bird(field, t));
+    loopNoise('brown', room, { freq: 200, gain: 0.05 });
+    const step = (t, p) => burst(room, t, { kind: 'brown', type: 'bandpass', freq: rnd(450, 700), q: 3, vol: 0.05, dur: 0.06, p });
+    every(st, 12, 25, t => { const p = rnd(-0.8, 0.8); for (let k = 0; k < 6; k++) step(t + k * 0.6, p * (1 - k / 6)); });
+    if (opts.zone) st.timers.push(setInterval(() => {
+      const g = opts.zone() === 'gallery', t = ctx.currentTime;
+      field.gain.setTargetAtTime(g ? 0 : 1, t, 0.6); room.gain.setTargetAtTime(g ? 1 : 0, t, 0.6);
+    }, 300));
+  },
   // 雨中的巴黎路口：小雨声，雨水打在伞上，马车轮子压过湿石板，远处的脚步声（A rainy crossroads）
   'rain-cobbles'(out, st) {
     loopNoise('white', out, { type: 'highpass', freq: 3200, gain: 0.04 });   // 小雨
@@ -492,7 +506,7 @@ const AMBIENCE = {
 const ALIAS = { birds: 'room-birds', wind: 'wind-cicadas' };
 
 // ambBtn / musBtn：两个开关；info：放音乐时显示曲名的地方；wind()：“起风了”现在多强（0–1）
-export function setupSound(S, { ambBtn, musBtn, info, wind = null }) {
+export function setupSound(S, { ambBtn, musBtn, info, wind = null, zone = null }) {
   const name = S.ambience !== undefined ? S.ambience : S.sound;   // 以前叫 sound，也能用
   const kind = ALIAS[name] || name, make = AMBIENCE[kind];
   const M = S.music && S.music.src ? S.music : null;
@@ -509,7 +523,7 @@ export function setupSound(S, { ambBtn, musBtn, info, wind = null }) {
       ctx.resume();
       ambGain = ctx.createGain(); ambGain.gain.value = 0; ambGain.connect(ctx.destination);
       st.on = true; st.timers = [];
-      make(ambGain, st, { wind });
+      make(ambGain, st, { wind, zone });
       ambGain.gain.setTargetAtTime(level(), ctx.currentTime, 0.5);
     } else if (ambGain) {
       st.on = false; st.timers.forEach(clearTimeout); st.timers.forEach(clearInterval); st.timers = [];

@@ -144,6 +144,7 @@ function buildDOM(S, R, meta) {
     ${TW ? `<button class="btn" id="twinBtn">✦ ${ui(TW.label.zh, TW.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'wind' ? `<button class="btn" id="windBtn">🌬 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.map((t, i) => `<button class="btn" data-toggle="${i}">✦ ${ui(t.label.zh, t.label.en)}</button>`).join('') : ''}
+    ${S.exclusive && S.exclusive.type === 'gallery' ? `<button class="btn" id="galleryBtn">✦ <span class="g-in">${ui(S.exclusive.label.zh, S.exclusive.label.en)}</span><span class="g-out">${ui(S.exclusive.backLabel.zh, S.exclusive.backLabel.en)}</span></button>` : ''}
     ${S.exclusive && S.exclusive.type === 'series' ? `<button class="btn" id="seriesBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'names' ? `<button class="btn" id="namesBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'light' ? `<button class="btn" id="lightBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
@@ -229,9 +230,10 @@ function buildDOM(S, R, meta) {
     <p>${bi(M.text, ' / ')}</p>
   </div>`)(S.exclusive) : ''}
   ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.filter(t => t.note).map(t => `<div class="panel toggle-note hidden" data-toggle-note="${S.exclusive.toggles.indexOf(t)}">${bi(t.note, ' / ')}</div>`).join('') : ''}
+  ${S.exclusive && S.exclusive.type === 'gallery' ? `<div id="galleryNow" class="panel gallery-now hidden"><img alt="" /><p class="g-cap"></p></div><div id="galleryNote" class="panel toggle-note hidden">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'series' ? `<div id="seriesPanel" class="panel series-panel hidden">
     <input type="range" id="seriesRange" min="0" max="${(S.exclusive.items.length - 1) * 100}" value="${(S.exclusive.start || 0) * 100}" aria-label="${textOf(S.exclusive.label, lang)}" />
-    <div class="series-ends"><span>${ui(S.exclusive.from.zh, S.exclusive.from.en)}</span><span>${ui(S.exclusive.to.zh, S.exclusive.to.en)}</span></div>
+    ${S.exclusive.from ? `<div class="series-ends"><span>${ui(S.exclusive.from.zh, S.exclusive.from.en)}</span><span>${ui(S.exclusive.to.zh, S.exclusive.to.en)}</span></div>` : ''}
     <p id="seriesCap" class="series-cap"></p>
     <p class="series-note">${bi(S.exclusive.note, ' / ')}</p></div>` : ''}
   ${S.exclusive && S.exclusive.type === 'names' ? `<div id="namesNote" class="panel toggle-note hidden">${bi(S.exclusive.note, ' / ')}</div><div id="nameTags" class="name-tags hidden">${S.exclusive.people.map((pp, i) => `<button class="name-tag" data-name="${i}">${ui(pp.name.zh, pp.name.en)}</button>`).join('')}</div>` : ''}
@@ -964,7 +966,10 @@ function run(S, R, meta) {
   window.addEventListener('blur', () => { for (const k in keys) keys[k] = false; });
   function blocked(x, z) {
     const r = player.r;
-    if (OUT) { const b = RM.bounds; if (x < b[0] + r || x > b[1] - r || z < b[2] + r || z > b[3] - r) return true; }
+    if (OUT) {   // zones：另外几块可以走的地方（比如田野旁边的展厅）
+      const inside = b => x >= b[0] + r && x <= b[1] - r && z >= b[2] + r && z <= b[3] - r;
+      if (!inside(RM.bounds) && !(RM.zones || []).some(inside)) return true;
+    }
     else if (x < L + r || x > rightX(z) - r || z > FRONT - r || z < backZ(x) + r) return true;
     for (const [x0, x1, z0, z1] of blocks) if (x > x0 - r && x < x1 + r && z > z0 - r && z < z1 + r) return true;
     if (ovals.length) {
@@ -1116,7 +1121,7 @@ function run(S, R, meta) {
   };
 
   // ---------- 声音：环境音（代码合成）和音乐（CC0 / 公有领域录音），都默认关闭；见 sound.js ----------
-  const sound = setupSound(S, { ambBtn: $('ambBtn'), musBtn: $('musBtn'), info: $('musInfo'), wind: () => windK });
+  const sound = setupSound(S, { ambBtn: $('ambBtn'), musBtn: $('musBtn'), info: $('musInfo'), wind: () => windK, zone: () => inGallery ? 'gallery' : 'field' });
 
   // ---------- 语音导览（场景文件夹 audio/ 里有录音才显示按钮；播放时环境音调小、音乐暂停） ----------
   setupGuide(S, { btn: $('audioBtn'), box: $('guideBox'), duck: on => sound.guide(on) });
@@ -1510,7 +1515,7 @@ function run(S, R, meta) {
       const i = Math.min(Math.floor(v), X.items.length - 2), f = v - i;
       projUniforms.uPaint.value = seriesTex[i]; projUniforms.uPaintB.value = seriesTex[i + 1]; projUniforms.uMixB.value = f;
       const it = X.items[Math.round(v)];
-      cap.innerHTML = `<b>${bi(it.title, ' / ')}</b><br>${bi(it.date, ' / ')} · ${bi(it.museum, ' / ')}`;
+      cap.innerHTML = `${it.tag ? `<span class="series-tag">${bi(it.tag, ' / ')}</span>` : ''}<b>${bi(it.title, ' / ')}</b><br>${bi(it.date, ' / ')} · ${bi(it.museum, ' / ')}`;
     };
     range.oninput = () => setSeries(range.value / 100);
     $('seriesBtn').onclick = () => {
@@ -1519,6 +1524,38 @@ function run(S, R, meta) {
       if (on) { setSeries(range.value / 100); track('exclusive-' + S.id); }
       else { range.value = main * 100; setSeries(main); }   // 关掉时回到这一幅
     };
+  }
+  // 独家发现“像1891年那样挂一排”（gallery）：按钮把观众带进旁边的展厅（spawn），一面长墙上挂着 paintings（每幅：image、title、date、museum，
+  // 在墙上的中心 x、y、宽 w、高 h；墙在 wallZ，朝 +z）。走到一幅前面，屏幕上放大显示那幅画和画名；几幅都看过之后显示 note。再按一次回到画家视角
+  const galObj = S.exclusive && S.exclusive.type === 'gallery' ? S.exclusive : null;
+  let inGallery = false, galNow = -1;
+  const galSeen = new Set();
+  if (galObj) {
+    const z = galObj.wallZ;
+    galObj.paintings.forEach(pp => {
+      const x0 = pp.x - pp.w / 2, x1 = pp.x + pp.w / 2, y0 = pp.y - pp.h / 2, y1 = pp.y + pp.h / 2;
+      quad([[x0, y1, z], [x0, y0, z], [x1, y0, z], [x1, y1, z]], new THREE.MeshBasicMaterial({ map: imageTex(pp.image) }));
+      box(pp.w + 0.12, pp.h + 0.12, 0.05, C.frame || '#8a6a3a', pp.x, pp.y, z - 0.02);
+    });
+    const btn = $('galleryBtn'), now = $('galleryNow'), note = $('galleryNote');
+    btn.onclick = () => {
+      inGallery = !inGallery; btn.classList.toggle('on', inGallery);
+      if (inGallery) { leaveView(); Object.assign(player, { x: galObj.spawn.x, z: galObj.spawn.z, yaw: galObj.spawn.yaw || 0, pitch: 0 }); track('exclusive-' + S.id); }
+      else { now.classList.add('hidden'); note.classList.add('hidden'); galNow = -1; Object.assign(player, { x: VIEW.x, z: VIEW.z + 0.18, yaw: VIEW.yaw, pitch: VIEW.pitch }); }
+    };
+  }
+  function stepGallery() {
+    if (!galObj || !inGallery) return;
+    let best = -1, bd = 1e9;
+    galObj.paintings.forEach((pp, i) => { const d = Math.abs(player.x - pp.x) + Math.max(0, galObj.wallZ + 1.2 - player.z) * 0; if (d < bd && d < pp.w / 2 + 0.4 && player.z - galObj.wallZ < 6) { bd = d; best = i; } });
+    if (best === galNow) return;
+    galNow = best; const now = $('galleryNow');
+    if (best < 0) { now.classList.add('hidden'); return; }
+    const pp = galObj.paintings[best];
+    now.querySelector('img').src = pp.image; now.querySelector('img').alt = textOf(pp.title, lang);
+    now.querySelector('.g-cap').innerHTML = `<b>${bi(pp.title, ' / ')}</b><br>${bi(pp.date, ' / ')} · ${bi(pp.museum, ' / ')}`;
+    now.classList.remove('hidden'); galSeen.add(best);
+    if (galSeen.size === galObj.paintings.length) $('galleryNote').classList.remove('hidden');
   }
   function stepNames() {
     if (!namesOn) return;
@@ -1695,7 +1732,7 @@ function run(S, R, meta) {
     vpRing.material.opacity = pulse; vpDot.material.opacity = pulse * 0.4;
     wallMat.color.lerp(wallTarget, 1 - Math.exp(-dt * 4));
     stepToggles(dt);
-    stepNames();
+    stepNames(); stepGallery();
     stepCeil(dt);
     for (const op of openers) if (walking && op.t < 1) {   // 窗页慢慢往里打开（约 1.8 秒）
       op.delay -= dt; if (op.delay > 0) continue;
