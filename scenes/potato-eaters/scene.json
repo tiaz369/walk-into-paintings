@@ -20,8 +20,8 @@
   },
   "painting": {
     "image": "images/potato-eaters.jpg",
-    "width": 800,
-    "height": 564,
+    "width": 1911,
+    "height": 1347,
     "alt": {
       "zh": "梵高《吃土豆的人》1885，阿姆斯特丹梵高博物馆",
       "en": "Vincent van Gogh, The Potato Eaters, 1885, Van Gogh Museum, Amsterdam"
@@ -47,8 +47,8 @@
       "en": "Van Gogh Museum, Amsterdam"
     },
     "source": {
-      "zh": "梵高博物馆，公有领域",
-      "en": "Van Gogh Museum, public domain"
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
     }
   },
   "enter": {
@@ -803,21 +803,19 @@
   "imageSource": {
     "_说明": "图片来源：原图网址和授权。网址空着的是还没记下原图页面，等 Tia 核对后补上。",
     "text": {
-      "zh": "梵高博物馆，公有领域",
-      "en": "Van Gogh Museum, public domain"
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
     },
-    "url": "https://www.vangoghmuseum.nl/en/collection/s0005V1962",
-    "license": "公有领域 / public domain",
-    "_来源": "梵高博物馆官网，原文件 vangoghmuseum-s0005V1962-800.jpg",
+    "url": "https://commons.wikimedia.org/wiki/File:De_aardappeleters_-_s0005V1962_-_Van_Gogh_Museum.jpg",
+    "license": "公有领域（PD-Art） / public domain",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址（待补 = 还没记下；自己做的图留空）、license 授权、status 是否符合 README 的“版权规则”（符合 / 不符合 / 来源不明 / 待决定）、verified 核对日期。",
     "files": [
       {
         "file": "potato-eaters.jpg",
-        "from": "梵高博物馆官网（Tia 下载）",
-        "url": "https://www.vangoghmuseum.nl/en/collection/s0005V1962",
-        "license": "只限非商业使用",
-        "status": "不符合",
-        "note": "梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请",
+        "from": "Wikimedia Commons（Tia 从维基百科下载，2026-10-27 换掉官网的图）",
+        "url": "https://commons.wikimedia.org/wiki/File:De_aardappeleters_-_s0005V1962_-_Van_Gogh_Museum.jpg",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
         "verified": "2026-10-27"
       }
     ]
