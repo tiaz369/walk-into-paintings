@@ -8,4 +8,4 @@
 - `stack-thaw-sunset.jpg`：干草堆（融雪，日落）https://www.artic.edu/artworks/100191
 - `stack-of-wheat.jpg`：干草堆 https://www.artic.edu/artworks/111318
 
-上传时文件名不用改，Claude Code 会对照画面重新命名。上传后告诉 Claude Code：按主画对准田野里的草堆和画家视角，按实际比例挂好展厅里的6幅。
+Tia 2026-10-27 上传（IMG_0531–0537），按画面对照重新命名：夏末 = IMG_0537，日暮秋天 = IMG_0531，雪景阴天 = IMG_0536，日落雪景 = IMG_0534，融雪日落 = IMG_0535，干草堆 = IMG_0532。

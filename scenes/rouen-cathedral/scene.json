@@ -22,13 +22,12 @@
   },
   "painting": {
     "image": "images/rouen-west-facade.jpg",
-    "width": 1300,
-    "height": 1976,
+    "width": 1600,
+    "height": 2474,
     "alt": {
       "zh": "莫奈《鲁昂大教堂，西立面》1894，华盛顿国家美术馆",
       "en": "Claude Monet, Rouen Cathedral, West Façade, 1894, National Gallery of Art, Washington"
-    },
-    "_": "宽高是按尺寸比例（100.1 × 65.9 cm）先填的，原画上传后改成实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -407,7 +406,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“同一面墙，不同的光”：拖动滑杆，投影的原画在系列里几幅真实的原画之间渐变，并显示那一幅的画名、年份和收藏地。用的都是真实的原画，不是示意效果，所以不加“这是示意”。items 是 Tia 确认的6幅（2026-10-27），按这个顺序；tag 是每一幅的标签（滑杆两端不标字）；画名、年份以收藏方官网为准。start 是这一幅（华盛顿国家美术馆的西立面）在 items 里的位置。",
+    "_说明": "独家发现“同一面墙，不同的光”：拖动滑杆，投影的原画在系列里几幅真实的原画之间渐变，并显示那一幅的画名、年份和收藏地。用的都是真实的原画，不是示意效果，所以不加“这是示意”。items 是 Tia 确认的几幅（2026-10-27），按这个顺序；大都会那幅（30.95.250）官网不能下载，先不用；tag 是每一幅的标签（滑杆两端不标字）；画名、年份以收藏方官网为准。start 是这一幅（华盛顿国家美术馆的西立面）在 items 里的位置。",
     "type": "series",
     "label": {
       "zh": "同一面墙，不同的光",
@@ -498,27 +497,6 @@
         },
         "license": "华盛顿国家美术馆开放资源，CC0",
         "url": "https://www.nga.gov/artworks/46654-rouen-cathedral-west-facade-sunlight",
-        "tag": {
-          "zh": "阳光",
-          "en": "Sunlight"
-        }
-      },
-      {
-        "image": "images/series-met-sunlight.jpg",
-        "title": {
-          "zh": "鲁昂大教堂：大门（阳光）",
-          "en": "Rouen Cathedral: The Portal (Sunlight)"
-        },
-        "date": {
-          "zh": "1894年",
-          "en": "1894"
-        },
-        "museum": {
-          "zh": "纽约大都会艺术博物馆",
-          "en": "The Metropolitan Museum of Art, New York"
-        },
-        "license": "大都会开放资源，CC0",
-        "url": "https://www.metmuseum.org/art/collection/search/437124",
         "tag": {
           "zh": "阳光",
           "en": "Sunlight"
@@ -783,11 +761,10 @@
       },
       {
         "file": "rouen-west-facade.jpg",
-        "from": "华盛顿国家美术馆（还没上传）",
+        "from": "华盛顿国家美术馆开放资源（Tia 上传的 rouen_cathedral_west_facade_1963.10.49.jpg，2026-10-27）",
         "url": "https://www.nga.gov/collection/art-object-page.46524.html",
         "license": "华盛顿国家美术馆开放资源，CC0",
         "status": "符合",
-        "note": "等 Tia 确认并上传",
         "verified": "2026-10-27"
       },
       {
@@ -800,21 +777,21 @@
         "verified": "2026-10-27"
       },
       {
-        "file": "series-met-sunlight.jpg",
-        "from": "纽约大都会艺术博物馆（还没上传）",
-        "url": "https://www.metmuseum.org/art/collection/search/437124",
-        "license": "大都会开放资源，CC0",
-        "status": "符合",
-        "note": "等 Tia 确认并上传",
-        "verified": "2026-10-27"
-      },
-      {
         "file": "series-orsay-temps-gris.jpg",
         "from": "巴黎奥赛博物馆（还没上传）",
         "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-temps-gris-1288",
         "license": "Wikimedia Commons，PD-Art",
         "status": "符合",
         "note": "等 Tia 确认并上传",
+        "verified": "2026-10-27"
+      },
+      {
+        "file": "IMG_0539.jpeg",
+        "from": "Tia 上传（2026-10-27），还不确定是哪一幅：画面是阳光下金黄色的立面，左边露出塔楼，签名在左下角",
+        "url": "待补",
+        "license": "待核对",
+        "status": "来源不明",
+        "note": "网站还没有用这张；等 Tia 说明是从哪里下载的、是哪一幅",
         "verified": "2026-10-27"
       }
     ]
