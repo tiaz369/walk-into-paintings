@@ -6,7 +6,6 @@
 // 场景页（3D）也会用这里的语言和配色切换。
 // =====================================================================
 import { LAND } from './world-land.js';   // 地图的陆地轮廓
-import { hasGuide } from './guide.js';   // 关于页：有没有语音导览
 
 // 网站根目录（不管网站放在哪个网址下面都能找到）
 export const ROOT = new URL('../', import.meta.url).href;
@@ -78,8 +77,8 @@ setTheme(store.get('wip-theme', 'auto'));
 // ---------- 署名（全站统一：页脚、场景页都用） ----------
 export const CREDIT = {
   byUrl: 'https://tiaz369.github.io',
-  zh: ['创意、故事与文字：', 'Tia', ' · 使用 Claude 制作'],
-  en: ['Concept, stories and texts by ', 'Tia', ' · Built with Claude']
+  zh: ['由 ', 'Tia', ' 创作与策划'],
+  en: ['Created and curated by ', 'Tia', '']
 };
 // 图片来源（放在每个场景的展签里）：{ zh, en } → “图片：… / Image: …”
 export const imageSourceHTML = src => src ? bi({ zh: '图片：' + src.zh, en: 'Image: ' + src.en }, ' / ') : '';
@@ -679,18 +678,18 @@ const PAGES = {
   },
 
   about(R, main) {
-    main.innerHTML = `<div class="wrap page-title"><h1>${ui('关于', 'About')}</h1></div>
-      <section class="section wrap about">
-        ${ABOUT.intro.map(p => para(p, 'lead')).join('')}
-        ${para(ABOUT.me)}
-        ${para(ABOUT.principles)}
-        <div id="audioCredit"></div>
-        ${ABOUT.analytics ? `<div class="about-note">${para(ABOUT.analytics)}</div>` : ''}
+    const A = ABOUT, line = (o, cls = '') => `<p class="zh ${cls}">${esc(o.zh)}</p><p class="en ${cls}">${esc(o.en)}</p>`,
+      head = o => `<span class="zh">${esc(o.zh)}</span><span class="en">${esc(o.en)}</span>`;
+    main.innerHTML = `<div class="wrap about-hero"><h1>${head(A.title)}</h1></div>
+      <section class="wrap about">
+        ${A.intro.map(p => line(p)).join('')}
+        <h2>${head(A.how.heading)}</h2>
+        ${line(A.how.text, 'about-steps')}
+        <h2>${head(A.care.heading)}</h2>
+        ${A.care.items.map(p => line(p)).join('')}
+        <div class="about-credit">${line(A.credit)}</div>
+        ${A.analytics ? `<div class="about-note">${line(A.analytics)}</div>` : ''}
       </section>`;
-    // “语音导览由 Tia 录制”：有已上线的场景放了录音之后才显示
-    if (ABOUT.audioCredit) Promise.all(R.live.map(s => hasGuide(sceneUrl(s)))).then(r => {
-      if (r.some(Boolean)) { document.getElementById('audioCredit').innerHTML = para(ABOUT.audioCredit); setLang(lang); }
-    });
   },
 
   // ---------- 时间线：所有已开放和即将开放的作品，按年份排；顶部按画家筛选 ----------
