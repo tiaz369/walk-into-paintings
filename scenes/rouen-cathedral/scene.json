@@ -58,8 +58,8 @@
     "en": "Step into the painting"
   },
   "hint": {
-    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下立面、街道和窗户看介绍 · 点“同一面墙，不同的光”，拖动滑杆看六种光 · 地上发光的圆点 = 莫奈的视角",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the façade, the street or the window to learn more · Tap “One wall, many lights” and drag through six kinds of light · The glowing circle = Monet's viewpoint"
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下立面、街道和窗户看介绍 · 点“同一面墙，不同的光”，拖动滑杆看四种光 · 地上发光的圆点 = 莫奈的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the façade, the street or the window to learn more · Tap “One wall, many lights” and drag through four kinds of light · The glowing circle = Monet's viewpoint"
   },
   "viewpoint": {
     "_说明": "画家视角：先按画面描述估算（站在对面二楼的窗前，眼睛离地约5.5米，稍微往上看），原画上传后对准。",
@@ -406,7 +406,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“同一面墙，不同的光”：拖动滑杆，投影的原画在系列里几幅真实的原画之间渐变，并显示那一幅的画名、年份和收藏地。用的都是真实的原画，不是示意效果，所以不加“这是示意”。items 是 Tia 确认的几幅（2026-10-27），按这个顺序；大都会那幅（30.95.250）官网不能下载，先不用；tag 是每一幅的标签（滑杆两端不标字）；画名、年份以收藏方官网为准。start 是这一幅（华盛顿国家美术馆的西立面）在 items 里的位置。",
+    "_说明": "独家发现“同一面墙，不同的光”：拖动滑杆，投影的原画在系列里几幅真实的原画之间渐变，并显示那一幅的画名、年份和收藏地。用的都是真实的原画，不是示意效果，所以不加“这是示意”。items 是 Tia 确认的几幅（2026-10-27），按这个顺序；大都会那幅（30.95.250）官网不能下载，先不用；tag 是每一幅的标签（滑杆两端不标字）；画名、年份以收藏方官网为准。start 是这一幅（华盛顿国家美术馆的西立面）在 items 里的位置。（阴天那一幅 RF 1999 在 Commons 上只有 Google 艺术与文化的版本，按版权规则不能用，2026-10-28 去掉，先用4幅。）",
     "type": "series",
     "label": {
       "zh": "同一面墙，不同的光",
@@ -500,27 +500,6 @@
         "tag": {
           "zh": "阳光",
           "en": "Sunlight"
-        }
-      },
-      {
-        "image": "images/series-orsay-temps-gris.jpg",
-        "title": {
-          "zh": "鲁昂大教堂：大门，阴天（灰色的和谐）",
-          "en": "Rouen Cathedral: The Portal, Grey Weather (Harmony in Grey)"
-        },
-        "date": {
-          "zh": "1892年",
-          "en": "1892"
-        },
-        "museum": {
-          "zh": "巴黎奥赛博物馆",
-          "en": "Musée d'Orsay, Paris"
-        },
-        "license": "Wikimedia Commons，PD-Art",
-        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-temps-gris-1288",
-        "tag": {
-          "zh": "阴天",
-          "en": "Grey day"
         }
       }
     ]
@@ -771,15 +750,6 @@
         "from": "华盛顿国家美术馆（还没上传）",
         "url": "https://www.nga.gov/artworks/46654-rouen-cathedral-west-facade-sunlight",
         "license": "华盛顿国家美术馆开放资源，CC0",
-        "status": "符合",
-        "note": "等 Tia 确认并上传",
-        "verified": "2026-10-27"
-      },
-      {
-        "file": "series-orsay-temps-gris.jpg",
-        "from": "巴黎奥赛博物馆（还没上传）",
-        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-temps-gris-1288",
-        "license": "Wikimedia Commons，PD-Art",
         "status": "符合",
         "note": "等 Tia 确认并上传",
         "verified": "2026-10-27"

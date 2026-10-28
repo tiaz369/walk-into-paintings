@@ -11,11 +11,12 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《阿涅尔的浴场》互相链接（河对岸的岛）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《阿涅尔的浴场》互相链接（河对岸的岛）；和《马戏团》互相链接（修拉的星期天，和他的最后一幅），对方开放后自动出现。",
     "doors": [],
     "cards": [],
     "end": [
-      "bathers-asnieres"
+      "bathers-asnieres",
+      "circus"
     ]
   },
   "painting": {
@@ -1234,6 +1235,14 @@
         "label": {
           "zh": "河对岸的岛",
           "en": "The island across the river"
+        }
+      },
+      {
+        "scene": "circus",
+        "href": "../circus/",
+        "label": {
+          "zh": "修拉的星期天，和他的最后一幅",
+          "en": "Seurat's Sunday, and his last painting"
         }
       }
     ]
