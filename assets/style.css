@@ -268,6 +268,7 @@ body.scene canvas { display: block; touch-action: none; }
 
 /* 发现卡片 */
 #card { position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%); z-index: 7; width: min(420px, calc(100% - 32px)); padding: 16px 18px; display: none; animation: fadein .5s ease; }
+#card.over { z-index: 45; }
 .touch #card { bottom: 150px; }
 #card h3 { margin: 0 28px 0 0; font-size: 24px; line-height: 1.2; }
 #card .en-title { margin: 0 0 10px; font-family: var(--serif); font-size: 17px; color: var(--muted); font-style: italic; }
