@@ -20,7 +20,8 @@
     ],
     "end": [
       "vangogh-chair",
-      "folies-bergere"
+      "folies-bergere",
+      "la-loge"
     ]
   },
   "ambience": "winter-room",
@@ -435,6 +436,14 @@
         "label": {
           "zh": "同一个大厅：女神游乐厅的吧台",
           "en": "In the same room: *A Bar at the Folies-Bergère*"
+        }
+      },
+      {
+        "scene": "la-loge",
+        "href": "../la-loge/",
+        "label": {
+          "zh": "在考陶尔德的同一家美术馆：雷诺阿《包厢》",
+          "en": "In the same gallery, The Courtauld: Renoir's *La Loge*"
         }
       }
     ]

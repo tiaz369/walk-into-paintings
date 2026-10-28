@@ -16,7 +16,8 @@
     "cards": [],
     "end": [
       "water-lily-pond",
-      "orangerie-water-lilies"
+      "orangerie-water-lilies",
+      "la-loge"
     ]
   },
   "painting": {
@@ -514,6 +515,14 @@
         "label": {
           "zh": "从“印象”开始，到睡莲结束",
           "en": "From Impression to the Water Lilies"
+        }
+      },
+      {
+        "scene": "la-loge",
+        "href": "../la-loge/",
+        "label": {
+          "zh": "1874年，同一场画展：雷诺阿《包厢》",
+          "en": "The same exhibition, 1874: Renoir's *La Loge*"
         }
       }
     ]
