@@ -752,11 +752,10 @@
       },
       {
         "file": "series-getty-morning.jpg",
-        "from": "洛杉矶盖蒂博物馆（还没上传）",
+        "from": "盖蒂开放内容（Tia 上传的 IMG_0539.jpeg，2026-10-28；按画面比例 100.3 × 65.1 cm 和画面认作盖蒂这一幅）",
         "url": "https://www.getty.edu/art/collection/object/108HGY",
         "license": "盖蒂开放内容，CC0",
         "status": "符合",
-        "note": "等 Tia 确认并上传",
         "verified": "2026-10-27"
       },
       {
@@ -783,15 +782,6 @@
         "license": "Wikimedia Commons，PD-Art",
         "status": "符合",
         "note": "等 Tia 确认并上传",
-        "verified": "2026-10-27"
-      },
-      {
-        "file": "IMG_0539.jpeg",
-        "from": "Tia 上传（2026-10-27），还不确定是哪一幅：画面是阳光下金黄色的立面，左边露出塔楼，签名在左下角",
-        "url": "待补",
-        "license": "待核对",
-        "status": "来源不明",
-        "note": "网站还没有用这张；等 Tia 说明是从哪里下载的、是哪一幅",
         "verified": "2026-10-27"
       }
     ]

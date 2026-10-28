@@ -381,6 +381,16 @@ const AMBIENCE = {
     const tap = t => { for (let k = 0; k < 2 + Math.floor(Math.random() * 3); k++) burst(out, t + k * rnd(0.18, 0.3), { kind: 'brown', type: 'bandpass', freq: rnd(700, 1100), q: 6, vol: 0.05, dur: 0.03, p: rnd(-0.6, 0.6) }); };
     every(st, 3, 8, tap);
   },
+  // 开演前的剧院：很多人在说话（比后台热闹），乐池里乐队调音，偶尔一声提醒入座的铃（A theatre before the curtain）
+  theatre(out, st) {
+    loopNoise('brown', out, { freq: 300, gain: 0.09 });
+    murmur(out, 0.12)(st);
+    const pit = ctx.createGain(); pit.gain.value = 0.35; pit.connect(pan(out, 0));
+    const tune = t => { for (let k = 0; k < 6; k++) { const f = [220, 293.7, 329.6, 440, 440, 659.3][Math.floor(rnd(0, 6))] * (1 + rnd(-0.004, 0.004)); tone(pit, t + rnd(0, 3), { f0: f, type: Math.random() < 0.5 ? 'sawtooth' : 'triangle', vol: 0.012, attack: 0.3, dur: rnd(1.2, 2.6) }); } };
+    tune(ctx.currentTime + 1); every(st, 4, 8, tune);
+    const bell = t => { for (let k = 0; k < 8; k++) tone(out, t + k * 0.09, { f0: 1900, vol: 0.02, attack: 0.002, dur: 0.08 }); };   // 一串短促的电铃声
+    every(st, 30, 60, bell);
+  },
   // 雨中的巴黎路口：小雨声，雨水打在伞上，马车轮子压过湿石板，远处的脚步声（A rainy crossroads）
   'rain-cobbles'(out, st) {
     loopNoise('white', out, { type: 'highpass', freq: 3200, gain: 0.04 });   // 小雨
