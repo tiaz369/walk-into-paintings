@@ -603,6 +603,10 @@ body.clean #uncleanBtn:hover, body.clean #uncleanBtn:focus { opacity: 1; }
 #lightPanel p { margin: 8px 0 0; }
 /* 独家发现“镜子里的人”：原画上镜子那一块放大 */
 .mirror-zoom { width: min(100%, 360px); margin: 8px auto 12px; border-radius: 50%; background-repeat: no-repeat; box-shadow: 0 0 0 6px rgba(60,40,20,.35), 0 4px 18px rgba(0,0,0,.35); }
+.dist-frame { position: relative; overflow: hidden; width: 100%; margin: 8px auto 10px; border-radius: 6px; touch-action: none; cursor: grab; background: #222; }
+.dist-frame img { display: block; width: 100%; height: 100%; object-fit: cover; user-select: none; will-change: transform; }
+#distance input { width: 100%; }
+.dist-note { margin: 8px 0 0; }
 #revealNote { position: fixed; left: 50%; bottom: 112px; transform: translateX(-50%); z-index: 5; padding: 6px 14px; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .8s; max-width: calc(100% - 32px); text-align: center; }
 #revealNote.show { opacity: 1; }
 .touch #revealNote { bottom: 240px; }

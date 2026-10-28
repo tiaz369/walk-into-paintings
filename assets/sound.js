@@ -410,6 +410,18 @@ const AMBIENCE = {
     every(st, 14, 30, splash);
     every(st, 8, 18, t => bird(out, t));
   },
+  // 大碗岛的星期天下午：鸟叫、风吹树叶、远处的说话声（很轻）、河上的划桨声和轻轻的水声（A Sunday afternoon on an island in the Seine）
+  'island-park'(out, st) {
+    loopNoise('brown', out, { freq: 320, gain: 0.07 });
+    const leaves = loopNoise('brown', out, { type: 'bandpass', freq: 950, q: 0.5, gain: 0.03 });   // 树叶沙沙
+    st.timers.push(setInterval(() => leaves.g.gain.setTargetAtTime(0.015 + 0.045 * Math.random(), ctx.currentTime, 1.8), 3500));
+    const voices = ctx.createGain(); voices.gain.value = 0.45; voices.connect(out);   // 远处的说话声：比餐厅、舞会安静
+    murmur(voices, 0.07)(st);
+    lap(out, ctx.currentTime + 0.8); every(st, 4, 8, t => lap(out, t));
+    const oar = t => { for (let k = 0; k < 4; k++) burst(out, t + k * 1.6, { kind: 'white', type: 'bandpass', freq: rnd(600, 900), q: 1.2, vol: 0.035, dur: 0.35, p: -0.6 }); };   // 左边河上的划桨声
+    every(st, 10, 22, oar);
+    bird(out, ctx.currentTime + 1.5); every(st, 4, 10, t => bird(out, t));
+  },
   // 排练室：木地板轻响，低声交谈，远处的钢琴（A rehearsal room）
   rehearsal(out, st) {
     loopNoise('brown', out, { freq: 240, gain: 0.08 });

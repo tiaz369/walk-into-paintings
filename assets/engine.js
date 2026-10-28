@@ -149,6 +149,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'names' ? `<button class="btn" id="namesBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'light' ? `<button class="btn" id="lightBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'mirror' ? `<button class="btn" id="mirrorBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'distance' ? `<button class="btn" id="distBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'loupe' ? `<button class="btn" id="loupeBtn">🔍 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'sit' ? `<button class="btn" id="sitBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'count' ? `<button class="btn" id="countBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
@@ -228,6 +229,14 @@ function buildDOM(S, R, meta) {
     <h3>${bi(M.label)}</h3>
     <div class="mirror-zoom" role="img" ${altAttr(M.alt || M.label).replace('alt=', 'aria-label=')} style="background-image:url('${S.painting.image}');aspect-ratio:${(M.crop.w * S.painting.width) / (M.crop.h * S.painting.height)};background-size:${100 / M.crop.w}% ${100 / M.crop.h}%;background-position:${M.crop.x / (1 - M.crop.w) * 100}% ${M.crop.y / (1 - M.crop.h) * 100}%"></div>
     <p>${bi(M.text, ' / ')}</p>
+  </div>`)(S.exclusive) : ''}
+  ${S.exclusive && S.exclusive.type === 'distance' ? (D => `<div class="popup panel" id="distance">
+    <button class="close" data-close="distance" aria-label="Close">×</button>
+    <h3>${bi(D.label)}</h3>
+    <div class="dist-frame" style="aspect-ratio:${S.painting.width / S.painting.height}"><img src="${S.painting.image}" ${altAttr(S.painting.alt || '')} draggable="false" /></div>
+    <input type="range" id="distRange" min="0" max="1000" value="0" aria-label="${textOf(D.label, lang)}" />
+    <div class="series-ends"><span>${ui(D.far.zh, D.far.en)}</span><span>${ui(D.near.zh, D.near.en)}</span></div>
+    <p class="dist-note">${bi(D.note, ' / ')}</p>
   </div>`)(S.exclusive) : ''}
   ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.filter(t => t.note).map(t => `<div class="panel toggle-note hidden" data-toggle-note="${S.exclusive.toggles.indexOf(t)}">${bi(t.note, ' / ')}</div>`).join('') : ''}
   ${S.exclusive && S.exclusive.type === 'gallery' ? `<div id="galleryNow" class="panel gallery-now hidden"><img alt="" /><p class="g-cap"></p></div><div id="galleryNote" class="panel toggle-note hidden">${bi(S.exclusive.note, ' / ')}</div>` : ''}
@@ -1298,6 +1307,33 @@ function run(S, R, meta) {
     }
     // 有 card 时：弹窗里显示了这张卡片的文字，就算发现了这张卡片
     $('loupeBtn').onclick = () => { togglePopup('loupe'); if (loupeObj.card && popups.loupe.style.display === 'block') { found.add(loupeObj.card); updateProgress(); }   if (popups.loupe.style.display === 'block') { track('exclusive-' + S.id); const r = pic.getBoundingClientRect(); moveLens({ clientX: r.left + r.width * (loupeObj.start ? loupeObj.start[0] : 0.5), clientY: r.top + r.height * (loupeObj.start ? loupeObj.start[1] : 0.5) }); } };
+  }
+
+  // 独家发现“走近，走远”（distance）：弹出原画，滑杆从“走远”（整幅画）拉到“走近”（放大 zoom 倍，看清一个个小点）；
+  //   focus 是放大时对准的位置（0–1），拖动画面可以换位置。只是放大原画，不改变画的样子
+  const distObj = S.exclusive && S.exclusive.type === 'distance' ? S.exclusive : null;
+  if (distObj) {
+    popups.distance = $('distance');
+    const frame = $('distance').querySelector('.dist-frame'), img = frame.querySelector('img'), range = $('distRange'), Z = distObj.zoom || 8;
+    frame.style.maxWidth = `calc(60vh * ${S.painting.width / S.painting.height})`; frame.style.margin = '0 auto';
+    let fx = (distObj.focus || [0.5, 0.5])[0], fy = (distObj.focus || [0.5, 0.5])[1], used = false;
+    const show = () => {
+      const k = Math.pow(Z, range.value / 1000);   // 1（整幅）→ Z 倍
+      // 放大后画面不露出边：焦点限制在能看到的范围里
+      const h = 0.5 / k, x = Math.min(1 - h, Math.max(h, fx)), y = Math.min(1 - h, Math.max(h, fy));
+      img.style.transformOrigin = '0 0';
+      img.style.transform = `translate(${(0.5 - x * k) * 100}%, ${(0.5 - y * k) * 100}%) scale(${k})`;
+    };
+    range.addEventListener('input', () => { show(); if (!used) { used = true; track('exclusive-' + S.id); } });
+    let drag = null;
+    frame.addEventListener('pointerdown', e => { frame.setPointerCapture(e.pointerId); drag = { x: e.clientX, y: e.clientY, fx, fy }; });
+    frame.addEventListener('pointermove', e => {
+      if (!drag) return;
+      const r = frame.getBoundingClientRect(), k = Math.pow(Z, range.value / 1000);
+      fx = Math.min(1, Math.max(0, drag.fx - (e.clientX - drag.x) / r.width / k)); fy = Math.min(1, Math.max(0, drag.fy - (e.clientY - drag.y) / r.height / k)); show();
+    });
+    frame.addEventListener('pointerup', () => { drag = null; });
+    $('distBtn').onclick = () => { togglePopup('distance'); show(); };
   }
 
   // 独家发现“坐到空椅子上”（sit）：走到 chair 旁边，镜头慢慢降到坐着的高度（eye），转头看向 look（画里的人），显示 note；一走动就站起来

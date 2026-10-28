@@ -273,20 +273,6 @@
     "seurat": [
       {
         "title": {
-          "zh": "大碗岛的星期天下午",
-          "en": "A Sunday on La Grande Jatte — 1884"
-        },
-        "year": {
-          "zh": "1884–86",
-          "en": "1884–86"
-        },
-        "museum": "art-institute-chicago",
-        "check": "ok",
-        "_": "维基百科：1884–1886，芝加哥艺术博物馆",
-        "scene": "grande-jatte"
-      },
-      {
-        "title": {
           "zh": "马戏团",
           "en": "The Circus"
         },

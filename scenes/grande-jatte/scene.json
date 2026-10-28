@@ -1,0 +1,1382 @@
+{
+  "_说明": "大碗岛的星期天下午（户外风景，完整版）。所有事实文字由 Tia 提供（资料来自芝加哥艺术博物馆、大都会艺术博物馆官网）。夏日午后塞纳河中小岛上的公园：左边是河，岸线从左下角往远处伸；树荫下的草地上坐着、站着、散步的人。画家视角按原画估算：视平线约在画面上方 17%（对岸的白墙上面一点），从站着的高度看；人物按原画上脚的位置摆放。",
+  "id": "grande-jatte",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "夏日午后的阳光和树荫",
+      "en": "Summer afternoon sun and shade"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《阿涅尔的浴场》互相链接（河对岸的岛）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "bathers-asnieres"
+    ]
+  },
+  "painting": {
+    "image": "images/grande-jatte.jpg",
+    "width": 1800,
+    "height": 1205,
+    "alt": {
+      "zh": "修拉《大碗岛的星期天下午》1884–86，芝加哥艺术博物馆",
+      "en": "Georges Seurat, A Sunday on La Grande Jatte — 1884, 1884–86, Art Institute of Chicago"
+    }
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "大碗岛的星期天下午",
+      "en": "A Sunday on La Grande Jatte — 1884"
+    },
+    "artist": {
+      "zh": "修拉",
+      "en": "Georges Seurat"
+    },
+    "date": {
+      "zh": "1884–86年",
+      "en": "1884–86"
+    },
+    "museum": {
+      "zh": "芝加哥艺术博物馆",
+      "en": "Art Institute of Chicago"
+    },
+    "source": {
+      "zh": "芝加哥艺术博物馆开放资源（CC0），公有领域",
+      "en": "Art Institute of Chicago, CC0 public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下草地上的人、树和河看介绍，点天空看边框 · 点“走近，走远”，拉动滑杆看清一个个小点 · 点“习作与定稿”对比 · 地上发光的圆点 = 修拉的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the people on the grass, the trees or the river to learn more; tap the sky for the border · Tap “Up close, further away” and drag the slider to see the dots · Tap “Study and final painting” to compare · The glowing circle = Seurat's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：按原画估算（视平线在画面上方 17%，站着的高度）。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": -0.2669,
+    "fov": 45,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "island-park",
+  "colors": {
+    "line": "#2e3a2a",
+    "grass": "#8fae4c",
+    "water": "#9fb8c8",
+    "farbank": "#c8c4a8",
+    "wall": "#e6e2cc",
+    "farTrees": "#7d9a5a",
+    "leaves": "#6f9a48",
+    "trunk": "#9a7a5a",
+    "skin": "#e2b896",
+    "coat": "#3c3040",
+    "navy": "#3a3a5a",
+    "pink": "#e0b4b8",
+    "white": "#f0ece0",
+    "brown": "#6a4a3c",
+    "orange": "#c8703c",
+    "green": "#5a6a3a",
+    "red": "#c8503a",
+    "lilac": "#a89ab8",
+    "blue": "#5a6a9a",
+    "vest": "#c8703c",
+    "hat": "#3a3430",
+    "dog": "#8a5a3a",
+    "dog2": "#3a2a26",
+    "boat": "#d8d0c0",
+    "sail": "#f4f2ea",
+    "ground": "#8fae4c",
+    "sky": "#d8e2e6",
+    "trousers": "#3c3040",
+    "wood": "#6a4a3c"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（岛上的草地），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -90,
+      80,
+      -120,
+      20
+    ],
+    "bounds": [
+      -2.4,
+      8,
+      -16,
+      4
+    ],
+    "groundCard": "island",
+    "skyCard": "border",
+    "skyRadius": 140,
+    "walkSpeed": 1.0
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "island",
+      "_": "岛上的草地（近处）：岸线从左下角往远处伸",
+      "pts": [
+        [
+          -2.6,
+          0.03,
+          6
+        ],
+        [
+          -2.9,
+          0.03,
+          -20
+        ],
+        [
+          40,
+          0.03,
+          -20
+        ],
+        [
+          40,
+          0.03,
+          6
+        ]
+      ],
+      "color": "grass"
+    },
+    {
+      "type": "surface",
+      "card": "island",
+      "_": "岛上的草地（远处）：岸线往右弯",
+      "pts": [
+        [
+          -2.9,
+          0.03,
+          -20
+        ],
+        [
+          6.6,
+          0.03,
+          -49.4
+        ],
+        [
+          40,
+          0.03,
+          -49.4
+        ],
+        [
+          40,
+          0.03,
+          -20
+        ]
+      ],
+      "color": "grass"
+    },
+    {
+      "type": "surface",
+      "card": "island",
+      "_": "塞纳河水面",
+      "pts": [
+        [
+          -80,
+          0.01,
+          8
+        ],
+        [
+          -80,
+          0.01,
+          -75
+        ],
+        [
+          80,
+          0.01,
+          -75
+        ],
+        [
+          80,
+          0.01,
+          8
+        ]
+      ],
+      "color": "water"
+    },
+    {
+      "type": "surface",
+      "card": "island",
+      "_": "对岸",
+      "pts": [
+        [
+          -90,
+          0.3,
+          -75
+        ],
+        [
+          -90,
+          0.3,
+          -120
+        ],
+        [
+          80,
+          0.3,
+          -120
+        ],
+        [
+          80,
+          0.3,
+          -75
+        ]
+      ],
+      "color": "farbank"
+    },
+    {
+      "type": "boxes",
+      "card": "island",
+      "x": -25,
+      "z": -80,
+      "_": "对岸的白色房子和围墙",
+      "boxes": [
+        [
+          50,
+          2.2,
+          1,
+          "wall",
+          0,
+          1.1,
+          0
+        ],
+        [
+          6,
+          4,
+          4,
+          "wall",
+          -14,
+          2,
+          -3
+        ],
+        [
+          5,
+          3.5,
+          4,
+          "wall",
+          8,
+          1.75,
+          -3
+        ]
+      ]
+    },
+    {
+      "type": "tree",
+      "shape": "bush",
+      "card": "island",
+      "_": "对岸左边高高的树",
+      "x": -46,
+      "z": -86,
+      "h": 16,
+      "r": 5,
+      "color": "farTrees"
+    },
+    {
+      "type": "tree",
+      "shape": "bush",
+      "card": "island",
+      "_": "对岸的树",
+      "x": -30,
+      "z": -88,
+      "h": 9,
+      "r": 8,
+      "color": "farTrees"
+    },
+    {
+      "type": "tree",
+      "shape": "bush",
+      "card": "island",
+      "_": "对岸的树",
+      "x": -12,
+      "z": -84,
+      "h": 7,
+      "r": 7,
+      "color": "farTrees"
+    },
+    {
+      "type": "boxes",
+      "card": "island",
+      "x": -12.9,
+      "z": -25.8,
+      "_": "河上的帆船",
+      "boxes": [
+        [
+          2.4,
+          0.4,
+          0.8,
+          "boat",
+          0,
+          0.2,
+          0
+        ],
+        [
+          0.05,
+          4.2,
+          1.4,
+          "sail",
+          0.1,
+          2.5,
+          0,
+          "cloth"
+        ],
+        [
+          0.05,
+          3,
+          1,
+          "sail",
+          0.9,
+          1.9,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "island",
+      "x": -6.5,
+      "z": -16.8,
+      "_": "划船的人",
+      "boxes": [
+        [
+          3.2,
+          0.3,
+          0.8,
+          "boat",
+          0,
+          0.15,
+          0
+        ],
+        [
+          0.4,
+          0.6,
+          0.4,
+          "coat",
+          -0.6,
+          0.6,
+          0
+        ],
+        [
+          0.4,
+          0.6,
+          0.4,
+          "coat",
+          0.6,
+          0.6,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "island",
+      "x": -10,
+      "z": -72,
+      "_": "远处的汽船",
+      "boxes": [
+        [
+          10,
+          1.4,
+          2.4,
+          "boat",
+          0,
+          0.7,
+          0
+        ],
+        [
+          1,
+          3,
+          1,
+          "coat",
+          2,
+          2.6,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "tree",
+      "card": "island",
+      "_": "左边那棵树（近处）",
+      "x": -1.84,
+      "z": -5.74,
+      "h": 7,
+      "r": 2.6,
+      "sway": 0.02
+    },
+    {
+      "type": "tree",
+      "card": "island",
+      "_": "中间撑伞女人身后的树",
+      "x": 0.3,
+      "z": -10.92,
+      "h": 8,
+      "r": 3,
+      "sway": 0.02
+    },
+    {
+      "type": "tree",
+      "card": "island",
+      "_": "弯弯的树（中间）",
+      "x": 1.55,
+      "z": -10.2,
+      "h": 9,
+      "r": 3.2,
+      "sway": 0.02
+    },
+    {
+      "type": "tree",
+      "card": "island",
+      "_": "右边的树",
+      "x": 5.24,
+      "z": -11.19,
+      "h": 10,
+      "r": 3,
+      "sway": 0.02
+    },
+    {
+      "type": "tree",
+      "card": "island",
+      "_": "右边的树",
+      "x": 5.53,
+      "z": -10.67,
+      "h": 10,
+      "r": 2.6,
+      "sway": 0.02
+    },
+    {
+      "type": "tree",
+      "card": "island",
+      "_": "右边的树",
+      "x": 5.73,
+      "z": -9.98,
+      "h": 10,
+      "r": 2.6,
+      "sway": 0.02
+    },
+    {
+      "type": "tree",
+      "card": "island",
+      "_": "远处的树",
+      "x": 9.46,
+      "z": -23.35,
+      "h": 11,
+      "r": 4,
+      "sway": 0.02
+    },
+    {
+      "type": "tree",
+      "card": "island",
+      "_": "远处的树",
+      "x": 6.8,
+      "z": -25.85,
+      "h": 11,
+      "r": 4,
+      "sway": 0.02
+    },
+    {
+      "type": "tree",
+      "card": "island",
+      "_": "岸边远处的树",
+      "x": -3.98,
+      "z": -19.55,
+      "h": 9,
+      "r": 3.5,
+      "sway": 0.02
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "navy",
+      "x": 1.14,
+      "z": -2.42,
+      "rot": 1.57,
+      "card": "sculpture",
+      "_": "右边撑阳伞的女人（侧面）",
+      "legs": "navy"
+    },
+    {
+      "type": "boxes",
+      "card": "sculpture",
+      "x": 1.3,
+      "z": -2.42,
+      "_": "她的黑色阳伞",
+      "boxes": [
+        [
+          0.03,
+          2.1,
+          0.03,
+          "line",
+          0,
+          1.05,
+          0
+        ],
+        [
+          1.1,
+          0.08,
+          1.1,
+          "navy",
+          0,
+          2.1,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "x": 0.94,
+      "z": -2.59,
+      "rot": 1.57,
+      "card": "sculpture",
+      "_": "戴高礼帽的男人（侧面）"
+    },
+    {
+      "type": "boxes",
+      "card": "sculpture",
+      "x": 0.75,
+      "z": -2.6,
+      "_": "牵着的小猴子和跑着的小狗",
+      "boxes": [
+        [
+          0.35,
+          0.2,
+          0.15,
+          "dog",
+          0.14,
+          0.15,
+          -0.15
+        ],
+        [
+          0.3,
+          0.15,
+          0.14,
+          "dog",
+          -0.13,
+          0.12,
+          -0.07
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "strokes",
+      "x": -1.25,
+      "z": -2.71,
+      "rot": -0.2,
+      "_": "左前方躺在草地上抽烟斗的男人",
+      "boxes": [
+        [
+          1.6,
+          0.35,
+          0.55,
+          "vest",
+          0.3,
+          0.18,
+          0
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          "skin",
+          -0.65,
+          0.4,
+          0
+        ],
+        [
+          0.34,
+          0.12,
+          0.34,
+          "hat",
+          -0.65,
+          0.58,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -1.23,
+      "z": -3.27,
+      "rot": 1.57,
+      "card": "back",
+      "_": "坐着、戴高礼帽拿手杖的男人",
+      "y": -0.35,
+      "hat": "hat"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -0.74,
+      "z": -3.27,
+      "rot": 1.57,
+      "card": "back",
+      "_": "坐着、低头的女人",
+      "y": -0.35
+    },
+    {
+      "type": "boxes",
+      "card": "strokes",
+      "x": -0.29,
+      "z": -2.96,
+      "_": "低头嗅草地的黑狗",
+      "boxes": [
+        [
+          0.75,
+          0.32,
+          0.25,
+          "dog2",
+          0,
+          0.4,
+          0
+        ],
+        [
+          0.08,
+          0.36,
+          0.08,
+          "dog2",
+          -0.3,
+          0.18,
+          0
+        ],
+        [
+          0.08,
+          0.36,
+          0.08,
+          "dog2",
+          0.3,
+          0.18,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "pink",
+      "x": 0.0,
+      "z": -4.94,
+      "rot": 0,
+      "card": "forty",
+      "_": "撑红伞的女人（正面）",
+      "legs": "pink"
+    },
+    {
+      "type": "boxes",
+      "card": "forty",
+      "x": 0.0,
+      "z": -4.94,
+      "_": "红色阳伞",
+      "boxes": [
+        [
+          0.03,
+          2.25,
+          0.03,
+          "line",
+          0,
+          1.125,
+          0
+        ],
+        [
+          1.1,
+          0.08,
+          1.1,
+          "red",
+          0,
+          2.25,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "white",
+      "x": -0.27,
+      "z": -4.72,
+      "rot": 0,
+      "card": "forty",
+      "_": "穿白衣的小女孩",
+      "scale": 0.6,
+      "legs": "white"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "brown",
+      "x": 0.5,
+      "z": -4.24,
+      "rot": 1.57,
+      "card": "dots",
+      "_": "坐着撑伞的女人（背面）",
+      "y": -0.35
+    },
+    {
+      "type": "boxes",
+      "card": "dots",
+      "x": 0.5,
+      "z": -4.24,
+      "_": "她的蓝伞",
+      "boxes": [
+        [
+          0.03,
+          1.5,
+          0.03,
+          "line",
+          0,
+          0.75,
+          0
+        ],
+        [
+          1.0,
+          0.08,
+          1.0,
+          "blue",
+          0,
+          1.5,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "navy",
+      "x": 0.91,
+      "z": -4.28,
+      "rot": 1.57,
+      "card": "dots",
+      "_": "拿着花的小女孩",
+      "scale": 0.8,
+      "y": -0.35
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "orange",
+      "x": -2.35,
+      "z": -4.56,
+      "rot": 1.57,
+      "card": "island",
+      "_": "左边河边钓鱼的女人（侧面）",
+      "legs": "orange"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "orange",
+      "x": -2.2,
+      "z": -5.18,
+      "rot": 1.57,
+      "card": "island",
+      "_": "河边坐着的女人",
+      "y": -0.35
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "brown",
+      "x": -1.43,
+      "z": -5.89,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "撑红伞坐着的保姆（背面）",
+      "y": -0.35
+    },
+    {
+      "type": "boxes",
+      "card": "forty",
+      "x": -1.6,
+      "z": -5.89,
+      "_": "她的红伞",
+      "boxes": [
+        [
+          0.03,
+          1.3,
+          0.03,
+          "line",
+          0,
+          0.65,
+          0
+        ],
+        [
+          0.9,
+          0.08,
+          0.9,
+          "red",
+          0,
+          1.3,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "orange",
+      "x": -1.41,
+      "z": -7.76,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "吹号的人",
+      "legs": "orange"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "green",
+      "x": -1.29,
+      "z": -11.75,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "两个士兵",
+      "legs": "red"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "green",
+      "x": -1.0,
+      "z": -11.75,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "两个士兵",
+      "legs": "red"
+    },
+    {
+      "type": "boxes",
+      "card": "forty",
+      "x": -1.22,
+      "z": -9.77,
+      "_": "躺在草地上的人",
+      "boxes": [
+        [
+          1.3,
+          0.3,
+          0.5,
+          "navy",
+          0,
+          0.15,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "orange",
+      "x": 2.0,
+      "z": -7.5,
+      "rot": 1.57,
+      "card": "back",
+      "_": "跑着的小女孩",
+      "scale": 0.6,
+      "legs": "orange"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "lilac",
+      "x": 3.5,
+      "z": -6.61,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "右边树下坐着的人",
+      "y": -0.35
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "navy",
+      "x": 3.9,
+      "z": -6.5,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "右边树下坐着的人",
+      "y": -0.35
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "lilac",
+      "x": -2.81,
+      "z": -8.04,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "河边撑伞的女人",
+      "legs": "lilac"
+    },
+    {
+      "type": "boxes",
+      "card": "forty",
+      "x": -2.81,
+      "z": -8.04,
+      "_": "她的伞",
+      "boxes": [
+        [
+          0.03,
+          2.1,
+          0.03,
+          "line",
+          0,
+          1.05,
+          0
+        ],
+        [
+          0.9,
+          0.08,
+          0.9,
+          "lilac",
+          0,
+          2.1,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "pink",
+      "x": 2.55,
+      "z": -12.38,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "远处的一对",
+      "legs": "pink"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "x": 2.85,
+      "z": -12.38,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "远处的一对"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "pink",
+      "x": 1.66,
+      "z": -17.41,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "远处坐着的人",
+      "y": -0.35
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "x": 5.7,
+      "z": -19.55,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "远处散步的人"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "white",
+      "x": 8.48,
+      "z": -19.55,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "远处散步的人",
+      "legs": "white"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "pink",
+      "x": 8.02,
+      "z": -25.85,
+      "rot": 1.57,
+      "card": "forty",
+      "_": "远处散步的人",
+      "legs": "pink"
+    }
+  ],
+  "cards": {
+    "island": {
+      "title": {
+        "zh": "塞纳河上的小岛",
+        "en": "An island in the Seine"
+      },
+      "text": {
+        "zh": "大碗岛是巴黎西边塞纳河上的一个小岛。星期天下午，不同阶层的人都来这里散步、休息。",
+        "en": "La Grande Jatte is an island in the Seine, just west of Paris. On Sunday afternoons, people from different social classes came here to stroll and relax."
+      }
+    },
+    "sculpture": {
+      "title": {
+        "zh": "像雕塑一样",
+        "en": "Like ancient sculpture"
+      },
+      "text": {
+        "zh": "画的是现代生活，修拉却想让它像古代埃及和希腊的雕塑一样，有一种永恒感。",
+        "en": "Though the subject is modern life, Seurat wanted it to feel timeless, like ancient Egyptian and Greek sculpture."
+      }
+    },
+    "dots": {
+      "title": {
+        "zh": "小点",
+        "en": "Dots of colour"
+      },
+      "text": {
+        "zh": "画面是由无数靠得很近的纯色小点组成的。从远处看，这些点会在眼睛里混合起来。",
+        "en": "The picture is made of countless closely placed points of pure colour, which mix together in the viewer's eye from a distance."
+      }
+    },
+    "strokes": {
+      "title": {
+        "zh": "先横线，后小点",
+        "en": "First strokes, then dots"
+      },
+      "text": {
+        "zh": "1884年，他先用一层互补色的横向小笔触打底，再加上一层小点。",
+        "en": "In 1884, he began with a layer of small horizontal strokes in complementary colours, then added a layer of dots."
+      }
+    },
+    "border": {
+      "title": {
+        "zh": "画出来的边框",
+        "en": "A painted border"
+      },
+      "text": {
+        "zh": "画面四周有一圈蓝、橙、红色的小点，是修拉后来加上去的，连接画面和白色的画框。",
+        "en": "Around the edge is a border of blue, orange and red dots, added later, linking the picture to its white frame."
+      }
+    },
+    "forty": {
+      "title": {
+        "zh": "大约40个人",
+        "en": "About forty people"
+      },
+      "text": {
+        "zh": "画面上大约有40个人物，大多是侧面或正面，好像一幅希腊古典浮雕。",
+        "en": "Some 40 figures fill the canvas, mostly in profile or facing us, like a classical Greek frieze."
+      }
+    },
+    "back": {
+      "title": {
+        "zh": "两年后又回来",
+        "en": "Back two years later"
+      },
+      "text": {
+        "zh": "开始画两年后，修拉又回来修改，加强了一些人物的轮廓，还加了新的人物。",
+        "en": "Two years after starting, Seurat returned to the painting, strengthening some silhouettes and adding new figures."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“走近，走远”：弹出原画，滑杆从“走远”（整幅画）拉到“走近”（放大 zoom 倍，看清一个个小点）；focus 是一开始放大的位置（0–1，这里是撑红伞的女人），拖动画面可以换位置。只是放大原画，不是示意效果，所以不显示“这是示意”。",
+    "type": "distance",
+    "label": {
+      "zh": "走近，走远",
+      "en": "Up close, further away"
+    },
+    "far": {
+      "zh": "走远",
+      "en": "Further away"
+    },
+    "near": {
+      "zh": "走近",
+      "en": "Up close"
+    },
+    "zoom": 7,
+    "focus": [
+      0.49,
+      0.38
+    ],
+    "note": {
+      "zh": "走近看是小点，走远看是阳光和人。颜色是在你的眼睛里混合的。",
+      "en": "Up close, dots. Further away, sunlight and people. The colours mix in your eye."
+    }
+  },
+  "compare": {
+    "_说明": "独家发现“习作与定稿”：对比滑块，左边是大都会艺术博物馆的最后一幅习作（1884，CC0），右边是芝加哥的定稿。",
+    "type": "compare",
+    "label": {
+      "zh": "习作与定稿",
+      "en": "Study and final painting"
+    },
+    "versions": [
+      {
+        "image": "images/study-met.jpg",
+        "short": {
+          "zh": "习作 · 1884",
+          "en": "Study · 1884"
+        },
+        "caption": {
+          "zh": "《大碗岛的星期天下午》习作，1884年 · 大都会艺术博物馆",
+          "en": "Study for *A Sunday on La Grande Jatte*, 1884 · The Metropolitan Museum of Art"
+        }
+      },
+      {
+        "image": "images/grande-jatte.jpg",
+        "short": {
+          "zh": "定稿 · 1884–86",
+          "en": "Final · 1884–86"
+        },
+        "caption": {
+          "zh": "《大碗岛的星期天下午》，1884–86年 · 芝加哥艺术博物馆",
+          "en": "*A Sunday on La Grande Jatte — 1884*, 1884–86 · Art Institute of Chicago"
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/grande-jatte.jpg",
+        "alt": {
+          "zh": "修拉《大碗岛的星期天下午》1884–86，芝加哥艺术博物馆",
+          "en": "Georges Seurat, A Sunday on La Grande Jatte — 1884, 1884–86, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1884–86年 · 芝加哥艺术博物馆",
+          "en": "1884–86 · Art Institute of Chicago"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 河对岸的岛",
+          "en": "The island across the river"
+        },
+        "text": {
+          "zh": "1884年，修拉画完了《阿涅尔的浴场》。画面右边那座小岛，就是大碗岛。同一年，他开始画这幅更大的画。",
+          "en": "In 1884, Seurat finished *Bathers at Asnières*. The island on its right is La Grande Jatte. That same year, he began this even larger painting."
+        }
+      },
+      {
+        "image": "images/grande-jatte.jpg",
+        "alt": {
+          "zh": "修拉《大碗岛的星期天下午》1884–86，芝加哥艺术博物馆",
+          "en": "Georges Seurat, A Sunday on La Grande Jatte — 1884, 1884–86, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1884–86年 · 芝加哥艺术博物馆",
+          "en": "1884–86 · Art Institute of Chicago"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 一个点一个点",
+          "en": "Dot by dot"
+        },
+        "text": {
+          "zh": "他用了两年时间，先画横向的笔触，再一个点一个点地画。他说，他想用希腊古典浮雕的方式，表现现代生活。",
+          "en": "He worked on it for two years, first with horizontal strokes, then dot by dot. He said he wanted to represent modern life in the manner of a classical Greek frieze."
+        }
+      },
+      {
+        "image": "images/grande-jatte.jpg",
+        "alt": {
+          "zh": "修拉《大碗岛的星期天下午》1884–86，芝加哥艺术博物馆",
+          "en": "Georges Seurat, A Sunday on La Grande Jatte — 1884, 1884–86, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1884–86年 · 芝加哥艺术博物馆",
+          "en": "1884–86 · Art Institute of Chicago"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 最后一届印象派画展",
+          "en": "The last Impressionist exhibition"
+        },
+        "text": {
+          "zh": "1886年5月，这幅画在第八届、也是最后一届印象派画展上首次展出。1926年起，它成为芝加哥艺术博物馆的永久收藏。",
+          "en": "In May 1886, the painting was first shown at the eighth and last Impressionist exhibition. Since 1926 it has been in the permanent collection of the Art Institute of Chicago."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一个点，一个点，一个星期天的下午。",
+      "en": "Dot by dot, a Sunday afternoon."
+    },
+    "versions": [],
+    "museums": [
+      "art-institute-chicago"
+    ],
+    "exit": [
+      {
+        "scene": "bathers-asnieres",
+        "href": "../bathers-asnieres/",
+        "label": {
+          "zh": "河对岸的岛",
+          "en": "The island across the river"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（芝加哥艺术博物馆官网）。",
+    "artist": {
+      "zh": "乔治·修拉（1859–1891）",
+      "en": "Georges Seurat (1859–1891)"
+    },
+    "title": {
+      "zh": "大碗岛的星期天下午",
+      "en": "A Sunday on La Grande Jatte — 1884"
+    },
+    "date": {
+      "zh": "1884–86年，边框加于1888–89年",
+      "en": "1884–86, border added 1888–89"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "207.5 × 308.1 cm",
+      "en": "207.5 × 308.1 cm"
+    },
+    "collection": {
+      "zh": "芝加哥艺术博物馆（1926年起；编号 1926.224）",
+      "en": "Art Institute of Chicago (since 1926; 1926.224)"
+    },
+    "url": "https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884"
+  },
+  "zoom": {
+    "image": "images/grande-jatte.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：大碗岛的星期天下午",
+          "en": "Art Institute of Chicago: *A Sunday on La Grande Jatte — 1884*"
+        },
+        "url": "https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884"
+      },
+      {
+        "title": {
+          "zh": "大都会艺术博物馆：大碗岛的星期天下午（习作）",
+          "en": "The Met: Study for *A Sunday on La Grande Jatte*"
+        },
+        "url": "https://www.metmuseum.org/toah/works-of-art/51.112.6"
+      },
+      {
+        "title": {
+          "zh": "大英百科全书：大碗岛的星期天下午",
+          "en": "Britannica: *A Sunday on La Grande Jatte — 1884*"
+        },
+        "url": "https://www.britannica.com/topic/A-Sunday-on-La-Grande-Jatte-1884"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 河对岸的岛",
+          "en": "The island across the river"
+        },
+        "text": {
+          "zh": "1884年，修拉画完了《阿涅尔的浴场》。画面右边那座小岛，就是大碗岛。同一年，他开始画这幅更大的画。",
+          "en": "In 1884, Seurat finished *Bathers at Asnières*. The island on its right is La Grande Jatte. That same year, he began this even larger painting."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 一个点一个点",
+          "en": "Dot by dot"
+        },
+        "text": {
+          "zh": "他用了两年时间，先画横向的笔触，再一个点一个点地画。他说，他想用希腊古典浮雕的方式，表现现代生活。",
+          "en": "He worked on it for two years, first with horizontal strokes, then dot by dot. He said he wanted to represent modern life in the manner of a classical Greek frieze."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 最后一届印象派画展",
+          "en": "The last Impressionist exhibition"
+        },
+        "text": {
+          "zh": "1886年5月，这幅画在第八届、也是最后一届印象派画展上首次展出。1926年起，它成为芝加哥艺术博物馆的永久收藏。",
+          "en": "In May 1886, the painting was first shown at the eighth and last Impressionist exhibition. Since 1926 it has been in the permanent collection of the Art Institute of Chicago."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：大碗岛的星期天下午",
+        "en": "Art Institute of Chicago: *A Sunday on La Grande Jatte — 1884*"
+      },
+      "url": "https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884"
+    },
+    {
+      "title": {
+        "zh": "大都会艺术博物馆：大碗岛的星期天下午（习作）",
+        "en": "The Met: Study for *A Sunday on La Grande Jatte*"
+      },
+      "url": "https://www.metmuseum.org/toah/works-of-art/51.112.6"
+    },
+    {
+      "title": {
+        "zh": "大英百科全书：大碗岛的星期天下午",
+        "en": "Britannica: *A Sunday on La Grande Jatte — 1884*"
+      },
+      "url": "https://www.britannica.com/topic/A-Sunday-on-La-Grande-Jatte-1884"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "芝加哥艺术博物馆开放资源（CC0），公有领域",
+      "en": "Art Institute of Chicago, CC0 public domain"
+    },
+    "url": "https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884",
+    "license": "CC0",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "grande-jatte.jpg",
+        "from": "芝加哥艺术博物馆开放资源（Tia 下载，原来放在《阿涅尔的浴场》里，复制过来）",
+        "url": "https://www.artic.edu/artworks/27992/a-sunday-on-la-grande-jatte-1884",
+        "license": "CC0",
+        "status": "符合",
+        "verified": "2026-10-28"
+      },
+      {
+        "file": "study-met.jpg",
+        "from": "大都会艺术博物馆开放资源（等 Tia 上传）",
+        "url": "https://www.metmuseum.org/toah/works-of-art/51.112.6",
+        "license": "CC0",
+        "status": "符合",
+        "verified": "2026-10-28"
+      }
+    ]
+  },
+  "lastVerified": "2026-10-28"
+}

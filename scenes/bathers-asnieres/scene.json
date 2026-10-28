@@ -11,10 +11,11 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《睡莲池》互相链接（同属“水”）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《睡莲池》互相链接（同属“水”）；和《大碗岛的星期天下午》互相链接（河对岸的岛）。",
     "doors": [],
     "cards": [],
     "end": [
+      "grande-jatte",
       "water-lily-pond"
     ]
   },
@@ -580,7 +581,7 @@
     }
   },
   "compare": {
-    "_说明": "独家发现“对岸的岛”：对比滑块，左边是本画，右边是修拉的《大碗岛的星期天下午》（芝加哥艺术博物馆，CC0）。",
+    "_说明": "独家发现“对岸的岛”：对比滑块，左边是本画，右边是修拉的《大碗岛的星期天下午》（芝加哥艺术博物馆，CC0）。大碗岛场景上线后，滑块下面出现“河对岸的岛”的按钮。",
     "type": "compare",
     "label": {
       "zh": "对岸的岛",
@@ -611,6 +612,14 @@
         "caption": {
           "zh": "《大碗岛的星期天下午》，1884–86年 · 芝加哥艺术博物馆",
           "en": "*A Sunday on La Grande Jatte — 1884*, 1884–86 · The Art Institute of Chicago"
+        },
+        "link": {
+          "scene": "grande-jatte",
+          "href": "../grande-jatte/",
+          "label": {
+            "zh": "河对岸的岛",
+            "en": "The island across the river"
+          }
         }
       }
     ]
@@ -688,6 +697,14 @@
       "national-gallery"
     ],
     "exit": [
+      {
+        "scene": "grande-jatte",
+        "href": "../grande-jatte/",
+        "label": {
+          "zh": "河对岸的岛",
+          "en": "The island across the river"
+        }
+      },
       {
         "scene": "water-lily-pond",
         "href": "../water-lily-pond/",
