@@ -1,4 +1,5 @@
 # 图片
 
-- `ballet-dancers.jpg`：**还没上传**。德加《芭蕾舞者》，1888年，粉彩，伦敦国家美术馆（NG6705）。从 Wikimedia Commons 下载：“Ballet Dancers by Degas (NG6705).jpg”（1754 × 1537）。不要用国家美术馆官网的图片。
-- `study-1.jpg` … `study-4.jpg`：独家发现“拼起来的瞬间”用的示意图，原画上传后由 Claude Code 从原画裁出四位舞者，各放在一张纸色背景上。不是德加的习作。
+- `ballet-dancers.jpg`：德加《芭蕾舞者》，1888年，粉彩，伦敦国家美术馆（NG6705）。Tia 2026-10-28 从 Wikimedia Commons 下载的公有领域（PD-Art）文件“Ballet Dancers by Degas (NG6705).jpg”（上传的文件 IMG_0542.jpeg，1754 × 1537）。没有用国家美术馆官网的图片。
+- `study-1.jpg` … `study-4.jpg`：独家发现“拼起来的瞬间”用的示意图，是我们从原画裁出四位舞者，各放在一张纸色背景上做的。不是德加的习作，页面上写着“这是示意”。
+- 之前上传的 IMG_0540 是另一幅《芭蕾舞者》（NG4168），没有用，已删除。
