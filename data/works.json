@@ -270,22 +270,7 @@
         "scene": "beach-scene"
       }
     ],
-    "seurat": [
-      {
-        "title": {
-          "zh": "马戏团",
-          "en": "The Circus"
-        },
-        "year": {
-          "zh": "1891",
-          "en": "1891"
-        },
-        "museum": "orsay",
-        "check": "ok",
-        "_": "奥赛：1891，1927年约翰·奎因遗赠",
-        "scene": "the-circus"
-      }
-    ],
+    "seurat": [],
     "renoir": [
       {
         "title": {

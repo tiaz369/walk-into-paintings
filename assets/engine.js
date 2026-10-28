@@ -1036,7 +1036,7 @@ function run(S, R, meta) {
     $('leftHint').innerHTML = `<span class="zh">还有 ${left} 个没发现</span><span class="en"><span class="zh"> / </span>${left} left to find</span>`;
   }
   function showCard(key) {
-    hideHint();   // 提示不遮挡卡片
+    hideHint(); card.classList.remove('over');   // 提示不遮挡卡片
     const t = S.cards[key];
     $('cardTitle').textContent = t.title.zh; $('cardTitleEn').textContent = t.title.en;
     $('cardZh').textContent = t.text.zh; $('cardEn').innerHTML = escItalic(t.text.en);   // 英文里的 *画名* 显示成斜体
@@ -1053,7 +1053,7 @@ function run(S, R, meta) {
     found.add(key); updateProgress();
     if (found.size === 3 && !found.counted) { found.counted = true; track('found-3-' + S.id); }   // 访问统计：发现了3处
   }
-  $('cardClose').onclick = () => { card.style.display = 'none'; };
+  $('cardClose').onclick = () => { card.style.display = 'none'; card.classList.remove('over'); };
 
   // ---------- 弹窗 ----------
   const popups = { compare: $('compare'), shot: $('shot') };
@@ -1190,6 +1190,24 @@ function run(S, R, meta) {
   });
   const zUp = e => { zPtrs.delete(e.pointerId); zPrev = null; };
   zStage.addEventListener('pointerup', zUp); zStage.addEventListener('pointercancel', zUp);
+
+  // 点画面边缘看卡片（edgeCard，比如修拉画出来的边框）：在“对照原画”和“放大看细节”里，点原画四周 edge（0–1）以内的地方，弹出这张卡片
+  const EC = S.edgeCard && S.cards[S.edgeCard.card] ? S.edgeCard : null;
+  if (EC) {
+    const onEdge = (img, x, y) => {
+      const r = img.getBoundingClientRect(), u = (x - r.left) / r.width, v = (y - r.top) / r.height, d = EC.edge || 0.04;
+      return u >= 0 && u <= 1 && v >= 0 && v <= 1 && (u < d || u > 1 - d || v < d || v > 1 - d);
+    };
+    const edgeShow = () => { showCard(EC.card); card.classList.add('over'); };   // over：卡片显示在弹窗和放大画面的上面
+    $('compare').querySelector('img').addEventListener('click', e => { if (onEdge(e.currentTarget, e.clientX, e.clientY)) { e.stopPropagation(); edgeShow(); } });
+    const paintSrcs = [(S.zoom && S.zoom.image) || S.painting.image, S.painting.image];
+    let tap = null;
+    zStage.addEventListener('pointerdown', e => { tap = zPtrs.size === 1 ? { x: e.clientX, y: e.clientY } : null; });
+    zStage.addEventListener('pointerup', e => {
+      if (tap && Math.hypot(e.clientX - tap.x, e.clientY - tap.y) < 6 && paintSrcs.includes(zImg.getAttribute('src')) && onEdge(zImg, e.clientX, e.clientY)) edgeShow();
+      tap = null;
+    });
+  }
 
   // ---------- 手机摇杆 ----------
   const joy = $('joy'), knob = $('knob'), joyMove = { x: 0, y: 0 };

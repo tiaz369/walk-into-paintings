@@ -391,6 +391,23 @@ const AMBIENCE = {
     const bell = t => { for (let k = 0; k < 8; k++) tone(out, t + k * 0.09, { f0: 1900, vol: 0.02, attack: 0.002, dur: 0.08 }); };   // 一串短促的电铃声
     every(st, 30, 60, bell);
   },
+  // 马戏场：鼓声，马在沙地上绕圈奔跑的马蹄声，观众的欢呼和掌声（A circus ring）
+  circus(out, st) {
+    loopNoise('brown', out, { freq: 260, gain: 0.08 });
+    murmur(out, 0.1)(st);
+    const gallop = t => { for (let k = 0; k < 24; k++) { const tk = t + k * 0.36; for (const d of [0, 0.07, 0.14]) burst(out, tk + d, { kind: 'brown', type: 'lowpass', freq: 260, q: 0.8, vol: 0.09, dur: 0.05, p: Math.sin(k / 24 * Math.PI * 2) * 0.7 }); } };   // 软软的沙地马蹄声，绕着场子转一圈（左右移动）
+    gallop(ctx.currentTime + 0.8); every(st, 10, 14, gallop);
+    const drum = t => {   // 一阵鼓：先滚奏，再重重一下
+      for (let k = 0; k < 28; k++) burst(out, t + k * 0.05, { kind: 'white', type: 'bandpass', freq: 1800, q: 1.5, vol: 0.02 + k * 0.0015, dur: 0.04, p: 0.3 });
+      tone(out, t + 1.45, { f0: 70, vol: 0.12, attack: 0.003, dur: 0.6, p: 0.3 });
+    };
+    every(st, 12, 22, drum);
+    const cheer = t => {   // 欢呼和掌声：一阵人声 + 很多下拍手
+      burst(out, t, { kind: 'white', type: 'bandpass', freq: 900, q: 0.7, vol: 0.06, dur: 1.6 });
+      for (let k = 0; k < 70; k++) burst(out, t + rnd(0, 2.6), { kind: 'white', type: 'bandpass', freq: rnd(1500, 2600), q: 2, vol: 0.025, dur: 0.02, p: rnd(-0.9, 0.9) });
+    };
+    every(st, 14, 26, cheer);
+  },
   // 雨中的巴黎路口：小雨声，雨水打在伞上，马车轮子压过湿石板，远处的脚步声（A rainy crossroads）
   'rain-cobbles'(out, st) {
     loopNoise('white', out, { type: 'highpass', freq: 3200, gain: 0.04 });   // 小雨

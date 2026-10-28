@@ -11,11 +11,12 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《阿涅尔的浴场》互相链接（河对岸的岛）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《阿涅尔的浴场》互相链接（河对岸的岛）；和《马戏团》互相链接（修拉的星期天，和他的最后一幅），对方开放后自动出现。",
     "doors": [],
     "cards": [],
     "end": [
-      "bathers-asnieres"
+      "bathers-asnieres",
+      "circus"
     ]
   },
   "painting": {
@@ -56,8 +57,8 @@
     "en": "Step into the painting"
   },
   "hint": {
-    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下草地上的人、树和河看介绍，点天空看边框 · 点“走近，走远”，拉动滑杆看清一个个小点 · 点“习作与定稿”对比 · 地上发光的圆点 = 修拉的视角",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the people on the grass, the trees or the river to learn more; tap the sky for the border · Tap “Up close, further away” and drag the slider to see the dots · Tap “Study and final painting” to compare · The glowing circle = Seurat's viewpoint"
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下草地上的人、树和河看介绍 · 在“对照原画”或“放大看细节”里点画面边缘，看画出来的边框 · 点“走近，走远”，拉动滑杆看清一个个小点 · 点“习作与定稿”对比 · 地上发光的圆点 = 修拉的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the people on the grass, the trees or the river to learn more · In “Original painting” or “Zoom in on details”, tap the edge of the picture to see the painted border · Tap “Up close, further away” and drag the slider to see the dots · Tap “Study and finished painting” to compare · The glowing circle = Seurat's viewpoint"
   },
   "viewpoint": {
     "_说明": "画家视角：按原画估算（视平线在画面上方 17%，站着的高度）。",
@@ -120,9 +121,14 @@
       4
     ],
     "groundCard": "island",
-    "skyCard": "border",
+    "skyCard": "island",
     "skyRadius": 140,
     "walkSpeed": 1.0
+  },
+  "edgeCard": {
+    "_说明": "卡片“画出来的边框”：在“对照原画”或“放大看细节”里，点原画四周 edge（画面宽高的比例）以内的地方弹出。",
+    "card": "border",
+    "edge": 0.04
   },
   "objects": [
     {
@@ -1123,7 +1129,7 @@
     "type": "compare",
     "label": {
       "zh": "习作与定稿",
-      "en": "Study and final painting"
+      "en": "Study and finished painting"
     },
     "versions": [
       {
@@ -1134,14 +1140,14 @@
         },
         "caption": {
           "zh": "《大碗岛的星期天下午》习作，1884年 · 大都会艺术博物馆",
-          "en": "Study for *A Sunday on La Grande Jatte*, 1884 · The Metropolitan Museum of Art"
+          "en": "Study for *A Sunday on La Grande Jatte*, 1884 · The Metropolitan Museum of Art, New York"
         }
       },
       {
         "image": "images/grande-jatte.jpg",
         "short": {
           "zh": "定稿 · 1884–86",
-          "en": "Final · 1884–86"
+          "en": "Finished painting · 1884–86"
         },
         "caption": {
           "zh": "《大碗岛的星期天下午》，1884–86年 · 芝加哥艺术博物馆",
@@ -1229,6 +1235,14 @@
         "label": {
           "zh": "河对岸的岛",
           "en": "The island across the river"
+        }
+      },
+      {
+        "scene": "circus",
+        "href": "../circus/",
+        "label": {
+          "zh": "修拉的星期天，和他的最后一幅",
+          "en": "Seurat's Sunday, and his last painting"
         }
       }
     ]
@@ -1370,7 +1384,7 @@
       },
       {
         "file": "study-met.jpg",
-        "from": "大都会艺术博物馆开放资源（等 Tia 上传）",
+        "from": "大都会艺术博物馆开放资源（Tia 上传的 IMG_0543.jpeg，2026-10-28）",
         "url": "https://www.metmuseum.org/toah/works-of-art/51.112.6",
         "license": "CC0",
         "status": "符合",

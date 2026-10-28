@@ -1,0 +1,2191 @@
+{
+  "_说明": "马戏团（室内，完整版：马戏场内）。所有事实文字由 Tia 提供（资料来自奥赛博物馆官网）。观众坐在马戏场一侧的看台上往下看：中间圆形场地上，女骑手站在奔跑的白马背上，领班挥着鞭子，空中有杂技演员，前景是背对我们的小丑；对面是一层层的观众。原画还没上传：物体位置先按构图估算，原画上传后再对准（视角、人物、看台）。",
+  "id": "circus",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "theatre",
+    "label": {
+      "zh": "马戏场里的灯光",
+      "en": "Lights in the circus ring"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮。和《大碗岛的星期天下午》互相链接（修拉的星期天，和他的最后一幅）；和德加《舞蹈课》互相链接（另一种舞台）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "grande-jatte",
+      "dance-class"
+    ]
+  },
+  "painting": {
+    "image": "images/circus.jpg",
+    "width": 1520,
+    "height": 1860,
+    "alt": {
+      "zh": "修拉《马戏团》1891，巴黎奥赛博物馆",
+      "en": "Georges Seurat, The Circus, 1891, Musée d'Orsay, Paris"
+    },
+    "_": "宽高先按画布尺寸（152 × 186）估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "马戏团",
+      "en": "The Circus"
+    },
+    "artist": {
+      "zh": "修拉",
+      "en": "Georges Seurat"
+    },
+    "date": {
+      "zh": "1891年",
+      "en": "1891"
+    },
+    "museum": {
+      "zh": "巴黎奥赛博物馆",
+      "en": "Musée d'Orsay, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下女骑手、领班、小丑、空中的杂技演员和看台上的观众看介绍 · 点“没画完的地方”放大看 · 在“对照原画”或“放大看细节”里点画面边缘，看画出来的框 · 地上发光的圆点 = 修拉的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the rider, the ringmaster, the clowns, the acrobat or the spectators to learn more · Tap “Unfinished” for a close-up · In “Original painting” or “Zoom in on details”, tap the edge of the picture to see the painted frame · The glowing circle = Seurat's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（坐在看台上往下看场地），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 3.2,
+    "yaw": 0,
+    "pitch": -0.3,
+    "fov": 62,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "circus",
+  "colors": {
+    "line": "#1e2440",
+    "floor": "#d8a060",
+    "wall": "#c8b08a",
+    "ceiling": "#3a3040",
+    "curb": "#c86a3a",
+    "tier": "#b07a4a",
+    "horse": "#f0ece0",
+    "rider": "#e8b080",
+    "tights": "#f0c8a8",
+    "acrobat": "#e89a5a",
+    "ringmaster": "#2e3a6a",
+    "trousers": "#2e3a6a",
+    "clown": "#d0502a",
+    "clown2": "#e8c070",
+    "coat": "#3a3a5a",
+    "hat2": "#c87a3a",
+    "dress": "#e0a070",
+    "skin": "#f0caa0",
+    "ground": "#e8dcc0",
+    "wood": "#6a4a3a",
+    "lampShade": "#f0e0b0",
+    "lampLight": "#fff0c8"
+  },
+  "room": {
+    "_说明": "房间形状（米）：马戏场的一侧。左墙 x=left，前墙 z=front（我们坐的看台在这边）；后墙在对面看台的后面，从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 9.0,
+    "front": 1.2,
+    "left": -9.0,
+    "backLeft": [
+      -9.0,
+      -19.3
+    ],
+    "backRight": [
+      9.0,
+      -19.3
+    ],
+    "rightFront": [
+      9.0,
+      1.2
+    ],
+    "floorCard": "rider",
+    "wallCard": "rows",
+    "walkSpeed": 0.9
+  },
+  "edgeCard": {
+    "_说明": "卡片“画出来的框”：在“对照原画”或“放大看细节”里，点原画四周 edge（画面宽高的比例）以内的地方弹出。原画上传后按画框的宽度调整。",
+    "card": "frame",
+    "edge": 0.06
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 0.0,
+      "z": -13.0,
+      "rot": -0.0,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 1.55,
+      "z": -12.8,
+      "rot": -0.262,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 3.0,
+      "z": -12.2,
+      "rot": -0.524,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 4.24,
+      "z": -11.24,
+      "rot": -0.785,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 5.2,
+      "z": -10.0,
+      "rot": -1.047,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 5.8,
+      "z": -8.55,
+      "rot": -1.309,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 6.0,
+      "z": -7.0,
+      "rot": -1.571,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 5.8,
+      "z": -5.45,
+      "rot": -1.833,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 5.2,
+      "z": -4.0,
+      "rot": -2.094,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 4.24,
+      "z": -2.76,
+      "rot": -2.356,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 3.0,
+      "z": -1.8,
+      "rot": -2.618,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 1.55,
+      "z": -1.2,
+      "rot": -2.88,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": 0.0,
+      "z": -1.0,
+      "rot": -3.142,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -1.55,
+      "z": -1.2,
+      "rot": -3.403,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -3.0,
+      "z": -1.8,
+      "rot": -3.665,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -4.24,
+      "z": -2.76,
+      "rot": -3.927,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -5.2,
+      "z": -4.0,
+      "rot": -4.189,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -5.8,
+      "z": -5.45,
+      "rot": -4.451,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -6.0,
+      "z": -7.0,
+      "rot": -4.712,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -5.8,
+      "z": -8.55,
+      "rot": -4.974,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -5.2,
+      "z": -10.0,
+      "rot": -5.236,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -4.24,
+      "z": -11.24,
+      "rot": -5.498,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -3.0,
+      "z": -12.2,
+      "rot": -5.76,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -1.55,
+      "z": -12.8,
+      "rot": -6.021,
+      "_": "场地边上的矮墙",
+      "boxes": [
+        [
+          1.6,
+          0.5,
+          0.25,
+          "curb",
+          0,
+          0.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rows",
+      "x": 0,
+      "z": -13.6,
+      "_": "对面的看台，第1排",
+      "boxes": [
+        [
+          17,
+          0.55,
+          0.9,
+          "tier",
+          0,
+          0.275,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -7.5,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -6.35,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -5.19,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": -4.04,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -2.88,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -1.73,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -0.58,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 0.58,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 1.73,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 2.88,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 4.04,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 5.19,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 6.35,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 7.5,
+      "z": -13.5,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.1
+    },
+    {
+      "type": "boxes",
+      "card": "rows",
+      "x": 0,
+      "z": -14.5,
+      "_": "对面的看台，第2排",
+      "boxes": [
+        [
+          17,
+          1.1,
+          0.9,
+          "tier",
+          0,
+          0.55,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -7.5,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -6.35,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": -5.19,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -4.04,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -2.88,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -1.73,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": -0.58,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 0.58,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 1.73,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 2.88,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 4.04,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 5.19,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 6.35,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 7.5,
+      "z": -14.4,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 0.65
+    },
+    {
+      "type": "boxes",
+      "card": "rows",
+      "x": 0,
+      "z": -15.4,
+      "_": "对面的看台，第3排",
+      "boxes": [
+        [
+          17,
+          1.6500000000000001,
+          0.9,
+          "tier",
+          0,
+          0.8250000000000001,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -7.5,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": -6.35,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -5.19,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -4.04,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -2.88,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": -1.73,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -0.58,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 0.58,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 1.73,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 2.88,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 4.04,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 5.19,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 6.35,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 7.5,
+      "z": -15.3,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.2
+    },
+    {
+      "type": "boxes",
+      "card": "rows",
+      "x": 0,
+      "z": -16.3,
+      "_": "对面的看台，第4排",
+      "boxes": [
+        [
+          17,
+          2.2,
+          0.9,
+          "tier",
+          0,
+          1.1,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": -7.5,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -6.35,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -5.19,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -4.04,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": -2.88,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -1.73,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -0.58,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 0.58,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 1.73,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 2.88,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 4.04,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 5.19,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 6.35,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 7.5,
+      "z": -16.2,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 1.75
+    },
+    {
+      "type": "boxes",
+      "card": "rows",
+      "x": 0,
+      "z": -17.2,
+      "_": "对面的看台，第5排",
+      "boxes": [
+        [
+          17,
+          2.75,
+          0.9,
+          "tier",
+          0,
+          1.375,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -7.5,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -6.35,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -5.19,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": -4.04,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -2.88,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -1.73,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -0.58,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 0.58,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 1.73,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 2.88,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 4.04,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 5.19,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 6.35,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 7.5,
+      "z": -17.1,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.3
+    },
+    {
+      "type": "boxes",
+      "card": "rows",
+      "x": 0,
+      "z": -18.1,
+      "_": "对面的看台，第6排",
+      "boxes": [
+        [
+          17,
+          3.3000000000000003,
+          0.9,
+          "tier",
+          0,
+          1.6500000000000001,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -7.5,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -6.35,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": -5.19,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -4.04,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": -2.88,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -1.73,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": -0.58,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 0.58,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 1.73,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 2.88,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 4.04,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 5.19,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "hat2",
+      "x": 6.35,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 7.5,
+      "z": -18.0,
+      "rot": 0,
+      "card": "rows",
+      "_": "对面看台上的观众",
+      "scale": 0.9,
+      "y": 2.85
+    },
+    {
+      "type": "boxes",
+      "card": "unfinished",
+      "x": 0,
+      "z": -19.2,
+      "_": "看台后面的墙（原画上这里有些地方还能看到白色的底子和蓝色的格线）",
+      "boxes": [
+        [
+          18,
+          8,
+          0.2,
+          "ground",
+          0,
+          4,
+          0,
+          "wall"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "rider",
+      "x": -0.8,
+      "z": -6.5,
+      "rot": -0.2,
+      "id": "horse",
+      "_": "奔跑的白马",
+      "boxes": [
+        [
+          2.0,
+          0.8,
+          0.6,
+          "horse",
+          0,
+          1.35,
+          0
+        ],
+        [
+          0.7,
+          0.35,
+          0.35,
+          "horse",
+          1.15,
+          1.85,
+          0
+        ],
+        [
+          0.12,
+          1.0,
+          0.12,
+          "horse",
+          -0.75,
+          0.7,
+          0.2
+        ],
+        [
+          0.12,
+          1.0,
+          0.12,
+          "horse",
+          -0.6,
+          0.9,
+          -0.2
+        ],
+        [
+          0.12,
+          1.0,
+          0.12,
+          "horse",
+          0.75,
+          0.9,
+          0.2
+        ],
+        [
+          0.12,
+          1.0,
+          0.12,
+          "horse",
+          0.6,
+          0.7,
+          -0.2
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "rider",
+      "x": -0.8,
+      "z": -6.5,
+      "rot": 0,
+      "card": "rider",
+      "_": "站在马背上的女骑手",
+      "scale": 0.85,
+      "y": 1.75,
+      "legs": "tights",
+      "id": "rider"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "acrobat",
+      "x": -2.4,
+      "z": -7.4,
+      "rot": 0,
+      "card": "rising",
+      "_": "空中翻跟头的杂技演员",
+      "scale": 0.8,
+      "y": 3.4,
+      "legs": "acrobat"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "ringmaster",
+      "x": 2.6,
+      "z": -4.4,
+      "rot": 0,
+      "card": "ringmaster",
+      "_": "挥着鞭子的领班",
+      "legs": "trousers"
+    },
+    {
+      "type": "boxes",
+      "card": "ringmaster",
+      "x": 2.3,
+      "z": -4.4,
+      "_": "领班的鞭子",
+      "boxes": [
+        [
+          0.03,
+          0.03,
+          1.8,
+          "line",
+          0,
+          1.5,
+          -0.9
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "clown2",
+      "x": -3.6,
+      "z": -9.6,
+      "rot": 0,
+      "card": "rising",
+      "_": "场地里的另一个小丑",
+      "scale": 0.85
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "clown",
+      "x": 0.6,
+      "z": -1.8,
+      "rot": 3.14,
+      "card": "clown",
+      "_": "前景背对我们的小丑（红头发）",
+      "legs": "clown"
+    },
+    {
+      "type": "boxes",
+      "card": "rows",
+      "x": 0,
+      "z": 0.6,
+      "_": "我们坐的这一边看台",
+      "boxes": [
+        [
+          17,
+          1.2,
+          1.0,
+          "tier",
+          0,
+          0.6,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "rider": {
+      "title": {
+        "zh": "女骑手",
+        "en": "The rider"
+      },
+      "text": {
+        "zh": "一位女骑手站在奔跑的白马背上，保持着平衡。",
+        "en": "A female rider keeps her balance on the back of a galloping white horse."
+      }
+    },
+    "ringmaster": {
+      "title": {
+        "zh": "领班",
+        "en": "The ringmaster"
+      },
+      "text": {
+        "zh": "领班挥着鞭子，指挥着整场表演。",
+        "en": "The ringmaster cracks his whip, directing the performance."
+      }
+    },
+    "clown": {
+      "title": {
+        "zh": "小丑",
+        "en": "The clown"
+      },
+      "text": {
+        "zh": "前景的小丑背对着我们，红色的头发和衣服特别醒目。",
+        "en": "In the foreground, a clown with striking red hair and costume stands with his back to us."
+      }
+    },
+    "rising": {
+      "title": {
+        "zh": "上升的线",
+        "en": "Rising lines"
+      },
+      "text": {
+        "zh": "当时的评论家注意到，画里到处是上升的线条，加上占主导的橙色，营造出一种欢乐感。",
+        "en": "A critic of the time noted the ascending lines everywhere and the dominant orange, creating a sense of gaiety."
+      }
+    },
+    "rows": {
+      "title": {
+        "zh": "一排排观众",
+        "en": "Rows of spectators"
+      },
+      "text": {
+        "zh": "看台上的观众被简化成一排排，几乎变成了图案。",
+        "en": "The spectators in the stands are simplified into rows, almost a pattern."
+      }
+    },
+    "unfinished": {
+      "title": {
+        "zh": "没画完的地方",
+        "en": "Unfinished"
+      },
+      "text": {
+        "zh": "这幅画没有画完。有些地方还能看到白色的底子和蓝色的构图格线。",
+        "en": "The painting was never finished. In places you can still see the white ground and the blue grid of the composition."
+      }
+    },
+    "frame": {
+      "title": {
+        "zh": "画出来的框",
+        "en": "A painted frame"
+      },
+      "text": {
+        "zh": "修拉在画布边缘画了一圈深色边框，又配了一个同样深蓝色的平面画框，让画框也成为作品的一部分。",
+        "en": "Seurat painted a dark border on the edge of the canvas, and added a flat frame in the same blue, making the frame part of the work."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“没画完的地方”：站到画家视角点时，画面放大到原画上还能看到白色底子和蓝色格线的地方，显示卡片6的文字。只是放大原画，不是示意效果，所以不显示“这是示意”。crop 是那一块在原画上的位置（0–1：x、y 是左上角，w、h 是宽高）——待核对：原画上传后照着图量。",
+    "type": "mirror",
+    "label": {
+      "zh": "没画完的地方",
+      "en": "Unfinished"
+    },
+    "alt": {
+      "zh": "《马戏团》上没画完的地方（放大）",
+      "en": "An unfinished area of The Circus (detail)"
+    },
+    "text": {
+      "zh": "这幅画没有画完。有些地方还能看到白色的底子和蓝色的构图格线。",
+      "en": "The painting was never finished. In places you can still see the white ground and the blue grid of the composition."
+    },
+    "crop": {
+      "x": 0.6,
+      "y": 0.08,
+      "w": 0.25,
+      "h": 0.2
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/circus.jpg",
+        "alt": {
+          "zh": "修拉《马戏团》1891，巴黎奥赛博物馆",
+          "en": "Georges Seurat, The Circus, 1891, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1891年 · 巴黎奥赛博物馆",
+          "en": "1891 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 画室附近的马戏团",
+          "en": "A circus near the studio"
+        },
+        "text": {
+          "zh": "修拉的画室附近，有一家很受欢迎的马戏团。雷诺阿、德加、图卢兹-罗特列克都画过它。1890年，修拉也开始画它。",
+          "en": "Near Seurat's studio was a popular circus, painted by Renoir, Degas and Toulouse-Lautrec. In 1890, Seurat began to paint it too."
+        }
+      },
+      {
+        "image": "images/circus.jpg",
+        "alt": {
+          "zh": "修拉《马戏团》1891，巴黎奥赛博物馆",
+          "en": "Georges Seurat, The Circus, 1891, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1891年 · 巴黎奥赛博物馆",
+          "en": "1891 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 艺术和科学",
+          "en": "Art and science"
+        },
+        "text": {
+          "zh": "修拉想用这幅画，把艺术创作和科学分析结合在一起：线条的方向、颜色的对比，都经过精心计算。",
+          "en": "With this painting, Seurat sought to bring artistic creation and scientific analysis together: the direction of every line, every contrast of colour, carefully considered."
+        }
+      },
+      {
+        "image": "images/circus.jpg",
+        "alt": {
+          "zh": "修拉《马戏团》1891，巴黎奥赛博物馆",
+          "en": "Georges Seurat, The Circus, 1891, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1891年 · 巴黎奥赛博物馆",
+          "en": "1891 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 最后一幅",
+          "en": "His last painting"
+        },
+        "text": {
+          "zh": "1891年3月，这幅没有画完的画在独立艺术家沙龙展出。几天后，修拉因病去世，年仅31岁。1977年起，它收藏在奥赛博物馆。",
+          "en": "In March 1891, the unfinished painting was shown at the Salon des Indépendants. A few days later, Seurat died of an illness, aged just 31. Since 1977 it has been at the Musée d'Orsay."
+        }
+      }
+    ],
+    "final": {
+      "zh": "最后一幅，没有画完。",
+      "en": "His last painting, left unfinished."
+    },
+    "versions": [],
+    "museums": [
+      "orsay"
+    ],
+    "exit": [
+      {
+        "scene": "grande-jatte",
+        "href": "../grande-jatte/",
+        "label": {
+          "zh": "修拉的星期天，和他的最后一幅",
+          "en": "Seurat's Sunday, and his last painting"
+        }
+      },
+      {
+        "scene": "dance-class",
+        "href": "../dance-class/",
+        "label": {
+          "zh": "另一种舞台",
+          "en": "Another kind of stage"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸按奥赛官网：画布 186 × 152 cm（维基百科写 185 × 152），含画框 232 × 198.5 cm；编号 RF 2511。",
+    "artist": {
+      "zh": "乔治·修拉（1859–1891）",
+      "en": "Georges Seurat (1859–1891)"
+    },
+    "title": {
+      "zh": "马戏团",
+      "en": "The Circus (Le Cirque)"
+    },
+    "date": {
+      "zh": "1891年",
+      "en": "1891"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "186 × 152 cm（含画家自绘画框 232 × 198.5 cm）",
+      "en": "186 × 152 cm (232 × 198.5 cm with the artist's painted frame)"
+    },
+    "collection": {
+      "zh": "巴黎奥赛博物馆（1977年起）",
+      "en": "Musée d'Orsay, Paris (since 1977)"
+    },
+    "url": "https://www.musee-orsay.fr/en/artworks/le-cirque-542"
+  },
+  "zoom": {
+    "image": "images/circus.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "奥赛博物馆：马戏团",
+          "en": "Musée d'Orsay: *The Circus*"
+        },
+        "url": "https://www.musee-orsay.fr/en/artworks/le-cirque-542"
+      },
+      {
+        "title": {
+          "zh": "维基百科：马戏团（修拉）",
+          "en": "Wikipedia: *The Circus* (Seurat)"
+        },
+        "url": "https://en.wikipedia.org/wiki/The_Circus_(Seurat)"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 画室附近的马戏团",
+          "en": "A circus near the studio"
+        },
+        "text": {
+          "zh": "修拉的画室附近，有一家很受欢迎的马戏团。雷诺阿、德加、图卢兹-罗特列克都画过它。1890年，修拉也开始画它。",
+          "en": "Near Seurat's studio was a popular circus, painted by Renoir, Degas and Toulouse-Lautrec. In 1890, Seurat began to paint it too."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 艺术和科学",
+          "en": "Art and science"
+        },
+        "text": {
+          "zh": "修拉想用这幅画，把艺术创作和科学分析结合在一起：线条的方向、颜色的对比，都经过精心计算。",
+          "en": "With this painting, Seurat sought to bring artistic creation and scientific analysis together: the direction of every line, every contrast of colour, carefully considered."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 最后一幅",
+          "en": "His last painting"
+        },
+        "text": {
+          "zh": "1891年3月，这幅没有画完的画在独立艺术家沙龙展出。几天后，修拉因病去世，年仅31岁。1977年起，它收藏在奥赛博物馆。",
+          "en": "In March 1891, the unfinished painting was shown at the Salon des Indépendants. A few days later, Seurat died of an illness, aged just 31. Since 1977 it has been at the Musée d'Orsay."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "奥赛博物馆：马戏团",
+        "en": "Musée d'Orsay: *The Circus*"
+      },
+      "url": "https://www.musee-orsay.fr/en/artworks/le-cirque-542"
+    },
+    {
+      "title": {
+        "zh": "维基百科：马戏团（修拉）",
+        "en": "Wikipedia: *The Circus* (Seurat)"
+      },
+      "url": "https://en.wikipedia.org/wiki/The_Circus_(Seurat)"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "circus.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不用奥赛官网的 RMN 照片）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-10-28"
+      }
+    ]
+  },
+  "lastVerified": "2026-10-28"
+}
