@@ -1,5 +1,5 @@
 {
-  "_说明": "包厢（室内房间，完整版：剧院包厢）。所有事实文字由 Tia 提供（资料来自考陶尔德美术馆、纽约时装技术学院时装史、WebMuseum）。画家视角在包厢栏杆前面，正对着这对男女：前景是红色天鹅绒的栏杆，女子看向我们，男子举着望远镜看向别处；观众可以走到他们旁边，转过身就是剧院对面一层层的包厢和灯光。原画还没上传：人物和画家视角是先按画面描述摆的，上传后照原画重新对准。",
+  "_说明": "包厢（室内房间，完整版：剧院包厢）。所有事实文字由 Tia 提供（资料来自考陶尔德美术馆、纽约时装技术学院时装史、WebMuseum）。画家视角在包厢栏杆前面，正对着这对男女：前景是红色天鹅绒的栏杆，女子看向我们，男子举着望远镜看向别处；观众可以走到他们旁边，转过身就是剧院对面一层层的包厢和灯光。画家视角按原画估算：坐在栏杆前（眼睛约1.25米），女子离画家约1.3米，男子在她右后方。",
   "id": "la-loge",
   "variant": "interior",
   "lighting": {
@@ -25,13 +25,12 @@
   },
   "painting": {
     "image": "images/la-loge.jpg",
-    "width": 1270,
-    "height": 1600,
+    "width": 960,
+    "height": 1199,
     "alt": {
       "zh": "雷诺阿《包厢》1874，伦敦考陶尔德美术馆",
       "en": "Pierre-Auguste Renoir, La Loge (The Theatre Box), 1874, The Courtauld, London"
-    },
-    "_": "宽高是按尺寸比例（80 × 63.5 cm）先填的，原画上传后改成实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -66,12 +65,12 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the couple, the opera glasses or the ledge to learn more, and turn round to see the theatre · Tap “Who is looking at whom” to see the lines of sight · The glowing circle = Renoir's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先按画面描述估算（坐着，稍微往上看这对男女），原画上传后对准。",
+    "_说明": "画家视角：按原画估算（坐在栏杆前，稍微往上看：她的头在画面上方约五分之一，栏杆在最下面）。",
     "x": 0,
     "z": 0,
-    "eye": 1.25,
+    "eye": 1.05,
     "yaw": 0,
-    "pitch": 0.05,
+    "pitch": 0.14,
     "fov": 44,
     "text": {
       "zh": "从这里看，就是画里的样子。",
@@ -133,36 +132,37 @@
           0.3,
           "velvet",
           0.2,
-          0.95,
+          0.62,
           0
         ],
         [
           2.6,
-          0.95,
+          0.62,
           0.06,
           "velvet",
           0.2,
-          0.47,
+          0.31,
           0.13
         ]
       ]
     },
     {
       "type": "figure",
-      "pose": "sitting",
+      "pose": "standing",
       "color": "stripes",
       "legs": "stripes",
-      "x": -0.05,
-      "z": -1.25,
+      "x": -0.15,
+      "z": -1.15,
       "rot": 0,
       "card": "stripes",
-      "_": "妮妮·洛佩斯：穿条纹裙的女子，看向我们"
+      "_": "妮妮·洛佩斯：穿条纹裙的女子，看向我们",
+      "scale": 0.9
     },
     {
       "type": "boxes",
       "card": "jewels",
       "x": -0.05,
-      "z": -1.05,
+      "z": -0.95,
       "_": "她手里的看戏望远镜（手腕上有金手镯）",
       "boxes": [
         [
@@ -170,8 +170,8 @@
           0.06,
           0.06,
           "glasses",
-          0.25,
-          1.0,
+          0.1,
+          0.78,
           0
         ]
       ]
@@ -181,18 +181,18 @@
       "pose": "standing",
       "color": "evening",
       "legs": "evening",
-      "x": 0.55,
-      "z": -1.7,
+      "x": 0.32,
+      "z": -1.55,
       "rot": 0,
       "card": "black",
       "_": "埃德蒙：穿黑色晚礼服的男子，举着望远镜看向别处",
-      "scale": 0.92
+      "scale": 1.02
     },
     {
       "type": "boxes",
       "card": "looking",
-      "x": 0.55,
-      "z": -1.6,
+      "x": 0.32,
+      "z": -1.45,
       "_": "他举起的望远镜",
       "boxes": [
         [
@@ -201,7 +201,7 @@
           0.08,
           "glasses",
           0.0,
-          1.62,
+          1.82,
           0
         ]
       ]
@@ -471,7 +471,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“谁在看谁”：开关打开后，画面上浮现三条视线：女子看向观众，男子的望远镜看向剧院里别处的包厢，观众看向女子（是我们画的示意线，原画上的位置 0–1）。显示说明。原画上传后按原画对准线的位置。",
+    "_说明": "独家发现“谁在看谁”：开关打开后，画面上浮现三条视线：女子看向观众，男子的望远镜看向剧院里别处的包厢，观众看向女子（是我们画的示意线，原画上的位置 0–1）。显示说明。线的位置按原画对准：女子的眼睛约在 (0.38, 0.22)，男子的望远镜约在 (0.68, 0.05)。",
     "type": "toggles",
     "label": {
       "zh": "谁在看谁",
@@ -492,22 +492,22 @@
         },
         "lines": [
           [
-            0.42,
-            0.34,
+            0.38,
+            0.22,
             0.5,
             0.98
           ],
           [
-            0.66,
-            0.13,
-            0.98,
-            0.02
+            0.68,
+            0.05,
+            0.82,
+            0.0
           ],
           [
-            0.2,
+            0.14,
             0.98,
-            0.41,
-            0.37
+            0.37,
+            0.25
           ]
         ],
         "lineColor": "#fff3b0",
@@ -757,11 +757,11 @@
     "files": [
       {
         "file": "la-loge.jpg",
-        "from": "Wikimedia Commons（还没上传）",
-        "url": "待补",
+        "from": "Wikimedia Commons（Tia 上传的 IMG_0541.jpeg，2026-10-28）",
+        "url": "https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir_023.jpg",
         "license": "公有领域（PD-Art）",
         "status": "符合",
-        "note": "等 Tia 上传；不用考陶尔德官网、Art UK 或 Google 艺术与文化的图片",
+        "note": "Tia 下载的是否就是“Pierre-Auguste Renoir 023.jpg”，等 Tia 确认",
         "verified": "2026-10-28"
       }
     ]
