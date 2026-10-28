@@ -371,6 +371,16 @@ const AMBIENCE = {
       field.gain.setTargetAtTime(g ? 0 : 1, t, 0.6); room.gain.setTargetAtTime(g ? 1 : 0, t, 0.6);
     }, 300));
   },
+  // 剧院后台：很低的说话声，远处乐队调音（几件乐器各拉各的长音），舞鞋踩在木地板上的声音（Backstage at the theatre）
+  backstage(out, st) {
+    loopNoise('brown', out, { freq: 230, gain: 0.07 });
+    murmur(out, 0.04)(st);
+    const far = ctx.createGain(); far.gain.value = 0.3; far.connect(pan(out, 0.4));   // 乐池在舞台那边
+    const tune = t => { for (let k = 0; k < 5; k++) { const f = [220, 293.7, 329.6, 440, 587.3][Math.floor(rnd(0, 5))] * (1 + rnd(-0.004, 0.004)); tone(far, t + rnd(0, 3), { f0: f, type: Math.random() < 0.5 ? 'sawtooth' : 'triangle', vol: 0.012, attack: 0.3, dur: rnd(1.2, 2.6) }); } };
+    tune(ctx.currentTime + 1); every(st, 4, 8, tune);
+    const tap = t => { for (let k = 0; k < 2 + Math.floor(Math.random() * 3); k++) burst(out, t + k * rnd(0.18, 0.3), { kind: 'brown', type: 'bandpass', freq: rnd(700, 1100), q: 6, vol: 0.05, dur: 0.03, p: rnd(-0.6, 0.6) }); };
+    every(st, 3, 8, tap);
+  },
   // 雨中的巴黎路口：小雨声，雨水打在伞上，马车轮子压过湿石板，远处的脚步声（A rainy crossroads）
   'rain-cobbles'(out, st) {
     loopNoise('white', out, { type: 'highpass', freq: 3200, gain: 0.04 });   // 小雨
