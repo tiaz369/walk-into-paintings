@@ -15,7 +15,8 @@
     "doors": [],
     "cards": [],
     "end": [
-      "moulin-galette"
+      "moulin-galette",
+      "ballet-dancers-wings"
     ]
   },
   "painting": {
@@ -711,6 +712,14 @@
         "label": {
           "zh": "另一种舞蹈",
           "en": "Another kind of dance"
+        }
+      },
+      {
+        "scene": "ballet-dancers-wings",
+        "href": "../ballet-dancers-wings/",
+        "label": {
+          "zh": "教室和后台",
+          "en": "The classroom and the wings"
         }
       }
     ]

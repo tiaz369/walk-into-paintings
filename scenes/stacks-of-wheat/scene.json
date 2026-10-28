@@ -1,5 +1,5 @@
 {
-  "_说明": "干草堆（户外开场 + 室内展厅，完整版）。所有事实文字由 Tia 提供（资料来自芝加哥艺术博物馆的研究出版物）。开场站在吉维尼的田野里，眼前是主画《干草堆（夏末）》里的两个草堆；点“走进展厅”，来到旁边的一间展厅（x=100 一带），6幅芝加哥收藏的草堆在一面长墙上排成一排，像1891年的画展那样。原画还没上传：草堆的位置和画家视角是先按画面描述摆的，上传后照原画重新对准。用户外的场景类型（outdoor），因为开场是田野（需要天空和远处）；展厅是田野旁边另一块可以走的地方（room.zones）。",
+  "_说明": "干草堆（户外开场 + 室内展厅，完整版）。所有事实文字由 Tia 提供（资料来自芝加哥艺术博物馆的研究出版物）。开场站在吉维尼的田野里，眼前是主画《干草堆（夏末）》里的两个草堆；点“走进展厅”，来到旁边的一间展厅（x=100 一带），6幅芝加哥收藏的草堆在一面长墙上排成一排，像1891年的画展那样。画家视角按原画估算：站在田野里（眼睛约1.6米，视平线约在画面上方55%，远处的山比眼睛高），右边的大草堆离画家约17米、高约3.8米，左边的约26米、高约3米。用户外的场景类型（outdoor），因为开场是田野（需要天空和远处）；展厅是田野旁边另一块可以走的地方（room.zones）。",
   "id": "stacks-of-wheat",
   "variant": "outdoor",
   "lighting": {
@@ -21,13 +21,12 @@
   },
   "painting": {
     "image": "images/stacks-end-of-summer.jpg",
-    "width": 2000,
-    "height": 1194,
+    "width": 1686,
+    "height": 996,
     "alt": {
       "zh": "莫奈《干草堆（夏末）》1890/91，芝加哥艺术博物馆",
       "en": "Claude Monet, Stacks of Wheat (End of Summer), 1890/91, Art Institute of Chicago"
-    },
-    "_": "宽高是按尺寸比例（60 × 100.5 cm）先填的，原画上传后改成实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -62,13 +61,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the stacks and the field to learn more · Tap “Into the gallery” and walk along the wall past six stacks in a row · The glowing circle = Monet's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先按画面描述估算（站在田野里，眼睛约1.6米），原画上传后对准。",
+    "_说明": "画家视角：按原画估算（两个草堆和田野的远处对齐原画）。",
     "x": 0,
     "z": 0,
     "eye": 1.6,
     "yaw": 0,
-    "pitch": -0.05,
-    "fov": 40,
+    "pitch": 0.0268,
+    "fov": 30,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -152,29 +151,29 @@
       "type": "tree",
       "shape": "bush",
       "card": "giverny",
-      "_": "左边的草堆（大的那个）",
-      "x": -1.6,
-      "z": -12,
-      "h": 4.2,
-      "r": 2.4,
+      "_": "左边较小的草堆",
+      "x": -6.8,
+      "z": -26.5,
+      "h": 3.0,
+      "r": 1.8,
       "color": "stack"
     },
     {
       "type": "tree",
       "shape": "bush",
       "card": "seasons",
-      "_": "右边的草堆",
-      "x": 3.6,
-      "z": -17,
-      "h": 3.4,
-      "r": 2.0,
+      "_": "右边的大草堆",
+      "x": 4.5,
+      "z": -17.6,
+      "h": 3.8,
+      "r": 2.4,
       "color": "stack"
     },
     {
       "type": "boxes",
       "card": "count",
       "x": 0,
-      "z": -60,
+      "z": -70,
       "_": "远处的树林、房子和山丘",
       "boxes": [
         [
@@ -360,7 +359,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“像1891年那样挂一排”：点“走进展厅”，来到田野旁边的展厅，6幅芝加哥收藏的草堆在长墙上排成一排（真实的原画，芝加哥艺术博物馆 CC0）；走到哪一幅前，屏幕上放大那一幅并显示画名；6幅都看过后显示 note。不是示意效果。wallZ 是长墙的位置；每幅画的 x、y 是在墙上的中心，w、h 是大小（米，h 按原画比例，上传后按实际像素改）。",
+    "_说明": "独家发现“像1891年那样挂一排”：点“走进展厅”，来到田野旁边的展厅，6幅芝加哥收藏的草堆在长墙上排成一排（真实的原画，芝加哥艺术博物馆 CC0）；走到哪一幅前，屏幕上放大那一幅并显示画名；6幅都看过后显示 note。不是示意效果。wallZ 是长墙的位置；每幅画的 x、y 是在墙上的中心，w、h 是大小（米，h 按原画的实际比例）。",
     "type": "gallery",
     "label": {
       "zh": "走进展厅",
@@ -398,7 +397,7 @@
         "x": 91.9,
         "y": 1.55,
         "w": 1.5,
-        "h": 0.896
+        "h": 0.886
       },
       {
         "image": "images/stacks-end-of-day-autumn.jpg",
@@ -417,7 +416,7 @@
         "x": 95.14,
         "y": 1.55,
         "w": 1.5,
-        "h": 0.977
+        "h": 0.976
       },
       {
         "image": "images/stack-snow-overcast.jpg",
@@ -436,7 +435,7 @@
         "x": 98.38,
         "y": 1.55,
         "w": 1.5,
-        "h": 1.02
+        "h": 1.056
       },
       {
         "image": "images/stacks-sunset-snow.jpg",
@@ -455,7 +454,7 @@
         "x": 101.62,
         "y": 1.55,
         "w": 1.5,
-        "h": 0.975
+        "h": 0.969
       },
       {
         "image": "images/stack-thaw-sunset.jpg",
@@ -474,7 +473,7 @@
         "x": 104.86,
         "y": 1.55,
         "w": 1.5,
-        "h": 1.05
+        "h": 1.044
       },
       {
         "image": "images/stack-of-wheat.jpg",
@@ -493,7 +492,7 @@
         "x": 108.1,
         "y": 1.55,
         "w": 1.5,
-        "h": 1.05
+        "h": 1.052
       }
     ]
   },
@@ -717,56 +716,50 @@
     "files": [
       {
         "file": "stacks-end-of-summer.jpg",
-        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "from": "芝加哥艺术博物馆开放资源（Tia 上传的 IMG_0537.jpeg，2026-10-27）",
         "url": "https://www.artic.edu/artworks/64818/stacks-of-wheat-end-of-summer",
         "license": "CC0",
         "status": "符合",
-        "note": "等 Tia 上传；编号 1985.1103",
         "verified": "2026-10-27"
       },
       {
         "file": "stacks-end-of-day-autumn.jpg",
-        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "from": "芝加哥艺术博物馆开放资源（Tia 上传的 IMG_0531.jpeg，2026-10-27）",
         "url": "https://www.artic.edu/artworks/14624/stacks-of-wheat-end-of-day-autumn",
         "license": "CC0",
         "status": "符合",
-        "note": "等 Tia 上传；编号 1933.444",
         "verified": "2026-10-27"
       },
       {
         "file": "stack-snow-overcast.jpg",
-        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "from": "芝加哥艺术博物馆开放资源（Tia 上传的 IMG_0536.jpeg，2026-10-27）",
         "url": "https://www.artic.edu/artworks/16560/stack-of-wheat-snow-effect-overcast-day",
         "license": "CC0",
         "status": "符合",
-        "note": "等 Tia 上传",
         "verified": "2026-10-27"
       },
       {
         "file": "stacks-sunset-snow.jpg",
-        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "from": "芝加哥艺术博物馆开放资源（Tia 上传的 IMG_0534.jpeg，2026-10-27）",
         "url": "https://www.artic.edu/artworks/81545/stacks-of-wheat-sunset-snow-effect",
         "license": "CC0",
         "status": "符合",
-        "note": "等 Tia 上传",
         "verified": "2026-10-27"
       },
       {
         "file": "stack-thaw-sunset.jpg",
-        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "from": "芝加哥艺术博物馆开放资源（Tia 上传的 IMG_0535.jpeg，2026-10-27）",
         "url": "https://www.artic.edu/artworks/100191/stack-of-wheat-thaw-sunset",
         "license": "CC0",
         "status": "符合",
-        "note": "等 Tia 上传；编号 1983.166",
         "verified": "2026-10-27"
       },
       {
         "file": "stack-of-wheat.jpg",
-        "from": "芝加哥艺术博物馆开放资源（还没上传）",
+        "from": "芝加哥艺术博物馆开放资源（Tia 上传的 IMG_0532.jpeg，2026-10-27）",
         "url": "https://www.artic.edu/artworks/111318/stack-of-wheat",
         "license": "CC0",
         "status": "符合",
-        "note": "等 Tia 上传；编号 1983.29",
         "verified": "2026-10-27"
       }
     ]

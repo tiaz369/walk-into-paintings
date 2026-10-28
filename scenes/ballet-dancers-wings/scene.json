@@ -1,0 +1,716 @@
+{
+  "_说明": "芭蕾舞者（后台）（室内房间，完整版：剧院后台侧幕）。所有事实文字由 Tia 提供（资料来自伦敦国家美术馆官网）。观众站在舞台侧幕里，旁边是木墙和幕布；四位穿彩色纱裙的舞者沿斜线排列，在演出间隙休息；远处隐约是舞台的灯光。原画还没上传：现在的人物和画家视角是先按画面描述摆的，上传后照原画重新对准。",
+  "id": "ballet-dancers-wings",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "backstage",
+    "label": {
+      "zh": "侧幕里的暗光，远处舞台的灯",
+      "en": "Dim light in the wings, stage lights beyond"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）。和《舞蹈课》互相链接（“教室和后台”）；卡片“一条斜线”链接到卧室的“地板”卡片（梵高也受日本版画影响）。",
+    "doors": [],
+    "cards": [
+      "bedroom"
+    ],
+    "end": [
+      "dance-class"
+    ]
+  },
+  "painting": {
+    "image": "images/ballet-dancers.jpg",
+    "width": 1754,
+    "height": 1537,
+    "alt": {
+      "zh": "德加《芭蕾舞者》1888，粉彩，伦敦国家美术馆",
+      "en": "Edgar Degas, Ballet Dancers, 1888, pastel, The National Gallery, London"
+    },
+    "_": "宽高按 Commons 文件（Ballet Dancers by Degas (NG6705).jpg，1754 × 1537）先填的，上传后按实际像素改"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "芭蕾舞者",
+      "en": "Ballet Dancers"
+    },
+    "artist": {
+      "zh": "德加",
+      "en": "Edgar Degas"
+    },
+    "date": {
+      "zh": "1888年",
+      "en": "1888"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下四位舞者、侧幕和木墙看介绍 · 点“拼起来的瞬间”，看她们分开成几张习作 · 地上发光的圆点 = 德加的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the four dancers, the wings or the wall to learn more · Tap “A moment pieced together” to see them as separate studies · The glowing circle = Degas's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先按画面描述估算（站着稍微往下看），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.7,
+    "yaw": 0.25,
+    "pitch": -0.3,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "backstage",
+  "colors": {
+    "line": "#2a2620",
+    "floor": "#8a6a4a",
+    "wall": "#4a4038",
+    "ceiling": "#2a2622",
+    "wood": "#7a5a3a",
+    "flat": "#5a5040",
+    "stagelight": "#f2e2b0",
+    "tights": "#f0d8c8",
+    "skin": "#f0d0b8",
+    "tutu1": "#e88a3a",
+    "tutu2": "#e8a040",
+    "tutu3": "#3aa8a0",
+    "tutu4": "#d88a30",
+    "fanColor": "#d84a3a",
+    "coat": "#2e2c2a",
+    "trousers": "#3a3632"
+  },
+  "room": {
+    "_说明": "房间形状（米）：剧院后台的侧幕。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 4.2,
+    "front": 1.0,
+    "left": -1.85,
+    "backLeft": [
+      -1.85,
+      -7.5
+    ],
+    "backRight": [
+      2.3,
+      -7.5
+    ],
+    "rightFront": [
+      2.3,
+      1.0
+    ],
+    "floorCard": "behind",
+    "wallCard": "diagonal",
+    "walkSpeed": 0.8
+  },
+  "objects": [
+    {
+      "type": "figure",
+      "id": "d1",
+      "pose": "sitting",
+      "color": "tutu1",
+      "legs": "tights",
+      "x": -0.6,
+      "z": -2.0,
+      "rot": 0,
+      "card": "crouch",
+      "_": "第一位：蹲着的年轻舞者",
+      "scale": 0.85
+    },
+    {
+      "type": "figure",
+      "id": "d2",
+      "pose": "sitting",
+      "color": "tutu2",
+      "legs": "tights",
+      "x": -0.1,
+      "z": -2.6,
+      "rot": 0,
+      "card": "tired",
+      "_": "第二位：一手托着头"
+    },
+    {
+      "type": "figure",
+      "id": "d3",
+      "pose": "standing",
+      "color": "tutu3",
+      "legs": "tights",
+      "x": 0.5,
+      "z": -3.2,
+      "rot": 0,
+      "card": "fan",
+      "_": "第三位：拿着扇子"
+    },
+    {
+      "type": "figure",
+      "id": "d4",
+      "pose": "standing",
+      "color": "tutu4",
+      "legs": "tights",
+      "x": 1.1,
+      "z": -3.8,
+      "rot": 0,
+      "card": "wall",
+      "_": "第四位：靠在墙上"
+    },
+    {
+      "type": "boxes",
+      "card": "fan",
+      "x": 0.75,
+      "z": -3.1,
+      "_": "色彩鲜艳的扇子",
+      "boxes": [
+        [
+          0.3,
+          0.22,
+          0.03,
+          "fanColor",
+          0,
+          1.15,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "behind",
+      "x": 0,
+      "z": 0,
+      "_": "侧幕：一层层的木框幕布（左边）",
+      "boxes": [
+        [
+          0.1,
+          4.2,
+          1.2,
+          "flat",
+          -1.9,
+          2.1,
+          -1.5
+        ],
+        [
+          0.1,
+          4.2,
+          1.2,
+          "flat",
+          -1.9,
+          2.1,
+          -3.6
+        ],
+        [
+          0.1,
+          4.2,
+          1.2,
+          "flat",
+          -1.9,
+          2.1,
+          -5.7
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "behind",
+      "x": 0,
+      "z": -7.5,
+      "_": "远处舞台上的灯光（亮的地方）",
+      "boxes": [
+        [
+          3.5,
+          3.0,
+          0.05,
+          "stagelight",
+          0.2,
+          1.5,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "diagonal",
+      "x": 2.4,
+      "z": -3,
+      "_": "右边的木墙（第四位舞者靠着）",
+      "boxes": [
+        [
+          0.15,
+          4.2,
+          6,
+          "wood",
+          0,
+          2.1,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "picture",
+      "id": "study1",
+      "image": "images/study-1.jpg",
+      "card": "pastel",
+      "_": "示意：第1位舞者单独的“习作纸”（独家发现打开时浮现）",
+      "quad": [
+        [
+          -1.73,
+          2.15,
+          -4.6
+        ],
+        [
+          -1.73,
+          1.05,
+          -4.6
+        ],
+        [
+          -0.9700000000000001,
+          1.05,
+          -4.6
+        ],
+        [
+          -0.9700000000000001,
+          2.15,
+          -4.6
+        ]
+      ]
+    },
+    {
+      "type": "picture",
+      "id": "study2",
+      "image": "images/study-2.jpg",
+      "card": "pastel",
+      "_": "示意：第2位舞者单独的“习作纸”（独家发现打开时浮现）",
+      "quad": [
+        [
+          -0.8300000000000001,
+          2.15,
+          -4.75
+        ],
+        [
+          -0.8300000000000001,
+          1.05,
+          -4.75
+        ],
+        [
+          -0.07,
+          1.05,
+          -4.75
+        ],
+        [
+          -0.07,
+          2.15,
+          -4.75
+        ]
+      ]
+    },
+    {
+      "type": "picture",
+      "id": "study3",
+      "image": "images/study-3.jpg",
+      "card": "pastel",
+      "_": "示意：第3位舞者单独的“习作纸”（独家发现打开时浮现）",
+      "quad": [
+        [
+          0.07,
+          2.15,
+          -4.75
+        ],
+        [
+          0.07,
+          1.05,
+          -4.75
+        ],
+        [
+          0.8300000000000001,
+          1.05,
+          -4.75
+        ],
+        [
+          0.8300000000000001,
+          2.15,
+          -4.75
+        ]
+      ]
+    },
+    {
+      "type": "picture",
+      "id": "study4",
+      "image": "images/study-4.jpg",
+      "card": "pastel",
+      "_": "示意：第4位舞者单独的“习作纸”（独家发现打开时浮现）",
+      "quad": [
+        [
+          0.9700000000000001,
+          2.15,
+          -4.6
+        ],
+        [
+          0.9700000000000001,
+          1.05,
+          -4.6
+        ],
+        [
+          1.73,
+          1.05,
+          -4.6
+        ],
+        [
+          1.73,
+          2.15,
+          -4.6
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "behind": {
+      "title": {
+        "zh": "幕后",
+        "en": "Behind the scenes"
+      },
+      "text": {
+        "zh": "德加喜欢捕捉幕后的瞬间。这里，四位芭蕾舞者正在侧幕休息。",
+        "en": "Degas loved capturing moments behind the scenes. Here, four ballet dancers rest in the wings."
+      }
+    },
+    "crouch": {
+      "title": {
+        "zh": "蹲下的舞者",
+        "en": "Crouching down"
+      },
+      "text": {
+        "zh": "第一位舞者蹲着，也许在揉酸痛的肌肉，也许在整理丝带。",
+        "en": "The first dancer crouches down, perhaps to ease a sore muscle or adjust a ribbon."
+      }
+    },
+    "tired": {
+      "title": {
+        "zh": "累了",
+        "en": "Exhausted"
+      },
+      "text": {
+        "zh": "她身后的舞者明显累坏了，一手托着头。",
+        "en": "The dancer behind her is visibly exhausted, resting her head in one hand."
+      }
+    },
+    "fan": {
+      "title": {
+        "zh": "扇子",
+        "en": "The fan"
+      },
+      "text": {
+        "zh": "第三位舞者拿着一把色彩鲜艳的扇子。",
+        "en": "The third dancer holds a brightly coloured fan."
+      }
+    },
+    "wall": {
+      "title": {
+        "zh": "靠在墙上",
+        "en": "Against the wall"
+      },
+      "text": {
+        "zh": "第四位舞者靠在墙上。",
+        "en": "The fourth leans against the wall."
+      }
+    },
+    "diagonal": {
+      "title": {
+        "zh": "一条斜线",
+        "en": "A diagonal"
+      },
+      "text": {
+        "zh": "四位舞者沿着一条斜线排列，构图不对称，右下角被截断，这是受了日本版画的影响。",
+        "en": "The four dancers are arranged along a diagonal, in an asymmetrical composition cropped at the lower right, reflecting the influence of Japanese prints."
+      },
+      "link": {
+        "scene": "bedroom",
+        "href": "../bedroom/?card=floor",
+        "label": {
+          "zh": "梵高也受日本版画影响",
+          "en": "Van Gogh was influenced by Japanese prints too"
+        }
+      }
+    },
+    "pastel": {
+      "title": {
+        "zh": "粉彩",
+        "en": "Pastel"
+      },
+      "text": {
+        "zh": "这幅画用的是粉彩。德加从19世纪80年代起特别喜欢粉彩，因为它能画出非常鲜艳的颜色。",
+        "en": "This is a pastel. From the 1880s, Degas favoured pastel for its vivid colours."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“拼起来的瞬间”：开关打开后，四位舞者淡出，后面浮现四张单独的“习作纸”（每张是原画里一位舞者的裁剪，放在纸色背景上，是我们做的示意，不是德加的习作）；再关上，她们又回到同一个画面里。显示说明。",
+    "type": "toggles",
+    "label": {
+      "zh": "拼起来的瞬间",
+      "en": "A moment pieced together"
+    },
+    "toggles": [
+      {
+        "id": "studies",
+        "label": {
+          "zh": "拼起来的瞬间",
+          "en": "A moment pieced together"
+        },
+        "targets": [
+          "d1",
+          "d2",
+          "d3",
+          "d4"
+        ],
+        "reveal": [
+          "study1",
+          "study2",
+          "study3",
+          "study4"
+        ],
+        "card": "pastel",
+        "note": {
+          "zh": "这个看起来像快照的瞬间，其实是德加在画室里，用几张单人习作拼起来的。这是示意。",
+          "en": "This moment, which looks like a snapshot, was in fact put together in the studio from separate studies. This is an illustration."
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/ballet-dancers.jpg",
+        "alt": {
+          "zh": "德加《芭蕾舞者》1888，粉彩，伦敦国家美术馆",
+          "en": "Edgar Degas, Ballet Dancers, 1888, pastel, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1888年 · 伦敦国家美术馆",
+          "en": "1888 · The National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 幕布后面",
+          "en": "Behind the curtain"
+        },
+        "text": {
+          "zh": "德加一生画了大量芭蕾舞者。比起舞台上的光彩，他更喜欢画幕后：等待、休息、整理舞鞋的那些时刻。",
+          "en": "Degas painted ballet dancers throughout his life. More than the glamour on stage, he loved the moments behind it: waiting, resting, adjusting a shoe."
+        }
+      },
+      {
+        "image": "images/ballet-dancers.jpg",
+        "alt": {
+          "zh": "德加《芭蕾舞者》1888，粉彩，伦敦国家美术馆",
+          "en": "Edgar Degas, Ballet Dancers, 1888, pastel, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1888年 · 伦敦国家美术馆",
+          "en": "1888 · The National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 画室里的“快照”",
+          "en": "A “snapshot” made in the studio"
+        },
+        "text": {
+          "zh": "这幅画看起来像是在后台当场画下的快照，其实是在画室里，用之前画的多张单人舞者习作组合起来的。",
+          "en": "It looks like a snapshot drawn on the spot, but it was made in his studio, combining earlier studies of individual dancers."
+        }
+      },
+      {
+        "image": "images/ballet-dancers.jpg",
+        "alt": {
+          "zh": "德加《芭蕾舞者》1888，粉彩，伦敦国家美术馆",
+          "en": "Edgar Degas, Ballet Dancers, 1888, pastel, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1888年 · 伦敦国家美术馆",
+          "en": "1888 · The National Gallery, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 2025年来到伦敦",
+          "en": "To London in 2025"
+        },
+        "text": {
+          "zh": "这幅画一直属于私人收藏。2025年，它进入了伦敦国家美术馆。",
+          "en": "For many years this pastel was in a private collection. In 2025, it entered the National Gallery in London."
+        }
+      }
+    ],
+    "final": {
+      "zh": "舞台的灯亮起之前。",
+      "en": "Before the stage lights come up."
+    },
+    "versions": [],
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "dance-class",
+        "href": "../dance-class/",
+        "label": {
+          "zh": "教室和后台",
+          "en": "The classroom and the wings"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供；尺寸按伦敦国家美术馆作品页（62.6 × 70.8 cm，粉彩，纸本，裱在复合板上），等 Tia 核对。",
+    "artist": {
+      "zh": "埃德加·德加（1834–1917）",
+      "en": "Edgar Degas (1834–1917)"
+    },
+    "title": {
+      "zh": "芭蕾舞者",
+      "en": "Ballet Dancers"
+    },
+    "date": {
+      "zh": "1888年",
+      "en": "1888"
+    },
+    "medium": {
+      "zh": "粉彩",
+      "en": "Pastel"
+    },
+    "dimensions": {
+      "zh": "62.6 × 70.8 cm",
+      "en": "62.6 × 70.8 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆（2025年入藏；编号 NG6705）",
+      "en": "The National Gallery, London (acquired 2025; NG6705)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-ballet-dancers-1"
+  },
+  "zoom": {
+    "image": "images/ballet-dancers.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：芭蕾舞者",
+          "en": "The National Gallery: *Ballet Dancers*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-ballet-dancers-1"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 幕布后面",
+          "en": "Behind the curtain"
+        },
+        "text": {
+          "zh": "德加一生画了大量芭蕾舞者。比起舞台上的光彩，他更喜欢画幕后：等待、休息、整理舞鞋的那些时刻。",
+          "en": "Degas painted ballet dancers throughout his life. More than the glamour on stage, he loved the moments behind it: waiting, resting, adjusting a shoe."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 画室里的“快照”",
+          "en": "A “snapshot” made in the studio"
+        },
+        "text": {
+          "zh": "这幅画看起来像是在后台当场画下的快照，其实是在画室里，用之前画的多张单人舞者习作组合起来的。",
+          "en": "It looks like a snapshot drawn on the spot, but it was made in his studio, combining earlier studies of individual dancers."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 2025年来到伦敦",
+          "en": "To London in 2025"
+        },
+        "text": {
+          "zh": "这幅画一直属于私人收藏。2025年，它进入了伦敦国家美术馆。",
+          "en": "For many years this pastel was in a private collection. In 2025, it entered the National Gallery in London."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：芭蕾舞者",
+        "en": "The National Gallery: *Ballet Dancers*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-ballet-dancers-1"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art） / public domain",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "ballet-dancers.jpg",
+        "from": "Wikimedia Commons（还没上传）：Ballet Dancers by Degas (NG6705).jpg",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "note": "等 Tia 上传；不用国家美术馆官网的图片",
+        "verified": "2026-10-28"
+      },
+      {
+        "file": "study-1.jpg",
+        "from": "我们用 ballet-dancers.jpg 做的示意图（还没做）",
+        "url": "",
+        "license": "同 ballet-dancers.jpg",
+        "status": "符合",
+        "verified": "2026-10-28"
+      },
+      {
+        "file": "study-2.jpg",
+        "from": "我们用 ballet-dancers.jpg 做的示意图（还没做）",
+        "url": "",
+        "license": "同 ballet-dancers.jpg",
+        "status": "符合",
+        "verified": "2026-10-28"
+      },
+      {
+        "file": "study-3.jpg",
+        "from": "我们用 ballet-dancers.jpg 做的示意图（还没做）",
+        "url": "",
+        "license": "同 ballet-dancers.jpg",
+        "status": "符合",
+        "verified": "2026-10-28"
+      },
+      {
+        "file": "study-4.jpg",
+        "from": "我们用 ballet-dancers.jpg 做的示意图（还没做）",
+        "url": "",
+        "license": "同 ballet-dancers.jpg",
+        "status": "符合",
+        "verified": "2026-10-28"
+      }
+    ]
+  },
+  "lastVerified": "2026-10-28"
+}

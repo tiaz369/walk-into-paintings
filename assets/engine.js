@@ -485,7 +485,7 @@ function run(S, R, meta) {
   const wallFrame = (wallName, x, z) => wallName === 'back' ? { pos: [x, backZ(x) + 0.03], rot: BACK_ROT }
     : wallName === 'right' ? { pos: [rightX(z) - 0.03, z], rot: RIGHT_ROT } : { pos: [L + 0.03, z], rot: Math.PI / 2 };
   const BUILD = {
-    picture(o) { quad(o.quad, paint('#ffffff', imageTex(o.image)), o.card); },
+    picture(o) { const m = quad(o.quad, paint('#ffffff', imageTex(o.image)), o.card); if (o.id) named[o.id] = m; },
     window(o) {
       const q = o.quad, c = q.reduce((a, p) => [a[0] + p[0] / 4, a[1] + p[1] / 4, a[2] + p[2] / 4], [0, 0, 0]);
       const WW = Math.hypot(q[2][0] - q[1][0], q[2][2] - q[1][2]), WH = q[0][1] - q[1][1];
@@ -1468,7 +1468,8 @@ function run(S, R, meta) {
   }
   if (togObj) togObj.toggles.forEach((t, i) => {
     const meshes = [];
-    for (const id of t.targets || []) named[id] && named[id].traverse(o => {
+    const ids = [...(t.targets || []).map(id => [id, false]), ...(t.reveal || []).map(id => [id, true])];   // reveal：开关打开时慢慢浮现的物体（平时看不见）
+    for (const [id, rev] of ids) named[id] && named[id].traverse(o => {
       if (!o.material) return;
       if (o.userData.paintMat) {   // 贴原画的物体：两种模式的材质各复制一份，只淡出这个物体
         const wasFlat = o.material === o.userData.flatMat;
@@ -1477,7 +1478,8 @@ function run(S, R, meta) {
         pm.uniforms.uAlpha = { value: 1 }; pm.transparent = true; o.userData.paintMat = pm;
         o.material = wasFlat ? o.userData.flatMat : pm;
       } else { o.material = o.material.clone(); o.material.transparent = true; }
-      meshes.push(o);
+      o.userData.reveal = rev; meshes.push(o);
+      if (rev) { o.visible = false; for (const mat of [o.material, o.userData.flatMat]) if (mat) mat.opacity = 0; }
     });
     let lines = null;   // lines：开关打开时浮现的线，写的是原画上的两个点 [x1, y1, x2, y2]（0–1），从画家视角投出去
     if (t.lines) {
@@ -1573,9 +1575,10 @@ function run(S, R, meta) {
       const target = T.on ? 1 : 0; if (Math.abs(target - T.now) < 0.001) continue;
       T.now += Math.sign(target - T.now) * Math.min(Math.abs(target - T.now), dt / 2);   // 约 2 秒
       for (const m of T.meshes) {
-        for (const mat of [m.material, m.userData.flatMat]) if (mat) { mat.opacity = 1 - T.now; mat.depthWrite = T.now < 0.05; }
-        if (m.userData.paintMat) { m.userData.paintMat.uniforms.uAlpha.value = 1 - T.now; m.userData.paintMat.depthWrite = T.now < 0.05; }
-        m.visible = T.now < 0.99;
+        const a = m.userData.reveal ? T.now : 1 - T.now;   // 淡出的物体：1 → 0；浮现的物体：0 → 1
+        for (const mat of [m.material, m.userData.flatMat]) if (mat) { mat.opacity = a; mat.depthWrite = a > 0.95; }
+        if (m.userData.paintMat) { m.userData.paintMat.uniforms.uAlpha.value = a; m.userData.paintMat.depthWrite = a > 0.95; }
+        m.visible = a > 0.01;
       }
       if (T.lines) { T.lines.material.opacity = T.now; T.lines.visible = T.now > 0.01; }
       if (T.t.paintAlt) projUniforms.uMixB.value = T.now;
