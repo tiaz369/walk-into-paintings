@@ -1,0 +1,886 @@
+{
+  "_说明": "埃莱娜·鲁阿尔在父亲的书房（室内，完整版：一间小书房）。所有事实文字由 Tia 提供（伦敦国家美术馆官网和新闻稿）。左边是书桌，后面是淡紫色的墙；埃莱娜站在一把巨大的木扶手椅后面，双手搭在椅背上；墙上方挂着中国丝绸挂毯，玻璃柜里有三尊埃及木雕像，墙上还有画。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "id": "helene-rouart",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "书房里安静的光",
+      "en": "Quiet light in the study"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《贝列利一家》互相链接（德加画的另一个家庭）；和《站在维金纳琴前的年轻女子》互相链接（另一把空椅子）。对方开放后自动出现。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "bellelli-family",
+      "standing-virginal"
+    ]
+  },
+  "painting": {
+    "image": "images/helene-rouart.jpg",
+    "width": 1000,
+    "height": 1343,
+    "alt": {
+      "zh": "德加《埃莱娜·鲁阿尔在父亲的书房》约1886，伦敦国家美术馆",
+      "en": "Edgar Degas, Hélène Rouart in her Father's Study, about 1886, The National Gallery, London"
+    },
+    "_": "宽高先按尺寸 121 × 162.5 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "埃莱娜·鲁阿尔在父亲的书房",
+      "en": "Hélène Rouart in her Father's Study"
+    },
+    "artist": {
+      "zh": "德加",
+      "en": "Edgar Degas"
+    },
+    "date": {
+      "zh": "约1886年",
+      "en": "about 1886"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下埃莱娜、椅子、书桌、雕像、挂毯和墙上的画看介绍 · 点“这间房间在讲谁”，看属于父亲的东西一个个亮起 · 地上发光的圆点 = 德加的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap Hélène, the chair, the desk, the statues, the hanging or the pictures to learn more · Tap “Whose room is this?” to watch her father's things light up one by one · The glowing circle = Degas's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（站着，稍微往下看椅子），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": -0.12,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "study",
+  "colors": {
+    "line": "#2a2a30",
+    "floor": "#7a5a40",
+    "wall": "#b8a8c0",
+    "ceiling": "#d8d0d0",
+    "wood": "#6a4428",
+    "wood2": "#5a3a22",
+    "paper": "#ece6d8",
+    "glass": "#c8d0cc",
+    "statue": "#8a6a40",
+    "silk": "#d0602a",
+    "silkblue": "#3a5a9a",
+    "picture": "#8a7a5a",
+    "blue": "#a8bcd8",
+    "trousers": "#a8bcd8",
+    "skin": "#ecd0b8",
+    "glow": "#fff3b0"
+  },
+  "room": {
+    "_说明": "房间形状（米）：一间小书房。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 3.2,
+    "front": 1.0,
+    "left": -1.6,
+    "backLeft": [
+      -1.6,
+      -3.2
+    ],
+    "backRight": [
+      1.8,
+      -3.2
+    ],
+    "rightFront": [
+      1.8,
+      1.0
+    ],
+    "floorCard": "father",
+    "wallCard": "layers",
+    "walkSpeed": 0.7
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "chair",
+      "x": 0.35,
+      "z": -1.9,
+      "id": "chair",
+      "_": "父亲那把空着的大木扶手椅（埃莱娜双手搭在椅背上）",
+      "boxes": [
+        [
+          0.8,
+          0.45,
+          0.75,
+          "wood",
+          0,
+          0.23,
+          0
+        ],
+        [
+          0.8,
+          0.65,
+          0.1,
+          "wood",
+          0,
+          0.8,
+          -0.33
+        ],
+        [
+          0.08,
+          0.3,
+          0.7,
+          "wood",
+          -0.38,
+          0.6,
+          0
+        ],
+        [
+          0.08,
+          0.3,
+          0.7,
+          "wood",
+          0.38,
+          0.6,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "blue",
+      "legs": "blue",
+      "x": 0.4,
+      "z": -2.45,
+      "rot": 0,
+      "card": "ring",
+      "id": "helene",
+      "_": "埃莱娜：穿淡蓝色裙子，站在椅子后面"
+    },
+    {
+      "type": "boxes",
+      "card": "nine",
+      "x": -0.75,
+      "z": -2.0,
+      "id": "desk",
+      "_": "左边的书桌",
+      "boxes": [
+        [
+          0.9,
+          0.06,
+          1.4,
+          "wood",
+          0,
+          0.75,
+          0
+        ],
+        [
+          0.85,
+          0.7,
+          1.3,
+          "wood2",
+          0,
+          0.36,
+          0
+        ],
+        [
+          0.5,
+          0.02,
+          0.35,
+          "paper",
+          0,
+          0.79,
+          0.1,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "egypt",
+      "x": -0.75,
+      "z": -3.0,
+      "id": "case",
+      "_": "玻璃柜和三尊埃及木雕像",
+      "boxes": [
+        [
+          0.9,
+          0.9,
+          0.4,
+          "glass",
+          0,
+          1.35,
+          0,
+          "cloth"
+        ],
+        [
+          0.12,
+          0.45,
+          0.12,
+          "statue",
+          -0.25,
+          1.2,
+          0
+        ],
+        [
+          0.12,
+          0.5,
+          0.12,
+          "statue",
+          0,
+          1.22,
+          0
+        ],
+        [
+          0.12,
+          0.45,
+          0.12,
+          "statue",
+          0.25,
+          1.2,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "kylin",
+      "x": 0.45,
+      "z": -3.15,
+      "id": "hanging",
+      "_": "橙红色、绣着金色麒麟的中国丝绸挂毯（底边是蓝色的）",
+      "boxes": [
+        [
+          1.6,
+          0.8,
+          0.03,
+          "silk",
+          0,
+          2.45,
+          0,
+          "cloth"
+        ],
+        [
+          1.6,
+          0.12,
+          0.03,
+          "silkblue",
+          0,
+          2.0,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "collection",
+      "x": -0.75,
+      "z": -3.15,
+      "id": "pictures",
+      "_": "墙上父亲收藏的画（柯罗的画、米勒的素描）",
+      "boxes": [
+        [
+          0.5,
+          0.4,
+          0.03,
+          "picture",
+          -0.1,
+          2.3,
+          0
+        ],
+        [
+          0.3,
+          0.25,
+          0.03,
+          "picture",
+          0.32,
+          2.05,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "layers",
+      "x": 0.6,
+      "z": -3.2,
+      "_": "淡紫色的墙",
+      "boxes": [
+        [
+          0.6,
+          1.6,
+          0.02,
+          "wall",
+          0,
+          0.9,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "id": "g-chair",
+      "noPaint": true,
+      "x": 0.35,
+      "z": -1.5,
+      "_": "亮起：空椅子",
+      "boxes": [
+        [
+          0.95,
+          0.035,
+          0.035,
+          "glow",
+          0,
+          1.25,
+          0
+        ],
+        [
+          0.95,
+          0.035,
+          0.035,
+          "glow",
+          0,
+          0.1499999999999999,
+          0
+        ],
+        [
+          0.035,
+          1.1,
+          0.035,
+          "glow",
+          -0.475,
+          0.7,
+          0
+        ],
+        [
+          0.035,
+          1.1,
+          0.035,
+          "glow",
+          0.475,
+          0.7,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "id": "g-desk",
+      "noPaint": true,
+      "x": -0.75,
+      "z": -1.25,
+      "_": "亮起：书桌",
+      "boxes": [
+        [
+          1.0,
+          0.035,
+          0.035,
+          "glow",
+          0,
+          1.0,
+          0
+        ],
+        [
+          1.0,
+          0.035,
+          0.035,
+          "glow",
+          0,
+          0.10000000000000003,
+          0
+        ],
+        [
+          0.035,
+          0.9,
+          0.035,
+          "glow",
+          -0.5,
+          0.55,
+          0
+        ],
+        [
+          0.035,
+          0.9,
+          0.035,
+          "glow",
+          0.5,
+          0.55,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "id": "g-case",
+      "noPaint": true,
+      "x": -0.75,
+      "z": -2.75,
+      "_": "亮起：埃及雕像",
+      "boxes": [
+        [
+          1.0,
+          0.035,
+          0.035,
+          "glow",
+          0,
+          1.85,
+          0
+        ],
+        [
+          1.0,
+          0.035,
+          0.035,
+          "glow",
+          0,
+          0.8500000000000001,
+          0
+        ],
+        [
+          0.035,
+          1.0,
+          0.035,
+          "glow",
+          -0.5,
+          1.35,
+          0
+        ],
+        [
+          0.035,
+          1.0,
+          0.035,
+          "glow",
+          0.5,
+          1.35,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "id": "g-hanging",
+      "noPaint": true,
+      "x": 0.45,
+      "z": -3.08,
+      "_": "亮起：中国挂毯",
+      "boxes": [
+        [
+          1.7,
+          0.035,
+          0.035,
+          "glow",
+          0,
+          2.8,
+          0
+        ],
+        [
+          1.7,
+          0.035,
+          0.035,
+          "glow",
+          0,
+          1.7999999999999998,
+          0
+        ],
+        [
+          0.035,
+          1.0,
+          0.035,
+          "glow",
+          -0.85,
+          2.3,
+          0
+        ],
+        [
+          0.035,
+          1.0,
+          0.035,
+          "glow",
+          0.85,
+          2.3,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "id": "g-pictures",
+      "noPaint": true,
+      "x": -0.7,
+      "z": -3.08,
+      "_": "亮起：墙上的画",
+      "boxes": [
+        [
+          1.0,
+          0.035,
+          0.035,
+          "glow",
+          0,
+          2.5250000000000004,
+          0
+        ],
+        [
+          1.0,
+          0.035,
+          0.035,
+          "glow",
+          0,
+          1.8750000000000002,
+          0
+        ],
+        [
+          0.035,
+          0.65,
+          0.035,
+          "glow",
+          -0.5,
+          2.2,
+          0
+        ],
+        [
+          0.035,
+          0.65,
+          0.035,
+          "glow",
+          0.5,
+          2.2,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "chair": {
+      "title": {
+        "zh": "空椅子",
+        "en": "The empty chair"
+      },
+      "text": {
+        "zh": "埃莱娜站在父亲的书房里，双手搭在父亲那把空着的椅子背上。",
+        "en": "Hélène stands in her father's study, her hands resting on the back of his empty chair."
+      }
+    },
+    "egypt": {
+      "title": {
+        "zh": "埃及雕像",
+        "en": "Egyptian statues"
+      },
+      "text": {
+        "zh": "她身后的玻璃柜里，有三尊埃及雕像。她的父亲去过埃及，也收藏埃及文物。",
+        "en": "Behind her, in a glass case, are three Egyptian statues. Her father had visited Egypt and collected Egyptian artefacts."
+      }
+    },
+    "kylin": {
+      "title": {
+        "zh": "麒麟挂毯",
+        "en": "The kylin hanging"
+      },
+      "text": {
+        "zh": "她头顶上方，挂着一幅橙红色的中国丝绸挂毯，上面绣着金色的麒麟，一种看起来有点像狮子的神兽。",
+        "en": "Above her hangs an orange-red Chinese silk hanging, decorated with golden kylins, mythical creatures that look a little like stylised lions."
+      }
+    },
+    "collection": {
+      "title": {
+        "zh": "父亲的收藏",
+        "en": "Her father's collection"
+      },
+      "text": {
+        "zh": "墙上还有父亲收藏的画，包括一幅柯罗的画和一幅米勒的素描。",
+        "en": "On the walls are other works from her father's collection, including a painting by Corot and a drawing by Millet."
+      }
+    },
+    "ring": {
+      "title": {
+        "zh": "没画的戒指",
+        "en": "No wedding ring"
+      },
+      "text": {
+        "zh": "画这幅画时，埃莱娜23岁，已经结婚，但德加没有画出她的结婚戒指，也许是为了强调她作为女儿的身份。",
+        "en": "Hélène was 23 and married when this was painted, but Degas does not show her wedding ring, perhaps to emphasise her status as a daughter."
+      }
+    },
+    "layers": {
+      "title": {
+        "zh": "一层层的颜色",
+        "en": "Layers of colour"
+      },
+      "text": {
+        "zh": "仔细看，淡紫色的墙面下透出绿色和金色，蓝裙子的一些地方透出红色。",
+        "en": "Look closely: greens and golds show through the lilac wall, and reds through parts of the blue dress."
+      }
+    },
+    "nine": {
+      "title": {
+        "zh": "九岁时的她",
+        "en": "At nine years old"
+      },
+      "text": {
+        "zh": "埃莱娜九岁时，德加就画过她坐在父亲膝上的样子。",
+        "en": "When Hélène was nine, Degas had painted her sitting on her father's knee."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“这间房间在讲谁”（toggles）：开关打开后，属于父亲的东西（空椅子、书桌、埃及雕像、中国挂毯、墙上的画）外面一个接一个浮现淡黄色的框（reveal + stagger），埃莱娜保持原样；显示说明。框是示意，所以说明里写“这是示意”。",
+    "type": "toggles",
+    "toggles": [
+      {
+        "id": "father",
+        "label": {
+          "zh": "这间房间在讲谁",
+          "en": "Whose room is this?"
+        },
+        "targets": [],
+        "reveal": [
+          "g-chair",
+          "g-desk",
+          "g-case",
+          "g-hanging",
+          "g-pictures"
+        ],
+        "stagger": 0.6,
+        "duration": 4,
+        "note": {
+          "zh": "画名说的是她，房间讲的却是她的父亲。这是示意。",
+          "en": "The title names her, but the room speaks of her father. This is an illustration."
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/helene-rouart.jpg",
+        "alt": {
+          "zh": "德加《埃莱娜·鲁阿尔在父亲的书房》约1886，伦敦国家美术馆",
+          "en": "Edgar Degas, Hélène Rouart in her Father's Study, about 1886, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "约1886年 · 伦敦国家美术馆",
+          "en": "about 1886 · The National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 老朋友的女儿",
+          "en": "An old friend's daughter"
+        },
+        "text": {
+          "zh": "亨利·鲁阿尔是一位工程师，也画风景画，还和印象派画家一起参展。他是德加的老朋友，也是一位大收藏家。德加只给家人和熟悉的人画肖像。",
+          "en": "Henri Rouart was an engineer who also painted landscapes and exhibited with the Impressionists. He was Degas's old friend, and a great collector. Degas only painted portraits of family and people he knew well."
+        }
+      },
+      {
+        "image": "images/helene-rouart.jpg",
+        "alt": {
+          "zh": "德加《埃莱娜·鲁阿尔在父亲的书房》约1886，伦敦国家美术馆",
+          "en": "Edgar Degas, Hélène Rouart in her Father's Study, about 1886, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "约1886年 · 伦敦国家美术馆",
+          "en": "about 1886 · The National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 一间说着父亲的房间",
+          "en": "A room that speaks of her father"
+        },
+        "text": {
+          "zh": "画名说这是埃莱娜的肖像，可是仔细看，这间房间讲的几乎都是她的父亲：他的椅子、他的书桌、他从埃及和中国收集来的东西。",
+          "en": "The title suggests a portrait of Hélène. But look closely, and the room tells us almost everything about her father: his chair, his desk, the things he collected from Egypt and China."
+        }
+      },
+      {
+        "image": "images/helene-rouart.jpg",
+        "alt": {
+          "zh": "德加《埃莱娜·鲁阿尔在父亲的书房》约1886，伦敦国家美术馆",
+          "en": "Edgar Degas, Hélène Rouart in her Father's Study, about 1886, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "约1886年 · 伦敦国家美术馆",
+          "en": "about 1886 · The National Gallery, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1981年，伦敦国家美术馆买下了这幅画。今天，它挂在41号展厅。",
+          "en": "In 1981, the National Gallery bought this painting. Today it hangs in Room 41."
+        }
+      }
+    ],
+    "final": {
+      "zh": "她站在父亲的房间里。",
+      "en": "She stands in her father's room."
+    },
+    "versions": [],
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "bellelli-family",
+        "href": "../bellelli-family/",
+        "label": {
+          "zh": "德加画的另一个家庭",
+          "en": "Another family by Degas"
+        }
+      },
+      {
+        "scene": "standing-virginal",
+        "href": "../standing-virginal/",
+        "label": {
+          "zh": "另一把空椅子",
+          "en": "Another empty chair"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆官网）。",
+    "artist": {
+      "zh": "埃德加·德加（1834–1917）",
+      "en": "Edgar Degas (1834–1917)"
+    },
+    "title": {
+      "zh": "埃莱娜·鲁阿尔在父亲的书房",
+      "en": "Hélène Rouart in her Father's Study"
+    },
+    "date": {
+      "zh": "约1886年",
+      "en": "about 1886"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "162.5 × 121 cm",
+      "en": "162.5 × 121 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆，41号展厅",
+      "en": "The National Gallery, London, Room 41"
+    },
+    "creditLine": {
+      "zh": "1981年购入（编号 NG6469）",
+      "en": "Bought, 1981 (NG6469)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-helene-rouart-in-her-father-s-study"
+  },
+  "zoom": {
+    "image": "images/helene-rouart.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：埃莱娜·鲁阿尔在父亲的书房",
+          "en": "The National Gallery: *Hélène Rouart in her Father's Study*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-helene-rouart-in-her-father-s-study"
+      },
+      {
+        "title": {
+          "zh": "伦敦国家美术馆新闻稿：名作巡展",
+          "en": "The National Gallery press release: Masterpiece Tour"
+        },
+        "url": "https://www.nationalgallery.org.uk/about-us/press-and-media/press-releases-archive/masterpiece-tour-degas-s-hélène-rouart-in-her-father-s-study"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 老朋友的女儿",
+          "en": "An old friend's daughter"
+        },
+        "text": {
+          "zh": "亨利·鲁阿尔是一位工程师，也画风景画，还和印象派画家一起参展。他是德加的老朋友，也是一位大收藏家。德加只给家人和熟悉的人画肖像。",
+          "en": "Henri Rouart was an engineer who also painted landscapes and exhibited with the Impressionists. He was Degas's old friend, and a great collector. Degas only painted portraits of family and people he knew well."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 一间说着父亲的房间",
+          "en": "A room that speaks of her father"
+        },
+        "text": {
+          "zh": "画名说这是埃莱娜的肖像，可是仔细看，这间房间讲的几乎都是她的父亲：他的椅子、他的书桌、他从埃及和中国收集来的东西。",
+          "en": "The title suggests a portrait of Hélène. But look closely, and the room tells us almost everything about her father: his chair, his desk, the things he collected from Egypt and China."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1981年，伦敦国家美术馆买下了这幅画。今天，它挂在41号展厅。",
+          "en": "In 1981, the National Gallery bought this painting. Today it hangs in Room 41."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：埃莱娜·鲁阿尔在父亲的书房",
+        "en": "The National Gallery: *Hélène Rouart in her Father's Study*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-helene-rouart-in-her-father-s-study"
+    },
+    {
+      "title": {
+        "zh": "伦敦国家美术馆新闻稿：名作巡展",
+        "en": "The National Gallery press release: Masterpiece Tour"
+      },
+      "url": "https://www.nationalgallery.org.uk/about-us/press-and-media/press-releases-archive/masterpiece-tour-degas-s-hélène-rouart-in-her-father-s-study"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "helene-rouart.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要从国家美术馆官网下载）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-01"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-01"
+}

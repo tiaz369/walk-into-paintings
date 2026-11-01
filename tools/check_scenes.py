@@ -71,7 +71,7 @@ def check():
         X = S.get('exclusive') or S.get('compare')
         if not X: say('缺少独家发现 exclusive')
         else:
-            key = json.dumps(X.get('label') or X.get('type'), ensure_ascii=False, sort_keys=True) + '|' + str(X.get('type'))
+            key = json.dumps(X.get('label') or [t.get('label') for t in X.get('toggles', [])] or X.get('type'), ensure_ascii=False, sort_keys=True) + '|' + str(X.get('type'))   # toggles：按每个开关的名字比较
             if key in seen: say(f'独家发现和 {seen[key]} 重复')
             seen[key] = sid
         # 环境音、光线

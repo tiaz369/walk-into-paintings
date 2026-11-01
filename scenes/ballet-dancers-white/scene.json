@@ -1,5 +1,5 @@
 {
-  "_说明": "芭蕾舞者（白色纱裙）（室内，完整版：歌剧院的练功房）。所有事实文字由 Tia 提供（资料全部来自伦敦国家美术馆官网作品页）。墙边有长凳和把杆；几位穿白色纱裙的年轻舞者在课间活动，离我们最近的一位把脚搭在长凳上系舞鞋，后面一位扶着墙踮脚做阿拉贝斯克。画家视角和人物位置先按构图估算（参考之前误传的 IMG_0540），新原画上传后再对准。",
+  "_说明": "芭蕾舞者（白色纱裙）（室内，完整版：歌剧院的练功房）。所有事实文字由 Tia 提供（资料全部来自伦敦国家美术馆官网作品页）。墙边有长凳和把杆；几位穿白色纱裙的年轻舞者在课间活动，离我们最近的一位把脚搭在长凳上系舞鞋，后面一位扶着墙踮脚做阿拉贝斯克。画家视角和人物位置按原画估算。",
   "id": "ballet-dancers-white",
   "variant": "interior",
   "lighting": {
@@ -24,13 +24,12 @@
   },
   "painting": {
     "image": "images/ballet-dancers-white.jpg",
-    "width": 1000,
-    "height": 1007,
+    "width": 800,
+    "height": 792,
     "alt": {
       "zh": "德加《芭蕾舞者》约1890–1900，伦敦国家美术馆",
       "en": "Edgar Degas, Ballet Dancers, about 1890–1900, The National Gallery, London"
-    },
-    "_": "宽高先按尺寸 73 × 72.5 cm 估算，原画上传后改成图片的实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -65,7 +64,7 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the dancers, the bench, the barre or the door to learn more · Tap “Seeing the canvas” for a close-up · The glowing circle = Degas's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估算（站着稍微往下看），原画上传后对准。",
+    "_说明": "画家视角：按原画估算（站着稍微往下看长凳和舞者）。",
     "x": 0,
     "z": 0,
     "eye": 1.7,
@@ -362,7 +361,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“看见画布”：站到画家视角点时，画面放大到颜料很薄、能看到下面画布的地方，显示卡片5的文字。只是放大原画，不是示意效果。crop（0–1）先按之前误传的那张估算（右上角），原画上传后照着图量。",
+    "_说明": "独家发现“看见画布”：站到画家视角点时，画面放大到颜料很薄、能看到下面画布的地方，显示卡片5的文字。只是放大原画，不是示意效果。crop（0–1）照着 images/ballet-dancers-white.jpg 量的：右边一大片几乎没上色，露出画布。",
     "type": "mirror",
     "label": {
       "zh": "看见画布",
@@ -381,10 +380,10 @@
       "en": "This is an oil painting, but it has the dry, powdery look of pastel. In places, the canvas shows through."
     },
     "crop": {
-      "x": 0.75,
-      "y": 0.0,
-      "w": 0.25,
-      "h": 0.45
+      "x": 0.78,
+      "y": 0.05,
+      "w": 0.22,
+      "h": 0.5
     }
   },
   "ending": {
@@ -601,16 +600,16 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "待补",
+    "url": "https://commons.wikimedia.org/wiki/File:Edgar_Degas_(1834-1917)_-_Ballet_Dancers_-_NG4168_-_National_Gallery.jpg",
     "license": "公有领域（PD-Art）",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
     "files": [
       {
         "file": "ballet-dancers-white.jpg",
-        "from": "Wikimedia Commons（等 Tia 上传；不要从国家美术馆官网下载）",
-        "url": "待补",
+        "from": "Wikimedia Commons（Tia 上传的 Edgar_Degas_(1834-1917)_-_Ballet_Dancers_-_NG4168_-_National_Gallery.jpg，2026-11-01，800 × 792）",
+        "url": "https://commons.wikimedia.org/wiki/File:Edgar_Degas_(1834-1917)_-_Ballet_Dancers_-_NG4168_-_National_Gallery.jpg",
         "license": "公有领域（PD-Art）",
-        "status": "待决定",
+        "status": "符合",
         "verified": "2026-11-01"
       }
     ]
