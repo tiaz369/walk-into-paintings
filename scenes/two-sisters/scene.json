@@ -18,7 +18,8 @@
     ],
     "end": [
       "boating-party",
-      "umbrellas"
+      "umbrellas",
+      "dance-bougival"
     ]
   },
   "painting": {
@@ -877,6 +878,14 @@
         "label": {
           "zh": "另一本时装杂志里的雷诺阿",
           "en": "Renoir and the fashion magazines"
+        }
+      },
+      {
+        "scene": "dance-bougival",
+        "href": "../dance-bougival/",
+        "label": {
+          "zh": "塞纳河边的闲暇时光",
+          "en": "Leisure by the Seine"
         }
       }
     ]
