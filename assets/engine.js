@@ -151,6 +151,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'mirror' ? `<button class="btn" id="mirrorBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'distance' ? `<button class="btn" id="distBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'loupe' ? `<button class="btn" id="loupeBtn">🔍 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'walkTo' ? `<button class="btn" id="walkToBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'sit' ? `<button class="btn" id="sitBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'count' ? `<button class="btn" id="countBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
@@ -1374,6 +1375,16 @@ function run(S, R, meta) {
       to: { x: cx, z: cz, yaw: Math.atan2(dx, -dz), pitch: Math.atan2(ly - sitObj.eye, Math.hypot(dx, dz)) } };
     seated = true; $('sitBtn').classList.add('on'); track('exclusive-' + S.id);
   };
+  // 独家发现“走到某处”（walkTo）：按按钮，慢慢走到 spot、转头看 look；走到那里（自己走过去也算），显示卡片 card。只是在空间里走动，不改变原画
+  const walkObj = S.exclusive && S.exclusive.type === 'walkTo' ? S.exclusive : null;
+  let walkMove = null, walkShown = false;
+  if (walkObj) $('walkToBtn').onclick = () => {
+    leaveView(); hideHint(); card.style.display = 'none'; walkShown = false;
+    const [sx, sz] = walkObj.spot, [lx, ly, lz] = walkObj.look, dx = lx - sx, dz = lz - sz;
+    walkMove = { t: 0, start: performance.now(), from: { x: player.x, z: player.z, yaw: player.yaw, pitch: player.pitch },
+      to: { x: sx, z: sz, yaw: Math.atan2(dx, -dz), pitch: Math.atan2(ly - player.eye, Math.hypot(dx, dz)) } };
+    $('walkToBtn').classList.add('on'); track('exclusive-' + S.id);
+  };
   const mirrorObj = S.exclusive && S.exclusive.type === 'mirror' ? S.exclusive : null;
   let mirrorSeen = false, mirrorArmed = false;   // 刚走进画里时也站在视角点上：先不弹出，离开过一次再回来才弹出
   if (mirrorObj) {
@@ -1857,6 +1868,17 @@ function run(S, R, meta) {
     if (RM.walkEye) {   // 画家视角的眼睛比一般人高（比如站在高处）：离开视角点后，慢慢降到走路的高度
       const t = Math.min(1, Math.hypot(player.x - VIEW.x, player.z - VIEW.z) / 2);
       player.eye = VIEW.eye + (RM.walkEye - VIEW.eye) * t * t * (3 - 2 * t);
+    }
+    if (walkObj) {
+      if (walkMove) {
+        walkMove.t = Math.min(1, (performance.now() - walkMove.start) / 3000); const k = ease(walkMove.t), F = walkMove.from, T = walkMove.to;
+        player.x = F.x + (T.x - F.x) * k; player.z = F.z + (T.z - F.z) * k;
+        player.yaw = lerpAngle(F.yaw, T.yaw, k); player.pitch = F.pitch + (T.pitch - F.pitch) * k;
+        if (walkMove.t >= 1) walkMove = null;
+      }
+      const near = Math.hypot(player.x - walkObj.spot[0], player.z - walkObj.spot[1]) < (walkObj.radius || 0.8);
+      if (near && !walkMove && !walkShown) { walkShown = true; if (walkObj.card) showCard(walkObj.card); }
+      if (!near && walkShown) { walkShown = false; $('walkToBtn').classList.remove('on'); }
     }
     if (sitObj) {   // 坐到椅子上：慢慢走过去、坐下、转头看她；站起来时眼睛慢慢升回去
       if (sitMove) {

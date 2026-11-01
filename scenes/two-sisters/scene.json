@@ -1,0 +1,999 @@
+{
+  "_说明": "两姐妹（在露台上）（户外风景，完整版：餐厅露台）。所有事实文字由 Tia 提供（芝加哥艺术博物馆的研究出版物）；卡片7“不是姐妹”是 Claude 按芝加哥艺术博物馆研究出版物（Cat. 11）写的，Tia 同意确认后可以加。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "id": "two-sisters",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "河边春天的阳光",
+      "en": "Spring sunlight by the river"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：cards 是卡片里的链接，end 是故事结尾的按钮。卡片1链接到《游艇上的午宴》；和《游艇上的午宴》《伞》互相链接。",
+    "doors": [],
+    "cards": [
+      "boating-party"
+    ],
+    "end": [
+      "boating-party",
+      "umbrellas"
+    ]
+  },
+  "painting": {
+    "image": "images/two-sisters.jpg",
+    "width": 1000,
+    "height": 1241,
+    "alt": {
+      "zh": "雷诺阿《两姐妹（在露台上）》1881，芝加哥艺术博物馆",
+      "en": "Pierre-Auguste Renoir, Two Sisters (On the Terrace), 1881, Art Institute of Chicago"
+    },
+    "_": "宽高先按尺寸 80.9 × 100.4 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "两姐妹（在露台上）",
+      "en": "Two Sisters (On the Terrace)"
+    },
+    "artist": {
+      "zh": "雷诺阿",
+      "en": "Pierre-Auguste Renoir"
+    },
+    "date": {
+      "zh": "1881年",
+      "en": "1881"
+    },
+    "museum": {
+      "zh": "芝加哥艺术博物馆",
+      "en": "Art Institute of Chicago"
+    },
+    "source": {
+      "zh": "芝加哥艺术博物馆开放资源（CC0），公有领域",
+      "en": "Art Institute of Chicago, CC0 public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下两个女孩、毛线篮、栏杆、树和船看介绍 · 点“走到栏杆边”，往外看塞纳河 · 地上发光的圆点 = 雷诺阿的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the two girls, the basket, the railing, the trees or the boats to learn more · Tap “To the railing” to look out over the Seine · The glowing circle = Renoir's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（站在露台上稍微往下看），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": -0.2,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "terrace-river",
+  "colors": {
+    "line": "#2a3a2a",
+    "deck": "#b8a080",
+    "grass": "#6a9a4a",
+    "river": "#8ab0b8",
+    "farbank": "#8aa070",
+    "ground": "#6a9a4a",
+    "sky": "#d8e4e8",
+    "iron": "#2a2a2a",
+    "navy": "#2a3a6a",
+    "red": "#d02a2a",
+    "white": "#f0ece4",
+    "basket": "#a07a40",
+    "blue": "#3a6ab0",
+    "leaves": "#4a8a3a",
+    "boat": "#d8d0c0",
+    "sail": "#f0ece4",
+    "skin": "#f0d0b8",
+    "trousers": "#2a3a6a",
+    "wood": "#6a4a32"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（露台），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -120,
+      120,
+      -150,
+      20
+    ],
+    "bounds": [
+      -4,
+      4,
+      -2.9,
+      2.5
+    ],
+    "groundCard": "terrace",
+    "skyCard": "struggle",
+    "skyRadius": 160,
+    "walkSpeed": 0.8
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "terrace",
+      "_": "餐厅的露台（木地板）",
+      "pts": [
+        [
+          -6,
+          0.01,
+          3
+        ],
+        [
+          -6,
+          0.01,
+          -3.1
+        ],
+        [
+          6,
+          0.01,
+          -3.1
+        ],
+        [
+          6,
+          0.01,
+          3
+        ]
+      ],
+      "color": "deck"
+    },
+    {
+      "type": "surface",
+      "card": "trees",
+      "_": "栏杆外的灌木和草地",
+      "pts": [
+        [
+          -40,
+          -0.6,
+          -3.2
+        ],
+        [
+          -40,
+          -0.6,
+          -14
+        ],
+        [
+          40,
+          -0.6,
+          -14
+        ],
+        [
+          40,
+          -0.6,
+          -3.2
+        ]
+      ],
+      "color": "grass"
+    },
+    {
+      "type": "surface",
+      "card": "boats",
+      "_": "塞纳河",
+      "pts": [
+        [
+          -120,
+          -1.0,
+          -14
+        ],
+        [
+          -120,
+          -1.0,
+          -80
+        ],
+        [
+          120,
+          -1.0,
+          -80
+        ],
+        [
+          120,
+          -1.0,
+          -14
+        ]
+      ],
+      "color": "river"
+    },
+    {
+      "type": "surface",
+      "card": "trees",
+      "_": "对岸",
+      "pts": [
+        [
+          -120,
+          -0.8,
+          -80
+        ],
+        [
+          -120,
+          -0.8,
+          -150
+        ],
+        [
+          120,
+          -0.8,
+          -150
+        ],
+        [
+          120,
+          -0.8,
+          -80
+        ]
+      ],
+      "color": "farbank"
+    },
+    {
+      "type": "boxes",
+      "card": "terrace",
+      "x": 0,
+      "z": -3.1,
+      "id": "railing",
+      "_": "露台的铁栏杆",
+      "boxes": [
+        [
+          8,
+          0.05,
+          0.05,
+          "iron",
+          0,
+          0.95,
+          0
+        ],
+        [
+          8,
+          0.04,
+          0.04,
+          "iron",
+          0,
+          0.5,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -3.9,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -3.6,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -3.3,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -3.0,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -2.7,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -2.4,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -2.1,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -1.7999999999999998,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -1.5,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -1.2000000000000002,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -0.8999999999999999,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -0.6000000000000001,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          -0.30000000000000027,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          0.0,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          0.30000000000000027,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          0.6000000000000001,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          0.8999999999999999,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          1.1999999999999997,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          1.4999999999999996,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          1.8000000000000003,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          2.1,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          2.4,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          2.6999999999999997,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          2.9999999999999996,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          3.2999999999999994,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          3.6,
+          0.47,
+          0
+        ],
+        [
+          0.03,
+          0.95,
+          0.03,
+          "iron",
+          3.9,
+          0.47,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "navy",
+      "x": 0.35,
+      "z": -2.2,
+      "rot": 0,
+      "card": "hat",
+      "id": "woman",
+      "hat": "red",
+      "_": "戴红帽子的年轻女子（坐着）"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "white",
+      "legs": "white",
+      "x": -0.35,
+      "z": -1.8,
+      "rot": 0,
+      "scale": 0.6,
+      "card": "sisters",
+      "id": "girl",
+      "_": "戴花帽子的小女孩"
+    },
+    {
+      "type": "boxes",
+      "card": "basket",
+      "x": -0.55,
+      "z": -1.2,
+      "id": "basket",
+      "_": "装着毛线团的篮子",
+      "boxes": [
+        [
+          0.5,
+          0.25,
+          0.35,
+          "basket",
+          0,
+          0.12,
+          0
+        ],
+        [
+          0.12,
+          0.12,
+          0.12,
+          "red",
+          -0.1,
+          0.28,
+          0
+        ],
+        [
+          0.12,
+          0.12,
+          0.12,
+          "blue",
+          0.1,
+          0.28,
+          0.05
+        ]
+      ]
+    },
+    {
+      "type": "tree",
+      "shape": "bush",
+      "card": "trees",
+      "_": "栏杆外的灌木",
+      "x": -1.5,
+      "z": -5,
+      "h": 2.2,
+      "r": 1.6,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "shape": "bush",
+      "card": "trees",
+      "_": "栏杆外的灌木",
+      "x": 1.8,
+      "z": -5.5,
+      "h": 2.6,
+      "r": 1.8,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "struggle",
+      "_": "右边的树",
+      "x": 4,
+      "z": -8,
+      "h": 7,
+      "r": 2.5,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "struggle",
+      "_": "远处的树",
+      "x": -6,
+      "z": -9,
+      "h": 6,
+      "r": 2.5,
+      "color": "leaves"
+    },
+    {
+      "type": "boxes",
+      "card": "boats",
+      "x": -4,
+      "z": -20,
+      "_": "河边的划艇",
+      "boxes": [
+        [
+          2.5,
+          0.3,
+          0.8,
+          "boat",
+          0,
+          -0.85,
+          0
+        ],
+        [
+          2.5,
+          0.3,
+          0.8,
+          "boat",
+          0.5,
+          -0.85,
+          1.2
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "boats",
+      "x": -10,
+      "z": -35,
+      "_": "河上的帆船",
+      "boxes": [
+        [
+          3,
+          0.4,
+          1,
+          "boat",
+          0,
+          -0.8,
+          0
+        ],
+        [
+          0.1,
+          4,
+          2,
+          "sail",
+          0,
+          1.2,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "signature",
+      "x": 1.2,
+      "z": -1.0,
+      "_": "右下角（签名在画面这里）",
+      "boxes": [
+        [
+          0.3,
+          0.02,
+          0.2,
+          "deck",
+          0,
+          0.02,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "terrace": {
+      "title": {
+        "zh": "同一个露台",
+        "en": "The same terrace"
+      },
+      "text": {
+        "zh": "这是沙图富尔奈斯餐厅的露台。就在画这幅画之前不久，雷诺阿在同一个地方画了《游艇上的午宴》。",
+        "en": "This is the terrace of the Maison Fournaise at Chatou. Shortly before, Renoir had painted *Luncheon of the Boating Party* in the very same place."
+      },
+      "links": [
+        {
+          "scene": "boating-party",
+          "href": "../boating-party/",
+          "label": {
+            "zh": "《游艇上的午宴》",
+            "en": "Luncheon of the Boating Party"
+          }
+        }
+      ]
+    },
+    "hat": {
+      "title": {
+        "zh": "红帽子",
+        "en": "The red hat"
+      },
+      "text": {
+        "zh": "年长的女子戴着一顶鲜红色的帽子，是整幅画最亮的一点颜色。",
+        "en": "The older girl wears a bright red hat, the most vivid touch of colour in the painting."
+      }
+    },
+    "basket": {
+      "title": {
+        "zh": "毛线篮",
+        "en": "The basket of wool"
+      },
+      "text": {
+        "zh": "前景放着一个篮子，里面装着彩色的毛线团。",
+        "en": "In the foreground is a basket filled with balls of coloured wool."
+      }
+    },
+    "boats": {
+      "title": {
+        "zh": "河上的船",
+        "en": "Boats on the river"
+      },
+      "text": {
+        "zh": "越过栏杆，能看到塞纳河边停着的划艇和帆船。",
+        "en": "Beyond the railing, rowing boats and sailing boats are moored along the Seine."
+      }
+    },
+    "struggle": {
+      "title": {
+        "zh": "“和树搏斗”",
+        "en": "“Struggling with trees”"
+      },
+      "text": {
+        "zh": "雷诺阿写信给朋友说，他因为这幅画不想去英国旅行：“我正在和树搏斗。”",
+        "en": "Renoir wrote to a friend that he didn't want to leave for England because of this painting: “I am struggling with trees.”"
+      }
+    },
+    "signature": {
+      "title": {
+        "zh": "签名",
+        "en": "The signature"
+      },
+      "text": {
+        "zh": "右下角用蓝色颜料签着“Renoir. 81.”。",
+        "en": "Lower right, in blue paint, is the signature “Renoir. 81.”"
+      }
+    },
+    "sisters": {
+      "title": {
+        "zh": "不是姐妹",
+        "en": "Not sisters"
+      },
+      "text": {
+        "zh": "“两姐妹”这个画名，是画商在1882年画展时取的。芝加哥艺术博物馆的研究认为，坐着的年轻女子叫让娜·达尔洛，旁边的小女孩并不是她的妹妹。",
+        "en": "The title “Two Sisters” was given by the dealer for the 1882 exhibition. Research at the Art Institute of Chicago identifies the seated young woman as Jeanne Darlaud; the little girl beside her was not her sister."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“走到栏杆边”（walkTo）：按按钮，从两个女孩身边慢慢走到露台栏杆旁，转头往外看塞纳河和船；走到栏杆边（自己走过去也算）显示卡片4。只是在空间里走动，不改变原画，所以不加“这是示意”。",
+    "type": "walkTo",
+    "label": {
+      "zh": "走到栏杆边",
+      "en": "To the railing"
+    },
+    "spot": [
+      1.2,
+      -2.7
+    ],
+    "look": [
+      -4,
+      -0.9,
+      -22
+    ],
+    "card": "boats",
+    "radius": 0.7
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/two-sisters.jpg",
+        "alt": {
+          "zh": "雷诺阿《两姐妹（在露台上）》1881，芝加哥艺术博物馆",
+          "en": "Pierre-Auguste Renoir, Two Sisters (On the Terrace), 1881, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1881年 · 芝加哥艺术博物馆",
+          "en": "1881 · Art Institute of Chicago"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 河边的春天",
+          "en": "Spring by the river"
+        },
+        "text": {
+          "zh": "1881年春天，雷诺阿又回到沙图的富尔奈斯餐厅。4月，他在露台上开始画这两个女孩。",
+          "en": "In spring 1881, Renoir returned to the Maison Fournaise at Chatou. In April, he began painting these two girls on the terrace."
+        }
+      },
+      {
+        "image": "images/two-sisters.jpg",
+        "alt": {
+          "zh": "雷诺阿《两姐妹（在露台上）》1881，芝加哥艺术博物馆",
+          "en": "Pierre-Auguste Renoir, Two Sisters (On the Terrace), 1881, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1881年 · 芝加哥艺术博物馆",
+          "en": "1881 · Art Institute of Chicago"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 很快就卖掉了",
+          "en": "Sold at once"
+        },
+        "text": {
+          "zh": "画还没完全晾干，7月就被画商买下。那年底，一本时装杂志刊登了它的彩色复制品；第二年，它在第七届印象派画展上展出。",
+          "en": "That July, a dealer bought the painting. Later that year a fashion magazine published a colour reproduction of it, and the following spring it was shown at the seventh Impressionist exhibition."
+        }
+      },
+      {
+        "image": "images/two-sisters.jpg",
+        "alt": {
+          "zh": "雷诺阿《两姐妹（在露台上）》1881，芝加哥艺术博物馆",
+          "en": "Pierre-Auguste Renoir, Two Sisters (On the Terrace), 1881, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1881年 · 芝加哥艺术博物馆",
+          "en": "1881 · Art Institute of Chicago"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 来到芝加哥",
+          "en": "To Chicago"
+        },
+        "text": {
+          "zh": "1933年起，它收藏在芝加哥艺术博物馆，成为那里最受欢迎的作品之一。",
+          "en": "Since 1933 it has been in the Art Institute of Chicago, where it is one of the most popular paintings."
+        }
+      }
+    ],
+    "final": {
+      "zh": "他热爱生活中一切快乐、明亮的东西。—— 一位采访者谈雷诺阿",
+      "en": "He loves everything that is joyous and brilliant in life. — An interviewer on Renoir"
+    },
+    "versions": [],
+    "museums": [
+      "art-institute-chicago"
+    ],
+    "exit": [
+      {
+        "scene": "boating-party",
+        "href": "../boating-party/",
+        "label": {
+          "zh": "同一个露台",
+          "en": "The same terrace"
+        }
+      },
+      {
+        "scene": "umbrellas",
+        "href": "../umbrellas/",
+        "label": {
+          "zh": "另一本时装杂志里的雷诺阿",
+          "en": "Renoir and the fashion magazines"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（芝加哥艺术博物馆的研究出版物）。",
+    "artist": {
+      "zh": "皮埃尔-奥古斯特·雷诺阿（1841–1919）",
+      "en": "Pierre-Auguste Renoir (1841–1919)"
+    },
+    "title": {
+      "zh": "两姐妹（在露台上）",
+      "en": "Two Sisters (On the Terrace)"
+    },
+    "date": {
+      "zh": "1881年",
+      "en": "1881"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "100.4 × 80.9 cm",
+      "en": "100.4 × 80.9 cm"
+    },
+    "collection": {
+      "zh": "芝加哥艺术博物馆（科伯恩夫妇纪念收藏；编号 1933.455）",
+      "en": "Art Institute of Chicago (Mr. and Mrs. Lewis Larned Coburn Memorial Collection; 1933.455)"
+    },
+    "url": "https://www.artic.edu/artworks/14655/two-sisters-on-the-terrace"
+  },
+  "zoom": {
+    "image": "images/two-sisters.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：两姐妹（在露台上）",
+          "en": "Art Institute of Chicago: *Two Sisters (On the Terrace)*"
+        },
+        "url": "https://www.artic.edu/artworks/14655/two-sisters-on-the-terrace"
+      },
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆研究出版物：第11号 两姐妹（在露台上）",
+          "en": "Art Institute of Chicago publication: Cat. 11 *Two Sisters (On the Terrace)*"
+        },
+        "url": "https://publications.artic.edu/node/135639"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 河边的春天",
+          "en": "Spring by the river"
+        },
+        "text": {
+          "zh": "1881年春天，雷诺阿又回到沙图的富尔奈斯餐厅。4月，他在露台上开始画这两个女孩。",
+          "en": "In spring 1881, Renoir returned to the Maison Fournaise at Chatou. In April, he began painting these two girls on the terrace."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 很快就卖掉了",
+          "en": "Sold at once"
+        },
+        "text": {
+          "zh": "画还没完全晾干，7月就被画商买下。那年底，一本时装杂志刊登了它的彩色复制品；第二年，它在第七届印象派画展上展出。",
+          "en": "That July, a dealer bought the painting. Later that year a fashion magazine published a colour reproduction of it, and the following spring it was shown at the seventh Impressionist exhibition."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 来到芝加哥",
+          "en": "To Chicago"
+        },
+        "text": {
+          "zh": "1933年起，它收藏在芝加哥艺术博物馆，成为那里最受欢迎的作品之一。",
+          "en": "Since 1933 it has been in the Art Institute of Chicago, where it is one of the most popular paintings."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：两姐妹（在露台上）",
+        "en": "Art Institute of Chicago: *Two Sisters (On the Terrace)*"
+      },
+      "url": "https://www.artic.edu/artworks/14655/two-sisters-on-the-terrace"
+    },
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆研究出版物：第11号 两姐妹（在露台上）",
+        "en": "Art Institute of Chicago publication: Cat. 11 *Two Sisters (On the Terrace)*"
+      },
+      "url": "https://publications.artic.edu/node/135639"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "芝加哥艺术博物馆开放资源（CC0），公有领域",
+      "en": "Art Institute of Chicago, CC0 public domain"
+    },
+    "url": "https://www.artic.edu/artworks/14655/two-sisters-on-the-terrace",
+    "license": "CC0",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "two-sisters.jpg",
+        "from": "芝加哥艺术博物馆开放资源（等 Tia 上传）",
+        "url": "https://www.artic.edu/artworks/14655/two-sisters-on-the-terrace",
+        "license": "CC0",
+        "status": "待决定",
+        "verified": "2026-11-01"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-01"
+}

@@ -11,13 +11,14 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《煎饼磨坊的舞会》互相链接（同属“巴黎的闲暇时光”）；卡片“反坐椅子的卡耶博特”链接到卡耶博特的场景。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《煎饼磨坊的舞会》互相链接（同属“巴黎的闲暇时光”）；卡片“反坐椅子的卡耶博特”链接到卡耶博特的场景。和《两姐妹（在露台上）》互相链接（同一个露台）。对方开放后自动出现。",
     "doors": [],
     "cards": [
       "paris-street-rainy-day"
     ],
     "end": [
-      "moulin-galette"
+      "moulin-galette",
+      "two-sisters"
     ]
   },
   "painting": {
@@ -878,6 +879,14 @@
         "label": {
           "zh": "同属“巴黎的闲暇时光”：《煎饼磨坊的舞会》",
           "en": "Also in Paris at Leisure: *Dance at Le Moulin de la Galette*"
+        }
+      },
+      {
+        "scene": "two-sisters",
+        "href": "../two-sisters/",
+        "label": {
+          "zh": "同一个露台",
+          "en": "The same terrace"
         }
       }
     ]

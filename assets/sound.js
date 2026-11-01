@@ -391,6 +391,17 @@ const AMBIENCE = {
     const bell = t => { for (let k = 0; k < 8; k++) tone(out, t + k * 0.09, { f0: 1900, vol: 0.02, attack: 0.002, dur: 0.08 }); };   // 一串短促的电铃声
     every(st, 30, 60, bell);
   },
+  // 河边餐厅的露台：鸟叫和风吹树叶，远处划桨的水声，餐厅里隐约的人声（A riverside terrace）
+  'terrace-river'(out, st) {
+    loopNoise('brown', out, { freq: 300, gain: 0.07 });
+    const leaves = loopNoise('brown', out, { type: 'bandpass', freq: 950, q: 0.5, gain: 0.03 });
+    st.timers.push(setInterval(() => leaves.g.gain.setTargetAtTime(0.015 + 0.04 * Math.random(), ctx.currentTime, 1.6), 3200));
+    const voices = ctx.createGain(); voices.gain.value = 0.35; voices.connect(pan(out, 0.5));   // 身后餐厅里隐约的人声
+    murmur(voices, 0.07)(st);
+    const oar = t => { for (let k = 0; k < 4; k++) burst(out, t + k * 1.5, { kind: 'white', type: 'bandpass', freq: rnd(600, 900), q: 1.2, vol: 0.035, dur: 0.35, p: -0.5 }); };
+    every(st, 12, 24, oar);
+    bird(out, ctx.currentTime + 1); every(st, 4, 10, t => bird(out, t));
+  },
   // 海边：海浪声，海鸥，远处汽船的汽笛（By the sea）
   seaside(out, st) {
     loopNoise('brown', out, { freq: 300, gain: 0.08 });
