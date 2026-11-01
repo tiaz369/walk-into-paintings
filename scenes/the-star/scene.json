@@ -12,7 +12,7 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《舞蹈课》《芭蕾舞者（后台）》互相链接（教室、后台、舞台）；和《包厢》互相链接（另一个包厢里的视角）；卡片6链接到《圣拉扎尔火车站》《煎饼磨坊的舞会》（也曾属于卡耶博特）。",
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《舞蹈课》《芭蕾舞者（后台）》互相链接（教室、后台、舞台）；和《包厢》互相链接（另一个包厢里的视角）；卡片6链接到《圣拉扎尔火车站》《煎饼磨坊的舞会》（也曾属于卡耶博特）。和《十四岁的小舞者》互相链接（德加的芭蕾），对方开放后自动出现。",
     "doors": [],
     "cards": [
       "gare-saint-lazare",
@@ -21,7 +21,8 @@
     "end": [
       "dance-class",
       "ballet-dancers-wings",
-      "la-loge"
+      "la-loge",
+      "little-dancer"
     ]
   },
   "ambience": "ballet-stage",
@@ -429,6 +430,14 @@
         "label": {
           "zh": "另一个包厢里的视角",
           "en": "Another view from a theatre box"
+        }
+      },
+      {
+        "scene": "little-dancer",
+        "href": "../little-dancer/",
+        "label": {
+          "zh": "德加的芭蕾",
+          "en": "Degas's ballet"
         }
       }
     ]
