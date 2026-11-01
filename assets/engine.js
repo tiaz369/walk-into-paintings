@@ -228,6 +228,7 @@ function buildDOM(S, R, meta) {
     <button class="close" data-close="mirror" aria-label="Close">×</button>
     <h3>${bi(M.label)}</h3>
     <div class="mirror-zoom" role="img" ${altAttr(M.alt || M.label).replace('alt=', 'aria-label=')} style="background-image:url('${S.painting.image}');aspect-ratio:${(M.crop.w * S.painting.width) / (M.crop.h * S.painting.height)};background-size:${100 / M.crop.w}% ${100 / M.crop.h}%;background-position:${M.crop.x / (1 - M.crop.w) * 100}% ${M.crop.y / (1 - M.crop.h) * 100}%"></div>
+    ${M.caption ? `<p><small>${bi(M.caption, ' / ')}</small></p>` : ''}
     <p>${bi(M.text, ' / ')}</p>
   </div>`)(S.exclusive) : ''}
   ${S.exclusive && S.exclusive.type === 'distance' ? (D => `<div class="popup panel" id="distance">
