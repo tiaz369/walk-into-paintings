@@ -391,6 +391,17 @@ const AMBIENCE = {
     const bell = t => { for (let k = 0; k < 8; k++) tone(out, t + k * 0.09, { f0: 1900, vol: 0.02, attack: 0.002, dur: 0.08 }); };   // 一串短促的电铃声
     every(st, 30, 60, bell);
   },
+  // 海边：海浪声，海鸥，远处汽船的汽笛（By the sea）
+  seaside(out, st) {
+    loopNoise('brown', out, { freq: 300, gain: 0.08 });
+    const wave = t => { burst(out, t, { kind: 'brown', type: 'lowpass', freq: 500, q: 0.5, vol: 0.18, dur: 2.2, p: rnd(-0.3, 0.3) }); burst(out, t + 1.2, { kind: 'white', type: 'highpass', freq: 2000, q: 0.5, vol: 0.05, dur: 2.0, p: rnd(-0.4, 0.4) }); };   // 一道浪涌上来，再沙沙退去
+    wave(ctx.currentTime + 0.5); every(st, 4, 7, wave);
+    const gull = t => { const p = rnd(-0.8, 0.8), n = 2 + Math.floor(Math.random() * 3); for (let k = 0; k < n; k++) tone(out, t + k * rnd(0.25, 0.4), { f0: rnd(1500, 1900), f1: rnd(900, 1200), type: 'triangle', vol: 0.022, attack: 0.02, dur: rnd(0.25, 0.4), p }); };
+    every(st, 8, 18, gull);
+    const far = ctx.createGain(); far.gain.value = 0.35; far.connect(pan(out, 0.6));
+    const horn = t => { tone(far, t, { f0: 98, type: 'triangle', vol: 0.1, attack: 0.4, dur: 2.4 }); tone(far, t, { f0: 147, type: 'triangle', vol: 0.04, attack: 0.4, dur: 2.4 }); };   // 远处汽船的汽笛
+    horn(ctx.currentTime + 8); every(st, 40, 80, horn);
+  },
   // 安静的书房：钟表的滴答声，偶尔翻动纸张（A quiet study）
   study(out, st) {
     loopNoise('brown', out, { freq: 210, gain: 0.05 });

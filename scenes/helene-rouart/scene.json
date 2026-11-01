@@ -1,5 +1,5 @@
 {
-  "_说明": "埃莱娜·鲁阿尔在父亲的书房（室内，完整版：一间小书房）。所有事实文字由 Tia 提供（伦敦国家美术馆官网和新闻稿）。左边是书桌，后面是淡紫色的墙；埃莱娜站在一把巨大的木扶手椅后面，双手搭在椅背上；墙上方挂着中国丝绸挂毯，玻璃柜里有三尊埃及木雕像，墙上还有画。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "_说明": "埃莱娜·鲁阿尔在父亲的书房（室内，完整版：一间小书房）。所有事实文字由 Tia 提供（伦敦国家美术馆官网和新闻稿）。左边是书桌，后面是淡紫色的墙；埃莱娜站在一把巨大的木扶手椅后面，双手搭在椅背上；墙上方挂着中国丝绸挂毯，玻璃柜里有三尊埃及木雕像，墙上还有画。画家视角和物体位置按原画估算。",
   "id": "helene-rouart",
   "variant": "interior",
   "lighting": {
@@ -11,23 +11,23 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《贝列利一家》互相链接（德加画的另一个家庭）；和《站在维金纳琴前的年轻女子》互相链接（另一把空椅子）。对方开放后自动出现。",
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《贝列利一家》互相链接（德加画的另一个家庭）；和《站在维金纳琴前的年轻女子》互相链接（另一把空椅子）；和《海滩一景》互相链接（鲁阿尔的另一幅收藏）。对方开放后自动出现。",
     "doors": [],
     "cards": [],
     "end": [
       "bellelli-family",
-      "standing-virginal"
+      "standing-virginal",
+      "beach-scene"
     ]
   },
   "painting": {
     "image": "images/helene-rouart.jpg",
-    "width": 1000,
-    "height": 1343,
+    "width": 960,
+    "height": 1287,
     "alt": {
       "zh": "德加《埃莱娜·鲁阿尔在父亲的书房》约1886，伦敦国家美术馆",
       "en": "Edgar Degas, Hélène Rouart in her Father's Study, about 1886, The National Gallery, London"
-    },
-    "_": "宽高先按尺寸 121 × 162.5 cm 估算，原画上传后改成图片的实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -58,16 +58,16 @@
     "en": "Step into the painting"
   },
   "hint": {
-    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下埃莱娜、椅子、书桌、雕像、挂毯和墙上的画看介绍 · 点“这间房间在讲谁”，看属于父亲的东西一个个亮起 · 地上发光的圆点 = 德加的视角",
-    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap Hélène, the chair, the desk, the statues, the hanging or the pictures to learn more · Tap “Whose room is this?” to watch her father's things light up one by one · The glowing circle = Degas's viewpoint"
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下埃莱娜、椅子、书桌、雕像、挂毯和墙上的画看介绍 · 点“这间房间在讲谁”，看属于父亲的东西一个个标出来 · 地上发光的圆点 = 德加的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap Hélène, the chair, the desk, the statues, the hanging or the pictures to learn more · Tap “Whose room is this?” to see her father's things marked one by one · The glowing circle = Degas's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估算（站着，稍微往下看椅子），原画上传后对准。",
+    "_说明": "画家视角：按原画估算（离埃莱娜约2米，视平线在她眼睛的高度）。",
     "x": 0,
     "z": 0,
-    "eye": 1.6,
+    "eye": 1.55,
     "yaw": 0,
-    "pitch": -0.12,
+    "pitch": -0.211,
     "fov": 50,
     "text": {
       "zh": "从这里看，就是画里的样子。",
@@ -78,36 +78,36 @@
   "colors": {
     "line": "#2a2a30",
     "floor": "#7a5a40",
-    "wall": "#b8a8c0",
+    "wall": "#a89aa8",
     "ceiling": "#d8d0d0",
     "wood": "#6a4428",
     "wood2": "#5a3a22",
     "paper": "#ece6d8",
     "glass": "#c8d0cc",
     "statue": "#8a6a40",
-    "silk": "#d0602a",
+    "silk": "#a84a3a",
     "silkblue": "#3a5a9a",
     "picture": "#8a7a5a",
-    "blue": "#a8bcd8",
-    "trousers": "#a8bcd8",
+    "blue": "#5a6a90",
+    "trousers": "#5a6a90",
     "skin": "#ecd0b8",
     "glow": "#fff3b0"
   },
   "room": {
     "_说明": "房间形状（米）：一间小书房。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
-    "height": 3.2,
+    "height": 3.0,
     "front": 1.0,
-    "left": -1.6,
+    "left": -1.4,
     "backLeft": [
-      -1.6,
-      -3.2
+      -1.4,
+      -2.62
     ],
     "backRight": [
-      1.8,
-      -3.2
+      1.6,
+      -2.62
     ],
     "rightFront": [
-      1.8,
+      1.6,
       1.0
     ],
     "floorCard": "father",
@@ -118,13 +118,13 @@
     {
       "type": "boxes",
       "card": "chair",
-      "x": 0.35,
-      "z": -1.9,
+      "x": 0.2,
+      "z": -1.75,
       "id": "chair",
       "_": "父亲那把空着的大木扶手椅（埃莱娜双手搭在椅背上）",
       "boxes": [
         [
-          0.8,
+          0.85,
           0.45,
           0.75,
           "wood",
@@ -133,12 +133,12 @@
           0
         ],
         [
-          0.8,
-          0.65,
+          0.85,
+          0.55,
           0.1,
           "wood",
           0,
-          0.8,
+          0.75,
           -0.33
         ],
         [
@@ -146,7 +146,7 @@
           0.3,
           0.7,
           "wood",
-          -0.38,
+          -0.4,
           0.6,
           0
         ],
@@ -155,7 +155,7 @@
           0.3,
           0.7,
           "wood",
-          0.38,
+          0.4,
           0.6,
           0
         ]
@@ -166,25 +166,25 @@
       "pose": "standing",
       "color": "blue",
       "legs": "blue",
-      "x": 0.4,
-      "z": -2.45,
+      "x": 0.15,
+      "z": -2.2,
       "rot": 0,
       "card": "ring",
       "id": "helene",
-      "_": "埃莱娜：穿淡蓝色裙子，站在椅子后面"
+      "_": "埃莱娜：穿蓝裙子，站在椅子后面"
     },
     {
       "type": "boxes",
       "card": "nine",
-      "x": -0.75,
-      "z": -2.0,
+      "x": -0.5,
+      "z": -1.6,
       "id": "desk",
-      "_": "左边的书桌",
+      "_": "左下角的书桌和纸",
       "boxes": [
         [
           0.9,
           0.06,
-          1.4,
+          1.0,
           "wood",
           0,
           0.75,
@@ -193,7 +193,7 @@
         [
           0.85,
           0.7,
-          1.3,
+          0.95,
           "wood2",
           0,
           0.36,
@@ -201,11 +201,11 @@
         ],
         [
           0.5,
-          0.02,
-          0.35,
+          0.04,
+          0.4,
           "paper",
-          0,
-          0.79,
+          0.05,
+          0.8,
           0.1,
           "cloth"
         ]
@@ -215,45 +215,45 @@
       "type": "boxes",
       "card": "egypt",
       "x": -0.75,
-      "z": -3.0,
+      "z": -2.45,
       "id": "case",
-      "_": "玻璃柜和三尊埃及木雕像",
+      "_": "左边的玻璃柜和埃及木雕像",
       "boxes": [
         [
-          0.9,
-          0.9,
-          0.4,
+          0.7,
+          1.45,
+          0.3,
           "glass",
           0,
-          1.35,
+          1.05,
           0,
           "cloth"
         ],
         [
-          0.12,
-          0.45,
+          0.14,
+          0.9,
           0.12,
           "statue",
-          -0.25,
-          1.2,
+          0.1,
+          1.15,
           0
         ],
         [
           0.12,
-          0.5,
+          0.8,
           0.12,
           "statue",
-          0,
-          1.22,
+          -0.15,
+          1.1,
           0
         ],
         [
           0.12,
-          0.45,
+          0.7,
           0.12,
           "statue",
-          0.25,
-          1.2,
+          -0.3,
+          1.05,
           0
         ]
       ]
@@ -261,28 +261,28 @@
     {
       "type": "boxes",
       "card": "kylin",
-      "x": 0.45,
-      "z": -3.15,
+      "x": 0.0,
+      "z": -2.58,
       "id": "hanging",
       "_": "橙红色、绣着金色麒麟的中国丝绸挂毯（底边是蓝色的）",
       "boxes": [
         [
-          1.6,
-          0.8,
+          2.6,
+          0.45,
           0.03,
           "silk",
           0,
-          2.45,
+          2.05,
           0,
           "cloth"
         ],
         [
-          1.6,
-          0.12,
+          2.6,
+          0.08,
           0.03,
           "silkblue",
           0,
-          2.0,
+          1.79,
           0,
           "cloth"
         ]
@@ -291,275 +291,46 @@
     {
       "type": "boxes",
       "card": "collection",
-      "x": -0.75,
-      "z": -3.15,
+      "x": 0.9,
+      "z": -2.58,
       "id": "pictures",
-      "_": "墙上父亲收藏的画（柯罗的画、米勒的素描）",
+      "_": "墙上父亲收藏的画（金框的画，下面一幅素描）",
       "boxes": [
         [
-          0.5,
-          0.4,
+          0.6,
+          0.45,
           0.03,
           "picture",
-          -0.1,
-          2.3,
+          0,
+          1.5,
           0
         ],
         [
-          0.3,
-          0.25,
-          0.03,
-          "picture",
-          0.32,
-          2.05,
-          0
+          0.55,
+          0.5,
+          0.02,
+          "paper",
+          0,
+          0.95,
+          0,
+          "cloth"
         ]
       ]
     },
     {
       "type": "boxes",
       "card": "layers",
-      "x": 0.6,
-      "z": -3.2,
+      "x": 0.1,
+      "z": -2.6,
       "_": "淡紫色的墙",
       "boxes": [
         [
-          0.6,
-          1.6,
+          0.8,
+          1.5,
           0.02,
           "wall",
           0,
-          0.9,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "boxes",
-      "id": "g-chair",
-      "noPaint": true,
-      "x": 0.35,
-      "z": -1.5,
-      "_": "亮起：空椅子",
-      "boxes": [
-        [
-          0.95,
-          0.035,
-          0.035,
-          "glow",
-          0,
-          1.25,
-          0
-        ],
-        [
-          0.95,
-          0.035,
-          0.035,
-          "glow",
-          0,
-          0.1499999999999999,
-          0
-        ],
-        [
-          0.035,
-          1.1,
-          0.035,
-          "glow",
-          -0.475,
-          0.7,
-          0
-        ],
-        [
-          0.035,
-          1.1,
-          0.035,
-          "glow",
-          0.475,
-          0.7,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "boxes",
-      "id": "g-desk",
-      "noPaint": true,
-      "x": -0.75,
-      "z": -1.25,
-      "_": "亮起：书桌",
-      "boxes": [
-        [
-          1.0,
-          0.035,
-          0.035,
-          "glow",
-          0,
-          1.0,
-          0
-        ],
-        [
-          1.0,
-          0.035,
-          0.035,
-          "glow",
-          0,
-          0.10000000000000003,
-          0
-        ],
-        [
-          0.035,
-          0.9,
-          0.035,
-          "glow",
-          -0.5,
-          0.55,
-          0
-        ],
-        [
-          0.035,
-          0.9,
-          0.035,
-          "glow",
-          0.5,
-          0.55,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "boxes",
-      "id": "g-case",
-      "noPaint": true,
-      "x": -0.75,
-      "z": -2.75,
-      "_": "亮起：埃及雕像",
-      "boxes": [
-        [
-          1.0,
-          0.035,
-          0.035,
-          "glow",
-          0,
-          1.85,
-          0
-        ],
-        [
-          1.0,
-          0.035,
-          0.035,
-          "glow",
-          0,
-          0.8500000000000001,
-          0
-        ],
-        [
-          0.035,
-          1.0,
-          0.035,
-          "glow",
-          -0.5,
-          1.35,
-          0
-        ],
-        [
-          0.035,
-          1.0,
-          0.035,
-          "glow",
-          0.5,
-          1.35,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "boxes",
-      "id": "g-hanging",
-      "noPaint": true,
-      "x": 0.45,
-      "z": -3.08,
-      "_": "亮起：中国挂毯",
-      "boxes": [
-        [
-          1.7,
-          0.035,
-          0.035,
-          "glow",
-          0,
-          2.8,
-          0
-        ],
-        [
-          1.7,
-          0.035,
-          0.035,
-          "glow",
-          0,
-          1.7999999999999998,
-          0
-        ],
-        [
-          0.035,
-          1.0,
-          0.035,
-          "glow",
-          -0.85,
-          2.3,
-          0
-        ],
-        [
-          0.035,
-          1.0,
-          0.035,
-          "glow",
-          0.85,
-          2.3,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "boxes",
-      "id": "g-pictures",
-      "noPaint": true,
-      "x": -0.7,
-      "z": -3.08,
-      "_": "亮起：墙上的画",
-      "boxes": [
-        [
-          1.0,
-          0.035,
-          0.035,
-          "glow",
-          0,
-          2.5250000000000004,
-          0
-        ],
-        [
-          1.0,
-          0.035,
-          0.035,
-          "glow",
-          0,
-          1.8750000000000002,
-          0
-        ],
-        [
-          0.035,
-          0.65,
-          0.035,
-          "glow",
-          -0.5,
-          2.2,
-          0
-        ],
-        [
-          0.035,
-          0.65,
-          0.035,
-          "glow",
-          0.5,
-          2.2,
+          1.3,
           0
         ]
       ]
@@ -638,29 +409,62 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“这间房间在讲谁”（toggles）：开关打开后，属于父亲的东西（空椅子、书桌、埃及雕像、中国挂毯、墙上的画）外面一个接一个浮现淡黄色的框（reveal + stagger），埃莱娜保持原样；显示说明。框是示意，所以说明里写“这是示意”。",
-    "type": "toggles",
-    "toggles": [
+    "_说明": "独家发现“这间房间在讲谁”（names）：开关打开后，属于父亲的东西（空椅子、书桌、埃及雕像、中国挂毯、墙上的画）上面一个接一个浮现小标签（stagger 秒一个），埃莱娜保持原样；点标签显示对应的卡片。标签是示意，所以说明里写“这是示意”。",
+    "type": "names",
+    "label": {
+      "zh": "这间房间在讲谁",
+      "en": "Whose room is this?"
+    },
+    "stagger": 0.7,
+    "note": {
+      "zh": "画名说的是她，房间讲的却是她的父亲。这是示意。",
+      "en": "The title names her, but the room speaks of her father. This is an illustration."
+    },
+    "people": [
       {
-        "id": "father",
-        "label": {
-          "zh": "这间房间在讲谁",
-          "en": "Whose room is this?"
+        "target": "chair",
+        "y": 1.15,
+        "name": {
+          "zh": "父亲的椅子",
+          "en": "Her father's chair"
         },
-        "targets": [],
-        "reveal": [
-          "g-chair",
-          "g-desk",
-          "g-case",
-          "g-hanging",
-          "g-pictures"
-        ],
-        "stagger": 0.6,
-        "duration": 4,
-        "note": {
-          "zh": "画名说的是她，房间讲的却是她的父亲。这是示意。",
-          "en": "The title names her, but the room speaks of her father. This is an illustration."
-        }
+        "card": "chair"
+      },
+      {
+        "target": "desk",
+        "y": 0.9,
+        "name": {
+          "zh": "父亲的书桌",
+          "en": "Her father's desk"
+        },
+        "card": "nine"
+      },
+      {
+        "target": "case",
+        "y": 1.55,
+        "name": {
+          "zh": "父亲的埃及雕像",
+          "en": "Her father's Egyptian statues"
+        },
+        "card": "egypt"
+      },
+      {
+        "target": "hanging",
+        "y": 1.95,
+        "name": {
+          "zh": "父亲的中国挂毯",
+          "en": "Her father's Chinese hanging"
+        },
+        "card": "kylin"
+      },
+      {
+        "target": "pictures",
+        "y": 1.65,
+        "name": {
+          "zh": "父亲收藏的画",
+          "en": "Her father's pictures"
+        },
+        "card": "collection"
       }
     ]
   },
@@ -751,6 +555,14 @@
         "label": {
           "zh": "另一把空椅子",
           "en": "Another empty chair"
+        }
+      },
+      {
+        "scene": "beach-scene",
+        "href": "../beach-scene/",
+        "label": {
+          "zh": "鲁阿尔的另一幅收藏",
+          "en": "Another work from the Rouart collection"
         }
       }
     ]
@@ -868,16 +680,16 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "待补",
+    "url": "https://commons.wikimedia.org/wiki/File:Helene_Rouart_in_her_Father%27s_Study.jpg",
     "license": "公有领域（PD-Art）",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
     "files": [
       {
         "file": "helene-rouart.jpg",
-        "from": "Wikimedia Commons（等 Tia 上传；不要从国家美术馆官网下载）",
-        "url": "待补",
+        "from": "Wikimedia Commons（Tia 上传的 960px-Helene_Rouart_in_her_Father's_Study.jpg，2026-11-01，960 × 1287）",
+        "url": "https://commons.wikimedia.org/wiki/File:Helene_Rouart_in_her_Father%27s_Study.jpg",
         "license": "公有领域（PD-Art）",
-        "status": "待决定",
+        "status": "符合",
         "verified": "2026-11-01"
       }
     ]

@@ -1549,7 +1549,9 @@ function run(S, R, meta) {
     if (t.lines) {
       const at = (fx, fy) => { const d = new THREE.Vector3(fx * 2 - 1, 1 - fy * 2, 0.5).unproject(projector).sub(projector.position).normalize(); return projector.position.clone().addScaledVector(d, 2); };
       const pos = [], w = (t.lineWidth || 0.006) / 2;   // 每条线是一条细长的面（WebGL 的线只有 1 像素宽）
-      for (const [x1, y1, x2, y2] of t.lines) {
+      // dash：虚线（每条线切成 dash 段，只画其中一半）
+      const segs = t.dash ? t.lines.flatMap(([x1, y1, x2, y2]) => Array.from({ length: t.dash }, (_, k) => k % 2 ? null : [x1 + (x2 - x1) * k / t.dash, y1 + (y2 - y1) * k / t.dash, x1 + (x2 - x1) * (k + 1) / t.dash, y1 + (y2 - y1) * (k + 1) / t.dash]).filter(Boolean)) : t.lines;
+      for (const [x1, y1, x2, y2] of segs) {
         const A = at(x1, y1), Bp = at(x2, y2), n = projector.position.clone().sub(A.clone().add(Bp).multiplyScalar(0.5));
         const side = Bp.clone().sub(A).cross(n).normalize().multiplyScalar(w);
         const q = [A.clone().add(side), A.clone().sub(side), Bp.clone().sub(side), Bp.clone().add(side)];
@@ -1580,8 +1582,15 @@ function run(S, R, meta) {
   let namesOn = false;
   if (namesObj) {
     const btn = $('namesBtn'), note = $('namesNote'), tags = $('nameTags');
-    btn.onclick = () => { namesOn = !namesOn; btn.classList.toggle('on', namesOn); note.classList.toggle('hidden', !namesOn); tags.classList.toggle('hidden', !namesOn); if (namesOn) track('exclusive-' + S.id); };
-    tags.querySelectorAll('.name-tag').forEach(b => b.onclick = () => showCard(namesObj.people[+b.dataset.name].card));
+    const tagEls = [...tags.querySelectorAll('.name-tag')], timers = [];
+    btn.onclick = () => {
+      namesOn = !namesOn; btn.classList.toggle('on', namesOn); note.classList.toggle('hidden', !namesOn); tags.classList.toggle('hidden', !namesOn);
+      // stagger：标签一个接一个出现（每个晚 stagger 秒）
+      timers.splice(0).forEach(clearTimeout);
+      if (namesObj.stagger) tagEls.forEach((el, i) => { el.style.opacity = 0; if (namesOn) timers.push(setTimeout(() => { el.style.opacity = 1; }, 300 + i * namesObj.stagger * 1000)); });
+      if (namesOn) track('exclusive-' + S.id);
+    };
+    tagEls.forEach(b => b.onclick = () => { const c = namesObj.people[+b.dataset.name].card; if (c && S.cards[c]) showCard(c); });
   }
   if (seriesTex) {
     const X = S.exclusive, range = $('seriesRange'), cap = $('seriesCap'), panel = $('seriesPanel'), main = X.start || 0;
