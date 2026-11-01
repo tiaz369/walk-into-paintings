@@ -239,6 +239,13 @@ function buildDOM(S, R, meta) {
     <div class="series-ends"><span>${ui(D.far.zh, D.far.en)}</span><span>${ui(D.near.zh, D.near.en)}</span></div>
     <p class="dist-note">${bi(D.note, ' / ')}</p>
   </div>`)(S.exclusive) : ''}
+  ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.map((t, i) => t.crop ? `<div class="popup panel" id="togZoom${i}">
+    <button class="close" data-close="togZoom${i}" aria-label="Close">×</button>
+    <h3>${bi(t.label)}</h3>
+    <div class="mirror-zoom" role="img" ${altAttr(t.alt || t.label).replace('alt=', 'aria-label=')} style="background-image:url('${S.painting.image}');aspect-ratio:${(t.crop.w * S.painting.width) / (t.crop.h * S.painting.height)};background-size:${100 / t.crop.w}% ${100 / t.crop.h}%;background-position:${t.crop.x / (1 - t.crop.w) * 100}% ${t.crop.y / (1 - t.crop.h) * 100}%"></div>
+    ${t.caption ? `<p><small>${bi(t.caption, ' / ')}</small></p>` : ''}
+    <p>${bi(t.text, ' / ')}</p>
+  </div>` : '').join('') : ''}
   ${S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive.toggles.filter(t => t.note).map(t => `<div class="panel toggle-note hidden" data-toggle-note="${S.exclusive.toggles.indexOf(t)}">${bi(t.note, ' / ')}</div>`).join('') : ''}
   ${S.exclusive && S.exclusive.type === 'gallery' ? `<div id="galleryNow" class="panel gallery-now hidden"><img alt="" /><p class="g-cap"></p></div><div id="galleryNote" class="panel toggle-note hidden">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'series' ? `<div id="seriesPanel" class="panel series-panel hidden">
@@ -1552,6 +1559,14 @@ function run(S, R, meta) {
     }
     const T = { t, meshes, lines, on: false, now: 0 }; toggles.push(T);
     const btn = document.querySelector(`[data-toggle="${i}"]`), note = document.querySelector(`[data-toggle-note="${i}"]`);
+    if (t.crop) {   // crop：这个按钮不是开关，而是弹出原画上那一块的放大（和“镜子”一样，只是放大原画），显示 text；card：算发现了这张卡片
+      popups['togZoom' + i] = $('togZoom' + i);
+      btn.onclick = () => {
+        togglePopup('togZoom' + i);
+        if (popups['togZoom' + i].style.display === 'block') { if (t.card && S.cards[t.card]) { found.add(t.card); updateProgress(); } track('exclusive-' + S.id + '-' + (t.id || i)); }
+      };
+      return;
+    }
     btn.onclick = () => {
       T.on = !T.on; btn.classList.toggle('on', T.on); if (note) note.classList.toggle('hidden', !T.on);
       if (T.on && t.card) showCard(t.card);

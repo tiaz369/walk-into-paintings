@@ -11,13 +11,14 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是场景里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片 2 还链接到主题“孩子”（不是场景，所以不列在这里）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是场景里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。卡片 2 还链接到主题“孩子”（不是场景，所以不列在这里）。和德加《贝列利一家》互相链接（主题“孩子”），对方开放后自动出现。",
     "doors": [],
     "cards": [],
     "end": [
       "woman-reading-letter",
       "milkmaid",
-      "view-of-delft"
+      "view-of-delft",
+      "bellelli-family"
     ]
   },
   "painting": {
@@ -924,6 +925,14 @@
         "label": {
           "zh": "维米尔的另一幅户外画：代尔夫特一景",
           "en": "Another Vermeer outdoors: *View of Delft*"
+        }
+      },
+      {
+        "scene": "bellelli-family",
+        "href": "../bellelli-family/",
+        "label": {
+          "zh": "画里的孩子",
+          "en": "Children in paintings"
         }
       }
     ]
