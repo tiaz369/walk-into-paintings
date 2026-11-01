@@ -1,13 +1,13 @@
 {
-  "_说明": "刨地板的工人（室内，完整版）。所有事实文字由 Tia 提供（奥赛博物馆官网）。观众站在高处往下看一间空房间：三个赤膊的工人跪在木地板上刨地板，身边是一卷卷木屑；光从右后方的窗户照进来；墙上有装饰，地上放着一瓶酒和一只杯子。地点可能是卡耶博特的画室，来源说法不一，所以场景里不写地点。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "_说明": "刨地板的工人（室内，完整版）。所有事实文字由 Tia 提供（奥赛博物馆官网）。观众站在高处往下看一间空房间：三个赤膊的工人跪在木地板上刨地板，身边是一卷卷木屑；光从后面的落地窗照进来；墙上有装饰，地上放着一瓶酒和一只杯子。地点可能是卡耶博特的画室，来源说法不一，所以场景里不写地点。画家视角和物体位置按原画估算。",
   "id": "floor-scrapers",
   "variant": "interior",
   "lighting": {
     "_说明": "光线设定（不在页面上显示）",
-    "type": "window-right",
+    "type": "window-back",
     "label": {
-      "zh": "右后方窗户照进来的光",
-      "en": "Light from a window at the back right"
+      "zh": "后面窗户照进来的光",
+      "en": "Light from the window at the back"
     }
   },
   "links": {
@@ -21,13 +21,12 @@
   },
   "painting": {
     "image": "images/floor-scrapers.jpg",
-    "width": 1436,
-    "height": 1000,
+    "width": 1920,
+    "height": 1349,
     "alt": {
       "zh": "卡耶博特《刨地板的工人》1875，巴黎奥赛博物馆",
       "en": "Gustave Caillebotte, The Floor Scrapers, 1875, Musée d'Orsay, Paris"
-    },
-    "_": "宽高先按尺寸 146.5 × 102 cm 估算，原画上传后改成图片的实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -62,13 +61,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the workers, the shavings, the window, the drink or the wall to learn more · Tap “Lines of the floor” to see how the boards lead the eye to the window · The glowing circle = Caillebotte's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估算（站在高处往下看），原画上传后对准。",
+    "_说明": "画家视角：按原画估算（从约2米高往下看，后墙在画面上方约27%）。",
     "x": 0,
     "z": 0,
-    "eye": 1.9,
+    "eye": 2.0,
     "yaw": 0,
-    "pitch": -0.6,
-    "fov": 48,
+    "pitch": -0.7,
+    "fov": 50,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -95,17 +94,17 @@
     "_说明": "房间形状（米）：一间空房间。左墙 x=left，前墙 z=front；后墙（窗户在右后方）从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
     "height": 3.4,
     "front": 1.0,
-    "left": -2.2,
+    "left": -2.9,
     "backLeft": [
-      -2.2,
-      -5.0
+      -2.9,
+      -3.8
     ],
     "backRight": [
-      2.4,
-      -5.0
+      2.28,
+      -3.8
     ],
     "rightFront": [
-      2.4,
+      2.28,
       1.0
     ],
     "floorCard": "down",
@@ -116,9 +115,9 @@
     {
       "type": "boxes",
       "card": "workers",
-      "x": -0.9,
+      "x": -1.5,
       "z": -2.4,
-      "rot": 0.15,
+      "rot": 0.5,
       "_": "左边跪着的工人",
       "boxes": [
         [
@@ -163,7 +162,7 @@
       "type": "boxes",
       "card": "workers",
       "x": 0.0,
-      "z": -3.0,
+      "z": -1.75,
       "rot": 0.1,
       "_": "中间跪着的工人",
       "boxes": [
@@ -209,9 +208,9 @@
     {
       "type": "boxes",
       "card": "workers",
-      "x": 0.55,
-      "z": -3.2,
-      "rot": 0.1,
+      "x": 0.9,
+      "z": -1.95,
+      "rot": -0.1,
       "_": "右边跪着的工人",
       "boxes": [
         [
@@ -255,8 +254,8 @@
     {
       "type": "boxes",
       "card": "curls",
-      "x": -0.3,
-      "z": -2.5,
+      "x": -0.5,
+      "z": -1.9,
       "_": "一卷卷刨下来的木屑",
       "boxes": [
         [
@@ -345,8 +344,8 @@
     {
       "type": "boxes",
       "card": "drink",
-      "x": -1.25,
-      "z": -3.6,
+      "x": 1.42,
+      "z": -1.6,
       "_": "地上的一瓶酒和一只杯子",
       "boxes": [
         [
@@ -363,7 +362,7 @@
           0.1,
           0.07,
           "glass",
-          0.15,
+          0.12,
           0.05,
           0.05,
           "cloth"
@@ -373,28 +372,28 @@
     {
       "type": "boxes",
       "card": "window",
-      "x": 1.6,
-      "z": -4.9,
+      "x": -1.14,
+      "z": -3.78,
       "id": "window",
-      "_": "右后方的窗户和铁艺栏杆",
+      "_": "后面的落地窗和铁艺栏杆",
       "boxes": [
         [
-          1.2,
-          2.2,
+          1.37,
+          2.4,
           0.05,
           "windowlight",
           0,
-          1.6,
+          1.2,
           0,
           "cloth"
         ],
         [
-          1.2,
-          0.6,
+          1.37,
+          0.9,
           0.06,
           "iron",
           0,
-          0.9,
+          0.6,
           0.03
         ]
       ]
@@ -402,26 +401,53 @@
     {
       "type": "boxes",
       "card": "subject",
-      "x": -0.5,
-      "z": -4.95,
-      "_": "墙上的装饰线",
+      "x": 0.9,
+      "z": -3.78,
+      "_": "墙上的装饰线条",
       "boxes": [
         [
-          3.0,
+          2.5,
           0.06,
           0.03,
           "gold",
           0,
-          2.2,
+          1.6,
           0
         ],
         [
-          3.0,
+          2.5,
           0.06,
           0.03,
           "gold",
           0,
-          1.0,
+          0.8,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "curls",
+      "x": 0.4,
+      "z": -3.6,
+      "_": "墙边堆着的东西",
+      "boxes": [
+        [
+          0.5,
+          0.2,
+          0.3,
+          "trousers",
+          0,
+          0.1,
+          0
+        ],
+        [
+          0.5,
+          0.35,
+          0.3,
+          "trousers",
+          0.9,
+          0.17,
           0
         ]
       ]
@@ -490,7 +516,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“地板的透视线”（toggles）：开关打开后，沿着地板木条浮现几条线，一起指向窗户的方向。线条位置是示意（原画上传后照着木条调整），所以说明里写“线条位置为示意”。",
+    "_说明": "独家发现“地板的透视线”（toggles）：开关打开后，沿着地板木条浮现几条线，一起指向窗户的方向。线条大致沿着原画上的木条方向，但位置是示意，所以说明里写“线条位置为示意”。",
     "type": "toggles",
     "toggles": [
       {
@@ -504,34 +530,28 @@
         "lineWidth": 0.004,
         "lines": [
           [
-            0.0,
-            0.62,
-            0.74,
-            0.12
+            0.05,
+            0.92,
+            0.45,
+            0.27
           ],
           [
-            0.0,
-            0.95,
-            0.8,
-            0.15
-          ],
-          [
-            0.28,
+            0.3,
             1.0,
-            0.85,
-            0.18
+            0.56,
+            0.27
           ],
           [
             0.55,
             1.0,
-            0.9,
-            0.2
+            0.67,
+            0.27
           ],
           [
-            0.82,
+            0.8,
             1.0,
-            0.95,
-            0.22
+            0.8,
+            0.27
           ]
         ],
         "note": {
@@ -747,11 +767,11 @@
     "files": [
       {
         "file": "floor-scrapers.jpg",
-        "from": "Wikimedia Commons（等 Tia 上传；不要用奥赛官网、RMN 或 Google 艺术与文化的图片）",
+        "from": "Wikimedia Commons（Tia 上传的 IMG_0572.jpeg，2026-11-02，1920 × 1349）",
         "url": "待补",
         "license": "公有领域（PD-Art）",
-        "status": "待决定",
-        "verified": "2026-11-01"
+        "status": "符合",
+        "verified": "2026-11-02"
       }
     ]
   },

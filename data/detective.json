@@ -64,6 +64,14 @@
         "en": "Read the frame"
       },
       "play": "insc"
+    },
+    {
+      "scene": "tuileries",
+      "label": {
+        "zh": "找一找马奈",
+        "en": "Find Manet"
+      },
+      "play": "mirror"
     }
   ]
 }

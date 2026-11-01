@@ -1,0 +1,937 @@
+{
+  "_说明": "杜伊勒里花园的音乐会（户外风景，完整版：公园）。所有事实文字由 Tia 提供（伦敦国家美术馆官网）。大树下一大群穿着时髦的人：男人戴黑色高礼帽，女人戴软帽、拿阳伞；前景有铁椅子和玩耍的孩子；树影间远处隐约有乐队。只具体标出马奈本人（画面最左边），其他名人的位置不写。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "id": "tuileries",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "大树下的斑驳阳光",
+      "en": "Dappled light under the trees"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《煎饼磨坊的舞会》互相链接；和《女神游乐厅的吧台》互相链接（马奈的第一幅现代生活，和最后一幅）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "moulin-galette",
+      "folies-bergere"
+    ]
+  },
+  "painting": {
+    "image": "images/tuileries.jpg",
+    "width": 1550,
+    "height": 1000,
+    "alt": {
+      "zh": "马奈《杜伊勒里花园的音乐会》1862，伦敦国家美术馆",
+      "en": "Édouard Manet, Music in the Tuileries Gardens, 1862, The National Gallery, London"
+    },
+    "_": "宽高先按尺寸 118.1 × 76.2 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "杜伊勒里花园的音乐会",
+      "en": "Music in the Tuileries Gardens"
+    },
+    "artist": {
+      "zh": "马奈",
+      "en": "Édouard Manet"
+    },
+    "date": {
+      "zh": "1862年",
+      "en": "1862"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下人群、孩子、铁椅子和大树看介绍 · 点“找一找马奈”，在人群里找到画家 · 地上发光的圆点 = 马奈的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the crowd, the children, the iron chairs or the trees to learn more · Tap “Find Manet” to spot the painter in the crowd · The glowing circle = Manet's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（站在人群前面），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": -0.1,
+    "fov": 45,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "tuileries",
+  "colors": {
+    "line": "#2a2a26",
+    "ground": "#b8a888",
+    "sky": "#d8dcc8",
+    "black": "#1e1e20",
+    "yellow": "#e0c060",
+    "blue": "#3a5aa8",
+    "white": "#f0ece4",
+    "orange": "#e07a2a",
+    "iron": "#2a2a2a",
+    "leaves": "#5a7040",
+    "skin": "#e8c8a8",
+    "trousers": "#1e1e20",
+    "bonnet": "#e8d8b8",
+    "wood": "#6a4a32"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（花园），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -25,
+      25,
+      -30,
+      4
+    ],
+    "bounds": [
+      -5,
+      5,
+      -12,
+      3
+    ],
+    "groundCard": "concerts",
+    "skyCard": "modern",
+    "skyRadius": 80,
+    "walkSpeed": 0.9
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "concerts",
+      "_": "花园的沙土地",
+      "pts": [
+        [
+          -25,
+          0.01,
+          4
+        ],
+        [
+          -25,
+          0.01,
+          -30
+        ],
+        [
+          25,
+          0.01,
+          -30
+        ],
+        [
+          25,
+          0.01,
+          4
+        ]
+      ],
+      "color": "ground"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": -3.0,
+      "z": -4.2,
+      "rot": 0,
+      "card": "manet",
+      "_": "马奈自己（画面最左边）",
+      "legs": "black",
+      "id": "manet"
+    },
+    {
+      "type": "boxes",
+      "card": "group",
+      "x": -3.0,
+      "z": -4.2,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": -2.4,
+      "z": -4.6,
+      "rot": 0,
+      "card": "group",
+      "_": "马奈的朋友",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "group",
+      "x": -2.4,
+      "z": -4.6,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": -1.6,
+      "z": -5.0,
+      "rot": 0,
+      "card": "crowd",
+      "_": "戴高礼帽的男人",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "crowd",
+      "x": -1.6,
+      "z": -5.0,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": -0.8,
+      "z": -5.4,
+      "rot": 0,
+      "card": "crowd",
+      "_": "戴高礼帽的男人",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "crowd",
+      "x": -0.8,
+      "z": -5.4,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": 0.2,
+      "z": -5.6,
+      "rot": 0,
+      "card": "crowd",
+      "_": "戴高礼帽的男人",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "crowd",
+      "x": 0.2,
+      "z": -5.6,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": 1.0,
+      "z": -5.2,
+      "rot": 0,
+      "card": "crowd",
+      "_": "戴高礼帽的男人",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "crowd",
+      "x": 1.0,
+      "z": -5.2,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": 1.9,
+      "z": -4.8,
+      "rot": 0,
+      "card": "crowd",
+      "_": "戴高礼帽的男人",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "crowd",
+      "x": 1.9,
+      "z": -4.8,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": 2.7,
+      "z": -5.4,
+      "rot": 0,
+      "card": "group",
+      "_": "戴高礼帽的男人",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "group",
+      "x": 2.7,
+      "z": -5.4,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": -1.2,
+      "z": -6.6,
+      "rot": 0,
+      "card": "crowd",
+      "_": "远处的人",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "crowd",
+      "x": -1.2,
+      "z": -6.6,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": 1.4,
+      "z": -7.0,
+      "rot": 0,
+      "card": "crowd",
+      "_": "远处的人",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "crowd",
+      "x": 1.4,
+      "z": -7.0,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "yellow",
+      "x": -1.0,
+      "z": -3.6,
+      "rot": 0,
+      "card": "crowd",
+      "_": "坐着、戴软帽的女人",
+      "hat": "bonnet"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "blue",
+      "x": -0.4,
+      "z": -3.8,
+      "rot": 0,
+      "card": "crowd",
+      "_": "坐着、戴软帽的女人",
+      "hat": "bonnet"
+    },
+    {
+      "type": "boxes",
+      "card": "crowd",
+      "x": -0.7,
+      "z": -3.5,
+      "_": "女人的阳伞",
+      "boxes": [
+        [
+          0.03,
+          1.2,
+          0.03,
+          "line",
+          0,
+          0.9,
+          0
+        ],
+        [
+          0.7,
+          0.06,
+          0.7,
+          "yellow",
+          0,
+          1.5,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "white",
+      "x": 0.3,
+      "z": -2.6,
+      "rot": 0,
+      "card": "colours",
+      "_": "玩耍的孩子",
+      "scale": 0.55,
+      "legs": "white"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "orange",
+      "x": 0.8,
+      "z": -2.4,
+      "rot": 0,
+      "card": "colours",
+      "_": "玩耍的孩子（鲜艳的颜色）",
+      "scale": 0.5,
+      "legs": "blue"
+    },
+    {
+      "type": "boxes",
+      "card": "chairs",
+      "x": 0.0,
+      "z": -1.8,
+      "_": "前景的铁椅子",
+      "boxes": [
+        [
+          0.45,
+          0.04,
+          0.45,
+          "iron",
+          -0.4,
+          0.45,
+          0
+        ],
+        [
+          0.45,
+          0.5,
+          0.04,
+          "iron",
+          -0.4,
+          0.7,
+          -0.2
+        ],
+        [
+          0.04,
+          0.45,
+          0.04,
+          "iron",
+          -0.6,
+          0.22,
+          0.2
+        ],
+        [
+          0.04,
+          0.45,
+          0.04,
+          "iron",
+          -0.2,
+          0.22,
+          0.2
+        ],
+        [
+          0.45,
+          0.04,
+          0.45,
+          "iron",
+          0.6,
+          0.45,
+          0.2
+        ],
+        [
+          0.45,
+          0.5,
+          0.04,
+          "iron",
+          0.6,
+          0.7,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "tree",
+      "card": "modern",
+      "_": "大树",
+      "x": -2,
+      "z": -7,
+      "h": 12,
+      "r": 3.5,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "modern",
+      "_": "大树",
+      "x": 1.5,
+      "z": -8,
+      "h": 13,
+      "r": 3.8,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "modern",
+      "_": "大树",
+      "x": 4,
+      "z": -6.5,
+      "h": 11,
+      "r": 3,
+      "color": "leaves"
+    },
+    {
+      "type": "boxes",
+      "card": "concerts",
+      "x": 0,
+      "z": -14,
+      "_": "树影之间远处的乐队",
+      "boxes": [
+        [
+          3,
+          1.2,
+          1.5,
+          "black",
+          0,
+          0.6,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "concerts": {
+      "title": {
+        "zh": "每周两次的音乐会",
+        "en": "Twice-weekly concerts"
+      },
+      "text": {
+        "zh": "人们聚在杜伊勒里花园里，听每周两次的户外音乐会。",
+        "en": "People have gathered in the Tuileries Gardens to hear one of the twice-weekly open-air concerts."
+      }
+    },
+    "crowd": {
+      "title": {
+        "zh": "时髦的人群",
+        "en": "A fashionable crowd"
+      },
+      "text": {
+        "zh": "人群里有不少艺术家和知识分子。男人戴着黑色高礼帽，女人戴着软帽、拿着阳伞。",
+        "en": "The crowd includes many artists and intellectuals. The men wear black top hats; the women, bonnets and parasols."
+      }
+    },
+    "group": {
+      "title": {
+        "zh": "一幅群像",
+        "en": "A group portrait"
+      },
+      "text": {
+        "zh": "这也是一幅群像：马奈画进了自己的家人、朋友，有艺术家、作家和音乐家。",
+        "en": "It is also a group portrait: Manet included his family and friends, artists, writers and musicians."
+      }
+    },
+    "manet": {
+      "title": {
+        "zh": "马奈自己",
+        "en": "Manet himself"
+      },
+      "text": {
+        "zh": "画面最左边，马奈把自己也画了进去。",
+        "en": "At the far left edge of the picture, Manet painted himself."
+      }
+    },
+    "chairs": {
+      "title": {
+        "zh": "新的铁椅子",
+        "en": "New iron chairs"
+      },
+      "text": {
+        "zh": "前景的铁椅子，是1862年才刚刚换掉花园里原来的木椅子的。",
+        "en": "The iron chairs in the foreground had only just replaced the garden's old wooden chairs in 1862."
+      }
+    },
+    "colours": {
+      "title": {
+        "zh": "孩子们的颜色",
+        "en": "The children's colours"
+      },
+      "text": {
+        "zh": "孩子们的帽子和衣服上那些鲜艳的颜色，用的几乎是纯颜料：钴蓝、朱砂、铬橙。",
+        "en": "The bright touches in the children's bonnets and clothes are painted in almost pure pigments: cobalt blue, vermilion, chrome orange."
+      }
+    },
+    "modern": {
+      "title": {
+        "zh": "现代绘画的开始",
+        "en": "The beginning of modern painting"
+      },
+      "text": {
+        "zh": "因为它的题材和画法，这幅画被认为是现代绘画最早的例子之一。",
+        "en": "Because of its subject and technique, this painting is considered one of the earliest examples of modern painting."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“找一找马奈”（mirror）：站到画家视角点时，画面放大到画面最左边的马奈本人，显示卡片4的文字。只是放大原画，不是示意效果。crop（0–1）待核对：原画上传后照着图量。也加进了“画中侦探”页面（play=mirror）。",
+    "type": "mirror",
+    "label": {
+      "zh": "找一找马奈",
+      "en": "Find Manet"
+    },
+    "card": "manet",
+    "alt": {
+      "zh": "《杜伊勒里花园的音乐会》画面最左边的马奈（放大）",
+      "en": "Manet at the far left of Music in the Tuileries Gardens (detail)"
+    },
+    "caption": {
+      "zh": "《杜伊勒里花园的音乐会》画面最左边的马奈（放大）",
+      "en": "Manet at the far left of *Music in the Tuileries Gardens* (detail)"
+    },
+    "text": {
+      "zh": "画面最左边，马奈把自己也画了进去。",
+      "en": "At the far left edge of the picture, Manet painted himself."
+    },
+    "crop": {
+      "x": 0.0,
+      "y": 0.18,
+      "w": 0.14,
+      "h": 0.5
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/tuileries.jpg",
+        "alt": {
+          "zh": "马奈《杜伊勒里花园的音乐会》1862，伦敦国家美术馆",
+          "en": "Édouard Manet, Music in the Tuileries Gardens, 1862, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1862年 · 伦敦国家美术馆",
+          "en": "1862 · The National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 花园里的音乐会",
+          "en": "A concert in the garden"
+        },
+        "text": {
+          "zh": "19世纪60年代，巴黎时髦的人们，会到杜伊勒里花园听每周两次的户外音乐会。马奈和朋友们常去，他在那里画了很多速写。",
+          "en": "In the 1860s, fashionable Parisians gathered in the Tuileries Gardens for twice-weekly open-air concerts. Manet often went with his friends and made many sketches there."
+        }
+      },
+      {
+        "image": "images/tuileries.jpg",
+        "alt": {
+          "zh": "马奈《杜伊勒里花园的音乐会》1862，伦敦国家美术馆",
+          "en": "Édouard Manet, Music in the Tuileries Gardens, 1862, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1862年 · 伦敦国家美术馆",
+          "en": "1862 · The National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 现代生活",
+          "en": "Modern life"
+        },
+        "text": {
+          "zh": "1862年，他画下了这群人。他画的不是神话或历史，而是自己身边的现代城市生活，这在当时很新。",
+          "en": "In 1862, he painted this crowd. He painted not myth or history, but the modern city life around him, which was new at the time."
+        }
+      },
+      {
+        "image": "images/tuileries.jpg",
+        "alt": {
+          "zh": "马奈《杜伊勒里花园的音乐会》1862，伦敦国家美术馆",
+          "en": "Édouard Manet, Music in the Tuileries Gardens, 1862, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1862年 · 伦敦国家美术馆",
+          "en": "1862 · The National Gallery, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 伦敦与都柏林",
+          "en": "London and Dublin"
+        },
+        "text": {
+          "zh": "1917年，这幅画作为休·莱恩爵士遗赠的一部分，由伦敦国家美术馆和都柏林休·莱恩美术馆共同拥有，两边轮流展出。2026年，它回到了伦敦。",
+          "en": "In 1917, the painting came to the National Gallery as part of the Sir Hugh Lane Bequest, shared with the Hugh Lane Gallery in Dublin, and the two galleries take turns to display it. In 2026, it returned to London."
+        }
+      }
+    ],
+    "final": {
+      "zh": "现代绘画，从一个下午的音乐会开始。",
+      "en": "Modern painting began with an afternoon concert."
+    },
+    "versions": [],
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "moulin-galette",
+        "href": "../moulin-galette/",
+        "label": {
+          "zh": "另一个户外的下午",
+          "en": "Another afternoon outdoors"
+        }
+      },
+      {
+        "scene": "folies-bergere",
+        "href": "../folies-bergere/",
+        "label": {
+          "zh": "马奈的第一幅现代生活，和最后一幅",
+          "en": "Manet's first great picture of modern life, and his last"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆官网）。",
+    "artist": {
+      "zh": "爱德华·马奈（1832–1883）",
+      "en": "Édouard Manet (1832–1883)"
+    },
+    "title": {
+      "zh": "杜伊勒里花园的音乐会",
+      "en": "Music in the Tuileries Gardens"
+    },
+    "date": {
+      "zh": "1862年",
+      "en": "1862"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "76.2 × 118.1 cm",
+      "en": "76.2 × 118.1 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆，41号展厅",
+      "en": "The National Gallery, London, Room 41"
+    },
+    "creditLine": {
+      "zh": "休·莱恩爵士遗赠，1917年；与都柏林休·莱恩美术馆合作（编号 NG3260）",
+      "en": "Sir Hugh Lane Bequest, 1917. In partnership with Hugh Lane Gallery, Dublin (NG3260)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/NG3260"
+  },
+  "zoom": {
+    "image": "images/tuileries.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：杜伊勒里花园的音乐会",
+          "en": "The National Gallery: *Music in the Tuileries Gardens*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/NG3260"
+      },
+      {
+        "title": {
+          "zh": "维基百科：杜伊勒里花园的音乐会",
+          "en": "Wikipedia: *Music in the Tuileries*"
+        },
+        "url": "https://en.wikipedia.org/wiki/Music_in_the_Tuileries"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 花园里的音乐会",
+          "en": "A concert in the garden"
+        },
+        "text": {
+          "zh": "19世纪60年代，巴黎时髦的人们，会到杜伊勒里花园听每周两次的户外音乐会。马奈和朋友们常去，他在那里画了很多速写。",
+          "en": "In the 1860s, fashionable Parisians gathered in the Tuileries Gardens for twice-weekly open-air concerts. Manet often went with his friends and made many sketches there."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 现代生活",
+          "en": "Modern life"
+        },
+        "text": {
+          "zh": "1862年，他画下了这群人。他画的不是神话或历史，而是自己身边的现代城市生活，这在当时很新。",
+          "en": "In 1862, he painted this crowd. He painted not myth or history, but the modern city life around him, which was new at the time."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 伦敦与都柏林",
+          "en": "London and Dublin"
+        },
+        "text": {
+          "zh": "1917年，这幅画作为休·莱恩爵士遗赠的一部分，由伦敦国家美术馆和都柏林休·莱恩美术馆共同拥有，两边轮流展出。2026年，它回到了伦敦。",
+          "en": "In 1917, the painting came to the National Gallery as part of the Sir Hugh Lane Bequest, shared with the Hugh Lane Gallery in Dublin, and the two galleries take turns to display it. In 2026, it returned to London."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：杜伊勒里花园的音乐会",
+        "en": "The National Gallery: *Music in the Tuileries Gardens*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/NG3260"
+    },
+    {
+      "title": {
+        "zh": "维基百科：杜伊勒里花园的音乐会",
+        "en": "Wikipedia: *Music in the Tuileries*"
+      },
+      "url": "https://en.wikipedia.org/wiki/Music_in_the_Tuileries"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "tuileries.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要从国家美术馆官网、Art UK 或 Art Resource 下载）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-02"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-02"
+}

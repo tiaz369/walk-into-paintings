@@ -11,18 +11,20 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和德加《舞蹈课》互相链接（同属“舞蹈”）；和雷诺阿《伞》互相链接；卡片“卡耶博特的画”链接到卡耶博特的场景和《圣拉扎尔火车站》的同名卡片。和《布吉瓦尔之舞》互相链接（另一个露天舞会），对方开放后自动出现。和《刨地板的工人》互相链接（卡耶博特和雷诺阿）。对方开放后自动出现。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和德加《舞蹈课》互相链接（同属“舞蹈”）；和雷诺阿《伞》互相链接；卡片“卡耶博特的画”链接到卡耶博特的场景和《圣拉扎尔火车站》的同名卡片。和《布吉瓦尔之舞》互相链接（另一个露天舞会），对方开放后自动出现。和《刨地板的工人》互相链接（卡耶博特和雷诺阿）。对方开放后自动出现。卡片5链接到马奈《杜伊勒里花园的音乐会》，故事结尾也互相链接，对方开放后自动出现。",
     "doors": [],
     "cards": [
       "paris-street-rainy-day",
-      "gare-saint-lazare"
+      "gare-saint-lazare",
+      "tuileries"
     ],
     "end": [
       "dance-class",
       "umbrellas",
       "boating-party",
       "dance-bougival",
-      "floor-scrapers"
+      "floor-scrapers",
+      "tuileries"
     ]
   },
   "painting": {
@@ -1075,7 +1077,17 @@
       "text": {
         "zh": "和马奈画杜伊勒里花园一样，雷诺阿在画里放进了不少真实的人物肖像，有的是他的朋友。",
         "en": "As Manet had done in his painting of the Tuileries, Renoir included a number of real portraits, some of them his friends."
-      }
+      },
+      "links": [
+        {
+          "scene": "tuileries",
+          "href": "../tuileries/",
+          "label": {
+            "zh": "马奈《杜伊勒里花园的音乐会》",
+            "en": "Manet's *Music in the Tuileries Gardens*"
+          }
+        }
+      ]
     },
     "canvas": {
       "title": {
@@ -1253,6 +1265,14 @@
         "label": {
           "zh": "卡耶博特和雷诺阿",
           "en": "Caillebotte and Renoir"
+        }
+      },
+      {
+        "scene": "tuileries",
+        "href": "../tuileries/",
+        "label": {
+          "zh": "另一个户外的下午",
+          "en": "Another afternoon outdoors"
         }
       }
     ]

@@ -391,6 +391,19 @@ const AMBIENCE = {
     const bell = t => { for (let k = 0; k < 8; k++) tone(out, t + k * 0.09, { f0: 1900, vol: 0.02, attack: 0.002, dur: 0.08 }); };   // 一串短促的电铃声
     every(st, 30, 60, bell);
   },
+  // 杜伊勒里花园：人声、孩子的笑声，远处乐队演奏，树叶沙沙声（A concert in the Tuileries Gardens）
+  tuileries(out, st) {
+    loopNoise('brown', out, { freq: 300, gain: 0.07 });
+    const leaves = loopNoise('brown', out, { type: 'bandpass', freq: 950, q: 0.5, gain: 0.03 });
+    st.timers.push(setInterval(() => leaves.g.gain.setTargetAtTime(0.015 + 0.04 * Math.random(), ctx.currentTime, 1.6), 3200));
+    murmur(out, 0.1)(st);
+    every(st, 6, 14, t => giggle(out, t));   // 孩子的笑声
+    const far = ctx.createGain(); far.gain.value = 0.3; far.connect(pan(out, 0.2));   // 树影后面远处的乐队
+    const tune = [392, 440, 494, 523, 494, 440, 392, 330], bass = [196, 147, 165, 196];
+    const phrase = t => { tune.forEach((f, i) => tone(far, t + i * 0.45, { f0: f, type: 'triangle', vol: 0.025, attack: 0.04, dur: 0.5 })); bass.forEach((f, i) => tone(far, t + i * 0.9, { f0: f, type: 'sine', vol: 0.035, attack: 0.04, dur: 0.8 })); };
+    phrase(ctx.currentTime + 1.5); every(st, 3.7, 4.0, phrase);
+    every(st, 8, 18, t => bird(out, t));
+  },
   // 刨地板：刨子刮过木地板的声音（一下一下），偶尔低声说话，窗外远处的街道声（Scraping the floor）
   'floor-scrapers'(out, st) {
     loopNoise('brown', out, { freq: 220, gain: 0.06 });
