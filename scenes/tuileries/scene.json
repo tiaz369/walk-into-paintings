@@ -1,5 +1,5 @@
 {
-  "_说明": "杜伊勒里花园的音乐会（户外风景，完整版：公园）。所有事实文字由 Tia 提供（伦敦国家美术馆官网）。大树下一大群穿着时髦的人：男人戴黑色高礼帽，女人戴软帽、拿阳伞；前景有铁椅子和玩耍的孩子；树影间远处隐约有乐队。只具体标出马奈本人（画面最左边），其他名人的位置不写。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "_说明": "杜伊勒里花园的音乐会（户外风景，完整版：公园）。所有事实文字由 Tia 提供（伦敦国家美术馆官网）。大树下一大群穿着时髦的人：男人戴黑色高礼帽，女人戴软帽、拿阳伞；前景有铁椅子和玩耍的孩子；树影间远处隐约有乐队。只具体标出马奈本人（画面最左边），其他名人的位置不写。原画 2026-11-02 上传，视角已对准：视平线在画面高度 43% 处（站着的男人的头都在这条线附近），眼睛 1.6 米高，竖直视角 40°。画面最下边的地面离画家约 3.8 米，所以人和椅子都放在 4–9 米远。",
   "id": "tuileries",
   "variant": "outdoor",
   "lighting": {
@@ -21,13 +21,12 @@
   },
   "painting": {
     "image": "images/tuileries.jpg",
-    "width": 1550,
-    "height": 1000,
+    "width": 1920,
+    "height": 1220,
     "alt": {
       "zh": "马奈《杜伊勒里花园的音乐会》1862，伦敦国家美术馆",
       "en": "Édouard Manet, Music in the Tuileries Gardens, 1862, The National Gallery, London"
-    },
-    "_": "宽高先按尺寸 118.1 × 76.2 cm 估算，原画上传后改成图片的实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -62,13 +61,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the crowd, the children, the iron chairs or the trees to learn more · Tap “Find Manet” to spot the painter in the crowd · The glowing circle = Manet's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估算（站在人群前面），原画上传后对准。",
+    "_说明": "画家视角：按原画对准（视平线在画面 43% 高处，眼睛 1.6 米）。",
     "x": 0,
     "z": 0,
     "eye": 1.6,
     "yaw": 0,
-    "pitch": -0.1,
-    "fov": 45,
+    "pitch": -0.0509,
+    "fov": 40,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -144,18 +143,18 @@
       "type": "figure",
       "pose": "standing",
       "color": "black",
-      "x": -3.0,
+      "x": -2.2,
       "z": -4.2,
       "rot": 0,
       "card": "manet",
-      "_": "马奈自己（画面最左边）",
+      "_": "马奈自己（画面最左边，被画框切掉一半）",
       "legs": "black",
       "id": "manet"
     },
     {
       "type": "boxes",
-      "card": "group",
-      "x": -3.0,
+      "card": "manet",
+      "x": -2.2,
       "z": -4.2,
       "_": "黑色高礼帽",
       "boxes": [
@@ -174,18 +173,18 @@
       "type": "figure",
       "pose": "standing",
       "color": "black",
-      "x": -2.4,
-      "z": -4.6,
+      "x": -1.9,
+      "z": -4.4,
       "rot": 0,
       "card": "group",
-      "_": "马奈的朋友",
+      "_": "拄手杖的男人",
       "legs": "black"
     },
     {
       "type": "boxes",
       "card": "group",
-      "x": -2.4,
-      "z": -4.6,
+      "x": -1.9,
+      "z": -4.4,
       "_": "黑色高礼帽",
       "boxes": [
         [
@@ -203,75 +202,17 @@
       "type": "figure",
       "pose": "standing",
       "color": "black",
-      "x": -1.6,
-      "z": -5.0,
-      "rot": 0,
-      "card": "crowd",
-      "_": "戴高礼帽的男人",
-      "legs": "black"
-    },
-    {
-      "type": "boxes",
-      "card": "crowd",
-      "x": -1.6,
-      "z": -5.0,
-      "_": "黑色高礼帽",
-      "boxes": [
-        [
-          0.24,
-          0.22,
-          0.24,
-          "black",
-          0,
-          1.88,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "black",
-      "x": -0.8,
-      "z": -5.4,
-      "rot": 0,
-      "card": "crowd",
-      "_": "戴高礼帽的男人",
-      "legs": "black"
-    },
-    {
-      "type": "boxes",
-      "card": "crowd",
-      "x": -0.8,
-      "z": -5.4,
-      "_": "黑色高礼帽",
-      "boxes": [
-        [
-          0.24,
-          0.22,
-          0.24,
-          "black",
-          0,
-          1.88,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "black",
-      "x": 0.2,
+      "x": -1.5,
       "z": -5.6,
       "rot": 0,
-      "card": "crowd",
+      "card": "group",
       "_": "戴高礼帽的男人",
       "legs": "black"
     },
     {
       "type": "boxes",
-      "card": "crowd",
-      "x": 0.2,
+      "card": "group",
+      "x": -1.5,
       "z": -5.6,
       "_": "黑色高礼帽",
       "boxes": [
@@ -290,8 +231,8 @@
       "type": "figure",
       "pose": "standing",
       "color": "black",
-      "x": 1.0,
-      "z": -5.2,
+      "x": -0.9,
+      "z": -6.4,
       "rot": 0,
       "card": "crowd",
       "_": "戴高礼帽的男人",
@@ -300,8 +241,8 @@
     {
       "type": "boxes",
       "card": "crowd",
-      "x": 1.0,
-      "z": -5.2,
+      "x": -0.9,
+      "z": -6.4,
       "_": "黑色高礼帽",
       "boxes": [
         [
@@ -319,8 +260,8 @@
       "type": "figure",
       "pose": "standing",
       "color": "black",
-      "x": 1.9,
-      "z": -4.8,
+      "x": 0.7,
+      "z": -5.0,
       "rot": 0,
       "card": "crowd",
       "_": "戴高礼帽的男人",
@@ -329,8 +270,8 @@
     {
       "type": "boxes",
       "card": "crowd",
-      "x": 1.9,
-      "z": -4.8,
+      "x": 0.7,
+      "z": -5.0,
       "_": "黑色高礼帽",
       "boxes": [
         [
@@ -348,7 +289,36 @@
       "type": "figure",
       "pose": "standing",
       "color": "black",
-      "x": 2.7,
+      "x": 1.3,
+      "z": -5.8,
+      "rot": 0,
+      "card": "crowd",
+      "_": "戴高礼帽的男人",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "crowd",
+      "x": 1.3,
+      "z": -5.8,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": 2.0,
       "z": -5.4,
       "rot": 0,
       "card": "group",
@@ -358,7 +328,7 @@
     {
       "type": "boxes",
       "card": "group",
-      "x": 2.7,
+      "x": 2.0,
       "z": -5.4,
       "_": "黑色高礼帽",
       "boxes": [
@@ -377,18 +347,18 @@
       "type": "figure",
       "pose": "standing",
       "color": "black",
-      "x": -1.2,
-      "z": -6.6,
+      "x": 3.0,
+      "z": -8.0,
       "rot": 0,
       "card": "crowd",
-      "_": "远处的人",
+      "_": "戴高礼帽的男人",
       "legs": "black"
     },
     {
       "type": "boxes",
       "card": "crowd",
-      "x": -1.2,
-      "z": -6.6,
+      "x": 3.0,
+      "z": -8.0,
       "_": "黑色高礼帽",
       "boxes": [
         [
@@ -406,8 +376,8 @@
       "type": "figure",
       "pose": "standing",
       "color": "black",
-      "x": 1.4,
-      "z": -7.0,
+      "x": -0.3,
+      "z": -8.5,
       "rot": 0,
       "card": "crowd",
       "_": "远处的人",
@@ -416,8 +386,37 @@
     {
       "type": "boxes",
       "card": "crowd",
-      "x": 1.4,
-      "z": -7.0,
+      "x": -0.3,
+      "z": -8.5,
+      "_": "黑色高礼帽",
+      "boxes": [
+        [
+          0.24,
+          0.22,
+          0.24,
+          "black",
+          0,
+          1.88,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "black",
+      "x": 0.6,
+      "z": -9.0,
+      "rot": 0,
+      "card": "crowd",
+      "_": "远处的人",
+      "legs": "black"
+    },
+    {
+      "type": "boxes",
+      "card": "crowd",
+      "x": 0.6,
+      "z": -9.0,
       "_": "黑色高礼帽",
       "boxes": [
         [
@@ -435,47 +434,38 @@
       "type": "figure",
       "pose": "sitting",
       "color": "yellow",
-      "x": -1.0,
-      "z": -3.6,
+      "x": -1.2,
+      "z": -4.4,
       "rot": 0,
       "card": "crowd",
-      "_": "坐着、戴软帽的女人",
+      "_": "坐着、戴蓝色软帽的女人",
       "hat": "bonnet"
     },
     {
       "type": "figure",
       "pose": "sitting",
-      "color": "blue",
-      "x": -0.4,
-      "z": -3.8,
+      "color": "yellow",
+      "x": -0.8,
+      "z": -5.1,
       "rot": 0,
       "card": "crowd",
-      "_": "坐着、戴软帽的女人",
+      "_": "坐着、戴蓝色软帽的女人",
       "hat": "bonnet"
     },
     {
       "type": "boxes",
       "card": "crowd",
-      "x": -0.7,
-      "z": -3.5,
-      "_": "女人的阳伞",
+      "x": 0.9,
+      "z": -4.3,
+      "_": "地上收起的阳伞",
       "boxes": [
         [
-          0.03,
-          1.2,
-          0.03,
+          0.9,
+          0.05,
+          0.05,
           "line",
           0,
-          0.9,
-          0
-        ],
-        [
-          0.7,
-          0.06,
-          0.7,
-          "yellow",
-          0,
-          1.5,
+          0.05,
           0
         ]
       ]
@@ -484,31 +474,30 @@
       "type": "figure",
       "pose": "standing",
       "color": "white",
-      "x": 0.3,
-      "z": -2.6,
+      "x": -0.26,
+      "z": -4.5,
       "rot": 0,
       "card": "colours",
-      "_": "玩耍的孩子",
-      "scale": 0.55,
+      "_": "穿红腰带白裙的小女孩",
+      "scale": 0.5,
       "legs": "white"
     },
     {
       "type": "figure",
-      "pose": "standing",
-      "color": "orange",
-      "x": 0.8,
-      "z": -2.4,
+      "pose": "sitting",
+      "color": "white",
+      "x": 0.1,
+      "z": -4.0,
       "rot": 0,
       "card": "colours",
-      "_": "玩耍的孩子（鲜艳的颜色）",
-      "scale": 0.5,
-      "legs": "blue"
+      "_": "蹲在地上玩的孩子",
+      "scale": 0.45
     },
     {
       "type": "boxes",
       "card": "chairs",
-      "x": 0.0,
-      "z": -1.8,
+      "x": 1.4,
+      "z": -4.3,
       "_": "前景的铁椅子",
       "boxes": [
         [
@@ -516,7 +505,7 @@
           0.04,
           0.45,
           "iron",
-          -0.4,
+          0,
           0.45,
           0
         ],
@@ -525,18 +514,9 @@
           0.5,
           0.04,
           "iron",
-          -0.4,
+          0,
           0.7,
           -0.2
-        ],
-        [
-          0.04,
-          0.45,
-          0.04,
-          "iron",
-          -0.6,
-          0.22,
-          0.2
         ],
         [
           0.04,
@@ -548,31 +528,103 @@
           0.2
         ],
         [
+          0.04,
+          0.45,
+          0.04,
+          "iron",
+          0.2,
+          0.22,
+          0.2
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "chairs",
+      "x": 2.3,
+      "z": -4.6,
+      "_": "前景的铁椅子",
+      "boxes": [
+        [
           0.45,
           0.04,
           0.45,
           "iron",
-          0.6,
+          0,
           0.45,
-          0.2
+          0
         ],
         [
           0.45,
           0.5,
           0.04,
           "iron",
-          0.6,
+          0,
           0.7,
+          -0.2
+        ],
+        [
+          0.04,
+          0.45,
+          0.04,
+          "iron",
+          -0.2,
+          0.22,
+          0.2
+        ],
+        [
+          0.04,
+          0.45,
+          0.04,
+          "iron",
+          0.2,
+          0.22,
+          0.2
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "chairs",
+      "x": -1.6,
+      "z": -4.1,
+      "_": "前景的铁椅子",
+      "boxes": [
+        [
+          0.45,
+          0.04,
+          0.45,
+          "iron",
+          0,
+          0.45,
           0
+        ],
+        [
+          0.04,
+          0.45,
+          0.04,
+          "iron",
+          -0.2,
+          0.22,
+          0.2
+        ],
+        [
+          0.04,
+          0.45,
+          0.04,
+          "iron",
+          0.2,
+          0.22,
+          0.2
         ]
       ]
     },
     {
       "type": "tree",
       "card": "modern",
-      "_": "大树",
-      "x": -2,
-      "z": -7,
+      "_": "大树（画面中间偏左的树干）",
+      "x": -1.0,
+      "z": -6.8,
       "h": 12,
       "r": 3.5,
       "color": "leaves"
@@ -581,8 +633,18 @@
       "type": "tree",
       "card": "modern",
       "_": "大树",
-      "x": 1.5,
-      "z": -8,
+      "x": -3.2,
+      "z": -7.5,
+      "h": 12,
+      "r": 3.5,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "modern",
+      "_": "大树",
+      "x": 2.2,
+      "z": -10,
       "h": 13,
       "r": 3.8,
       "color": "leaves"
@@ -591,8 +653,8 @@
       "type": "tree",
       "card": "modern",
       "_": "大树",
-      "x": 4,
-      "z": -6.5,
+      "x": 5,
+      "z": -9,
       "h": 11,
       "r": 3,
       "color": "leaves"
@@ -601,7 +663,7 @@
       "type": "boxes",
       "card": "concerts",
       "x": 0,
-      "z": -14,
+      "z": -16,
       "_": "树影之间远处的乐队",
       "boxes": [
         [
@@ -689,7 +751,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“找一找马奈”（mirror）：站到画家视角点时，画面放大到画面最左边的马奈本人，显示卡片4的文字。只是放大原画，不是示意效果。crop（0–1）待核对：原画上传后照着图量。也加进了“画中侦探”页面（play=mirror）。",
+    "_说明": "独家发现“找一找马奈”（mirror）：站到画家视角点时，画面放大到画面最左边的马奈本人，显示卡片4的文字。只是放大原画，不是示意效果。crop（0–1）照着 images/tuileries.jpg 量：画面最左边、被画框切掉一半的那个人（旁边是拄手杖的男人）。也加进了“画中侦探”页面（play=mirror）。",
     "type": "mirror",
     "label": {
       "zh": "找一找马奈",
@@ -710,8 +772,8 @@
     },
     "crop": {
       "x": 0.0,
-      "y": 0.18,
-      "w": 0.14,
+      "y": 0.36,
+      "w": 0.13,
       "h": 0.5
     }
   },
@@ -919,16 +981,16 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "待补",
+    "url": "https://commons.wikimedia.org/wiki/File:Edouard_Manet_Music_in_the_Tuileries_1862.jpg",
     "license": "公有领域（PD-Art）",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
     "files": [
       {
         "file": "tuileries.jpg",
-        "from": "Wikimedia Commons（等 Tia 上传；不要从国家美术馆官网、Art UK 或 Art Resource 下载）",
-        "url": "待补",
+        "from": "Wikimedia Commons（Tia 2026-11-02 上传，原文件名 IMG_0574.jpeg）",
+        "url": "https://commons.wikimedia.org/wiki/File:Edouard_Manet_Music_in_the_Tuileries_1862.jpg",
         "license": "公有领域（PD-Art）",
-        "status": "待决定",
+        "status": "符合",
         "verified": "2026-11-02"
       }
     ]
