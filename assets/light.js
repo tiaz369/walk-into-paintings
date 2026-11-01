@@ -66,7 +66,7 @@ function buildDOM(S, R, meta) {
   const layersHTML = S.layers.map((l, i) => `<div class="layer" data-i="${i}" style="${l.clip ? `clip-path:polygon(${l.clip.map(([x, y]) => `${x * 100}% ${y * 100}%`).join(',')})` : ''}">
       <img src="${P.image}" alt="" draggable="false" /></div>`).join('');
   const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}"${s.state ? ` data-state="${s.state}"` : ''} style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
-  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus', isInsc = X.type === 'inscriptions', isAlt = X.type === 'altarpiece', isRise = X.type === 'rise';
+  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus', isInsc = X.type === 'inscriptions', isAlt = X.type === 'altarpiece', isRise = X.type === 'rise', isLabels = X.type === 'labels';
   // 细节放大的热点（zooms：眼睛、嘴唇、珍珠……）；只有一个时也可以写成 zoom
   const ZOOMS = zoomsOf(X), ZL = X.zoomLabel || (X.zoom && X.zoom.label) || { zh: '放大看细节', en: 'Zoom in on details' };
   const zspotsHTML = ZOOMS.map((z, i) => `<button class="zspot" data-z="${i}" style="left:${z.x * 100}%;top:${z.y * 100}%">${ui(z.label.zh, z.label.en)}</button>`).join('');
@@ -82,7 +82,7 @@ function buildDOM(S, R, meta) {
   document.body.insertAdjacentHTML('beforeend', `
   <div class="grain"></div>
   ${S.petals ? petalsHTML(S.petals) : ''}
-  <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML.replace('</div>', '</div>' + curtainHTML)}${altHTML}<div id="spots">${spotsHTML}</div><div id="zspots">${zspotsHTML}</div>${isInsc ? inscHTML(X) : ''}</div></div>
+  <div id="stageWrap"><div id="stage" role="img" ${altAttr(P.alt || '')}>${layersHTML.replace('</div>', '</div>' + curtainHTML)}${altHTML}<div id="spots">${spotsHTML}</div><div id="zspots">${zspotsHTML}</div>${isInsc ? inscHTML(X) : ''}${isLabels ? `<div id="ltags" class="hidden">${X.tags.map((t, i) => `<button class="ltag${t.real ? ' real' : ''}" data-t="${i}" style="left:${t.x * 100}%;top:${t.y * 100}%">${ui(t.label.zh, t.label.en)}</button>`).join('')}</div>` : ''}</div></div>
 
   <div id="intro">
     <img id="introImg" src="${P.image}" ${altAttr(P.alt || '')} />
@@ -94,7 +94,7 @@ function buildDOM(S, R, meta) {
     </div>
   </div>
   <a id="sceneHome" href="${ROOT}">← ${ui('走进名画', 'Walk into Paintings')}</a>
-  ${(isCurtain || isFlip || isRise) && X.note ? `<div id="curtainNote" class="panel hidden">${bi(X.note, ' / ')}</div>` : ''}
+  ${(isCurtain || isFlip || isRise || isLabels) && X.note ? `<div id="curtainNote" class="panel hidden">${bi(X.note, ' / ')}</div>` : ''}
   <div id="hint" class="panel"><span class="zh">${S.hint.zh}</span><span class="en-ui">${S.hint.en}</span></div>
 
   <div id="tools" class="ui">
@@ -108,6 +108,7 @@ function buildDOM(S, R, meta) {
     ${isMap ? `<button class="btn" id="mapBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isFlip ? `<button class="btn" id="flipBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isRise ? `<button class="btn" id="riseBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
+    ${isLabels ? `<button class="btn" id="labelsBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isSlider ? `<button class="btn" id="sliderBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isFocus ? `<button class="btn" id="focusBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isAlt ? `<button class="btn" id="altBtn">✦ <span class="alt-open-l">${ui(X.label.zh, X.label.en)}</span><span class="alt-close-l">${ui(X.closeLabel.zh, X.closeLabel.en)}</span></button>` : ''}
@@ -422,6 +423,16 @@ function run(S, R) {
     if (on) { if (zoomAt) zoomTo(null); track('exclusive-' + S.id); }
   }
   if ($('flipBtn')) $('flipBtn').onclick = () => setFlip(!flipT);
+  // 独家发现“标注”（labels）：开关打开后，画面上浮现小标签（tags：原画上的位置 x、y，0–1；real 为真材料，其余是蜡），点一个标签显示它的卡片（card）。标签是示意，说明里要写
+  if ($('labelsBtn')) {
+    $('labelsBtn').onclick = () => {
+      const on = $('ltags').classList.toggle('hidden') === false;
+      $('labelsBtn').classList.toggle('on', on);
+      if ($('curtainNote')) $('curtainNote').classList.toggle('hidden', !on);
+      if (on) { if (zoomAt) zoomTo(null); track('exclusive-' + S.id); }
+    };
+    document.querySelectorAll('.ltag').forEach(b => b.onclick = e => { e.stopPropagation(); const t = S.exclusive.tags[+b.dataset.t]; if (t.card) showCard(t.card); });
+  }
   // 从包厢往下看：每按一次都从“正面平视”慢慢升到原画的角度；说明一直显示到再按一次
   if ($('riseBtn')) $('riseBtn').onclick = () => {
     const on = !$('riseBtn').classList.contains('on');

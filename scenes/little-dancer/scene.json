@@ -1,0 +1,530 @@
+{
+  "_说明": "十四岁的小舞者（网站上第一件雕塑；人物肖像，轻量版：细节放大 + 卡片 + 短故事）。所有事实文字由 Tia 提供（资料主要来自华盛顿国家美术馆）。写法克制：她是一个14岁的女孩，只写她是谁、雕塑是怎么做的，不写她的家庭和后来的生活，不引用当时评论家刻薄的话。图片只用华盛顿国家美术馆开放资源里的官方照片。原图还没上传：spots、标签和放大的位置先按一般站姿估算，原图上传后照着图量；如果作品页上有几个角度的官方照片，再加“转一圈”。",
+  "id": "little-dancer",
+  "variant": "portrait",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "gallery",
+    "label": {
+      "zh": "安静展厅里的灯光",
+      "en": "Quiet gallery light"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《舞蹈课》《芭蕾舞者（后台）》《芭蕾（明星）》互相链接（德加的芭蕾）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "dance-class",
+      "ballet-dancers-wings",
+      "the-star"
+    ]
+  },
+  "ambience": "gallery",
+  "painting": {
+    "image": "images/little-dancer.jpg",
+    "width": 1000,
+    "height": 1600,
+    "alt": {
+      "zh": "德加《十四岁的小舞者》1878–1881，华盛顿国家美术馆",
+      "en": "Edgar Degas, Little Dancer Aged Fourteen, 1878–81, National Gallery of Art, Washington"
+    },
+    "_": "宽高先估算，原图上传后改成图片的实际像素"
+  },
+  "label": {
+    "_说明": "展签：作品名、作者、年份、收藏地",
+    "title": {
+      "zh": "十四岁的小舞者",
+      "en": "Little Dancer Aged Fourteen"
+    },
+    "artist": {
+      "zh": "德加",
+      "en": "Edgar Degas"
+    },
+    "date": {
+      "zh": "1878–1881年",
+      "en": "1878–81"
+    },
+    "museum": {
+      "zh": "华盛顿国家美术馆",
+      "en": "National Gallery of Art, Washington"
+    },
+    "source": {
+      "zh": "华盛顿国家美术馆开放资源，公有领域",
+      "en": "National Gallery of Art Open Access, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走近看",
+    "en": "Come closer"
+  },
+  "hint": {
+    "zh": "移动鼠标、拖动画面或转动手机，画面会微微转动<br>点一下发光的圆点看介绍 · 点“她身上的真东西”，看哪些是真材料、哪些是蜡 · 点“放大看细节”",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “The real things she wears” to see which parts are real materials and which are wax · Tap “Zoom in on details”"
+  },
+  "parallax": 10,
+  "layers": [
+    {
+      "_说明": "整张照片",
+      "depth": 0
+    }
+  ],
+  "spots": {
+    "only": {
+      "x": 0.5,
+      "y": 0.97,
+      "layer": 0
+    },
+    "hair": {
+      "x": 0.6,
+      "y": 0.12,
+      "layer": 0
+    },
+    "clothes": {
+      "x": 0.45,
+      "y": 0.55,
+      "layer": 0
+    },
+    "wax": {
+      "x": 0.4,
+      "y": 0.3,
+      "layer": 0
+    },
+    "case": {
+      "x": 0.12,
+      "y": 0.5,
+      "layer": 0
+    },
+    "name": {
+      "x": 0.5,
+      "y": 0.08,
+      "layer": 0
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“她身上的真东西”（labels）：开关打开后，照片上浮现小标签：真材料（real）是头发、缎带、胸衣、芭蕾舞裙、舞鞋，其余标为“蜡”；点标签显示对应的卡片。标签是在官方照片上加的示意，所以说明里写“标注为示意”。tags 的位置（0–1）待核对：原图上传后照着图量。zooms 是“放大看细节”的热点。",
+    "type": "labels",
+    "label": {
+      "zh": "她身上的真东西",
+      "en": "The real things she wears"
+    },
+    "note": {
+      "zh": "金色标签是真材料，其余部分是蜡。标注为示意。",
+      "en": "Gold labels mark real materials; the rest is wax. Labels are an illustration."
+    },
+    "tags": [
+      {
+        "label": {
+          "zh": "头发",
+          "en": "Hair"
+        },
+        "x": 0.62,
+        "y": 0.14,
+        "real": true,
+        "card": "hair"
+      },
+      {
+        "label": {
+          "zh": "缎带",
+          "en": "Ribbon"
+        },
+        "x": 0.64,
+        "y": 0.24,
+        "real": true,
+        "card": "hair"
+      },
+      {
+        "label": {
+          "zh": "胸衣",
+          "en": "Bodice"
+        },
+        "x": 0.5,
+        "y": 0.36,
+        "real": true,
+        "card": "clothes"
+      },
+      {
+        "label": {
+          "zh": "芭蕾舞裙",
+          "en": "Tutu"
+        },
+        "x": 0.5,
+        "y": 0.52,
+        "real": true,
+        "card": "clothes"
+      },
+      {
+        "label": {
+          "zh": "舞鞋",
+          "en": "Slippers"
+        },
+        "x": 0.45,
+        "y": 0.92,
+        "real": true,
+        "card": "clothes"
+      },
+      {
+        "label": {
+          "zh": "蜡",
+          "en": "Wax"
+        },
+        "x": 0.47,
+        "y": 0.1,
+        "card": "wax"
+      },
+      {
+        "label": {
+          "zh": "蜡",
+          "en": "Wax"
+        },
+        "x": 0.32,
+        "y": 0.38,
+        "card": "wax"
+      },
+      {
+        "label": {
+          "zh": "蜡",
+          "en": "Wax"
+        },
+        "x": 0.5,
+        "y": 0.75,
+        "card": "wax"
+      }
+    ],
+    "zoomLabel": {
+      "zh": "放大看细节",
+      "en": "Zoom in on details"
+    },
+    "zooms": [
+      {
+        "id": "face",
+        "label": {
+          "zh": "脸和头发",
+          "en": "Face and hair"
+        },
+        "x": 0.52,
+        "y": 0.13,
+        "scale": 3,
+        "card": "hair"
+      },
+      {
+        "id": "tutu",
+        "label": {
+          "zh": "芭蕾舞裙",
+          "en": "Tutu"
+        },
+        "x": 0.5,
+        "y": 0.5,
+        "scale": 2.2,
+        "card": "clothes"
+      },
+      {
+        "id": "feet",
+        "label": {
+          "zh": "舞鞋",
+          "en": "Slippers"
+        },
+        "x": 0.47,
+        "y": 0.9,
+        "scale": 3,
+        "card": "clothes"
+      }
+    ]
+  },
+  "cards": {
+    "only": {
+      "title": {
+        "zh": "唯一的雕塑",
+        "en": "The only sculpture"
+      },
+      "text": {
+        "zh": "德加做过很多雕塑，但这是他一生中唯一公开展出过的一件。",
+        "en": "Degas made many sculptures, but this is the only one he ever exhibited in public."
+      }
+    },
+    "hair": {
+      "title": {
+        "zh": "真的头发",
+        "en": "Real hair"
+      },
+      "text": {
+        "zh": "小舞者的辫子是用真的人发做的，上面系着一根缎带。",
+        "en": "The dancer's braid is made of real human hair, tied with a ribbon."
+      }
+    },
+    "clothes": {
+      "title": {
+        "zh": "真的衣服",
+        "en": "Real clothes"
+      },
+      "text": {
+        "zh": "她穿着真的胸衣、芭蕾舞裙和舞鞋，不是用蜡或青铜做出来的。",
+        "en": "She wears a real bodice, tutu and slippers, not modelled in wax or bronze."
+      }
+    },
+    "wax": {
+      "title": {
+        "zh": "蜡做的",
+        "en": "Made of wax"
+      },
+      "text": {
+        "zh": "在当时，雕塑通常用光滑的大理石或青铜。德加却用了带颜色的蜂蜡，让她看起来像真人的皮肤。",
+        "en": "At the time, sculpture was usually smooth marble or shiny bronze. Degas used coloured beeswax, so that she looks like real skin."
+      }
+    },
+    "case": {
+      "title": {
+        "zh": "玻璃柜",
+        "en": "The glass case"
+      },
+      "text": {
+        "zh": "1881年，德加把她放在玻璃柜里展出，就像当时博物馆里展示的逼真蜡像。",
+        "en": "In 1881, Degas showed her in a glass case, like the lifelike wax figures displayed in museums at the time."
+      }
+    },
+    "name": {
+      "title": {
+        "zh": "她的名字",
+        "en": "Her name"
+      },
+      "text": {
+        "zh": "她叫玛丽·范戈特姆，1865年出生，是巴黎歌剧院芭蕾舞学校的学生。她的名字是通过一张素描上的题字确认的。",
+        "en": "Her name was Marie van Goethem, born in 1865, a student at the Paris Opéra ballet school. She was identified through an inscription on a drawing."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "title": {
+          "zh": "推迟了两次",
+          "en": "Twice postponed"
+        },
+        "text": {
+          "zh": "德加原本想在1880年的印象派画展上展出这件雕塑，但两次推迟。1881年，他终于在画展的后半段把它放进了展厅。",
+          "en": "Degas had planned to show the sculpture at the Impressionist exhibition of 1880, but twice postponed it. In 1881 he finally installed it during the second half of the exhibition."
+        },
+        "image": "images/little-dancer.jpg",
+        "alt": {
+          "zh": "德加《十四岁的小舞者》1878–1881，华盛顿国家美术馆",
+          "en": "Edgar Degas, Little Dancer Aged Fourteen, 1878–81, National Gallery of Art, Washington"
+        },
+        "caption": {
+          "zh": "1878–1881年 · 华盛顿国家美术馆",
+          "en": "1878–81 · National Gallery of Art, Washington"
+        }
+      },
+      {
+        "title": {
+          "zh": "一件不一样的雕塑",
+          "en": "A different kind of sculpture"
+        },
+        "text": {
+          "zh": "观众原本期待看到大理石或青铜的理想化人物，看到的却是一个穿着真衣服、有着真头发的蜡像女孩。很多人都不知道该怎么看待它。",
+          "en": "Visitors expected idealised figures in marble or bronze. Instead they found a wax girl with real clothes and real hair. Many did not know what to make of her."
+        },
+        "image": "images/little-dancer.jpg",
+        "alt": {
+          "zh": "德加《十四岁的小舞者》1878–1881，华盛顿国家美术馆",
+          "en": "Edgar Degas, Little Dancer Aged Fourteen, 1878–81, National Gallery of Art, Washington"
+        },
+        "caption": {
+          "zh": "1878–1881年 · 华盛顿国家美术馆",
+          "en": "1878–81 · National Gallery of Art, Washington"
+        }
+      },
+      {
+        "title": {
+          "zh": "玻璃柜里的她",
+          "en": "In her glass case"
+        },
+        "text": {
+          "zh": "今天，原始的蜡像保存在华盛顿国家美术馆，依然站在玻璃柜里。",
+          "en": "Today the original wax figure is at the National Gallery of Art in Washington, still standing in a glass case."
+        },
+        "image": "images/little-dancer.jpg",
+        "alt": {
+          "zh": "德加《十四岁的小舞者》1878–1881，华盛顿国家美术馆",
+          "en": "Edgar Degas, Little Dancer Aged Fourteen, 1878–81, National Gallery of Art, Washington"
+        },
+        "caption": {
+          "zh": "1878–1881年 · 华盛顿国家美术馆",
+          "en": "1878–81 · National Gallery of Art, Washington"
+        }
+      }
+    ],
+    "final": {
+      "zh": "德加唯一公开展出的雕塑。",
+      "en": "The only sculpture Degas ever exhibited."
+    },
+    "versions": [],
+    "museums": [
+      "nga-washington"
+    ],
+    "exit": [
+      {
+        "scene": "dance-class",
+        "href": "../dance-class/",
+        "label": {
+          "zh": "德加的芭蕾",
+          "en": "Degas's ballet"
+        }
+      },
+      {
+        "scene": "ballet-dancers-wings",
+        "href": "../ballet-dancers-wings/",
+        "label": {
+          "zh": "德加的芭蕾",
+          "en": "Degas's ballet"
+        }
+      },
+      {
+        "scene": "the-star",
+        "href": "../the-star/",
+        "label": {
+          "zh": "德加的芭蕾",
+          "en": "Degas's ballet"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（华盛顿国家美术馆）。",
+    "artist": {
+      "zh": "埃德加·德加（1834–1917）",
+      "en": "Edgar Degas (1834–1917)"
+    },
+    "title": {
+      "zh": "十四岁的小舞者",
+      "en": "Little Dancer Aged Fourteen"
+    },
+    "date": {
+      "zh": "1878–1881年",
+      "en": "1878–81"
+    },
+    "medium": {
+      "zh": "着色蜂蜡、黏土、金属骨架、绳子、画笔、人的头发、丝和亚麻缎带、棉质胸衣、棉和丝的芭蕾舞裙、亚麻舞鞋，木底座",
+      "en": "Pigmented beeswax, clay, metal armature, rope, paintbrushes, human hair, silk and linen ribbon, cotton faille bodice, cotton and silk tutu, linen slippers, on wooden base"
+    },
+    "dimensions": {
+      "zh": "不含底座 98.9 × 34.7 × 35.2 cm",
+      "en": "overall without base: 98.9 × 34.7 × 35.2 cm"
+    },
+    "collection": {
+      "zh": "华盛顿国家美术馆（保罗·梅隆夫妇收藏）",
+      "en": "National Gallery of Art, Washington (Collection of Mr. and Mrs. Paul Mellon)"
+    },
+    "url": "https://www.nga.gov/artworks/110292-little-dancer-aged-fourteen"
+  },
+  "zoom": {
+    "image": "images/little-dancer.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "华盛顿国家美术馆：十四岁的小舞者",
+          "en": "National Gallery of Art: *Little Dancer Aged Fourteen*"
+        },
+        "url": "https://www.nga.gov/artworks/110292-little-dancer-aged-fourteen"
+      },
+      {
+        "title": {
+          "zh": "华盛顿国家美术馆专题：小舞者",
+          "en": "National Gallery of Art feature: *Little Dancer*"
+        },
+        "url": "https://nga.gov/features/little-dancer.html"
+      },
+      {
+        "title": {
+          "zh": "华盛顿国家美术馆：小舞者导览手册（PDF）",
+          "en": "National Gallery of Art: *Little Dancer* brochure (PDF)"
+        },
+        "url": "https://www.nga.gov/sites/default/files/2025-06/degas-little-dancer-brochure.pdf"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三段故事原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "推迟了两次",
+          "en": "Twice postponed"
+        },
+        "text": {
+          "zh": "德加原本想在1880年的印象派画展上展出这件雕塑，但两次推迟。1881年，他终于在画展的后半段把它放进了展厅。",
+          "en": "Degas had planned to show the sculpture at the Impressionist exhibition of 1880, but twice postponed it. In 1881 he finally installed it during the second half of the exhibition."
+        }
+      },
+      {
+        "title": {
+          "zh": "一件不一样的雕塑",
+          "en": "A different kind of sculpture"
+        },
+        "text": {
+          "zh": "观众原本期待看到大理石或青铜的理想化人物，看到的却是一个穿着真衣服、有着真头发的蜡像女孩。很多人都不知道该怎么看待它。",
+          "en": "Visitors expected idealised figures in marble or bronze. Instead they found a wax girl with real clothes and real hair. Many did not know what to make of her."
+        }
+      },
+      {
+        "title": {
+          "zh": "玻璃柜里的她",
+          "en": "In her glass case"
+        },
+        "text": {
+          "zh": "今天，原始的蜡像保存在华盛顿国家美术馆，依然站在玻璃柜里。",
+          "en": "Today the original wax figure is at the National Gallery of Art in Washington, still standing in a glass case."
+        }
+      }
+    ]
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "华盛顿国家美术馆：十四岁的小舞者",
+        "en": "National Gallery of Art: *Little Dancer Aged Fourteen*"
+      },
+      "url": "https://www.nga.gov/artworks/110292-little-dancer-aged-fourteen"
+    },
+    {
+      "title": {
+        "zh": "华盛顿国家美术馆专题：小舞者",
+        "en": "National Gallery of Art feature: *Little Dancer*"
+      },
+      "url": "https://nga.gov/features/little-dancer.html"
+    },
+    {
+      "title": {
+        "zh": "华盛顿国家美术馆：小舞者导览手册（PDF）",
+        "en": "National Gallery of Art: *Little Dancer* brochure (PDF)"
+      },
+      "url": "https://www.nga.gov/sites/default/files/2025-06/degas-little-dancer-brochure.pdf"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：只用华盛顿国家美术馆开放资源里的官方照片（雕塑是立体作品，观众自己拍的照片有拍摄者的版权，不能用；其他博物馆青铜铸件的照片也不用）。",
+    "text": {
+      "zh": "华盛顿国家美术馆开放资源，公有领域",
+      "en": "National Gallery of Art Open Access, public domain"
+    },
+    "url": "https://www.nga.gov/artworks/110292-little-dancer-aged-fourteen",
+    "license": "华盛顿国家美术馆开放资源（作品页写着图片可以免费使用）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "little-dancer.jpg",
+        "from": "华盛顿国家美术馆作品页的下载按钮（等 Tia 上传）",
+        "url": "https://www.nga.gov/artworks/110292-little-dancer-aged-fourteen",
+        "license": "华盛顿国家美术馆开放资源",
+        "status": "待决定",
+        "verified": "2026-11-01"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-01"
+}

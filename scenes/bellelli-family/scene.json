@@ -1,5 +1,5 @@
 {
-  "_说明": "贝列利一家（室内，完整版）。所有事实文字由 Tia 提供（资料来自 Smarthistory 等）。佛罗伦萨一间安静的客厅：蓝色花纹墙纸，墙上一幅金框画像；左边站着穿黑衣的母亲和两个女儿，右边父亲半背对我们坐在扶手椅上；中间一张小桌，后面是壁炉和镜子。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "_说明": "贝列利一家（室内，完整版）。所有事实文字由 Tia 提供（资料来自 Smarthistory 等）。佛罗伦萨一间安静的客厅：蓝色花纹墙纸，墙上一幅金框画像；左边站着穿黑衣的母亲和两个女儿，右边父亲半背对我们坐在扶手椅上；中间一张小桌，后面是壁炉和镜子。画家视角和人物位置按原画估算。",
   "id": "bellelli-family",
   "variant": "interior",
   "lighting": {
@@ -21,13 +21,12 @@
   },
   "painting": {
     "image": "images/bellelli-family.jpg",
-    "width": 1250,
-    "height": 1007,
+    "width": 1920,
+    "height": 1536,
     "alt": {
       "zh": "德加《贝列利一家》1858–1869，巴黎奥赛博物馆",
       "en": "Edgar Degas, The Bellelli Family, 1858–69, Musée d'Orsay, Paris"
-    },
-    "_": "宽高先按奥赛的尺寸 249.5 × 201 cm 估算，原画上传后改成图片的实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -62,13 +61,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the family, the portrait on the wall or its frame to learn more · Tap “Grandfather's portrait” for a close-up · Tap “The distance between them” to see how the family is divided · The glowing circle = Degas's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估算（站在客厅里，略高于坐着的父亲），原画上传后对准。",
+    "_说明": "画家视角：按原画估算（视平线在画面上方 1/3，眼睛约 1.2 米高）。",
     "x": 0,
     "z": 0,
-    "eye": 1.55,
+    "eye": 1.2,
     "yaw": 0,
-    "pitch": -0.12,
-    "fov": 48,
+    "pitch": -0.1572,
+    "fov": 50,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -78,7 +77,7 @@
   "colors": {
     "line": "#2a2a30",
     "floor": "#7a6a5a",
-    "wall": "#6a7a9a",
+    "wall": "#8aa0a8",
     "ceiling": "#d8d4c8",
     "gold": "#c8a050",
     "picture": "#5a4a3a",
@@ -88,26 +87,27 @@
     "pinafore": "#f0ece2",
     "coat": "#2e2e34",
     "trousers": "#2e2e34",
-    "chair": "#6a3a2a",
+    "chair": "#22263a",
+    "clock": "#4a2a20",
     "wood": "#6a4a32",
     "skin": "#e8cdb0"
   },
   "room": {
     "_说明": "房间形状（米）：佛罗伦萨的一间客厅。左墙 x=left，前墙 z=front；后墙（挂画像、有壁炉）从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
     "height": 3.6,
-    "front": 1.2,
-    "left": -2.6,
+    "front": 0.8,
+    "left": -1.8,
     "backLeft": [
-      -2.6,
-      -4.5
+      -1.8,
+      -3.3
     ],
     "backRight": [
-      2.6,
-      -4.5
+      1.9,
+      -3.3
     ],
     "rightFront": [
-      2.6,
-      1.2
+      1.9,
+      0.8
     ],
     "floorCard": "father",
     "wallCard": "portrait",
@@ -117,27 +117,27 @@
     {
       "type": "boxes",
       "card": "portrait",
-      "x": -1.1,
-      "z": -4.45,
+      "x": -0.54,
+      "z": -3.27,
       "id": "grandfather",
       "_": "墙上的金框画像（德加的祖父）",
       "boxes": [
         [
-          0.75,
-          0.95,
+          0.6,
+          0.7,
           0.05,
           "gold",
           0,
-          2.05,
+          1.65,
           0
         ],
         [
-          0.6,
-          0.8,
+          0.46,
+          0.56,
           0.02,
           "picture",
           0,
-          2.05,
+          1.65,
           0.03,
           "cloth"
         ]
@@ -146,37 +146,37 @@
     {
       "type": "boxes",
       "card": "father",
-      "x": 1.35,
-      "z": -4.25,
+      "x": 0.75,
+      "z": -3.1,
       "_": "后面的壁炉和镜子",
       "boxes": [
         [
-          1.4,
-          1.1,
+          1.3,
+          1.2,
           0.4,
           "marble",
-          0,
-          0.55,
+          0.2,
+          0.6,
           0
         ],
         [
-          1.2,
-          1.1,
+          0.46,
+          0.9,
           0.04,
           "mirror",
           0,
-          1.85,
+          1.75,
           -0.15,
           "cloth"
         ],
         [
-          1.3,
-          0.08,
-          0.06,
-          "gold",
-          0,
-          2.42,
-          -0.15
+          0.6,
+          0.4,
+          0.25,
+          "clock",
+          0.75,
+          1.4,
+          0
         ]
       ]
     },
@@ -184,8 +184,8 @@
       "type": "figure",
       "pose": "standing",
       "color": "black",
-      "x": -0.75,
-      "z": -3.4,
+      "x": -0.65,
+      "z": -2.45,
       "rot": 0,
       "card": "laura",
       "_": "姑妈劳拉（穿黑衣，站得笔直）",
@@ -196,38 +196,25 @@
       "type": "figure",
       "pose": "standing",
       "color": "black",
-      "x": -1.25,
-      "z": -3.0,
+      "x": -0.82,
+      "z": -2.08,
       "rot": 0,
       "card": "cousins",
-      "_": "乔瓦娜（10岁，站着）",
-      "scale": 0.72,
-      "legs": "pinafore",
+      "_": "乔瓦娜（站着）",
+      "scale": 0.75,
+      "legs": "black",
       "id": "giovanna"
-    },
-    {
-      "type": "figure",
-      "pose": "sitting",
-      "color": "black",
-      "x": -0.15,
-      "z": -3.1,
-      "rot": 0,
-      "card": "restless",
-      "_": "朱莉娅（7岁，坐在椅子上，一条腿蜷着）",
-      "scale": 0.7,
-      "y": -0.08,
-      "id": "giulia"
     },
     {
       "type": "boxes",
       "card": "pinafores",
-      "x": -1.25,
-      "z": -2.92,
-      "_": "白围裙",
+      "x": -0.82,
+      "z": -1.82,
+      "_": "乔瓦娜的白围裙",
       "boxes": [
         [
-          0.3,
-          0.55,
+          0.4,
+          0.6,
           0.02,
           "pinafore",
           0,
@@ -238,29 +225,69 @@
       ]
     },
     {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "black",
+      "x": 0.15,
+      "z": -2.15,
+      "rot": 0,
+      "card": "restless",
+      "_": "朱莉娅（坐在椅子上，一条腿蜷着）",
+      "scale": 0.75,
+      "id": "giulia"
+    },
+    {
+      "type": "boxes",
+      "card": "pinafores",
+      "x": 0.15,
+      "z": -1.9,
+      "_": "朱莉娅的白围裙",
+      "boxes": [
+        [
+          0.45,
+          0.45,
+          0.02,
+          "pinafore",
+          0,
+          0.6,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
       "type": "boxes",
       "card": "father",
-      "x": 0.55,
-      "z": -3.0,
+      "x": 0.07,
+      "z": -2.65,
       "_": "中间的小桌",
       "boxes": [
         [
-          0.55,
-          0.04,
-          0.55,
+          0.9,
+          0.05,
+          0.45,
           "wood",
           0,
-          0.72,
+          0.75,
           0
         ],
         [
-          0.06,
-          0.7,
-          0.06,
+          0.05,
+          0.73,
+          0.05,
           "wood",
-          0,
-          0.35,
-          0
+          -0.42,
+          0.37,
+          0.2
+        ],
+        [
+          0.05,
+          0.73,
+          0.05,
+          "wood",
+          0.42,
+          0.37,
+          0.2
         ]
       ]
     },
@@ -268,9 +295,9 @@
       "type": "figure",
       "pose": "sitting",
       "color": "coat",
-      "x": 1.3,
-      "z": -2.7,
-      "rot": 2.4,
+      "x": 1.0,
+      "z": -2.35,
+      "rot": 2.2,
       "card": "father",
       "_": "父亲詹纳罗（半背对着我们，坐在扶手椅上）",
       "id": "gennaro"
@@ -278,9 +305,9 @@
     {
       "type": "boxes",
       "card": "father",
-      "x": 1.3,
-      "z": -2.7,
-      "rot": 2.4,
+      "x": 1.05,
+      "z": -2.2,
+      "rot": 2.2,
       "_": "扶手椅",
       "boxes": [
         [
@@ -294,11 +321,11 @@
         ],
         [
           0.75,
-          0.6,
+          0.7,
           0.12,
           "chair",
           0,
-          0.75,
+          0.8,
           0.3
         ]
       ]
@@ -306,17 +333,17 @@
     {
       "type": "boxes",
       "card": "frame",
-      "x": -0.95,
-      "z": -4.4,
-      "_": "画框被劳拉挡住的那一角",
+      "x": -0.25,
+      "z": -3.25,
+      "_": "画框被劳拉挡住的那一边",
       "boxes": [
         [
-          0.1,
-          0.3,
           0.06,
+          0.7,
+          0.05,
           "gold",
-          0.32,
-          1.7,
+          0,
+          1.65,
           0
         ]
       ]
@@ -395,7 +422,7 @@
     }
   },
   "exclusive": {
-    "_说明": "两个独家发现（toggles）：1“祖父的画像”是放大按钮（crop：墙上画像在原画上的位置，0–1，只是放大原画），显示卡片2的文字；2“一家人之间的距离”是开关，画面上浮现两条淡淡的竖线，标出母亲和女儿们、父亲之间的空间（lines：原画上的位置，是我们画的示意线，所以说明里写“这是示意”）。crop 和 lines 待核对：原画上传后照着图量。",
+    "_说明": "两个独家发现（toggles）：1“祖父的画像”是放大按钮（crop：墙上画像在原画上的位置，0–1，只是放大原画），显示卡片2的文字；2“一家人之间的距离”是开关，画面上浮现两条淡淡的竖线，标出母亲和女儿们、父亲之间的空间（lines：原画上的位置，是我们画的示意线，所以说明里写“这是示意”）。crop 和 lines 是照着 images/bellelli-family.jpg 量的：两条线在朱莉娅右边和父亲左边。",
     "type": "toggles",
     "toggles": [
       {
@@ -405,10 +432,10 @@
           "en": "Grandfather's portrait"
         },
         "crop": {
-          "x": 0.17,
+          "x": 0.275,
           "y": 0.05,
-          "w": 0.2,
-          "h": 0.32
+          "w": 0.165,
+          "h": 0.245
         },
         "card": "portrait",
         "alt": {
@@ -433,16 +460,16 @@
         "targets": [],
         "lines": [
           [
-            0.6,
-            0.18,
-            0.6,
-            0.96
+            0.655,
+            0.3,
+            0.655,
+            0.95
           ],
           [
-            0.7,
-            0.18,
-            0.7,
-            0.96
+            0.71,
+            0.3,
+            0.71,
+            0.95
           ]
         ],
         "lineWidth": 0.004,
@@ -673,11 +700,12 @@
     "files": [
       {
         "file": "bellelli-family.jpg",
-        "from": "Wikimedia Commons（等 Tia 上传；不用奥赛官网、RMN 或 Google 艺术与文化的图片）",
+        "from": "Wikimedia Commons（Tia 上传的 IMG_0560.jpeg，2026-11-01，1920 × 1536）",
         "url": "待补",
         "license": "公有领域（PD-Art）",
         "status": "待决定",
-        "verified": "2026-11-01"
+        "verified": "2026-11-01",
+        "note": "等 Tia 告诉是 Commons 上哪一个文件：如果是 Google Art Project 版本，按版权规则不能用"
       }
     ]
   },
