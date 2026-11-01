@@ -1531,7 +1531,9 @@ function run(S, R, meta) {
   if (togObj) togObj.toggles.forEach((t, i) => {
     const meshes = [];
     const ids = [...(t.targets || []).map(id => [id, false]), ...(t.reveal || []).map(id => [id, true])];   // reveal：开关打开时慢慢浮现的物体（平时看不见）
+    const revIds = t.reveal || [];   // stagger：浮现的物体按 reveal 里的顺序一个接一个亮起（每个比前一个晚 stagger 的一段）
     for (const [id, rev] of ids) named[id] && named[id].traverse(o => {
+      if (rev) o.userData.revealIdx = revIds.indexOf(id);
       if (!o.material) return;
       if (o.userData.paintMat) {   // 贴原画的物体：两种模式的材质各复制一份，只淡出这个物体
         const wasFlat = o.material === o.userData.flatMat;
@@ -1643,9 +1645,11 @@ function run(S, R, meta) {
   function stepToggles(dt) {
     for (const T of toggles) {
       const target = T.on ? 1 : 0; if (Math.abs(target - T.now) < 0.001) continue;
-      T.now += Math.sign(target - T.now) * Math.min(Math.abs(target - T.now), dt / 2);   // 约 2 秒
+      T.now += Math.sign(target - T.now) * Math.min(Math.abs(target - T.now), dt / (T.t.duration || 2));   // 约 2 秒（duration 可以改）
+      const st = T.t.stagger || 0, nRev = (T.t.reveal || []).length;
       for (const m of T.meshes) {
-        const a = m.userData.reveal ? T.now : 1 - T.now;   // 淡出的物体：1 → 0；浮现的物体：0 → 1
+        let a = m.userData.reveal ? T.now : 1 - T.now;   // 淡出的物体：1 → 0；浮现的物体：0 → 1
+        if (m.userData.reveal && st && nRev > 1) a = Math.min(1, Math.max(0, (T.now * (1 + st * (nRev - 1)) - st * m.userData.revealIdx)));
         for (const mat of [m.material, m.userData.flatMat]) if (mat) { mat.opacity = a; mat.depthWrite = a > 0.95; }
         if (m.userData.paintMat) { m.userData.paintMat.uniforms.uAlpha.value = a; m.userData.paintMat.depthWrite = a > 0.95; }
         m.visible = a > 0.01;
