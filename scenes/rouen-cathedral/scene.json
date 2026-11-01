@@ -722,12 +722,12 @@
     "files": [
       {
         "file": "series-orsay-effet-du-matin.jpg",
-        "from": "巴黎奥赛博物馆（还没上传）",
-        "url": "https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-et-la-tour-saint-romain-effet-du-matin-1289",
-        "license": "Wikimedia Commons，PD-Art",
+        "from": "Wikimedia Commons（Tia 上传的 IMG_0545.jpeg，2026-11-01）",
+        "url": "https://commons.wikimedia.org/wiki/File:Claude_Monet_-_Cath%C3%A9drale_de_Rouen._Harmonie_blanche.jpg",
+        "license": "公有领域（PD-Art）",
         "status": "符合",
-        "note": "等 Tia 确认并上传",
-        "verified": "2026-10-27"
+        "note": "收藏方：奥赛 RF 2001 https://www.musee-orsay.fr/en/artworks/la-cathedrale-de-rouen-le-portail-et-la-tour-saint-romain-effet-du-matin-1289",
+        "verified": "2026-11-01"
       },
       {
         "file": "series-getty-morning.jpg",
@@ -747,12 +747,12 @@
       },
       {
         "file": "series-nga-sunlight.jpg",
-        "from": "华盛顿国家美术馆（还没上传）",
-        "url": "https://www.nga.gov/artworks/46654-rouen-cathedral-west-facade-sunlight",
-        "license": "华盛顿国家美术馆开放资源，CC0",
+        "from": "Wikimedia Commons（Tia 上传的 IMG_0546.jpeg，2026-11-01）",
+        "url": "https://commons.wikimedia.org/wiki/File:Claude_Monet_-_Rouen_Cathedral,_West_Facade,_Sunlight.jpg",
+        "license": "公有领域（PD-Art）",
         "status": "符合",
-        "note": "等 Tia 确认并上传",
-        "verified": "2026-10-27"
+        "note": "收藏方：华盛顿国家美术馆 1963.10.179 https://www.nga.gov/artworks/46654-rouen-cathedral-west-facade-sunlight",
+        "verified": "2026-11-01"
       }
     ]
   },

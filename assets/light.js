@@ -66,7 +66,7 @@ function buildDOM(S, R, meta) {
   const layersHTML = S.layers.map((l, i) => `<div class="layer" data-i="${i}" style="${l.clip ? `clip-path:polygon(${l.clip.map(([x, y]) => `${x * 100}% ${y * 100}%`).join(',')})` : ''}">
       <img src="${P.image}" alt="" draggable="false" /></div>`).join('');
   const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}"${s.state ? ` data-state="${s.state}"` : ''} style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
-  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus', isInsc = X.type === 'inscriptions', isAlt = X.type === 'altarpiece';
+  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus', isInsc = X.type === 'inscriptions', isAlt = X.type === 'altarpiece', isRise = X.type === 'rise';
   // 细节放大的热点（zooms：眼睛、嘴唇、珍珠……）；只有一个时也可以写成 zoom
   const ZOOMS = zoomsOf(X), ZL = X.zoomLabel || (X.zoom && X.zoom.label) || { zh: '放大看细节', en: 'Zoom in on details' };
   const zspotsHTML = ZOOMS.map((z, i) => `<button class="zspot" data-z="${i}" style="left:${z.x * 100}%;top:${z.y * 100}%">${ui(z.label.zh, z.label.en)}</button>`).join('');
@@ -94,7 +94,7 @@ function buildDOM(S, R, meta) {
     </div>
   </div>
   <a id="sceneHome" href="${ROOT}">← ${ui('走进名画', 'Walk into Paintings')}</a>
-  ${(isCurtain || isFlip) && X.note ? `<div id="curtainNote" class="panel hidden">${bi(X.note, ' / ')}</div>` : ''}
+  ${(isCurtain || isFlip || isRise) && X.note ? `<div id="curtainNote" class="panel hidden">${bi(X.note, ' / ')}</div>` : ''}
   <div id="hint" class="panel"><span class="zh">${S.hint.zh}</span><span class="en-ui">${S.hint.en}</span></div>
 
   <div id="tools" class="ui">
@@ -107,6 +107,7 @@ function buildDOM(S, R, meta) {
       : VARIANTS[variantOf(S)].zoomFirst ? `<a class="btn" id="zoomBtn" href="${(S.zoom && S.zoom.image) || P.image}" target="_blank" rel="noopener">🔍 ${ui('放大看细节', 'Zoom in on details')}</a>` : ''}
     ${isMap ? `<button class="btn" id="mapBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isFlip ? `<button class="btn" id="flipBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
+    ${isRise ? `<button class="btn" id="riseBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isSlider ? `<button class="btn" id="sliderBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isFocus ? `<button class="btn" id="focusBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isAlt ? `<button class="btn" id="altBtn">✦ <span class="alt-open-l">${ui(X.label.zh, X.label.en)}</span><span class="alt-close-l">${ui(X.closeLabel.zh, X.closeLabel.en)}</span></button>` : ''}
@@ -273,12 +274,13 @@ function run(S, R) {
   const depth = i => (S.layers[i] && S.layers[i].depth) || 0;
   const ZOOMS = zoomsOf(S.exclusive || {});   // 细节放大：画面放大到原画上的 (x, y)
   let flipT = 0, flipK = 0;   // 独家发现“镜子翻过来”：画面左右翻转（慢慢转过去）
+  let riseK = 0;   // 独家发现“从包厢往下看”（rise）：画面先像从舞台正面平视那样往后倒（rotateX），再慢慢立回原画的角度（从高处往下看）
   let zoomT = 0, zoomK = 0, zoomAt = null, zx = 0.5, zy = 0.5, zs = 1;   // zx、zy、zs：现在对准的点和倍数（慢慢跟上目标）
   function frame() {
     requestAnimationFrame(frame);
     if (gallery.classList.contains('show')) return;
     cx += (tx - cx) * 0.08; cy += (ty - cy) * 0.08;
-    zoomK += (zoomT - zoomK) * 0.06; flipK += (flipT - flipK) * 0.06;
+    zoomK += (zoomT - zoomK) * 0.06; flipK += (flipT - flipK) * 0.06; riseK *= 0.985;
     if (zoomAt) { zx += (zoomAt.x - zx) * 0.08; zy += (zoomAt.y - zy) * 0.08; zs += ((zoomAt.scale || 4) - zs) * 0.08; }
     let zoomCSS = '';
     if (zoomK > 0.001) {   // 把那一点移到屏幕中间，再放大（以画面中心为原点）
@@ -288,7 +290,7 @@ function run(S, R) {
       const qx = cxS + px + (window.innerWidth / 2 - cxS - px) * zoomK, qy = cyS + py + (window.innerHeight / 2 - cyS - py) * zoomK;
       zoomCSS = `translate(${qx - cxS - s * px}px, ${qy - cyS - s * py}px) scale(${s})`;
     }
-    stage.style.transform = `${zoomCSS} perspective(1400px) rotateY(${cx * 3 * (1 - zoomK)}deg) rotateX(${-cy * 2 * (1 - zoomK)}deg)${flipK > 0.001 ? ` scaleX(${1 - 2 * flipK})` : ''}`;
+    stage.style.transform = `${zoomCSS} perspective(1400px) rotateY(${cx * 3 * (1 - zoomK)}deg) rotateX(${-cy * 2 * (1 - zoomK) + riseK * ((S.exclusive || {}).tilt || 55)}deg)${flipK > 0.001 ? ` scaleX(${1 - 2 * flipK})` : ''}`;
     layers.forEach((l, i) => { l.style.transform = `translate(${-cx * MAX * depth(i)}px, ${-cy * MAX * depth(i)}px) scale(${1 + depth(i) * 0.02})`; });
     spots.forEach(s => { const d = depth(+s.dataset.layer); s.style.transform = `translate(calc(-50% + ${-cx * MAX * d}px), calc(-50% + ${-cy * MAX * d}px))`; });
   }
@@ -420,6 +422,13 @@ function run(S, R) {
     if (on) { if (zoomAt) zoomTo(null); track('exclusive-' + S.id); }
   }
   if ($('flipBtn')) $('flipBtn').onclick = () => setFlip(!flipT);
+  // 从包厢往下看：每按一次都从“正面平视”慢慢升到原画的角度；说明一直显示到再按一次
+  if ($('riseBtn')) $('riseBtn').onclick = () => {
+    const on = !$('riseBtn').classList.contains('on');
+    $('riseBtn').classList.toggle('on', on);
+    if ($('curtainNote')) $('curtainNote').classList.toggle('hidden', !on);
+    if (on) { if (zoomAt) zoomTo(null); riseK = 1; track('exclusive-' + S.id); } else riseK = 0;
+  };
   // 打开 / 合上祭坛：翼板转开约 2.4 秒；合上时两边的画板先隐藏（翼板转回来时露出空白）
   let altOpen = false, altTimer = 0;
   function setAlt(on) {

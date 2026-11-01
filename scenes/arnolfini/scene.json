@@ -11,7 +11,7 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《梵高的椅子》《向日葵》互相链接（同一家美术馆）。卡片“凸面镜”以后可以作为“镜子”主题的第一幅。 和《戴红头巾的男子》互相链接：结尾按钮，以及卡片“墙上的签名”里的“同一个展厅”（都在52号展厅）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《梵高的椅子》《向日葵》互相链接（同一家美术馆）。卡片“凸面镜”以后可以作为“镜子”主题的第一幅。 和《戴红头巾的男子》互相链接：结尾按钮，以及卡片“墙上的签名”里的“同一个展厅”（都在52号展厅）。和德加《苦艾酒》互相链接（主题“镜子”的第三幅）。对方开放后自动出现。",
     "doors": [],
     "cards": [
       "man-red-chaperon"
@@ -22,7 +22,8 @@
       "folies-bergere",
       "standing-virginal",
       "man-red-chaperon",
-      "ghent-altarpiece"
+      "ghent-altarpiece",
+      "absinthe"
     ]
   },
   "painting": {
@@ -787,6 +788,14 @@
         "label": {
           "zh": "两年前，在根特：《根特祭坛画》",
           "en": "Two years earlier, in Ghent: *The Ghent Altarpiece*"
+        }
+      },
+      {
+        "scene": "absinthe",
+        "href": "../absinthe/",
+        "label": {
+          "zh": "另一面镜子",
+          "en": "Another mirror"
         }
       }
     ]

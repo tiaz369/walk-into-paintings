@@ -1,0 +1,478 @@
+{
+  "_说明": "芭蕾（明星）（人物肖像，轻量版：分层景深 + 细节放大 + 卡片 + 短故事）。所有事实文字由 Tia 提供（资料来自奥赛博物馆官网）。分层：后面是侧幕和布景（侧幕里等候的舞者和穿黑衣的男人），中间是舞台地板，最前面是独舞的舞者（从高处往下看）。原画还没上传：clip、spots 和放大的位置先按构图估算，原画上传后照着图量。",
+  "id": "the-star",
+  "variant": "portrait",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "theatre",
+    "label": {
+      "zh": "舞台上的灯光",
+      "en": "Stage lights"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《舞蹈课》《芭蕾舞者（后台）》互相链接（教室、后台、舞台）；和《包厢》互相链接（另一个包厢里的视角）；卡片6链接到《圣拉扎尔火车站》《煎饼磨坊的舞会》（也曾属于卡耶博特）。",
+    "doors": [],
+    "cards": [
+      "gare-saint-lazare",
+      "moulin-galette"
+    ],
+    "end": [
+      "dance-class",
+      "ballet-dancers-wings",
+      "la-loge"
+    ]
+  },
+  "ambience": "ballet-stage",
+  "painting": {
+    "image": "images/the-star.jpg",
+    "width": 1000,
+    "height": 1390,
+    "alt": {
+      "zh": "德加《芭蕾（明星）》约1876–1877，巴黎奥赛博物馆",
+      "en": "Edgar Degas, Ballet (The Star), c. 1876–77, Musée d'Orsay, Paris"
+    },
+    "_": "宽高先按尺寸 42 × 58.4 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "芭蕾（明星）",
+      "en": "Ballet (The Star)"
+    },
+    "artist": {
+      "zh": "德加",
+      "en": "Edgar Degas"
+    },
+    "date": {
+      "zh": "约1876–1877年",
+      "en": "c. 1876–77"
+    },
+    "museum": {
+      "zh": "巴黎奥赛博物馆",
+      "en": "Musée d'Orsay, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“从包厢往下看”，看视角慢慢升到高处 · 点“放大看细节”，再点舞者或侧幕",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “Looking down from a box” to watch the view rise · Tap “Zoom in on details”, then the dancer or the wings"
+  },
+  "parallax": 14,
+  "layers": [
+    {
+      "_说明": "背景（整张画：侧幕、布景和舞台）",
+      "depth": 0
+    },
+    {
+      "_说明": "中间：舞台地板（待核对：原画上传后照着图量）",
+      "depth": 0.4,
+      "clip": [
+        [
+          0,
+          0.45
+        ],
+        [
+          1,
+          0.35
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          0,
+          1
+        ]
+      ]
+    },
+    {
+      "_说明": "最前面：独舞的舞者（待核对：原画上传后照着图量）",
+      "depth": 1,
+      "clip": [
+        [
+          0.35,
+          0.25
+        ],
+        [
+          0.75,
+          0.25
+        ],
+        [
+          0.8,
+          0.8
+        ],
+        [
+          0.4,
+          0.8
+        ]
+      ]
+    }
+  ],
+  "spots": {
+    "centre": {
+      "x": 0.55,
+      "y": 0.45,
+      "layer": 2
+    },
+    "above": {
+      "x": 0.25,
+      "y": 0.75,
+      "layer": 1
+    },
+    "wings": {
+      "x": 0.75,
+      "y": 0.15,
+      "layer": 0
+    },
+    "man": {
+      "x": 0.6,
+      "y": 0.15,
+      "layer": 0
+    },
+    "monotype": {
+      "x": 0.15,
+      "y": 0.5,
+      "layer": 1
+    },
+    "caillebotte": {
+      "x": 0.85,
+      "y": 0.88,
+      "layer": 1
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“从包厢往下看”（rise）：按一下，画面先像从舞台正面平视那样往后倒（tilt 度），再慢慢立回原画的角度——从剧院高处的包厢往下看舞台。画面角度的变化是示意效果，所以说明里写“这是示意”。zooms 是“放大看细节”的热点（待核对：原画上传后照着图量）。",
+    "type": "rise",
+    "label": {
+      "zh": "从包厢往下看",
+      "en": "Looking down from a box"
+    },
+    "tilt": 55,
+    "note": {
+      "zh": "德加让我们从高处看这个舞台，好像坐在包厢里。这是示意。",
+      "en": "Degas lets us look down on the stage from above, as if from a box. This is an illustration."
+    },
+    "zoomLabel": {
+      "zh": "放大看细节",
+      "en": "Zoom in on details"
+    },
+    "zooms": [
+      {
+        "id": "dancer",
+        "label": {
+          "zh": "舞者",
+          "en": "Dancer"
+        },
+        "x": 0.55,
+        "y": 0.42,
+        "scale": 2.5,
+        "card": "centre"
+      },
+      {
+        "id": "wings",
+        "label": {
+          "zh": "侧幕",
+          "en": "Wings"
+        },
+        "x": 0.68,
+        "y": 0.15,
+        "scale": 2.5,
+        "card": "wings"
+      }
+    ]
+  },
+  "cards": {
+    "centre": {
+      "title": {
+        "zh": "舞台中央",
+        "en": "Centre stage"
+      },
+      "text": {
+        "zh": "一位芭蕾舞者独自在舞台上，张开双臂，单脚站立，好像正在谢幕。",
+        "en": "A ballerina dances alone on stage, arms open, balanced on one foot, as if taking her bow."
+      }
+    },
+    "above": {
+      "title": {
+        "zh": "从高处看",
+        "en": "From above"
+      },
+      "text": {
+        "zh": "我们像是坐在高处的包厢里，从上往下看着舞台。",
+        "en": "We seem to look down on the stage from above, as if from a box high in the theatre."
+      }
+    },
+    "wings": {
+      "title": {
+        "zh": "侧幕里",
+        "en": "In the wings"
+      },
+      "text": {
+        "zh": "侧幕里还有几位舞者在等候，只露出半个身子。",
+        "en": "In the wings, other dancers wait, only half visible."
+      }
+    },
+    "man": {
+      "title": {
+        "zh": "穿黑衣的男人",
+        "en": "The man in black"
+      },
+      "text": {
+        "zh": "侧幕里站着一个穿黑衣的男人，脸被布景挡住了。他是谁，画里没有说。",
+        "en": "A man in black stands in the wings, his face hidden by the scenery. The painting doesn't tell us who he is."
+      }
+    },
+    "monotype": {
+      "title": {
+        "zh": "单版画上的粉彩",
+        "en": "Pastel over monotype"
+      },
+      "text": {
+        "zh": "德加先在金属板上画好，压印出唯一的一张“单版画”，再在上面用粉彩上色。",
+        "en": "Degas first painted on a metal plate and pressed it onto paper to make a single print, a monotype, then worked over it in pastel."
+      }
+    },
+    "caillebotte": {
+      "title": {
+        "zh": "卡耶博特的收藏",
+        "en": "From Caillebotte's collection"
+      },
+      "text": {
+        "zh": "这幅画也曾经属于卡耶博特。1896年，它随他的遗赠进入了法国国家收藏。",
+        "en": "This work also belonged to Caillebotte. In 1896 it entered the French national collection as part of his bequest."
+      },
+      "links": [
+        {
+          "scene": "gare-saint-lazare",
+          "href": "../gare-saint-lazare/",
+          "label": {
+            "zh": "《圣拉扎尔火车站》",
+            "en": "The Gare Saint-Lazare"
+          }
+        },
+        {
+          "scene": "moulin-galette",
+          "href": "../moulin-galette/",
+          "label": {
+            "zh": "《煎饼磨坊的舞会》",
+            "en": "Dance at Le Moulin de la Galette"
+          }
+        }
+      ]
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "title": {
+          "zh": "舞台上的一刻",
+          "en": "A moment on stage"
+        },
+        "text": {
+          "zh": "德加画过很多次芭蕾舞者。这一幅，他把镜头对准了舞台中央独舞的那一刻。",
+          "en": "Degas painted ballet dancers many times. Here he focuses on a single moment: a dancer alone at centre stage."
+        },
+        "image": "images/the-star.jpg",
+        "alt": {
+          "zh": "德加《芭蕾（明星）》约1876–1877，巴黎奥赛博物馆",
+          "en": "Edgar Degas, Ballet (The Star), c. 1876–77, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "约1876–1877年 · 巴黎奥赛博物馆",
+          "en": "c. 1876–77 · Musée d'Orsay, Paris"
+        }
+      },
+      {
+        "title": {
+          "zh": "舞台和幕后",
+          "en": "Stage and wings"
+        },
+        "text": {
+          "zh": "画面同时有舞台上的光彩，和侧幕里的等待。舞台中央的明星，和侧幕里看不清脸的人，出现在同一幅画里。",
+          "en": "The picture holds both the glamour of the stage and the waiting in the wings: the star at centre stage, and figures in the wings whose faces we cannot see."
+        },
+        "image": "images/the-star.jpg",
+        "alt": {
+          "zh": "德加《芭蕾（明星）》约1876–1877，巴黎奥赛博物馆",
+          "en": "Edgar Degas, Ballet (The Star), c. 1876–77, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "约1876–1877年 · 巴黎奥赛博物馆",
+          "en": "c. 1876–77 · Musée d'Orsay, Paris"
+        }
+      },
+      {
+        "title": {
+          "zh": "卡耶博特的收藏",
+          "en": "Caillebotte's collection"
+        },
+        "text": {
+          "zh": "这幅画属于卡耶博特。1896年，它随他的遗赠进入法国国家收藏；1986年起，收藏在奥赛博物馆。",
+          "en": "It belonged to Caillebotte. In 1896, it entered the French national collection with his bequest, and since 1986 it has been at the Musée d'Orsay."
+        },
+        "image": "images/the-star.jpg",
+        "alt": {
+          "zh": "德加《芭蕾（明星）》约1876–1877，巴黎奥赛博物馆",
+          "en": "Edgar Degas, Ballet (The Star), c. 1876–77, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "约1876–1877年 · 巴黎奥赛博物馆",
+          "en": "c. 1876–77 · Musée d'Orsay, Paris"
+        }
+      }
+    ],
+    "final": {
+      "zh": "舞台中央，只有一个人。",
+      "en": "At centre stage, just one dancer."
+    },
+    "versions": [],
+    "museums": [
+      "orsay"
+    ],
+    "exit": [
+      {
+        "scene": "dance-class",
+        "href": "../dance-class/",
+        "label": {
+          "zh": "教室、后台、舞台",
+          "en": "Classroom, wings, stage"
+        }
+      },
+      {
+        "scene": "ballet-dancers-wings",
+        "href": "../ballet-dancers-wings/",
+        "label": {
+          "zh": "教室、后台、舞台",
+          "en": "Classroom, wings, stage"
+        }
+      },
+      {
+        "scene": "la-loge",
+        "href": "../la-loge/",
+        "label": {
+          "zh": "另一个包厢里的视角",
+          "en": "Another view from a theatre box"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供；尺寸按奥赛作品页（H. 58,4 ; L. 42 cm，编号 RF 12258）。",
+    "artist": {
+      "zh": "埃德加·德加（1834–1917）",
+      "en": "Edgar Degas (1834–1917)"
+    },
+    "title": {
+      "zh": "芭蕾（明星）",
+      "en": "Ballet (The Star)"
+    },
+    "date": {
+      "zh": "约1876–1877年",
+      "en": "c. 1876–77"
+    },
+    "medium": {
+      "zh": "单版画上的粉彩",
+      "en": "Pastel over monotype"
+    },
+    "dimensions": {
+      "zh": "58.4 × 42 cm",
+      "en": "58.4 × 42 cm"
+    },
+    "collection": {
+      "zh": "巴黎奥赛博物馆（卡耶博特遗赠，1896年由国家接收）",
+      "en": "Musée d'Orsay, Paris (Gustave Caillebotte bequest, accepted by the State in 1896)"
+    },
+    "url": "https://www.musee-orsay.fr/en/artworks/ballet-2084"
+  },
+  "zoom": {
+    "image": "images/the-star.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "奥赛博物馆：芭蕾（明星）",
+          "en": "Musée d'Orsay: *Ballet* (*The Star*)"
+        },
+        "url": "https://www.musee-orsay.fr/en/artworks/ballet-2084"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三段故事原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "舞台上的一刻",
+          "en": "A moment on stage"
+        },
+        "text": {
+          "zh": "德加画过很多次芭蕾舞者。这一幅，他把镜头对准了舞台中央独舞的那一刻。",
+          "en": "Degas painted ballet dancers many times. Here he focuses on a single moment: a dancer alone at centre stage."
+        }
+      },
+      {
+        "title": {
+          "zh": "舞台和幕后",
+          "en": "Stage and wings"
+        },
+        "text": {
+          "zh": "画面同时有舞台上的光彩，和侧幕里的等待。舞台中央的明星，和侧幕里看不清脸的人，出现在同一幅画里。",
+          "en": "The picture holds both the glamour of the stage and the waiting in the wings: the star at centre stage, and figures in the wings whose faces we cannot see."
+        }
+      },
+      {
+        "title": {
+          "zh": "卡耶博特的收藏",
+          "en": "Caillebotte's collection"
+        },
+        "text": {
+          "zh": "这幅画属于卡耶博特。1896年，它随他的遗赠进入法国国家收藏；1986年起，收藏在奥赛博物馆。",
+          "en": "It belonged to Caillebotte. In 1896, it entered the French national collection with his bequest, and since 1986 it has been at the Musée d'Orsay."
+        }
+      }
+    ]
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "奥赛博物馆：芭蕾（明星）",
+        "en": "Musée d'Orsay: *Ballet* (*The Star*)"
+      },
+      "url": "https://www.musee-orsay.fr/en/artworks/ballet-2084"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "the-star.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不用奥赛官网或 RMN 的图片）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-01"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-01"
+}
