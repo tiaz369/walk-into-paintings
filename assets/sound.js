@@ -391,6 +391,27 @@ const AMBIENCE = {
     const bell = t => { for (let k = 0; k < 8; k++) tone(out, t + k * 0.09, { f0: 1900, vol: 0.02, attack: 0.002, dur: 0.08 }); };   // 一串短促的电铃声
     every(st, 30, 60, bell);
   },
+  // 清晨的咖啡馆：很安静，偶尔杯子轻碰一下，远处街上的马车声（A café early in the morning）
+  'morning-cafe'(out, st) {
+    loopNoise('brown', out, { freq: 240, gain: 0.07 });
+    every(st, 6, 14, t => clink(out, t));
+    hooves(out, ctx.currentTime + 4); every(st, 25, 45, t => hooves(out, t));
+  },
+  // 舞台上：乐池里的乐队在演奏（很轻），舞鞋落在木地板上的声音，偶尔一阵掌声（On stage: the orchestra, pointe shoes, applause）
+  'ballet-stage'(out, st) {
+    loopNoise('brown', out, { freq: 260, gain: 0.07 });
+    const pit = ctx.createGain(); pit.gain.value = 0.4; pit.connect(pan(out, 0));
+    const tune = [659, 784, 880, 784, 659, 587, 523, 587, 659, 523], bass = [131, 196, 165, 196];
+    const phrase = t => {   // 一小段三拍子的旋律：弦乐（三角波）+ 低音
+      tune.forEach((f, i) => tone(pit, t + i * 0.5, { f0: f, type: 'triangle', vol: 0.025, attack: 0.08, dur: 0.6 }));
+      bass.forEach((f, i) => tone(pit, t + i * 1.25, { f0: f, type: 'sine', vol: 0.04, attack: 0.05, dur: 1.1 }));
+    };
+    phrase(ctx.currentTime + 1); every(st, 5.2, 5.6, phrase);
+    const step = t => { for (let k = 0; k < 2 + Math.floor(Math.random() * 3); k++) burst(out, t + k * rnd(0.2, 0.35), { kind: 'brown', type: 'bandpass', freq: rnd(800, 1200), q: 5, vol: 0.06, dur: 0.03, p: rnd(-0.3, 0.3) }); };   // 舞鞋“嗒、嗒”
+    every(st, 2, 5, step);
+    const applause = t => { for (let k = 0; k < 90; k++) burst(out, t + rnd(0, 3), { kind: 'white', type: 'bandpass', freq: rnd(1500, 2600), q: 2, vol: 0.02, dur: 0.02, p: rnd(-0.9, 0.9) }); };
+    every(st, 20, 40, applause);
+  },
   // 马戏场：鼓声，马在沙地上绕圈奔跑的马蹄声，观众的欢呼和掌声（A circus ring）
   circus(out, st) {
     loopNoise('brown', out, { freq: 260, gain: 0.08 });

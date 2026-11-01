@@ -11,7 +11,7 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。真正的设置在 objects / cards / ending.exit 里，tools/check_scenes.py 会检查这里和那里是否一致。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。真正的设置在 objects / cards / ending.exit 里，tools/check_scenes.py 会检查这里和那里是否一致。和德加《苦艾酒》互相链接（主题“咖啡馆”）。对方开放后自动出现。",
     "doors": [
       "yellow-house",
       "cafe-terrace"
@@ -19,7 +19,8 @@
     "cards": [],
     "end": [
       "yellow-house",
-      "wheatfield-cypresses"
+      "wheatfield-cypresses",
+      "absinthe"
     ]
   },
   "painting": {
@@ -606,6 +607,14 @@
           "en": "Next: Saint-Rémy"
         },
         "href": "../wheatfield-cypresses/"
+      },
+      {
+        "scene": "absinthe",
+        "href": "../absinthe/",
+        "label": {
+          "zh": "另一个咖啡馆",
+          "en": "Another café"
+        }
       }
     ]
   },

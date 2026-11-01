@@ -130,39 +130,12 @@
         },
         "museum": "orsay",
         "check": "ok",
-        "_": "奥赛作品页：between 1873 and 1876",
+        "_": "奥赛作品页：between 1873 and 1876；不单独做场景（2026-11-01 Tia 定）",
         "url": "https://www.musee-orsay.fr/en/artworks/la-classe-de-danse-1151",
-        "scene": "dance-class-orsay"
-      },
-      {
-        "title": {
-          "zh": "明星",
-          "en": "The Star (L'Étoile)"
-        },
-        "year": {
-          "zh": "约1876–1877",
-          "en": "c. 1876–77"
-        },
-        "museum": "orsay",
-        "check": "ok",
-        "_": "奥赛作品页：vers 1876–1877（Tia 确认）",
-        "url": "https://www.musee-orsay.fr/en/artworks/ballet-2084",
-        "scene": "the-star"
-      },
-      {
-        "title": {
-          "zh": "苦艾酒",
-          "en": "In a Café (The Absinthe)"
-        },
-        "year": {
-          "zh": "1875–76",
-          "en": "1875–76"
-        },
-        "museum": "orsay",
-        "check": "ok",
-        "_": "奥赛作品页：entre 1875 et 1876",
-        "url": "https://www.musee-orsay.fr/en/artworks/dans-un-cafe-1147",
-        "scene": "absinthe"
+        "kind": {
+          "zh": "见《舞蹈课》场景里的对比",
+          "en": "See the comparison in The Dance Class scene"
+        }
       },
       {
         "title": {
