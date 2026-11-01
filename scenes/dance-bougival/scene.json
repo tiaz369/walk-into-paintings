@@ -1,0 +1,677 @@
+{
+  "_说明": "布吉瓦尔之舞（户外风景，完整版：露天咖啡馆）。所有事实文字由 Tia 提供（波士顿美术馆的展览介绍和图片说明、纽约时装学院时装史网站）。塞纳河边树荫下的露天咖啡馆：一对男女在近处跳舞，女子戴红色软帽，男子戴草帽；身后是坐在桌边喝酒聊天的人；地上散落着一些东西。模特是谁仍有争论，所以不写名字。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "id": "dance-bougival",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "树荫下漏下来的阳光",
+      "en": "Sunlight through the leaves"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《煎饼磨坊的舞会》互相链接（另一个露天舞会）；和《两姐妹（在露台上）》《游艇上的午宴》同属塞纳河边的闲暇时光（系列里按顺序出现“下一个场景”）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "moulin-galette",
+      "two-sisters"
+    ]
+  },
+  "painting": {
+    "image": "images/dance-bougival.jpg",
+    "width": 1000,
+    "height": 1855,
+    "alt": {
+      "zh": "雷诺阿《布吉瓦尔之舞》1883，波士顿美术馆",
+      "en": "Pierre-Auguste Renoir, Dance at Bougival, 1883, Museum of Fine Arts, Boston"
+    },
+    "_": "宽高先按尺寸 98.1 × 181.9 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "布吉瓦尔之舞",
+      "en": "Dance at Bougival"
+    },
+    "artist": {
+      "zh": "雷诺阿",
+      "en": "Pierre-Auguste Renoir"
+    },
+    "date": {
+      "zh": "1883年",
+      "en": "1883"
+    },
+    "museum": {
+      "zh": "波士顿美术馆",
+      "en": "Museum of Fine Arts, Boston"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下跳舞的两个人、红色软帽、桌边的人和树看介绍 · 点“三支舞”，对比雷诺阿的三对舞者 · 地上发光的圆点 = 雷诺阿的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the dancers, the red bonnet, the people at the tables or the trees to learn more · Tap “Three dances” to compare Renoir's three couples · The glowing circle = Renoir's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（站在离舞者很近的地方），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": -0.05,
+    "fov": 55,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "dance-garden",
+  "colors": {
+    "line": "#2a2a26",
+    "ground": "#c8b088",
+    "sky": "#d8e0d8",
+    "pink": "#e8c8c8",
+    "red": "#c82a2a",
+    "navy": "#2a3050",
+    "straw": "#e0c880",
+    "coat": "#3a3a3a",
+    "leaves": "#5a8a4a",
+    "skin": "#f0d0b8",
+    "trousers": "#2a3050",
+    "wood": "#6a4a32",
+    "tableTop": "#e8e0d0"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（露天咖啡馆），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -20,
+      20,
+      -20,
+      4
+    ],
+    "bounds": [
+      -4,
+      4,
+      -10,
+      3
+    ],
+    "groundCard": "seine",
+    "skyCard": "three",
+    "skyRadius": 60,
+    "walkSpeed": 0.9
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "seine",
+      "_": "露天咖啡馆的沙土地",
+      "pts": [
+        [
+          -20,
+          0.01,
+          4
+        ],
+        [
+          -20,
+          0.01,
+          -20
+        ],
+        [
+          20,
+          0.01,
+          -20
+        ],
+        [
+          20,
+          0.01,
+          4
+        ]
+      ],
+      "color": "ground"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "pink",
+      "x": 0.15,
+      "z": -2.6,
+      "rot": 0.4,
+      "card": "life",
+      "_": "戴红色软帽的女子（跳舞，目光转开）",
+      "legs": "pink",
+      "id": "woman"
+    },
+    {
+      "type": "boxes",
+      "card": "bonnet",
+      "x": 0.15,
+      "z": -2.6,
+      "_": "红色软帽",
+      "boxes": [
+        [
+          0.32,
+          0.12,
+          0.32,
+          "red",
+          0,
+          1.82,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "navy",
+      "x": -0.15,
+      "z": -2.85,
+      "rot": 2.6,
+      "card": "gaze",
+      "_": "戴草帽的男子（她的舞伴）",
+      "legs": "navy",
+      "id": "man"
+    },
+    {
+      "type": "boxes",
+      "card": "gaze",
+      "x": -0.15,
+      "z": -2.85,
+      "_": "草帽",
+      "boxes": [
+        [
+          0.4,
+          0.08,
+          0.4,
+          "straw",
+          0,
+          1.86,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "roundTable",
+      "card": "seine",
+      "x": -1.8,
+      "z": -5.5,
+      "r": 0.45,
+      "chairs": [
+        0.5,
+        2.5,
+        4.4
+      ]
+    },
+    {
+      "type": "roundTable",
+      "card": "seine",
+      "x": 1.6,
+      "z": -7,
+      "r": 0.45,
+      "chairs": [
+        1,
+        3.5
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": -2.3,
+      "z": -5.2,
+      "rot": 1.2,
+      "card": "seine",
+      "_": "桌边喝酒聊天的人"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "straw",
+      "x": -1.3,
+      "z": -5.9,
+      "rot": -2,
+      "card": "seine",
+      "_": "桌边喝酒聊天的人"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 1.2,
+      "z": -7.3,
+      "rot": -1,
+      "card": "seine",
+      "_": "远处桌边的人"
+    },
+    {
+      "type": "tree",
+      "card": "three",
+      "_": "树荫",
+      "x": -3,
+      "z": -8,
+      "h": 8,
+      "r": 3,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "three",
+      "_": "树荫",
+      "x": 3,
+      "z": -9,
+      "h": 9,
+      "r": 3.2,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "three",
+      "_": "树荫",
+      "x": 0,
+      "z": -12,
+      "h": 9,
+      "r": 3.5,
+      "color": "leaves"
+    },
+    {
+      "type": "boxes",
+      "card": "story",
+      "x": 0.6,
+      "z": -1.6,
+      "_": "地上散落的一些东西",
+      "boxes": [
+        [
+          0.06,
+          0.01,
+          0.02,
+          "line",
+          0,
+          0.01,
+          0
+        ],
+        [
+          0.04,
+          0.01,
+          0.02,
+          "line",
+          0.15,
+          0.01,
+          0.1
+        ],
+        [
+          0.05,
+          0.01,
+          0.02,
+          "line",
+          -0.2,
+          0.01,
+          0.05
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "life": {
+      "title": {
+        "zh": "真人大小",
+        "en": "Life-size"
+      },
+      "text": {
+        "zh": "这幅画将近两米高，画中的一对舞者几乎和真人一样大。",
+        "en": "At almost two metres tall, the painting shows the dancing couple almost life-size."
+      }
+    },
+    "bonnet": {
+      "title": {
+        "zh": "红色软帽",
+        "en": "The red bonnet"
+      },
+      "text": {
+        "zh": "女子戴着一顶装饰着紫色果子的红色软帽。雷诺阿的父母是裁缝，他很喜欢画当时时装的细节。",
+        "en": "The woman wears a red bonnet trimmed with purple fruits. The son of a tailor and a dressmaker, Renoir loved painting the details of fashion."
+      }
+    },
+    "gaze": {
+      "title": {
+        "zh": "转开的目光",
+        "en": "A turned gaze"
+      },
+      "text": {
+        "zh": "跳舞的时候，她把目光从舞伴身上移开了。",
+        "en": "As they dance, she turns her gaze away from her partner."
+      }
+    },
+    "seine": {
+      "title": {
+        "zh": "塞纳河边的周末",
+        "en": "A weekend by the Seine"
+      },
+      "text": {
+        "zh": "布吉瓦尔是巴黎郊外塞纳河边很受欢迎的休闲地，人们来这里的露天咖啡馆跳舞、消磨下午。",
+        "en": "Bougival was a popular place for leisure on the Seine outside Paris, where people came to dance and while away the afternoon at open-air cafés."
+      }
+    },
+    "three": {
+      "title": {
+        "zh": "三对舞者",
+        "en": "Three dancing couples"
+      },
+      "text": {
+        "zh": "1883年春天，雷诺阿画了三幅真人大小的跳舞情侣，这是其中一幅。另外两幅在巴黎奥赛博物馆。",
+        "en": "In spring 1883, Renoir painted three life-size dancing couples. This is one; the other two are in the Musée d'Orsay, Paris."
+      }
+    },
+    "story": {
+      "title": {
+        "zh": "小说里的插图",
+        "en": "An illustration for a story"
+      },
+      "text": {
+        "zh": "雷诺阿的朋友保罗·洛特写了一篇短篇小说，雷诺阿为它画了这幅舞蹈的素描，作为插图。",
+        "en": "Renoir's friend Paul Lhote wrote a short story, and Renoir made a drawing of this dance to illustrate it."
+      }
+    }
+  },
+  "compare": {
+    "_说明": "独家发现“三支舞”：对比滑块，在三幅真人大小的跳舞情侣之间切换（都是真实原画，不加“这是示意”）。城市和乡村那两幅用 Wikimedia Commons 的 PD-Art 版本（等 Tia 上传）。",
+    "type": "compare",
+    "label": {
+      "zh": "三支舞",
+      "en": "Three dances"
+    },
+    "card": "three",
+    "note": {
+      "zh": "1883年，雷诺阿画了三对舞者。这里每一幅都是他的原画。",
+      "en": "In 1883, Renoir painted three dancing couples. Every image here is one of his original paintings."
+    },
+    "versions": [
+      {
+        "image": "images/dance-bougival.jpg",
+        "short": {
+          "zh": "布吉瓦尔之舞 · 波士顿",
+          "en": "Dance at Bougival · Boston"
+        },
+        "caption": {
+          "zh": "《布吉瓦尔之舞》，1883年 · 波士顿美术馆",
+          "en": "*Dance at Bougival*, 1883 · Museum of Fine Arts, Boston"
+        }
+      },
+      {
+        "image": "images/dance-city.jpg",
+        "short": {
+          "zh": "城市之舞 · 奥赛",
+          "en": "Dance in the City · Orsay"
+        },
+        "caption": {
+          "zh": "《城市之舞》，1883年 · 巴黎奥赛博物馆",
+          "en": "*Dance in the City*, 1883 · Musée d'Orsay, Paris"
+        }
+      },
+      {
+        "image": "images/dance-country.jpg",
+        "short": {
+          "zh": "乡村之舞 · 奥赛",
+          "en": "Dance in the Country · Orsay"
+        },
+        "caption": {
+          "zh": "《乡村之舞》，1883年 · 巴黎奥赛博物馆",
+          "en": "*Dance in the Country*, 1883 · Musée d'Orsay, Paris"
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/dance-bougival.jpg",
+        "alt": {
+          "zh": "雷诺阿《布吉瓦尔之舞》1883，波士顿美术馆",
+          "en": "Pierre-Auguste Renoir, Dance at Bougival, 1883, Museum of Fine Arts, Boston"
+        },
+        "caption": {
+          "zh": "1883年 · 波士顿美术馆",
+          "en": "1883 · Museum of Fine Arts, Boston"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 塞纳河边的下午",
+          "en": "An afternoon by the Seine"
+        },
+        "text": {
+          "zh": "19世纪80年代，巴黎人喜欢在周末去城外的塞纳河边。布吉瓦尔的露天咖啡馆里，人们喝酒、聊天、跳舞。",
+          "en": "In the 1880s, Parisians loved weekends by the Seine outside the city. At the open-air cafés of Bougival, people drank, talked and danced."
+        }
+      },
+      {
+        "image": "images/dance-bougival.jpg",
+        "alt": {
+          "zh": "雷诺阿《布吉瓦尔之舞》1883，波士顿美术馆",
+          "en": "Pierre-Auguste Renoir, Dance at Bougival, 1883, Museum of Fine Arts, Boston"
+        },
+        "caption": {
+          "zh": "1883年 · 波士顿美术馆",
+          "en": "1883 · Museum of Fine Arts, Boston"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 三支舞",
+          "en": "Three dances"
+        },
+        "text": {
+          "zh": "1883年春天，雷诺阿为画商杜兰-鲁埃画了三幅真人大小的跳舞情侣：一幅在城市，一幅在乡村，还有这一幅在布吉瓦尔。画中人物是谁，至今仍有争论。",
+          "en": "In spring 1883, Renoir painted three life-size dancing couples for the dealer Durand-Ruel: one in the city, one in the country, and this one at Bougival. Who posed for them is still debated."
+        }
+      },
+      {
+        "image": "images/dance-bougival.jpg",
+        "alt": {
+          "zh": "雷诺阿《布吉瓦尔之舞》1883，波士顿美术馆",
+          "en": "Pierre-Auguste Renoir, Dance at Bougival, 1883, Museum of Fine Arts, Boston"
+        },
+        "caption": {
+          "zh": "1883年 · 波士顿美术馆",
+          "en": "1883 · Museum of Fine Arts, Boston"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 来到波士顿",
+          "en": "To Boston"
+        },
+        "text": {
+          "zh": "1937年，波士顿美术馆买下了这幅画。今天，它是那里最受喜爱的作品之一。",
+          "en": "In 1937, the Museum of Fine Arts, Boston bought this painting. Today it is one of the museum's best-loved works."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一个夏天的下午，一支舞。",
+      "en": "One summer afternoon, one dance."
+    },
+    "versions": [],
+    "museums": [
+      "mfa-boston"
+    ],
+    "exit": [
+      {
+        "scene": "moulin-galette",
+        "href": "../moulin-galette/",
+        "label": {
+          "zh": "另一个露天舞会",
+          "en": "Another open-air dance"
+        }
+      },
+      {
+        "scene": "two-sisters",
+        "href": "../two-sisters/",
+        "label": {
+          "zh": "塞纳河边的闲暇时光",
+          "en": "Leisure by the Seine"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供；尺寸、编号按波士顿美术馆藏品页（181.9 × 98.1 cm，37.375，Picture Fund）。",
+    "artist": {
+      "zh": "皮埃尔-奥古斯特·雷诺阿（1841–1919）",
+      "en": "Pierre-Auguste Renoir (1841–1919)"
+    },
+    "title": {
+      "zh": "布吉瓦尔之舞",
+      "en": "Dance at Bougival (Danse à Bougival)"
+    },
+    "date": {
+      "zh": "1883年",
+      "en": "1883"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "181.9 × 98.1 cm",
+      "en": "181.9 × 98.1 cm"
+    },
+    "collection": {
+      "zh": "波士顿美术馆（1937年购入；编号 37.375）",
+      "en": "Museum of Fine Arts, Boston (acquired 1937; 37.375)"
+    },
+    "url": "https://collections.mfa.org/objects/32592"
+  },
+  "zoom": {
+    "image": "images/dance-bougival.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "波士顿美术馆：布吉瓦尔之舞",
+          "en": "Museum of Fine Arts, Boston: *Dance at Bougival*"
+        },
+        "url": "https://collections.mfa.org/objects/32592"
+      },
+      {
+        "title": {
+          "zh": "纽约时装学院时装史：1883 雷诺阿《布吉瓦尔之舞》",
+          "en": "Fashion History Timeline (FIT): 1883 Renoir, *Dance at Bougival*"
+        },
+        "url": "https://fashionhistory.fitnyc.edu/1883-renoir-dance-bougival/"
+      },
+      {
+        "title": {
+          "zh": "维基百科：布吉瓦尔之舞",
+          "en": "Wikipedia: *Dance at Bougival*"
+        },
+        "url": "https://en.wikipedia.org/wiki/Dance_at_Bougival"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 塞纳河边的下午",
+          "en": "An afternoon by the Seine"
+        },
+        "text": {
+          "zh": "19世纪80年代，巴黎人喜欢在周末去城外的塞纳河边。布吉瓦尔的露天咖啡馆里，人们喝酒、聊天、跳舞。",
+          "en": "In the 1880s, Parisians loved weekends by the Seine outside the city. At the open-air cafés of Bougival, people drank, talked and danced."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 三支舞",
+          "en": "Three dances"
+        },
+        "text": {
+          "zh": "1883年春天，雷诺阿为画商杜兰-鲁埃画了三幅真人大小的跳舞情侣：一幅在城市，一幅在乡村，还有这一幅在布吉瓦尔。画中人物是谁，至今仍有争论。",
+          "en": "In spring 1883, Renoir painted three life-size dancing couples for the dealer Durand-Ruel: one in the city, one in the country, and this one at Bougival. Who posed for them is still debated."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 来到波士顿",
+          "en": "To Boston"
+        },
+        "text": {
+          "zh": "1937年，波士顿美术馆买下了这幅画。今天，它是那里最受喜爱的作品之一。",
+          "en": "In 1937, the Museum of Fine Arts, Boston bought this painting. Today it is one of the museum's best-loved works."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "波士顿美术馆：布吉瓦尔之舞",
+        "en": "Museum of Fine Arts, Boston: *Dance at Bougival*"
+      },
+      "url": "https://collections.mfa.org/objects/32592"
+    },
+    {
+      "title": {
+        "zh": "纽约时装学院时装史：1883 雷诺阿《布吉瓦尔之舞》",
+        "en": "Fashion History Timeline (FIT): 1883 Renoir, *Dance at Bougival*"
+      },
+      "url": "https://fashionhistory.fitnyc.edu/1883-renoir-dance-bougival/"
+    },
+    {
+      "title": {
+        "zh": "维基百科：布吉瓦尔之舞",
+        "en": "Wikipedia: *Dance at Bougival*"
+      },
+      "url": "https://en.wikipedia.org/wiki/Dance_at_Bougival"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。波士顿美术馆官网的图片有版权限制，只用 Wikimedia Commons 的 PD-Art 文件。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "dance-bougival.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要从波士顿美术馆或奥赛官网下载）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-01"
+      },
+      {
+        "file": "dance-city.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要从波士顿美术馆或奥赛官网下载）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-01"
+      },
+      {
+        "file": "dance-country.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要从波士顿美术馆或奥赛官网下载）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-01"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-01"
+}

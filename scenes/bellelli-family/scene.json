@@ -700,12 +700,12 @@
     "files": [
       {
         "file": "bellelli-family.jpg",
-        "from": "Wikimedia Commons（Tia 上传的 IMG_0560.jpeg，2026-11-01，1920 × 1536）",
-        "url": "待补",
+        "from": "Wikimedia Commons（等 Tia 重新上传；2026-11-01 传的是 Google 艺术与文化版本，已删除）",
+        "url": "https://commons.wikimedia.org/wiki/File:Degas_-_The_Bellelli_Family,_circa_1858-1862.jpg",
         "license": "公有领域（PD-Art）",
         "status": "待决定",
         "verified": "2026-11-01",
-        "note": "等 Tia 告诉是 Commons 上哪一个文件：如果是 Google Art Project 版本，按版权规则不能用"
+        "note": "建议用这个非 Google 艺术与文化的 Commons 文件"
       }
     ]
   },
