@@ -195,7 +195,7 @@ function buildDOM(S, R, meta) {
     <button class="close" data-close="twin" aria-label="Close">×</button>
     <h3>${bi(TW.label)}</h3>
     ${TW.versions ? `<div class="cmp-pick"><select id="twinPickA" aria-label="A">${TW.versions.map((v, i) => `<option value="${i}">${textOf(v.short || v.caption, lang)}</option>`).join('')}</select><span>↔</span><select id="twinPickB" aria-label="B">${TW.versions.map((v, i) => `<option value="${i}" ${i === 1 ? 'selected' : ''}>${textOf(v.short || v.caption, lang)}</option>`).join('')}</select></div>` : ''}
-    <div class="twin-cmp" id="twinCmp">
+    <div class="twin-cmp" id="twinCmp"${TW.aspect ? ` style="aspect-ratio:${TW.aspect};${TW.aspect < 1 ? `width:min(100%, calc(62vh * ${TW.aspect}));margin:0 auto;` : ''}"` : ''}>
       <img id="twinA" src="${TW.left.image}" ${altAttr(TW.left.caption)} />
       <img id="twinB" src="${TW.right.image}" ${altAttr(TW.right.caption)} />
       <div class="twin-line" id="twinLine"></div>

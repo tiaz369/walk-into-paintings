@@ -1,0 +1,759 @@
+{
+  "_说明": "刨地板的工人（室内，完整版）。所有事实文字由 Tia 提供（奥赛博物馆官网）。观众站在高处往下看一间空房间：三个赤膊的工人跪在木地板上刨地板，身边是一卷卷木屑；光从右后方的窗户照进来；墙上有装饰，地上放着一瓶酒和一只杯子。地点可能是卡耶博特的画室，来源说法不一，所以场景里不写地点。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "id": "floor-scrapers",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "window-right",
+    "label": {
+      "zh": "右后方窗户照进来的光",
+      "en": "Light from a window at the back right"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《巴黎街道，雨天》互相链接（卡耶博特的另一幅巴黎）；和《煎饼磨坊的舞会》互相链接（卡耶博特和雷诺阿）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "paris-street-rainy-day",
+      "moulin-galette"
+    ]
+  },
+  "painting": {
+    "image": "images/floor-scrapers.jpg",
+    "width": 1436,
+    "height": 1000,
+    "alt": {
+      "zh": "卡耶博特《刨地板的工人》1875，巴黎奥赛博物馆",
+      "en": "Gustave Caillebotte, The Floor Scrapers, 1875, Musée d'Orsay, Paris"
+    },
+    "_": "宽高先按尺寸 146.5 × 102 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "刨地板的工人",
+      "en": "The Floor Scrapers"
+    },
+    "artist": {
+      "zh": "卡耶博特",
+      "en": "Gustave Caillebotte"
+    },
+    "date": {
+      "zh": "1875年",
+      "en": "1875"
+    },
+    "museum": {
+      "zh": "巴黎奥赛博物馆",
+      "en": "Musée d'Orsay, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下工人、木屑、窗户、地上的酒和墙看介绍 · 点“地板的透视线”，看线条怎样把视线引向窗户 · 地上发光的圆点 = 卡耶博特的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the workers, the shavings, the window, the drink or the wall to learn more · Tap “Lines of the floor” to see how the boards lead the eye to the window · The glowing circle = Caillebotte's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（站在高处往下看），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.9,
+    "yaw": 0,
+    "pitch": -0.6,
+    "fov": 48,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "floor-scrapers",
+  "colors": {
+    "line": "#3a2a1e",
+    "floor": "#a86a3a",
+    "wall": "#c8b090",
+    "ceiling": "#e0d4c0",
+    "trousers": "#4a4038",
+    "skin": "#d8a880",
+    "hair": "#2a2018",
+    "curl": "#e8c8a0",
+    "bottle": "#3a3020",
+    "glass": "#c8ccc8",
+    "windowlight": "#f4ecd8",
+    "iron": "#2a2a2a",
+    "gold": "#b8964a",
+    "wood": "#7a4a2a"
+  },
+  "room": {
+    "_说明": "房间形状（米）：一间空房间。左墙 x=left，前墙 z=front；后墙（窗户在右后方）从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 3.4,
+    "front": 1.0,
+    "left": -2.2,
+    "backLeft": [
+      -2.2,
+      -5.0
+    ],
+    "backRight": [
+      2.4,
+      -5.0
+    ],
+    "rightFront": [
+      2.4,
+      1.0
+    ],
+    "floorCard": "down",
+    "wallCard": "subject",
+    "walkSpeed": 0.8
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "workers",
+      "x": -0.9,
+      "z": -2.4,
+      "rot": 0.15,
+      "_": "左边跪着的工人",
+      "boxes": [
+        [
+          0.5,
+          0.35,
+          0.35,
+          "trousers",
+          0,
+          0.18,
+          0.15
+        ],
+        [
+          0.45,
+          0.35,
+          0.3,
+          "skin",
+          0,
+          0.45,
+          -0.15
+        ],
+        [
+          0.22,
+          0.22,
+          0.22,
+          "hair",
+          0,
+          0.55,
+          -0.4
+        ],
+        [
+          0.5,
+          0.05,
+          0.08,
+          "line",
+          0,
+          0.05,
+          -0.6
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "workers",
+      "x": 0.0,
+      "z": -3.0,
+      "rot": 0.1,
+      "_": "中间跪着的工人",
+      "boxes": [
+        [
+          0.5,
+          0.35,
+          0.35,
+          "trousers",
+          0,
+          0.18,
+          0.15
+        ],
+        [
+          0.45,
+          0.35,
+          0.3,
+          "skin",
+          0,
+          0.45,
+          -0.15
+        ],
+        [
+          0.22,
+          0.22,
+          0.22,
+          "hair",
+          0,
+          0.55,
+          -0.4
+        ],
+        [
+          0.5,
+          0.05,
+          0.08,
+          "line",
+          0,
+          0.05,
+          -0.6
+        ]
+      ],
+      "id": "w2"
+    },
+    {
+      "type": "boxes",
+      "card": "workers",
+      "x": 0.55,
+      "z": -3.2,
+      "rot": 0.1,
+      "_": "右边跪着的工人",
+      "boxes": [
+        [
+          0.5,
+          0.35,
+          0.35,
+          "trousers",
+          0,
+          0.18,
+          0.15
+        ],
+        [
+          0.45,
+          0.35,
+          0.3,
+          "skin",
+          0,
+          0.45,
+          -0.15
+        ],
+        [
+          0.22,
+          0.22,
+          0.22,
+          "hair",
+          0,
+          0.55,
+          -0.4
+        ],
+        [
+          0.5,
+          0.05,
+          0.08,
+          "line",
+          0,
+          0.05,
+          -0.6
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "curls",
+      "x": -0.3,
+      "z": -2.5,
+      "_": "一卷卷刨下来的木屑",
+      "boxes": [
+        [
+          0.08,
+          0.04,
+          0.08,
+          "curl",
+          -0.5,
+          0.02,
+          0.2
+        ],
+        [
+          0.08,
+          0.04,
+          0.08,
+          "curl",
+          -0.2,
+          0.02,
+          0.4
+        ],
+        [
+          0.08,
+          0.04,
+          0.08,
+          "curl",
+          0.1,
+          0.02,
+          0.1
+        ],
+        [
+          0.08,
+          0.04,
+          0.08,
+          "curl",
+          0.3,
+          0.02,
+          0.5
+        ],
+        [
+          0.08,
+          0.04,
+          0.08,
+          "curl",
+          0.6,
+          0.02,
+          0.3
+        ],
+        [
+          0.08,
+          0.04,
+          0.08,
+          "curl",
+          0.8,
+          0.02,
+          -0.1
+        ],
+        [
+          0.08,
+          0.04,
+          0.08,
+          "curl",
+          -0.8,
+          0.02,
+          0.6
+        ],
+        [
+          0.08,
+          0.04,
+          0.08,
+          "curl",
+          0.0,
+          0.02,
+          0.8
+        ],
+        [
+          0.08,
+          0.04,
+          0.08,
+          "curl",
+          0.4,
+          0.02,
+          -0.3
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "drink",
+      "x": -1.25,
+      "z": -3.6,
+      "_": "地上的一瓶酒和一只杯子",
+      "boxes": [
+        [
+          0.08,
+          0.3,
+          0.08,
+          "bottle",
+          0,
+          0.15,
+          0
+        ],
+        [
+          0.07,
+          0.1,
+          0.07,
+          "glass",
+          0.15,
+          0.05,
+          0.05,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "window",
+      "x": 1.6,
+      "z": -4.9,
+      "id": "window",
+      "_": "右后方的窗户和铁艺栏杆",
+      "boxes": [
+        [
+          1.2,
+          2.2,
+          0.05,
+          "windowlight",
+          0,
+          1.6,
+          0,
+          "cloth"
+        ],
+        [
+          1.2,
+          0.6,
+          0.06,
+          "iron",
+          0,
+          0.9,
+          0.03
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "subject",
+      "x": -0.5,
+      "z": -4.95,
+      "_": "墙上的装饰线",
+      "boxes": [
+        [
+          3.0,
+          0.06,
+          0.03,
+          "gold",
+          0,
+          2.2,
+          0
+        ],
+        [
+          3.0,
+          0.06,
+          0.03,
+          "gold",
+          0,
+          1.0,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "workers": {
+      "title": {
+        "zh": "三个工人",
+        "en": "Three workers"
+      },
+      "text": {
+        "zh": "三个工人跪在地上，用刨子刨木地板，为地板重新上漆做准备。",
+        "en": "Three workers kneel on the floor, scraping the wooden boards with planes, preparing them to be refinished."
+      }
+    },
+    "curls": {
+      "title": {
+        "zh": "卷起的木屑",
+        "en": "Curls of wood"
+      },
+      "text": {
+        "zh": "他们身边散落着一卷卷刨下来的木屑。",
+        "en": "Around them lie curls of wood shavings."
+      }
+    },
+    "window": {
+      "title": {
+        "zh": "窗外的光",
+        "en": "Light from the window"
+      },
+      "text": {
+        "zh": "光从窗户照进来，刨过的地板闪着光，没刨过的地方颜色更暗。",
+        "en": "Light streams in through the window. The scraped boards gleam; the untouched ones are darker."
+      }
+    },
+    "down": {
+      "title": {
+        "zh": "往下看",
+        "en": "Looking down"
+      },
+      "text": {
+        "zh": "我们像是站在高处往下看。地板木条的线条，把视线一路引向窗户。",
+        "en": "We seem to be looking down from above. The lines of the floorboards draw our eye towards the window."
+      }
+    },
+    "drink": {
+      "title": {
+        "zh": "地上的酒",
+        "en": "A drink on the floor"
+      },
+      "text": {
+        "zh": "地上放着一瓶酒和一只杯子，是工人们干活时喝的。",
+        "en": "On the floor stand a bottle and a glass for the workers."
+      }
+    },
+    "subject": {
+      "title": {
+        "zh": "“粗俗的题材”",
+        "en": "A “vulgar” subject"
+      },
+      "text": {
+        "zh": "1875年，官方沙龙拒绝了这幅画，有评论家说，画工人干活是“粗俗的题材”。",
+        "en": "In 1875, the official Salon rejected this painting; some critics called it a “vulgar subject”."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“地板的透视线”（toggles）：开关打开后，沿着地板木条浮现几条线，一起指向窗户的方向。线条位置是示意（原画上传后照着木条调整），所以说明里写“线条位置为示意”。",
+    "type": "toggles",
+    "toggles": [
+      {
+        "id": "lines",
+        "label": {
+          "zh": "地板的透视线",
+          "en": "Lines of the floor"
+        },
+        "targets": [],
+        "card": "down",
+        "lineWidth": 0.004,
+        "lines": [
+          [
+            0.0,
+            0.62,
+            0.74,
+            0.12
+          ],
+          [
+            0.0,
+            0.95,
+            0.8,
+            0.15
+          ],
+          [
+            0.28,
+            1.0,
+            0.85,
+            0.18
+          ],
+          [
+            0.55,
+            1.0,
+            0.9,
+            0.2
+          ],
+          [
+            0.82,
+            1.0,
+            0.95,
+            0.22
+          ]
+        ],
+        "note": {
+          "zh": "地板木条的线条，把我们的视线一路引向窗外的光。线条位置为示意。",
+          "en": "The lines of the floorboards lead our eye towards the light of the window. The lines are an illustration."
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/floor-scrapers.jpg",
+        "alt": {
+          "zh": "卡耶博特《刨地板的工人》1875，巴黎奥赛博物馆",
+          "en": "Gustave Caillebotte, The Floor Scrapers, 1875, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1875年 · 巴黎奥赛博物馆",
+          "en": "1875 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 被拒绝",
+          "en": "Rejected"
+        },
+        "text": {
+          "zh": "卡耶博特受过传统的学院派训练。1875年，他把这幅画送到官方沙龙，却被拒绝了。评审大概被这种直白的写实吓到了。",
+          "en": "Caillebotte had a traditional academic training. In 1875 he submitted this painting to the official Salon, but it was rejected, the jury perhaps shocked by its frank realism."
+        }
+      },
+      {
+        "image": "images/floor-scrapers.jpg",
+        "alt": {
+          "zh": "卡耶博特《刨地板的工人》1875，巴黎奥赛博物馆",
+          "en": "Gustave Caillebotte, The Floor Scrapers, 1875, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1875年 · 巴黎奥赛博物馆",
+          "en": "1875 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 和印象派一起",
+          "en": "With the Impressionists"
+        },
+        "text": {
+          "zh": "1876年，他在第二届印象派画展上首次参展，展出了八幅画，其中就有这幅画，和它的另一个版本。这是他最早的杰作。",
+          "en": "In 1876 he made his debut at the second Impressionist exhibition with eight paintings, including this one and a second version of the same subject. It was his first masterpiece."
+        }
+      },
+      {
+        "image": "images/floor-scrapers.jpg",
+        "alt": {
+          "zh": "卡耶博特《刨地板的工人》1875，巴黎奥赛博物馆",
+          "en": "Gustave Caillebotte, The Floor Scrapers, 1875, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1875年 · 巴黎奥赛博物馆",
+          "en": "1875 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 通过雷诺阿",
+          "en": "Through Renoir"
+        },
+        "text": {
+          "zh": "1894年卡耶博特去世后，他的弟弟通过雷诺阿，把这幅画捐给了国家。今天，它在奥赛博物馆。",
+          "en": "After Caillebotte's death in 1894, his brother gave this painting to the nation, through Renoir. Today it is in the Musée d'Orsay."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一个曾被认为不值得画的题材。",
+      "en": "A subject once thought unworthy of a painting."
+    },
+    "versions": [],
+    "museums": [
+      "orsay"
+    ],
+    "exit": [
+      {
+        "scene": "paris-street-rainy-day",
+        "href": "../paris-street-rainy-day/",
+        "label": {
+          "zh": "卡耶博特的另一幅巴黎",
+          "en": "Another of Caillebotte's Paris"
+        }
+      },
+      {
+        "scene": "moulin-galette",
+        "href": "../moulin-galette/",
+        "label": {
+          "zh": "卡耶博特和雷诺阿",
+          "en": "Caillebotte and Renoir"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（奥赛博物馆官网）。",
+    "artist": {
+      "zh": "古斯塔夫·卡耶博特（1848–1894）",
+      "en": "Gustave Caillebotte (1848–1894)"
+    },
+    "title": {
+      "zh": "刨地板的工人",
+      "en": "The Floor Scrapers (Raboteurs de parquet)"
+    },
+    "date": {
+      "zh": "1875年",
+      "en": "1875"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "102 × 146.5 cm",
+      "en": "102 × 146.5 cm"
+    },
+    "collection": {
+      "zh": "巴黎奥赛博物馆（1894年卡耶博特的继承人通过雷诺阿捐赠；编号 RF 2718）",
+      "en": "Musée d'Orsay, Paris (Gift of Caillebotte's heirs through Auguste Renoir, 1894; RF 2718)"
+    },
+    "url": "https://www.musee-orsay.fr/fr/oeuvres/raboteurs-de-parquets-105"
+  },
+  "zoom": {
+    "image": "images/floor-scrapers.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "奥赛博物馆：刨地板的工人",
+          "en": "Musée d'Orsay: *The Floor Scrapers*"
+        },
+        "url": "https://www.musee-orsay.fr/fr/oeuvres/raboteurs-de-parquets-105"
+      },
+      {
+        "title": {
+          "zh": "奥赛博物馆：卡耶博特遗赠",
+          "en": "Musée d'Orsay: the Caillebotte bequest"
+        },
+        "url": "https://www.musee-orsay.fr/en/node/286"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 被拒绝",
+          "en": "Rejected"
+        },
+        "text": {
+          "zh": "卡耶博特受过传统的学院派训练。1875年，他把这幅画送到官方沙龙，却被拒绝了。评审大概被这种直白的写实吓到了。",
+          "en": "Caillebotte had a traditional academic training. In 1875 he submitted this painting to the official Salon, but it was rejected, the jury perhaps shocked by its frank realism."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 和印象派一起",
+          "en": "With the Impressionists"
+        },
+        "text": {
+          "zh": "1876年，他在第二届印象派画展上首次参展，展出了八幅画，其中就有这幅画，和它的另一个版本。这是他最早的杰作。",
+          "en": "In 1876 he made his debut at the second Impressionist exhibition with eight paintings, including this one and a second version of the same subject. It was his first masterpiece."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 通过雷诺阿",
+          "en": "Through Renoir"
+        },
+        "text": {
+          "zh": "1894年卡耶博特去世后，他的弟弟通过雷诺阿，把这幅画捐给了国家。今天，它在奥赛博物馆。",
+          "en": "After Caillebotte's death in 1894, his brother gave this painting to the nation, through Renoir. Today it is in the Musée d'Orsay."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "奥赛博物馆：刨地板的工人",
+        "en": "Musée d'Orsay: *The Floor Scrapers*"
+      },
+      "url": "https://www.musee-orsay.fr/fr/oeuvres/raboteurs-de-parquets-105"
+    },
+    {
+      "title": {
+        "zh": "奥赛博物馆：卡耶博特遗赠",
+        "en": "Musée d'Orsay: the Caillebotte bequest"
+      },
+      "url": "https://www.musee-orsay.fr/en/node/286"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "floor-scrapers.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要用奥赛官网、RMN 或 Google 艺术与文化的图片）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-01"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-01"
+}

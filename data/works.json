@@ -214,19 +214,6 @@
         "check": "ok",
         "_": "芝加哥艺术博物馆导览",
         "scene": "paris-street-rainy-day"
-      },
-      {
-        "title": {
-          "zh": "刨地板的工人",
-          "en": "The Floor Scrapers"
-        },
-        "year": {
-          "zh": "1875",
-          "en": "1875"
-        },
-        "museum": "orsay",
-        "check": "ok",
-        "_": "维基百科、Time Out：1875，1986年进入奥赛"
       }
     ],
     "manet": [
