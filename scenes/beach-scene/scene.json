@@ -849,18 +849,18 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "待补",
+    "url": "https://commons.wikimedia.org/wiki/File:Edgar_Germain_Hilaire_Degas_041.jpg",
     "license": "公有领域（PD-Art）",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
     "files": [
       {
         "file": "beach-scene.jpg",
         "from": "Wikimedia Commons（Tia 上传的 IMG_0564.jpeg，2026-11-01，3840 × 2180，缩小到 2400 宽）",
-        "url": "待补",
+        "url": "https://commons.wikimedia.org/wiki/File:Edgar_Germain_Hilaire_Degas_041.jpg",
         "license": "公有领域（PD-Art）",
         "status": "符合",
         "verified": "2026-11-01",
-        "note": "url 待 Tia 告诉是 Commons 上哪一个文件"
+        "note": "Tia 2026-11-01 告诉的 Commons 文件页"
       }
     ]
   },
