@@ -1,0 +1,610 @@
+{
+  "_说明": "芭蕾舞者（白色纱裙）（室内，完整版：歌剧院的练功房）。所有事实文字由 Tia 提供（资料全部来自伦敦国家美术馆官网作品页）。墙边有长凳和把杆；几位穿白色纱裙的年轻舞者在课间活动，离我们最近的一位把脚搭在长凳上系舞鞋，后面一位扶着墙踮脚做阿拉贝斯克。画家视角和人物位置先按构图估算（参考之前误传的 IMG_0540），新原画上传后再对准。",
+  "id": "ballet-dancers-white",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "练功房里朦胧的光",
+      "en": "Hazy light in the practice room"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《舞蹈课》《芭蕾舞者（后台）》《芭蕾（明星）》《十四岁的小舞者》互相链接（德加的芭蕾）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "dance-class",
+      "ballet-dancers-wings",
+      "the-star",
+      "little-dancer"
+    ]
+  },
+  "painting": {
+    "image": "images/ballet-dancers-white.jpg",
+    "width": 1000,
+    "height": 1007,
+    "alt": {
+      "zh": "德加《芭蕾舞者》约1890–1900，伦敦国家美术馆",
+      "en": "Edgar Degas, Ballet Dancers, about 1890–1900, The National Gallery, London"
+    },
+    "_": "宽高先按尺寸 73 × 72.5 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "芭蕾舞者（白色纱裙）",
+      "en": "Ballet Dancers"
+    },
+    "artist": {
+      "zh": "德加",
+      "en": "Edgar Degas"
+    },
+    "date": {
+      "zh": "约1890–1900年",
+      "en": "about 1890–1900"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下舞者、长凳、把杆和门看介绍 · 点“看见画布”放大看 · 地上发光的圆点 = 德加的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the dancers, the bench, the barre or the door to learn more · Tap “Seeing the canvas” for a close-up · The glowing circle = Degas's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（站着稍微往下看），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.7,
+    "yaw": 0,
+    "pitch": -0.305,
+    "fov": 45,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "rehearsal",
+  "colors": {
+    "line": "#3a3428",
+    "floor": "#8a7050",
+    "wall": "#a8a080",
+    "ceiling": "#c8c0a8",
+    "bench": "#6a8040",
+    "wood": "#6a4a32",
+    "tutu": "#e6ebe2",
+    "tights": "#e8c8b0",
+    "redhair": "#c8402a",
+    "door": "#5a6858",
+    "skin": "#ecd2b8",
+    "trousers": "#e8c8b0",
+    "coat": "#e6ebe2"
+  },
+  "room": {
+    "_说明": "房间形状（米）：歌剧院的练功房。左墙 x=left，前墙 z=front；后墙（把杆、门）从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 3.6,
+    "front": 1.0,
+    "left": -2.5,
+    "backLeft": [
+      -2.5,
+      -5.0
+    ],
+    "backRight": [
+      2.0,
+      -5.0
+    ],
+    "rightFront": [
+      2.0,
+      1.0
+    ],
+    "floorCard": "between",
+    "wallCard": "pastel",
+    "walkSpeed": 0.8
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "ribbons",
+      "x": 0.4,
+      "z": -2.0,
+      "rot": -0.45,
+      "_": "墙边的长凳（离我们最近的舞者把脚搭在上面）",
+      "boxes": [
+        [
+          1.6,
+          0.12,
+          0.4,
+          "bench",
+          0,
+          0.42,
+          0
+        ],
+        [
+          0.08,
+          0.4,
+          0.35,
+          "wood",
+          -0.7,
+          0.2,
+          0
+        ],
+        [
+          0.08,
+          0.4,
+          0.35,
+          "wood",
+          0.7,
+          0.2,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "x": 0.6,
+      "z": -2.6,
+      "rot": -0.6,
+      "card": "ribbons",
+      "_": "离我们最近、系舞鞋的舞者（红头发）",
+      "scale": 0.9,
+      "legs": "tights",
+      "hat": "redhair",
+      "id": "nearest"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "x": 0.35,
+      "z": -3.05,
+      "rot": -0.4,
+      "card": "redhair",
+      "_": "另一个红头发的舞者",
+      "scale": 0.9,
+      "legs": "tights",
+      "hat": "redhair"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "x": -0.8,
+      "z": -3.6,
+      "rot": 1.2,
+      "card": "arabesque",
+      "_": "扶着墙踮脚做阿拉贝斯克的舞者",
+      "scale": 0.9,
+      "legs": "tights"
+    },
+    {
+      "type": "boxes",
+      "card": "arabesque",
+      "x": -1.15,
+      "z": -3.6,
+      "rot": 1.2,
+      "_": "向后伸展的腿",
+      "boxes": [
+        [
+          0.7,
+          0.1,
+          0.1,
+          "tights",
+          0,
+          0.75,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "x": -0.3,
+      "z": -4.2,
+      "rot": 0,
+      "card": "between",
+      "_": "后面课间活动的舞者",
+      "scale": 0.88,
+      "legs": "tights"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "tutu",
+      "x": 0.15,
+      "z": -4.4,
+      "rot": 0,
+      "card": "again",
+      "_": "后面课间活动的舞者",
+      "scale": 0.88,
+      "legs": "tights"
+    },
+    {
+      "type": "boxes",
+      "card": "between",
+      "x": -0.2,
+      "z": -4.9,
+      "_": "墙上的把杆",
+      "boxes": [
+        [
+          4.2,
+          0.05,
+          0.05,
+          "wood",
+          0,
+          1.0,
+          0
+        ],
+        [
+          0.05,
+          1.0,
+          0.05,
+          "wood",
+          -1.8,
+          0.5,
+          0.05
+        ],
+        [
+          0.05,
+          1.0,
+          0.05,
+          "wood",
+          1.8,
+          0.5,
+          0.05
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "tutus",
+      "x": -1.9,
+      "z": -4.95,
+      "_": "后墙上的门",
+      "boxes": [
+        [
+          0.9,
+          2.2,
+          0.05,
+          "door",
+          0,
+          1.1,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "tutus": {
+      "title": {
+        "zh": "白色纱裙",
+        "en": "White tutus"
+      },
+      "text": {
+        "zh": "这种白色纱裙，是19世纪末巴黎歌剧院年轻舞者的练功服。",
+        "en": "These white tutus were the practice dress of the younger dancers at the Paris Opéra in the late 19th century."
+      }
+    },
+    "redhair": {
+      "title": {
+        "zh": "两头红发",
+        "en": "Two heads of red hair"
+      },
+      "text": {
+        "zh": "舞者们笼罩在一片薄纱里，两头醒目的红发，好像把这些模糊的身影固定住了。",
+        "en": "The dancers are clouded in tulle, but two striking heads of red hair seem to anchor the blurred figures."
+      }
+    },
+    "ribbons": {
+      "title": {
+        "zh": "系舞鞋",
+        "en": "Tying the ribbons"
+      },
+      "text": {
+        "zh": "离我们最近的舞者把脚搭在长凳上，正在系舞鞋的缎带，露出强健而富有表现力的背部。",
+        "en": "The dancer closest to us rests her foot on the bench to adjust the ribbons of her shoe, showing her strong, expressive back."
+      }
+    },
+    "arabesque": {
+      "title": {
+        "zh": "阿拉贝斯克",
+        "en": "Arabesque"
+      },
+      "text": {
+        "zh": "她身后，一位舞者踮起脚尖做阿拉贝斯克，腿向后伸展，手指轻轻扶着墙。",
+        "en": "Behind her, a dancer rises on pointe in arabesque, her leg stretched behind her, her fingers lightly touching the wall."
+      }
+    },
+    "pastel": {
+      "title": {
+        "zh": "像粉彩的油画",
+        "en": "Oil that looks like pastel"
+      },
+      "text": {
+        "zh": "这是一幅油画，却有粉彩那种干而像粉末的质感。有些地方，能看到下面的画布。",
+        "en": "This is an oil painting, but it has the dry, powdery look of pastel. In places, the canvas shows through."
+      }
+    },
+    "between": {
+      "title": {
+        "zh": "课间的片刻",
+        "en": "Between exercises"
+      },
+      "text": {
+        "zh": "画的是上课时，在把杆上的准备练习和真正的舞台动作之间的那些片刻。",
+        "en": "It shows the moments in class between preparatory exercises at the barre and the demanding steps of a real performance."
+      }
+    },
+    "again": {
+      "title": {
+        "zh": "一遍又一遍",
+        "en": "Again and again"
+      },
+      "text": {
+        "zh": "舞者从小每天练习同样的动作，一遍又一遍。德加也一遍又一遍地画她们。",
+        "en": "From childhood, the dancers practised the same steps every day, again and again. Degas painted them again and again too."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“看见画布”：站到画家视角点时，画面放大到颜料很薄、能看到下面画布的地方，显示卡片5的文字。只是放大原画，不是示意效果。crop（0–1）先按之前误传的那张估算（右上角），原画上传后照着图量。",
+    "type": "mirror",
+    "label": {
+      "zh": "看见画布",
+      "en": "Seeing the canvas"
+    },
+    "alt": {
+      "zh": "《芭蕾舞者》上颜料很薄、露出画布的地方（放大）",
+      "en": "A thinly painted area of Ballet Dancers where the canvas shows (detail)"
+    },
+    "caption": {
+      "zh": "《芭蕾舞者》上颜料很薄、露出画布的地方（放大）",
+      "en": "A thinly painted area of *Ballet Dancers* where the canvas shows (detail)"
+    },
+    "text": {
+      "zh": "这是一幅油画，却有粉彩那种干而像粉末的质感。有些地方，能看到下面的画布。",
+      "en": "This is an oil painting, but it has the dry, powdery look of pastel. In places, the canvas shows through."
+    },
+    "crop": {
+      "x": 0.75,
+      "y": 0.0,
+      "w": 0.25,
+      "h": 0.45
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/ballet-dancers-white.jpg",
+        "alt": {
+          "zh": "德加《芭蕾舞者》约1890–1900，伦敦国家美术馆",
+          "en": "Edgar Degas, Ballet Dancers, about 1890–1900, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "约1890–1900年 · 伦敦国家美术馆",
+          "en": "about 1890–1900 · The National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 课间",
+          "en": "Between exercises"
+        },
+        "text": {
+          "zh": "德加可以出入巴黎歌剧院的每个角落。这幅画里，他画的不是演出，而是上课时那些短暂的休息：系鞋带、扶墙、伸展。",
+          "en": "Degas had access to every part of the Paris Opéra. Here he paints not a performance, but brief pauses in class: tying ribbons, steadying against the wall, stretching."
+        }
+      },
+      {
+        "image": "images/ballet-dancers-white.jpg",
+        "alt": {
+          "zh": "德加《芭蕾舞者》约1890–1900，伦敦国家美术馆",
+          "en": "Edgar Degas, Ballet Dancers, about 1890–1900, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "约1890–1900年 · 伦敦国家美术馆",
+          "en": "about 1890–1900 · The National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 画室和记忆",
+          "en": "Studio and memory"
+        },
+        "text": {
+          "zh": "他可能在剧院里画过速写，但大部分作品是在画室完成的，舞者会到画室给他当模特。他也相信，凭记忆作画是创作里必不可少的一部分。",
+          "en": "He probably sketched in the theatre, but did most of his work in the studio, where dancers came to pose. He also believed that drawing from memory was essential."
+        }
+      },
+      {
+        "image": "images/ballet-dancers-white.jpg",
+        "alt": {
+          "zh": "德加《芭蕾舞者》约1890–1900，伦敦国家美术馆",
+          "en": "Edgar Degas, Ballet Dancers, about 1890–1900, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "约1890–1900年 · 伦敦国家美术馆",
+          "en": "about 1890–1900 · The National Gallery, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 一百遍",
+          "en": "A hundred times"
+        },
+        "text": {
+          "zh": "德加写道：“一个题材必须画十遍、一百遍。艺术里没有任何东西应该看起来是偶然的。”1926年，伦敦国家美术馆用考陶尔德基金买下了这幅画，今天它挂在43号展厅。",
+          "en": "Degas wrote: “It is necessary to do a subject ten times, a hundred times. Nothing in art must seem an accident.” In 1926, the National Gallery bought this painting with the Courtauld Fund. Today it hangs in Room 43."
+        }
+      }
+    ],
+    "final": {
+      "zh": "艺术里没有任何东西应该看起来是偶然的。—— 德加",
+      "en": "Nothing in art must seem an accident. — Degas"
+    },
+    "versions": [],
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "dance-class",
+        "href": "../dance-class/",
+        "label": {
+          "zh": "德加的芭蕾",
+          "en": "Degas's ballet"
+        }
+      },
+      {
+        "scene": "ballet-dancers-wings",
+        "href": "../ballet-dancers-wings/",
+        "label": {
+          "zh": "德加的芭蕾",
+          "en": "Degas's ballet"
+        }
+      },
+      {
+        "scene": "the-star",
+        "href": "../the-star/",
+        "label": {
+          "zh": "德加的芭蕾",
+          "en": "Degas's ballet"
+        }
+      },
+      {
+        "scene": "little-dancer",
+        "href": "../little-dancer/",
+        "label": {
+          "zh": "德加的芭蕾",
+          "en": "Degas's ballet"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆官网作品页）。",
+    "artist": {
+      "zh": "埃德加·德加（1834–1917）",
+      "en": "Edgar Degas (1834–1917)"
+    },
+    "title": {
+      "zh": "芭蕾舞者",
+      "en": "Ballet Dancers"
+    },
+    "date": {
+      "zh": "约1890–1900年",
+      "en": "about 1890–1900"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "72.5 × 73 cm",
+      "en": "72.5 × 73 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆，43号展厅",
+      "en": "The National Gallery, London, Room 43"
+    },
+    "creditLine": {
+      "zh": "1926年用考陶尔德基金购入（编号 NG4168）",
+      "en": "Bought, Courtauld Fund, 1926 (NG4168)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-ballet-dancers"
+  },
+  "zoom": {
+    "image": "images/ballet-dancers-white.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：芭蕾舞者",
+          "en": "The National Gallery: *Ballet Dancers*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-ballet-dancers"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 课间",
+          "en": "Between exercises"
+        },
+        "text": {
+          "zh": "德加可以出入巴黎歌剧院的每个角落。这幅画里，他画的不是演出，而是上课时那些短暂的休息：系鞋带、扶墙、伸展。",
+          "en": "Degas had access to every part of the Paris Opéra. Here he paints not a performance, but brief pauses in class: tying ribbons, steadying against the wall, stretching."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 画室和记忆",
+          "en": "Studio and memory"
+        },
+        "text": {
+          "zh": "他可能在剧院里画过速写，但大部分作品是在画室完成的，舞者会到画室给他当模特。他也相信，凭记忆作画是创作里必不可少的一部分。",
+          "en": "He probably sketched in the theatre, but did most of his work in the studio, where dancers came to pose. He also believed that drawing from memory was essential."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 一百遍",
+          "en": "A hundred times"
+        },
+        "text": {
+          "zh": "德加写道：“一个题材必须画十遍、一百遍。艺术里没有任何东西应该看起来是偶然的。”1926年，伦敦国家美术馆用考陶尔德基金买下了这幅画，今天它挂在43号展厅。",
+          "en": "Degas wrote: “It is necessary to do a subject ten times, a hundred times. Nothing in art must seem an accident.” In 1926, the National Gallery bought this painting with the Courtauld Fund. Today it hangs in Room 43."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：芭蕾舞者",
+        "en": "The National Gallery: *Ballet Dancers*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-ballet-dancers"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "ballet-dancers-white.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要从国家美术馆官网下载）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-01"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-01"
+}
