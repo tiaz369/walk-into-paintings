@@ -1,0 +1,636 @@
+{
+  "_说明": "梳头（室内，完整版：一间红色调的小房间）。所有事实文字由 Tia 提供（伦敦国家美术馆官网和语音导览；尺寸来自 Art UK，数据由国家美术馆提供；颜料来自 ColourLex 引用的国家美术馆技术研究）。只写画面上能看到的和国家美术馆明确写出的内容，不写推测。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "id": "combing-the-hair",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "红色房间里温暖的光",
+      "en": "Warm light in a red room"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和德加的芭蕾系列互相链接（德加画的另一种日常）；和《海滩一景》预留链接（另一个梳头的场景），对方开放后自动出现。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "dance-class",
+      "ballet-dancers-wings",
+      "the-star",
+      "little-dancer",
+      "ballet-dancers-white",
+      "beach-scene"
+    ]
+  },
+  "painting": {
+    "image": "images/combing-the-hair.jpg",
+    "width": 1283,
+    "height": 1000,
+    "alt": {
+      "zh": "德加《梳头》约1896，伦敦国家美术馆",
+      "en": "Edgar Degas, Combing the Hair ('La Coiffure'), about 1896, The National Gallery, London"
+    },
+    "_": "宽高先按尺寸 146.7 × 114.3 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "梳头",
+      "en": "Combing the Hair ('La Coiffure')"
+    },
+    "artist": {
+      "zh": "德加",
+      "en": "Edgar Degas"
+    },
+    "date": {
+      "zh": "约1896年",
+      "en": "about 1896"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下女仆、女主人、她抬起的手、椅子和墙看介绍 · 点“不同的红”，看裙子和墙用的颜料 · 地上发光的圆点 = 德加的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the maid, the mistress, her raised hand, the chair or the wall to learn more · Tap “Different reds” to see the pigments in the dress and the wall · The glowing circle = Degas's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（站着，离两个人很近），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.55,
+    "yaw": 0,
+    "pitch": -0.2,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "combing",
+  "colors": {
+    "line": "#3a1a10",
+    "floor": "#8a4a2a",
+    "wall": "#c8442a",
+    "ceiling": "#b8603a",
+    "dress": "#d0301e",
+    "hair": "#b8441e",
+    "skin": "#ecc8a8",
+    "maid": "#e6dccc",
+    "trousers": "#e6dccc",
+    "chair": "#8a5030",
+    "wallorange": "#e07a2a",
+    "frame": "#e8c8a0",
+    "wood": "#6a3a24"
+  },
+  "room": {
+    "_说明": "房间形状（米）：一间小房间。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 3.0,
+    "front": 1.0,
+    "left": -2.2,
+    "backLeft": [
+      -2.2,
+      -3.25
+    ],
+    "backRight": [
+      2.4,
+      -3.25
+    ],
+    "rightFront": [
+      2.4,
+      1.0
+    ],
+    "floorCard": "red",
+    "wallCard": "red",
+    "walkSpeed": 0.7
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "diagonal",
+      "x": -0.3,
+      "z": -2.2,
+      "rot": 0.5,
+      "id": "dress",
+      "_": "女主人：穿红裙子斜靠在椅子上（大约倾斜45度）",
+      "boxes": [
+        [
+          1.5,
+          0.45,
+          0.6,
+          "dress",
+          0,
+          0.75,
+          0
+        ],
+        [
+          0.3,
+          0.3,
+          0.3,
+          "skin",
+          0.75,
+          1.1,
+          0
+        ],
+        [
+          0.08,
+          0.5,
+          0.08,
+          "skin",
+          0.75,
+          1.3,
+          0.15
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "raised",
+      "x": 0.45,
+      "z": -2.05,
+      "_": "女主人抬起的右手",
+      "boxes": [
+        [
+          0.08,
+          0.35,
+          0.08,
+          "skin",
+          0,
+          1.35,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "combing",
+      "x": 0.75,
+      "z": -2.0,
+      "id": "hair",
+      "_": "又长又重的红发",
+      "boxes": [
+        [
+          0.4,
+          0.12,
+          0.2,
+          "hair",
+          0,
+          1.25,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "maid",
+      "legs": "maid",
+      "x": 1.0,
+      "z": -2.35,
+      "rot": -1.3,
+      "card": "combing",
+      "id": "maid",
+      "_": "女仆（面朝左，低头梳头）"
+    },
+    {
+      "type": "boxes",
+      "card": "diagonal",
+      "x": -0.3,
+      "z": -2.25,
+      "rot": 0.5,
+      "_": "椅子",
+      "boxes": [
+        [
+          1.2,
+          0.4,
+          0.7,
+          "chair",
+          0,
+          0.2,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "red",
+      "x": 0.2,
+      "z": -3.2,
+      "id": "wall",
+      "_": "身后的红墙和橙色墙面",
+      "boxes": [
+        [
+          3.5,
+          3.0,
+          0.05,
+          "wallorange",
+          0.9,
+          1.5,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "matisse",
+      "x": -0.6,
+      "z": -3.15,
+      "_": "墙上隐约的浅色画框",
+      "boxes": [
+        [
+          0.6,
+          0.5,
+          0.03,
+          "frame",
+          0,
+          1.9,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "combing": {
+      "title": {
+        "zh": "梳头",
+        "en": "Combing the hair"
+      },
+      "text": {
+        "zh": "女仆左手托起女主人又长又重的红发，右手把梳子拉过头发中段。",
+        "en": "With her left hand the maid lifts the long, heavy red hair of her mistress; with her right she pulls a comb through it."
+      }
+    },
+    "raised": {
+      "title": {
+        "zh": "抬起的手",
+        "en": "A raised hand"
+      },
+      "text": {
+        "zh": "被梳头的力道往后拉，女主人抬起右手按住头，好像是为了稳住自己，或者按住头发。",
+        "en": "Pulled back by the force of the strokes, the mistress raises her right hand to her head, as if to steady herself or hold her hair in place."
+      }
+    },
+    "diagonal": {
+      "title": {
+        "zh": "一条斜线",
+        "en": "A diagonal"
+      },
+      "text": {
+        "zh": "从女仆的头和手臂，沿着女主人斜靠的身体，形成一条有力的斜线。",
+        "en": "A powerful diagonal runs from the maid's head and arm down the length of her mistress's reclining body."
+      }
+    },
+    "red": {
+      "title": {
+        "zh": "满屏的红",
+        "en": "All that red"
+      },
+      "text": {
+        "zh": "裙子、头发、墙，几乎全是红色和橙色。德加晚年的颜色越来越大胆，轮廓线也越来越粗黑。",
+        "en": "Dress, hair, walls: almost everything is red or orange. In his last years, Degas's colours grew bolder and his outlines thicker and darker."
+      }
+    },
+    "reds": {
+      "title": {
+        "zh": "不同的红",
+        "en": "Different reds"
+      },
+      "text": {
+        "zh": "国家美术馆的研究发现，裙子用的是朱砂，墙用的是铅丹，再加一点点绿色。",
+        "en": "Research at the National Gallery found that the dress is painted in vermilion, and the wall in red lead with a little green added."
+      }
+    },
+    "matisse": {
+      "title": {
+        "zh": "马蒂斯的画",
+        "en": "Matisse's painting"
+      },
+      "text": {
+        "zh": "德加去世后，画家马蒂斯买下了这幅画。马蒂斯后来也以大胆的红色著称。",
+        "en": "After Degas's death, the painter Henri Matisse bought this picture. Matisse, too, became known for his bold use of red."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“不同的红”（names）：开关打开后，裙子和墙上浮现颜料名称的小标签，点标签显示卡片5。标签是示意，颜料信息来自国家美术馆的技术研究（ColourLex 引用）。头发的颜料资料里没有，所以不标。",
+    "type": "names",
+    "label": {
+      "zh": "不同的红",
+      "en": "Different reds"
+    },
+    "note": {
+      "zh": "标注为示意，颜料信息来自国家美术馆的技术研究。",
+      "en": "Labels are an illustration; pigment information from National Gallery research."
+    },
+    "people": [
+      {
+        "target": "dress",
+        "y": 0.6,
+        "name": {
+          "zh": "朱砂",
+          "en": "Vermilion"
+        },
+        "card": "reds"
+      },
+      {
+        "target": "wall",
+        "y": 2.2,
+        "name": {
+          "zh": "铅丹 + 一点点绿色",
+          "en": "Red lead + a little green"
+        },
+        "card": "reds"
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/combing-the-hair.jpg",
+        "alt": {
+          "zh": "德加《梳头》约1896，伦敦国家美术馆",
+          "en": "Edgar Degas, Combing the Hair ('La Coiffure'), about 1896, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "约1896年 · 伦敦国家美术馆",
+          "en": "about 1896 · The National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 一个常画的题材",
+          "en": "A favourite subject"
+        },
+        "text": {
+          "zh": "女人梳头，或被人梳头，是德加常画的题材。这一幅，是他处理这个题材最大胆的作品之一。",
+          "en": "Women combing their hair, or having it combed, often appear in Degas's work. This is one of his boldest treatments of the subject."
+        }
+      },
+      {
+        "image": "images/combing-the-hair.jpg",
+        "alt": {
+          "zh": "德加《梳头》约1896，伦敦国家美术馆",
+          "en": "Edgar Degas, Combing the Hair ('La Coiffure'), about 1896, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "约1896年 · 伦敦国家美术馆",
+          "en": "about 1896 · The National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 晚年的颜色",
+          "en": "Late colour"
+        },
+        "text": {
+          "zh": "晚年的德加，颜色越来越浓烈，线条越来越粗。这幅画几乎被红色填满。",
+          "en": "In his last years, Degas's colours grew more intense and his lines heavier. This painting is almost filled with red."
+        }
+      },
+      {
+        "image": "images/combing-the-hair.jpg",
+        "alt": {
+          "zh": "德加《梳头》约1896，伦敦国家美术馆",
+          "en": "Edgar Degas, Combing the Hair ('La Coiffure'), about 1896, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "约1896年 · 伦敦国家美术馆",
+          "en": "about 1896 · The National Gallery, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 从德加到马蒂斯",
+          "en": "From Degas to Matisse"
+        },
+        "text": {
+          "zh": "德加去世后，马蒂斯买下了这幅画。1937年，伦敦国家美术馆把它买了下来，今天它挂在45号展厅。",
+          "en": "After Degas died, Matisse bought the painting. In 1937 the National Gallery acquired it. Today it hangs in Room 45."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一幅几乎全是红色的画。",
+      "en": "A painting made almost entirely of red."
+    },
+    "versions": [],
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "beach-scene",
+        "href": "../beach-scene/",
+        "label": {
+          "zh": "另一个梳头的场景",
+          "en": "Another scene of combing hair"
+        }
+      },
+      {
+        "scene": "dance-class",
+        "href": "../dance-class/",
+        "label": {
+          "zh": "德加画的另一种日常",
+          "en": "Another everyday moment by Degas"
+        }
+      },
+      {
+        "scene": "ballet-dancers-wings",
+        "href": "../ballet-dancers-wings/",
+        "label": {
+          "zh": "德加画的另一种日常",
+          "en": "Another everyday moment by Degas"
+        }
+      },
+      {
+        "scene": "the-star",
+        "href": "../the-star/",
+        "label": {
+          "zh": "德加画的另一种日常",
+          "en": "Another everyday moment by Degas"
+        }
+      },
+      {
+        "scene": "little-dancer",
+        "href": "../little-dancer/",
+        "label": {
+          "zh": "德加画的另一种日常",
+          "en": "Another everyday moment by Degas"
+        }
+      },
+      {
+        "scene": "ballet-dancers-white",
+        "href": "../ballet-dancers-white/",
+        "label": {
+          "zh": "德加画的另一种日常",
+          "en": "Another everyday moment by Degas"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆官网；尺寸来自 Art UK，数据由国家美术馆提供）。",
+    "artist": {
+      "zh": "埃德加·德加（1834–1917）",
+      "en": "Edgar Degas (1834–1917)"
+    },
+    "title": {
+      "zh": "梳头",
+      "en": "Combing the Hair ('La Coiffure')"
+    },
+    "date": {
+      "zh": "约1896年",
+      "en": "about 1896"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "114.3 × 146.7 cm",
+      "en": "114.3 × 146.7 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆，45号展厅",
+      "en": "The National Gallery, London, Room 45"
+    },
+    "creditLine": {
+      "zh": "1937年购入（编号 NG4865）",
+      "en": "Bought, 1937 (NG4865)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-combing-the-hair-la-coiffure"
+  },
+  "zoom": {
+    "image": "images/combing-the-hair.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：梳头",
+          "en": "The National Gallery: *Combing the Hair ('La Coiffure')*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-combing-the-hair-la-coiffure"
+      },
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：画家的画（展览）",
+          "en": "The National Gallery: Painters' Paintings"
+        },
+        "url": "https://www.nationalgallery.org.uk/exhibitions/past/painters-paintings-from-freud-to-van-dyck/painters-paintings-in-the-collection?viewPage=2"
+      },
+      {
+        "title": {
+          "zh": "ColourLex：德加《梳头》",
+          "en": "ColourLex: Degas, *Combing the Hair*"
+        },
+        "url": "https://colourlex.com/project/degas-combing-hair"
+      },
+      {
+        "title": {
+          "zh": "Art UK：梳头",
+          "en": "Art UK: *Combing the Hair ('La Coiffure')*"
+        },
+        "url": "https://artuk.org/discover/artworks/combing-the-hair-la-coiffure-114482"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 一个常画的题材",
+          "en": "A favourite subject"
+        },
+        "text": {
+          "zh": "女人梳头，或被人梳头，是德加常画的题材。这一幅，是他处理这个题材最大胆的作品之一。",
+          "en": "Women combing their hair, or having it combed, often appear in Degas's work. This is one of his boldest treatments of the subject."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 晚年的颜色",
+          "en": "Late colour"
+        },
+        "text": {
+          "zh": "晚年的德加，颜色越来越浓烈，线条越来越粗。这幅画几乎被红色填满。",
+          "en": "In his last years, Degas's colours grew more intense and his lines heavier. This painting is almost filled with red."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 从德加到马蒂斯",
+          "en": "From Degas to Matisse"
+        },
+        "text": {
+          "zh": "德加去世后，马蒂斯买下了这幅画。1937年，伦敦国家美术馆把它买了下来，今天它挂在45号展厅。",
+          "en": "After Degas died, Matisse bought the painting. In 1937 the National Gallery acquired it. Today it hangs in Room 45."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：梳头",
+        "en": "The National Gallery: *Combing the Hair ('La Coiffure')*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-combing-the-hair-la-coiffure"
+    },
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：画家的画（展览）",
+        "en": "The National Gallery: Painters' Paintings"
+      },
+      "url": "https://www.nationalgallery.org.uk/exhibitions/past/painters-paintings-from-freud-to-van-dyck/painters-paintings-in-the-collection?viewPage=2"
+    },
+    {
+      "title": {
+        "zh": "ColourLex：德加《梳头》",
+        "en": "ColourLex: Degas, *Combing the Hair*"
+      },
+      "url": "https://colourlex.com/project/degas-combing-hair"
+    },
+    {
+      "title": {
+        "zh": "Art UK：梳头",
+        "en": "Art UK: *Combing the Hair ('La Coiffure')*"
+      },
+      "url": "https://artuk.org/discover/artworks/combing-the-hair-la-coiffure-114482"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "combing-the-hair.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要从国家美术馆官网、Art UK 或 Google 艺术与文化下载）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-01"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-01"
+}
