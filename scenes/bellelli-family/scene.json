@@ -694,18 +694,18 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "待补",
+    "url": "https://commons.wikimedia.org/wiki/File:Edgar_Degas_-_The_Bellelli_Family_-_Google_Art_Project.jpg",
     "license": "公有领域（PD-Art）",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
     "files": [
       {
         "file": "bellelli-family.jpg",
-        "from": "Wikimedia Commons（等 Tia 重新上传；2026-11-01 传的是 Google 艺术与文化版本，已删除）",
-        "url": "https://commons.wikimedia.org/wiki/File:Degas_-_The_Bellelli_Family,_circa_1858-1862.jpg",
+        "from": "Wikimedia Commons（Google 艺术与文化版本，原文件名 IMG_0560.jpeg）",
+        "url": "https://commons.wikimedia.org/wiki/File:Edgar_Degas_-_The_Bellelli_Family_-_Google_Art_Project.jpg",
         "license": "公有领域（PD-Art）",
-        "status": "待决定",
-        "verified": "2026-11-01",
-        "note": "建议用这个非 Google 艺术与文化的 Commons 文件"
+        "status": "例外：Tia 2026-11-02 决定使用",
+        "verified": "2026-11-02",
+        "note": "Commons 上奥赛这一幅的完整大图只有 Google 艺术与文化版本。按 README 的版权规则本来不用这类文件，这一张是 Tia 决定的例外。"
       }
     ]
   },
