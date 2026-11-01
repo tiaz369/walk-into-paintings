@@ -1,5 +1,5 @@
 {
-  "_说明": "苦艾酒（在咖啡馆里）（室内，完整版：咖啡馆）。所有事实文字由 Tia 提供（资料来自奥赛博物馆官网）。清晨的咖啡馆，光线灰白：一男一女并肩坐在靠墙的长椅上，面前是几张大理石小桌，女子面前有一杯浅绿色的酒；身后是一面大镜子；左下角的桌上有报夹和报纸。原画还没上传：物体位置和视角先按构图估算，原画上传后再对准。",
+  "_说明": "苦艾酒（在咖啡馆里）（室内，完整版：咖啡馆）。所有事实文字由 Tia 提供（资料来自奥赛博物馆官网）。清晨的咖啡馆，光线灰白：一男一女并肩坐在靠墙的长椅上，面前是几张大理石小桌，女子面前有一杯浅绿色的酒；身后是一面大镜子；左下角的桌上有报夹和报纸。画家视角和物体位置按原画估算。",
   "id": "absinthe",
   "variant": "interior",
   "lighting": {
@@ -22,13 +22,12 @@
   },
   "painting": {
     "image": "images/absinthe.jpg",
-    "width": 1000,
-    "height": 1343,
+    "width": 960,
+    "height": 1319,
     "alt": {
       "zh": "德加《苦艾酒（在咖啡馆里）》1875–1876，巴黎奥赛博物馆",
       "en": "Edgar Degas, In a Café (The Absinthe), 1875–76, Musée d'Orsay, Paris"
-    },
-    "_": "宽高先按尺寸 68.5 × 92 cm 估算，原画上传后改成图片的实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -63,13 +62,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the two people, the glass, the tables, the newspaper or the mirror to learn more · Tap “Shadows in the mirror” for a close-up · The glowing circle = Degas's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估算（站着，从左前方稍高处往下看桌子和两个人），原画上传后对准。",
-    "x": 0.4,
-    "z": 0.6,
-    "eye": 1.75,
-    "yaw": 0.25,
-    "pitch": -0.42,
-    "fov": 50,
+    "_说明": "画家视角：按原画估算（站着往下看，视平线在画面上沿；德加的透视本来就有点歪，桌子和人是折中对准的）。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.7,
+    "yaw": 0,
+    "pitch": -0.3491,
+    "fov": 40,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -81,10 +80,11 @@
     "floor": "#a8a090",
     "wall": "#bcb59c",
     "ceiling": "#d8d2c0",
-    "bench": "#6a5a48",
+    "bench": "#7a2a2a",
     "mirror": "#a8aaa0",
     "frame": "#6a5a3a",
     "marble": "#e6e2d8",
+    "glassbottle": "#c8ccc0",
     "iron": "#3a3a36",
     "dress": "#d8d0c0",
     "coat": "#3a3630",
@@ -98,19 +98,19 @@
   "room": {
     "_说明": "房间形状（米）：咖啡馆的一角。左墙 x=left，前墙 z=front；后墙（挂大镜子）从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
     "height": 3.2,
-    "front": 1.5,
-    "left": -2.4,
+    "front": 1.0,
+    "left": -2.0,
     "backLeft": [
-      -2.4,
-      -3.25
+      -2.0,
+      -3.95
     ],
     "backRight": [
-      2.8,
-      -3.25
+      2.4,
+      -3.95
     ],
     "rightFront": [
-      2.8,
-      1.5
+      2.4,
+      1.0
     ],
     "floorCard": "cafe",
     "wallCard": "cafe",
@@ -121,26 +121,26 @@
       "type": "boxes",
       "card": "mirror",
       "x": 0.3,
-      "z": -3.1,
-      "_": "靠墙的长椅",
+      "z": -3.7,
+      "_": "靠墙的红色长椅",
       "boxes": [
         [
           4.6,
           0.45,
-          0.55,
+          0.5,
           "bench",
           0,
           0.22,
-          0.25
+          0
         ],
         [
           4.6,
-          0.6,
+          0.65,
           0.12,
           "bench",
           0,
           0.75,
-          -0.02
+          -0.2
         ]
       ]
     },
@@ -148,28 +148,19 @@
       "type": "boxes",
       "card": "mirror",
       "x": 0.3,
-      "z": -3.18,
+      "z": -3.93,
       "id": "mirror",
       "_": "他们身后的大镜子",
       "boxes": [
         [
           4.6,
-          1.3,
+          1.4,
           0.04,
           "mirror",
           0,
-          1.75,
+          1.8,
           0,
           "cloth"
-        ],
-        [
-          4.7,
-          0.08,
-          0.06,
-          "frame",
-          0,
-          2.43,
-          0
         ],
         [
           4.7,
@@ -186,8 +177,8 @@
       "type": "figure",
       "pose": "sitting",
       "color": "dress",
-      "x": -0.3,
-      "z": -2.75,
+      "x": 0.0,
+      "z": -3.6,
       "rot": 0,
       "card": "alone",
       "_": "女子：女演员艾伦·安德烈扮演",
@@ -199,7 +190,7 @@
       "pose": "sitting",
       "color": "coat",
       "x": 0.65,
-      "z": -2.8,
+      "z": -3.65,
       "rot": 0,
       "card": "friends",
       "_": "男子：画家和版画家马塞兰·德布丹扮演",
@@ -209,14 +200,15 @@
     {
       "type": "boxes",
       "card": "alone",
-      "x": 0.0,
-      "z": -2.15,
-      "_": "两人面前的大理石桌",
+      "x": 0.45,
+      "z": -3.05,
+      "rot": -0.77,
+      "_": "两人面前的大理石桌（右边）",
       "boxes": [
         [
-          1.8,
+          1.2,
           0.05,
-          0.6,
+          0.5,
           "marble",
           0,
           0.72,
@@ -237,8 +229,8 @@
     {
       "type": "boxes",
       "card": "glass",
-      "x": -0.28,
-      "z": -2.1,
+      "x": 0.25,
+      "z": -3.25,
       "_": "女子面前那杯浅绿色的苦艾酒",
       "boxes": [
         [
@@ -256,12 +248,13 @@
     {
       "type": "boxes",
       "card": "cafe",
-      "x": -0.75,
-      "z": -1.45,
-      "_": "中间的大理石桌",
+      "x": -0.25,
+      "z": -2.45,
+      "rot": 0.535,
+      "_": "中间的大理石桌（上面有一个空瓶子）",
       "boxes": [
         [
-          0.9,
+          1.3,
           0.05,
           0.6,
           "marble",
@@ -283,44 +276,64 @@
     },
     {
       "type": "boxes",
-      "card": "signature",
-      "x": -1.25,
-      "z": -0.75,
-      "_": "左下角的大理石桌",
+      "card": "cafe",
+      "x": -0.17,
+      "z": -2.64,
+      "_": "桌上的空瓶子",
       "boxes": [
         [
-          0.9,
-          0.05,
-          0.6,
-          "marble",
-          0,
-          0.72,
-          0,
-          "cloth"
-        ],
-        [
-          0.08,
-          0.7,
-          0.08,
-          "iron",
-          0,
-          0.35,
-          0
-        ]
-      ]
-    },
-    {
-      "type": "boxes",
-      "card": "signature",
-      "x": -1.25,
-      "z": -0.75,
-      "rot": 0.6,
-      "_": "桌上的报夹和报纸（签名在这里）",
-      "boxes": [
-        [
-          0.7,
-          0.02,
+          0.12,
           0.3,
+          0.12,
+          "glassbottle",
+          0,
+          0.9,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "signature",
+      "x": -0.15,
+      "z": -1.4,
+      "rot": -0.48,
+      "_": "最前面的大理石桌（签名在这里）",
+      "boxes": [
+        [
+          1.4,
+          0.05,
+          0.7,
+          "marble",
+          0,
+          0.72,
+          0,
+          "cloth"
+        ],
+        [
+          0.08,
+          0.7,
+          0.08,
+          "iron",
+          0,
+          0.35,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "signature",
+      "x": -0.5,
+      "z": -1.55,
+      "rot": 0.6,
+      "_": "桌上的报夹和报纸",
+      "boxes": [
+        [
+          0.6,
+          0.02,
+          0.25,
           "paper",
           0,
           0.76,
@@ -328,13 +341,13 @@
           "cloth"
         ],
         [
-          0.75,
+          0.65,
           0.03,
           0.03,
           "wood",
           0,
           0.78,
-          -0.15
+          -0.12
         ]
       ]
     }
@@ -402,7 +415,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“镜子里的影子”：站到画家视角点时，画面放大到两人身后的镜子，显示卡片5的文字。只是放大原画，不是示意效果。crop 是镜子在原画上的位置（0–1）——待核对：原画上传后照着图量。",
+    "_说明": "独家发现“镜子里的影子”：站到画家视角点时，画面放大到两人身后的镜子，显示卡片5的文字。只是放大原画，不是示意效果。crop 是镜子在原画上的位置（0–1），照着 images/absinthe.jpg 量的（上方一条，两个影子都在里面）。",
     "type": "mirror",
     "label": {
       "zh": "镜子里的影子",
@@ -421,10 +434,10 @@
       "en": "In the large mirror behind them, their shadowy silhouettes are reflected."
     },
     "crop": {
-      "x": 0.25,
+      "x": 0.15,
       "y": 0.0,
-      "w": 0.7,
-      "h": 0.3
+      "w": 0.65,
+      "h": 0.27
     }
   },
   "ending": {
@@ -641,11 +654,12 @@
     "files": [
       {
         "file": "absinthe.jpg",
-        "from": "Wikimedia Commons（等 Tia 上传；不用奥赛官网、RMN 或 Google 艺术与文化的图片）",
+        "from": "Wikimedia Commons（Tia 上传的 IMG_0559.jpeg，2026-11-01，960 × 1319）",
         "url": "待补",
         "license": "公有领域（PD-Art）",
-        "status": "待决定",
-        "verified": "2026-11-01"
+        "status": "符合",
+        "verified": "2026-11-01",
+        "note": "url 待 Tia 告诉是 Commons 上哪一个文件"
       }
     ]
   },

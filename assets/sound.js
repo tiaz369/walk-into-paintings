@@ -391,6 +391,15 @@ const AMBIENCE = {
     const bell = t => { for (let k = 0; k < 8; k++) tone(out, t + k * 0.09, { f0: 1900, vol: 0.02, attack: 0.002, dur: 0.08 }); };   // 一串短促的电铃声
     every(st, 30, 60, bell);
   },
+  // 安静的客厅：钟表的滴答声，窗外远处的街道声（A quiet drawing room）
+  'drawing-room'(out, st) {
+    loopNoise('brown', out, { freq: 220, gain: 0.06 });
+    let tick = 0;
+    const step = () => { st.timers.push(setTimeout(() => { if (!st.on) return; const t = ctx.currentTime + 0.02;
+      burst(out, t, { type: 'bandpass', freq: tick++ % 2 ? 1200 : 1600, q: 6, vol: 0.07, dur: 0.02, p: 0.4 }); step(); }, 1000)); };
+    step();
+    hooves(out, ctx.currentTime + 6); every(st, 30, 55, t => hooves(out, t));   // 窗外远处
+  },
   // 清晨的咖啡馆：很安静，偶尔杯子轻碰一下，远处街上的马车声（A café early in the morning）
   'morning-cafe'(out, st) {
     loopNoise('brown', out, { freq: 240, gain: 0.07 });
