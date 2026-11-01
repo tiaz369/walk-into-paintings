@@ -219,24 +219,6 @@
     "manet": [
       {
         "title": {
-          "zh": "杜伊勒里花园的音乐会",
-          "en": "Music in the Tuileries Gardens"
-        },
-        "year": {
-          "zh": "1862",
-          "en": "1862"
-        },
-        "museum": "national-gallery",
-        "museumNote": {
-          "zh": "伦敦国家美术馆，与都柏林休·莱恩美术馆轮流展出",
-          "en": "Shared with the Hugh Lane Gallery, Dublin; the two galleries display it in turn."
-        },
-        "url": "https://www.nationalgallery.org.uk/paintings/edouard-manet-music-in-the-tuileries-gardens",
-        "check": "ok",
-        "_": "伦敦国家美术馆作品页：与都柏林休·莱恩美术馆共有（莱恩遗赠）"
-      },
-      {
-        "title": {
           "zh": "草地上的午餐",
           "en": "Luncheon on the Grass"
         },
