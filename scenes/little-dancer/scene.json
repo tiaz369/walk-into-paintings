@@ -12,14 +12,15 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《舞蹈课》《芭蕾舞者（后台）》《芭蕾（明星）》《芭蕾舞者（白色纱裙）》互相链接（德加的芭蕾）。",
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《舞蹈课》《芭蕾舞者（后台）》《芭蕾（明星）》《芭蕾舞者（白色纱裙）》互相链接（德加的芭蕾）。和《梳头》互相链接（德加画的另一种日常）。",
     "doors": [],
     "cards": [],
     "end": [
       "dance-class",
       "ballet-dancers-wings",
       "the-star",
-      "ballet-dancers-white"
+      "ballet-dancers-white",
+      "combing-the-hair"
     ]
   },
   "ambience": "gallery",
@@ -404,6 +405,14 @@
         "label": {
           "zh": "德加的芭蕾",
           "en": "Degas's ballet"
+        }
+      },
+      {
+        "scene": "combing-the-hair",
+        "href": "../combing-the-hair/",
+        "label": {
+          "zh": "德加画的另一种日常",
+          "en": "Another everyday moment by Degas"
         }
       }
     ]

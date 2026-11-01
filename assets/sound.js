@@ -391,6 +391,12 @@ const AMBIENCE = {
     const bell = t => { for (let k = 0; k < 8; k++) tone(out, t + k * 0.09, { f0: 1900, vol: 0.02, attack: 0.002, dur: 0.08 }); };   // 一串短促的电铃声
     every(st, 30, 60, bell);
   },
+  // 非常安静的室内，梳子梳过头发的沙沙声（A quiet room; a comb drawn through hair）
+  combing(out, st) {
+    loopNoise('brown', out, { freq: 200, gain: 0.05 });
+    const stroke = t => { for (let k = 0; k < 3; k++) burst(out, t + k * 1.3, { kind: 'white', type: 'bandpass', freq: rnd(3000, 4200), q: 1.5, vol: 0.03, dur: 0.9, p: 0.2 }); };   // 一下一下慢慢梳
+    stroke(ctx.currentTime + 1); every(st, 6, 10, stroke);
+  },
   // 安静的客厅：钟表的滴答声，窗外远处的街道声（A quiet drawing room）
   'drawing-room'(out, st) {
     loopNoise('brown', out, { freq: 220, gain: 0.06 });
