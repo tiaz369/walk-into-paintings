@@ -391,6 +391,15 @@ const AMBIENCE = {
     const bell = t => { for (let k = 0; k < 8; k++) tone(out, t + k * 0.09, { f0: 1900, vol: 0.02, attack: 0.002, dur: 0.08 }); };   // 一串短促的电铃声
     every(st, 30, 60, bell);
   },
+  // 刨地板：刨子刮过木地板的声音（一下一下），偶尔低声说话，窗外远处的街道声（Scraping the floor）
+  'floor-scrapers'(out, st) {
+    loopNoise('brown', out, { freq: 220, gain: 0.06 });
+    const scrape = t => { const p = rnd(-0.5, 0.3); for (let k = 0; k < 3 + Math.floor(Math.random() * 3); k++) burst(out, t + k * rnd(0.7, 1.0), { kind: 'white', type: 'bandpass', freq: rnd(1400, 2200), q: 1.2, vol: 0.05, dur: 0.45, p }); };
+    scrape(ctx.currentTime + 0.8); every(st, 3, 6, scrape);
+    const voices = ctx.createGain(); voices.gain.value = 0.25; voices.connect(out);
+    murmur(voices, 0.05)(st);
+    hooves(out, ctx.currentTime + 7); every(st, 30, 55, t => hooves(out, t));   // 窗外远处的街道
+  },
   // 河边餐厅的露台：鸟叫和风吹树叶，远处划桨的水声，餐厅里隐约的人声（A riverside terrace）
   'terrace-river'(out, st) {
     loopNoise('brown', out, { freq: 300, gain: 0.07 });
