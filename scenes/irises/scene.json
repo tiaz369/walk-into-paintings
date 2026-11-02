@@ -555,12 +555,12 @@
       },
       {
         "file": "irises-vase.jpg",
-        "from": "梵高博物馆官网（Tia 下载）",
-        "url": "待补",
-        "license": "只限非商业使用",
-        "status": "不符合",
-        "note": "梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请",
-        "verified": "2026-10-27"
+        "from": "Wikimedia Commons（Tia 2026-11-02 上传 IMG_0607.jpeg，1280 × 1611）",
+        "url": "待补（Tia 给的 Commons 文件页）",
+        "license": "公有领域（PD-Art）",
+        "status": "符合（Commons 文件页待核对）",
+        "note": "2026-11-02 换掉了不合规则的旧图（梵高博物馆官网下载）。",
+        "verified": "2026-11-02"
       }
     ]
   },

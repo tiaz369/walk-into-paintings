@@ -473,9 +473,10 @@ function londonRow(R, s) {
   const note = s.londonNote ? `<span class="row-meta london-note">${bi(s.londonNote, ' / ')}</span>` : '';   // 路线页上的一句提示（比如“想看莫奈的车站，不用去巴黎”）
   // 借展、还没做成场景的作品：加一行小字
   const room = s.room && typeof s.room !== 'object' ? s.room : null;
+  const ownerNote = s.ownerNote ? `<span class="row-meta london-note">${bi(s.ownerNote, ' / ')}</span>` : '';   // 借展作品的所有者（比如“泰特美术馆收藏”）
   const loanNote = s.loan && !live ? `<span class="row-meta london-note">${ui(`借展作品 · 暂未制作场景。借展期间，可以在${room ? room + '号展厅' : '国家美术馆'}看到真迹。`, `On loan · No scene yet. While on loan, you can see it in ${room ? 'Room ' + room : 'the gallery'}.`)}</span>` : '';
   return `<div class="row"><span class="row-main"><span class="row-pic">${live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>
-    <span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span>${note}${loanNote}</span></span>${side ? `<span class="row-side">${side}</span>` : ''}</div>`;
+    <span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span>${note}${ownerNote}${loanNote}</span></span>${side ? `<span class="row-side">${side}</span>` : ''}</div>`;
 }
 
 // “找不同”对比滑块（和场景最后一屏的一样）：两个下拉选版本，左右拖动

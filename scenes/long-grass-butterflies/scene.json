@@ -11,13 +11,14 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《鸢尾花》互相链接（卡片6：一年前，同一个花园）。系列“梵高在圣雷米”的最后一幅（在《杏花》之后）。",
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《鸢尾花》互相链接（卡片6：一年前，同一个花园）。系列“梵高在圣雷米”的最后一幅（在《杏花》之后）。和《奥维尔附近的农场》互相链接（两个月后，在奥维尔）。",
     "doors": [],
     "cards": [
       "irises"
     ],
     "end": [
-      "irises"
+      "irises",
+      "farms-auvers"
     ]
   },
   "painting": {
@@ -694,6 +695,14 @@
         "label": {
           "zh": "一年前，同一个花园",
           "en": "A year earlier, the same garden"
+        }
+      },
+      {
+        "scene": "farms-auvers",
+        "href": "../farms-auvers/",
+        "label": {
+          "zh": "两个月后，在奥维尔",
+          "en": "Two months later, in Auvers"
         }
       }
     ]

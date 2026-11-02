@@ -998,12 +998,12 @@
       },
       {
         "file": "v1889-orsay.jpg",
-        "from": "Wikimedia Commons，图片注明 © Musée d'Orsay, Dist. RMN-Grand Palais / Patrice Schmidt",
-        "url": "待补",
-        "license": "© RMN-Grand Palais",
-        "status": "不符合",
-        "note": "RMN 的照片（禁止第 1 条）",
-        "verified": "2026-10-27"
+        "from": "Wikimedia Commons（Tia 2026-11-02 上传 IMG_0590.jpeg，1920 × 1488）",
+        "url": "待补（Tia 给的 Commons 文件页）",
+        "license": "公有领域（PD-Art）",
+        "status": "符合（Commons 文件页待核对）",
+        "note": "2026-11-02 换掉了不合规则的旧图（RMN 照片）。",
+        "verified": "2026-11-02"
       },
       {
         "file": "crops/boch.jpg",

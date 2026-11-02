@@ -1,0 +1,610 @@
+{
+  "_说明": "奥维尔附近的农场（户外风景，完整版）。所有事实文字由 Tia 提供（伦敦国家美术馆官网、梵高书信、维基百科）。站在小山坡上，眼前是一排破旧的茅草顶农舍，屋顶长着青苔，周围是起伏的绿色田野；画面很宽，天空几乎是空白的，笔触很快。“可能没有画完”保留“可能”。图片只用 Wikimedia Commons 上标注 PD-Art 的版本（泰特官网和 Art UK 的图片是 CC BY-NC-ND，不能修改）。原画还没上传：视角和物体位置先估算。",
+  "id": "farms-auvers",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "夏天田野上的光",
+      "en": "Summer light over the fields"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。系列“梵高在奥维尔”的第一幅；和《长草与蝴蝶》互相链接（两个月前，在圣雷米）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "long-grass-butterflies"
+    ]
+  },
+  "painting": {
+    "image": "images/farms-auvers.jpg",
+    "width": 1920,
+    "height": 961,
+    "alt": {
+      "zh": "梵高《奥维尔附近的农场》1890，泰特美术馆，借展于伦敦国家美术馆",
+      "en": "Vincent van Gogh, Farms near Auvers, 1890, Tate, on loan to the National Gallery, London"
+    },
+    "_": "宽高先按尺寸 100.3 × 50.2 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "奥维尔附近的农场",
+      "en": "Farms near Auvers"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1890年7月",
+      "en": "July 1890"
+    },
+    "museum": {
+      "zh": "泰特美术馆，借展于伦敦国家美术馆",
+      "en": "Tate, on loan to the National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下农舍、屋顶、田野和天空看介绍 · 点“没画完的天空”，放大看看 · 地上发光的圆点 = 梵高的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the farmhouses, the roofs, the fields or the sky to learn more · Tap “The unfinished sky” to look closer · The glowing circle = Van Gogh's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（站在小山坡上），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 2.2,
+    "yaw": 0,
+    "pitch": -0.05,
+    "fov": 32,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "auvers-fields",
+  "colors": {
+    "line": "#2a2a26",
+    "ground": "#6a9a4a",
+    "field2": "#7aaa50",
+    "field3": "#5a8a3e",
+    "wall": "#d8cfa8",
+    "thatch": "#8a7a4a",
+    "moss": "#6a8a4a",
+    "leaves": "#4a7a3a",
+    "sky": "#e8ecdc",
+    "trunk": "#5a4a32",
+    "wood": "#6a4a32"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（山坡），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -60,
+      60,
+      -60,
+      4
+    ],
+    "bounds": [
+      -6,
+      6,
+      -12,
+      2
+    ],
+    "groundCard": "fields",
+    "skyCard": "sky",
+    "skyRadius": 90,
+    "walkSpeed": 0.9
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "fields",
+      "_": "起伏的绿色田野",
+      "pts": [
+        [
+          -60,
+          0.01,
+          4
+        ],
+        [
+          -60,
+          0.01,
+          -60
+        ],
+        [
+          60,
+          0.01,
+          -60
+        ],
+        [
+          60,
+          0.01,
+          4
+        ]
+      ],
+      "color": "ground"
+    },
+    {
+      "type": "boxes",
+      "card": "farms",
+      "x": 0,
+      "z": -22,
+      "_": "一排破旧的农舍（墙）",
+      "id": "farms",
+      "boxes": [
+        [
+          5,
+          2.6,
+          4,
+          "wall",
+          -12,
+          1.3,
+          0
+        ],
+        [
+          6,
+          2.4,
+          4,
+          "wall",
+          -5,
+          1.2,
+          0.5
+        ],
+        [
+          5,
+          2.8,
+          4,
+          "wall",
+          2,
+          1.4,
+          0
+        ],
+        [
+          7,
+          2.5,
+          4,
+          "wall",
+          9,
+          1.25,
+          0.5
+        ],
+        [
+          4,
+          2.2,
+          4,
+          "wall",
+          15,
+          1.1,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "roofs",
+      "x": 0,
+      "z": -22,
+      "_": "长着青苔的茅草屋顶",
+      "boxes": [
+        [
+          5.6,
+          1.6,
+          4.6,
+          "thatch",
+          -12,
+          3.4,
+          0
+        ],
+        [
+          6.6,
+          1.5,
+          4.6,
+          "moss",
+          -5,
+          3.1,
+          0.5
+        ],
+        [
+          5.6,
+          1.7,
+          4.6,
+          "thatch",
+          2,
+          3.6,
+          0
+        ],
+        [
+          7.6,
+          1.6,
+          4.6,
+          "moss",
+          9,
+          3.3,
+          0.5
+        ],
+        [
+          4.6,
+          1.4,
+          4.6,
+          "thatch",
+          15,
+          2.9,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "tree",
+      "card": "cordeville",
+      "_": "农舍旁的树",
+      "x": -18,
+      "z": -24,
+      "h": 7,
+      "r": 3,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "cordeville",
+      "_": "农舍旁的树",
+      "x": 20,
+      "z": -26,
+      "h": 6,
+      "r": 2.6,
+      "color": "leaves"
+    },
+    {
+      "type": "boxes",
+      "card": "fields",
+      "x": 0,
+      "z": -10,
+      "_": "近处起伏的草坡",
+      "boxes": [
+        [
+          30,
+          0.6,
+          6,
+          "field2",
+          -6,
+          0.3,
+          0
+        ],
+        [
+          24,
+          0.4,
+          5,
+          "field3",
+          10,
+          0.2,
+          -3
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "roofs": {
+      "title": {
+        "zh": "茅草屋顶",
+        "en": "Thatched roofs"
+      },
+      "text": {
+        "zh": "梵高刚到奥维尔，就写信给妹妹：“这里有长着青苔的茅草屋顶，非常棒，我一定会画点什么。”",
+        "en": "Soon after arriving in Auvers, Van Gogh wrote to his sister: “Here there are roofs of mossy thatch which are superb, and of which I'll certainly do something.”"
+      }
+    },
+    "farms": {
+      "title": {
+        "zh": "一排破旧的农舍",
+        "en": "A row of old farmhouses"
+      },
+      "text": {
+        "zh": "画面上最显眼的，是一排破旧的农舍。",
+        "en": "A row of dilapidated farm buildings dominates the picture."
+      }
+    },
+    "cordeville": {
+      "title": {
+        "zh": "科尔德维尔",
+        "en": "Cordeville"
+      },
+      "text": {
+        "zh": "这些农舍在奥维尔边上一个叫科尔德维尔的小村子里。",
+        "en": "These cottages stood in Cordeville, a tiny hamlet on the edge of Auvers."
+      }
+    },
+    "fields": {
+      "title": {
+        "zh": "起伏的田野",
+        "en": "Rolling fields"
+      },
+      "text": {
+        "zh": "农舍周围是一片起伏的绿色田野。",
+        "en": "All around the cottages, green fields roll away."
+      }
+    },
+    "sky": {
+      "title": {
+        "zh": "空白的天空",
+        "en": "An empty sky"
+      },
+      "text": {
+        "zh": "天空几乎是空白的，笔触也很快，这幅画可能没有画完。",
+        "en": "The sky is almost blank and the brushwork hasty: the painting may be unfinished."
+      }
+    },
+    "wide": {
+      "title": {
+        "zh": "很宽的画布",
+        "en": "A wide canvas"
+      },
+      "text": {
+        "zh": "画布的宽度正好是高度的两倍，适合画开阔的风景。",
+        "en": "The canvas is exactly twice as wide as it is tall, suited to a broad landscape."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“没画完的天空”（mirror）：点按钮（或站到画家视角点），放大原画上几乎空白的天空，能看到很快的笔触和露出来的画布，显示卡片5的文字。只是放大原画，不加“这是示意”。crop 待原画上传后对准。",
+    "type": "mirror",
+    "label": {
+      "zh": "没画完的天空",
+      "en": "The unfinished sky"
+    },
+    "card": "sky",
+    "alt": {
+      "zh": "《奥维尔附近的农场》几乎空白的天空（放大）",
+      "en": "The almost blank sky of Farms near Auvers (detail)"
+    },
+    "caption": {
+      "zh": "《奥维尔附近的农场》几乎空白的天空（放大）",
+      "en": "The almost blank sky of *Farms near Auvers* (detail)"
+    },
+    "text": {
+      "zh": "天空几乎是空白的，笔触也很快，这幅画可能没有画完。",
+      "en": "The sky is almost blank and the brushwork hasty: the painting may be unfinished."
+    },
+    "crop": {
+      "x": 0.3,
+      "y": 0.0,
+      "w": 0.4,
+      "h": 0.3
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/farms-auvers.jpg",
+        "alt": {
+          "zh": "梵高《奥维尔附近的农场》1890，泰特美术馆，借展于伦敦国家美术馆",
+          "en": "Vincent van Gogh, Farms near Auvers, 1890, Tate, on loan to the National Gallery, London"
+        },
+        "caption": {
+          "zh": "1890年7月 · 泰特美术馆，借展于伦敦国家美术馆",
+          "en": "July 1890 · Tate, on loan to the National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 来到奥维尔",
+          "en": "Arriving in Auvers"
+        },
+        "text": {
+          "zh": "1890年5月，梵高离开圣雷米的疗养院，搬到巴黎附近的小镇奥维尔。他很快就爱上了这里长着青苔的茅草屋顶。",
+          "en": "In May 1890, Van Gogh left the asylum at Saint-Rémy and moved to Auvers-sur-Oise, a small town near Paris. He soon fell in love with its mossy thatched roofs."
+        }
+      },
+      {
+        "image": "images/farms-auvers.jpg",
+        "alt": {
+          "zh": "梵高《奥维尔附近的农场》1890，泰特美术馆，借展于伦敦国家美术馆",
+          "en": "Vincent van Gogh, Farms near Auvers, 1890, Tate, on loan to the National Gallery, London"
+        },
+        "caption": {
+          "zh": "1890年7月 · 泰特美术馆，借展于伦敦国家美术馆",
+          "en": "July 1890 · Tate, on loan to the National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 科尔德维尔的农舍",
+          "en": "The farmhouses of Cordeville"
+        },
+        "text": {
+          "zh": "7月，他在奥维尔边上的小村子科尔德维尔，画下了这一排破旧的农舍和起伏的田野。这是他最后的风景画之一。",
+          "en": "In July, in the hamlet of Cordeville on the edge of Auvers, he painted this row of old farmhouses and rolling fields. It is one of his last landscapes."
+        }
+      },
+      {
+        "image": "images/farms-auvers.jpg",
+        "alt": {
+          "zh": "梵高《奥维尔附近的农场》1890，泰特美术馆，借展于伦敦国家美术馆",
+          "en": "Vincent van Gogh, Farms near Auvers, 1890, Tate, on loan to the National Gallery, London"
+        },
+        "caption": {
+          "zh": "1890年7月 · 泰特美术馆，借展于伦敦国家美术馆",
+          "en": "July 1890 · Tate, on loan to the National Gallery, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 在伦敦",
+          "en": "In London"
+        },
+        "text": {
+          "zh": "1933年，收藏家弗兰克·斯托普把这幅画遗赠给了泰特美术馆。今天，它长期借给伦敦国家美术馆，挂在43号展厅，和梵高的其他作品在一起。",
+          "en": "In 1933, the collector Frank Stoop bequeathed this painting to Tate. Today it is on long-term loan to the National Gallery, hanging in Room 43 with Van Gogh's other works."
+        }
+      }
+    ],
+    "final": {
+      "zh": "长着青苔的茅草屋顶，非常棒。",
+      "en": "Roofs of mossy thatch which are superb."
+    },
+    "finalBy": {
+      "zh": "梵高致妹妹威尔，1890年5月",
+      "en": "Van Gogh to his sister Wil, May 1890"
+    },
+    "versions": [],
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "long-grass-butterflies",
+        "href": "../long-grass-butterflies/",
+        "label": {
+          "zh": "两个月前，在圣雷米",
+          "en": "Two months earlier, in Saint-Rémy"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆官网；国家美术馆编号 L711）。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "奥维尔附近的农场",
+      "en": "Farms near Auvers"
+    },
+    "date": {
+      "zh": "1890年7月",
+      "en": "July 1890"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "50.2 × 100.3 cm",
+      "en": "50.2 × 100.3 cm"
+    },
+    "collection": {
+      "zh": "泰特美术馆（1933年C. 弗兰克·斯托普遗赠），借展于伦敦国家美术馆，43号展厅（国家美术馆编号 L711）",
+      "en": "Tate (Bequeathed by C. Frank Stoop, 1933), on loan to the National Gallery, London, Room 43 (L711)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-farms-near-auvers"
+  },
+  "zoom": {
+    "image": "images/farms-auvers.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：奥维尔附近的农场",
+          "en": "The National Gallery: *Farms near Auvers*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-farms-near-auvers"
+      },
+      {
+        "title": {
+          "zh": "梵高书信：致妹妹威尔，约1890年5月21日",
+          "en": "Van Gogh's letters: to his sister Wil, about 21 May 1890"
+        },
+        "url": "https://www.vangoghletters.org"
+      },
+      {
+        "title": {
+          "zh": "维基百科：奥维尔附近的农场",
+          "en": "Wikipedia: *Farms near Auvers*"
+        },
+        "url": "https://en.wikipedia.org/wiki/Farms_near_Auvers"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 来到奥维尔",
+          "en": "Arriving in Auvers"
+        },
+        "text": {
+          "zh": "1890年5月，梵高离开圣雷米的疗养院，搬到巴黎附近的小镇奥维尔。他很快就爱上了这里长着青苔的茅草屋顶。",
+          "en": "In May 1890, Van Gogh left the asylum at Saint-Rémy and moved to Auvers-sur-Oise, a small town near Paris. He soon fell in love with its mossy thatched roofs."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 科尔德维尔的农舍",
+          "en": "The farmhouses of Cordeville"
+        },
+        "text": {
+          "zh": "7月，他在奥维尔边上的小村子科尔德维尔，画下了这一排破旧的农舍和起伏的田野。这是他最后的风景画之一。",
+          "en": "In July, in the hamlet of Cordeville on the edge of Auvers, he painted this row of old farmhouses and rolling fields. It is one of his last landscapes."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 在伦敦",
+          "en": "In London"
+        },
+        "text": {
+          "zh": "1933年，收藏家弗兰克·斯托普把这幅画遗赠给了泰特美术馆。今天，它长期借给伦敦国家美术馆，挂在43号展厅，和梵高的其他作品在一起。",
+          "en": "In 1933, the collector Frank Stoop bequeathed this painting to Tate. Today it is on long-term loan to the National Gallery, hanging in Room 43 with Van Gogh's other works."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：奥维尔附近的农场",
+        "en": "The National Gallery: *Farms near Auvers*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-farms-near-auvers"
+    },
+    {
+      "title": {
+        "zh": "梵高书信：致妹妹威尔，约1890年5月21日",
+        "en": "Van Gogh's letters: to his sister Wil, about 21 May 1890"
+      },
+      "url": "https://www.vangoghletters.org"
+    },
+    {
+      "title": {
+        "zh": "维基百科：奥维尔附近的农场",
+        "en": "Wikipedia: *Farms near Auvers*"
+      },
+      "url": "https://en.wikipedia.org/wiki/Farms_near_Auvers"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。泰特官网和 Art UK 的图片是 CC BY-NC-ND（禁止修改），不能用；只用 Wikimedia Commons 上标注 PD-Art 的版本。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "farms-auvers.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要用泰特官网或 Art UK 的图片）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待上传",
+        "verified": "2026-11-02"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-02"
+}
