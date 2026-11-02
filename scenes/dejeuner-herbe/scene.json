@@ -1,5 +1,5 @@
 {
-  "_说明": "草地上的午餐（户外风景，完整版：林间空地）。所有事实文字由 Tia 提供（奥赛博物馆官网、奥赛提供给谷歌艺术与文化的介绍、史密森尼杂志）。画中有裸体女性：所有文字只平实地介绍画面和历史，不用任何带性暗示的描述；3D 里的人物只是简单的几何体。开场有一行小字说明（contentNote）。两位男子的身份只有一个来源，不写进卡片。原画还没上传：画家视角和物体位置先按构图估算，原画上传后再对准。",
+  "_说明": "草地上的午餐（户外风景，完整版：林间空地）。所有事实文字由 Tia 提供（奥赛博物馆官网、奥赛提供给谷歌艺术与文化的介绍、史密森尼杂志）。画中有裸体女性：所有文字只平实地介绍画面和历史，不用任何带性暗示的描述；3D 里的人物只是简单的几何体。开场有一行小字说明（contentNote）。两位男子的身份只有一个来源，不写进卡片。原画 2026-11-02 上传，视角已对准：视平线在画面 30% 高处，眼睛 1.3 米，竖直视角 45°。前景三个人离画家约 3–4 米，溪水里的女子约 9 米。",
   "id": "dejeuner-herbe",
   "variant": "outdoor",
   "lighting": {
@@ -21,13 +21,12 @@
   },
   "painting": {
     "image": "images/dejeuner-herbe.jpg",
-    "width": 1600,
-    "height": 1258,
+    "width": 1920,
+    "height": 1513,
     "alt": {
       "zh": "马奈《草地上的午餐》1863，巴黎奥赛博物馆",
       "en": "Édouard Manet, Luncheon on the Grass, 1863, Musée d'Orsay, Paris"
-    },
-    "_": "宽高先按尺寸 264.5 × 208 cm 估算，原画上传后改成图片的实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -66,13 +65,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the figures, the picnic basket, the woman in the stream or the woods to learn more · Tap “What Manet borrowed” to compare three originals · The glowing circle = Manet's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估算（坐在草地上的人前面），原画上传后对准。",
+    "_说明": "画家视角：按原画对准（视平线在画面 30% 高处，眼睛 1.3 米）。",
     "x": 0,
     "z": 0,
     "eye": 1.3,
     "yaw": 0,
-    "pitch": -0.2,
-    "fov": 50,
+    "pitch": -0.1642,
+    "fov": 45,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -107,10 +106,10 @@
       4
     ],
     "bounds": [
-      -4,
-      4,
-      -6,
-      3
+      -3,
+      3,
+      -7,
+      2
     ],
     "groundCard": "titian",
     "skyCard": "titian",
@@ -154,22 +153,22 @@
         [
           -8,
           0.03,
-          -6.5
+          -7.5
         ],
         [
           -8,
           0.03,
-          -9.5
+          -13
         ],
         [
           8,
           0.03,
-          -9.5
+          -13
         ],
         [
           8,
           0.03,
-          -6.5
+          -7.5
         ]
       ],
       "color": "water"
@@ -178,8 +177,8 @@
       "type": "figure",
       "pose": "sitting",
       "color": "pale",
-      "x": -0.55,
-      "z": -3.0,
+      "x": -0.47,
+      "z": -3.3,
       "rot": 0.3,
       "card": "gaze",
       "_": "前景的女子（转头看着画外）",
@@ -190,7 +189,7 @@
       "pose": "sitting",
       "color": "coat",
       "x": 0.0,
-      "z": -3.3,
+      "z": -4.1,
       "rot": -0.5,
       "card": "men",
       "_": "中间穿深色外套的男子",
@@ -201,7 +200,7 @@
       "pose": "sitting",
       "color": "coat",
       "x": 0.75,
-      "z": -3.0,
+      "z": -3.5,
       "rot": -1.6,
       "card": "raphael",
       "_": "右边半躺着、撑着胳膊的男子",
@@ -210,8 +209,8 @@
     {
       "type": "boxes",
       "card": "picnic",
-      "x": -1.1,
-      "z": -2.4,
+      "x": -0.64,
+      "z": -2.5,
       "_": "倒翻的篮子、水果和面包",
       "boxes": [
         [
@@ -255,8 +254,8 @@
     {
       "type": "boxes",
       "card": "model",
-      "x": -0.85,
-      "z": -2.7,
+      "x": -1.1,
+      "z": -2.75,
       "_": "脱下的蓝色衣服和草帽",
       "boxes": [
         [
@@ -283,8 +282,8 @@
       "type": "figure",
       "pose": "standing",
       "color": "white",
-      "x": 0.0,
-      "z": -7.8,
+      "x": 0.69,
+      "z": -9.3,
       "rot": 0,
       "card": "stream",
       "_": "溪水里弯着腰的女子（穿衬裙）",
@@ -295,8 +294,8 @@
     {
       "type": "boxes",
       "card": "stream",
-      "x": -2.6,
-      "z": -10.5,
+      "x": 4.5,
+      "z": -14,
       "_": "远处的小船",
       "boxes": [
         [
@@ -314,8 +313,8 @@
       "type": "tree",
       "card": "titian",
       "_": "树林",
-      "x": -3.2,
-      "z": -5.5,
+      "x": -1.67,
+      "z": -4.4,
       "h": 11,
       "r": 3.2,
       "color": "leaves"
@@ -324,8 +323,8 @@
       "type": "tree",
       "card": "titian",
       "_": "树林",
-      "x": 3.2,
-      "z": -6,
+      "x": 1.9,
+      "z": -3.4,
       "h": 12,
       "r": 3.5,
       "color": "leaves"
@@ -344,8 +343,8 @@
       "type": "tree",
       "card": "titian",
       "_": "树林",
-      "x": 2.2,
-      "z": -13,
+      "x": 2.8,
+      "z": -13.5,
       "h": 11,
       "r": 3.2,
       "color": "leaves"
@@ -701,10 +700,10 @@
     "files": [
       {
         "file": "dejeuner-herbe.jpg",
-        "from": "Wikimedia Commons（等 Tia 上传；不要用奥赛官网、RMN 或谷歌艺术与文化的图片）",
-        "url": "待补",
+        "from": "Wikimedia Commons（Tia 2026-11-02 上传，原文件名 IMG_0583.jpeg，1920 × 1513）",
+        "url": "待补（Tia 给的 Commons 文件页）",
         "license": "公有领域（PD-Art）",
-        "status": "待决定",
+        "status": "符合",
         "verified": "2026-11-02"
       },
       {

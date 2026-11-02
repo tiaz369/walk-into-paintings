@@ -1,5 +1,5 @@
 {
-  "_说明": "根特祭坛画（静物类轻量版：分层景深 + 细节放大 + 卡片 + 短故事，加“打开 / 合上祭坛”）。所有事实文字由 Tia 提供（资料来自 New Statesman、比利时通讯社、Lonely Planet）。它不是一幅画，而是由很多块画板组成、可以打开和合上的祭坛画，所以不做走动的3D场景。painting.image 是打开时的整组（ghent-open.jpg）；exclusive.closed.image 是合上时的样子（ghent-closed.jpg，宽度是打开时的一半）。原画还没上传：圆点、放大的位置和“缺了的一块”的框，是先按祭坛画的布局估的，上传后照原画重新对准。",
+  "_说明": "根特祭坛画（静物类轻量版：分层景深 + 细节放大 + 卡片 + 短故事，加“打开 / 合上祭坛”）。所有事实文字由 Tia 提供（资料来自 New Statesman、比利时通讯社、Lonely Planet）。它不是一幅画，而是由很多块画板组成、可以打开和合上的祭坛画，所以不做走动的3D场景。painting.image 是打开时的整组（ghent-open.jpg）；exclusive.closed.image 是合上时的样子（ghent-closed.jpg，宽度是打开时的一半）。打开时的原画 2026-11-02 上传，已对准；合上时的图还没上传。",
   "id": "ghent-altarpiece",
   "variant": "still-life",
   "kind": "light",
@@ -25,13 +25,12 @@
   "ambience": "cathedral",
   "painting": {
     "image": "images/ghent-open.jpg",
-    "width": 2000,
-    "height": 1440,
+    "width": 1920,
+    "height": 1415,
     "alt": {
       "zh": "休伯特和扬·凡·艾克《根特祭坛画》（打开），1432年完成，根特圣巴夫主教座堂",
       "en": "Hubert and Jan van Eyck, The Ghent Altarpiece (open), completed 1432, St Bavo's Cathedral, Ghent"
-    },
-    "_": "宽高是按打开时的比例先填的，原画上传后改成实际像素"
+    }
   },
   "label": {
     "_说明": "展签：画名、画家、年份、收藏地",
@@ -85,20 +84,20 @@
       "state": "closed"
     },
     "lamb": {
-      "x": 0.42,
-      "y": 0.8,
+      "x": 0.4,
+      "y": 0.85,
       "layer": 0,
       "state": "open"
     },
     "face": {
       "x": 0.5,
-      "y": 0.665,
+      "y": 0.715,
       "layer": 0,
       "state": "open"
     },
     "judges": {
       "x": 0.065,
-      "y": 0.78,
+      "y": 0.8,
       "layer": 0,
       "state": "open"
     },
@@ -110,7 +109,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现：①“打开祭坛”：开场是合上的祭坛，点按钮，两块翼板向两边慢慢转开，露出里面的整组画面；再点一次合上。②“缺了的一块”：开关打开后，左下角“正义的法官”那一块变成半透明，并显示卡片4的文字（没打开时会先打开）。③“放大看细节”：羔羊、上方的人物、左下角的“正义的法官”。位置是打开时整组画上的 0–1 坐标。",
+    "_说明": "独家发现：①“打开祭坛”：开场是合上的祭坛，点按钮，两块翼板向两边慢慢转开，露出里面的整组画面；再点一次合上。②“缺了的一块”：开关打开后，左下角“正义的法官”那一块变成半透明，并显示卡片4的文字（没打开时会先打开）。③“放大看细节”：羔羊、上方的人物、左下角的“正义的法官”。位置是打开时整组画上的 0–1 坐标。 打开时的圆点、放大位置和“缺了的一块”的框已照 images/ghent-open.jpg（2026-11-02 上传）对准；合上时的两个圆点（closed、brothers）等 ghent-closed.jpg 上传后再对准。",
     "type": "altarpiece",
     "label": {
       "zh": "打开祭坛",
@@ -132,10 +131,10 @@
         "zh": "缺了的一块",
         "en": "The missing panel"
       },
-      "x": 0.0,
-      "y": 0.52,
-      "w": 0.13,
-      "h": 0.48,
+      "x": 0.005,
+      "y": 0.59,
+      "w": 0.12,
+      "h": 0.395,
       "card": "judges"
     },
     "zoomLabel": {
@@ -150,7 +149,7 @@
           "en": "The Lamb"
         },
         "x": 0.5,
-        "y": 0.68,
+        "y": 0.71,
         "scale": 4,
         "card": "face"
       },
@@ -161,7 +160,7 @@
           "en": "The figures above"
         },
         "x": 0.5,
-        "y": 0.25,
+        "y": 0.28,
         "scale": 2.2
       },
       {
@@ -482,12 +481,12 @@
     "files": [
       {
         "file": "ghent-open.jpg",
-        "from": "Wikimedia Commons（还没上传）",
-        "url": "待补",
+        "from": "Wikimedia Commons（Tia 2026-11-02 上传，原文件名 IMG_0581.jpeg，1920 × 1415）",
+        "url": "待补（Tia 给的 Commons 文件页）",
         "license": "公有领域（PD-Art）",
         "status": "符合",
         "note": "等 Tia 上传；不用 KIK-IRPA “Closer to Van Eyck”的图片，也不用教堂里的现场照片",
-        "verified": "2026-10-27"
+        "verified": "2026-11-02"
       },
       {
         "file": "ghent-closed.jpg",

@@ -1,5 +1,5 @@
 {
-  "_说明": "游艇上的午宴（户外风景，完整版：餐厅阳台）。所有事实文字由 Tia 提供（资料来自菲利普斯收藏馆官网和 Artnet）。塞纳河边沙图富尔奈斯餐厅的阳台：头顶是红白条纹的遮阳篷，一张长桌上摆着酒瓶、酒杯和葡萄，周围坐着、站着十几个朋友；栏杆外是河、树和远处的船。原画还没上传：现在的人物和画家视角是先按画面描述摆的，上传后照原画重新对准。",
+  "_说明": "游艇上的午宴（户外风景，完整版：餐厅阳台）。所有事实文字由 Tia 提供（资料来自菲利普斯收藏馆官网和 Artnet）。塞纳河边沙图富尔奈斯餐厅的阳台：头顶是红白条纹的遮阳篷，一张长桌上摆着酒瓶、酒杯和葡萄，周围坐着、站着十几个朋友；栏杆外是河、树和远处的船。原画 2026-11-02 上传，视角和人物位置已照原画对准（桌子离画家约 1–2 米，站在后面的人约 3 米）。",
   "id": "boating-party",
   "variant": "outdoor",
   "lighting": {
@@ -23,13 +23,12 @@
   },
   "painting": {
     "image": "images/boating-party.jpg",
-    "width": 1600,
-    "height": 1195,
+    "width": 1920,
+    "height": 1422,
     "alt": {
       "zh": "雷诺阿《游艇上的午宴》1880–1881，华盛顿菲利普斯收藏馆",
       "en": "Pierre-Auguste Renoir, Luncheon of the Boating Party, 1880–81, The Phillips Collection, Washington, DC"
-    },
-    "_": "宽高是按尺寸比例先填的，原画上传后改成实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -64,13 +63,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the people, the table or the railing to learn more · Tap “Who's at the table” to see who they are · The glowing circle = Renoir's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先按画面描述估算，原画上传后对准。",
+    "_说明": "画家视角：按原画对准（站着往下看桌子：视平线在画面 15% 高处，站在后面的人的头都在这条线附近；眼睛 1.6 米，竖直视角 55°）。",
     "x": 0,
     "z": 0,
     "eye": 1.6,
     "yaw": 0,
-    "pitch": -0.2,
-    "fov": 50,
+    "pitch": -0.3494,
+    "fov": 55,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -115,10 +114,10 @@
       20
     ],
     "bounds": [
-      -2,
-      3.5,
-      -4.5,
-      1.5
+      -1.6,
+      2.2,
+      -3.2,
+      1.2
     ],
     "groundCard": "restaurant",
     "skyCard": "restaurant",
@@ -134,22 +133,22 @@
         [
           -3,
           0.01,
-          2
+          1.5
         ],
         [
           -3,
           0.01,
-          -6
+          -4.5
         ],
         [
-          5,
+          3.5,
           0.01,
-          -6
+          -4.5
         ],
         [
-          5,
+          3.5,
           0.01,
-          2
+          1.5
         ]
       ],
       "color": "deck"
@@ -187,106 +186,87 @@
       "card": "railing",
       "x": 0,
       "z": 0,
-      "_": "阳台栏杆（从左前方斜向后面）",
+      "_": "阳台栏杆（从左前方斜向后面，只画了竖杆和扶手的大致位置）",
       "boxes": [
         [
-          0.08,
-          1.0,
-          0.08,
-          "rail",
-          -2.6,
-          0.5,
-          -1.2
-        ],
-        [
-          0.08,
-          1.0,
-          0.08,
-          "rail",
-          -2.1,
-          0.5,
-          -1.75
-        ],
-        [
-          0.08,
-          1.0,
-          0.08,
-          "rail",
-          -1.6,
-          0.5,
-          -2.3
-        ],
-        [
-          0.08,
-          1.0,
-          0.08,
-          "rail",
-          -1.1,
-          0.5,
-          -2.85
-        ],
-        [
-          0.08,
-          1.0,
-          0.08,
-          "rail",
-          -0.6000000000000001,
-          0.5,
-          -3.4000000000000004
-        ],
-        [
-          0.08,
-          1.0,
-          0.08,
-          "rail",
-          -0.10000000000000009,
-          0.5,
-          -3.95
-        ],
-        [
-          0.08,
-          1.0,
-          0.08,
-          "rail",
-          0.3999999999999999,
-          0.5,
-          -4.5
-        ],
-        [
-          0.08,
-          1.0,
-          0.08,
-          "rail",
-          0.8999999999999999,
-          0.5,
-          -5.050000000000001
-        ],
-        [
-          0.08,
-          1.0,
-          0.08,
-          "rail",
-          1.4,
-          0.5,
-          -5.6000000000000005
-        ],
-        [
-          0.1,
           0.06,
-          5.6,
+          1.0,
+          0.06,
           "rail",
-          -0.6,
-          1.02,
-          -3.4
+          -1.15,
+          0.5,
+          -0.8
+        ],
+        [
+          0.06,
+          1.0,
+          0.06,
+          "rail",
+          -1.067,
+          0.5,
+          -1.067
+        ],
+        [
+          0.06,
+          1.0,
+          0.06,
+          "rail",
+          -0.983,
+          0.5,
+          -1.333
+        ],
+        [
+          0.06,
+          1.0,
+          0.06,
+          "rail",
+          -0.9,
+          0.5,
+          -1.6
+        ],
+        [
+          0.06,
+          1.0,
+          0.06,
+          "rail",
+          -0.817,
+          0.5,
+          -1.867
+        ],
+        [
+          0.06,
+          1.0,
+          0.06,
+          "rail",
+          -0.733,
+          0.5,
+          -2.133
+        ],
+        [
+          0.06,
+          1.0,
+          0.06,
+          "rail",
+          -0.65,
+          0.5,
+          -2.4
+        ],
+        [
+          0.06,
+          0.06,
+          1.68,
+          "rail",
+          -0.9,
+          1.0,
+          -1.6
         ]
-      ],
-      "rot": -0.75
+      ]
     },
     {
       "type": "boxes",
       "card": "restaurant",
-      "x": 0.6,
-      "z": -2.6,
+      "x": 0.2,
+      "z": -1.8,
       "_": "头顶红白条纹的遮阳篷",
       "boxes": [
         [
@@ -386,27 +366,27 @@
       "card": "table",
       "_": "长桌",
       "nearLeft": [
-        -0.5,
-        -2.0
+        -0.7,
+        -1.05
       ],
       "nearRight": [
-        1.3,
-        -2.0
+        0.35,
+        -0.9
       ],
       "farLeft": [
-        -0.5,
-        -2.85
+        -0.45,
+        -2.0
       ],
       "farRight": [
-        1.3,
-        -2.85
+        0.6,
+        -1.85
       ]
     },
     {
       "type": "boxes",
       "card": "table",
-      "x": 0.4,
-      "z": -2.4,
+      "x": -0.15,
+      "z": -1.4,
       "_": "桌上的酒瓶、酒杯和葡萄",
       "boxes": [
         [
@@ -470,8 +450,8 @@
       "pose": "sitting",
       "color": "darkdress",
       "legs": "darkdress",
-      "x": -0.75,
-      "z": -1.6,
+      "x": -0.95,
+      "z": -1.4,
       "rot": 0,
       "card": "aline",
       "_": "左下角逗小狗的艾琳·夏里戈",
@@ -480,8 +460,8 @@
     {
       "type": "boxes",
       "card": "aline",
-      "x": -0.6,
-      "z": -1.35,
+      "x": -0.62,
+      "z": -1.25,
       "_": "桌上的小狗",
       "boxes": [
         [
@@ -500,8 +480,8 @@
       "pose": "sitting",
       "color": "whiteshirt",
       "legs": "trousers",
-      "x": 1.6,
-      "z": -1.5,
+      "x": 0.75,
+      "z": -0.95,
       "rot": 0,
       "card": "caillebotte",
       "_": "右下角反坐在椅子上的卡耶博特",
@@ -512,8 +492,8 @@
       "pose": "standing",
       "color": "whiteshirt",
       "legs": "trousers",
-      "x": -1.5,
-      "z": -2.8,
+      "x": -1.05,
+      "z": -1.55,
       "rot": 0,
       "card": "railing",
       "_": "靠在栏杆上的小阿方斯·富尔奈斯",
@@ -524,8 +504,8 @@
       "pose": "standing",
       "color": "darkdress",
       "legs": "darkdress",
-      "x": -1.2,
-      "z": -3.4,
+      "x": -0.3,
+      "z": -2.25,
       "rot": 0,
       "card": "railing",
       "_": "靠在栏杆边的女子",
@@ -536,63 +516,63 @@
       "pose": "sitting",
       "color": "coat",
       "legs": "trousers",
-      "x": 0.0,
-      "z": -3.1,
+      "x": 0.08,
+      "z": -1.9,
       "rot": 0,
       "card": "walks",
-      "_": "桌后的人"
+      "_": "桌后戴帽子、背对我们的人"
     },
     {
       "type": "figure",
       "pose": "sitting",
       "color": "darkdress",
       "legs": "darkdress",
-      "x": 0.6,
+      "x": 0.38,
+      "z": -2.15,
+      "rot": 0,
+      "card": "walks",
+      "_": "桌后拿杯子喝酒的女子"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 1.7,
+      "z": -3.0,
+      "rot": 0,
+      "card": "walks",
+      "_": "后面站着的男人"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "darkdress",
+      "legs": "darkdress",
+      "x": 0.3,
+      "z": -1.3,
+      "rot": 0,
+      "card": "walks",
+      "_": "右边靠在桌边的女子"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 0.9,
+      "z": -1.45,
+      "rot": 0,
+      "card": "walks",
+      "_": "右边弯着腰、靠着她的男人"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "legs": "trousers",
+      "x": 0.85,
       "z": -3.2,
-      "rot": 0,
-      "card": "walks",
-      "_": "桌后的女子"
-    },
-    {
-      "type": "figure",
-      "pose": "sitting",
-      "color": "coat",
-      "legs": "trousers",
-      "x": 1.2,
-      "z": -3.0,
-      "rot": 0,
-      "card": "walks",
-      "_": "桌后的男人"
-    },
-    {
-      "type": "figure",
-      "pose": "sitting",
-      "color": "darkdress",
-      "legs": "darkdress",
-      "x": 1.9,
-      "z": -2.4,
-      "rot": 0,
-      "card": "walks",
-      "_": "右边的女子"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": 2.2,
-      "z": -3.0,
-      "rot": 0,
-      "card": "walks",
-      "_": "右边站着的男人"
-    },
-    {
-      "type": "figure",
-      "pose": "standing",
-      "color": "coat",
-      "legs": "trousers",
-      "x": 1.4,
-      "z": -4.0,
       "rot": 0,
       "card": "walks",
       "_": "后面戴高帽的男人"
@@ -602,8 +582,8 @@
       "pose": "standing",
       "color": "darkdress",
       "legs": "darkdress",
-      "x": 0.6,
-      "z": -4.3,
+      "x": 1.4,
+      "z": -2.7,
       "rot": 0,
       "card": "walks",
       "_": "后面的女子"
@@ -1020,12 +1000,12 @@
     "files": [
       {
         "file": "boating-party.jpg",
-        "from": "Wikimedia Commons（还没上传）",
-        "url": "待补",
+        "from": "Wikimedia Commons（Tia 2026-11-02 上传，原文件名 IMG_0582.jpeg，1920 × 1422）",
+        "url": "待补（Tia 给的 Commons 文件页）",
         "license": "公有领域（PD-Art）",
         "status": "符合",
-        "note": "等 Tia 上传；不用 Google Art Project 或 Bridgeman 的版本",
-        "verified": "2026-10-27"
+        "note": "不用 Google Art Project 或 Bridgeman 的版本",
+        "verified": "2026-11-02"
       }
     ]
   },
