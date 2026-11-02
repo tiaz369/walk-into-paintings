@@ -26,6 +26,7 @@ export async function setupJourney(S) {
       setTimeout(() => { const b = document.querySelector(play); if (b && !b.classList.contains('on')) b.click(); }, 1800);
     }
   }
+  keepExploring(S);
   const storyId = param('story');
   let D = null;
   try { D = await fetch(ROOT + 'data/stories.json', { cache: 'no-cache' }).then(r => r.json()); } catch (e) { return; }
@@ -60,4 +61,34 @@ export async function setupJourney(S) {
   if (!end) return;
   const h = end.querySelector('h2');
   end.insertBefore(box, h ? h.nextSibling : end.firstChild);
+}
+
+// ---------- 场景结尾“继续探索”：推荐 2–3 个相关场景（同系列 → 同画家 → 同主题），只推荐已上线的 ----------
+async function keepExploring(S) {
+  const end = document.getElementById('actEnd');
+  if (!end) return;
+  const R = await fetch(ROOT + 'data/scenes.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => null);
+  if (!R) return;
+  const me = R.scenes.find(s => s.id === S.id);
+  if (!me) return;
+  const live = R.scenes.filter(s => s.status === 'live' && s.id !== me.id && s.cover);
+  const inCol = c => R.collections.filter(x => x.order.includes(c)).flatMap(x => x.order);
+  const sameCol = new Set(inCol(me.id));
+  const themes = new Set((me.themes || []).filter(t => t !== 'london'));
+  const picks = [];
+  const add = (list, why) => { for (const s of list) { if (picks.length >= 3) return; if (!picks.some(p => p.s.id === s.id)) { picks.push({ s, why }); return; } } };
+  // 同系列：按系列里的顺序，从这一幅后面开始
+  const col = R.collections.find(x => x.order.includes(me.id));
+  if (col) { const i = col.order.indexOf(me.id); add([...col.order.slice(i + 1), ...col.order.slice(0, i)].map(id => live.find(s => s.id === id)).filter(Boolean), { zh: '同一个系列', en: 'Same collection' }); }
+  add(live.filter(s => s.artist === me.artist && !sameCol.has(s.id)), { zh: '同一位画家', en: 'Same artist' });
+  add(live.filter(s => (s.themes || []).some(t => themes.has(t)) && s.artist !== me.artist), { zh: '相似的主题', en: 'Similar theme' });
+  if (picks.length < 2) add(live.filter(s => s.artist === me.artist), { zh: '同一位画家', en: 'Same artist' });
+  if (!picks.length) return;
+  const box = document.createElement('div');
+  box.className = 'keep-exploring';
+  box.innerHTML = `<div class="section-title">${ui('继续探索', 'Keep exploring')}</div><div class="ke-cards">${picks.map(({ s, why }) => `<a class="ke-card" href="${ROOT + s.path}">
+      <span class="ke-pic"><img src="${ROOT + s.cover}" alt="" loading="lazy" /></span>
+      <span class="ke-why">${ui(why.zh, why.en)}</span><span class="ke-name">${bi(s.title)}</span></a>`).join('')}</div>`;
+  const acts = end.querySelector('.end-actions');   // 放在结尾按钮后面（延伸阅读之前）
+  if (acts) acts.after(box); else end.append(box);
 }

@@ -537,6 +537,13 @@ const AMBIENCE = {
     every(st, 35, 70, t => { wheels(t); whistle(t + 2); });
     bird(out, ctx.currentTime + 1.5); every(st, 5, 12, t => bird(out, t));
   },
+  // 两只螃蟹：安静的室内，远处隐约的海浪声（A quiet room, distant waves）
+  'distant-sea'(out, st) {
+    loopNoise('brown', out, { freq: 240, gain: 0.04 });
+    const far = ctx.createGain(); far.gain.value = 0.35; far.connect(out);
+    const wave = t => { lap(far, t); lap(far, t + rnd(1.5, 2.5)); };
+    wave(ctx.currentTime + 1); every(st, 6, 11, wave);
+  },
   // 吹笛少年：非常安静，只有远处隐约的军乐队短笛声（A quiet room, a distant fife）
   fifer(out, st) {
     loopNoise('brown', out, { freq: 260, gain: 0.04 });

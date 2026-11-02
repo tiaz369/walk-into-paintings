@@ -9,7 +9,7 @@ import { LAND } from './world-land.js';   // 地图的陆地轮廓
 
 // 网站根目录（不管网站放在哪个网址下面都能找到）
 export const ROOT = new URL('../', import.meta.url).href;
-import { stamps, clearStamps, saved, heart } from './personal.js';   // 看画护照、我的画廊（只存在观众自己的浏览器里）
+import { stamps, clearStamps, saved, heart, lastScene } from './personal.js';   // 看画护照、我的画廊（只存在观众自己的浏览器里）
 
 // ---------- 双语文字 ----------
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -208,9 +208,29 @@ export function cleanToggle(tools) {
   const show = document.createElement('button');
   show.className = 'btn'; show.id = 'uncleanBtn'; show.innerHTML = ui('显示按钮', 'Show controls');
   tools.append(hide); document.body.append(show);
+  // 手机上：左上角只留“返回”和独家发现（✦ 开头的按钮和它们的切换），其余收进“更多”；电脑上照旧全部显示
+  const keep = el => el === tools.firstElementChild || /^\s*(✦|🔍|🌬)/u.test(el.textContent) && el.id !== 'zoomBtn'
+    || el.hasAttribute('data-toggle') || ['ceilSwitch', 'todaySwitch', 'wallSwitch'].includes(el.id);
+  for (const el of [...tools.children]) if (!keep(el)) el.classList.add('more-item');
+  const more = document.createElement('button');
+  more.className = 'btn'; more.id = 'moreBtn'; more.setAttribute('aria-expanded', 'false');
+  more.innerHTML = `<span class="more-open-t">⋯ ${ui('更多', 'More')}</span><span class="more-close-t">× ${ui('收起', 'Close')}</span>`;
+  tools.append(more);
+  more.onclick = () => { const on = tools.classList.toggle('more-open'); more.setAttribute('aria-expanded', String(on)); };
   const set = on => document.body.classList.toggle('clean', on);
   hide.onclick = () => set(true); show.onclick = () => set(false);
   addEventListener('keydown', e => { if ((e.key === 'h' || e.key === 'H') && !/INPUT|SELECT|TEXTAREA/.test(document.activeElement.tagName)) set(!document.body.classList.contains('clean')); });
+}
+// 操作提示缩短成一行，只显示这台设备的操作方式（scene.json 的 hint 里“电脑：/手机：”开头的那一行），后面加一句“点画里的东西，发现故事”
+export const isTouchDevice = () => 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+export function shortHint(h) {
+  const touch = isTouchDevice();
+  const line = (txt, keys) => { const l = String(txt || '').split(/<br\s*\/?>/i).map(x => x.trim()).find(x => keys.some(k => x.startsWith(k))); return l ? l.replace(/^[^：:]+[：:]\s*/, '') : null; };
+  const zh = line(h && h.zh, touch ? ['手机'] : ['电脑']), en = line(h && h.en, touch ? ['Phone'] : ['Desktop']);
+  const cap = t => t && t.charAt(0).toUpperCase() + t.slice(1);
+  const tail = ui('点画里的东西，发现故事', 'Tap things in the painting to discover their stories');
+  if (zh && en) return `<span class="zh">${zh}</span><span class="en-ui">${cap(en)}</span> · ${tail}`;
+  return (touch ? ui('拖动画面或转动手机', 'Drag or tilt your phone') : ui('移动鼠标，画会微微转动', 'Move your mouse to turn the view')) + ' · ' + ui('点发光的圆点，发现故事', 'Tap the glowing dots to discover their stories');
 }
 // 开场原画页的“一分钟看一幅画”：其他按钮都藏起来，安静地显示原画 60 秒，有倒计时，随时可以跳过
 export const oneMinuteHTML = () => `<button id="oneMin" class="btn">${ui('一分钟看一幅画', 'One minute of looking')}</button>`;
@@ -239,7 +259,8 @@ export function seeInPersonHTML(R, meta) {
   const items = [meta].concat(meta.alsoAt || []);   // 这幅画，加上收藏在别处的其他版本
   const D = meta.displayAt && R.museumById[meta.displayAt.museum];   // 借展到别的博物馆：先显示现在能看到它的地方
   const now = D && D.url ? `<a class="btn primary" data-track="see-real-${meta.id}" href="${D.url}" target="_blank" rel="noopener">${ui('现在在', 'Now at')} ${bi(D.name, ' · ')}${meta.displayAt.note ? ' · ' + bi(meta.displayAt.note) : ''} ↗</a>` : '';
-  return now + items.map(x => {
+  const vn = meta.visitNote ? `<p class="visit-note">${bi(meta.visitNote, ' / ')}</p>` : '';   // 去现场之前要知道的一句话（比如借展可能结束）
+  return vn + now + items.map(x => {
     const m = R.museumById[x.museum];
     if (!m) return '';
     const year = items.length > 1 && x.year ? ' · ' + bi(x.year) : '';
@@ -446,12 +467,15 @@ function tlPic(R, x) {
 function londonRow(R, s) {
   const a = R.artistById[s.artist], live = s.status === 'live', t = s.title;
   const name = t.zh && t.en && t.zh !== t.en ? `<span lang="zh-CN">${esc(t.zh)}</span> · <span lang="en">${esc(t.en)}</span>` : esc(t.zh || t.en);
-  const meta = [a && bi(a.name), loanLabel(s)].filter(Boolean).join(' · ');   // 展厅号已经写在分组标题上
+  const meta = [a && bi(a.name), live ? loanLabel(s) : ''].filter(Boolean).join(' · ');   // 展厅号已经写在分组标题上；没做成场景的借展作品，下面那行小字里已经写了“借展”
   const side = (live ? `<a class="btn primary" href="${sceneUrl(s)}">${ui('先走进去看看', 'Step inside first')}</a>` : '')
     + (s.artworkUrl ? `<a class="work-link" href="${s.artworkUrl}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '');
   const note = s.londonNote ? `<span class="row-meta london-note">${bi(s.londonNote, ' / ')}</span>` : '';   // 路线页上的一句提示（比如“想看莫奈的车站，不用去巴黎”）
+  // 借展、还没做成场景的作品：加一行小字
+  const room = s.room && typeof s.room !== 'object' ? s.room : null;
+  const loanNote = s.loan && !live ? `<span class="row-meta london-note">${ui(`借展作品 · 暂未制作场景。借展期间，可以在${room ? room + '号展厅' : '国家美术馆'}看到真迹。`, `On loan · No scene yet. While on loan, you can see it in ${room ? 'Room ' + room : 'the gallery'}.`)}</span>` : '';
   return `<div class="row"><span class="row-main"><span class="row-pic">${live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>
-    <span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span>${note}</span></span>${side ? `<span class="row-side">${side}</span>` : ''}</div>`;
+    <span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span>${note}${loanNote}</span></span>${side ? `<span class="row-side">${side}</span>` : ''}</div>`;
 }
 
 // “找不同”对比滑块（和场景最后一屏的一样）：两个下拉选版本，左右拖动
@@ -496,12 +520,16 @@ const PAGES = {
         <div class="hero-over">
           <div class="t-en en">Step inside the world's great paintings.</div>
           <div class="t-zh zh">走进世界名画的内部。</div>
+          <div class="hero-tap">${ui('点画里的东西，发现故事', 'Tap things in the painting to discover their stories')}</div>
           <div class="hero-btns"><a class="btn primary" href="${sceneUrl(pick)}">${ui('走进画里', 'Step into the painting')}</a>
             <button class="btn" id="surprise" data-track="surprise-me">🎲 ${ui('今天看哪幅', 'Which one today?')}</button></div>
           <div class="label">${labelOf(R, pick)}${pick.imageSource ? '<br>' + imageSourceHTML(pick.imageSource) : ''}</div>
         </div>
       </section>
 
+      ${(l => l ? `<section class="section wrap" id="continue"><h2>${ui('继续你的旅程', 'Continue your journey')}</h2>
+        <a class="continue-card" href="${sceneUrl(l)}"><img src="${ROOT + l.cover}" ${altAttr(l.title)} />
+          <span><span class="continue-name">${bi(l.title)}</span><span class="continue-meta">${ui('上次看到这里 · 继续 →', 'Where you left off · Continue →')}</span></span></a></section>` : '')((v => v && R.sceneById[v.id] && R.sceneById[v.id].status === 'live' && R.sceneById[v.id].cover ? R.sceneById[v.id] : null)(lastScene()))}
       <section class="section wrap" id="new">
         <h2>${ui('本周新作', 'New this week')}</h2>
         <a class="feature" href="${sceneUrl(newest)}">

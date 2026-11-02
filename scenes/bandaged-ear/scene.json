@@ -12,7 +12,7 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现（阿尔勒系列的最后一幅）。卡片“日本版画”链接到卧室的“地板”和《杏花》的“日本版画”；结尾和《梵高的椅子》互相链接。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现（阿尔勒系列的最后一幅）。卡片“日本版画”链接到卧室的“地板”和《杏花》的“日本版画”；结尾和《梵高的椅子》互相链接。和《两只螃蟹》互相链接（同一个1月）。",
     "doors": [],
     "cards": [
       "bedroom",
@@ -21,7 +21,8 @@
     "end": [
       "vangogh-chair",
       "folies-bergere",
-      "la-loge"
+      "la-loge",
+      "two-crabs"
     ]
   },
   "ambience": "winter-room",
@@ -444,6 +445,14 @@
         "label": {
           "zh": "在考陶尔德的同一家美术馆：雷诺阿《包厢》",
           "en": "In the same gallery, The Courtauld: Renoir's *La Loge*"
+        }
+      },
+      {
+        "scene": "two-crabs",
+        "href": "../two-crabs/",
+        "label": {
+          "zh": "同一个1月",
+          "en": "The same January"
         }
       }
     ]
