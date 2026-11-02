@@ -15,3 +15,4 @@ Tia 从 Wikimedia Commons 下载（公有领域）。
 - `matin-saules.jpg`：柳树下的早晨 / Morning with Willows（Commons 上只有 675 × 114 的小图，裁掉了白边；以后找到高清再换）
 
 - `water-lilies.jpg`：封面，8幅拼成一张（Claude 生成）
+- `cover-detail.jpg`：缩略图用的局部，从《落日》（soleil-couchant.jpg）中间截了一段（850 × 637），卡片右下角标“局部 / detail”。这8幅画都是极长的横幅，整幅缩成小图只剩一条细线，所以这里是全站唯一允许裁切的例外。

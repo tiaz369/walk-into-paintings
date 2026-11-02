@@ -675,6 +675,15 @@
         "status": "待决定",
         "note": "跟着上面 8 幅",
         "verified": "2026-10-27"
+      },
+      {
+        "file": "cover-detail.jpg",
+        "from": "Wikimedia Commons（Tia 下载），Google Art Project 版本",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "note": "缩略图用的局部：从 soleil-couchant.jpg 中间截的一段（850 × 637）。全站唯一允许裁切的例外，卡片标“局部 / detail”。",
+        "verified": "2026-11-02"
       }
     ]
   },

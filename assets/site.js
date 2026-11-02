@@ -120,9 +120,9 @@ const artistCover = (R, a) => [].concat(a.cover || []).map(id => R.sceneById[id]
 // 其他代表作：只显示核对过的（check 为 ok）
 // 其他代表作：只列核对过的（check 为 ok）；写了 scene 的，那个场景一做好（即将开放或已上线）就不再列在这里，免得和“可以走进去的画”重复
 const artistWorks = (W, id, R) => ((W && W.artists[id]) || []).filter(x => x.check === 'ok' && !(x.scene && R && R.sceneById[x.scene] && R.sceneById[x.scene].status !== 'planned'));
-const workLine = (R, x) => {
+const workLine = (R, x, noMuseum) => {
   const m = R.museumById[x.museum], url = x.url || (m && m.url);
-  const where = x.museumNote ? bi(x.museumNote) : m ? bi(m.name) : '';
+  const where = noMuseum ? '' : x.museumNote ? bi(x.museumNote) : m ? bi(m.name) : '';
   return `<li>${url ? `<a href="${url}" target="_blank" rel="noopener">${bi(x.title)} ↗</a>` : bi(x.title)}<span class="meta">${[x.kind && bi(x.kind), x.year && bi(x.year), where].filter(Boolean).join(' · ')}</span></li>`;
 };
 let registryPromise = null;
@@ -155,7 +155,7 @@ export function sceneCard(R, s, opts = {}) {
     : [artist && bi(artist.name), bi(opts.year || s.year)]).concat(loanLabel(s)).filter(Boolean).join(' · ');
   const live = s.status === 'live', title = opts.title || s.title, cover = opts.cover || s.cover;
   const pic = live && cover
-    ? `<img src="${ROOT + cover}" ${altAttr(title)} loading="lazy" />`
+    ? `<img src="${ROOT + cover}" ${altAttr(title)} loading="lazy" />${detailTag(s, opts)}`
     : `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
   const nameHTML = opts.bothTitle && title.zh && title.en && title.zh !== title.en ? `<span lang="zh-CN">${esc(title.zh)}</span> · <span lang="en">${esc(title.en)}</span>` : bi(title);
   const inner = `<div class="pic">${pic}</div><div class="name${opts.bothTitle ? ' both' : ''}">${nameHTML}</div>
@@ -165,6 +165,18 @@ export function sceneCard(R, s, opts = {}) {
   const below = (url ? `<a class="work-link" href="${url}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '')
     + (opts.credit ? `<small class="img-credit">${bi(opts.credit, ' / ')}</small>` : '');
   return below ? `<div class="card-wrap">${card}${below}</div>` : card;
+}
+// 封面是局部（coverDetail：整幅太长，缩略图里看不清，只截一段），右下角标“局部 / detail”
+const detailTag = (s, opts = {}) => s.coverDetail && !opts.cover ? `<span class="detail-tag">局部 / detail</span>` : '';
+// 画家页的图片网格：每幅一张完整的缩略图，下面只有中文画名、英文画名（斜体）和年份；不显示收藏地
+export function artGridHTML(R, list) {
+  if (!list.length) return `<p class="soon">${ui('即将开放', 'Coming soon')}</p>`;
+  return `<div class="art-grid">${list.map(s => {
+    const live = s.status === 'live', t = s.title || {};
+    const pic = live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />${detailTag(s)}` : `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
+    const inner = `<div class="art-pic">${pic}</div><div class="art-zh" lang="zh-CN">${esc(t.zh || '')}</div>${t.en ? `<div class="art-en" lang="en"><i>${esc(t.en)}</i></div>` : ''}<div class="art-year">${bi(s.year)}</div>`;
+    return live ? `<a class="art" href="${sceneUrl(s)}">${inner}</a>` : `<div class="art is-soon">${inner}</div>`;
+  }).join('')}</div>`;
 }
 // items：场景，或 { s: 场景, opts: {...} }
 export const cardsHTML = (R, list, opts = {}) => list.length ? `<div class="cards">${list.map(x => x.s ? sceneCard(R, x.s, { ...opts, ...x.opts }) : sceneCard(R, x, opts)).join('')}</div>` : `<p class="soon">${ui('即将开放', 'Coming soon')}</p>`;
@@ -551,9 +563,9 @@ const PAGES = {
     const worksOf = a => {
       const sc = scenesOf(R, 'artist', a.id), more = artistWorks(W, a.id, R);
       if (!sc.length && !more.length) return LATER();
-      return (sc.length ? `<h4 class="works-title">${ui('可以走进去的画', 'Paintings you can step into')}</h4>${cardsHTML(R, capSoon(sc), { hideArtist: true, bothTitle: true })}` : '')
+      return (sc.length ? `<h4 class="works-title">${ui('可以走进去的画', 'Paintings you can step into')}</h4>${artGridHTML(R, capSoon(sc))}` : '')
         + (more.length ? `<h4 class="works-title">${bi(W.title, ' / ')}</h4><p class="note">${bi(W.note, ' / ')}</p>
-          <ul class="more-works">${more.map(x => workLine(R, x)).join('')}</ul>` : '');
+          <ul class="more-works">${more.map(x => workLine(R, x, true)).join('')}</ul>` : '');
     };
     const id = param('id'), a = id && R.artistById[id];
     if (a) {
@@ -562,9 +574,10 @@ const PAGES = {
         <section class="section wrap">
           ${a.bio ? `<p class="lead">${bi(a.bio)}</p>` : ''}
           ${worksOf(a)}</section>
-        ${life && life.entries ? `<section class="section wrap life" id="life"><h2>${ui('生平', 'Life')}</h2>${lifeHTML(R, life)}</section>` : ''}
+        ${life && life.entries ? `<section class="section wrap life" id="life"><details class="life-toggle"><summary class="btn">${ui('展开生平', 'Show life')}</summary><h2>${ui('生平', 'Life')}</h2>${lifeHTML(R, life)}</details></section>` : ''}
         <section class="wrap"><p style="margin:28px 0"><a class="btn" href="${ROOT}artists/">← ${ui('所有画家', 'All artists')}</a></p></section>`;
       wireTracks(main);
+      if (location.hash === '#life') { const d = main.querySelector('.life-toggle'); if (d) d.open = true; }   // 从别处链接到生平时，直接展开
       return;
     }
     main.innerHTML = `<div class="wrap page-title"><h1>${ui('按画家', 'By artist')}</h1></div>
