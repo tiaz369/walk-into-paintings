@@ -517,6 +517,14 @@ const AMBIENCE = {
     every(st, 14, 30, splash);
     every(st, 8, 18, t => bird(out, t));
   },
+  // 吹笛少年：非常安静，只有远处隐约的军乐队短笛声（A quiet room, a distant fife）
+  fifer(out, st) {
+    loopNoise('brown', out, { freq: 260, gain: 0.04 });
+    const far = ctx.createGain(); far.gain.value = 0.25; far.connect(pan(out, 0.3));   // 很远的短笛和小鼓
+    const tune = [784, 880, 988, 1047, 988, 880, 784, 659, 784];
+    const phrase = t => { tune.forEach((f, i) => tone(far, t + i * 0.32, { f0: f, type: 'triangle', vol: 0.02, attack: 0.02, dur: 0.3 })); for (let k = 0; k < 6; k++) burst(far, t + k * 0.48, { kind: 'white', type: 'bandpass', freq: 1800, q: 1, vol: 0.02, dur: 0.05, p: 0.3 }); };
+    phrase(ctx.currentTime + 3); every(st, 18, 35, phrase);
+  },
   // 林间空地：树林里的鸟叫，溪水声（细碎、不停的流水），风吹树叶（Woods with a stream）
   'woodland-stream'(out, st) {
     loopNoise('brown', out, { freq: 320, gain: 0.06 });

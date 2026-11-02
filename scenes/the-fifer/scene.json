@@ -1,0 +1,481 @@
+{
+  "_说明": "吹笛少年（人物肖像，轻量版：分层景深 + 细节放大 + 卡片 + 短故事）。所有事实文字由 Tia 提供（资料来自奥赛博物馆官网）。分层只有两层：后面是平坦的灰色背景（地面和墙几乎没有分界），前面是吹短笛的少年。模特是谁说法不一，不写。原画还没上传：clip 和 spots 先按构图估算，原画上传后照着图量。",
+  "id": "the-fifer",
+  "variant": "portrait",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "平坦、均匀的光",
+      "en": "Flat, even light"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《草地上的午餐》互相链接（同样被沙龙拒绝）；和《苦艾酒》互相链接（同样来自卡蒙多伯爵的遗赠）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "dejeuner-herbe",
+      "absinthe"
+    ]
+  },
+  "ambience": "fifer",
+  "painting": {
+    "image": "images/the-fifer.jpg",
+    "width": 960,
+    "height": 1588,
+    "alt": {
+      "zh": "马奈《吹笛少年》1866，巴黎奥赛博物馆",
+      "en": "Édouard Manet, The Fifer, 1866, Musée d'Orsay, Paris"
+    },
+    "_": "宽高先按尺寸 160.5 × 97 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "吹笛少年",
+      "en": "The Fifer"
+    },
+    "artist": {
+      "zh": "马奈",
+      "en": "Édouard Manet"
+    },
+    "date": {
+      "zh": "1866年",
+      "en": "1866"
+    },
+    "museum": {
+      "zh": "巴黎奥赛博物馆",
+      "en": "Musée d'Orsay, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“马奈学了什么”，对比委拉斯开兹的画",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “What Manet learned” to compare with Velázquez"
+  },
+  "parallax": 12,
+  "layers": [
+    {
+      "_说明": "背景（整张画：平坦的灰色，地面和墙几乎没有分界）",
+      "depth": 0
+    },
+    {
+      "_说明": "前面：吹短笛的少年（clip 待对准）",
+      "depth": 1,
+      "clip": [
+        [
+          0.36,
+          0.04
+        ],
+        [
+          0.6,
+          0.04
+        ],
+        [
+          0.68,
+          0.2
+        ],
+        [
+          0.74,
+          0.4
+        ],
+        [
+          0.72,
+          0.62
+        ],
+        [
+          0.7,
+          0.92
+        ],
+        [
+          0.6,
+          0.97
+        ],
+        [
+          0.36,
+          0.97
+        ],
+        [
+          0.3,
+          0.9
+        ],
+        [
+          0.3,
+          0.62
+        ],
+        [
+          0.28,
+          0.4
+        ],
+        [
+          0.34,
+          0.2
+        ]
+      ]
+    }
+  ],
+  "spots": {
+    "boy": {
+      "x": 0.48,
+      "y": 0.17,
+      "layer": 1
+    },
+    "noble": {
+      "x": 0.47,
+      "y": 0.07,
+      "layer": 1
+    },
+    "uniform": {
+      "x": 0.5,
+      "y": 0.38,
+      "layer": 1
+    },
+    "strokes": {
+      "x": 0.52,
+      "y": 0.7,
+      "layer": 1
+    },
+    "background": {
+      "x": 0.15,
+      "y": 0.4,
+      "layer": 0
+    },
+    "velazquez": {
+      "x": 0.86,
+      "y": 0.86,
+      "layer": 0
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“马奈学了什么”：对比滑块。左边是委拉斯开兹的《巴勃罗·德·巴利亚多利德》（普拉多博物馆），右边是《吹笛少年》。两幅都是真实原作，不加“这是示意”。",
+    "type": "slider",
+    "label": {
+      "zh": "马奈学了什么",
+      "en": "What Manet learned"
+    },
+    "title": {
+      "zh": "马奈学了什么",
+      "en": "What Manet learned"
+    },
+    "before": {
+      "image": "images/pablo-de-valladolid.jpg",
+      "alt": {
+        "zh": "委拉斯开兹《巴勃罗·德·巴利亚多利德》，马德里普拉多博物馆",
+        "en": "Diego Velázquez, Pablo de Valladolid, Museo del Prado, Madrid"
+      },
+      "caption": {
+        "zh": "委拉斯开兹《巴勃罗·德·巴利亚多利德》，普拉多博物馆",
+        "en": "Velázquez, *Pablo de Valladolid*, Museo del Prado"
+      }
+    },
+    "after": {
+      "image": "images/the-fifer.jpg",
+      "alt": {
+        "zh": "马奈《吹笛少年》1866，巴黎奥赛博物馆",
+        "en": "Édouard Manet, The Fifer, 1866, Musée d'Orsay, Paris"
+      },
+      "caption": {
+        "zh": "马奈《吹笛少年》，1866年，奥赛博物馆",
+        "en": "Manet, *The Fifer*, 1866, Musée d'Orsay"
+      }
+    },
+    "note": {
+      "zh": "两幅画里，人物都站在一片几乎空白的背景前。这里两幅都是原作。",
+      "en": "In both paintings, the figure stands against an almost empty background. Both images are originals."
+    }
+  },
+  "cards": {
+    "boy": {
+      "title": {
+        "zh": "帝国卫队的少年",
+        "en": "A boy from the Imperial Guard"
+      },
+      "text": {
+        "zh": "画中是拿破仑三世帝国卫队乐队里的一个少年乐手，他的名字没有留下来。",
+        "en": "He is a young musician from the band of Napoleon III's Imperial Guard. His name has not come down to us."
+      }
+    },
+    "uniform": {
+      "title": {
+        "zh": "制服",
+        "en": "The uniform"
+      },
+      "text": {
+        "zh": "他穿着缀着金扣子的黑上衣、红裤子，戴着一顶装饰过的帽子。",
+        "en": "He wears a black jacket with gold buttons, red trousers and a decorated cap."
+      }
+    },
+    "background": {
+      "title": {
+        "zh": "消失的背景",
+        "en": "A vanishing background"
+      },
+      "text": {
+        "zh": "背景是一片平坦的灰色，地面和墙几乎分不清。",
+        "en": "The background is a flat, plain grey; floor and wall can barely be told apart."
+      }
+    },
+    "strokes": {
+      "title": {
+        "zh": "几道白线",
+        "en": "A few white strokes"
+      },
+      "text": {
+        "zh": "衣服的褶皱，只用几道白色线条就勾了出来。",
+        "en": "The folds of his clothes are marked by just a few streaks of white."
+      }
+    },
+    "velazquez": {
+      "title": {
+        "zh": "来自委拉斯开兹",
+        "en": "From Velázquez"
+      },
+      "text": {
+        "zh": "1865年，马奈在马德里的普拉多博物馆看到委拉斯开兹的画，深受启发。",
+        "en": "In 1865, at the Prado in Madrid, Manet saw the paintings of Velázquez and was deeply inspired."
+      }
+    },
+    "noble": {
+      "title": {
+        "zh": "像一位贵族",
+        "en": "Like a nobleman"
+      },
+      "text": {
+        "zh": "一个普通的少年乐手，被马奈画得像一位西班牙贵族。",
+        "en": "An ordinary young musician, painted by Manet like a Spanish grandee."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "title": {
+          "zh": "普拉多的启发",
+          "en": "Inspiration at the Prado"
+        },
+        "text": {
+          "zh": "1865年，马奈去西班牙旅行，在普拉多博物馆看到了委拉斯开兹的画。他说，在委拉斯开兹的一幅画里，背景消失了，围绕着人物的是空气。",
+          "en": "In 1865, Manet travelled to Spain and saw the paintings of Velázquez at the Prado. In one of them, he said, the background disappears: it is air that surrounds the figure."
+        },
+        "image": "images/the-fifer.jpg",
+        "alt": {
+          "zh": "马奈《吹笛少年》1866，巴黎奥赛博物馆",
+          "en": "Édouard Manet, The Fifer, 1866, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1866年 · 巴黎奥赛博物馆",
+          "en": "1866 · Musée d'Orsay, Paris"
+        }
+      },
+      {
+        "title": {
+          "zh": "被拒绝",
+          "en": "Rejected"
+        },
+        "text": {
+          "zh": "回到巴黎后，他画了这个少年乐手。1866年，官方沙龙拒绝了这幅画。",
+          "en": "Back in Paris, he painted this young musician. In 1866, the official Salon rejected it."
+        },
+        "image": "images/the-fifer.jpg",
+        "alt": {
+          "zh": "马奈《吹笛少年》1866，巴黎奥赛博物馆",
+          "en": "Édouard Manet, The Fifer, 1866, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1866年 · 巴黎奥赛博物馆",
+          "en": "1866 · Musée d'Orsay, Paris"
+        }
+      },
+      {
+        "title": {
+          "zh": "左拉的支持",
+          "en": "Zola's support"
+        },
+        "text": {
+          "zh": "作家左拉却在这幅画里看到了一种真正现代的感觉，开始公开为马奈辩护。1911年，它进入了法国国家收藏。",
+          "en": "The writer Émile Zola, however, saw a truly modern feeling in it, and began to defend Manet in public. In 1911 the painting entered the French national collection."
+        },
+        "image": "images/the-fifer.jpg",
+        "alt": {
+          "zh": "马奈《吹笛少年》1866，巴黎奥赛博物馆",
+          "en": "Édouard Manet, The Fifer, 1866, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1866年 · 巴黎奥赛博物馆",
+          "en": "1866 · Musée d'Orsay, Paris"
+        }
+      }
+    ],
+    "final": {
+      "zh": "背景消失了，围绕着他的是空气。",
+      "en": "The background disappears: it is air that surrounds him."
+    },
+    "finalBy": {
+      "zh": "马奈谈委拉斯开兹",
+      "en": "Manet on Velázquez"
+    },
+    "versions": [],
+    "museums": [
+      "orsay"
+    ],
+    "exit": [
+      {
+        "scene": "dejeuner-herbe",
+        "href": "../dejeuner-herbe/",
+        "label": {
+          "zh": "同样被沙龙拒绝",
+          "en": "Also rejected by the Salon"
+        }
+      },
+      {
+        "scene": "absinthe",
+        "href": "../absinthe/",
+        "label": {
+          "zh": "同样来自卡蒙多伯爵的遗赠",
+          "en": "Also from the Camondo bequest"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（奥赛博物馆官网；尺寸以奥赛为准，160.5 × 97 cm）。",
+    "artist": {
+      "zh": "爱德华·马奈（1832–1883）",
+      "en": "Édouard Manet (1832–1883)"
+    },
+    "title": {
+      "zh": "吹笛少年",
+      "en": "The Fifer (Le Fifre)"
+    },
+    "date": {
+      "zh": "1866年",
+      "en": "1866"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "160.5 × 97 cm",
+      "en": "160.5 × 97 cm"
+    },
+    "collection": {
+      "zh": "巴黎奥赛博物馆（1911年随伊萨克·德·卡蒙多伯爵的遗赠进入国家收藏）",
+      "en": "Musée d'Orsay, Paris (Count Isaac de Camondo bequest, 1911)"
+    },
+    "url": "https://www.musee-orsay.fr/en/artworks/le-fifre-709"
+  },
+  "zoom": {
+    "image": "images/the-fifer.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "奥赛博物馆：吹笛少年",
+          "en": "Musée d'Orsay: *The Fifer*"
+        },
+        "url": "https://www.musee-orsay.fr/en/artworks/le-fifre-709"
+      },
+      {
+        "title": {
+          "zh": "维基百科：吹笛少年",
+          "en": "Wikipedia: *The Fifer*"
+        },
+        "url": "https://en.wikipedia.org/wiki/The_Fifer"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三段故事原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "普拉多的启发",
+          "en": "Inspiration at the Prado"
+        },
+        "text": {
+          "zh": "1865年，马奈去西班牙旅行，在普拉多博物馆看到了委拉斯开兹的画。他说，在委拉斯开兹的一幅画里，背景消失了，围绕着人物的是空气。",
+          "en": "In 1865, Manet travelled to Spain and saw the paintings of Velázquez at the Prado. In one of them, he said, the background disappears: it is air that surrounds the figure."
+        }
+      },
+      {
+        "title": {
+          "zh": "被拒绝",
+          "en": "Rejected"
+        },
+        "text": {
+          "zh": "回到巴黎后，他画了这个少年乐手。1866年，官方沙龙拒绝了这幅画。",
+          "en": "Back in Paris, he painted this young musician. In 1866, the official Salon rejected it."
+        }
+      },
+      {
+        "title": {
+          "zh": "左拉的支持",
+          "en": "Zola's support"
+        },
+        "text": {
+          "zh": "作家左拉却在这幅画里看到了一种真正现代的感觉，开始公开为马奈辩护。1911年，它进入了法国国家收藏。",
+          "en": "The writer Émile Zola, however, saw a truly modern feeling in it, and began to defend Manet in public. In 1911 the painting entered the French national collection."
+        }
+      }
+    ]
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "奥赛博物馆：吹笛少年",
+        "en": "Musée d'Orsay: *The Fifer*"
+      },
+      "url": "https://www.musee-orsay.fr/en/artworks/le-fifre-709"
+    },
+    {
+      "title": {
+        "zh": "维基百科：吹笛少年",
+        "en": "Wikipedia: *The Fifer*"
+      },
+      "url": "https://en.wikipedia.org/wiki/The_Fifer"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。奥赛官网、RMN 和谷歌艺术与文化的图片都是有版权的照片，只用 Wikimedia Commons 的 PD-Art 文件。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "the-fifer.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要用奥赛官网、RMN 或谷歌艺术与文化的图片）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-02"
+      },
+      {
+        "file": "pablo-de-valladolid.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要用普拉多官网或谷歌艺术与文化的图片）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-02"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-02"
+}

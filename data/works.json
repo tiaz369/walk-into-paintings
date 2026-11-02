@@ -216,20 +216,6 @@
         "scene": "paris-street-rainy-day"
       }
     ],
-    "manet": [
-      {
-        "title": {
-          "zh": "吹笛少年",
-          "en": "The Fifer"
-        },
-        "year": {
-          "zh": "1866",
-          "en": "1866"
-        },
-        "museum": "orsay",
-        "check": "ok",
-        "_": "奥赛：1866"
-      }
-    ]
+    "manet": []
   }
 }
