@@ -37,7 +37,11 @@ export const heart = filled => `<svg class="heart" viewBox="0 0 24 24" width="16
 export const saveBtnHTML = () => `<button class="btn save-btn" aria-pressed="false">${heart(false)} <span class="save-label">${ui('收藏', 'Save')}</span></button>`;
 
 // 场景页：收藏按钮 + 走到最后一屏时盖章（engine.js / light.js 调用）
+// ---------- 继续你的旅程：记住最后看的场景（首页显示） ----------
+const KEY_LAST = 'wip-last';
+export const lastScene = () => { const v = read(KEY_LAST); return v && typeof v.id === 'string' ? v : null; };
 export function setupPersonal(S) {
+  write(KEY_LAST, { id: S.id, at: new Date().toISOString().slice(0, 10) });
   const btns = [...document.querySelectorAll('.save-btn')];
   const paint = () => {
     const on = isSaved(S.id);

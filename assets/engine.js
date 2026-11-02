@@ -9,7 +9,7 @@
 // 这个文件只负责“怎么做”，不放任何某一幅画的文字。
 // =====================================================================
 import * as THREE from 'three';
-import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
+import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, shortHint, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupShareCard, shareBtnHTML } from './share.js';
 import { setupPersonal, saveBtnHTML } from './personal.js';
@@ -115,6 +115,7 @@ function buildDOM(S, R, meta) {
     <div id="introMissing" class="hidden">${missing(P.image)}</div>
     <div id="introBottom">
       <button id="enter" class="btn primary"><span class="zh">${S.enter.zh}</span><span class="en">${S.enter.en}</span></button>
+      <div id="loadState" aria-live="polite"><span class="load-bar"><i></i></span><span class="load-txt">${ui('正在准备画里的空间…', 'Preparing the space inside the painting…')} <b>0%</b></span></div>
       ${oneMinuteHTML()}
       <div id="introInfo" class="panel"><div class="lbl">${bi(labelLine, ' / ')}</div><div>${imgLine}</div></div>
       ${S.contentNote ? `<div id="contentNote"><span class="zh">${S.contentNote.zh}</span><span class="en">${S.contentNote.en}</span></div>` : ''}
@@ -122,7 +123,7 @@ function buildDOM(S, R, meta) {
   </div>
   <a id="sceneHome" href="${ROOT}">← ${ui('走进名画', 'Walk into Paintings')}</a>
 
-  <div id="hint" class="panel"><span class="zh">${S.hint.zh}</span><span class="en-ui">${S.hint.en}</span></div>
+  <div id="hint" class="panel">${shortHint(S.hint)}</div>
 
   <div id="vpPanel" class="panel">
     <div class="vp-head"><b>${ui('原画叠加', 'Painting overlay')}</b><span class="vp-text">${ui(S.viewpoint.text.zh, S.viewpoint.text.en)}</span><span id="vpVal">0%</span>
@@ -339,6 +340,12 @@ function run(S, R, meta) {
   const col = v => (C[v] || v);   // "basin" 这类名字 → scene.json 里的颜色
 
   const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  // 3D 场景加载进度：图片（贴图）都加载完之前，开场页的按钮下面显示进度条；加载完就消失
+  { const ls = document.getElementById('loadState'), bar = ls && ls.querySelector('i'), pc = ls && ls.querySelector('b');
+    const M = THREE.DefaultLoadingManager;
+    M.onProgress = (u, done, total) => { if (!ls) return; const k = total ? Math.round(done / total * 100) : 0; bar.style.width = k + '%'; pc.textContent = k + '%'; };
+    M.onLoad = () => { if (ls) ls.classList.add('done'); };
+    setTimeout(() => { if (ls) ls.classList.add('done'); }, 30000); }   // 万一有图片加载失败，30 秒后也收起
   if (isTouch) document.body.classList.add('touch');
 
   const renderer = new THREE.WebGLRenderer({ antialias: true });

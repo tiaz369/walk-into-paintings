@@ -9,7 +9,7 @@
 // 移动鼠标、拖动或转动手机时，前面的层移动得多一点，看起来像微微转动视角。
 // 文字、卡片、故事都写在 scene.json 里（结构和 3D 场景一样，按钮和样式也共用）。
 // =====================================================================
-import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, track, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
+import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, shortHint, track, oneMinuteHTML, oneMinute, worldMap, ROOT } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupShareCard, shareBtnHTML } from './share.js';
 import { setupPersonal, saveBtnHTML } from './personal.js';
@@ -66,7 +66,7 @@ function buildDOM(S, R, meta) {
   const layersHTML = S.layers.map((l, i) => `<div class="layer" data-i="${i}" style="${l.clip ? `clip-path:polygon(${l.clip.map(([x, y]) => `${x * 100}% ${y * 100}%`).join(',')})` : ''}">
       <img src="${P.image}" alt="" draggable="false" /></div>`).join('');
   const spotsHTML = Object.entries(S.spots).map(([key, s]) => `<button class="spot" data-card="${key}" data-layer="${s.layer || 0}"${s.state ? ` data-state="${s.state}"` : ''} style="left:${s.x * 100}%;top:${s.y * 100}%" aria-label="${textOf(S.cards[key].title, lang)}"></button>`).join('');
-  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus', isInsc = X.type === 'inscriptions', isAlt = X.type === 'altarpiece', isRise = X.type === 'rise', isLabels = X.type === 'labels';
+  const isMap = X.type === 'map', isCurtain = X.type === 'curtain', isSlider = X.type === 'slider', isFlip = X.type === 'flip', isFocus = X.type === 'focus', isInsc = X.type === 'inscriptions', isAlt = X.type === 'altarpiece', isRise = X.type === 'rise', isLabels = X.type === 'labels', isDetail = X.type === 'detail';
   // 细节放大的热点（zooms：眼睛、嘴唇、珍珠……）；只有一个时也可以写成 zoom
   const ZOOMS = zoomsOf(X), ZL = X.zoomLabel || (X.zoom && X.zoom.label) || { zh: '放大看细节', en: 'Zoom in on details' };
   const zspotsHTML = ZOOMS.map((z, i) => `<button class="zspot" data-z="${i}" style="left:${z.x * 100}%;top:${z.y * 100}%">${ui(z.label.zh, z.label.en)}</button>`).join('');
@@ -95,7 +95,7 @@ function buildDOM(S, R, meta) {
   </div>
   <a id="sceneHome" href="${ROOT}">← ${ui('走进名画', 'Walk into Paintings')}</a>
   ${(isCurtain || isFlip || isRise || isLabels) && X.note ? `<div id="curtainNote" class="panel hidden">${bi(X.note, ' / ')}</div>` : ''}
-  <div id="hint" class="panel"><span class="zh">${S.hint.zh}</span><span class="en-ui">${S.hint.en}</span></div>
+  <div id="hint" class="panel">${shortHint(S.hint)}</div>
 
   <div id="tools" class="ui">
     <a class="btn" href="${ROOT}">← ${ui('走进名画', 'Home')}</a>
@@ -109,6 +109,7 @@ function buildDOM(S, R, meta) {
     ${isFlip ? `<button class="btn" id="flipBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isRise ? `<button class="btn" id="riseBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isLabels ? `<button class="btn" id="labelsBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
+    ${isDetail ? `<button class="btn" id="detailBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isSlider ? `<button class="btn" id="sliderBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isFocus ? `<button class="btn" id="focusBtn">✦ ${ui(X.label.zh, X.label.en)}</button>` : ''}
     ${isAlt ? `<button class="btn" id="altBtn">✦ <span class="alt-open-l">${ui(X.label.zh, X.label.en)}</span><span class="alt-close-l">${ui(X.closeLabel.zh, X.closeLabel.en)}</span></button>` : ''}
@@ -150,6 +151,10 @@ function buildDOM(S, R, meta) {
   </div>` : ''}
 
   ${isSlider ? sliderHTML(X, P) : ''}
+  ${isDetail ? `<div class="popup panel" id="detail"><button class="close" data-close="detail" aria-label="Close">×</button>
+    <h3>${bi(X.title || X.label)}</h3>
+    <div class="mirror-zoom" role="img" ${altAttr(X.alt || X.label).replace('alt=', 'aria-label=')} style="background-image:url('${P.image}');aspect-ratio:${(X.crop.w * P.width) / (X.crop.h * P.height)};background-size:${100 / X.crop.w}% ${100 / X.crop.h}%;background-position:${X.crop.x / (1 - X.crop.w) * 100}% ${X.crop.y / (1 - X.crop.h) * 100}%"></div>
+    ${X.note ? `<p>${bi(X.note, ' / ')}</p>` : ''}</div>` : ''}
 
   <div id="card" class="panel">
     <button class="close" id="cardClose" aria-label="Close">×</button>
@@ -355,6 +360,11 @@ function run(S, R) {
   const sound = setupSound(S, { ambBtn: $('ambBtn'), musBtn: $('musBtn'), info: $('musInfo') });   // 环境音、音乐（都默认关闭）
   setupGuide(S, { btn: $('audioBtn'), box: $('guideBox'), duck: on => sound.guide(on) });   // 语音导览（有录音才显示）
   if ($('mapBtn')) $('mapBtn').onclick = () => togglePopup('where');
+  // 独家发现“放大一处细节”（detail）：弹出原画上 crop 这一块的放大（只是放大原画），配一句说明；card：打开就算发现了这张卡片
+  if ($('detail')) {
+    popups.detail = $('detail');
+    $('detailBtn').onclick = () => { togglePopup('detail'); if (popups.detail.style.display === 'block') { track('exclusive-' + S.id); if (X.card && S.cards[X.card]) { found.add(X.card); updateProgress(); } } };
+  }
   if ($('slide')) {   // 对比滑块：拖动中间的线，左边是这幅画，右边是另一幅
     popups.slide = $('slide');
     const wipe = $('slide').querySelector('.wipe'), range = $('slide').querySelector('input');
