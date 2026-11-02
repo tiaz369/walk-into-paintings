@@ -237,6 +237,8 @@ body.scene canvas { display: block; touch-action: none; }
 #enter span.en { font-size: 12px; opacity: .8; }
 #introInfo { width: max-content; max-width: 100%; padding: 6px 12px; text-align: center; font-size: 11px; color: var(--muted); line-height: 1.7; }
 #introInfo .lbl { color: var(--ink); }
+#contentNote { font-size: 11px; color: var(--muted); text-align: center; }
+body.lang-both #contentNote .zh + .en::before { content: " / "; }
 
 #hint {
   position: fixed; top: 38%; left: 50%; transform: translateX(-50%); z-index: 4; padding: 8px 14px; font-size: 14px;
