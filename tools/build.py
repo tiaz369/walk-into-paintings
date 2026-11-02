@@ -284,11 +284,11 @@ def ldn_li(x):
     return f'<li>{e(line)}{step}{note}</li>'
 def ldn_section(sec, live_only=False):   # live_only（巴黎、阿姆斯特丹）：只列已上线、没借出去的场景；没写展厅的放在最后，不显示展厅号
     if live_only: ldn = [x for x in ALL if x['museum'] == sec['museum'] and x['status'] == 'live' and x.get('onDisplay') is not False and not x.get('displayAt')]
-    else: ldn = [x for x in ALL if x['museum'] == sec['museum'] and x.get('onDisplay') is True and x.get('room') not in (None, '')]
+    else: ldn = [x for x in ALL if x['museum'] == sec['museum'] and x.get('onDisplay') is True]
     ldn = sorted(ldn, key=lambda x: open_year(x, x.get('year')))
     rk = lambda x: rkey(x['room']) if x.get('room') not in (None, '') else ''
     rooms = sorted({rk(x): x.get('room') for x in ldn}.values(), key=lambda r: (r in (None, ''), isinstance(r, dict), int(r) if str(r).isdigit() else 0))
-    ls = ''.join((f'<h3>{e(both(r, " / ") if isinstance(r, dict) else f"{r}号展厅 / Room {r}")}</h3>' if r not in (None, '') else '') + '<ul>' + ''.join(ldn_li(x) for x in ldn if rk(x) == (rkey(r) if r not in (None, '') else '')) + '</ul>' for r in rooms)
+    ls = ''.join((f'<h3>{e(both(r, " / ") if isinstance(r, dict) else f"{r}号展厅 / Room {r}")}</h3>' if r not in (None, '') else ('' if live_only else '<h3>展厅待确认 / Room to be confirmed</h3>')) + '<ul>' + ''.join(ldn_li(x) for x in ldn if rk(x) == (rkey(r) if r not in (None, '') else '')) + '</ul>' for r in rooms)
     links = ''.join(f'<li><a href="{e(l["url"])}">{e(both(l["label"]))}</a></li>' for l in sec['links'])
     return f'<section id="{sec["museum"]}"><h2>{bi(sec["title"])}</h2><p>{e(both(sec["subtitle"], " / "))}</p><ul>{links}</ul>{ls}</section>'
 PAGES.append(page('london/', T(LONDON['title']['zh'], LONDON['title']['en']), f'{both(LONDON["title"])}：' + '；'.join(both(sec["subtitle"], " / ") for sec in LONDON['sections']),

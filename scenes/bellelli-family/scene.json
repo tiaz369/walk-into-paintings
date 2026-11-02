@@ -703,9 +703,9 @@
         "from": "Wikimedia Commons（Google 艺术与文化版本，原文件名 IMG_0560.jpeg）",
         "url": "https://commons.wikimedia.org/wiki/File:Edgar_Degas_-_The_Bellelli_Family_-_Google_Art_Project.jpg",
         "license": "公有领域（PD-Art）",
-        "status": "例外：Tia 2026-11-02 决定使用",
+        "status": "符合",
         "verified": "2026-11-02",
-        "note": "Commons 上奥赛这一幅的完整大图只有 Google 艺术与文化版本。按 README 的版权规则本来不用这类文件，这一张是 Tia 决定的例外。"
+        "note": "Commons 上的 Google Art Project 文件。按 2026-11-02 改写的版权规则：从 Commons 下载、文件页标 PD-Art 的就可以用。"
       }
     ]
   },
