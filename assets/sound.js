@@ -544,6 +544,15 @@ const AMBIENCE = {
     const wave = t => { lap(far, t); lap(far, t + rnd(1.5, 2.5)); };
     wave(ctx.currentTime + 1); every(st, 6, 11, wave);
   },
+  // 奥维尔的田野：夏天的风吹过田野，鸟叫，远处偶尔的狗叫（Summer fields at Auvers）
+  'auvers-fields'(out, st) {
+    const wind = loopNoise('brown', out, { freq: 420, gain: 0.08 });
+    st.timers.push(setInterval(() => wind.g.gain.setTargetAtTime(0.04 + 0.08 * Math.random(), ctx.currentTime, 1.6), 3000));
+    bird(out, ctx.currentTime + 1); every(st, 3, 8, t => bird(out, t));
+    const far = ctx.createGain(); far.gain.value = 0.3; far.connect(pan(out, 0.5));
+    const bark = t => { const n = 1 + Math.floor(Math.random() * 3); for (let k = 0; k < n; k++) { tone(far, t + k * 0.32, { f0: rnd(380, 460), f1: rnd(240, 300), type: 'sawtooth', vol: 0.02, attack: 0.01, dur: 0.14 }); burst(far, t + k * 0.32, { kind: 'brown', type: 'bandpass', freq: 600, q: 2, vol: 0.03, dur: 0.1 }); } };   // 远处的狗叫
+    every(st, 20, 45, bark);
+  },
   // 吹笛少年：非常安静，只有远处隐约的军乐队短笛声（A quiet room, a distant fife）
   fifer(out, st) {
     loopNoise('brown', out, { freq: 260, gain: 0.04 });

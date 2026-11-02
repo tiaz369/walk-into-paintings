@@ -272,6 +272,19 @@
         "en": "July 1890"
       },
       "text": {
+        "zh": "在奥维尔边上的科尔德维尔，画下《奥维尔附近的农场》",
+        "en": "In Cordeville, on the edge of Auvers, paints *Farms near Auvers*"
+      },
+      "scenes": [
+        "farms-auvers"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1890年7月",
+        "en": "July 1890"
+      },
+      "text": {
         "zh": "去世，年仅37岁",
         "en": "Dies, aged 37"
       }
