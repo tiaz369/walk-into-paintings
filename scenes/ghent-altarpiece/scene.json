@@ -1,5 +1,5 @@
 {
-  "_说明": "根特祭坛画（静物类轻量版：分层景深 + 细节放大 + 卡片 + 短故事，加“打开 / 合上祭坛”）。所有事实文字由 Tia 提供（资料来自 New Statesman、比利时通讯社、Lonely Planet）。它不是一幅画，而是由很多块画板组成、可以打开和合上的祭坛画，所以不做走动的3D场景。painting.image 是打开时的整组（ghent-open.jpg）；exclusive.closed.image 是合上时的样子（ghent-closed.jpg，宽度是打开时的一半）。打开时的原画 2026-11-02 上传，已对准；合上时的图还没上传。",
+  "_说明": "根特祭坛画（静物类轻量版：分层景深 + 细节放大 + 卡片 + 短故事，加“打开 / 合上祭坛”）。所有事实文字由 Tia 提供（资料来自 New Statesman、比利时通讯社、Lonely Planet）。它不是一幅画，而是由很多块画板组成、可以打开和合上的祭坛画，所以不做走动的3D场景。painting.image 是打开时的整组（ghent-open.jpg）；exclusive.closed.image 是合上时的样子（ghent-closed.jpg，宽度是打开时的一半）。打开和合上的图都在 2026-11-02 上传，已对准。",
   "id": "ghent-altarpiece",
   "variant": "still-life",
   "kind": "light",
@@ -79,7 +79,7 @@
     },
     "brothers": {
       "x": 0.36,
-      "y": 0.9,
+      "y": 0.975,
       "layer": 0,
       "state": "closed"
     },
@@ -109,7 +109,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现：①“打开祭坛”：开场是合上的祭坛，点按钮，两块翼板向两边慢慢转开，露出里面的整组画面；再点一次合上。②“缺了的一块”：开关打开后，左下角“正义的法官”那一块变成半透明，并显示卡片4的文字（没打开时会先打开）。③“放大看细节”：羔羊、上方的人物、左下角的“正义的法官”。位置是打开时整组画上的 0–1 坐标。 打开时的圆点、放大位置和“缺了的一块”的框已照 images/ghent-open.jpg（2026-11-02 上传）对准；合上时的两个圆点（closed、brothers）等 ghent-closed.jpg 上传后再对准。",
+    "_说明": "独家发现：①“打开祭坛”：开场是合上的祭坛，点按钮，两块翼板向两边慢慢转开，露出里面的整组画面；再点一次合上。②“缺了的一块”：开关打开后，左下角“正义的法官”那一块变成半透明，并显示卡片4的文字（没打开时会先打开）。③“放大看细节”：羔羊、上方的人物、左下角的“正义的法官”。位置是打开时整组画上的 0–1 坐标。 打开时的圆点、放大位置和“缺了的一块”的框已照 images/ghent-open.jpg（2026-11-02 上传）对准；合上时的两个圆点（closed、brothers）也已照 images/ghent-closed.jpg 对准。",
     "type": "altarpiece",
     "label": {
       "zh": "打开祭坛",
@@ -475,27 +475,27 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "待补",
+    "url": "https://commons.wikimedia.org/wiki/File:Ghent_Altarpiece_Google_Art_Project.jpg",
     "license": "公有领域（PD-Art） / public domain",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
     "files": [
       {
         "file": "ghent-open.jpg",
-        "from": "Wikimedia Commons（Tia 2026-11-02 上传，原文件名 IMG_0581.jpeg，1920 × 1415）",
-        "url": "待补（Tia 给的 Commons 文件页）",
+        "from": "Wikimedia Commons 上的 Google 艺术与文化版本（Tia 2026-11-02 上传，原文件名 IMG_0581.jpeg，1920 × 1415）",
+        "url": "https://commons.wikimedia.org/wiki/File:Ghent_Altarpiece_Google_Art_Project.jpg",
         "license": "公有领域（PD-Art）",
-        "status": "符合",
-        "note": "等 Tia 上传；不用 KIK-IRPA “Closer to Van Eyck”的图片，也不用教堂里的现场照片",
+        "status": "例外：Tia 2026-11-02 决定使用",
+        "note": "按 README 的版权规则本来不用 Google 艺术与文化的图片；Tia 决定对这几幅名画破例。",
         "verified": "2026-11-02"
       },
       {
         "file": "ghent-closed.jpg",
-        "from": "Wikimedia Commons（还没上传）",
-        "url": "待补",
-        "license": "公有领域（PD-Art）",
-        "status": "符合",
-        "note": "同上",
-        "verified": "2026-10-27"
+        "from": "Wikimedia Commons（修复后的照片，原出处 Lukas – Art in Flanders，摄影 Dominique Provost；Tia 2026-11-02 上传，原文件名 IMG_0585.jpeg，960 × 1370）",
+        "url": "https://commons.wikimedia.org/wiki/File:Ghent_Altarpiece_(closed,_after_restoration).jpg",
+        "license": "公有领域（PD-Art，美国）",
+        "status": "例外：Tia 2026-11-02 决定使用",
+        "note": "这张来自专业图片库，按 README 的规则本来不用；Tia 决定破例。",
+        "verified": "2026-11-02"
       }
     ]
   },
