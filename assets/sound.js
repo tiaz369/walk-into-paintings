@@ -525,6 +525,18 @@ const AMBIENCE = {
     bird(out, ctx.currentTime + 1); every(st, 3, 8, t => bird(out, t));
     every(st, 8, 18, t => bee(out, t));   // 远处的蜜蜂
   },
+  // 小船：夏天的塞纳河，河水轻拍、划桨声，远处蒸汽火车开过，鸟叫（Summer on the Seine）
+  'skiff-river'(out, st) {
+    loopNoise('brown', out, { freq: 320, gain: 0.07 });
+    lap(out, ctx.currentTime + 0.6); every(st, 2.5, 5, t => lap(out, t));
+    const oar = t => { for (let k = 0; k < 4; k++) burst(out, t + k * 1.5, { kind: 'white', type: 'bandpass', freq: rnd(600, 900), q: 1.2, vol: 0.035, dur: 0.35, p: -0.2 }); };   // 划桨
+    every(st, 8, 16, oar);
+    const far = ctx.createGain(); far.gain.value = 0.25; far.connect(pan(out, -0.4));   // 远处的火车
+    const wheels = t => { for (let i = 0; i < 12; i++) burst(far, t + i * 0.42 + (i % 2) * 0.12, { kind: 'brown', type: 'bandpass', freq: rnd(140, 220), q: 3, vol: 0.06, dur: 0.07 }); };
+    const whistle = t => tone(far, t, { f0: 880, type: 'triangle', vol: 0.04, attack: 0.05, dur: 1.0 });
+    every(st, 35, 70, t => { wheels(t); whistle(t + 2); });
+    bird(out, ctx.currentTime + 1.5); every(st, 5, 12, t => bird(out, t));
+  },
   // 吹笛少年：非常安静，只有远处隐约的军乐队短笛声（A quiet room, a distant fife）
   fifer(out, st) {
     loopNoise('brown', out, { freq: 260, gain: 0.04 });

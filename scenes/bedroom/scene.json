@@ -984,8 +984,9 @@
         "url": "待补",
         "license": "待核对",
         "status": "来源不明",
-        "note": "分享图、首页动画和 crops/ 都用到这张",
-        "verified": "2026-10-27"
+        "note": "分享图、首页动画和 crops/ 都用到这张；Tia 2026-11-02 找到 Commons 上的替换文件（replaceWith），等 Tia 下载上传后替换",
+        "verified": "2026-10-27",
+        "replaceWith": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg"
       },
       {
         "file": "v1889-chicago.jpg",

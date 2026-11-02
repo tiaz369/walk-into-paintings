@@ -481,14 +481,14 @@ const PAGES = {
     // 首页只有五块，以图片为主：首屏 · 本周新作 · 从这里开始 · 系列 · 底部图标链接
     // 首屏：一幅画（卧室的原画）铺满一屏
     const pick = R.sceneById[HERO.scene] && R.sceneById[HERO.scene].status === 'live' ? R.sceneById[HERO.scene] : R.live[0];
-    const heroMedia = `<img src="${ROOT + pick.cover}" ${altAttr(pick.title)} />`;
+    const heroMedia = `<img src="${ROOT + pick.cover}" ${altAttr(pick.title)} />${detailTag(pick)}`;
     // 本周新作：最近上线的（同一天上线的，登记表里排在后面的算更新）
     const newest = R.live.map(s => [s, R.allScenes.indexOf(s)]).sort((a, b) => (b[0].added || '').localeCompare(a[0].added || '') || b[1] - a[1])[0][0];
     const cover = id => R.sceneById[id] && R.sceneById[id].status === 'live' ? R.sceneById[id] : null;
     const firstSentence = o => ({ zh: o.zh.split('。')[0] + '。', en: o.en.split('. ')[0].replace(/\.?$/, '.') });
     const a = R.artistById[newest.artist], yr = typeof newest.year === 'object' ? newest.year : { zh: newest.year, en: newest.year };
     // 三扇门：走进一幅画 → 画家页；发现一段故事 → 艺术故事；去看真迹 → 三座城市
-    const door = (sc, name, inner) => { const c = cover(sc); return c ? `<div class="door"><span class="artist-cover door-pic"><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" /></span>
+    const door = (sc, name, inner) => { const c = cover(sc); return c ? `<div class="door"><span class="artist-cover door-pic"><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" />${detailTag(c)}</span>
       <span class="door-name">${bi(name)}</span>${inner}</div>` : ''; };
     main.innerHTML = `
       <section class="hero hero-full">
@@ -505,7 +505,7 @@ const PAGES = {
       <section class="section wrap" id="new">
         <h2>${ui('本周新作', 'New this week')}</h2>
         <a class="feature" href="${sceneUrl(newest)}">
-          <span class="artist-cover feature-pic"><img src="${ROOT + newest.cover}" ${altAttr(newest.title)} /></span>
+          <span class="artist-cover feature-pic"><img src="${ROOT + newest.cover}" ${altAttr(newest.title)} />${detailTag(newest)}</span>
           <span class="feature-text">
             <span class="feature-name">${bi(newest.title)}</span>
             <span class="feature-meta">${ui([a && a.name.zh, yr.zh].filter(Boolean).join(' · '), [a && a.name.en, yr.en].filter(Boolean).join(' · '))}</span>
@@ -529,7 +529,7 @@ const PAGES = {
           const live = c.order.map(x => R.sceneById[x]).filter(s => s && s.status === 'live' && s.cover);
           const cv = (c.cover && live.find(s => s.id === c.cover)) || live[0];
           return live.length ? `<a class="series-card" href="${ROOT}collections/${c.id}/" data-series="${c.accent || ''}">
-            <span class="artist-cover"><img src="${ROOT + cv.cover}" ${altAttr(cv.title)} loading="lazy" /></span>
+            <span class="artist-cover"><img src="${ROOT + cv.cover}" ${altAttr(cv.title)} loading="lazy" />${detailTag(cv)}</span>
             <span class="series-name">${ui(`${c.name.zh} · ${live.length}幅`, `${c.name.en} · ${live.length} ${live.length === 1 ? 'work' : 'works'}`)}</span></a>` : ''; }).join('')}</div>
       </section>
 

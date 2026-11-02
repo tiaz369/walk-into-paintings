@@ -154,6 +154,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive && S.exclusive.type === 'loupe' ? `<button class="btn" id="loupeBtn">🔍 ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'walkTo' ? `<button class="btn" id="walkToBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'sit' ? `<button class="btn" id="sitBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
+    ${S.exclusive && S.exclusive.type === 'titles' ? `<button class="btn" id="titlesBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'count' ? `<button class="btn" id="countBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && S.exclusive.type === 'reveal' ? `<button class="btn" id="revealBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
     ${S.exclusive && (S.exclusive.type === 'grayscale' || S.exclusive.type === 'colorPicker') ? `<button class="btn" id="exBtn">✦ ${ui(S.exclusive.label.zh, S.exclusive.label.en)}</button>` : ''}
@@ -170,6 +171,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive.alt ? `<p style="margin:10px 0 0"><button class="btn" id="loupeAlt">✦ ${ui(S.exclusive.alt.label.zh, S.exclusive.alt.label.en)}</button></p>` : ''}
     ${S.exclusive.note || S.exclusive.card ? `<p class="loupe-note" id="loupeNote">${bi(S.exclusive.note || S.cards[S.exclusive.card].text, ' / ')}</p>` : ''}
   </div>` : ''}
+  ${S.exclusive && S.exclusive.type === 'titles' ? `<div id="titlesPanel" class="panel hidden"><div id="titlesNow"></div><div class="titles-note">${bi(S.exclusive.note, ' / ')}</div></div>` : ''}
   ${S.exclusive && S.exclusive.type === 'count' ? `<div id="countPanel" class="panel hidden"><div id="countN"></div><div id="countZoom"></div><div id="countDone" class="hidden">${bi(S.exclusive.done, ' / ')}</div></div>` : ''}
   ${S.exclusive && S.exclusive.type === 'sit' ? `<div id="sitNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'ceilingLight' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
@@ -1306,6 +1308,19 @@ function run(S, R, meta) {
     onLang(() => { if (counting) showCount(); });
   }
 
+  // 独家发现“一幅画，几个名字”（titles）：按一下换一个画名（items：title、date），画面不变；换完一轮后关上
+  const titlesObj = S.exclusive && S.exclusive.type === 'titles' ? S.exclusive : null;
+  if (titlesObj) {
+    let ti = -1;
+    const showT = () => { const it = titlesObj.items[ti]; $('titlesNow').innerHTML = it ? `<b>${bi(it.title, ' / ')}</b>${it.date ? ` <small>${bi(it.date, ' / ')}</small>` : ''}` : ''; };
+    $('titlesBtn').onclick = () => {
+      ti = ti + 1 >= titlesObj.items.length ? -1 : ti + 1;
+      const on = ti >= 0;
+      $('titlesBtn').classList.toggle('on', on); $('titlesPanel').classList.toggle('hidden', !on);
+      if (on) { card.style.display = 'none'; showT(); if (ti === 0) track('exclusive-' + S.id); if (ti === titlesObj.items.length - 1 && titlesObj.card && S.cards[titlesObj.card]) { found.add(titlesObj.card); updateProgress(); } }
+    };
+    onLang(() => { if (ti >= 0) showT(); });
+  }
   // 独家发现“放大镜”（loupe）：弹出原画，手指或鼠标在画上移动，放大镜跟着放大那一块（zoom 倍）
   const loupeObj = S.exclusive && S.exclusive.type === 'loupe' ? S.exclusive : null;
   if (loupeObj) {

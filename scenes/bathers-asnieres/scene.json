@@ -11,12 +11,13 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《睡莲池》互相链接（同属“水”）；和《大碗岛的星期天下午》互相链接（河对岸的岛）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。和《睡莲池》互相链接（同属“水”）；和《大碗岛的星期天下午》互相链接（河对岸的岛）。和雷诺阿《小船》互相链接（同一条河，不同的画法）。",
     "doors": [],
     "cards": [],
     "end": [
       "grande-jatte",
-      "water-lily-pond"
+      "water-lily-pond",
+      "the-skiff"
     ]
   },
   "painting": {
@@ -711,6 +712,14 @@
         "label": {
           "zh": "同属“水”",
           "en": "Also by the water"
+        }
+      },
+      {
+        "scene": "the-skiff",
+        "href": "../the-skiff/",
+        "label": {
+          "zh": "同一条河，不同的画法",
+          "en": "The same river, a different way of painting"
         }
       }
     ]
