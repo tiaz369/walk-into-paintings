@@ -117,6 +117,7 @@ function buildDOM(S, R, meta) {
       <button id="enter" class="btn primary"><span class="zh">${S.enter.zh}</span><span class="en">${S.enter.en}</span></button>
       ${oneMinuteHTML()}
       <div id="introInfo" class="panel"><div class="lbl">${bi(labelLine, ' / ')}</div><div>${imgLine}</div></div>
+      ${S.contentNote ? `<div id="contentNote"><span class="zh">${S.contentNote.zh}</span><span class="en">${S.contentNote.en}</span></div>` : ''}
     </div>
   </div>
   <a id="sceneHome" href="${ROOT}">← ${ui('走进名画', 'Walk into Paintings')}</a>

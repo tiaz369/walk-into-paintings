@@ -219,19 +219,6 @@
     "manet": [
       {
         "title": {
-          "zh": "草地上的午餐",
-          "en": "Luncheon on the Grass"
-        },
-        "year": {
-          "zh": "1863",
-          "en": "1863"
-        },
-        "museum": "orsay",
-        "check": "ok",
-        "_": "多处来源：1863，奥赛"
-      },
-      {
-        "title": {
           "zh": "吹笛少年",
           "en": "The Fifer"
         },

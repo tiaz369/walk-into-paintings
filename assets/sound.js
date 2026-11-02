@@ -517,6 +517,17 @@ const AMBIENCE = {
     every(st, 14, 30, splash);
     every(st, 8, 18, t => bird(out, t));
   },
+  // 林间空地：树林里的鸟叫，溪水声（细碎、不停的流水），风吹树叶（Woods with a stream）
+  'woodland-stream'(out, st) {
+    loopNoise('brown', out, { freq: 320, gain: 0.06 });
+    const leaves = loopNoise('brown', out, { type: 'bandpass', freq: 950, q: 0.5, gain: 0.03 });   // 风吹树叶
+    st.timers.push(setInterval(() => leaves.g.gain.setTargetAtTime(0.015 + 0.045 * Math.random(), ctx.currentTime, 1.8), 3500));
+    const brook = loopNoise('white', out, { type: 'bandpass', freq: 1800, q: 0.8, gain: 0.02 });   // 溪水：一直在流
+    st.timers.push(setInterval(() => brook.f.frequency.setTargetAtTime(rnd(1400, 2400), ctx.currentTime, 0.15), 260));
+    const trickle = t => { for (let k = 0; k < 3; k++) tone(out, t + k * rnd(0.06, 0.12), { f0: rnd(900, 1500), f1: rnd(1600, 2400), vol: 0.008, attack: 0.004, dur: 0.05, p: rnd(-0.3, 0.3) }); };   // 水流过石头的细小声音
+    every(st, 0.6, 1.8, trickle);
+    bird(out, ctx.currentTime + 1.2); every(st, 3, 8, t => bird(out, t));
+  },
   // 大碗岛的星期天下午：鸟叫、风吹树叶、远处的说话声（很轻）、河上的划桨声和轻轻的水声（A Sunday afternoon on an island in the Seine）
   'island-park'(out, st) {
     loopNoise('brown', out, { freq: 320, gain: 0.07 });

@@ -11,12 +11,13 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《煎饼磨坊的舞会》互相链接；和《女神游乐厅的吧台》互相链接（马奈的第一幅现代生活，和最后一幅）。",
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《煎饼磨坊的舞会》互相链接；和《女神游乐厅的吧台》互相链接（马奈的第一幅现代生活，和最后一幅）；和《草地上的午餐》互相链接（马奈画的另一个户外聚会）。",
     "doors": [],
     "cards": [],
     "end": [
       "moulin-galette",
-      "folies-bergere"
+      "folies-bergere",
+      "dejeuner-herbe"
     ]
   },
   "painting": {
@@ -864,6 +865,14 @@
         "label": {
           "zh": "马奈的第一幅现代生活，和最后一幅",
           "en": "Manet's first great picture of modern life, and his last"
+        }
+      },
+      {
+        "scene": "dejeuner-herbe",
+        "href": "../dejeuner-herbe/",
+        "label": {
+          "zh": "马奈画的另一个户外聚会",
+          "en": "Another of Manet's outdoor gatherings"
         }
       }
     ]

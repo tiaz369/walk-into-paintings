@@ -1,0 +1,720 @@
+{
+  "_说明": "草地上的午餐（户外风景，完整版：林间空地）。所有事实文字由 Tia 提供（奥赛博物馆官网、奥赛提供给谷歌艺术与文化的介绍、史密森尼杂志）。画中有裸体女性：所有文字只平实地介绍画面和历史，不用任何带性暗示的描述；3D 里的人物只是简单的几何体。开场有一行小字说明（contentNote）。两位男子的身份只有一个来源，不写进卡片。原画还没上传：画家视角和物体位置先按构图估算，原画上传后再对准。",
+  "id": "dejeuner-herbe",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "树林里柔和的光",
+      "en": "Soft light in the woods"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《杜伊勒里花园的音乐会》互相链接（马奈画的另一个户外聚会）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "tuileries"
+    ]
+  },
+  "painting": {
+    "image": "images/dejeuner-herbe.jpg",
+    "width": 1600,
+    "height": 1258,
+    "alt": {
+      "zh": "马奈《草地上的午餐》1863，巴黎奥赛博物馆",
+      "en": "Édouard Manet, Luncheon on the Grass, 1863, Musée d'Orsay, Paris"
+    },
+    "_": "宽高先按尺寸 264.5 × 208 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "草地上的午餐",
+      "en": "Luncheon on the Grass"
+    },
+    "artist": {
+      "zh": "马奈",
+      "en": "Édouard Manet"
+    },
+    "date": {
+      "zh": "1863年",
+      "en": "1863"
+    },
+    "museum": {
+      "zh": "巴黎奥赛博物馆",
+      "en": "Musée d'Orsay, Paris"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "contentNote": {
+    "zh": "本作品包含艺术裸体",
+    "en": "This work includes artistic nudity"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下前景的人、野餐篮、溪水里的女子和树林看介绍 · 点“马奈借了什么”，对比三幅原作 · 地上发光的圆点 = 马奈的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the figures, the picnic basket, the woman in the stream or the woods to learn more · Tap “What Manet borrowed” to compare three originals · The glowing circle = Manet's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（坐在草地上的人前面），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.3,
+    "yaw": 0,
+    "pitch": -0.2,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "woodland-stream",
+  "colors": {
+    "line": "#2a2a26",
+    "ground": "#6a7a48",
+    "sky": "#c8d0b8",
+    "water": "#7a8a78",
+    "coat": "#22222a",
+    "trousers": "#3a3a40",
+    "pale": "#e8dcc8",
+    "white": "#ece8e0",
+    "blue": "#3a5a9a",
+    "straw": "#d8c890",
+    "basket": "#a8844a",
+    "fruit": "#d08a3a",
+    "bread": "#c89a5a",
+    "wood": "#5a4a32",
+    "leaves": "#3e5a32",
+    "skin": "#e8d0b8"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（林间空地），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -20,
+      20,
+      -25,
+      4
+    ],
+    "bounds": [
+      -4,
+      4,
+      -6,
+      3
+    ],
+    "groundCard": "titian",
+    "skyCard": "titian",
+    "skyRadius": 60,
+    "walkSpeed": 0.8
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "titian",
+      "_": "林间空地的草地",
+      "pts": [
+        [
+          -20,
+          0.01,
+          4
+        ],
+        [
+          -20,
+          0.01,
+          -25
+        ],
+        [
+          20,
+          0.01,
+          -25
+        ],
+        [
+          20,
+          0.01,
+          4
+        ]
+      ],
+      "color": "ground"
+    },
+    {
+      "type": "surface",
+      "card": "stream",
+      "_": "后面的小溪",
+      "pts": [
+        [
+          -8,
+          0.03,
+          -6.5
+        ],
+        [
+          -8,
+          0.03,
+          -9.5
+        ],
+        [
+          8,
+          0.03,
+          -9.5
+        ],
+        [
+          8,
+          0.03,
+          -6.5
+        ]
+      ],
+      "color": "water"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "pale",
+      "x": -0.55,
+      "z": -3.0,
+      "rot": 0.3,
+      "card": "gaze",
+      "_": "前景的女子（转头看着画外）",
+      "id": "woman"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 0.0,
+      "z": -3.3,
+      "rot": -0.5,
+      "card": "men",
+      "_": "中间穿深色外套的男子",
+      "legs": "trousers"
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "coat",
+      "x": 0.75,
+      "z": -3.0,
+      "rot": -1.6,
+      "card": "raphael",
+      "_": "右边半躺着、撑着胳膊的男子",
+      "legs": "trousers"
+    },
+    {
+      "type": "boxes",
+      "card": "picnic",
+      "x": -1.1,
+      "z": -2.4,
+      "_": "倒翻的篮子、水果和面包",
+      "boxes": [
+        [
+          0.4,
+          0.22,
+          0.3,
+          "basket",
+          0,
+          0.11,
+          0
+        ],
+        [
+          0.12,
+          0.1,
+          0.12,
+          "fruit",
+          0.3,
+          0.05,
+          0.15
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          "fruit",
+          0.2,
+          0.05,
+          0.3
+        ],
+        [
+          0.3,
+          0.08,
+          0.12,
+          "bread",
+          -0.25,
+          0.04,
+          0.2
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "model",
+      "x": -0.85,
+      "z": -2.7,
+      "_": "脱下的蓝色衣服和草帽",
+      "boxes": [
+        [
+          0.7,
+          0.06,
+          0.45,
+          "blue",
+          0,
+          0.03,
+          0
+        ],
+        [
+          0.35,
+          0.06,
+          0.35,
+          "straw",
+          -0.2,
+          0.08,
+          -0.05
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "white",
+      "x": 0.0,
+      "z": -7.8,
+      "rot": 0,
+      "card": "stream",
+      "_": "溪水里弯着腰的女子（穿衬裙）",
+      "scale": 0.85,
+      "legs": "white",
+      "id": "bather"
+    },
+    {
+      "type": "boxes",
+      "card": "stream",
+      "x": -2.6,
+      "z": -10.5,
+      "_": "远处的小船",
+      "boxes": [
+        [
+          1.6,
+          0.25,
+          0.6,
+          "wood",
+          0,
+          0.12,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "tree",
+      "card": "titian",
+      "_": "树林",
+      "x": -3.2,
+      "z": -5.5,
+      "h": 11,
+      "r": 3.2,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "titian",
+      "_": "树林",
+      "x": 3.2,
+      "z": -6,
+      "h": 12,
+      "r": 3.5,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "titian",
+      "_": "树林",
+      "x": -1.8,
+      "z": -12,
+      "h": 10,
+      "r": 3,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "titian",
+      "_": "树林",
+      "x": 2.2,
+      "z": -13,
+      "h": 11,
+      "r": 3.2,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "titian",
+      "_": "树林",
+      "x": 0,
+      "z": -17,
+      "h": 12,
+      "r": 3.5,
+      "color": "leaves"
+    }
+  ],
+  "cards": {
+    "gaze": {
+      "title": {
+        "zh": "看着我们的她",
+        "en": "She looks at us"
+      },
+      "text": {
+        "zh": "前景的女子转过头，直直地看着画外的我们。",
+        "en": "The woman in the foreground turns her head and looks straight out at us."
+      }
+    },
+    "men": {
+      "title": {
+        "zh": "两个穿外套的男人",
+        "en": "Two men in jackets"
+      },
+      "text": {
+        "zh": "她身边的两位男子穿着当时巴黎的日常服装，正在聊天。当时的观众看到这样的组合，非常吃惊。",
+        "en": "The two men beside her wear the everyday clothes of contemporary Paris, deep in conversation. Viewers at the time were shocked by the combination."
+      }
+    },
+    "picnic": {
+      "title": {
+        "zh": "野餐",
+        "en": "The picnic"
+      },
+      "text": {
+        "zh": "左下角是一个倒翻的篮子，水果和面包散落在脱下的衣服上，像一幅静物画。",
+        "en": "At the lower left, an overturned basket spills fruit and bread onto discarded clothes, like a still life."
+      }
+    },
+    "stream": {
+      "title": {
+        "zh": "溪水里的女子",
+        "en": "In the stream"
+      },
+      "text": {
+        "zh": "后面的小溪里，另一位女子弯着腰，好像在洗东西或者在戏水。",
+        "en": "In the stream behind, another woman bends down, perhaps washing or bathing."
+      }
+    },
+    "titian": {
+      "title": {
+        "zh": "来自提香",
+        "en": "From Titian"
+      },
+      "text": {
+        "zh": "题材借自卢浮宫的一幅古画《田园合奏》，当时被认为是乔尔乔内画的，现在认为出自提香。",
+        "en": "The subject was borrowed from *The Pastoral Concert* in the Louvre, then thought to be by Giorgione and now attributed to Titian."
+      }
+    },
+    "raphael": {
+      "title": {
+        "zh": "来自拉斐尔",
+        "en": "From Raphael"
+      },
+      "text": {
+        "zh": "前景三个人的姿势，来自一幅根据拉斐尔的画刻的古老版画。",
+        "en": "The poses of the three figures in the foreground come from an old engraving after a work by Raphael."
+      }
+    },
+    "model": {
+      "title": {
+        "zh": "模特维多琳",
+        "en": "Victorine, the model"
+      },
+      "text": {
+        "zh": "前景的女子由维多琳·默朗扮演，她是马奈常用的模特，后来自己也成了画家。",
+        "en": "The woman in the foreground is Victorine Meurent, Manet's favourite model, who later became a painter herself."
+      }
+    }
+  },
+  "compare": {
+    "_说明": "独家发现“马奈借了什么”：对比滑块，在三幅原作之间切换（都是真实原作，不加“这是示意”）。提香用 Wikimedia Commons 的 PD-Art 版本；莱蒙迪的版画用大都会博物馆开放资源（CC0，等 Tia 在大都会官网确认）。都等 Tia 上传。",
+    "type": "compare",
+    "label": {
+      "zh": "马奈借了什么",
+      "en": "What Manet borrowed"
+    },
+    "card": "titian",
+    "note": {
+      "zh": "题材来自提香，姿势来自拉斐尔，衣服来自马奈的巴黎。这里每一幅都是原作。",
+      "en": "The subject from Titian, the poses from Raphael, the clothes from Manet's Paris. Every image here is an original."
+    },
+    "versions": [
+      {
+        "image": "images/pastoral-concert.jpg",
+        "short": {
+          "zh": "提香 · 田园合奏",
+          "en": "Titian · The Pastoral Concert"
+        },
+        "caption": {
+          "zh": "提香《田园合奏》，约1509年 · 巴黎卢浮宫",
+          "en": "Titian, *The Pastoral Concert*, about 1509 · Musée du Louvre, Paris"
+        }
+      },
+      {
+        "image": "images/judgment-paris.jpg",
+        "short": {
+          "zh": "莱蒙迪 · 帕里斯的审判",
+          "en": "Raimondi · The Judgment of Paris"
+        },
+        "caption": {
+          "zh": "马尔坎托尼奥·莱蒙迪（根据拉斐尔）《帕里斯的审判》，约1510–20年 · 纽约大都会艺术博物馆",
+          "en": "Marcantonio Raimondi after Raphael, *The Judgment of Paris*, about 1510–20 · The Metropolitan Museum of Art, New York"
+        }
+      },
+      {
+        "image": "images/dejeuner-herbe.jpg",
+        "short": {
+          "zh": "马奈 · 草地上的午餐",
+          "en": "Manet · Luncheon on the Grass"
+        },
+        "caption": {
+          "zh": "马奈《草地上的午餐》，1863年 · 巴黎奥赛博物馆",
+          "en": "Manet, *Luncheon on the Grass*, 1863 · Musée d'Orsay, Paris"
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/dejeuner-herbe.jpg",
+        "alt": {
+          "zh": "马奈《草地上的午餐》1863，巴黎奥赛博物馆",
+          "en": "Édouard Manet, Luncheon on the Grass, 1863, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1863年 · 巴黎奥赛博物馆",
+          "en": "1863 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 落选者沙龙",
+          "en": "The Salon of the Rejected"
+        },
+        "text": {
+          "zh": "1863年，官方沙龙拒绝了这幅画。同一年，皇帝拿破仑三世下令为落选作品开办了一个展览。马奈以《沐浴》为名展出了它，结果成了整个展览最受关注的作品，引来了嘲笑，也引发了丑闻。",
+          "en": "In 1863, the official Salon rejected this painting. That same year, Emperor Napoleon III ordered an exhibition for rejected works. Manet showed it there under the title *The Bath*, and it became the main attraction, drawing laughter and scandal."
+        }
+      },
+      {
+        "image": "images/dejeuner-herbe.jpg",
+        "alt": {
+          "zh": "马奈《草地上的午餐》1863，巴黎奥赛博物馆",
+          "en": "Édouard Manet, Luncheon on the Grass, 1863, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1863年 · 巴黎奥赛博物馆",
+          "en": "1863 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 向大师致敬",
+          "en": "A tribute to the masters"
+        },
+        "text": {
+          "zh": "人们没有注意到的是，马奈其实是在向古代大师致敬：题材借自提香，人物姿势借自拉斐尔。他只是把古老的题材，放进了现代人的衣服里。",
+          "en": "What people failed to notice was that Manet was paying tribute to the old masters: the subject came from Titian, the poses from Raphael. He simply dressed an ancient theme in modern clothes."
+        }
+      },
+      {
+        "image": "images/dejeuner-herbe.jpg",
+        "alt": {
+          "zh": "马奈《草地上的午餐》1863，巴黎奥赛博物馆",
+          "en": "Édouard Manet, Luncheon on the Grass, 1863, Musée d'Orsay, Paris"
+        },
+        "caption": {
+          "zh": "1863年 · 巴黎奥赛博物馆",
+          "en": "1863 · Musée d'Orsay, Paris"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 现代艺术的起点",
+          "en": "A starting point of modern art"
+        },
+        "text": {
+          "zh": "1867年，马奈把画名改成了《草地上的午餐》。今天，它被看作现代艺术的起点之一，收藏在奥赛博物馆。",
+          "en": "In 1867, Manet renamed it *Le Déjeuner sur l'herbe*. Today it is seen as one of the starting points of modern art, and hangs in the Musée d'Orsay."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一场野餐，成了现代艺术的起点。",
+      "en": "A picnic that became a starting point of modern art."
+    },
+    "versions": [],
+    "museums": [
+      "orsay"
+    ],
+    "exit": [
+      {
+        "scene": "tuileries",
+        "href": "../tuileries/",
+        "label": {
+          "zh": "马奈画的另一个户外聚会",
+          "en": "Another of Manet's outdoor gatherings"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（奥赛博物馆官网）。",
+    "artist": {
+      "zh": "爱德华·马奈（1832–1883）",
+      "en": "Édouard Manet (1832–1883)"
+    },
+    "title": {
+      "zh": "草地上的午餐",
+      "en": "Luncheon on the Grass (Le Déjeuner sur l'herbe)"
+    },
+    "date": {
+      "zh": "1863年",
+      "en": "1863"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "208 × 264.5 cm",
+      "en": "208 × 264.5 cm"
+    },
+    "collection": {
+      "zh": "巴黎奥赛博物馆（1906年艾蒂安·莫罗-内拉东捐赠；编号 RF 1668）",
+      "en": "Musée d'Orsay, Paris (Gift of Étienne Moreau-Nélaton, 1906; RF 1668)"
+    },
+    "url": "https://www.musee-orsay.fr/en/artworks/le-dejeuner-sur-lherbe-904"
+  },
+  "zoom": {
+    "image": "images/dejeuner-herbe.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "巴黎奥赛博物馆：草地上的午餐",
+          "en": "Musée d'Orsay: *Le Déjeuner sur l'herbe*"
+        },
+        "url": "https://www.musee-orsay.fr/en/artworks/le-dejeuner-sur-lherbe-904"
+      },
+      {
+        "title": {
+          "zh": "谷歌艺术与文化：草地上的午餐（奥赛博物馆提供的介绍）",
+          "en": "Google Arts & Culture: *Luncheon on the Grass* (text by the Musée d'Orsay)"
+        },
+        "url": "https://artsandculture.google.com/asset/luncheon-on-the-grass/twELHYoc3ID_VA"
+      },
+      {
+        "title": {
+          "zh": "史密森尼杂志：巴黎博物馆为马奈办了一场“模拟审判”",
+          "en": "Smithsonian Magazine: Paris museum puts Édouard Manet on mock trial"
+        },
+        "url": "https://www.smithsonianmag.com/smart-news/paris-museum-puts-edouard-manet-on-mock-trial-for-painting-scandalous-scene-nude-woman-180987478/"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 落选者沙龙",
+          "en": "The Salon of the Rejected"
+        },
+        "text": {
+          "zh": "1863年，官方沙龙拒绝了这幅画。同一年，皇帝拿破仑三世下令为落选作品开办了一个展览。马奈以《沐浴》为名展出了它，结果成了整个展览最受关注的作品，引来了嘲笑，也引发了丑闻。",
+          "en": "In 1863, the official Salon rejected this painting. That same year, Emperor Napoleon III ordered an exhibition for rejected works. Manet showed it there under the title *The Bath*, and it became the main attraction, drawing laughter and scandal."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 向大师致敬",
+          "en": "A tribute to the masters"
+        },
+        "text": {
+          "zh": "人们没有注意到的是，马奈其实是在向古代大师致敬：题材借自提香，人物姿势借自拉斐尔。他只是把古老的题材，放进了现代人的衣服里。",
+          "en": "What people failed to notice was that Manet was paying tribute to the old masters: the subject came from Titian, the poses from Raphael. He simply dressed an ancient theme in modern clothes."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 现代艺术的起点",
+          "en": "A starting point of modern art"
+        },
+        "text": {
+          "zh": "1867年，马奈把画名改成了《草地上的午餐》。今天，它被看作现代艺术的起点之一，收藏在奥赛博物馆。",
+          "en": "In 1867, Manet renamed it *Le Déjeuner sur l'herbe*. Today it is seen as one of the starting points of modern art, and hangs in the Musée d'Orsay."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "巴黎奥赛博物馆：草地上的午餐",
+        "en": "Musée d'Orsay: *Le Déjeuner sur l'herbe*"
+      },
+      "url": "https://www.musee-orsay.fr/en/artworks/le-dejeuner-sur-lherbe-904"
+    },
+    {
+      "title": {
+        "zh": "谷歌艺术与文化：草地上的午餐（奥赛博物馆提供的介绍）",
+        "en": "Google Arts & Culture: *Luncheon on the Grass* (text by the Musée d'Orsay)"
+      },
+      "url": "https://artsandculture.google.com/asset/luncheon-on-the-grass/twELHYoc3ID_VA"
+    },
+    {
+      "title": {
+        "zh": "史密森尼杂志：巴黎博物馆为马奈办了一场“模拟审判”",
+        "en": "Smithsonian Magazine: Paris museum puts Édouard Manet on mock trial"
+      },
+      "url": "https://www.smithsonianmag.com/smart-news/paris-museum-puts-edouard-manet-on-mock-trial-for-painting-scandalous-scene-nude-woman-180987478/"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。奥赛官网、RMN 和谷歌艺术与文化的图片都是有版权的照片，只用 Wikimedia Commons 的 PD-Art 文件和大都会博物馆开放资源。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "dejeuner-herbe.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要用奥赛官网、RMN 或谷歌艺术与文化的图片）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-02"
+      },
+      {
+        "file": "pastoral-concert.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传；不要用卢浮宫官网、RMN 或谷歌艺术与文化的图片）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待决定",
+        "verified": "2026-11-02"
+      },
+      {
+        "file": "judgment-paris.jpg",
+        "from": "大都会艺术博物馆开放资源（等 Tia 在官网确认标有 Open Access / Public Domain 后上传）",
+        "url": "https://www.metmuseum.org/art/collection/search/337058",
+        "license": "CC0（待核对）",
+        "status": "待决定",
+        "verified": "2026-11-02"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-02"
+}
