@@ -11,11 +11,12 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《杜伊勒里花园的音乐会》互相链接（马奈画的另一个户外聚会）。",
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《杜伊勒里花园的音乐会》互相链接（马奈画的另一个户外聚会）；和《吹笛少年》互相链接（同样被沙龙拒绝）。",
     "doors": [],
     "cards": [],
     "end": [
-      "tuileries"
+      "tuileries",
+      "the-fifer"
     ]
   },
   "painting": {
@@ -560,6 +561,14 @@
           "zh": "马奈画的另一个户外聚会",
           "en": "Another of Manet's outdoor gatherings"
         }
+      },
+      {
+        "scene": "the-fifer",
+        "href": "../the-fifer/",
+        "label": {
+          "zh": "同样被沙龙拒绝",
+          "en": "Also rejected by the Salon"
+        }
       }
     ]
   },
@@ -700,10 +709,10 @@
       },
       {
         "file": "pastoral-concert.jpg",
-        "from": "Wikimedia Commons（等 Tia 上传；不要用卢浮宫官网、RMN 或谷歌艺术与文化的图片）",
-        "url": "待补",
+        "from": "Wikimedia Commons（Tia 2026-11-02 上传的 IMG_0577.jpeg，1920 × 1528；同时传的 960px 小图 IMG_0575 是同一张，已删除）",
+        "url": "https://commons.wikimedia.org/wiki/File:Le_Concert_champ%C3%AAtre,_by_Titian,_from_C2RMF_retouchedFXD.jpg",
         "license": "公有领域（PD-Art）",
-        "status": "待决定",
+        "status": "符合",
         "verified": "2026-11-02"
       },
       {
