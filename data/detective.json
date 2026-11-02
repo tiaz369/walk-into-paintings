@@ -72,6 +72,14 @@
         "en": "Find Manet"
       },
       "play": "mirror"
+    },
+    {
+      "scene": "long-grass-butterflies",
+      "label": {
+        "zh": "找蝴蝶",
+        "en": "Find the butterflies"
+      },
+      "play": "count"
     }
   ]
 }

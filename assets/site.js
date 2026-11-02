@@ -875,7 +875,7 @@ const PAGES = {
 };
 
 // 城市参观路线页：每家博物馆一节（标题、参观链接），再按展厅分组。
-//   伦敦：收藏在这里、onDisplay 为 true、写了展厅的作品（包括还没做成场景的）；
+//   伦敦：收藏在这里、onDisplay 为 true 的作品（包括还没做成场景的）；写了展厅的按展厅分组，没写的放在最后“展厅待确认”；
 //   liveOnly（巴黎、阿姆斯特丹）：只列已上线的场景，借出去的不列；写了展厅的按展厅分组，没写的放在最后、不显示展厅号
 function routePage(R, main, L) {
   const key = r => r == null || r === '' ? '' : typeof r === 'object' ? r.en : String(r);
@@ -883,12 +883,12 @@ function routePage(R, main, L) {
     const m = R.museumById[sec.museum];
     const list = L.liveOnly
       ? R.allScenes.filter(s => s.museum === sec.museum && s.status === 'live' && s.onDisplay !== false && !s.displayAt)
-      : R.allScenes.filter(s => s.museum === sec.museum && s.onDisplay === true && s.room != null && s.room !== '');
+      : R.allScenes.filter(s => s.museum === sec.museum && s.onDisplay === true);   // 没写展厅的放在最后（“展厅待确认”）
     const rooms = [...new Map(list.map(s => [key(s.room), s.room])).values()]
       .sort((a, b) => (key(a) === '') - (key(b) === '') || (typeof a === 'object') - (typeof b === 'object') || (parseInt(key(a)) || 0) - (parseInt(key(b)) || 0));
     return `<section class="section wrap london" id="${sec.museum}"><h2>${bi(sec.title)}<small class="sub">${bi(sec.subtitle)}</small></h2>
       <p class="london-links">${sec.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${bi(l.label)} ↗</a>`).join('')}${m && m.url && !L.liveOnly && !sec.links.some(l => sameUrl(l.url, m.url)) ? `<a href="${m.url}" target="_blank" rel="noopener">${bi(m.name)} ↗</a>` : ''}</p>
-      ${rooms.map(r => `<div class="group">${key(r) ? `<h3>${bi(roomLabel(r))}</h3>` : ''}
+      ${rooms.map(r => `<div class="group">${key(r) ? `<h3>${bi(roomLabel(r))}</h3>` : L.liveOnly ? '' : `<h3>${ui('展厅待确认', 'Room to be confirmed')}</h3>`}
       <div class="rows">${list.filter(s => key(s.room) === key(r)).sort(byOpenYear).map(s => londonRow(R, s)).join('')}</div></div>`).join('') || SOON()}</section>`;
   };
   main.innerHTML = `<div class="wrap page-title"><h1>${bi(L.title)}</h1>

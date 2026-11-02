@@ -484,8 +484,8 @@
         "from": "Wikimedia Commons 上的 Google 艺术与文化版本（Tia 2026-11-02 上传，原文件名 IMG_0581.jpeg，1920 × 1415）",
         "url": "https://commons.wikimedia.org/wiki/File:Ghent_Altarpiece_Google_Art_Project.jpg",
         "license": "公有领域（PD-Art）",
-        "status": "例外：Tia 2026-11-02 决定使用",
-        "note": "按 README 的版权规则本来不用 Google 艺术与文化的图片；Tia 决定对这几幅名画破例。",
+        "status": "符合",
+        "note": "Commons 上的 Google Art Project 文件。按 2026-11-02 改写的版权规则：从 Commons 下载、文件页标 PD-Art 的就可以用。",
         "verified": "2026-11-02"
       },
       {
@@ -493,8 +493,8 @@
         "from": "Wikimedia Commons（修复后的照片，原出处 Lukas – Art in Flanders，摄影 Dominique Provost；Tia 2026-11-02 上传，原文件名 IMG_0585.jpeg，960 × 1370）",
         "url": "https://commons.wikimedia.org/wiki/File:Ghent_Altarpiece_(closed,_after_restoration).jpg",
         "license": "公有领域（PD-Art，美国）",
-        "status": "例外：Tia 2026-11-02 决定使用",
-        "note": "这张来自专业图片库，按 README 的规则本来不用；Tia 决定破例。",
+        "status": "符合",
+        "note": "Commons 上的文件（原出处 Lukas – Art in Flanders）。按 2026-11-02 改写的版权规则：Commons 文件页标 PD-Art 的就可以用。",
         "verified": "2026-11-02"
       }
     ]

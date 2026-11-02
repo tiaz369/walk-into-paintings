@@ -517,6 +517,14 @@ const AMBIENCE = {
     every(st, 14, 30, splash);
     every(st, 8, 18, t => bird(out, t));
   },
+  // 长草与蝴蝶：春天花园里的鸟叫，风吹长草的沙沙声，远处的蜜蜂（Long grass in a spring garden）
+  'long-grass'(out, st) {
+    loopNoise('brown', out, { freq: 300, gain: 0.05 });
+    const grass = loopNoise('white', out, { type: 'bandpass', freq: 2600, q: 0.6, gain: 0.02 });   // 风吹长草：一阵一阵
+    st.timers.push(setInterval(() => grass.g.gain.setTargetAtTime(0.008 + 0.03 * Math.random(), ctx.currentTime, 1.4), 2600));
+    bird(out, ctx.currentTime + 1); every(st, 3, 8, t => bird(out, t));
+    every(st, 8, 18, t => bee(out, t));   // 远处的蜜蜂
+  },
   // 吹笛少年：非常安静，只有远处隐约的军乐队短笛声（A quiet room, a distant fife）
   fifer(out, st) {
     loopNoise('brown', out, { freq: 260, gain: 0.04 });

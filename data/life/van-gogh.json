@@ -249,6 +249,19 @@
         "en": "May 1890"
       },
       "text": {
+        "zh": "离开圣雷米前，画下《长草与蝴蝶》",
+        "en": "Before leaving Saint-Rémy, paints *Long Grass with Butterflies*"
+      },
+      "scenes": [
+        "long-grass-butterflies"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1890年5月",
+        "en": "May 1890"
+      },
+      "text": {
         "zh": "搬到巴黎附近的奥维尔",
         "en": "Moves to Auvers-sur-Oise, near Paris"
       }

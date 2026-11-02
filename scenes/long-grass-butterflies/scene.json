@@ -1,0 +1,829 @@
+{
+  "_说明": "长草与蝴蝶（户外风景，完整版：疗养院花园的一角）。所有事实文字由 Tia 提供（伦敦国家美术馆官网、艺术新闻报）。观众站在一片几乎齐腰的春草中间，草间有白色和黄色的小花，远处一角隐约有一条小路（在哪一边说法不一，所以卡片只写“一角”），几只白色的蝴蝶在草间飞。关于梵高健康的内容不写。原画还没上传：视角、蝴蝶的位置和放大的位置先估算，原画上传后照着图对准。",
+  "id": "long-grass-butterflies",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "春天花园里的阳光",
+      "en": "Spring sunlight in the garden"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《鸢尾花》互相链接（卡片6：一年前，同一个花园）。系列“梵高在圣雷米”的最后一幅（在《杏花》之后）。",
+    "doors": [],
+    "cards": [
+      "irises"
+    ],
+    "end": [
+      "irises"
+    ]
+  },
+  "painting": {
+    "image": "images/long-grass-butterflies.jpg",
+    "width": 1600,
+    "height": 1274,
+    "alt": {
+      "zh": "梵高《长草与蝴蝶》1890，伦敦国家美术馆",
+      "en": "Vincent van Gogh, Long Grass with Butterflies, 1890, The National Gallery, London"
+    },
+    "_": "宽高先按尺寸 81 × 64.5 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "长草与蝴蝶",
+      "en": "Long Grass with Butterflies"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1890年",
+      "en": "1890"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下草、小花和小路看介绍 · 点“找蝴蝶”，在草里找到三只蝴蝶 · 地上发光的圆点 = 梵高的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the grass, the flowers or the path to learn more · Tap “Find the butterflies” to spot all three in the grass · The glowing circle = Van Gogh's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（站在草里，往下看），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.3,
+    "yaw": 0,
+    "pitch": -0.5,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "long-grass",
+  "colors": {
+    "line": "#2a2a26",
+    "ground": "#6a8a48",
+    "grass": "#5a8a3a",
+    "grassLight": "#8aaa58",
+    "path": "#c8b890",
+    "white": "#f4f2ea",
+    "yellow": "#e8d050",
+    "sky": "#d8e4d0"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围（草地），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -15,
+      15,
+      -15,
+      3
+    ],
+    "bounds": [
+      -3,
+      3,
+      -6,
+      2
+    ],
+    "groundCard": "grass",
+    "skyCard": "leaving",
+    "skyRadius": 40,
+    "walkSpeed": 0.6
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "grass",
+      "_": "草地",
+      "pts": [
+        [
+          -15,
+          0.01,
+          3
+        ],
+        [
+          -15,
+          0.01,
+          -15
+        ],
+        [
+          15,
+          0.01,
+          -15
+        ],
+        [
+          15,
+          0.01,
+          3
+        ]
+      ],
+      "color": "ground"
+    },
+    {
+      "type": "surface",
+      "card": "garden",
+      "_": "一角隐约露出的小路（在哪一边说法不一，先放在远处一角）",
+      "pts": [
+        [
+          1.6,
+          0.02,
+          -5.5
+        ],
+        [
+          1.6,
+          0.02,
+          -8
+        ],
+        [
+          3.4,
+          0.02,
+          -8
+        ],
+        [
+          3.4,
+          0.02,
+          -5.5
+        ]
+      ],
+      "color": "path"
+    },
+    {
+      "type": "boxes",
+      "card": "closeup",
+      "x": 0,
+      "z": 0,
+      "_": "齐腰高的长草（一丛一丛）",
+      "boxes": [
+        [
+          0.5,
+          0.9,
+          0.5,
+          "grassLight",
+          -1.13,
+          0.45,
+          -5.22
+        ],
+        [
+          0.5,
+          0.81,
+          0.5,
+          "grass",
+          -2.74,
+          0.41,
+          -3.21
+        ],
+        [
+          0.5,
+          0.71,
+          0.5,
+          "grass",
+          -2.83,
+          0.35,
+          -3.36
+        ],
+        [
+          0.5,
+          0.73,
+          0.5,
+          "grassLight",
+          -0.42,
+          0.36,
+          -5.64
+        ],
+        [
+          0.5,
+          0.74,
+          0.5,
+          "grass",
+          -0.48,
+          0.37,
+          -1.7
+        ],
+        [
+          0.5,
+          0.98,
+          0.5,
+          "grass",
+          -1.77,
+          0.49,
+          -2.74
+        ],
+        [
+          0.5,
+          0.99,
+          0.5,
+          "grassLight",
+          0.49,
+          0.49,
+          -3.94
+        ],
+        [
+          0.5,
+          0.79,
+          0.5,
+          "grass",
+          -2.9,
+          0.4,
+          -1.54
+        ],
+        [
+          0.5,
+          0.79,
+          0.5,
+          "grass",
+          -2.28,
+          0.4,
+          -5.39
+        ],
+        [
+          0.5,
+          0.87,
+          0.5,
+          "grassLight",
+          2.02,
+          0.43,
+          -5.06
+        ],
+        [
+          0.5,
+          0.86,
+          0.5,
+          "grass",
+          0.89,
+          0.43,
+          -4.06
+        ],
+        [
+          0.5,
+          0.76,
+          0.5,
+          "grass",
+          -2.8,
+          0.38,
+          -5.69
+        ],
+        [
+          0.5,
+          0.79,
+          0.5,
+          "grassLight",
+          1.15,
+          0.4,
+          -3.78
+        ],
+        [
+          0.5,
+          0.79,
+          0.5,
+          "grass",
+          0.55,
+          0.4,
+          -3.64
+        ],
+        [
+          0.5,
+          0.77,
+          0.5,
+          "grass",
+          1.88,
+          0.39,
+          -2.37
+        ],
+        [
+          0.5,
+          0.96,
+          0.5,
+          "grassLight",
+          0.48,
+          0.48,
+          -3.27
+        ],
+        [
+          0.5,
+          0.99,
+          0.5,
+          "grass",
+          1.47,
+          0.49,
+          -4.5
+        ],
+        [
+          0.5,
+          0.93,
+          0.5,
+          "grass",
+          -2.44,
+          0.47,
+          -3.83
+        ],
+        [
+          0.5,
+          0.71,
+          0.5,
+          "grassLight",
+          -2.23,
+          0.35,
+          -3.46
+        ],
+        [
+          0.5,
+          0.87,
+          0.5,
+          "grass",
+          1.08,
+          0.43,
+          -2.02
+        ],
+        [
+          0.5,
+          0.91,
+          0.5,
+          "grass",
+          2.4,
+          0.46,
+          -4.37
+        ],
+        [
+          0.5,
+          0.84,
+          0.5,
+          "grassLight",
+          0.6,
+          0.42,
+          -2.98
+        ],
+        [
+          0.5,
+          0.84,
+          0.5,
+          "grass",
+          2.18,
+          0.42,
+          -1.09
+        ],
+        [
+          0.5,
+          0.91,
+          0.5,
+          "grass",
+          1.05,
+          0.46,
+          -5.68
+        ],
+        [
+          0.5,
+          0.95,
+          0.5,
+          "grassLight",
+          0.94,
+          0.47,
+          -0.84
+        ],
+        [
+          0.5,
+          0.9,
+          0.5,
+          "grass",
+          -1.38,
+          0.45,
+          -3.99
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "irises",
+      "x": -1.2,
+      "z": -2.6,
+      "_": "草间白色和黄色的小花",
+      "boxes": [
+        [
+          0.08,
+          0.08,
+          0.08,
+          "white",
+          0,
+          0.9,
+          0
+        ],
+        [
+          0.08,
+          0.08,
+          0.08,
+          "yellow",
+          0.3,
+          0.85,
+          0.2
+        ],
+        [
+          0.08,
+          0.08,
+          0.08,
+          "white",
+          -0.25,
+          0.95,
+          -0.3
+        ],
+        [
+          0.08,
+          0.08,
+          0.08,
+          "yellow",
+          0.6,
+          0.8,
+          -0.4
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "butterflies",
+      "count": true,
+      "crop": {
+        "x": 0.2,
+        "y": 0.3,
+        "w": 0.18,
+        "h": 0.22
+      },
+      "x": -0.8,
+      "z": -2.2,
+      "_": "蝴蝶1（位置待照原画对准）",
+      "boxes": [
+        [
+          0.14,
+          0.02,
+          0.1,
+          "white",
+          0,
+          1.15,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "butterflies",
+      "count": true,
+      "crop": {
+        "x": 0.5,
+        "y": 0.45,
+        "w": 0.18,
+        "h": 0.22
+      },
+      "x": 0.4,
+      "z": -3.0,
+      "_": "蝴蝶2（位置待照原画对准）",
+      "boxes": [
+        [
+          0.14,
+          0.02,
+          0.1,
+          "white",
+          0,
+          1.1,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "butterflies",
+      "count": true,
+      "crop": {
+        "x": 0.7,
+        "y": 0.6,
+        "w": 0.18,
+        "h": 0.22
+      },
+      "x": 1.3,
+      "z": -1.8,
+      "_": "蝴蝶3（位置待照原画对准）",
+      "boxes": [
+        [
+          0.14,
+          0.02,
+          0.1,
+          "white",
+          0,
+          1.05,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "garden": {
+      "title": {
+        "zh": "疗养院的花园",
+        "en": "The asylum garden"
+      },
+      "text": {
+        "zh": "这是圣雷米圣保罗疗养院花园里的一片草地。梵高在这里住了一年。",
+        "en": "This is a patch of meadow in the garden of the Saint-Paul asylum at Saint-Rémy, where Van Gogh stayed for a year."
+      }
+    },
+    "butterflies": {
+      "title": {
+        "zh": "三只蝴蝶",
+        "en": "Three butterflies"
+      },
+      "text": {
+        "zh": "草间藏着三只蝴蝶，不太容易一眼看到。找到它们之后，整幅画就动了起来。",
+        "en": "Three butterflies are hidden in the grass, not easy to spot at first. Once you find them, the whole painting comes alive."
+      }
+    },
+    "grass": {
+      "title": {
+        "zh": "春天的草",
+        "en": "Spring grass"
+      },
+      "text": {
+        "zh": "画面几乎全是长长的、茂盛的春草，只有一角隐约露出一条小路。",
+        "en": "The picture is filled almost entirely with long, lush spring grass; only a trace of a path appears in one corner."
+      }
+    },
+    "closeup": {
+      "title": {
+        "zh": "近看自然",
+        "en": "Nature up close"
+      },
+      "text": {
+        "zh": "这种近距离画一小片自然的方式，在文艺复兴和17世纪荷兰绘画里都有先例；梵高也可能受到了他读到的日本文化的影响。",
+        "en": "Painting a small patch of nature up close had precedents in Renaissance and 17th-century Dutch art; Van Gogh may also have been inspired by what he read about Japanese culture."
+      }
+    },
+    "leaving": {
+      "title": {
+        "zh": "离开之前",
+        "en": "Before leaving"
+      },
+      "text": {
+        "zh": "这是梵高在圣雷米画的最后几幅画之一。两周后，他就离开了疗养院。",
+        "en": "This is one of the last paintings Van Gogh made at Saint-Rémy. Two weeks later, he left the asylum."
+      }
+    },
+    "irises": {
+      "title": {
+        "zh": "同一个花园",
+        "en": "The same garden"
+      },
+      "text": {
+        "zh": "一年前，他刚来到这里，就在同一个花园里画了《鸢尾花》。",
+        "en": "A year earlier, just after he arrived, he had painted *Irises* in this same garden."
+      },
+      "links": [
+        {
+          "scene": "irises",
+          "href": "../irises/",
+          "label": {
+            "zh": "一年前，同一个花园",
+            "en": "A year earlier, the same garden"
+          }
+        }
+      ]
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“找蝴蝶”（count）：打开后，在草里点蝴蝶，每找到一只，头顶出现数字，并放大原画上那一块（crop，只是放大原画，不加“这是示意”）；三只都找到后显示卡片2的文字。也加进了“画中侦探”页面（play=count）。crop 和蝴蝶的位置待原画上传后对准。",
+    "type": "count",
+    "label": {
+      "zh": "找蝴蝶",
+      "en": "Find the butterflies"
+    },
+    "counter": {
+      "zh": "找到 {n} 只",
+      "en": "{n} found"
+    },
+    "done": {
+      "zh": "草间藏着三只蝴蝶，不太容易一眼看到。找到它们之后，整幅画就动了起来。",
+      "en": "Three butterflies are hidden in the grass, not easy to spot at first. Once you find them, the whole painting comes alive."
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/long-grass-butterflies.jpg",
+        "alt": {
+          "zh": "梵高《长草与蝴蝶》1890，伦敦国家美术馆",
+          "en": "Vincent van Gogh, Long Grass with Butterflies, 1890, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1890年4–5月 · 伦敦国家美术馆",
+          "en": "April–May 1890 · The National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 最后的春天",
+          "en": "The last spring"
+        },
+        "text": {
+          "zh": "1890年春天，梵高在圣雷米疗养院已经住了将近一年。他走进花园，画下了一片长满草的角落。",
+          "en": "In spring 1890, Van Gogh had been at the Saint-Rémy asylum for almost a year. He went out into the garden and painted an overgrown corner."
+        }
+      },
+      {
+        "image": "images/long-grass-butterflies.jpg",
+        "alt": {
+          "zh": "梵高《长草与蝴蝶》1890，伦敦国家美术馆",
+          "en": "Vincent van Gogh, Long Grass with Butterflies, 1890, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1890年4–5月 · 伦敦国家美术馆",
+          "en": "April–May 1890 · The National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 草里的蝴蝶",
+          "en": "Butterflies in the grass"
+        },
+        "text": {
+          "zh": "画里几乎只有草，但仔细看，有三只蝴蝶在草间飞。",
+          "en": "The painting is almost nothing but grass. But look closely, and three butterflies are flying among it."
+        }
+      },
+      {
+        "image": "images/long-grass-butterflies.jpg",
+        "alt": {
+          "zh": "梵高《长草与蝴蝶》1890，伦敦国家美术馆",
+          "en": "Vincent van Gogh, Long Grass with Butterflies, 1890, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1890年4–5月 · 伦敦国家美术馆",
+          "en": "April–May 1890 · The National Gallery, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 出发",
+          "en": "Setting off"
+        },
+        "text": {
+          "zh": "1890年5月16日，他离开了疗养院，希望自己已经痊愈。他先去巴黎看望提奥，然后去了奥维尔。",
+          "en": "On 16 May 1890, he left the asylum, hoping he was cured. He went first to see Theo in Paris, then on to Auvers-sur-Oise."
+        }
+      }
+    ],
+    "final": {
+      "zh": "一片草，三只蝴蝶，一个春天。",
+      "en": "A patch of grass, three butterflies, one spring."
+    },
+    "versions": [],
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "irises",
+        "href": "../irises/",
+        "label": {
+          "zh": "一年前，同一个花园",
+          "en": "A year earlier, the same garden"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆官网；编号 NG4169）。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "长草与蝴蝶",
+      "en": "Long Grass with Butterflies"
+    },
+    "date": {
+      "zh": "1890年4–5月，圣雷米",
+      "en": "April–May 1890, Saint-Rémy"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "64.5 × 81 cm",
+      "en": "64.5 × 81 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆，43号展厅",
+      "en": "The National Gallery, London, Room 43"
+    },
+    "creditLine": {
+      "zh": "1926年用考陶尔德基金购入（编号 NG4169）",
+      "en": "Bought, Courtauld Fund, 1926 (NG4169)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-long-grass-with-butterflies"
+  },
+  "zoom": {
+    "image": "images/long-grass-butterflies.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：长草与蝴蝶",
+          "en": "The National Gallery: *Long Grass with Butterflies*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-long-grass-with-butterflies"
+      },
+      {
+        "title": {
+          "zh": "艺术新闻报：独家探访梵高的疗养院花园",
+          "en": "The Art Newspaper: An exclusive visit to Van Gogh's asylum garden"
+        },
+        "url": "https://theartnewspaper.com/2024/06/28/an-exclusive-visit-to-van-goghs-asylum-garden-to-track-down-the-scenes-that-he-painted"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 最后的春天",
+          "en": "The last spring"
+        },
+        "text": {
+          "zh": "1890年春天，梵高在圣雷米疗养院已经住了将近一年。他走进花园，画下了一片长满草的角落。",
+          "en": "In spring 1890, Van Gogh had been at the Saint-Rémy asylum for almost a year. He went out into the garden and painted an overgrown corner."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 草里的蝴蝶",
+          "en": "Butterflies in the grass"
+        },
+        "text": {
+          "zh": "画里几乎只有草，但仔细看，有三只蝴蝶在草间飞。",
+          "en": "The painting is almost nothing but grass. But look closely, and three butterflies are flying among it."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 出发",
+          "en": "Setting off"
+        },
+        "text": {
+          "zh": "1890年5月16日，他离开了疗养院，希望自己已经痊愈。他先去巴黎看望提奥，然后去了奥维尔。",
+          "en": "On 16 May 1890, he left the asylum, hoping he was cured. He went first to see Theo in Paris, then on to Auvers-sur-Oise."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：长草与蝴蝶",
+        "en": "The National Gallery: *Long Grass with Butterflies*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/vincent-van-gogh-long-grass-with-butterflies"
+    },
+    {
+      "title": {
+        "zh": "艺术新闻报：独家探访梵高的疗养院花园",
+        "en": "The Art Newspaper: An exclusive visit to Van Gogh's asylum garden"
+      },
+      "url": "https://theartnewspaper.com/2024/06/28/an-exclusive-visit-to-van-goghs-asylum-garden-to-track-down-the-scenes-that-he-painted"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。不要从国家美术馆官网直接下载。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Wiese_im_Garten_des_Hospitals_Saint-Paul.jpeg",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "long-grass-butterflies.jpg",
+        "from": "Wikimedia Commons：Van Gogh - Wiese im Garten des Hospitals Saint-Paul.jpeg（来源国家美术馆，6000 × 4749；等 Tia 上传）",
+        "url": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Wiese_im_Garten_des_Hospitals_Saint-Paul.jpeg",
+        "license": "公有领域（PD-Art）",
+        "status": "待上传",
+        "verified": "2026-11-02"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-02"
+}

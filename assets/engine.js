@@ -170,7 +170,7 @@ function buildDOM(S, R, meta) {
     ${S.exclusive.alt ? `<p style="margin:10px 0 0"><button class="btn" id="loupeAlt">✦ ${ui(S.exclusive.alt.label.zh, S.exclusive.alt.label.en)}</button></p>` : ''}
     ${S.exclusive.note || S.exclusive.card ? `<p class="loupe-note" id="loupeNote">${bi(S.exclusive.note || S.cards[S.exclusive.card].text, ' / ')}</p>` : ''}
   </div>` : ''}
-  ${S.exclusive && S.exclusive.type === 'count' ? `<div id="countPanel" class="panel hidden"><div id="countN"></div><div id="countDone" class="hidden">${bi(S.exclusive.done, ' / ')}</div></div>` : ''}
+  ${S.exclusive && S.exclusive.type === 'count' ? `<div id="countPanel" class="panel hidden"><div id="countN"></div><div id="countZoom"></div><div id="countDone" class="hidden">${bi(S.exclusive.done, ' / ')}</div></div>` : ''}
   ${S.exclusive && S.exclusive.type === 'sit' ? `<div id="sitNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'ceilingLight' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
   ${S.exclusive && S.exclusive.type === 'reveal' && S.exclusive.note ? `<div id="revealNote" class="panel">${bi(S.exclusive.note, ' / ')}</div>` : ''}
@@ -778,7 +778,7 @@ function run(S, R, meta) {
   for (const o of S.objects) {
     const n0 = scene.children.length;
     if (BUILD[o.type]) BUILD[o.type](o); else console.warn('unknown object type', o.type);
-    if (o.count) for (const c of scene.children.slice(n0)) { c.userData.countable = true; countables.push(c); }
+    if (o.count) for (const c of scene.children.slice(n0)) { c.userData.countable = true; c.userData.countCrop = o.crop; countables.push(c); }   // crop：数到它时放大原画上的这一块
   }
   // noPaint：这个物体不贴原画、也不挡住原画的投影（比如画家视角前面的窗框和铁栏）
   for (const o of S.objects) if (o.noPaint && o.id && named[o.id]) named[o.id].traverse(m => { m.userData.noDepth = true; if (m.isMesh) m.userData.noPaint = true; });
@@ -1282,7 +1282,8 @@ function run(S, R, meta) {
     sp.scale.set(0.22, 0.22, 1); sp.renderOrder = 10; sp.userData.noPaint = true; sp.userData.noDepth = true; return sp;
   }
   function showCount() {
-    $('countN').innerHTML = ui(`已数 ${counted} 位`, `${counted} counted`);
+    const lbl = countObj.counter;   // 可以自己写计数的说法，比如 { zh: "找到 {n} 只", en: "{n} found" }
+    $('countN').innerHTML = lbl ? ui(lbl.zh.replace('{n}', counted), lbl.en.replace('{n}', counted)) : ui(`已数 ${counted} 位`, `${counted} counted`);
     $('countDone').classList.toggle('hidden', counted < countables.length);
   }
   function countOne(c) {
@@ -1291,6 +1292,8 @@ function run(S, R, meta) {
     const box = new THREE.Box3().setFromObject(c), sp = numberSprite(counted);
     sp.position.set((box.min.x + box.max.x) / 2, box.max.y + 0.18, (box.min.z + box.max.z) / 2);
     scene.add(sp); c.userData.badge = sp; showCount();
+    const cr = c.userData.countCrop, P = S.painting;   // 放大原画上的这一块（只是放大原画）
+    $('countZoom').innerHTML = cr ? `<div class="mirror-zoom count-zoom" role="img" style="background-image:url('${P.image}');aspect-ratio:${(cr.w * P.width) / (cr.h * P.height)};background-size:${100 / cr.w}% ${100 / cr.h}%;background-position:${cr.x / (1 - cr.w) * 100}% ${cr.y / (1 - cr.h) * 100}%"></div>` : '';
     if (counted === countables.length) track('exclusive-done-' + S.id);
   }
   if (countObj) {

@@ -106,15 +106,13 @@ walk-into-paintings/
 1. 画作：画家去世超过 70 年。
 2. 图片只来自：
    - a. 博物馆开放授权（CC0 / 公有领域）：芝加哥艺术博物馆、大都会博物馆、华盛顿国家美术馆、荷兰国立博物馆等；
-   - b. Wikimedia Commons 上标注为 PD-Art 的平面画作翻拍。
+   - b. Wikimedia Commons 上标注 PD-Art 的平面画作翻拍（包括标有 Google Art Project 的文件）。必须从 Commons 下载，并记下文件页网址。
 3. 自制内容：3D 场景、示意效果、代码合成的声音、自己写的文字。
 4. 开源字体（如 Google Fonts，OFL 授权）。
 
 **禁止**
 1. 伦敦国家美术馆、考陶尔德、维也纳艺术史博物馆、莫瑞泰斯、RMN 等官网下载的限制用途图片。
-2. Google 艺术与文化上的图片。
-   - 例外：《贝列利一家》用了 Commons 上的 Google 艺术与文化版本（奥赛这一幅只有这个完整大图），Tia 2026-11-02 决定，记在它的 `imageSource.files` 里。
-   - 例外：《根特祭坛画》（打开：Google 艺术与文化版本；合上：Lukas – Art in Flanders 的照片）、《游艇上的午宴》《草地上的午餐》（很可能是 Google 艺术与文化版本），Tia 2026-11-02 决定破例，都记在各自的 `imageSource.files` 里。
+2. 直接从 Google 艺术与文化网站（artsandculture.google.com）下载的图片。
 3. 含人物、展厅设施的照片，以及雕塑等立体作品的照片（除非是 CC0）。
 4. 现代实景照片。
 5. 电影剧照、纸币图案、书籍封面、博物馆标志。
