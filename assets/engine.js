@@ -1281,7 +1281,8 @@ function run(S, R, meta) {
     g.fillStyle = '#1c1c1e'; g.font = '600 64px sans-serif'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillText(String(n), 64, 70);
     const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace;
     const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, depthTest: false, transparent: true }));
-    sp.scale.set(0.22, 0.22, 1); sp.renderOrder = 10; sp.userData.noPaint = true; sp.userData.noDepth = true; return sp;
+    const bs = (countObj && countObj.badgeScale) || 0.22;   // badgeScale：数字的大小（离得近的场景写小一点）
+    sp.scale.set(bs, bs, 1); sp.renderOrder = 10; sp.userData.noPaint = true; sp.userData.noDepth = true; return sp;
   }
   function showCount() {
     const lbl = countObj.counter;   // 可以自己写计数的说法，比如 { zh: "找到 {n} 只", en: "{n} found" }
@@ -1292,7 +1293,7 @@ function run(S, R, meta) {
     if (c.userData.counted) return;
     c.userData.counted = true; counted++;
     const box = new THREE.Box3().setFromObject(c), sp = numberSprite(counted);
-    sp.position.set((box.min.x + box.max.x) / 2, box.max.y + 0.18, (box.min.z + box.max.z) / 2);
+    sp.position.set((box.min.x + box.max.x) / 2, box.max.y + ((countObj && countObj.badgeScale) || 0.22) * 0.8, (box.min.z + box.max.z) / 2);
     scene.add(sp); c.userData.badge = sp; showCount();
     const cr = c.userData.countCrop, P = S.painting;   // 放大原画上的这一块（只是放大原画）
     $('countZoom').innerHTML = cr ? `<div class="mirror-zoom count-zoom" role="img" style="background-image:url('${P.image}');aspect-ratio:${(cr.w * P.width) / (cr.h * P.height)};background-size:${100 / cr.w}% ${100 / cr.h}%;background-position:${cr.x / (1 - cr.w) * 100}% ${cr.y / (1 - cr.h) * 100}%"></div>` : '';
