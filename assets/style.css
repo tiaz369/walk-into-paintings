@@ -868,6 +868,8 @@ body.bw canvas, body.bw #vpOverlay, body.bw #compare img { filter: grayscale(1);
 .story-sub { display: block; margin-top: 6px; font-size: 13px; color: var(--muted); }
 .story-back { margin: 0 0 6px; font-size: 13px; } .story-back a { color: var(--muted); text-decoration: none; }
 .story-note { max-width: 36em; margin: 14px 0 0; font-size: 13px; color: var(--muted); }
+.story-intro { max-width: 40em; margin: 16px 0 0; font-family: var(--serif); font-size: 18px; line-height: 1.6; }
+.story-outro { max-width: 40em; margin: 32px auto 8px; font-family: var(--serif); font-size: 18px; line-height: 1.6; text-align: center; }
 .story-route { list-style: none; margin: 0; padding: 0; }
 .story-stop { display: grid; grid-template-columns: 110px 220px 1fr; gap: 18px; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .story-time { font-family: var(--serif); font-size: 20px; }
@@ -1002,3 +1004,10 @@ body.lang-both .door-name > .en { display: block; font-size: .66em; color: var(-
   .hero.hero-full :is(img, video) { position: static; display: block; width: 100%; height: auto; max-height: 70svh; object-fit: contain; }
   .hero.hero-full .hero-over { position: static; padding: 20px 20px 24px; background: #1c1c1e; }
 }
+/* 艺术故事列表：手机上一行 2 张，按顺序往下排（不再横向滑动） */
+@media (max-width: 640px) {
+  .start-cards.story-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; margin: 0; padding: 0; gap: 22px 14px; }
+  .story-cards .start-name { font-size: 18px; }
+  .story-cards .story-sub { font-size: 13px; }
+}
+.story-pic img { aspect-ratio: 4 / 3; object-fit: contain; background: var(--paper-2); }   /* 故事每一站的缩略图也完整显示 */
