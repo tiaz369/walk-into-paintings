@@ -29,8 +29,8 @@
   },
   "painting": {
     "image": "images/v1888.jpg",
-    "width": 1800,
-    "height": 1426,
+    "width": 1920,
+    "height": 1523,
     "alt": {
       "zh": "梵高《阿尔勒的卧室》1888",
       "en": "Vincent van Gogh, The Bedroom, 1888"
@@ -980,13 +980,12 @@
     "files": [
       {
         "file": "v1888.jpg",
-        "from": "没有记录（旧版卧室页面时放进来的）",
-        "url": "待补",
-        "license": "待核对",
-        "status": "来源不明",
-        "note": "分享图、首页动画和 crops/ 都用到这张；Tia 2026-11-02 找到 Commons 上的替换文件（replaceWith），等 Tia 下载上传后替换",
-        "verified": "2026-10-27",
-        "replaceWith": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg"
+        "from": "Wikimedia Commons（Google Art Project 文件；Tia 上传的 IMG_0526.jpeg，1920 × 1523）",
+        "url": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "note": "2026-11-02 换成 Commons 上的文件。crops/ 里的几张局部图还是从旧图裁的，以后可以照新图重裁。",
+        "verified": "2026-11-02"
       },
       {
         "file": "v1889-chicago.jpg",

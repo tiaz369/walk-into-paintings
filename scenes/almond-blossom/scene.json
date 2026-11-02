@@ -30,8 +30,8 @@
   },
   "painting": {
     "image": "images/almond-blossom.jpg",
-    "width": 800,
-    "height": 631,
+    "width": 1920,
+    "height": 1517,
     "alt": {
       "zh": "梵高《杏花》1890，阿姆斯特丹梵高博物馆",
       "en": "Vincent van Gogh, Almond Blossom, 1890, Van Gogh Museum, Amsterdam"
@@ -528,13 +528,12 @@
     "files": [
       {
         "file": "almond-blossom.jpg",
-        "from": "梵高博物馆官网（Tia 下载）",
-        "url": "https://www.vangoghmuseum.nl/en/collection/s0176V1962",
-        "license": "只限非商业使用",
-        "status": "不符合",
-        "note": "梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请；Tia 2026-11-02 找到 Commons 上的替换文件（replaceWith），等 Tia 下载上传后替换",
-        "verified": "2026-10-27",
-        "replaceWith": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project.jpg"
+        "from": "Wikimedia Commons（Google Art Project 文件；Tia 上传的 IMG_0520.jpeg，1920 × 1517）",
+        "url": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project.jpg",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "note": "2026-11-02 换成 Commons 上的文件。",
+        "verified": "2026-11-02"
       },
       {
         "file": "plum-orchard.jpg",

@@ -637,14 +637,14 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "待补",
+    "url": "https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir_017.jpg",
     "license": "公有领域（PD-Art）",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
     "files": [
       {
         "file": "at-the-theatre.jpg",
         "from": "Wikimedia Commons（Tia 2026-11-02 上传，原文件名 IMG_0595.jpeg，1280 × 1670；同时传的 IMG_0594 是展厅里拍的照片、带画框，按规则不能用，已删除）",
-        "url": "待补（Tia 给的 Commons 文件页）",
+        "url": "https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir_017.jpg",
         "license": "公有领域（PD-Art）",
         "status": "符合",
         "verified": "2026-11-02"

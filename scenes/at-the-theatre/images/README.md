@@ -1,4 +1,4 @@
 # 图片
 
-- `at-the-theatre.jpg`：原画，Tia 2026-11-02 上传（原文件名 IMG_0595.jpeg；Commons 文件页待补）。同时传的 IMG_0594 是展厅里拍的照片，带画框，已删除。
+- `at-the-theatre.jpg`：原画，Tia 2026-11-02 上传（原文件名 IMG_0595.jpeg）：https://commons.wikimedia.org/wiki/File:Pierre-Auguste_Renoir_017.jpg。同时传的 IMG_0594 是展厅里拍的照片，带画框，已删除。
   不要从国家美术馆官网、Art UK 或其他图片库下载。也不要用在展厅里拍的照片（带画框、墙面的不行）。
