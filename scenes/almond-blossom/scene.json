@@ -532,8 +532,9 @@
         "url": "https://www.vangoghmuseum.nl/en/collection/s0176V1962",
         "license": "只限非商业使用",
         "status": "不符合",
-        "note": "梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请",
-        "verified": "2026-10-27"
+        "note": "梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请；Tia 2026-11-02 找到 Commons 上的替换文件（replaceWith），等 Tia 下载上传后替换",
+        "verified": "2026-10-27",
+        "replaceWith": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project.jpg"
       },
       {
         "file": "plum-orchard.jpg",

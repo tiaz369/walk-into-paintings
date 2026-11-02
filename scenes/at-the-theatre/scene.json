@@ -1,0 +1,655 @@
+{
+  "_说明": "在剧院（初次出门）（室内，完整版：剧院包厢）。所有事实文字由 Tia 提供（伦敦国家美术馆官网、Art UK）。我们坐在包厢里，紧挨着两位年轻女子：离我们最近的一位身体前倾，蓝色软帽背对着我们，看向剧场；包厢外是一层层坐满观众的楼座，下层一个男人、上层一个女人好像正朝这边看。国家美术馆说“我们无法确定发生了什么”，所以不替她编“第一次出门”的故事。onDisplay 和展厅先留空：可能在“雷诺阿与爱”展览里，在国家美术馆官网确认之前不放进伦敦路线页。原画还没上传：视角和物体位置先估算。",
+  "id": "at-the-theatre",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "theatre",
+    "label": {
+      "zh": "开演前剧院里的灯光",
+      "en": "Theatre lights before the curtain"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《包厢》互相链接（卡片6：另一个包厢）；和德加《明星》互相链接（从包厢里看舞台）。",
+    "doors": [],
+    "cards": [
+      "la-loge"
+    ],
+    "end": [
+      "la-loge",
+      "the-star"
+    ]
+  },
+  "painting": {
+    "image": "images/at-the-theatre.jpg",
+    "width": 1000,
+    "height": 1323,
+    "alt": {
+      "zh": "雷诺阿《在剧院（初次出门）》1876–1877，伦敦国家美术馆",
+      "en": "Pierre-Auguste Renoir, At the Theatre (La Première Sortie), 1876–7, The National Gallery, London"
+    },
+    "_": "宽高先按尺寸 49.5 × 65 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "在剧院（初次出门）",
+      "en": "At the Theatre (La Première Sortie)"
+    },
+    "artist": {
+      "zh": "雷诺阿",
+      "en": "Pierre-Auguste Renoir"
+    },
+    "date": {
+      "zh": "1876–1877年",
+      "en": "1876–7"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下包厢里的女子、对面的观众和栏杆看介绍 · 点“一幅画，几个名字”，换一个画名看看 · 地上发光的圆点 = 雷诺阿的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the women in the box, the audience opposite or the railing to learn more · Tap “One painting, several names” to try another title · The glowing circle = Renoir's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（坐在包厢里，在两位女子身后），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.2,
+    "yaw": 0,
+    "pitch": 0.0,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "theatre",
+  "colors": {
+    "line": "#2a2420",
+    "floor": "#5a2a24",
+    "wall": "#6a2a26",
+    "ceiling": "#3a1c1a",
+    "velvet": "#8a1c1c",
+    "dress": "#2a2a34",
+    "dress2": "#3a2a30",
+    "bonnet": "#3a5aa8",
+    "paper": "#f0e8d8",
+    "boxwall": "#5a2420",
+    "tier": "#c8a060",
+    "stage": "#e8d8a0",
+    "skin": "#f0d4c0",
+    "coat": "#18181c",
+    "trousers": "#18181c"
+  },
+  "room": {
+    "_说明": "房间形状（米）：剧院大厅。我们在前面的包厢里；对面的楼座在后墙前面。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
+    "height": 8,
+    "front": 1.5,
+    "left": -8,
+    "backLeft": [
+      -8,
+      -13
+    ],
+    "backRight": [
+      8,
+      -13
+    ],
+    "rightFront": [
+      8,
+      1.5
+    ],
+    "floorCard": "box",
+    "wallCard": "stage",
+    "walkSpeed": 0.6
+  },
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "box",
+      "x": 0,
+      "z": -1.45,
+      "_": "包厢前面的天鹅绒栏杆",
+      "boxes": [
+        [
+          2.4,
+          0.12,
+          0.3,
+          "velvet",
+          -0.2,
+          0.72,
+          0
+        ],
+        [
+          2.4,
+          0.72,
+          0.06,
+          "velvet",
+          -0.2,
+          0.36,
+          0.13
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress",
+      "x": 0.1,
+      "z": -0.95,
+      "rot": 3.14,
+      "card": "face",
+      "_": "离我们最近的女子：身体前倾，蓝色软帽背对着我们",
+      "id": "woman"
+    },
+    {
+      "type": "boxes",
+      "card": "face",
+      "x": 0.1,
+      "z": -1.0,
+      "_": "蓝色软帽",
+      "boxes": [
+        [
+          0.32,
+          0.14,
+          0.32,
+          "bonnet",
+          0,
+          1.22,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "dress2",
+      "x": -0.55,
+      "z": -0.7,
+      "rot": 3.14,
+      "card": "box",
+      "_": "她身边的另一位年轻女子"
+    },
+    {
+      "type": "boxes",
+      "card": "title",
+      "x": -0.6,
+      "z": -1.42,
+      "_": "栏杆上的节目单",
+      "boxes": [
+        [
+          0.2,
+          0.02,
+          0.14,
+          "paper",
+          0,
+          0.8,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "three",
+      "x": 0,
+      "z": 0,
+      "_": "包厢两侧的隔板",
+      "boxes": [
+        [
+          0.1,
+          2.6,
+          2.2,
+          "boxwall",
+          -1.5,
+          1.3,
+          -0.4
+        ],
+        [
+          0.1,
+          2.6,
+          2.2,
+          "boxwall",
+          1.2,
+          1.3,
+          -0.4
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "watched",
+      "x": 0,
+      "z": -12,
+      "_": "对面一层层坐满观众的楼座",
+      "boxes": [
+        [
+          16,
+          0.4,
+          0.8,
+          "tier",
+          0,
+          1.4,
+          0
+        ],
+        [
+          16,
+          0.4,
+          0.8,
+          "tier",
+          0,
+          2.9,
+          0
+        ],
+        [
+          16,
+          0.4,
+          0.8,
+          "tier",
+          0,
+          4.4,
+          0
+        ],
+        [
+          16,
+          0.4,
+          0.8,
+          "tier",
+          0,
+          5.9,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "coat",
+      "x": -1.4,
+      "z": -11.6,
+      "rot": 0,
+      "card": "watched",
+      "_": "下层的男人，好像正朝这边看",
+      "y": 1.6,
+      "id": "man"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "dress",
+      "x": -0.9,
+      "z": -11.6,
+      "rot": 0,
+      "card": "watched",
+      "_": "上层的女人，好像也朝这边看",
+      "scale": 0.9,
+      "y": 4.6,
+      "id": "lady"
+    },
+    {
+      "type": "boxes",
+      "card": "stage",
+      "x": 7,
+      "z": -9,
+      "_": "右边远处几乎看不见的舞台",
+      "boxes": [
+        [
+          2.5,
+          2.5,
+          0.2,
+          "stage",
+          0,
+          2.2,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "box": {
+      "title": {
+        "zh": "坐在包厢里",
+        "en": "Sitting in the box"
+      },
+      "text": {
+        "zh": "我们好像和两位年轻女子一起，坐在剧院的包厢里。",
+        "en": "We seem to be sitting in a theatre box with two young women."
+      }
+    },
+    "face": {
+      "title": {
+        "zh": "看不见的脸",
+        "en": "A face we can't see"
+      },
+      "text": {
+        "zh": "离我们最近的女子身体前倾，蓝色的软帽转向另一边，我们看不到她的脸。",
+        "en": "The nearest woman leans forward, her blue bonnet turned away from us. We cannot see her face."
+      }
+    },
+    "watched": {
+      "title": {
+        "zh": "被看的人",
+        "en": "Being watched"
+      },
+      "text": {
+        "zh": "楼座上的观众里，下层的一个男人和上层的一个女人，好像正朝这边看：看我们，还是看包厢里的她？",
+        "en": "Among the audience, a man in the lower tier and a woman above him seem to be looking this way: at us, or at the young woman in the box?"
+      }
+    },
+    "stage": {
+      "title": {
+        "zh": "看不到舞台",
+        "en": "No stage"
+      },
+      "text": {
+        "zh": "画里几乎看不到舞台，雷诺阿画的是观众，不是演出。",
+        "en": "We can barely see the stage. Renoir painted the audience, not the performance."
+      }
+    },
+    "title": {
+      "title": {
+        "zh": "不是他起的名字",
+        "en": "Not his title"
+      },
+      "text": {
+        "zh": "“初次出门”这个画名不是雷诺阿起的，是1923年在伦敦拍卖时才第一次使用的。所以，这幅画讲的不一定是“第一次出门”的故事。",
+        "en": "Renoir did not give the painting the title “The First Outing”. It was first used at a London auction in 1923, so it may not tell that story at all."
+      }
+    },
+    "three": {
+      "title": {
+        "zh": "三个包厢",
+        "en": "Three theatre boxes"
+      },
+      "text": {
+        "zh": "雷诺阿画过三幅剧院包厢，这是其中之一。另一幅《包厢》，就在伦敦考陶尔德美术馆。",
+        "en": "Renoir painted three theatre boxes. This is one; another, *La Loge*, is in The Courtauld Gallery in London."
+      },
+      "links": [
+        {
+          "scene": "la-loge",
+          "href": "../la-loge/",
+          "label": {
+            "zh": "另一个包厢",
+            "en": "Another theatre box"
+          }
+        }
+      ]
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“一幅画，几个名字”（titles）：按一下换一个画名，画面不变：《在剧院》→《咖啡音乐会》（1899）→《初次出门》（1923），再按一下关上。只切换文字，不改变原画，不加“这是示意”。《咖啡音乐会》这个旧画名：Tia 提供的国家美术馆官网介绍里写了，网上其他资料也一致。",
+    "type": "titles",
+    "label": {
+      "zh": "一幅画，几个名字",
+      "en": "One painting, several names"
+    },
+    "card": "title",
+    "items": [
+      {
+        "title": {
+          "zh": "在剧院",
+          "en": "At the Theatre"
+        }
+      },
+      {
+        "title": {
+          "zh": "咖啡音乐会",
+          "en": "Café-Concert"
+        },
+        "date": {
+          "zh": "1899年",
+          "en": "1899"
+        }
+      },
+      {
+        "title": {
+          "zh": "初次出门",
+          "en": "La Première Sortie"
+        },
+        "date": {
+          "zh": "1923年",
+          "en": "1923"
+        }
+      }
+    ],
+    "note": {
+      "zh": "同一幅画，换一个名字，你看到的故事就变了。",
+      "en": "The same painting: change the name, and the story you see changes too."
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/at-the-theatre.jpg",
+        "alt": {
+          "zh": "雷诺阿《在剧院（初次出门）》1876–1877，伦敦国家美术馆",
+          "en": "Pierre-Auguste Renoir, At the Theatre (La Première Sortie), 1876–7, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1876–1877年 · 伦敦国家美术馆",
+          "en": "1876–7 · The National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 剧院里的巴黎",
+          "en": "Paris at the theatre"
+        },
+        "text": {
+          "zh": "19世纪70年代，去剧院看戏、也看人，是巴黎很时髦的事。雷诺阿画过好几幅剧院包厢。",
+          "en": "In the 1870s, going to the theatre to watch the play, and the people, was fashionable in Paris. Renoir painted several theatre boxes."
+        }
+      },
+      {
+        "image": "images/at-the-theatre.jpg",
+        "alt": {
+          "zh": "雷诺阿《在剧院（初次出门）》1876–1877，伦敦国家美术馆",
+          "en": "Pierre-Auguste Renoir, At the Theatre (La Première Sortie), 1876–7, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1876–1877年 · 伦敦国家美术馆",
+          "en": "1876–7 · The National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 看观众的画",
+          "en": "A picture of the audience"
+        },
+        "text": {
+          "zh": "这一幅里，舞台几乎看不见。雷诺阿画的是包厢里的年轻女子，和楼座上一层层的观众。",
+          "en": "In this one, the stage is barely visible. Renoir painted a young woman in a box, and the tiers of spectators beyond."
+        }
+      },
+      {
+        "image": "images/at-the-theatre.jpg",
+        "alt": {
+          "zh": "雷诺阿《在剧院（初次出门）》1876–1877，伦敦国家美术馆",
+          "en": "Pierre-Auguste Renoir, At the Theatre (La Première Sortie), 1876–7, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1876–1877年 · 伦敦国家美术馆",
+          "en": "1876–7 · The National Gallery, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 换过的名字",
+          "en": "A changing title"
+        },
+        "text": {
+          "zh": "它最早的主人在1899年拍卖时，叫它《咖啡音乐会》；1923年在伦敦拍卖时，它又被叫作《初次出门》。同一年，伦敦国家美术馆买下了它。",
+          "en": "When its first owner sold it in 1899, it was called *Café-Concert*. At a London auction in 1923, it was called *La Première Sortie*, “The First Outing”. That same year, the National Gallery bought it."
+        }
+      }
+    ],
+    "final": {
+      "zh": "我们无法确定发生了什么。",
+      "en": "We can't be sure what is going on."
+    },
+    "finalBy": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery"
+    },
+    "versions": [],
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "la-loge",
+        "href": "../la-loge/",
+        "label": {
+          "zh": "另一个包厢",
+          "en": "Another theatre box"
+        }
+      },
+      {
+        "scene": "the-star",
+        "href": "../the-star/",
+        "label": {
+          "zh": "从包厢里看舞台",
+          "en": "Looking from a box at the stage"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆官网；编号 NG3859）。",
+    "artist": {
+      "zh": "皮埃尔-奥古斯特·雷诺阿（1841–1919）",
+      "en": "Pierre-Auguste Renoir (1841–1919)"
+    },
+    "title": {
+      "zh": "在剧院（初次出门）",
+      "en": "At the Theatre (La Première Sortie)"
+    },
+    "date": {
+      "zh": "1876–1877年",
+      "en": "1876–7"
+    },
+    "medium": {
+      "zh": "布面油画（未衬布）",
+      "en": "Oil on canvas (unlined)"
+    },
+    "dimensions": {
+      "zh": "65 × 49.5 cm",
+      "en": "65 × 49.5 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "creditLine": {
+      "zh": "1923年用考陶尔德基金购入（编号 NG3859）",
+      "en": "Bought, Courtauld Fund, 1923 (NG3859)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/pierre-auguste-renoir-at-the-theatre-la-premiere-sortie"
+  },
+  "zoom": {
+    "image": "images/at-the-theatre.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：在剧院（初次出门）",
+          "en": "The National Gallery: *At the Theatre (La Première Sortie)*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/pierre-auguste-renoir-at-the-theatre-la-premiere-sortie"
+      },
+      {
+        "title": {
+          "zh": "Art UK：在剧院（初次出门）",
+          "en": "Art UK: *At the Theatre (La Première Sortie)*"
+        },
+        "url": "https://artuk.org/discover/artworks/at-the-theatre-la-premiere-sortie-114348"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 剧院里的巴黎",
+          "en": "Paris at the theatre"
+        },
+        "text": {
+          "zh": "19世纪70年代，去剧院看戏、也看人，是巴黎很时髦的事。雷诺阿画过好几幅剧院包厢。",
+          "en": "In the 1870s, going to the theatre to watch the play, and the people, was fashionable in Paris. Renoir painted several theatre boxes."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 看观众的画",
+          "en": "A picture of the audience"
+        },
+        "text": {
+          "zh": "这一幅里，舞台几乎看不见。雷诺阿画的是包厢里的年轻女子，和楼座上一层层的观众。",
+          "en": "In this one, the stage is barely visible. Renoir painted a young woman in a box, and the tiers of spectators beyond."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 换过的名字",
+          "en": "A changing title"
+        },
+        "text": {
+          "zh": "它最早的主人在1899年拍卖时，叫它《咖啡音乐会》；1923年在伦敦拍卖时，它又被叫作《初次出门》。同一年，伦敦国家美术馆买下了它。",
+          "en": "When its first owner sold it in 1899, it was called *Café-Concert*. At a London auction in 1923, it was called *La Première Sortie*, “The First Outing”. That same year, the National Gallery bought it."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：在剧院（初次出门）",
+        "en": "The National Gallery: *At the Theatre (La Première Sortie)*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/pierre-auguste-renoir-at-the-theatre-la-premiere-sortie"
+    },
+    {
+      "title": {
+        "zh": "Art UK：在剧院（初次出门）",
+        "en": "Art UK: *At the Theatre (La Première Sortie)*"
+      },
+      "url": "https://artuk.org/discover/artworks/at-the-theatre-la-premiere-sortie-114348"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。不要从国家美术馆官网、Art UK 或其他图片库下载。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "at-the-theatre.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待上传",
+        "verified": "2026-11-02"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-02"
+}

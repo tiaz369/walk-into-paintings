@@ -1,0 +1,761 @@
+{
+  "_说明": "小船（户外风景，完整版：塞纳河上）。所有事实文字由 Tia 提供（伦敦国家美术馆官网、印象派指南、ColourLex）。夏日的塞纳河：观众站在岸边的芦苇旁，河中间一条橙色的小划艇上坐着两位穿着时髦的女子；右边一条白帆的帆船，远处一座桥和一列冒烟的蒸汽火车。地点没有确定（很可能是沙图），桥是不是《阿涅尔的浴场》里那座也不写。onDisplay 和展厅先留空：国家美术馆作品页曾显示“不在展出”，可能在“雷诺阿与爱”展览中，确认前不放进伦敦路线页。原画还没上传：视角和物体位置先估算。",
+  "id": "the-skiff",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "夏日河上明亮的阳光",
+      "en": "Bright summer light on the river"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：end 是故事结尾的按钮。和《两姐妹（在露台上）》《游艇上的午宴》互相链接（雷诺阿的塞纳河）；和修拉《阿涅尔的浴场》互相链接（同一条河，不同的画法）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "two-sisters",
+      "boating-party",
+      "bathers-asnieres"
+    ]
+  },
+  "painting": {
+    "image": "images/the-skiff.jpg",
+    "width": 1600,
+    "height": 1235,
+    "alt": {
+      "zh": "雷诺阿《小船》1875，伦敦国家美术馆",
+      "en": "Pierre-Auguste Renoir, The Skiff (La Yole), 1875, The National Gallery, London"
+    },
+    "_": "宽高先按尺寸 92 × 71 cm 估算，原画上传后改成图片的实际像素"
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "小船",
+      "en": "The Skiff (La Yole)"
+    },
+    "artist": {
+      "zh": "雷诺阿",
+      "en": "Pierre-Auguste Renoir"
+    },
+    "date": {
+      "zh": "1875年",
+      "en": "1875"
+    },
+    "museum": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下小船、船上的女子、帆船和远处的火车看介绍 · 点“如果船不是橙色的”，看看颜色怎么变 · 地上发光的圆点 = 雷诺阿的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the skiff, the women, the sailboat or the train to learn more · Tap “If the boat weren't orange” to see the colours change · The glowing circle = Renoir's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：先估算（站在岸边），原画上传后对准。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.5,
+    "yaw": 0,
+    "pitch": -0.1,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "skiff-river",
+  "colors": {
+    "line": "#2a2a26",
+    "ground": "#7a8a58",
+    "water": "#2a5aa8",
+    "bank": "#8aa060",
+    "reed": "#8a9a4a",
+    "skiff": "#f08a2a",
+    "oar": "#8a6a3a",
+    "whiteDress": "#f2efe8",
+    "darkDress": "#2a2a40",
+    "bonnet": "#e8d8b8",
+    "sail": "#f4f2ec",
+    "bridge": "#8a8a90",
+    "train": "#2a2a2e",
+    "smoke": "#e8e8ec",
+    "leaves": "#5a8a4a",
+    "skin": "#f0d0b8",
+    "sky": "#d8e4f0"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围（这里只是脚下的一小块河岸），bounds 是可以走动的范围（岸边），都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -6,
+      6,
+      -0.5,
+      4
+    ],
+    "bounds": [
+      -3,
+      3,
+      -0.5,
+      2.5
+    ],
+    "groundCard": "colours",
+    "skyCard": "train",
+    "skyRadius": 80,
+    "walkSpeed": 0.6
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "complementary",
+      "_": "明亮的蓝色河水",
+      "pts": [
+        [
+          -40,
+          -0.3,
+          1
+        ],
+        [
+          -40,
+          -0.3,
+          -30
+        ],
+        [
+          40,
+          -0.3,
+          -30
+        ],
+        [
+          40,
+          -0.3,
+          1
+        ]
+      ],
+      "color": "water"
+    },
+    {
+      "type": "surface",
+      "card": "train",
+      "_": "对岸",
+      "pts": [
+        [
+          -40,
+          0.2,
+          -30
+        ],
+        [
+          -40,
+          0.2,
+          -60
+        ],
+        [
+          40,
+          0.2,
+          -60
+        ],
+        [
+          40,
+          0.2,
+          -30
+        ]
+      ],
+      "color": "bank"
+    },
+    {
+      "type": "boxes",
+      "card": "colours",
+      "x": 0,
+      "z": 2,
+      "_": "脚边岸上的芦苇（观众站在岸边）",
+      "boxes": [
+        [
+          0.06,
+          1.1,
+          0.06,
+          "reed",
+          -1.2,
+          0.25,
+          -0.6
+        ],
+        [
+          0.06,
+          1.1,
+          0.06,
+          "reed",
+          -0.9,
+          0.25,
+          -0.4
+        ],
+        [
+          0.06,
+          1.1,
+          0.06,
+          "reed",
+          -0.5,
+          0.25,
+          -0.7
+        ],
+        [
+          0.06,
+          1.1,
+          0.06,
+          "reed",
+          0.4,
+          0.25,
+          -0.5
+        ],
+        [
+          0.06,
+          1.1,
+          0.06,
+          "reed",
+          0.8,
+          0.25,
+          -0.8
+        ],
+        [
+          0.06,
+          1.1,
+          0.06,
+          "reed",
+          1.2,
+          0.25,
+          -0.4
+        ],
+        [
+          0.06,
+          1.1,
+          0.06,
+          "reed",
+          -1.5,
+          0.25,
+          -0.2
+        ],
+        [
+          0.06,
+          1.1,
+          0.06,
+          "reed",
+          1.6,
+          0.25,
+          -0.7
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "orange",
+      "x": -0.5,
+      "z": -7,
+      "_": "鲜橙色的小划艇（船身用铬黄和柠檬黄，轮廓用铬橙）",
+      "id": "skiff",
+      "boxes": [
+        [
+          3.2,
+          0.35,
+          0.9,
+          "skiff",
+          0,
+          -0.15,
+          0
+        ],
+        [
+          0.05,
+          0.05,
+          2.2,
+          "oar",
+          0.6,
+          0.15,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "whiteDress",
+      "x": -1.1,
+      "z": -7,
+      "rot": 1.57,
+      "card": "women",
+      "_": "小船上穿着时髦的女子",
+      "scale": 0.9,
+      "y": -0.2
+    },
+    {
+      "type": "figure",
+      "pose": "sitting",
+      "color": "darkDress",
+      "x": 0.4,
+      "z": -7,
+      "rot": -1.57,
+      "card": "women",
+      "_": "划船的女子",
+      "scale": 0.9,
+      "y": -0.2,
+      "hat": "bonnet"
+    },
+    {
+      "type": "boxes",
+      "card": "sailboat",
+      "x": 6,
+      "z": -14,
+      "_": "右边白帆的帆船（船身颜色和小船呼应）",
+      "boxes": [
+        [
+          2.4,
+          0.4,
+          0.8,
+          "skiff",
+          0,
+          -0.1,
+          0
+        ],
+        [
+          0.06,
+          3.2,
+          0.06,
+          "line",
+          0,
+          1.6,
+          0
+        ],
+        [
+          0.04,
+          2.6,
+          1.6,
+          "sail",
+          0,
+          1.6,
+          0.4
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "train",
+      "x": -6,
+      "z": -40,
+      "_": "远处的铁路桥和冒烟的蒸汽火车",
+      "boxes": [
+        [
+          30,
+          0.6,
+          1.2,
+          "bridge",
+          0,
+          4,
+          0
+        ],
+        [
+          0.8,
+          6,
+          0.8,
+          "bridge",
+          -12,
+          1,
+          0
+        ],
+        [
+          0.8,
+          6,
+          0.8,
+          "bridge",
+          -4,
+          1,
+          0
+        ],
+        [
+          0.8,
+          6,
+          0.8,
+          "bridge",
+          4,
+          1,
+          0
+        ],
+        [
+          0.8,
+          6,
+          0.8,
+          "bridge",
+          12,
+          1,
+          0
+        ],
+        [
+          6,
+          1.2,
+          1,
+          "train",
+          -4,
+          5,
+          0
+        ],
+        [
+          1.2,
+          1.6,
+          1.2,
+          "smoke",
+          -6.5,
+          6.6,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "tree",
+      "card": "train",
+      "_": "对岸的树",
+      "x": -14,
+      "z": -36,
+      "h": 8,
+      "r": 4,
+      "color": "leaves"
+    },
+    {
+      "type": "tree",
+      "card": "train",
+      "_": "对岸的树",
+      "x": 10,
+      "z": -38,
+      "h": 9,
+      "r": 4.5,
+      "color": "leaves"
+    }
+  ],
+  "cards": {
+    "orange": {
+      "title": {
+        "zh": "橙色和蓝色",
+        "en": "Orange and blue"
+      },
+      "text": {
+        "zh": "雷诺阿把鲜橙色的小船，放在深蓝色的河水上。这两种颜色放在一起，彼此都会显得更强烈。",
+        "en": "Renoir placed the bright orange boat against the deep blue water. Side by side, each colour looks more intense."
+      }
+    },
+    "complementary": {
+      "title": {
+        "zh": "互补色",
+        "en": "Complementary colours"
+      },
+      "text": {
+        "zh": "法国化学家谢弗勒尔在1839年提出，蓝色和橙色是互补色。19世纪的新科学，鼓励印象派画家去尝试这样的颜色组合。",
+        "en": "In 1839, the French chemist Michel-Eugène Chevreul showed that blue and orange are complementary colours. New science like this encouraged the Impressionists to experiment."
+      }
+    },
+    "women": {
+      "title": {
+        "zh": "两位女子",
+        "en": "Two women"
+      },
+      "text": {
+        "zh": "小船上坐着两位穿着时髦的女子，一位划着船。",
+        "en": "Two fashionably dressed women sit in the skiff; one of them is rowing."
+      }
+    },
+    "sailboat": {
+      "title": {
+        "zh": "帆船",
+        "en": "The sailboat"
+      },
+      "text": {
+        "zh": "右边那条帆船的白帆，平衡了整个画面；它的船身颜色，也和小船呼应。",
+        "en": "The white sail of the sailboat on the right balances the picture, and its hull echoes the colour of the skiff."
+      }
+    },
+    "train": {
+      "title": {
+        "zh": "远处的火车",
+        "en": "The train"
+      },
+      "text": {
+        "zh": "远处有一列冒着烟的蒸汽火车开过。这是印象派画家很喜欢放进画里的现代生活。",
+        "en": "In the distance, a steam train passes, a touch of modern life the Impressionists loved to include."
+      }
+    },
+    "colours": {
+      "title": {
+        "zh": "船的颜色",
+        "en": "The boat's colours"
+      },
+      "text": {
+        "zh": "国家美术馆的研究发现，船身用的是铬黄和柠檬黄，船的轮廓用的是铬橙。",
+        "en": "Research at the National Gallery found that the boat is painted in chrome yellow and lemon yellow, outlined in chrome orange."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“如果船不是橙色的”（toggles）：开关打开后，投影的原画换成我们做的示意图（images/the-skiff-grey.jpg：只把小船改成灰色，其他不变），显示说明。因为改变了原画的样子，说明里写“这是示意”。示意图等原画上传后再做。",
+    "type": "toggles",
+    "toggles": [
+      {
+        "id": "grey",
+        "label": {
+          "zh": "如果船不是橙色的",
+          "en": "If the boat weren't orange"
+        },
+        "targets": [],
+        "paintAlt": "images/the-skiff-grey.jpg",
+        "card": "orange",
+        "note": {
+          "zh": "去掉橙色，蓝色也跟着暗了下来。两种互补色放在一起，彼此才更鲜艳。这是示意。",
+          "en": "Take away the orange, and the blue looks duller too. Complementary colours make each other brighter. This is an illustration."
+        }
+      }
+    ]
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/the-skiff.jpg",
+        "alt": {
+          "zh": "雷诺阿《小船》1875，伦敦国家美术馆",
+          "en": "Pierre-Auguste Renoir, The Skiff (La Yole), 1875, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1875年 · 伦敦国家美术馆",
+          "en": "1875 · The National Gallery, London"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 塞纳河上的夏天",
+          "en": "Summer on the Seine"
+        },
+        "text": {
+          "zh": "19世纪70年代，雷诺阿画了好几幅塞纳河上的划船场景。这一幅很可能画的是巴黎西边的沙图，但具体是哪里，至今还没有确定。",
+          "en": "In the 1870s, Renoir painted several boating scenes on the Seine. This one probably shows the river at Chatou, west of Paris, though the exact spot has never been identified."
+        }
+      },
+      {
+        "image": "images/the-skiff.jpg",
+        "alt": {
+          "zh": "雷诺阿《小船》1875，伦敦国家美术馆",
+          "en": "Pierre-Auguste Renoir, The Skiff (La Yole), 1875, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1875年 · 伦敦国家美术馆",
+          "en": "1875 · The National Gallery, London"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 科学和颜色",
+          "en": "Science and colour"
+        },
+        "text": {
+          "zh": "19世纪的科学发现，深刻影响了画家。雷诺阿在这里大胆地把互补色放在一起：橙色的小船，蓝色的河。",
+          "en": "The scientific discoveries of the 19th century had a deep influence on painters. Here Renoir boldly places complementary colours side by side: an orange boat on a blue river."
+        }
+      },
+      {
+        "image": "images/the-skiff.jpg",
+        "alt": {
+          "zh": "雷诺阿《小船》1875，伦敦国家美术馆",
+          "en": "Pierre-Auguste Renoir, The Skiff (La Yole), 1875, The National Gallery, London"
+        },
+        "caption": {
+          "zh": "1875年 · 伦敦国家美术馆",
+          "en": "1875 · The National Gallery, London"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1982年，伦敦国家美术馆买下了这幅画。",
+          "en": "In 1982, the National Gallery in London bought this painting."
+        }
+      }
+    ],
+    "final": {
+      "zh": "橙色的船，蓝色的河，一个夏天。",
+      "en": "An orange boat, a blue river, one summer."
+    },
+    "versions": [],
+    "museums": [
+      "national-gallery"
+    ],
+    "exit": [
+      {
+        "scene": "two-sisters",
+        "href": "../two-sisters/",
+        "label": {
+          "zh": "雷诺阿的塞纳河",
+          "en": "Renoir's Seine"
+        }
+      },
+      {
+        "scene": "boating-party",
+        "href": "../boating-party/",
+        "label": {
+          "zh": "雷诺阿的塞纳河",
+          "en": "Renoir's Seine"
+        }
+      },
+      {
+        "scene": "bathers-asnieres",
+        "href": "../bathers-asnieres/",
+        "label": {
+          "zh": "同一条河，不同的画法",
+          "en": "The same river, a different way of painting"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（伦敦国家美术馆官网；编号 NG6478；年份以国家美术馆现在写的1875年为准）。",
+    "artist": {
+      "zh": "皮埃尔-奥古斯特·雷诺阿（1841–1919）",
+      "en": "Pierre-Auguste Renoir (1841–1919)"
+    },
+    "title": {
+      "zh": "小船",
+      "en": "The Skiff (La Yole)"
+    },
+    "date": {
+      "zh": "1875年",
+      "en": "1875"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "71 × 92 cm",
+      "en": "71 × 92 cm"
+    },
+    "collection": {
+      "zh": "伦敦国家美术馆",
+      "en": "The National Gallery, London"
+    },
+    "creditLine": {
+      "zh": "1982年购入（编号 NG6478）",
+      "en": "Bought, 1982 (NG6478)"
+    },
+    "url": "https://www.nationalgallery.org.uk/paintings/pierre-auguste-renoir-the-skiff-la-yole"
+  },
+  "zoom": {
+    "image": "images/the-skiff.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：小船",
+          "en": "The National Gallery: *The Skiff (La Yole)*"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/pierre-auguste-renoir-the-skiff-la-yole"
+      },
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：印象派指南",
+          "en": "The National Gallery: Guide to Impressionism"
+        },
+        "url": "https://www.nationalgallery.org.uk/paintings/learn-about-art/guide-to-impressionism?viewPage=3"
+      },
+      {
+        "title": {
+          "zh": "ColourLex：雷诺阿《小船》",
+          "en": "ColourLex: Renoir, *La Yole*"
+        },
+        "url": "https://colourlex.com/project/renoir-la-yole"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 塞纳河上的夏天",
+          "en": "Summer on the Seine"
+        },
+        "text": {
+          "zh": "19世纪70年代，雷诺阿画了好几幅塞纳河上的划船场景。这一幅很可能画的是巴黎西边的沙图，但具体是哪里，至今还没有确定。",
+          "en": "In the 1870s, Renoir painted several boating scenes on the Seine. This one probably shows the river at Chatou, west of Paris, though the exact spot has never been identified."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 科学和颜色",
+          "en": "Science and colour"
+        },
+        "text": {
+          "zh": "19世纪的科学发现，深刻影响了画家。雷诺阿在这里大胆地把互补色放在一起：橙色的小船，蓝色的河。",
+          "en": "The scientific discoveries of the 19th century had a deep influence on painters. Here Renoir boldly places complementary colours side by side: an orange boat on a blue river."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 来到伦敦",
+          "en": "To London"
+        },
+        "text": {
+          "zh": "1982年，伦敦国家美术馆买下了这幅画。",
+          "en": "In 1982, the National Gallery in London bought this painting."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：小船",
+        "en": "The National Gallery: *The Skiff (La Yole)*"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/pierre-auguste-renoir-the-skiff-la-yole"
+    },
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：印象派指南",
+        "en": "The National Gallery: Guide to Impressionism"
+      },
+      "url": "https://www.nationalgallery.org.uk/paintings/learn-about-art/guide-to-impressionism?viewPage=3"
+    },
+    {
+      "title": {
+        "zh": "ColourLex：雷诺阿《小船》",
+        "en": "ColourLex: Renoir, *La Yole*"
+      },
+      "url": "https://colourlex.com/project/renoir-la-yole"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。不要从国家美术馆官网、Art UK 或图片商店下载。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "待补",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "the-skiff.jpg",
+        "from": "Wikimedia Commons（等 Tia 上传）",
+        "url": "待补",
+        "license": "公有领域（PD-Art）",
+        "status": "待上传",
+        "verified": "2026-11-02"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-02"
+}

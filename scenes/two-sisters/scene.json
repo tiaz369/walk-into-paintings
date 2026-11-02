@@ -11,7 +11,7 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：cards 是卡片里的链接，end 是故事结尾的按钮。卡片1链接到《游艇上的午宴》；和《游艇上的午宴》《伞》互相链接。",
+    "_说明": "与其他场景的衔接（一览）：cards 是卡片里的链接，end 是故事结尾的按钮。卡片1链接到《游艇上的午宴》；和《游艇上的午宴》《伞》互相链接。和《小船》互相链接（雷诺阿的塞纳河）。",
     "doors": [],
     "cards": [
       "boating-party"
@@ -19,7 +19,8 @@
     "end": [
       "boating-party",
       "umbrellas",
-      "dance-bougival"
+      "dance-bougival",
+      "the-skiff"
     ]
   },
   "painting": {
@@ -886,6 +887,14 @@
         "label": {
           "zh": "塞纳河边的闲暇时光",
           "en": "Leisure by the Seine"
+        }
+      },
+      {
+        "scene": "the-skiff",
+        "href": "../the-skiff/",
+        "label": {
+          "zh": "雷诺阿的塞纳河",
+          "en": "Renoir's Seine"
         }
       }
     ]
