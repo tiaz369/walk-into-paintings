@@ -121,6 +121,9 @@ walk-into-paintings/
 6. 仍在版权期内的作品。
 7. 长篇引用受版权保护的译文（只引短句并注明出处，其余用链接）。
 
+**缩略图不裁切（唯一的例外）**
+- 缩略图一律完整显示原画，不裁切。唯一的例外是橘园的《睡莲》：8幅画都是极长的横幅（约2米高、十几米宽），缩成小图只剩一条细线，所以缩略图用其中一段局部（`scenes/orangerie-water-lilies/images/cover-detail.jpg`），登记表里写 `"coverDetail": true`，卡片右下角会标“局部 / detail”。
+
 **记录和检查**
 - 每张图片（包括裁出来的小图和我们做的示意图）都要在 `scene.json` 的 `imageSource.files` 里记一条：`file` 文件名、`from` 来源、`url` 原图网址（还没记下写“待补”）、`license` 授权、`status`（符合 / 不符合 / 来源不明 / 待决定）、`verified` 核对日期。`tools/check_scenes.py` 会检查 `images/` 里每个文件都有记录。
 - 分享图（`assets/og-*.jpg`）、分享卡片、首页动画和画家封面（`assets/artists/`）用的图片也要符合规则。

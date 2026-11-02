@@ -121,34 +121,16 @@
     "degas": [
       {
         "title": {
-          "zh": "舞蹈课",
-          "en": "The Dance Class"
-        },
-        "year": {
-          "zh": "1873–76",
-          "en": "1873–76"
-        },
-        "museum": "orsay",
-        "check": "ok",
-        "_": "奥赛作品页：between 1873 and 1876；不单独做场景（2026-11-01 Tia 定）",
-        "url": "https://www.musee-orsay.fr/en/artworks/la-classe-de-danse-1151",
-        "kind": {
-          "zh": "见《舞蹈课》场景里的对比",
-          "en": "See the comparison in The Dance Class scene"
-        }
-      },
-      {
-        "title": {
           "zh": "芭蕾舞者（后台）",
-          "en": "Ballet Dancers (Room 42)"
+          "en": "Ballet Dancers"
         },
         "year": {
-          "zh": "",
-          "en": ""
+          "zh": "1888",
+          "en": "1888"
         },
         "museum": "national-gallery",
         "check": "ok",
-        "_": "伦敦国家美术馆作品页：42号展厅；年份等 Tia 提供",
+        "_": "伦敦国家美术馆作品页",
         "url": "https://www.nationalgallery.org.uk/paintings/hilaire-germain-edgar-degas-ballet-dancers-1",
         "scene": "ballet-dancers-wings"
       }
