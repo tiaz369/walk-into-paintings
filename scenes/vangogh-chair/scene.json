@@ -689,12 +689,12 @@
       },
       {
         "file": "gauguin-chair.jpg",
-        "from": "梵高博物馆官网（Tia 下载）",
-        "url": "待补",
-        "license": "只限非商业使用",
-        "status": "不符合",
-        "note": "梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请",
-        "verified": "2026-10-27"
+        "from": "Wikimedia Commons（Google Art Project 版本；Tia 2026-10-27 上传的 IMG_0524.jpeg，1280 × 1599，比例和 Commons 上的 Google Art Project 版一致）",
+        "url": "待补（Tia 给的 Commons 文件页；可能是 \"Paul Gauguin's Armchair\"）",
+        "license": "公有领域（PD-Art）",
+        "status": "符合（Commons 文件页待核对）",
+        "note": "2026-11-02 换掉了梵高博物馆官网下载的旧图",
+        "verified": "2026-11-02"
       },
       {
         "file": "crops/door.jpg",
@@ -718,15 +718,6 @@
         "url": "",
         "license": "同 vangogh-chair.jpg",
         "status": "符合",
-        "verified": "2026-10-27"
-      },
-      {
-        "file": "IMG_0524.jpeg",
-        "from": "Tia 上传（高更的椅子，比例和 Google Art Project 版一致）",
-        "url": "待补",
-        "license": "待核对",
-        "status": "待决定",
-        "note": "网站没有用这张；等 Tia 重新下载后删除",
         "verified": "2026-10-27"
       }
     ]

@@ -363,7 +363,7 @@ function run(S, R) {
   // 独家发现“放大一处细节”（detail）：弹出原画上 crop 这一块的放大（只是放大原画），配一句说明；card：打开就算发现了这张卡片
   if ($('detail')) {
     popups.detail = $('detail');
-    $('detailBtn').onclick = () => { togglePopup('detail'); if (popups.detail.style.display === 'block') { track('exclusive-' + S.id); if (X.card && S.cards[X.card]) { found.add(X.card); updateProgress(); } } };
+    $('detailBtn').onclick = () => { togglePopup('detail'); if (popups.detail.style.display === 'block') { track('exclusive-' + S.id); const XC = S.exclusive.card; if (XC && S.cards[XC]) { found.add(XC); updateProgress(); } } };
   }
   if ($('slide')) {   // 对比滑块：拖动中间的线，左边是这幅画，右边是另一幅
     popups.slide = $('slide');
