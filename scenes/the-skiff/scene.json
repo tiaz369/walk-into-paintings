@@ -1,5 +1,5 @@
 {
-  "_说明": "小船（户外风景，完整版：塞纳河上）。所有事实文字由 Tia 提供（伦敦国家美术馆官网、印象派指南、ColourLex）。夏日的塞纳河：观众站在岸边的芦苇旁，河中间一条橙色的小划艇上坐着两位穿着时髦的女子；右边一条白帆的帆船，远处一座桥和一列冒烟的蒸汽火车。地点没有确定（很可能是沙图），桥是不是《阿涅尔的浴场》里那座也不写。onDisplay 和展厅先留空：国家美术馆作品页曾显示“不在展出”，可能在“雷诺阿与爱”展览中，确认前不放进伦敦路线页。原画还没上传：视角和物体位置先估算。",
+  "_说明": "小船（户外风景，完整版：塞纳河上）。所有事实文字由 Tia 提供（伦敦国家美术馆官网、印象派指南、ColourLex）。夏日的塞纳河：观众站在岸边的芦苇旁，河中间一条橙色的小划艇上坐着两位穿着时髦的女子；左边远处一条白帆的帆船，远处一座桥和一列冒烟的蒸汽火车。地点没有确定（很可能是沙图），桥是不是《阿涅尔的浴场》里那座也不写。onDisplay 和展厅先留空：国家美术馆作品页曾显示“不在展出”，可能在“雷诺阿与爱”展览中，确认前不放进伦敦路线页。原画 2026-11-02 上传（Commons：La_Yole_-_The_Skiff_-_Renoir.jpg），视角已对准：视平线在画面 20% 高处，眼睛 1.8 米（站在岸上，水面低 0.3 米），竖直视角 45°；小船离画家约 6 米，帆船约 30 米，对岸约 38 米。原画里帆船在左边，所以卡片4去掉了“右边”两个字。",
   "id": "the-skiff",
   "variant": "outdoor",
   "lighting": {
@@ -22,13 +22,12 @@
   },
   "painting": {
     "image": "images/the-skiff.jpg",
-    "width": 1600,
-    "height": 1235,
+    "width": 1024,
+    "height": 784,
     "alt": {
       "zh": "雷诺阿《小船》1875，伦敦国家美术馆",
       "en": "Pierre-Auguste Renoir, The Skiff (La Yole), 1875, The National Gallery, London"
-    },
-    "_": "宽高先按尺寸 92 × 71 cm 估算，原画上传后改成图片的实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -63,13 +62,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the skiff, the women, the sailboat or the train to learn more · Tap “If the boat weren't orange” to see the colours change · The glowing circle = Renoir's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估算（站在岸边），原画上传后对准。",
+    "_说明": "画家视角：按原画对准（视平线在画面 20% 高处）。",
     "x": 0,
     "z": 0,
-    "eye": 1.5,
+    "eye": 1.8,
     "yaw": 0,
-    "pitch": -0.1,
-    "fov": 50,
+    "pitch": -0.2436,
+    "fov": 45,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -93,7 +92,10 @@
     "smoke": "#e8e8ec",
     "leaves": "#5a8a4a",
     "skin": "#f0d0b8",
-    "sky": "#d8e4f0"
+    "sky": "#d8e4f0",
+    "wood": "#8a5a2a",
+    "trunk": "#6a4a32",
+    "trousers": "#2a2a40"
   },
   "room": {
     "_说明": "户外：ground 是地面范围（这里只是脚下的一小块河岸），bounds 是可以走动的范围（岸边），都写 [x最小, x最大, z最小, z最大]，单位是米。",
@@ -122,22 +124,22 @@
       "_": "明亮的蓝色河水",
       "pts": [
         [
-          -40,
+          -60,
           -0.3,
           1
         ],
         [
-          -40,
+          -60,
           -0.3,
-          -30
+          -38
         ],
         [
-          40,
+          60,
           -0.3,
-          -30
+          -38
         ],
         [
-          40,
+          60,
           -0.3,
           1
         ]
@@ -150,24 +152,24 @@
       "_": "对岸",
       "pts": [
         [
-          -40,
+          -60,
           0.2,
-          -30
+          -38
         ],
         [
-          -40,
+          -60,
           0.2,
-          -60
+          -90
         ],
         [
-          40,
+          60,
           0.2,
-          -60
+          -90
         ],
         [
-          40,
+          60,
           0.2,
-          -30
+          -38
         ]
       ],
       "color": "bank"
@@ -176,93 +178,93 @@
       "type": "boxes",
       "card": "colours",
       "x": 0,
-      "z": 2,
-      "_": "脚边岸上的芦苇（观众站在岸边）",
+      "z": 0,
+      "_": "左下角水边的一丛芦苇",
       "boxes": [
         [
-          0.06,
-          1.1,
-          0.06,
+          0.08,
+          1.0,
+          0.08,
           "reed",
-          -1.2,
-          0.25,
-          -0.6
+          -2.2,
+          0.1,
+          -3.6
         ],
         [
-          0.06,
-          1.1,
-          0.06,
+          0.08,
+          1.0,
+          0.08,
           "reed",
-          -0.9,
-          0.25,
-          -0.4
+          -1.9,
+          0.1,
+          -3.9
         ],
         [
-          0.06,
-          1.1,
-          0.06,
+          0.08,
+          1.0,
+          0.08,
           "reed",
-          -0.5,
-          0.25,
-          -0.7
+          -1.6,
+          0.1,
+          -3.5
         ],
         [
-          0.06,
-          1.1,
-          0.06,
+          0.08,
+          1.0,
+          0.08,
           "reed",
-          0.4,
-          0.25,
-          -0.5
+          -1.3,
+          0.1,
+          -4.0
         ],
         [
-          0.06,
-          1.1,
-          0.06,
+          0.08,
+          1.0,
+          0.08,
           "reed",
-          0.8,
-          0.25,
-          -0.8
+          -1.0,
+          0.1,
+          -3.7
         ],
         [
-          0.06,
-          1.1,
-          0.06,
+          0.08,
+          1.0,
+          0.08,
           "reed",
-          1.2,
-          0.25,
-          -0.4
+          -0.7,
+          0.1,
+          -4.1
         ],
         [
-          0.06,
-          1.1,
-          0.06,
+          0.08,
+          1.0,
+          0.08,
           "reed",
-          -1.5,
-          0.25,
-          -0.2
+          -2.5,
+          0.1,
+          -4.2
         ],
         [
-          0.06,
-          1.1,
-          0.06,
+          0.08,
+          1.0,
+          0.08,
           "reed",
-          1.6,
-          0.25,
-          -0.7
+          -0.4,
+          0.1,
+          -3.8
         ]
       ]
     },
     {
       "type": "boxes",
       "card": "orange",
-      "x": -0.5,
-      "z": -7,
+      "x": -0.15,
+      "z": -6.2,
       "_": "鲜橙色的小划艇（船身用铬黄和柠檬黄，轮廓用铬橙）",
       "id": "skiff",
       "boxes": [
         [
-          3.2,
+          6.0,
           0.35,
           0.9,
           "skiff",
@@ -273,11 +275,11 @@
         [
           0.05,
           0.05,
-          2.2,
+          2.4,
           "oar",
-          0.6,
-          0.15,
-          0
+          0.4,
+          0.1,
+          0.9
         ]
       ]
     },
@@ -285,20 +287,20 @@
       "type": "figure",
       "pose": "sitting",
       "color": "whiteDress",
-      "x": -1.1,
-      "z": -7,
+      "x": 1.13,
+      "z": -6.2,
       "rot": 1.57,
       "card": "women",
-      "_": "小船上穿着时髦的女子",
+      "_": "小船上坐着的女子",
       "scale": 0.9,
       "y": -0.2
     },
     {
       "type": "figure",
       "pose": "sitting",
-      "color": "darkDress",
-      "x": 0.4,
-      "z": -7,
+      "color": "whiteDress",
+      "x": -0.14,
+      "z": -6.2,
       "rot": -1.57,
       "card": "women",
       "_": "划船的女子",
@@ -309,9 +311,9 @@
     {
       "type": "boxes",
       "card": "sailboat",
-      "x": 6,
-      "z": -14,
-      "_": "右边白帆的帆船（船身颜色和小船呼应）",
+      "x": -11.6,
+      "z": -29,
+      "_": "白帆的帆船（在原画的左边；船身颜色和小船呼应）",
       "boxes": [
         [
           2.4,
@@ -345,9 +347,9 @@
     {
       "type": "boxes",
       "card": "train",
-      "x": -6,
+      "x": 20,
       "z": -40,
-      "_": "远处的铁路桥和冒烟的蒸汽火车",
+      "_": "右边远处的铁路桥和冒烟的蒸汽火车",
       "boxes": [
         [
           30,
@@ -418,9 +420,9 @@
       "type": "tree",
       "card": "train",
       "_": "对岸的树",
-      "x": -14,
-      "z": -36,
-      "h": 8,
+      "x": -20,
+      "z": -46,
+      "h": 10,
       "r": 4,
       "color": "leaves"
     },
@@ -428,9 +430,9 @@
       "type": "tree",
       "card": "train",
       "_": "对岸的树",
-      "x": 10,
-      "z": -38,
-      "h": 9,
+      "x": 2,
+      "z": -48,
+      "h": 11,
       "r": 4.5,
       "color": "leaves"
     }
@@ -472,8 +474,8 @@
         "en": "The sailboat"
       },
       "text": {
-        "zh": "右边那条帆船的白帆，平衡了整个画面；它的船身颜色，也和小船呼应。",
-        "en": "The white sail of the sailboat on the right balances the picture, and its hull echoes the colour of the skiff."
+        "zh": "那条帆船的白帆，平衡了整个画面；它的船身颜色，也和小船呼应。",
+        "en": "The white sail of the sailboat balances the picture, and its hull echoes the colour of the skiff."
       }
     },
     "train": {
@@ -498,7 +500,7 @@
     }
   },
   "exclusive": {
-    "_说明": "独家发现“如果船不是橙色的”（toggles）：开关打开后，投影的原画换成我们做的示意图（images/the-skiff-grey.jpg：只把小船改成灰色，其他不变），显示说明。因为改变了原画的样子，说明里写“这是示意”。示意图等原画上传后再做。",
+    "_说明": "独家发现“如果船不是橙色的”（toggles）：开关打开后，投影的原画换成我们做的示意图（images/the-skiff-grey.jpg：只把小船改成灰色，其他不变），显示说明。因为改变了原画的样子，说明里写“这是示意”。示意图是照着原画做的。",
     "type": "toggles",
     "toggles": [
       {
@@ -743,16 +745,24 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "待补",
+    "url": "https://commons.wikimedia.org/wiki/File:La_Yole_-_The_Skiff_-_Renoir.jpg",
     "license": "公有领域（PD-Art）",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
     "files": [
       {
         "file": "the-skiff.jpg",
-        "from": "Wikimedia Commons（等 Tia 上传）",
-        "url": "待补",
+        "from": "Wikimedia Commons：La_Yole_-_The_Skiff_-_Renoir.jpg（Tia 2026-11-02 上传，1024 × 784）",
+        "url": "https://commons.wikimedia.org/wiki/File:La_Yole_-_The_Skiff_-_Renoir.jpg",
         "license": "公有领域（PD-Art）",
-        "status": "待上传",
+        "status": "符合",
+        "verified": "2026-11-02"
+      },
+      {
+        "file": "the-skiff-grey.jpg",
+        "from": "我们做的示意图：只把原画里的小船改成灰色",
+        "url": "",
+        "license": "自制（示意）",
+        "status": "符合",
         "verified": "2026-11-02"
       }
     ]

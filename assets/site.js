@@ -779,17 +779,21 @@ const PAGES = {
           <span class="start-name">${bi(x.title)}</span><span class="story-sub">${bi(x.subtitle, ' / ')}</span></a>`; }).join('')}</div></section>`;
       return;
     }
-    const stops = st.stops.map(x => ({ ...x, s: live(x.scene) })).filter(x => x.s);
-    const finals = await Promise.all(stops.map(x => fetch(ROOT + x.s.path + 'scene.json', { cache: 'no-cache' }).then(r => r.json()).then(S => S.ending && S.ending.final).catch(() => null)));
+    const stops = st.stops.map(x => ({ ...x, s: live(x.scene) })).filter(x => x.s);   // 还没上线的场景先隐藏
+    // 每一站的文字：写了 text 用 text，没写就用场景最后一屏的那句话
+    const finals = await Promise.all(stops.map(x => x.text ? Promise.resolve(x.text) : fetch(ROOT + x.s.path + 'scene.json', { cache: 'no-cache' }).then(r => r.json()).then(S => S.ending && S.ending.final).catch(() => null)));
+    const tBoth = t => t.zh && t.en && t.zh !== t.en ? `<span lang="zh-CN">${esc(t.zh)}</span> · <span lang="en"><i>${esc(t.en)}</i></span>` : bi(t);
     main.innerHTML = `<div class="wrap page-title"><p class="story-back"><a href="${ROOT}stories/">← ${ui('艺术故事', 'Stories')}</a></p>
         <h1>${bi(st.title)}<small class="sub">${bi(st.subtitle)}</small></h1>
-        <p class="story-note">${bi(st.note, ' / ')}</p></div>
+        ${st.intro ? `<p class="story-intro">${bi(st.intro, ' / ')}</p>` : ''}
+        ${st.note ? `<p class="story-note">${bi(st.note, ' / ')}</p>` : ''}</div>
       <section class="section wrap"><ol class="story-route">${stops.map((x, i) => `<li class="story-stop">
-        <span class="story-time"><b>${i + 1}</b> <span class="zh">${esc(x.time.zh)}</span><span class="en">${esc(x.time.en)}</span></span>
+        <span class="story-time"><b>${i + 1}</b>${x.time ? ` <span class="zh">${esc(x.time.zh)}</span><span class="en">${esc(x.time.en)}</span>` : ''}</span>
         <a class="story-pic" href="${ROOT + x.s.path}?story=${st.id}"><img src="${ROOT + x.s.cover}" ${altAttr(x.s.title)} loading="lazy" /></a>
-        <span class="story-text"><span class="story-title">${bi(x.s.title)}</span>
-          ${finals[i] ? `<span class="story-final"><span class="zh">${finals[i].zh}</span><span class="en">${finals[i].en}</span></span>` : ''}
-          <a class="btn primary" href="${ROOT + x.s.path}?story=${st.id}">${ui('走进去', 'Step inside')} →</a></span></li>`).join('')}</ol></section>`;
+        <span class="story-text"><span class="story-title">${tBoth(x.s.title)}</span>
+          ${finals[i] ? `<span class="story-final"><span class="zh">${escItalic(finals[i].zh)}</span><span class="en">${escItalic(finals[i].en)}</span></span>` : ''}
+          <a class="btn primary" href="${ROOT + x.s.path}?story=${st.id}">${ui('走进去', 'Step inside')} →</a></span></li>`).join('')}</ol>
+        ${st.outro ? `<p class="story-outro">${bi(st.outro, ' / ')}</p>` : ''}</section>`;
   },
 
   // ---------- 画中侦探：现有场景里“找一找”类型的互动（data/detective.json） ----------

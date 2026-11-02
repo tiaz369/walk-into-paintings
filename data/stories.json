@@ -1,5 +1,5 @@
 {
-  "_说明": "艺术故事（/stories/）：用现有场景串成一条路线。文字由 Tia 提供。每一站：时间、场景 id；页面上显示场景缩略图、场景最后一屏的那句话和“走进去”按钮。从故事页进入场景（?story=故事 id）时，场景结尾显示“继续这段故事”，指向下一站。还没上线的场景不显示。",
+  "_说明": "艺术故事（/stories/）：用现有场景串成一条路线。文字由 Tia 提供。每一站：场景 id，可以写 time（时间）和 text（串联文字；没写时显示场景最后一屏的那句话）；故事可以写 intro（开头）、note（小字说明）和 outro（结尾）。页面上显示序号、场景缩略图、画名（中英）、文字和“走进去”按钮。从故事页进入场景（?story=故事 id）时，场景结尾显示“继续这段故事”，指向下一站。还没上线的场景不显示。场景结尾（没从故事页进入时）显示“这幅画也在一个故事里”，指向包含它的故事。",
   "title": {
     "zh": "艺术故事",
     "en": "Stories"
@@ -75,6 +75,193 @@
           "scene": "bedroom"
         }
       ]
+    },
+    {
+      "id": "caillebotte-collector",
+      "cover": "paris-street-rainy-day",
+      "title": {
+        "zh": "一位画家，也是一位收藏家",
+        "en": "The Painter Who Collected"
+      },
+      "subtitle": {
+        "zh": "卡耶博特画画，也买下朋友们的画。",
+        "en": "Caillebotte painted, and bought his friends' paintings too."
+      },
+      "intro": {
+        "zh": "古斯塔夫·卡耶博特出身富裕家庭。他是印象派画家，也是他们的朋友和支持者。他买下了许多朋友们的画，去世后，这些画进入了法国国家收藏。",
+        "en": "Gustave Caillebotte came from a wealthy family. He was an Impressionist painter, and a friend and supporter of the others. He bought many of his friends' paintings, and after his death they entered the French national collection."
+      },
+      "stops": [
+        {
+          "scene": "floor-scrapers",
+          "text": {
+            "zh": "1875年，官方沙龙拒绝了他的这幅画。第二年，他在印象派画展上首次参展。",
+            "en": "In 1875, the official Salon rejected this painting. The following year, he made his debut at the Impressionist exhibition."
+          }
+        },
+        {
+          "scene": "paris-street-rainy-day",
+          "text": {
+            "zh": "1877年的印象派画展，很大程度上是他自己组织的。他在那里展出了这幅雨中的巴黎。",
+            "en": "The Impressionist exhibition of 1877 was largely organised by Caillebotte himself. He showed this rainy Paris there."
+          }
+        },
+        {
+          "scene": "gare-saint-lazare",
+          "text": {
+            "zh": "同一场画展上，莫奈展出了他的火车站。这一幅后来属于卡耶博特。",
+            "en": "At the same exhibition, Monet showed his paintings of the station. This one later belonged to Caillebotte."
+          }
+        },
+        {
+          "scene": "moulin-galette",
+          "text": {
+            "zh": "1879年到1894年，雷诺阿的这幅画也属于他。",
+            "en": "From 1879 to 1894, this painting by Renoir belonged to him too."
+          }
+        },
+        {
+          "scene": "the-star",
+          "text": {
+            "zh": "德加的这幅芭蕾，同样是他的收藏。",
+            "en": "This ballet scene by Degas was also in his collection."
+          }
+        },
+        {
+          "scene": "boating-party",
+          "text": {
+            "zh": "在雷诺阿的这幅画里，卡耶博特自己也在：右下角反坐在椅子上的，就是他。",
+            "en": "In this painting by Renoir, Caillebotte appears himself: he is the man sitting backwards on his chair, lower right."
+          }
+        }
+      ],
+      "outro": {
+        "zh": "1894年卡耶博特去世后，他的收藏进入了法国国家收藏。今天，其中很多画都挂在奥赛博物馆。",
+        "en": "After Caillebotte's death in 1894, his collection entered the French national collection. Today many of these paintings hang in the Musée d'Orsay."
+      }
+    },
+    {
+      "id": "degas-ballet",
+      "cover": "the-star",
+      "title": {
+        "zh": "德加的芭蕾",
+        "en": "Degas at the Ballet"
+      },
+      "subtitle": {
+        "zh": "从教室、练功房、后台，到舞台。",
+        "en": "From the classroom and the practice room to the wings and the stage."
+      },
+      "intro": {
+        "zh": "德加可以出入巴黎歌剧院的每个角落。比起舞台上的光彩，他更常画舞者在幕后的时刻。",
+        "en": "Degas had access to every part of the Paris Opéra. More than the glamour of the stage, he painted dancers in the moments behind it."
+      },
+      "stops": [
+        {
+          "scene": "dance-class",
+          "text": {
+            "zh": "教室里，一位舞者正在接受考试，芭蕾大师于勒·佩罗扶着手杖看着她。",
+            "en": "In the classroom, a dancer takes her examination, watched by the ballet master Jules Perrot, leaning on his cane."
+          },
+          "time": {
+            "zh": "1863",
+            "en": "1863"
+          }
+        },
+        {
+          "scene": "ballet-dancers-white",
+          "text": {
+            "zh": "练功房里，舞者们在练习的间隙系舞鞋、扶墙、伸展。",
+            "en": "In the practice room, dancers tie their ribbons, steady themselves against the wall and stretch between exercises."
+          },
+          "time": {
+            "zh": "1866",
+            "en": "1866"
+          }
+        },
+        {
+          "scene": "ballet-dancers-wings",
+          "text": {
+            "zh": "后台的侧幕里，四位舞者在演出间隙休息。",
+            "en": "In the wings, four dancers rest between performances."
+          },
+          "time": {
+            "zh": "1875",
+            "en": "1875"
+          }
+        },
+        {
+          "scene": "the-star",
+          "text": {
+            "zh": "舞台中央，只有一个人。",
+            "en": "At centre stage, just one dancer."
+          },
+          "time": {
+            "zh": "1884",
+            "en": "1884"
+          }
+        },
+        {
+          "scene": "little-dancer",
+          "text": {
+            "zh": "最后，是德加一生中唯一公开展出的雕塑。",
+            "en": "Finally, the only sculpture Degas ever exhibited in public."
+          }
+        }
+      ],
+      "outro": {
+        "zh": "德加写道：“一个题材必须画十遍、一百遍。”芭蕾，就是他画了一遍又一遍的题材。",
+        "en": "Degas wrote: “It is necessary to do a subject ten times, a hundred times.” The ballet was the subject he returned to again and again."
+      }
+    },
+    {
+      "id": "rejected",
+      "cover": "dejeuner-herbe",
+      "title": {
+        "zh": "被拒绝的画",
+        "en": "Rejected"
+      },
+      "subtitle": {
+        "zh": "它们都曾被官方沙龙拒绝，今天却挂在世界上最重要的博物馆里。",
+        "en": "All of them were once rejected by the official Salon. Today they hang in some of the world's great museums."
+      },
+      "intro": {
+        "zh": "19世纪的巴黎，画家要出名，最重要的是进入官方沙龙。可是有些今天最有名的画，当年都被沙龙拒绝了。",
+        "en": "In 19th-century Paris, the surest way for a painter to make a name was the official Salon. Yet some of today's most famous paintings were rejected by it."
+      },
+      "stops": [
+        {
+          "scene": "dejeuner-herbe",
+          "text": {
+            "zh": "1863年，沙龙拒绝了马奈的这幅画。他把它送到“落选者沙龙”，结果成了整个展览最受关注的作品。",
+            "en": "In 1863, the Salon rejected this painting by Manet. He showed it at the Salon des Refusés, where it became the main attraction."
+          }
+        },
+        {
+          "scene": "the-fifer",
+          "text": {
+            "zh": "三年后，沙龙又拒绝了马奈的《吹笛少年》。作家左拉却在这幅画里看到了真正现代的感觉。",
+            "en": "Three years later, the Salon rejected Manet's *The Fifer*. The writer Émile Zola, however, saw a truly modern feeling in it."
+          }
+        },
+        {
+          "scene": "floor-scrapers",
+          "text": {
+            "zh": "1875年，卡耶博特的这幅画也被拒绝了。有评论家说，画工人干活是“粗俗的题材”。",
+            "en": "In 1875, Caillebotte's painting was rejected too. Some critics called workers at work a “vulgar subject”."
+          }
+        },
+        {
+          "scene": "bathers-asnieres",
+          "text": {
+            "zh": "1884年，修拉想用这幅巨大的画在沙龙上一鸣惊人，也被拒绝了。他把它送到了新成立的独立艺术家沙龙。",
+            "en": "In 1884, Seurat hoped this huge painting would make his name at the Salon. It was rejected, and he showed it instead at the newly formed Salon des Indépendants."
+          }
+        }
+      ],
+      "outro": {
+        "zh": "被拒绝，并没有让这些画消失。今天，它们分别挂在奥赛博物馆和伦敦国家美术馆。",
+        "en": "Rejection did not make these paintings disappear. Today they hang in the Musée d'Orsay and the National Gallery in London."
+      }
     }
   ]
 }

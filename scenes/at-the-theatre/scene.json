@@ -1,5 +1,5 @@
 {
-  "_说明": "在剧院（初次出门）（室内，完整版：剧院包厢）。所有事实文字由 Tia 提供（伦敦国家美术馆官网、Art UK）。我们坐在包厢里，紧挨着两位年轻女子：离我们最近的一位身体前倾，蓝色软帽背对着我们，看向剧场；包厢外是一层层坐满观众的楼座，下层一个男人、上层一个女人好像正朝这边看。国家美术馆说“我们无法确定发生了什么”，所以不替她编“第一次出门”的故事。onDisplay 和展厅先留空：可能在“雷诺阿与爱”展览里，在国家美术馆官网确认之前不放进伦敦路线页。原画还没上传：视角和物体位置先估算。",
+  "_说明": "在剧院（初次出门）（室内，完整版：剧院包厢）。所有事实文字由 Tia 提供（伦敦国家美术馆官网、Art UK）。我们坐在包厢里，紧挨着两位年轻女子：离我们最近的一位身体前倾，蓝色软帽背对着我们，看向剧场；包厢外是一层层坐满观众的楼座，下层一个男人、上层一个女人好像正朝这边看。国家美术馆说“我们无法确定发生了什么”，所以不替她编“第一次出门”的故事。onDisplay 和展厅先留空：可能在“雷诺阿与爱”展览里，在国家美术馆官网确认之前不放进伦敦路线页。原画 2026-11-02 上传，视角已对准：坐在包厢里，在两位女子的右后方，眼睛 1.2 米，稍微往上看（视平线在画面 35% 高处）；她的侧脸朝左，看向剧场。",
   "id": "at-the-theatre",
   "variant": "interior",
   "lighting": {
@@ -23,13 +23,12 @@
   },
   "painting": {
     "image": "images/at-the-theatre.jpg",
-    "width": 1000,
-    "height": 1323,
+    "width": 1280,
+    "height": 1670,
     "alt": {
       "zh": "雷诺阿《在剧院（初次出门）》1876–1877，伦敦国家美术馆",
       "en": "Pierre-Auguste Renoir, At the Theatre (La Première Sortie), 1876–7, The National Gallery, London"
-    },
-    "_": "宽高先按尺寸 49.5 × 65 cm 估算，原画上传后改成图片的实际像素"
+    }
   },
   "projection": true,
   "label": {
@@ -64,13 +63,13 @@
     "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the women in the box, the audience opposite or the railing to learn more · Tap “One painting, several names” to try another title · The glowing circle = Renoir's viewpoint"
   },
   "viewpoint": {
-    "_说明": "画家视角：先估算（坐在包厢里，在两位女子身后），原画上传后对准。",
+    "_说明": "画家视角：按原画对准（坐在包厢里，在两位女子的右后方）。",
     "x": 0,
     "z": 0,
     "eye": 1.2,
     "yaw": 0,
-    "pitch": 0.0,
-    "fov": 50,
+    "pitch": 0.12,
+    "fov": 45,
     "text": {
       "zh": "从这里看，就是画里的样子。",
       "en": "From here, you see what the painting sees."
@@ -92,7 +91,8 @@
     "stage": "#e8d8a0",
     "skin": "#f0d4c0",
     "coat": "#18181c",
-    "trousers": "#18181c"
+    "trousers": "#18181c",
+    "wood": "#5a3a2a"
   },
   "room": {
     "_说明": "房间形状（米）：剧院大厅。我们在前面的包厢里；对面的楼座在后墙前面。左墙 x=left，前墙 z=front；后墙从 backLeft 到 backRight，右墙从 backRight 到 rightFront。",
@@ -119,25 +119,25 @@
     {
       "type": "boxes",
       "card": "box",
-      "x": 0,
-      "z": -1.45,
-      "_": "包厢前面的天鹅绒栏杆",
+      "x": -0.6,
+      "z": -1.1,
+      "_": "包厢前面红色的栏杆（原画左下角）",
       "boxes": [
         [
-          2.4,
+          1.6,
           0.12,
           0.3,
           "velvet",
-          -0.2,
+          0,
           0.72,
           0
         ],
         [
-          2.4,
+          1.6,
           0.72,
           0.06,
           "velvet",
-          -0.2,
+          0,
           0.36,
           0.13
         ]
@@ -147,17 +147,17 @@
       "type": "figure",
       "pose": "sitting",
       "color": "dress",
-      "x": 0.1,
-      "z": -0.95,
-      "rot": 3.14,
+      "x": 0.05,
+      "z": -1.0,
+      "rot": -1.57,
       "card": "face",
-      "_": "离我们最近的女子：身体前倾，蓝色软帽背对着我们",
+      "_": "离我们最近的女子：身体前倾，蓝色软帽转向另一边（侧脸朝左）",
       "id": "woman"
     },
     {
       "type": "boxes",
       "card": "face",
-      "x": 0.1,
+      "x": 0.05,
       "z": -1.0,
       "_": "蓝色软帽",
       "boxes": [
@@ -176,18 +176,18 @@
       "type": "figure",
       "pose": "sitting",
       "color": "dress2",
-      "x": -0.55,
-      "z": -0.7,
-      "rot": 3.14,
+      "x": 0.3,
+      "z": -1.5,
+      "rot": -1.57,
       "card": "box",
-      "_": "她身边的另一位年轻女子"
+      "_": "她身边的另一位年轻女子（右边，只露出一半）"
     },
     {
       "type": "boxes",
       "card": "title",
-      "x": -0.6,
-      "z": -1.42,
-      "_": "栏杆上的节目单",
+      "x": -0.3,
+      "z": -1.05,
+      "_": "她手里的花束和栏杆上的东西",
       "boxes": [
         [
           0.2,
@@ -230,7 +230,7 @@
     {
       "type": "boxes",
       "card": "watched",
-      "x": 0,
+      "x": -4,
       "z": -12,
       "_": "对面一层层坐满观众的楼座",
       "boxes": [
@@ -276,7 +276,7 @@
       "type": "figure",
       "pose": "standing",
       "color": "coat",
-      "x": -1.4,
+      "x": -3.2,
       "z": -11.6,
       "rot": 0,
       "card": "watched",
@@ -288,7 +288,7 @@
       "type": "figure",
       "pose": "standing",
       "color": "dress",
-      "x": -0.9,
+      "x": -2.6,
       "z": -11.6,
       "rot": 0,
       "card": "watched",
@@ -643,10 +643,10 @@
     "files": [
       {
         "file": "at-the-theatre.jpg",
-        "from": "Wikimedia Commons（等 Tia 上传）",
-        "url": "待补",
+        "from": "Wikimedia Commons（Tia 2026-11-02 上传，原文件名 IMG_0595.jpeg，1280 × 1670；同时传的 IMG_0594 是展厅里拍的照片、带画框，按规则不能用，已删除）",
+        "url": "待补（Tia 给的 Commons 文件页）",
         "license": "公有领域（PD-Art）",
-        "status": "待上传",
+        "status": "符合",
         "verified": "2026-11-02"
       }
     ]

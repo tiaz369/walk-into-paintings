@@ -303,10 +303,10 @@ for st in STO['stories']:
     for x in st['stops']:
         sc = SCENES.get(x['scene'])
         if not sc or x['scene'] not in LIVE_IDS: continue
-        fin = json.load(open(os.path.join(ROOT, sc['path'], 'scene.json'), encoding='utf-8')).get('ending', {}).get('final')
-        lis += f'<li>{e(both(x["time"]))} · <a href="../../{sc["path"]}?story={st["id"]}">{e(both(sc["title"]))}</a>' + (f' — {e(both(fin, " / "))}' if fin else '') + '</li>'
+        fin = x.get('text') or json.load(open(os.path.join(ROOT, sc['path'], 'scene.json'), encoding='utf-8')).get('ending', {}).get('final')   # 写了 text 用 text
+        lis += f'<li>{e(both(x["time"])) + " · " if x.get("time") else ""}<a href="../../{sc["path"]}?story={st["id"]}">{e(both(sc["title"]))}</a>' + (f' — {e(both(fin, " / "))}' if fin else '') + '</li>'
     PAGES.append(page(f'stories/{st["id"]}/', T(st['title']['zh'], st['title']['en']), f'{both(st["title"])}：{both(st["subtitle"], " / ")}',
-                      f'      <h1>{bi(st["title"])}</h1>\n      <p>{e(both(st["subtitle"], " / "))}</p>\n      <p>{e(both(st["note"], " / "))}</p>\n      <ol>{lis}</ol>', site_script('../../', 'stories', f", {{ id: '{st['id']}' }}")))
+                      f'      <h1>{bi(st["title"])}</h1>\n      <p>{e(both(st["subtitle"], " / "))}</p>\n' + ''.join(f'      <p>{e(both(st[k], " / "))}</p>\n' for k in ('intro', 'note') if st.get(k)) + f'      <ol>{lis}</ol>' + (f'\n      <p>{e(both(st["outro"], " / "))}</p>' if st.get('outro') else ''), site_script('../../', 'stories', f", {{ id: '{st['id']}' }}")))
 DET = json.load(open(os.path.join(ROOT, 'data/detective.json'), encoding='utf-8'))
 PAGES.append(page('detective/', T(DET['title']['zh'], DET['title']['en']), both(DET['intro'], ' / '),
                   f'      <h1>{bi(DET["title"])}</h1>\n      <p>{e(both(DET["intro"], " / "))}</p>\n      <ul>' + ''.join(f'<li><a href="../{SCENES[x["scene"]]["path"]}?play={x["play"]}">{e(both(x["label"]))}</a> — {e(both(SCENES[x["scene"]]["title"]))}</li>' for x in DET['items'] if x['scene'] in LIVE_IDS) + '</ul>', site_script('../', 'detective')))

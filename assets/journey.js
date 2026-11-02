@@ -27,13 +27,25 @@ export async function setupJourney(S) {
     }
   }
   const storyId = param('story');
-  if (!storyId) return;
   let D = null;
   try { D = await fetch(ROOT + 'data/stories.json', { cache: 'no-cache' }).then(r => r.json()); } catch (e) { return; }
   const R = await fetch(ROOT + 'data/scenes.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => null);
-  const st = D.stories.find(x => x.id === storyId);
-  if (!st || !R) return;
+  if (!R) return;
   const live = id => R.scenes.some(s => s.id === id && s.status === 'live');
+  if (!storyId) {   // 不是从故事页进来的：结尾加“这幅画也在一个故事里”，指向包含这幅画的故事
+    const ins = D.stories.filter(x => x.stops.some(y => y.scene === S.id));
+    const end = document.getElementById('actEnd');
+    if (!ins.length || !end) return;
+    const box = document.createElement('div');
+    box.className = 'story-next';
+    box.innerHTML = `<p class="story-of">${ui('这幅画也在一个故事里', 'This painting is part of a story')}</p>`
+      + ins.map(x => `<a class="btn" href="${ROOT}stories/${x.id}/">${bi(x.title)} →</a>`).join(' ');
+    const h = end.querySelector('h2');
+    end.insertBefore(box, h ? h.nextSibling : end.firstChild);
+    return;
+  }
+  const st = D.stories.find(x => x.id === storyId);
+  if (!st) return;
   const stops = st.stops.filter(x => live(x.scene));
   const i = stops.findIndex(x => x.scene === S.id);
   if (i < 0) return;
@@ -42,7 +54,7 @@ export async function setupJourney(S) {
   const box = document.createElement('div');
   box.className = 'story-next';
   box.innerHTML = `<p class="story-of">${bi(st.title)} · ${i + 1} / ${stops.length}</p>`
-    + (nextScene ? `<a class="btn primary" href="${ROOT + nextScene.path}?story=${st.id}">${ui('继续这段故事', 'Continue the story')} → ${bi(next.time, ' · ')} · ${bi(nextScene.title)}</a>`
+    + (nextScene ? `<a class="btn primary" href="${ROOT + nextScene.path}?story=${st.id}">${ui('继续这段故事', 'Continue the story')} → ${next.time ? bi(next.time, ' · ') + ' · ' : ''}${bi(nextScene.title)}</a>`
       : `<a class="btn primary" href="${storyUrl}">${ui('故事结束 · 回到故事页', 'The end · Back to the story page')} →</a>`);
   const end = document.getElementById('actEnd');
   if (!end) return;
