@@ -13,7 +13,9 @@
   --veil:    rgba(245, 240, 230, .9);   /* 3D 画面上的面板底色 */
   --accent:  #8a6a2c;   /* 默认点缀色；每个系列的主色写在 data/scenes.json 的 collections → color */
   --accent-ink: #ffffff;
-  --serif: 'Cormorant Garamond', 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', Georgia, 'Times New Roman', serif;   /* 谷歌字体打不开时，用系统里的宋体、衬线体 */
+  --zh-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;   /* 中文衬线：只用系统里已有的宋体，不下载中文网页字体（太大） */
+  --serif: 'Cormorant Garamond', "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", Georgia, 'Times New Roman', serif;   /* 标题：英文 Cormorant，中文用系统宋体 */
+  --zh-text: 'EB Garamond', "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;   /* 中文正文：中文用系统宋体，里面的英文字母、数字用和英文正文一样的 EB Garamond */
   --text-serif: 'EB Garamond', 'Source Serif 4', Georgia, 'Times New Roman', serif;   /* 英文正文（故事、卡片）：比 Cormorant 粗一点，小字也好读 */
   --ink-en:  #5a5449;   /* 英文正文：比中文浅一点，和背景的对比度 6.6:1（WCAG AA 要求至少 4.5:1） */
   --sans:  'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;   /* 谷歌字体打不开时，用系统里的苹方、微软雅黑 */
@@ -1068,3 +1070,20 @@ details.end-fold > :not(summary) { margin-top: 8px; }
 @media (prefers-reduced-motion: no-preference) { .hero-over .btn.hero-enter { animation: enterGlow 2.8s ease-in-out 1.5s 3; } }
 @keyframes enterGlow { 0%, 100% { box-shadow: 0 6px 22px rgba(0,0,0,.35), 0 0 0 3px rgba(255,255,255,.18); } 50% { box-shadow: 0 6px 22px rgba(0,0,0,.35), 0 0 0 9px rgba(255,255,255,.08); } }
 .hero-over .hero-tap { font-size: 14px; opacity: .9; margin: 10px 0 2px; }
+
+/* ---------- 中文正文用衬线体（宋体），和中文标题、英文正文统一；常规字重 400；颜色：中文 --ink（主），英文 --ink-en（次） ---------- */
+.act-text p.zh, #card p.zh, .artist-bio p .zh, .about p.zh, .about p [lang="zh-CN"], .story-intro .zh, .story-outro .zh, .story-final .zh, .feature-intro .zh, .tl-text .zh, .guide-text .zh {
+  font-family: var(--zh-text); font-weight: 400; color: var(--ink);
+}
+.act-text p.zh { font-size: 16px; }   /* 宋体比苹方看起来小一点，放大 1px */
+
+/* ---------- 首页缩略图：和画家页一样“等高不等宽”，完整显示，不要方框和灰色空白 ---------- */
+.feature .artist-cover.feature-pic { aspect-ratio: auto; background: none; box-shadow: none; border-radius: 0; overflow: visible; justify-self: center; width: fit-content; max-width: 100%; }
+.feature .artist-cover.feature-pic img { width: auto; height: auto; max-width: 100%; max-height: min(64vh, 520px); object-fit: initial; box-shadow: 0 1px 4px rgba(0,0,0,.18); }
+.doors.jrows .door-pic, .series-cards.jrows .artist-cover { box-shadow: none; border-radius: 0; }
+.doors.jrows .door-name { font-size: 22px; }
+.series-count { display: block; margin-top: 2px; font-size: 13px; color: var(--muted); }
+.door-name .sep, .series-name .sep { display: none; }
+body.lang-both .doors .door-name > .en { font-size: 15px; }
+.series-cards.jrows .series-name { font-size: 16px; line-height: 1.35; }   /* 窄的画（竖幅）下面系列名也放得下一行 */
+@media (max-width: 559px) { .series-cards.jrows .series-name { font-size: 15px; } }

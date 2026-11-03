@@ -18,7 +18,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://walkintopaintings.com/'   # 自己的域名（根目录的 CNAME 文件）；以前是 https://tiaz369.github.io/walk-into-paintings/
 NAME = {'zh': '走进名画', 'en': 'Walk into Paintings'}
 TAGLINE = {'zh': '走进世界名画的内部。', 'en': "Step inside the world's great paintings."}
-FONTS = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap'
+FONTS = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&display=swap'
 THREE = 'assets/vendor/three.module.js'   # three.js 0.160.0，放在自己的仓库里（不依赖外部 CDN，中国大陆也能打开）
 
 R = json.load(open(os.path.join(ROOT, 'data/scenes.json'), encoding='utf-8'))
@@ -124,7 +124,7 @@ def head(path, title, desc, image, image_alt, up, scene=False):
   <meta name="twitter:description" content="{e(desc)}" />
   <meta name="twitter:image" content="{img}" />
   <meta name="twitter:image:alt" content="{e(image_alt)}" />
-  <script>document.documentElement.classList.add('js')</script>
+  <script>document.documentElement.classList.add('js');if(location.hostname.endsWith('github.io'))location.replace('https://walkintopaintings.com'+location.pathname.replace(/^\\/walk-into-paintings/,'')+location.search+location.hash)</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!-- 字体：不挡住网页显示（谷歌字体打不开时，直接用系统字体） -->
@@ -410,10 +410,10 @@ for meta in BUILT:
 
 # ---------- 404 ----------
 s404 = '''      <h1>找不到这一页 · Page not found</h1>
-      <p><a href="/walk-into-paintings/">回到走进名画 · Back to Walk into Paintings</a></p>'''
+      <p><a href="/">回到走进名画 · Back to Walk into Paintings</a></p>'''
 page('404.html', '找不到这一页 · Page not found — 走进名画', '找不到这一页 · Page not found', s404,
-     "    import { renderPage } from '/walk-into-paintings/assets/site.js';\n    renderPage('notFound', { nav: null });",
-     up='/walk-into-paintings/', noindex=True)   # 404 页可能出现在任何网址下，所以链接用完整路径
+     "    import { renderPage } from '/assets/site.js';\n    renderPage('notFound', { nav: null });",
+     up='/', noindex=True)   # 404 页可能出现在任何网址下，所以链接用完整路径
 
 # ---------- sitemap.xml、robots.txt ----------
 today = datetime.date.today().isoformat()
