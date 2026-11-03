@@ -520,8 +520,8 @@ const PAGES = {
     const firstSentence = o => ({ zh: o.zh.split('。')[0] + '。', en: o.en.split('. ')[0].replace(/\.?$/, '.') });
     const a = R.artistById[newest.artist], yr = typeof newest.year === 'object' ? newest.year : { zh: newest.year, en: newest.year };
     // 三扇门：走进一幅画 → 画家页；发现一段故事 → 艺术故事；去看真迹 → 三座城市
-    const door = (sc, name, inner) => { const c = cover(sc); return c ? `<div class="door"><span class="artist-cover door-pic"><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" />${detailTag(c)}</span>
-      <span class="door-name">${bi(name)}</span>${inner}</div>` : ''; };
+    const door = (sc, name, inner, href) => { const c = cover(sc); const tag = href ? 'a' : 'div'; return c ? `<${tag} class="door" data-r="${ratioOf(R, c)}"${href ? ` href="${href}"` : ''}><span class="artist-cover door-pic pic"><img src="${ROOT + c.cover}" ${altAttr(c.title)} loading="lazy" />${detailTag(c)}</span>
+      <span class="door-name">${bi(name)}</span>${inner}</${tag}>` : ''; };
     main.innerHTML = `
       <section class="hero hero-full">
         ${heroMedia}
@@ -552,21 +552,21 @@ const PAGES = {
       </section>
 
       <section class="section wrap" id="doors">
-        <div class="doors">
-          ${door('sunflowers', { zh: '走进一幅画', en: 'Step into a painting' }, `<span class="btn primary door-btn">${ui('按画家找', 'By artist')} →</span>`).replace('<div class="door">', `<a class="door" href="${ROOT}artists/">`).replace(/<\/div>$/, '</a>')}
-          ${door('cafe-terrace', { zh: '发现一段故事', en: 'Discover a story' }, `<span class="btn primary door-btn">${ui('艺术故事', 'Stories')} →</span>`).replace('<div class="door">', `<a class="door" href="${ROOT}stories/">`).replace(/<\/div>$/, '</a>')}
+        <div class="doors jrows" data-target="400">
+          ${door('sunflowers', { zh: '走进一幅画', en: 'Step into a painting' }, `<span class="btn primary door-btn">${ui('按画家找', 'By artist')} →</span>`, `${ROOT}artists/`)}
+          ${door('cafe-terrace', { zh: '发现一段故事', en: 'Discover a story' }, `<span class="btn primary door-btn">${ui('艺术故事', 'Stories')} →</span>`, `${ROOT}stories/`)}
           ${door('arnolfini', { zh: '去看真迹', en: 'See the real thing' }, `<span class="door-links"><a href="${ROOT}london/">${ui('伦敦', 'London')}</a> · <a href="${ROOT}paris/">${ui('巴黎', 'Paris')}</a> · <a href="${ROOT}amsterdam/">${ui('阿姆斯特丹', 'Amsterdam')}</a></span>`)}
         </div>
       </section>
 
       <section class="section wrap" id="collections">
         <h2>${ui('系列', 'Collections')}</h2>
-        <div class="series-cards">${R.collections.map(c => {
+        <div class="series-cards jrows">${R.collections.map(c => {
           const live = c.order.map(x => R.sceneById[x]).filter(s => s && s.status === 'live' && s.cover);
           const cv = (c.cover && live.find(s => s.id === c.cover)) || live[0];
-          return live.length ? `<a class="series-card" href="${ROOT}collections/${c.id}/" data-series="${c.accent || ''}">
-            <span class="artist-cover"><img src="${ROOT + cv.cover}" ${altAttr(cv.title)} loading="lazy" />${detailTag(cv)}</span>
-            <span class="series-name">${ui(`${c.name.zh} · ${live.length}幅`, `${c.name.en} · ${live.length} ${live.length === 1 ? 'work' : 'works'}`)}</span></a>` : ''; }).join('')}</div>
+          return live.length ? `<a class="series-card" href="${ROOT}collections/${c.id}/" data-series="${c.accent || ''}" data-r="${ratioOf(R, cv)}">
+            <span class="artist-cover pic"><img src="${ROOT + cv.cover}" ${altAttr(cv.title)} loading="lazy" />${detailTag(cv)}</span>
+            <span class="series-name">${ui(c.name.zh, c.name.en)}</span><span class="series-count">${ui(`${live.length}幅`, `${live.length} ${live.length === 1 ? 'work' : 'works'}`)}</span></a>` : ''; }).join('')}</div>
       </section>
 
       <section class="section wrap home-bottom" id="more">
@@ -962,7 +962,7 @@ export function justify(root = document) {
     const items = [...box.children].filter(el => el.dataset.r);
     if (!items.length) continue;
     const W = box.clientWidth; if (!W) continue;
-    const phone = W < 560, gap = phone ? 12 : 20, target = phone ? W / 2 : Math.max(200, Math.min(280, W / 4)), maxN = phone ? 2 : 4;
+    const phone = W < 560, gap = phone ? 12 : 20, target = phone ? W / 2 : +box.dataset.target || Math.max(200, Math.min(280, W / 4)), maxN = phone ? 2 : 4;   // data-target：电脑上想要的行高（首页三扇门大一点）
     let row = [];
     const flush = last => {
       const sum = row.reduce((a, el) => a + +el.dataset.r, 0), h0 = (W - gap * (row.length - 1)) / sum;
