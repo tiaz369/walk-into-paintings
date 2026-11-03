@@ -468,13 +468,14 @@ function londonRow(R, s) {
   const a = R.artistById[s.artist], live = s.status === 'live', t = s.title;
   const name = t.zh && t.en && t.zh !== t.en ? `<span lang="zh-CN">${esc(t.zh)}</span> · <span lang="en">${esc(t.en)}</span>` : esc(t.zh || t.en);
   const meta = [a && bi(a.name), live ? loanLabel(s) : ''].filter(Boolean).join(' · ');   // 展厅号已经写在分组标题上；没做成场景的借展作品，下面那行小字里已经写了“借展”
-  const side = (live ? `<a class="btn primary" href="${sceneUrl(s)}">${ui('先走进去看看', 'Step inside first')}</a>` : '')
+  const ls = !live && s.linkScene && R.sceneById[s.linkScene] && R.sceneById[s.linkScene].status === 'live' ? R.sceneById[s.linkScene] : null;   // 没有自己的场景，链接到相关的场景
+  const side = (live ? `<a class="btn primary" href="${sceneUrl(s)}">${ui('先走进去看看', 'Step inside first')}</a>` : ls ? `<a class="btn" href="${sceneUrl(ls)}">${ui('走进', 'Step into')} ${bi(ls.title)} →</a>` : '')
     + (s.artworkUrl ? `<a class="work-link" href="${s.artworkUrl}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '');
   const note = s.londonNote ? `<span class="row-meta london-note">${bi(s.londonNote, ' / ')}</span>` : '';   // 路线页上的一句提示（比如“想看莫奈的车站，不用去巴黎”）
   // 借展、还没做成场景的作品：加一行小字
   const room = s.room && typeof s.room !== 'object' ? s.room : null;
   const ownerNote = s.ownerNote ? `<span class="row-meta london-note">${bi(s.ownerNote, ' / ')}</span>` : '';   // 借展作品的所有者（比如“泰特美术馆收藏”）
-  const loanNote = s.loan && !live ? `<span class="row-meta london-note">${ui(`借展作品 · 暂未制作场景。借展期间，可以在${room ? room + '号展厅' : '国家美术馆'}看到真迹。`, `On loan · No scene yet. While on loan, you can see it in ${room ? 'Room ' + room : 'the gallery'}.`)}</span>` : '';
+  const loanNote = s.loan && !live && !s.noScene ? `<span class="row-meta london-note">${ui(`借展作品 · 暂未制作场景。借展期间，可以在${room ? room + '号展厅' : '国家美术馆'}看到真迹。`, `On loan · No scene yet. While on loan, you can see it in ${room ? 'Room ' + room : 'the gallery'}.`)}</span>` : '';
   return `<div class="row"><span class="row-main"><span class="row-pic">${live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>
     <span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span>${note}${ownerNote}${loanNote}</span></span>${side ? `<span class="row-side">${side}</span>` : ''}</div>`;
 }
