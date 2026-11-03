@@ -281,7 +281,7 @@ def ldn_li(x):
     line = ' · '.join(v for v in [both(x['title']), a and both(a['name']), x.get('loan') and '借展 / On loan'] if v)
     step = f' — <a href="../{x["path"]}">先走进去看看 · Step inside first</a>' if x['status'] == 'live' else ''
     note = f' — {e(both(x["londonNote"], " / "))}' if x.get('londonNote') else ''   # 路线页上的一句提示
-    if x.get('loan') and x['status'] != 'live':   # 借展、还没做成场景的作品
+    if x.get('loan') and x['status'] != 'live' and not x.get('noScene'):   # 借展、还没做成场景的作品
         r = x.get('room') if not isinstance(x.get('room'), dict) else None
         note += f' — 借展作品 · 暂未制作场景。借展期间，可以在{r + "号展厅" if r else "国家美术馆"}看到真迹。 / On loan · No scene yet. While on loan, you can see it in {"Room " + r if r else "the gallery"}.'
     return f'<li>{e(line)}{step}{note}</li>'

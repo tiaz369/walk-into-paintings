@@ -972,8 +972,15 @@
         "en": "Twenty-one times"
       },
       "text": {
-        "zh": "窗外这片景色，他至少画过21次，有日出，有月亮升起，有晴天，也有雨天。",
-        "en": "He painted the view from this window at least 21 times: at sunrise and moonrise, on sunny days and rainy ones."
+        "zh": "窗外这片景色，他至少画过21次，有日出，有月亮升起，有晴天，也有雨天。伦敦国家美术馆43号展厅目前借展了其中一幅，《有犁田者的风景》（私人收藏）。",
+        "en": "He painted the view from this window at least 21 times: at sunrise and moonrise, on sunny days and rainy ones. One of these views, *Landscape with Ploughman* (private collection), is currently on loan to the National Gallery, London, Room 43."
+      },
+      "link": {
+        "href": "../../london/#national-gallery",
+        "label": {
+          "zh": "伦敦参观路线",
+          "en": "London route by room"
+        }
       }
     }
   },
