@@ -4,7 +4,7 @@
 
 走进名画是一座可以走进去的线上美术馆：每一幅名画都是一个可探索的空间，配有双语故事，最后引导观众去看真迹。
 
-- 网址：https://tiaz369.github.io/walk-into-paintings/
+- 网址：https://walkintopaintings.com/（以前的 https://tiaz369.github.io/walk-into-paintings/ 会自动跳转过来；域名写在根目录的 CNAME 文件里）
 - 作者：Tia，用 AI 制作，所有内容由本人撰写和核对
 - 托管：GitHub Pages
 

@@ -601,18 +601,18 @@
       "zh": "Wikimedia Commons，公有领域",
       "en": "Wikimedia Commons, public domain"
     },
-    "url": "待补",
+    "url": "https://commons.wikimedia.org/wiki/File:VanGoghThatchedCottagesByAHill.jpg",
     "license": "公有领域（PD-Art）",
     "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
     "files": [
       {
         "file": "farms-auvers.jpg",
         "from": "Tia 2026-11-03 上传（IMG_0612.jpeg，3840 × 1882，缩到 1920 宽；原图在 originals/）",
-        "url": "待补（Tia 给的 Commons 文件页）",
+        "url": "https://commons.wikimedia.org/wiki/File:VanGoghThatchedCottagesByAHill.jpg",
         "license": "公有领域（PD-Art）——待核对",
         "status": "待核对",
         "verified": "2026-11-03",
-        "note": "要确认是 Commons 上标 PD-Art 的文件，而不是泰特官网 / Art UK 的 CC BY-NC-ND 图片；如果是后者，必须换掉"
+        "note": "Tia 给的 Commons 文件页是 VanGoghThatchedCottagesByAHill.jpg，但那个文件页写的是 831 × 399；Tia 上传的是 3840 × 1882，可能不是同一个文件。要确认高清版的来源不是泰特官网 / Art UK（CC BY-NC-ND）。"
       }
     ]
   },

@@ -199,7 +199,7 @@ export function sceneRow(R, s, opts = {}) {
   const D = s.displayAt && R.museumById[s.displayAt.museum];
   const away = D && (opts.museum || s.museum) !== s.displayAt.museum ? bi({ zh: `目前借展于${D.name.zh}`, en: `Currently at ${D.name.en}` }) : D ? bi({ zh: `借自${R.museumById[s.museum].name.zh}`, en: `Lent by ${R.museumById[s.museum].name.en}` }) : '';
   const meta = [year, artist && bi(artist.name), museum && bi(museum.name), room && bi(room), loanLabel(s), away].filter(Boolean).join(' · ');
-  const pic = `<span class="row-pic">${live && cover ? `<img src="${ROOT + cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>`;
+  const pic = live && cover ? `<span class="row-pic"><img src="${ROOT + cover}" ${altAttr(t)} loading="lazy" /></span>` : '';   // 没有图片：不显示空框，只显示文字
   const text = `<span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span></span>`;
   const url = opts.workLink && (opts.artworkUrl ?? s.artworkUrl);
   const side = (live ? '' : `<span class="row-soon">${ui('即将开放', 'Coming soon')}</span>`)
@@ -482,7 +482,7 @@ function londonRow(R, s) {
   const room = s.room && typeof s.room !== 'object' ? s.room : null;
   const ownerNote = s.ownerNote ? `<span class="row-meta london-note">${bi(s.ownerNote, ' / ')}</span>` : '';   // 借展作品的所有者（比如“泰特美术馆收藏”）
   const loanNote = s.loan && !live && !s.noScene ? `<span class="row-meta london-note">${ui(`借展作品 · 暂未制作场景。借展期间，可以在${room ? room + '号展厅' : '国家美术馆'}看到真迹。`, `On loan · No scene yet. While on loan, you can see it in ${room ? 'Room ' + room : 'the gallery'}.`)}</span>` : '';
-  return `<div class="row"><span class="row-main"><span class="row-pic">${live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />` : ''}</span>
+  return `<div class="row${live && s.cover ? '' : ' no-pic'}"><span class="row-main">${live && s.cover ? `<span class="row-pic"><img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" /></span>` : ''}
     <span class="row-text"><span class="row-title">${name}</span><span class="row-meta">${meta}</span>${note}${ownerNote}${loanNote}</span></span>${side ? `<span class="row-side">${side}</span>` : ''}</div>`;
 }
 
