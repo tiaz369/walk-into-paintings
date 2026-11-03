@@ -62,7 +62,7 @@
 | umbrellas | umbrellas.jpg | Tia 上传的 IMG_0484（不是国家美术馆官网的），没有记下从哪里下载 | 待补 | 待核对 | 🔴 来源不明 | 展签写着 Wikimedia Commons，需要确认 |
 | umbrellas | umbrellas-1881.jpg | 我们用 umbrellas.jpg 做的示意图 | — | 同 umbrellas.jpg | 🔴 来源不明 | 跟着 umbrellas.jpg |
 | vangogh-chair | vangogh-chair.jpg | Wikimedia Commons（Tia 下载）（经维基百科，2026-10-27 换掉国家美术馆官网的图） | 待补 | 公有领域（PD-Art） | ✅ 符合 |  |
-| vangogh-chair | gauguin-chair.jpg | 梵高博物馆官网（Tia 下载） | 待补 | 只限非商业使用 | 🔴 不符合 | 梵高博物馆官网的图片只允许免费用于非商业用途，商业使用要另外申请 |
+| vangogh-chair | gauguin-chair.jpg | Wikimedia Commons，Google Art Project 版本（Tia 2026-11-02 上传，换掉梵高博物馆官网的旧图） | https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_De_stoel_van_Gauguin_-_Google_Art_Project.jpg | 公有领域（PD-Art） | ✅ 符合 |  |
 | vangogh-chair | crops/door.jpg | 从 vangogh-chair.jpg 裁出 | — | 同 vangogh-chair.jpg | ✅ 符合 |  |
 | vangogh-chair | crops/floor.jpg | 从 vangogh-chair.jpg 裁出 | — | 同 vangogh-chair.jpg | ✅ 符合 |  |
 | vangogh-chair | crops/wall.jpg | 从 vangogh-chair.jpg 裁出 | — | 同 vangogh-chair.jpg | ✅ 符合 |  |
