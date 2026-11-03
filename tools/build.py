@@ -15,7 +15,7 @@
 import json, html, os, datetime, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SITE = 'https://tiaz369.github.io/walk-into-paintings/'
+SITE = 'https://walkintopaintings.com/'   # 自己的域名（根目录的 CNAME 文件）；以前是 https://tiaz369.github.io/walk-into-paintings/
 NAME = {'zh': '走进名画', 'en': 'Walk into Paintings'}
 TAGLINE = {'zh': '走进世界名画的内部。', 'en': "Step inside the world's great paintings."}
 FONTS = 'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Noto+Serif+SC:wght@400;500&display=swap'
