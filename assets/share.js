@@ -11,7 +11,7 @@ import { ui, textOf, lang, track } from './site.js';
 
 const W = 1080, H = 1350, PAD = 80;
 const C = { bg: '#1c1c1e', ink: '#ebe5d9', muted: '#9b958a', accent: '#c9a24a', line: '#36363b' };   // 网站深色模式的颜色（style.css）
-const SERIF = "'Cormorant Garamond', 'Songti SC', 'STSong', 'Noto Serif SC', 'Source Han Serif SC', serif";
+const SERIF = "'Cormorant Garamond', 'Songti SC', 'STSong', 'Noto Serif SC', 'Source Han Serif SC', 'WIP Serif SC', serif";
 const SANS = "'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif";
 const plain = s => String(s || '').replace(/\*([^*]+)\*/g, '$1').replace(/<[^>]+>/g, '');   // 去掉 *斜体* 记号和 HTML
 

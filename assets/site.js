@@ -551,6 +551,10 @@ const PAGES = {
         </a>
       </section>
 
+      ${(f => f ? `<section class="section wrap first-time-wrap" id="first-time">
+        <a class="continue-card first-time" href="${sceneUrl(f)}" data-track="first-time"><span class="continue-pic"><img src="${ROOT + f.cover}" ${altAttr(f.title)} loading="lazy" />${typeTag(f)}</span>
+          <span><span class="continue-name">${bi({ zh: '第一次来？从这幅画开始', en: 'First time? Start here' })}</span><span class="continue-meta">${bi(f.title)} →</span></span></a></section>` : '')(cover('cafe-terrace'))}
+
       <section class="section wrap" id="doors">
         <div class="doors jrows" data-target="400">
           ${door('sunflowers', { zh: '走进一幅画', en: 'Step into a painting' }, `<span class="btn primary door-btn">${ui('按画家找', 'By artist')} →</span>`, `${ROOT}artists/`)}
