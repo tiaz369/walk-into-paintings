@@ -4,6 +4,12 @@
    浅色 = 暖白纸色；深色 = “夜间展厅”的深灰。颜色留给画作。
    ===================================================================== */
 
+/* 中文衬线的后备：设备里没有宋体时（比如 iPhone、iPad、安卓）才下载。
+   只包含网站用到的汉字（约 1750 个，330KB），用 tools/zh_font_build.py 从 Noto Serif SC（SIL OFL 授权，见 assets/fonts/）生成；
+   加了新文字后重新生成一次，没包含的字会自动用系统字体显示 */
+@font-face { font-family: "WIP Serif SC"; src: url("fonts/zh-serif.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap;
+  unicode-range: U+2014, U+2018-201D, U+2026, U+00B7, U+2E80-2FFF, U+3000-303F, U+3400-9FFF, U+F900-FAFF, U+FF00-FFEF; }
+
 :root {
   --paper:   #f5f0e6;   /* 暖白纸色 */
   --paper-2: #ebe4d6;
@@ -13,9 +19,9 @@
   --veil:    rgba(245, 240, 230, .9);   /* 3D 画面上的面板底色 */
   --accent:  #8a6a2c;   /* 默认点缀色；每个系列的主色写在 data/scenes.json 的 collections → color */
   --accent-ink: #ffffff;
-  --zh-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;   /* 中文衬线：只用系统里已有的宋体，不下载中文网页字体（太大） */
-  --serif: 'Cormorant Garamond', "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", Georgia, 'Times New Roman', serif;   /* 标题：英文 Cormorant，中文用系统宋体 */
-  --zh-text: 'EB Garamond', "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", serif;   /* 中文正文：中文用系统宋体，里面的英文字母、数字用和英文正文一样的 EB Garamond */
+  --zh-serif: "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "WIP Serif SC", serif;   /* 中文衬线：先用系统里的宋体；没有宋体的设备才下载精简版 WIP Serif SC（不下载完整的中文网页字体） */
+  --serif: 'Cormorant Garamond', "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "WIP Serif SC", Georgia, 'Times New Roman', serif;   /* 标题：英文 Cormorant，中文用系统宋体 */
+  --zh-text: 'EB Garamond', "Songti SC", "STSong", "Noto Serif SC", "Source Han Serif SC", "WIP Serif SC", serif;   /* 中文正文：中文用系统宋体，里面的英文字母、数字用和英文正文一样的 EB Garamond */
   --text-serif: 'EB Garamond', 'Source Serif 4', Georgia, 'Times New Roman', serif;   /* 英文正文（故事、卡片）：比 Cormorant 粗一点，小字也好读 */
   --ink-en:  #5a5449;   /* 英文正文：比中文浅一点，和背景的对比度 6.6:1（WCAG AA 要求至少 4.5:1） */
   --sans:  'Inter', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;   /* 谷歌字体打不开时，用系统里的苹方、微软雅黑 */
@@ -1087,3 +1093,12 @@ details.end-fold > :not(summary) { margin-top: 8px; }
 body.lang-both .doors .door-name > .en { font-size: 15px; }
 .series-cards.jrows .series-name { font-size: 16px; line-height: 1.35; }   /* 窄的画（竖幅）下面系列名也放得下一行 */
 @media (max-width: 559px) { .series-cards.jrows .series-name { font-size: 15px; } }
+
+/* 首页“第一次来？从这幅画开始”：本周新作下面一张小卡片 */
+.section.first-time-wrap { padding-top: 0; border-top: 0; }
+#new:has(+ #first-time) { padding-bottom: 24px; }
+.continue-card.first-time { border-color: var(--accent); }
+.continue-card.first-time .continue-meta { font-size: 13px; }
+.continue-card.first-time img { width: auto; max-width: 120px; }
+.first-time .continue-name .sep { display: none; }
+body.lang-both .first-time .continue-name > .en { display: block; font-size: 15px; color: var(--muted); font-style: italic; }

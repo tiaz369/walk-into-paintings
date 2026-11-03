@@ -130,13 +130,15 @@ def head(path, title, desc, image, image_alt, up, scene=False):
   <!-- 字体：不挡住网页显示（谷歌字体打不开时，直接用系统字体） -->
   <link rel="stylesheet" href="{FONTS}" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="{FONTS}" /></noscript>
-  <link rel="stylesheet" href="{up}assets/style.css" />{f"""
+  <link rel="stylesheet" href="{up}assets/style.css?v={CSS_V}" />{f"""
   <script type="importmap">
     {{ "imports": {{ "three": "{up}{THREE}" }} }}
   </script>""" if scene else ''}
 </head>
 '''
 # 首页和浏览页的分享预览图：三幅画并排（tools/make_og.py 生成）；场景页用自己的原画
+import hashlib
+CSS_V = hashlib.md5(open(os.path.join(ROOT, 'assets/style.css'), 'rb').read()).hexdigest()[:8]   # 样式改了，网址就变，浏览器不会用旧的缓存
 OG_HOME = 'assets/og-share-4.jpg'   # tools/make_og.py 生成
 OG_SIZE = '\n  <meta property="og:image:width" content="1200" />\n  <meta property="og:image:height" content="630" />'
 OG_HOME_ALT = "梵高《阿尔勒的卧室》、维米尔《戴珍珠耳环的少女》、梵高《向日葵》 · Vincent van Gogh, The Bedroom; Johannes Vermeer, Girl with a Pearl Earring; Vincent van Gogh, Sunflowers"
