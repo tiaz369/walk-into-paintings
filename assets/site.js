@@ -127,7 +127,8 @@ const workLine = (R, x, noMuseum) => {
 };
 let registryPromise = null;
 export function loadRegistry() {
-  if (!registryPromise) registryPromise = fetch(ROOT + 'data/scenes.json', { cache: 'no-cache' }).then(r => r.json()).then(prepare);
+  if (!registryPromise) registryPromise = Promise.all([fetch(ROOT + 'data/scenes.json', { cache: 'no-cache' }).then(r => r.json()),
+    fetch(ROOT + 'data/covers.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => ({}))]).then(([R, C]) => { R.coverRatio = C || {}; return prepare(R); });   // covers.json：封面宽高比（tools/build.py 生成）
   return registryPromise;
 }
 function prepare(R) {
@@ -155,31 +156,36 @@ export function sceneCard(R, s, opts = {}) {
     : [artist && bi(artist.name), bi(opts.year || s.year)]).concat(loanLabel(s)).filter(Boolean).join(' · ');
   const live = s.status === 'live', title = opts.title || s.title, cover = opts.cover || s.cover;
   const pic = live && cover
-    ? `<img src="${ROOT + cover}" ${altAttr(title)} loading="lazy" />${detailTag(s, opts)}`
+    ? `<img src="${ROOT + cover}" ${altAttr(title)} loading="lazy" />${detailTag(s, opts)}${opts.cover ? '' : typeTag(s)}`
     : `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
   const nameHTML = opts.bothTitle && title.zh && title.en && title.zh !== title.en ? `<span lang="zh-CN">${esc(title.zh)}</span> · <span lang="en">${esc(title.en)}</span>` : bi(title);
   const inner = `<div class="pic">${pic}</div><div class="name${opts.bothTitle ? ' both' : ''}">${nameHTML}</div>
     <div class="meta">${meta}</div>${museum && !short ? `<div class="meta">${bi(museum.name)}</div>` : ''}`;
-  const card = live ? `<a class="card" href="${sceneUrl(s)}">${inner}</a>` : `<div class="card is-soon">${inner}</div>`;
+  const dr = ` data-r="${opts.cover ? 1.25 : ratioOf(R, s)}"`;
+  const card = live ? `<a class="card"${dr} href="${sceneUrl(s)}">${inner}</a>` : `<div class="card is-soon"${dr}>${inner}</div>`;
   const url = opts.workLink && (opts.artworkUrl ?? s.artworkUrl);
   const below = (url ? `<a class="work-link" href="${url}" target="_blank" rel="noopener">${ui('官网作品页', 'Museum page')} ↗</a>` : '')
     + (opts.credit ? `<small class="img-credit">${bi(opts.credit, ' / ')}</small>` : '');
-  return below ? `<div class="card-wrap">${card}${below}</div>` : card;
+  return below ? `<div class="card-wrap"${dr}>${card}${below}</div>` : card;
 }
+// 场景卡片左上角的体验类型：完整版“可走入”，轻量版“分层查看”
+const typeTag = s => s.status !== 'live' ? '' : s.version === 'full' ? `<span class="type-tag">${ui('可走入', 'Walk in')}</span>` : s.version === 'light' ? `<span class="type-tag">${ui('分层查看', 'Look closer')}</span>` : '';
+export const typeTagHTML = typeTag;
+const ratioOf = (R, s) => (R && R.coverRatio && R.coverRatio[s.id]) || 1.25;
 // 封面是局部（coverDetail：整幅太长，缩略图里看不清，只截一段），右下角标“局部 / detail”
 const detailTag = (s, opts = {}) => s.coverDetail && !opts.cover ? `<span class="detail-tag">局部 / detail</span>` : '';
 // 画家页的图片网格：每幅一张完整的缩略图，下面只有中文画名、英文画名（斜体）和年份；不显示收藏地
 export function artGridHTML(R, list) {
   if (!list.length) return `<p class="soon">${ui('即将开放', 'Coming soon')}</p>`;
-  return `<div class="art-grid">${list.map(s => {
+  return `<div class="art-grid jrows">${list.map(s => {
     const live = s.status === 'live', t = s.title || {};
-    const pic = live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />${detailTag(s)}` : `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
+    const pic = live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />${detailTag(s)}${typeTag(s)}` : `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
     const inner = `<div class="art-pic">${pic}</div><div class="art-zh" lang="zh-CN">${esc(t.zh || '')}</div>${t.en ? `<div class="art-en" lang="en"><i>${esc(t.en)}</i></div>` : ''}<div class="art-year">${bi(s.year)}</div>`;
-    return live ? `<a class="art" href="${sceneUrl(s)}">${inner}</a>` : `<div class="art is-soon">${inner}</div>`;
+    return live ? `<a class="art" data-r="${ratioOf(R, s)}" href="${sceneUrl(s)}">${inner}</a>` : `<div class="art is-soon" data-r="${ratioOf(R, s)}">${inner}</div>`;
   }).join('')}</div>`;
 }
 // items：场景，或 { s: 场景, opts: {...} }
-export const cardsHTML = (R, list, opts = {}) => list.length ? `<div class="cards">${list.map(x => x.s ? sceneCard(R, x.s, { ...opts, ...x.opts }) : sceneCard(R, x, opts)).join('')}</div>` : `<p class="soon">${ui('即将开放', 'Coming soon')}</p>`;
+export const cardsHTML = (R, list, opts = {}) => list.length ? `<div class="cards jrows">${list.map(x => x.s ? sceneCard(R, x.s, { ...opts, ...x.opts }) : sceneCard(R, x, opts)).join('')}</div>` : `<p class="soon">${ui('即将开放', 'Coming soon')}</p>`;
 // 展厅号：数字写成“43号展厅 / Room 43”，也可以直接写 { zh, en }
 const roomLabel = r => r == null || r === '' ? null : typeof r === 'object' ? r : { zh: `${r}号展厅`, en: `Room ${r}` };
 const loanLabel = s => s.loan ? ui('借展', 'On loan') : '';
@@ -523,19 +529,19 @@ const PAGES = {
           <div class="t-en en">Step inside the world's great paintings.</div>
           <div class="t-zh zh">走进世界名画的内部。</div>
           <div class="hero-tap">${ui('点画里的东西，发现故事', 'Tap things in the painting to discover their stories')}</div>
-          <div class="hero-btns"><a class="btn primary" href="${sceneUrl(pick)}">${ui('走进画里', 'Step into the painting')}</a>
+          <div class="hero-btns"><a class="btn primary hero-enter" href="${sceneUrl(pick)}">${ui('走进画里', 'Step into the painting')}</a>
             <button class="btn" id="surprise" data-track="surprise-me">🎲 ${ui('今天看哪幅', 'Which one today?')}</button></div>
           <div class="label">${labelOf(R, pick)}${pick.imageSource ? '<br>' + imageSourceHTML(pick.imageSource) : ''}</div>
         </div>
       </section>
 
       ${(l => l ? `<section class="section wrap" id="continue"><h2>${ui('继续你的旅程', 'Continue your journey')}</h2>
-        <a class="continue-card" href="${sceneUrl(l)}"><img src="${ROOT + l.cover}" ${altAttr(l.title)} />
+        <a class="continue-card" href="${sceneUrl(l)}"><span class="continue-pic"><img src="${ROOT + l.cover}" ${altAttr(l.title)} />${typeTag(l)}</span>
           <span><span class="continue-name">${bi(l.title)}</span><span class="continue-meta">${ui('上次看到这里 · 继续 →', 'Where you left off · Continue →')}</span></span></a></section>` : '')((v => v && R.sceneById[v.id] && R.sceneById[v.id].status === 'live' && R.sceneById[v.id].cover ? R.sceneById[v.id] : null)(lastScene()))}
       <section class="section wrap" id="new">
         <h2>${ui('本周新作', 'New this week')}</h2>
         <a class="feature" href="${sceneUrl(newest)}">
-          <span class="artist-cover feature-pic"><img src="${ROOT + newest.cover}" ${altAttr(newest.title)} />${detailTag(newest)}</span>
+          <span class="artist-cover feature-pic"><img src="${ROOT + newest.cover}" ${altAttr(newest.title)} />${detailTag(newest)}${typeTag(newest)}</span>
           <span class="feature-text">
             <span class="feature-name">${bi(newest.title)}</span>
             <span class="feature-meta">${ui([a && a.name.zh, yr.zh].filter(Boolean).join(' · '), [a && a.name.en, yr.en].filter(Boolean).join(' · '))}</span>
@@ -947,4 +953,35 @@ export async function renderPage(kind, opts = {}) {
     console.error(e);
   }
   setLang(lang);   // 新加的内容也套用当前语言
+}
+
+// ---------- 缩略图“等高不等宽”（justified rows）：同一行高度相同，宽度按画的原比例，整行铺满；手机上每行最多 2 幅 ----------
+// .jrows 的每个子元素写 data-r（宽 / 高）；图片区（.pic / .art-pic）的高度和整张卡片的宽度由这里算
+export function justify(root = document) {
+  for (const box of root.querySelectorAll('.jrows')) {
+    const items = [...box.children].filter(el => el.dataset.r);
+    if (!items.length) continue;
+    const W = box.clientWidth; if (!W) continue;
+    const phone = W < 560, gap = phone ? 12 : 20, target = phone ? W / 2 : Math.max(200, Math.min(280, W / 4)), maxN = phone ? 2 : 4;
+    let row = [];
+    const flush = last => {
+      const sum = row.reduce((a, el) => a + +el.dataset.r, 0), h0 = (W - gap * (row.length - 1)) / sum;
+      const h = last && h0 > target * 1.25 ? target : h0;   // 最后一行不够满时不硬撑
+      for (const el of row) { const w = +el.dataset.r * h; el.style.width = w + 'px'; const pic = el.querySelector('.pic, .art-pic'); if (pic) pic.style.height = h + 'px'; }
+      row = [];
+    };
+    for (const el of items) {
+      row.push(el);
+      const sum = row.reduce((a, e) => a + +e.dataset.r, 0);
+      if (row.length >= maxN || sum * target + gap * (row.length - 1) >= W) flush(false);
+    }
+    if (row.length) flush(true);
+    box.classList.add('jready');
+  }
+}
+if (typeof window !== 'undefined') {
+  let t = null;
+  const run = () => justify();
+  new MutationObserver(() => { clearTimeout(t); t = setTimeout(run, 30); }).observe(document.documentElement, { childList: true, subtree: true });
+  addEventListener('resize', () => { clearTimeout(t); t = setTimeout(run, 120); });
 }

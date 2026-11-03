@@ -4,7 +4,7 @@
 //   ?story=故事 id：场景结尾显示“继续这段故事 / Continue the story →”，指向下一站（data/stories.json）
 //   ?play=互动名：自动走进画里，再打开对应的互动（data/detective.json；名字和按钮见下面的 PLAY）
 // =====================================================================
-import { ui, bi, ROOT } from './site.js';
+import { ui, bi, ROOT, typeTagHTML } from './site.js';
 
 // 画中侦探：互动名 → 场景里那个按钮
 const PLAY = {
@@ -26,6 +26,7 @@ export async function setupJourney(S) {
       setTimeout(() => { const b = document.querySelector(play); if (b && !b.classList.contains('on')) b.click(); }, 1800);
     }
   }
+  collapseEnd();
   keepExploring(S);
   const storyId = param('story');
   let D = null;
@@ -87,8 +88,31 @@ async function keepExploring(S) {
   const box = document.createElement('div');
   box.className = 'keep-exploring';
   box.innerHTML = `<div class="section-title">${ui('继续探索', 'Keep exploring')}</div><div class="ke-cards">${picks.map(({ s, why }) => `<a class="ke-card" href="${ROOT + s.path}">
-      <span class="ke-pic"><img src="${ROOT + s.cover}" alt="" loading="lazy" /></span>
+      <span class="ke-pic"><img src="${ROOT + s.cover}" alt="" loading="lazy" />${typeTagHTML(s)}</span>
       <span class="ke-why">${ui(why.zh, why.en)}</span><span class="ke-name">${bi(s.title)}</span></a>`).join('')}</div>`;
   const acts = end.querySelector('.end-actions');   // 放在结尾按钮后面（延伸阅读之前）
   if (acts) acts.after(box); else end.append(box);
+}
+
+// ---------- 最后一屏的文字部分默认折叠，只显示标题，点一下展开（作品档案、关于画家、去现场看真迹、延伸阅读） ----------
+function collapseEnd() {
+  const end = document.getElementById('actEnd');
+  if (!end) return;
+  const KEEP = /找不同|Spot the difference|下一个场景|Next scene|继续探索|Keep exploring/;
+  for (const t of [...end.querySelectorAll('.section-title')]) {
+    if (KEEP.test(t.textContent) || t.closest('details')) continue;
+    const d = document.createElement('details'); d.className = 'end-fold';
+    const sum = document.createElement('summary'); sum.className = 'section-title'; sum.innerHTML = t.innerHTML;
+    d.append(sum);
+    const host = t.parentElement;
+    if (host !== end && (host.classList.contains('artist-bio') || host.classList.contains('reading'))) {   // 标题在自己的小节里：整节收进去
+      host.before(d); t.remove(); while (host.firstChild) d.append(host.firstChild); d.append(host); host.remove();
+      continue;
+    }
+    t.before(d); t.remove();
+    let n = d.nextElementSibling;   // 标题后面的内容，直到下一个标题或按钮区
+    while (n && !n.classList.contains('section-title') && !n.classList.contains('end-actions') && !n.classList.contains('next-scene') && !n.classList.contains('credit') && !n.classList.contains('keep-exploring') && !n.matches('section, details')) {
+      const nx = n.nextElementSibling; d.append(n); n = nx;
+    }
+  }
 }
