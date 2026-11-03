@@ -1035,7 +1035,36 @@ body.lang-both .door-name > .en { display: block; font-size: .66em; color: var(-
 .ke-name { display: block; font-family: var(--serif); font-size: 16px; line-height: 1.3; }
 /* 首页“继续你的旅程” */
 .continue-card { display: flex; gap: 16px; align-items: center; color: inherit; text-decoration: none; padding: 12px; border: 1px solid var(--line); border-radius: 8px; max-width: 560px; }
-.continue-card img { width: 96px; height: 72px; object-fit: contain; background: var(--paper-2); border-radius: 4px; flex: none; }
+.continue-card .continue-pic { position: relative; flex: none; display: block; }
+.continue-card img { width: 120px; height: 90px; object-fit: contain; display: block; border-radius: 4px; }
+.continue-card .type-tag { font-size: 9px; padding: 3px 5px; left: 3px; top: 3px; }
 .continue-name { font-family: var(--serif); font-size: 19px; line-height: 1.3; display: block; }
 .continue-meta { font-size: 12px; color: var(--muted); }
 .visit-note { width: 100%; font-size: 13px; color: var(--muted); margin: 0 0 10px; }
+
+/* 最后一屏：作品档案、关于画家等默认折叠 */
+details.end-fold { width: min(860px, 100%); margin: 6px auto; border-top: 1px solid var(--line); }
+details.end-fold > summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 0; margin: 0; }
+details.end-fold > summary::-webkit-details-marker { display: none; }
+details.end-fold > summary::after { content: '+'; font-family: var(--sans); font-size: 18px; color: var(--muted); }
+details.end-fold[open] > summary::after { content: '−'; }
+details.end-fold > :not(summary) { margin-top: 8px; }
+
+/* ---------- 缩略图“等高不等宽”（site.js 的 justify）：同一行高度相同，宽度按原比例；画完整显示，方框和页面同色、没有灰底 ---------- */
+.jrows { display: flex !important; flex-wrap: wrap; gap: 28px 20px; align-items: flex-start; }
+@media (max-width: 559px) { .jrows { gap: 22px 12px; } }
+.jrows > * { flex: none; min-width: 0; }
+.jrows:not(.jready) > * { width: calc(50% - 10px); }
+.jrows .pic, .jrows .art-pic { aspect-ratio: auto !important; background: transparent !important; border-radius: 0; overflow: visible; display: block; position: relative; }
+.jrows .pic img, .jrows .art-pic img { width: 100%; height: 100%; max-width: none; max-height: none; object-fit: contain; display: block; box-shadow: 0 1px 4px rgba(0,0,0,.15); }
+.jrows .card-wrap > .card { display: block; }
+/* 场景卡片左上角的体验类型 */
+.type-tag { position: absolute; left: 6px; top: 6px; font-size: 11px; line-height: 1; padding: 4px 7px; border-radius: 999px; background: rgba(255,255,255,.9); color: #1c1c1e; letter-spacing: .02em; box-shadow: 0 1px 3px rgba(0,0,0,.2); pointer-events: none; }
+.feature-pic, .continue-card, .ke-pic { position: relative; }
+
+/* 首页首屏：“走进画里”更醒目 */
+.hero-over .btn.hero-enter { font-size: 19px; padding: 15px 34px; border-radius: 999px; box-shadow: 0 6px 22px rgba(0,0,0,.35), 0 0 0 3px rgba(255,255,255,.18); letter-spacing: .02em; }
+.hero-over .btn.hero-enter::after { content: ' →'; }
+@media (prefers-reduced-motion: no-preference) { .hero-over .btn.hero-enter { animation: enterGlow 2.8s ease-in-out 1.5s 3; } }
+@keyframes enterGlow { 0%, 100% { box-shadow: 0 6px 22px rgba(0,0,0,.35), 0 0 0 3px rgba(255,255,255,.18); } 50% { box-shadow: 0 6px 22px rgba(0,0,0,.35), 0 0 0 9px rgba(255,255,255,.08); } }
+.hero-over .hero-tap { font-size: 14px; opacity: .9; margin: 10px 0 2px; }

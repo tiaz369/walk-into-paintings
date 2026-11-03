@@ -172,6 +172,20 @@ def site_script(up, kind, extra=''):
     return f"""    import {{ renderPage }} from '{up or './'}assets/site.js';
     renderPage('{kind}'{extra});"""
 
+# 每幅封面图的宽高比（data/covers.json）：缩略图“等高不等宽”排版用
+def _img_size(path):
+    try:
+        from PIL import Image
+        with Image.open(path) as im: return im.size
+    except Exception: return None
+_cov = {}
+for _s in R['scenes']:
+    _c = _s.get('cover')
+    if _c and os.path.exists(os.path.join(ROOT, _c)):
+        _sz = _img_size(os.path.join(ROOT, _c))
+        if _sz: _cov[_s['id']] = round(_sz[0] / _sz[1], 4)
+if _cov:
+    open(os.path.join(ROOT, 'data/covers.json'), 'w', encoding='utf-8').write(json.dumps(_cov, ensure_ascii=False, sort_keys=True, indent=0) + '\n')
 PAGES = []
 T = lambda zh, en: f'{zh} · {en} — 走进名画 | Walk into Paintings'
 DESC = both(TAGLINE, ' ')
