@@ -100,6 +100,7 @@ def nav(up): return '<nav>' + ' · '.join(f'<a href="{up}{p}">{zh} {en}</a>' for
 def head(path, title, desc, image, image_alt, up, scene=False):
     url = SITE + path
     img = SITE + image
+    mime = {'.png': 'image/png', '.webp': 'image/webp'}.get(os.path.splitext(image)[1].lower(), 'image/jpeg')   # og:image:type
     return f'''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -118,6 +119,8 @@ def head(path, title, desc, image, image_alt, up, scene=False):
   <meta property="og:title" content="{e(title)}" />
   <meta property="og:description" content="{e(desc)}" />
   <meta property="og:image" content="{img}" />
+  <meta property="og:image:secure_url" content="{img}" />
+  <meta property="og:image:type" content="{mime}" />
   <meta property="og:image:alt" content="{e(image_alt)}" />{OG_SIZE if image == OG_HOME else ''}
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{e(title)}" />

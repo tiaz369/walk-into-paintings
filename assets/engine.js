@@ -9,7 +9,7 @@
 // 这个文件只负责“怎么做”，不放任何某一幅画的文字。
 // =====================================================================
 import * as THREE from 'three';
-import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, shortHint, track, oneMinuteHTML, oneMinute, ROOT } from './site.js';
+import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, shortHint, track, oneMinuteHTML, oneMinute, ROOT, markSeen, mountSubscribe } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupShareCard, shareBtnHTML } from './share.js';
 import { setupPersonal, saveBtnHTML } from './personal.js';
@@ -317,8 +317,10 @@ function buildDOM(S, R, meta) {
       <div class="end-actions">
         ${[].concat(E.exit || []).filter(x => isLive(x.scene)).map(x => `<a class="btn primary" href="${x.href}">${ui(x.label.zh, x.label.en)} →</a>`).join('')}
         <button class="btn" id="backRoom">← ${ui('回到房间', 'Back to the room')}</button>
+        <a class="btn" href="${ROOT}artists/" data-random="${S.id}">🎲 ${ui('随便走进一幅', 'Step into another')}</a>
         <a class="btn" href="${ROOT}">${ui('更多名画', 'More paintings')} →</a>
       </div>
+      <div class="subscribe-slot"></div>
       ${readingHTML}
       <div class="credit">${[imgLine, ...extraCredits].join('<br>')}<br>${creditHTML()}</div>
     </section>
@@ -1430,7 +1432,9 @@ function run(S, R, meta) {
   $('enter').onclick = () => { intro.classList.add('fade'); introT = 0; track('step-inside-' + S.id); };
   oneMinute($('oneMin'));   // 一分钟看一幅画（可选）
   cleanToggle($('tools'));   // 隐藏按钮（录屏、截图用）
-  setupShareCard(S);   // 分享卡片（share.js）
+  setupShareCard(S);   // 分享链接、分享图（share.js）
+  markSeen(S.id);      // “随机走进一幅”不再挑这幅（本次浏览）
+  mountSubscribe();    // 结尾的订阅框（没设置邮件服务时不显示）
   setupPersonal(S);    // 收藏、看画护照盖章（personal.js）
   setupJourney(S);     // 从“艺术故事”“画中侦探”进来（journey.js）
   addEventListener('pointerdown', () => { if (document.body.classList.contains('in-room')) hideHint(); });

@@ -296,6 +296,7 @@ const NAV_GROUPS = [
   { name: ['探索', 'Explore'], items: [['artists/', '画家', 'Artists'], ['themes/', '主题', 'Themes'], ['moods/', '心情', 'Moods'], ['periods/', '时期', 'Periods'], ['timeline/', '时间线', 'Timeline']] },
   { name: ['故事', 'Stories'], items: [['stories/', '艺术故事', 'Stories'], ['detective/', '画中侦探', 'Art Detective'], ['compare/', '对比两幅画', 'Compare']] },
   { name: ['看真迹', 'Visit'], items: [['london/', '伦敦', 'London'], ['paris/', '巴黎', 'Paris'], ['amsterdam/', '阿姆斯特丹', 'Amsterdam'], ['museums/', '博物馆', 'Museums'], ['map/', '地图', 'Map']] },
+  { name: ['随机', 'Surprise me'], href: 'artists/', random: true },   // 随机走进一幅已上线的画（没有 JS 时去画家页）
   { name: ['关于', 'About'], href: 'about/' }
 ];
 // 页眉右边的两个小图标：看画护照、我的画廊（不占主导航的位置）
@@ -308,7 +309,7 @@ export function chrome(active) {
   header.className = 'wrap site-header';
   header.innerHTML = `<a class="brand" href="${ROOT}">${ui('走进名画', 'Walk into Paintings')}<small class="zh">Walk into Paintings</small></a>
     <nav class="site-nav" id="siteNav">${NAV_GROUPS.map(g => g.href
-      ? `<a class="nav-top${active === g.href ? ' on' : ''}" href="${ROOT + g.href}">${ui(g.name[0], g.name[1])}</a>`
+      ? `<a class="nav-top${active === g.href && !g.random ? ' on' : ''}" href="${ROOT + g.href}"${g.random ? ' data-random=""' : ''}>${g.random ? '🎲 ' : ''}${ui(g.name[0], g.name[1])}</a>`
       : `<div class="nav-group${g.items.some(([p]) => p === active) ? ' on' : ''}"><button class="nav-top" aria-expanded="false">${ui(g.name[0], g.name[1])} <span class="caret" aria-hidden="true">▾</span></button>
         <div class="nav-menu">${g.items.map(([p, zh, en]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}">${ui(zh, en)}</a>`).join('')}</div></div>`).join('')}
       <div class="nav-lang-m">${langSwitchHTML()}</div></nav>
@@ -555,6 +556,8 @@ const PAGES = {
         <a class="continue-card first-time" href="${sceneUrl(f)}" data-track="first-time"><span class="continue-pic"><img src="${ROOT + f.cover}" ${altAttr(f.title)} loading="lazy" />${typeTag(f)}</span>
           <span><span class="continue-name">${bi({ zh: '第一次来？从这幅画开始', en: 'First time? Start here' })}</span><span class="continue-meta">${bi(f.title)} →</span></span></a></section>` : '')(cover('cafe-terrace'))}
 
+      <div class="wrap subscribe-slot"></div>
+
       <section class="section wrap" id="doors">
         <div class="doors jrows" data-target="400">
           ${door('sunflowers', { zh: '走进一幅画', en: 'Step into a painting' }, `<span class="btn primary door-btn">${ui('按画家找', 'By artist')} →</span>`, `${ROOT}artists/`)}
@@ -576,7 +579,7 @@ const PAGES = {
       <section class="section wrap home-bottom" id="more">
         <p class="home-intro">${bi(firstSentence(ABOUT.home), ' ')} <a href="${ROOT}about/">${ui('关于', 'About')} →</a></p>
       </section>`;
-    document.getElementById('surprise').onclick = () => { location.href = sceneUrl(R.live[Math.floor(Math.random() * R.live.length)]); };
+    document.getElementById('surprise').onclick = () => goRandom();
     // 本周新作的一句话：登记表里有 tagline 就用它，没有就用场景故事的最后一句（ending.final）
     if (!newest.tagline) fetch(sceneUrl(newest) + 'scene.json').then(r => r.json()).then(d => {
       const el = document.getElementById('newIntro'); if (el && d.ending && d.ending.final) el.innerHTML = bi(d.ending.final, ' / ');
@@ -745,6 +748,7 @@ const PAGES = {
         <div class="about-credit">${line(A.credit)}
           ${links.length ? `<p class="about-links">${links.map(l => `<a href="${/^https?:/.test(l.url) ? l.url : ROOT + l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ''}>${head(l)}</a>`).join('')}</p>` : ''}</div>
         ${A.analytics ? `<div class="about-note">${line(A.analytics)}</div>` : ''}
+        <div class="subscribe-slot" id="privacy-subscribe"></div>
       </section>`;
   },
 
@@ -952,12 +956,65 @@ export async function renderPage(kind, opts = {}) {
     const [R, about, london] = await Promise.all([loadRegistry(), getJSON('about.json'), getJSON('london.json')]);
     ABOUT = about; LONDON = london;
     await PAGES[kind](R, main, opts);
+    mountSubscribe(main);   // 订阅框（首页、关于页）：没设置邮件服务时自己消失
   } catch (e) {
     main.innerHTML = `<div class="wrap page-title"><p class="soon">${ui('内容加载失败，请刷新页面。', 'Could not load. Please refresh.')}</p></div>`;
     console.error(e);
   }
   setLang(lang);   // 新加的内容也套用当前语言
 }
+
+// ---------- 随机走进一幅：从已上线的场景里挑，不重复本次浏览已看过的（sessionStorage）和当前这幅 ----------
+const SEEN = 'wip-seen';
+const seenList = () => { try { return JSON.parse(sessionStorage.getItem(SEEN) || '[]'); } catch (e) { return []; } };
+export function markSeen(id) { try { const l = seenList(); if (!l.includes(id)) { l.push(id); sessionStorage.setItem(SEEN, JSON.stringify(l)); } } catch (e) {} }
+export function randomScene(R, current) {
+  const live = R.live.filter(s => s.id !== current);
+  if (!live.length) return null;
+  let pool = live.filter(s => !seenList().includes(s.id));
+  if (!pool.length) { try { sessionStorage.setItem(SEEN, JSON.stringify(current ? [current] : [])); } catch (e) {} pool = live; }   // 全看过了：重新开始
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+export function goRandom(current) {
+  return loadRegistry().then(R => { const s = randomScene(R, current); if (!s) return; markSeen(s.id); track('random'); location.href = sceneUrl(s); });
+}
+// 带 data-random 的链接（页眉“随机”、场景结尾“随便走进一幅”）：有 JS 时随机跳，没 JS 时按 href 去画家页
+if (typeof document !== 'undefined') document.addEventListener('click', e => {
+  const a = e.target.closest && e.target.closest('[data-random]');
+  if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+  e.preventDefault(); goRandom(a.dataset.random || undefined);
+});
+
+// ---------- 订阅：每周一幅（data/site.json 的 newsletter.action 填了邮件服务的表单地址才显示） ----------
+let siteConfigP = null;
+export const siteConfig = () => siteConfigP || (siteConfigP = fetch(ROOT + 'data/site.json', { cache: 'no-cache' }).then(r => r.json()).catch(() => ({})));
+export function mountSubscribe(root = document) {
+  const slots = [...root.querySelectorAll('.subscribe-slot:not(.ready)')];
+  if (!slots.length) return Promise.resolve();
+  return siteConfig().then(cfg => {
+    const N = cfg.newsletter || {}, action = (N.action || '').trim(), field = N.field || 'email';   // field：邮箱输入框的名字（Kit 是 email_address，Buttondown 是 email）
+    for (const slot of slots) {
+      slot.classList.add('ready');
+      if (!action) { slot.remove(); continue; }   // 还没设置邮件服务：整个订阅框不显示
+      slot.innerHTML = `<form class="subscribe" action="${esc(action)}" method="post" target="_blank">
+        <p class="subscribe-title">${bi({ zh: '每周一幅，周日送到你的邮箱', en: 'One painting a week, every Sunday' })}</p>
+        <p class="subscribe-text">${bi({ zh: '一扇新的门，一个小故事，和去哪里看真迹。随时退订。', en: 'A new door, a short story, and where to see the real thing. Unsubscribe anytime.' }, ' ')}</p>
+        <div class="subscribe-row"><input type="email" name="${esc(field)}" required autocomplete="email" data-ph-zh="你的邮箱" data-ph-en="Your email" placeholder="${lang === 'en' ? 'Your email' : '你的邮箱'}" aria-label="Email" />
+          <button class="btn primary" type="submit">${ui('订阅', 'Subscribe')}</button></div>
+        <p class="subscribe-note"><a href="${ROOT}about/#privacy-subscribe">${ui('邮箱只用来寄信，不给别人 · 隐私说明', 'Your email is only used for the letter · Privacy')}</a></p>
+        <p class="subscribe-done" hidden>${ui('已订阅，周日见。', "You're in. See you on Sunday.")}</p></form>`;
+      const f = slot.querySelector('form');
+      f.addEventListener('submit', e => {   // 有 JS：原地提交、原地显示“已订阅”；没 JS：表单照常提交到邮件服务
+        e.preventDefault();
+        fetch(action, { method: 'POST', body: new FormData(f), mode: 'no-cors' }).then(() => {
+          f.querySelector('.subscribe-row').hidden = true; f.querySelector('.subscribe-done').hidden = false; track('subscribe');
+        }).catch(() => f.submit());
+      });
+    }
+    setLang(lang);
+  });
+}
+onLang(l => document.querySelectorAll('input[data-ph-zh]').forEach(i => { i.placeholder = l === 'en' ? i.dataset.phEn : i.dataset.phZh; }));
 
 // ---------- 缩略图“等高不等宽”（justified rows）：同一行高度相同，宽度按画的原比例，整行铺满；手机上每行最多 2 幅 ----------
 // .jrows 的每个子元素写 data-r（宽 / 高）；图片区（.pic / .art-pic）的高度和整张卡片的宽度由这里算

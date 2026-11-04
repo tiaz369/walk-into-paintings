@@ -111,7 +111,7 @@ function collapseEnd() {
     }
     t.before(d); t.remove();
     let n = d.nextElementSibling;   // 标题后面的内容，直到下一个标题或按钮区
-    while (n && !n.classList.contains('section-title') && !n.classList.contains('end-actions') && !n.classList.contains('next-scene') && !n.classList.contains('credit') && !n.classList.contains('keep-exploring') && !n.matches('section, details')) {
+    while (n && !n.classList.contains('section-title') && !n.classList.contains('end-actions') && !n.classList.contains('next-scene') && !n.classList.contains('credit') && !n.classList.contains('keep-exploring') && !n.classList.contains('subscribe-slot') &&!n.matches('section, details')) {
       const nx = n.nextElementSibling; d.append(n); n = nx;
     }
   }

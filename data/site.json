@@ -1,0 +1,7 @@
+{
+  "_说明": "网站设置。newsletter.action：邮件服务的表单提交地址；newsletter.field：邮箱输入框的名字。用 Kit：action 填 https://app.kit.com/forms/<表单编号>/subscriptions，field 填 email_address。action 留空时首页、场景结尾、关于页的订阅框都不显示。",
+  "newsletter": {
+    "action": "",
+    "field": "email_address"
+  }
+}
