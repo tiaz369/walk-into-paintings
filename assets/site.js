@@ -998,7 +998,7 @@ export function mountSubscribe(root = document) {
       slot.innerHTML = `<form class="sub" action="${esc(action)}" method="post" target="_blank" novalidate>
         <div class="sub-text">
           <p class="sub-eyebrow"><span>${ui('周日来信', 'The Sunday Letter')}<span class="sub-eyebrow-en"> · THE SUNDAY LETTER</span></span></p>
-          <p class="sub-title"><span class="zh">每周一幅，周日送到你的邮箱。</span><span class="en">One painting a week, every Sunday.</span></p>
+          <p class="sub-title"><span class="zh">每周一幅，周日发到你的邮箱。</span><span class="en">One painting a week, every Sunday.</span></p>
         </div>
         <div class="sub-form">
           <div class="sub-field"><input type="email" name="${esc(field)}" required autocomplete="email" data-ph-zh="你的邮箱" data-ph-en="Your email" data-ph-both="你的邮箱 · Your email" aria-label="Email" />
@@ -1007,6 +1007,8 @@ export function mountSubscribe(root = document) {
           <p class="sub-done" role="status" hidden><span class="sub-check" aria-hidden="true">✓</span><span>${N.confirm ? bi({ zh: '快去邮箱点一下确认链接，周日见。', en: 'Check your inbox to confirm — see you on Sunday.' }, ' ') : bi({ zh: '已订阅，周日见。', en: "You're in. See you on Sunday." }, ' ')}</span></p>
           <p class="sub-note"><a href="${ROOT}about/#privacy-subscribe">${ui('不发广告，随时退订', 'No spam, unsubscribe anytime')}<span class="btn-en"> · No spam, unsubscribe anytime</span></a></p>
         </div></form>`;   // 样式见 style.css“订阅框”；状态：默认 / 聚焦 / 发送中（.busy）/ 出错（.err）/ 成功（.done）
+      if (slot.id === 'privacy-subscribe') slot.querySelector('.sub-form').insertAdjacentHTML('beforeend',   // 关于页：订阅框下面加一句隐私说明
+        `<p class="sub-privacy">${bi({ zh: '你的邮箱只用来发送周日来信，不会提供给任何人。', en: 'Your email is only used for the Sunday Letter and never shared.' }, ' ')}</p>`);
       const f = slot.querySelector('form'), input = f.querySelector('input');
       const ok = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
       input.addEventListener('input', () => { if (f.classList.contains('err') && ok(input.value)) { f.classList.remove('err'); f.querySelector('.sub-error').hidden = true; } });
