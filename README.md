@@ -157,5 +157,5 @@ python3 -m http.server 8000
 ## 分享、随机、订阅（assets/share.js、assets/site.js）
 - **分享这一幅**：场景顶部工具栏和故事结尾各有“↗ 分享 / Share”（手机用系统分享，电脑复制链接）和“生成分享图 / Save image”（1080 × 1440 竖版 JPG，文件名 `走进名画-<id>.jpg`）。分享链接带 `?ref=share`，GoatCounter 记 `share`、`share-image`。
 - **随机走进一幅**：页眉“🎲 随机 / Surprise me”、场景结尾“随便走进一幅 / Step into another”、首页“今天看哪幅”。只挑已上线的场景，不重复本次浏览看过的（sessionStorage `wip-seen`）。没有 JS 时链接去画家页。GoatCounter 记 `random`。
-- **订阅（每周一幅）**：首页（本周新作下面）、每个场景结尾、关于页底部。邮件服务用 Kit：表单地址写在 `data/site.json` 的 `newsletter.action`（`https://app.kit.com/forms/<表单编号>/subscriptions`），`newsletter.field` 是 `email_address`；**留空时订阅框不显示**。只收邮箱，不弹窗。GoatCounter 记 `subscribe`（只记次数，不记邮箱）。
+- **订阅（每周一幅）**：首页（本周新作下面）、每个场景结尾、关于页底部。邮件服务用 Kit：表单地址写在 `data/site.json` 的 `newsletter.action`（`https://app.kit.com/forms/<表单编号>/subscriptions`），`newsletter.field` 是 `email_address`；`newsletter.confirm: true` 表示 Kit 会先发确认邮件；**留空时订阅框不显示**。只收邮箱，不弹窗。GoatCounter 记 `subscribe`（只记次数，不记邮箱）。
 - **微信朋友圈卡片**：微信规定没有接入微信 JS-SDK 的网页，分享到朋友圈一律用默认图标；接入需要已认证的公众号，并把域名设成“JS 接口安全域名”。网站的 og 标签（og:image、宽高、类型）是完整的，聊天、X 等平台会正常显示。

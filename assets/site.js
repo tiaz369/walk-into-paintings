@@ -1002,7 +1002,7 @@ export function mountSubscribe(root = document) {
         <div class="subscribe-row"><input type="email" name="${esc(field)}" required autocomplete="email" data-ph-zh="你的邮箱" data-ph-en="Your email" placeholder="${lang === 'en' ? 'Your email' : '你的邮箱'}" aria-label="Email" />
           <button class="btn primary" type="submit">${ui('订阅', 'Subscribe')}</button></div>
         <p class="subscribe-note"><a href="${ROOT}about/#privacy-subscribe">${ui('邮箱只用来寄信，不给别人 · 隐私说明', 'Your email is only used for the letter · Privacy')}</a></p>
-        <p class="subscribe-done" hidden>${ui('已订阅，周日见。', "You're in. See you on Sunday.")}</p></form>`;
+        <p class="subscribe-done" hidden>${N.confirm ? ui('请去邮箱点确认链接，周日见。', 'Check your inbox to confirm. See you on Sunday.') : ui('已订阅，周日见。', "You're in. See you on Sunday.")}</p></form>`;   // confirm：邮件服务会先发一封确认邮件
       const f = slot.querySelector('form');
       f.addEventListener('submit', e => {   // 有 JS：原地提交、原地显示“已订阅”；没 JS：表单照常提交到邮件服务
         e.preventDefault();
