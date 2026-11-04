@@ -1103,7 +1103,7 @@ body.lang-both .doors .door-name > .en { font-size: 15px; }
 .first-time .continue-name .sep { display: none; }
 body.lang-both .first-time .continue-name > .en { display: block; font-size: 15px; color: var(--muted); font-style: italic; }
 
-/* ---------- 订阅框（设计稿 v-subscribe-share，2026-11-04）：不弹窗、不加框，上下两条细线 ----------
+/* ---------- 订阅框“周日来信”（设计稿 v-subscribe-share，2026-11-04）：不弹窗、不加框，上下两条细线 ----------
    状态：默认 / 聚焦（输入框描边变点缀色）/ 发送中（.busy）/ 出错（.err，报错色）/ 成功（.done，打勾 + 去邮箱确认） */
 :root { --err: #9a3b2a; --sub-btn: var(--ink); --sub-btn-ink: var(--paper); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --err: #d98b72; --sub-btn: #ebe5d9; --sub-btn-ink: #1c1c1e; } }
@@ -1137,10 +1137,7 @@ body.lang-en .sub-title .en { font-size: 22px; font-style: normal; color: var(--
 .sub-note a { color: var(--muted); text-decoration: none; }
 .sub-note a:hover { text-decoration: underline; }
 .sub [hidden] { display: none !important; }
-.sub p :is([lang], .zh, .en, .en-ui) { font-family: inherit; color: inherit; font-weight: inherit; }   /* 关于页等页面的正文样式不要影响订阅框 */
-.sub p.sub-title .en, .sub p.sub-done .en { color: var(--muted); }
-.about .sub p { max-width: none; }
-/* 首页：电脑上左右两栏（左：“邮件订阅”小标题 + 标题，右：输入框），左对齐 */
+/* 首页：电脑上左右两栏（左：周日来信 + 标题，右：输入框），左对齐 */
 @media (min-width: 760px) {
   .home-sub .sub { max-width: none; margin: 8px 0 32px; display: grid; grid-template-columns: 1fr minmax(300px, 380px); gap: 24px; align-items: center; text-align: left; }
   .home-sub .sub-eyebrow { justify-content: flex-start; }
