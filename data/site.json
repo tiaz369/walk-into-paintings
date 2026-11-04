@@ -1,0 +1,6 @@
+{
+  "_说明": "网站设置。newsletter.action：邮件服务（例如 Buttondown）的表单提交地址，形如 https://buttondown.com/api/emails/embed-subscribe/<你的用户名>。留空时首页、场景结尾、关于页的订阅框都不显示。",
+  "newsletter": {
+    "action": ""
+  }
+}
