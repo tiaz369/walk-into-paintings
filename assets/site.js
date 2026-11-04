@@ -746,8 +746,7 @@ const PAGES = {
         ${A.care.items.map(p => line(p)).join('')}
         <div class="about-credit">${line(A.credit)}
           ${links.length ? `<p class="about-links">${links.map(l => `<a href="${/^https?:/.test(l.url) ? l.url : ROOT + l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ''}>${head(l)}</a>`).join('')}</p>` : ''}</div>
-        ${A.analytics ? `<div class="about-note">${line(A.analytics)}</div>` : ''}
-        <div class="subscribe-slot" id="privacy-subscribe"></div>
+        <div class="about-note" id="privacy">${A.analytics ? line(A.analytics) : ''}${line({ zh: '订阅时留下的邮箱只用于每周邮件，不会提供给任何人。', en: 'If you subscribe, your email is only used for the weekly email and never shared.' })}</div>
       </section>`;
   },
 
@@ -997,7 +996,7 @@ export function mountSubscribe(root = document) {
       if (!action) { slot.remove(); continue; }   // 还没设置邮件服务：整个订阅框不显示
       slot.innerHTML = `<form class="sub" action="${esc(action)}" method="post" target="_blank" novalidate>
         <div class="sub-text">
-          <p class="sub-eyebrow"><span>${ui('周日来信', 'The Sunday Letter')}<span class="sub-eyebrow-en"> · THE SUNDAY LETTER</span></span></p>
+          <p class="sub-eyebrow"><span>${ui('邮件订阅', 'Newsletter')}<span class="sub-eyebrow-en"> · NEWSLETTER</span></span></p>
           <p class="sub-title"><span class="zh">每周一幅，周日发到你的邮箱。</span><span class="en">One painting a week, every Sunday.</span></p>
         </div>
         <div class="sub-form">
@@ -1005,10 +1004,8 @@ export function mountSubscribe(root = document) {
             <button class="sub-btn" type="submit"><span class="sub-btn-idle">${ui('订阅', 'Subscribe')}<span class="btn-en"> Subscribe</span></span><span class="sub-btn-busy">${ui('订阅中…', 'Sending…')}<span class="btn-en"> Sending</span></span></button></div>
           <p class="sub-error" role="alert" hidden>${ui('邮箱好像不完整，再看一下？', 'That email looks incomplete.')}<span class="btn-en"> · That email looks incomplete.</span></p>
           <p class="sub-done" role="status" hidden><span class="sub-check" aria-hidden="true">✓</span><span>${N.confirm ? bi({ zh: '快去邮箱点一下确认链接，周日见。', en: 'Check your inbox to confirm — see you on Sunday.' }, ' ') : bi({ zh: '已订阅，周日见。', en: "You're in. See you on Sunday." }, ' ')}</span></p>
-          <p class="sub-note"><a href="${ROOT}about/#privacy-subscribe">${ui('不发广告，随时退订', 'No spam, unsubscribe anytime')}<span class="btn-en"> · No spam, unsubscribe anytime</span></a></p>
+          <p class="sub-note"><a href="${ROOT}about/#privacy">${ui('不发广告，随时退订', 'No spam, unsubscribe anytime')}<span class="btn-en"> · No spam, unsubscribe anytime</span></a></p>
         </div></form>`;   // 样式见 style.css“订阅框”；状态：默认 / 聚焦 / 发送中（.busy）/ 出错（.err）/ 成功（.done）
-      if (slot.id === 'privacy-subscribe') slot.querySelector('.sub-form').insertAdjacentHTML('beforeend',   // 关于页：订阅框下面加一句隐私说明
-        `<p class="sub-privacy">${bi({ zh: '你的邮箱只用来发送周日来信，不会提供给任何人。', en: 'Your email is only used for the Sunday Letter and never shared.' }, ' ')}</p>`);
       const f = slot.querySelector('form'), input = f.querySelector('input');
       const ok = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
       input.addEventListener('input', () => { if (f.classList.contains('err') && ok(input.value)) { f.classList.remove('err'); f.querySelector('.sub-error').hidden = true; } });
