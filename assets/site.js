@@ -992,14 +992,14 @@ export function mountSubscribe(root = document) {
   const slots = [...root.querySelectorAll('.subscribe-slot:not(.ready)')];
   if (!slots.length) return Promise.resolve();
   return siteConfig().then(cfg => {
-    const N = cfg.newsletter || {}, action = (N.action || '').trim();
+    const N = cfg.newsletter || {}, action = (N.action || '').trim(), field = N.field || 'email';   // field：邮箱输入框的名字（Kit 是 email_address，Buttondown 是 email）
     for (const slot of slots) {
       slot.classList.add('ready');
       if (!action) { slot.remove(); continue; }   // 还没设置邮件服务：整个订阅框不显示
       slot.innerHTML = `<form class="subscribe" action="${esc(action)}" method="post" target="_blank">
         <p class="subscribe-title">${bi({ zh: '每周一幅，周日送到你的邮箱', en: 'One painting a week, every Sunday' })}</p>
         <p class="subscribe-text">${bi({ zh: '一扇新的门，一个小故事，和去哪里看真迹。随时退订。', en: 'A new door, a short story, and where to see the real thing. Unsubscribe anytime.' }, ' ')}</p>
-        <div class="subscribe-row"><input type="email" name="email" required autocomplete="email" data-ph-zh="你的邮箱" data-ph-en="Your email" placeholder="${lang === 'en' ? 'Your email' : '你的邮箱'}" aria-label="Email" />
+        <div class="subscribe-row"><input type="email" name="${esc(field)}" required autocomplete="email" data-ph-zh="你的邮箱" data-ph-en="Your email" placeholder="${lang === 'en' ? 'Your email' : '你的邮箱'}" aria-label="Email" />
           <button class="btn primary" type="submit">${ui('订阅', 'Subscribe')}</button></div>
         <p class="subscribe-note"><a href="${ROOT}about/#privacy-subscribe">${ui('邮箱只用来寄信，不给别人 · 隐私说明', 'Your email is only used for the letter · Privacy')}</a></p>
         <p class="subscribe-done" hidden>${ui('已订阅，周日见。', "You're in. See you on Sunday.")}</p></form>`;
