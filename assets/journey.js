@@ -98,7 +98,7 @@ async function keepExploring(S) {
 function collapseEnd() {
   const end = document.getElementById('actEnd');
   if (!end) return;
-  const KEEP = /找不同|Spot the difference|下一个场景|Next scene|继续探索|Keep exploring/;
+  const KEEP = /找不同|Spot the difference|下一个场景|Next scene|继续探索|Keep exploring|看真迹|See it in person|关于画家|About the artist/;   // 这些一直展开；作品档案、延伸阅读与来源折叠
   for (const t of [...end.querySelectorAll('.section-title')]) {
     if (KEEP.test(t.textContent) || t.closest('details')) continue;
     const d = document.createElement('details'); d.className = 'end-fold';
