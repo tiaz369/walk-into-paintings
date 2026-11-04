@@ -1,7 +1,8 @@
 {
-  "_说明": "网站设置。newsletter.action：邮件服务的表单提交地址；newsletter.field：邮箱输入框的名字。用 Kit：action 填 https://app.kit.com/forms/<表单编号>/subscriptions，field 填 email_address。action 留空时首页、场景结尾、关于页的订阅框都不显示。",
+  "_说明": "网站设置。newsletter.action：邮件服务的表单提交地址；newsletter.field：邮箱输入框的名字；newsletter.confirm：true = 订阅后邮件服务会先发一封确认邮件（成功提示会写“请去邮箱点确认链接”）。现在用 Kit（表单 Walk into Paintings website，编号 10144069）。action 留空时首页、场景结尾、关于页的订阅框都不显示。",
   "newsletter": {
-    "action": "",
-    "field": "email_address"
+    "action": "https://app.kit.com/forms/10144069/subscriptions",
+    "field": "email_address",
+    "confirm": true
   }
 }
