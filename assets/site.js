@@ -998,7 +998,7 @@ export function mountSubscribe(root = document) {
       slot.innerHTML = `<form class="sub" action="${esc(action)}" method="post" target="_blank" novalidate>
         <div class="sub-text">
           <p class="sub-eyebrow"><span>${ui('周日来信', 'The Sunday Letter')}<span class="sub-eyebrow-en"> · THE SUNDAY LETTER</span></span></p>
-          <p class="sub-title"><span class="zh">每周一幅，周日送到你的邮箱。</span><span class="en">One painting a week, every Sunday.</span></p>
+          <p class="sub-title"><span class="zh">每周一幅，周日发到你的邮箱。</span><span class="en">One painting a week, every Sunday.</span></p>
         </div>
         <div class="sub-form">
           <div class="sub-field"><input type="email" name="${esc(field)}" required autocomplete="email" data-ph-zh="你的邮箱" data-ph-en="Your email" data-ph-both="你的邮箱 · Your email" aria-label="Email" />
