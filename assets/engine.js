@@ -11,7 +11,7 @@
 import * as THREE from 'three';
 import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, shortHint, track, oneMinuteHTML, oneMinute, ROOT, markSeen, mountSubscribe } from './site.js';
 import { setupGuide } from './guide.js';
-import { setupShareCard, shareBtnHTML } from './share.js';
+import { setupShareCard, shareBtnHTML, endMainHTML } from './share.js';
 import { setupPersonal, saveBtnHTML } from './personal.js';
 import { setupJourney } from './journey.js';
 import { setupSound } from './sound.js';
@@ -97,12 +97,13 @@ function buildDOM(S, R, meta) {
     .map(m => `<a class="btn" href="${m.url}" target="_blank" rel="noopener">${bi(m.name, ' · ')}</a>`).join('');
 
   // 下一个场景：同一系列里的下一幅（还没做的显示“即将开放”）
-  let nextHTML = '';
+  let nextHTML = '', nextScene = null;
   if (R && meta) {
     const col = R.collectionById[meta.collection];
     const order = col ? col.order : [];
     const nextId = order[order.indexOf(S.id) + 1];
     const next = nextId && R.sceneById[nextId];
+    nextScene = next || null;
     if (next) nextHTML = `<div class="section-title">${ui('下一个场景', 'Next scene')}</div><div class="next-scene">${sceneCard(R, next)}</div>`;
   }
 
@@ -309,18 +310,17 @@ function buildDOM(S, R, meta) {
         <span class="cmp-tag" id="cmpTagB" style="right:8px"></span>
       </div>` : ''}
       ${hasRecord ? `<div class="section-title">${ui('作品档案', 'Artwork record')}<small class="en-sub">Artwork record</small></div>${recordHTML()}` : ''}
-      <p class="zoom-row"><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button> ${shareBtnHTML()}</p>
+      <p class="zoom-row"><button class="btn" data-zoom="${(S.zoom && S.zoom.image) || P.image}">${ui('放大看细节', 'Zoom in on details')}</button> ${shareBtnHTML({ link: false })}</p>
       ${artistHTML}
       <div class="section-title">${ui('去现场看真迹', 'See it in person')}<small class="en-sub">See it in person</small></div>
       <div class="links">${seeInPersonHTML(R, meta) || museumLinks}</div>
       ${nextHTML}
+      ${endMainHTML(S, nextScene)}
       <div class="end-actions">
         ${[].concat(E.exit || []).filter(x => isLive(x.scene)).map(x => `<a class="btn primary" href="${x.href}">${ui(x.label.zh, x.label.en)} →</a>`).join('')}
         <button class="btn" id="backRoom">← ${ui('回到房间', 'Back to the room')}</button>
-        <a class="btn" href="${ROOT}artists/" data-random="${S.id}">🎲 ${ui('随便走进一幅', 'Step into another')}</a>
         <a class="btn" href="${ROOT}">${ui('更多名画', 'More paintings')} →</a>
       </div>
-      <div class="subscribe-slot"></div>
       ${readingHTML}
       <div class="credit">${[imgLine, ...extraCredits].join('<br>')}<br>${creditHTML()}</div>
     </section>

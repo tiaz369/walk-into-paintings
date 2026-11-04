@@ -20,7 +20,7 @@ const plain = s => String(s || '').replace(/\*([^*]+)\*/g, '$1').replace(/<[^>]+
 const t = o => plain(textOf(o, lang === 'en' ? 'en' : 'zh'));
 
 function loadImage(src) {
-  return new Promise((ok, no) => { const im = new Image(); im.onload = () => ok(im); im.onerror = no; im.src = src; });
+  return new Promise((ok, no) => { const im = new Image(); im.crossOrigin = 'anonymous'; im.onload = () => ok(im); im.onerror = no; im.src = src; });
 }
 // 一段文字按宽度折行（中文按字，英文按词），最多 maxLines 行
 function wrap(g, text, maxW, maxLines) {
@@ -48,54 +48,69 @@ export function shareUrl() {
   return u.href;
 }
 
+// 分享图版式（设计稿 v-subscribe-share，2026-11-04）：
+//   原画在上（完整显示，不裁切）· 右下小字图片来源 · 左边一条点缀色竖线 + 中文画名 / 英文画名（斜体）/ 画家 · 年份 / 收藏地
+//   · 一句话（中文 + 英文斜体）· 底部细线 + 小图标“走进名画 Walk into Paintings” + 右边网址
+// 标题长度：中文 66px 起，放不下就缩小（最小 46px），再放不下折成两行；英文 38px 起，最小 26px，最多两行
 export async function drawShareCard(S) {
   const L = S.label, fin = (S.ending && S.ending.final) || {};
-  await Promise.all([`400 60px ${SERIF}`, `italic 400 40px ${SERIF}`, `400 28px ${SANS}`].map(f => document.fonts.load(f, '走进名画 Walk').catch(() => {})));
+  await Promise.all([`400 66px ${SERIF}`, `italic 400 38px ${SERIF}`, `600 22px ${SANS}`, `400 22px ${SANS}`].map(f => document.fonts.load(f, '走进名画 Walk').catch(() => {})));
   const cv = document.createElement('canvas'); cv.width = W; cv.height = H;
   const g = cv.getContext('2d');
   g.fillStyle = C.bg; g.fillRect(0, 0, W, H);
-  const boxW = W - PAD * 2;
+  const X = 88, R = W - 88, boxW = R - X;
+  g.textBaseline = 'alphabetic';
 
   // 原画：完整显示，不裁切
   const im = await loadImage(S.painting.image);
-  const boxH = 720, k = Math.min(boxW / im.naturalWidth, boxH / im.naturalHeight);
-  const iw = Math.round(im.naturalWidth * k), ih = Math.round(im.naturalHeight * k), ix = (W - iw) / 2, iy = PAD + (boxH - ih) / 2;
-  g.shadowColor = 'rgba(0,0,0,.25)'; g.shadowBlur = 24; g.shadowOffsetY = 6;
+  const boxH = 714, k = Math.min(boxW / im.naturalWidth, boxH / im.naturalHeight);
+  const iw = Math.round(im.naturalWidth * k), ih = Math.round(im.naturalHeight * k), ix = Math.round((W - iw) / 2), iy = 96 + Math.round((boxH - ih) / 2);
+  g.shadowColor = 'rgba(0,0,0,.22)'; g.shadowBlur = 28; g.shadowOffsetY = 10;
   g.drawImage(im, ix, iy, iw, ih);
-  g.shadowColor = 'transparent';
+  g.shadowColor = 'transparent'; g.shadowBlur = 0; g.shadowOffsetY = 0;
+  // 图片来源（右下小字）
+  let y = iy + ih + 30;
+  if (L.source && L.source.zh) { g.font = `400 15px ${SANS}`; g.fillStyle = C.muted; g.textAlign = 'right'; g.fillText('图片 ' + plain(L.source.zh).replace(/，/g, ' · '), ix + iw, y); }
 
-  g.textAlign = 'center'; g.textBaseline = 'alphabetic';
-  let y = PAD + boxH + 96;
-  // 中文画名（长的缩小或折行）
+  // 标题块：左边竖线
+  g.textAlign = 'left';
+  const TX = X + 32, TW = R - TX;
+  y = Math.max(y, iy + ih) + 84;
+  const top = y - 58;
   g.fillStyle = C.ink;
-  const zh = fit(g, plain(L.title.zh), s => `400 ${s}px ${SERIF}`, 60, 40, boxW, 2);
-  for (const l of zh.lines) { g.fillText(l, W / 2, y); y += zh.size * 1.25; }
-  // 英文画名（斜体）
-  g.fillStyle = C.muted;
-  const en = fit(g, plain(L.title.en), s => `italic 400 ${s}px ${SERIF}`, 40, 28, boxW, 2);
-  y -= 8; for (const l of en.lines) { g.fillText(l, W / 2, y); y += en.size * 1.3; }
-  // 画家 · 年份 · 收藏地（中文一行，英文一行）
-  y += 14;
-  const metaLine = k => [L.artist[k], L.date[k], L.museum && L.museum[k]].filter(Boolean).map(plain).join(' · ');
-  for (const [k, col] of [['zh', C.ink], ['en', C.muted]]) {   // 太长：先缩小字号，还放不下就折成两行
-    g.fillStyle = col;
-    const m = fit(g, metaLine(k), s => `400 ${s}px ${SANS}`, 28, 22, boxW, 2);
-    for (const l of m.lines) { g.fillText(l, W / 2, y); y += m.size * 1.45; }
-  }
-  y -= 40;   // 回到最后一行的基线（下面的分隔线从这里往下算）
-  // 分隔线 + 一句话
-  y += 52; g.strokeStyle = C.line; g.lineWidth = 2; g.beginPath(); g.moveTo(W / 2 - 60, y); g.lineTo(W / 2 + 60, y); g.stroke();
-  y += 66; g.fillStyle = C.ink; g.font = `400 40px ${SERIF}`;
-  for (const l of wrap(g, plain(fin.zh), boxW, 2)) { g.fillText(l, W / 2, y); y += 54; }
-  g.fillStyle = C.muted; g.font = `italic 400 34px ${SERIF}`;
-  for (const l of wrap(g, plain(fin.en), boxW, 2)) { g.fillText(l, W / 2, y); y += 44; }
+  const zh = fit(g, plain(L.title.zh), s => `400 ${s}px ${SERIF}`, 66, 46, TW, 2);
+  for (const l of zh.lines) { g.fillText(l, TX, y); y += zh.size * 1.2; }
+  g.fillStyle = C.muted; y -= zh.size * 0.2;
+  const en = fit(g, plain(L.title.en), s => `italic 400 ${s}px ${SERIF}`, 38, 26, TW, 2);
+  for (const l of en.lines) { y += en.size * 0.15; g.fillText(l, TX, y); y += en.size * 1.15; }
+  // 画家（中文加粗）英文名 · 年份
+  y += 34;
+  g.font = `600 22px ${SANS}`; g.fillStyle = C.ink; const az = plain(L.artist.zh); g.fillText(az, TX, y);
+  const ax = TX + g.measureText(az).width + 8;
+  g.font = `400 22px ${SANS}`; g.fillStyle = C.muted;
+  g.fillText(wrap(g, [plain(L.artist.en), plain(L.date.en)].filter(Boolean).join(' · '), R - ax, 1)[0], ax, y);
+  // 收藏地
+  if (L.museum) { y += 36; g.fillText(wrap(g, [plain(L.museum.zh), plain(L.museum.en)].filter(Boolean).join(' · '), TW, 1)[0], TX, y); }
+  g.fillStyle = C.accent; g.fillRect(X, top, 3, y + 14 - top);
 
-  // 底部：小图标 + 网址
-  const fy = H - PAD + 6;
-  g.font = `500 30px ${SERIF}`; g.fillStyle = C.accent;
-  const tw = g.measureText(SITE).width, icon = 40, gap = 14, x0 = (W - (icon + gap + tw)) / 2;
-  try { const logo = await loadImage(ROOT + 'favicon.svg'); g.drawImage(logo, x0, fy - icon + 8, icon, icon); } catch (e) {}
-  g.textAlign = 'left'; g.fillText(SITE, x0 + icon + gap, fy);
+  // 一句话
+  y += 88; g.fillStyle = C.ink; g.font = `400 32px ${SERIF}`;
+  for (const l of wrap(g, plain(fin.zh), boxW, 2)) { g.fillText(l, X, y); y += 46; }
+  g.fillStyle = C.muted; g.font = `italic 400 27px ${SERIF}`; y -= 4;
+  for (const l of wrap(g, plain(fin.en), boxW, 2)) { g.fillText(l, X, y); y += 38; }
+
+  // 底部：细线 + 小图标 + 网站名 + 网址
+  const ly = 1309, fy = 1364;
+  g.fillStyle = C.line; g.fillRect(X, ly, boxW, 1.5);
+  g.save(); g.beginPath(); g.ellipse(X + 20, fy - 9, 13, 17, 0, 0, Math.PI * 2);
+  g.fillStyle = C.ink; g.fill(); g.lineWidth = 2.5; g.strokeStyle = '#c9a24a'; g.stroke();
+  g.fillStyle = '#c9a24a'; g.fillRect(X + 19, fy - 18, 2, 20); g.restore();
+  g.textAlign = 'left'; g.font = `400 26px ${SERIF}`; g.fillStyle = C.ink; g.fillText('走进名画', X + 50, fy);
+  const nx = X + 50 + g.measureText('走进名画').width + 16;
+  g.font = `400 23px ${SERIF}`; g.fillStyle = C.muted; g.fillText('Walk into Paintings', nx, fy);
+  g.textAlign = 'right'; g.font = `400 21px ${SANS}`; g.fillStyle = C.muted;
+  if ('letterSpacing' in g) g.letterSpacing = '1px';
+  g.fillText(SITE, R, fy);
   return cv.toDataURL('image/jpeg', 0.9);
 }
 
@@ -161,4 +176,7 @@ export function setupShareCard(S) {
   };
   btns.forEach(b => b.onclick = () => open(b));
 }
-export const shareBtnHTML = () => `<button class="btn share-link">↗ ${ui('分享', 'Share')}</button><button class="btn share-btn">${ui('生成分享图', 'Save image')}</button>`;
+export const shareBtnHTML = ({ link = true } = {}) => (link ? `<button class="btn share-link">↗ ${ui('分享', 'Share')}</button>` : '') + `<button class="btn share-btn">${ui('生成分享图', 'Save image')}</button>`;
+// 场景结尾的三个主按钮：下一个场景 → / 分享这一幅 / 随便走进一幅（样式见 style.css .end-main）
+export const endMainHTML = (S, next) => `<div class="end-main">${next && next.status === 'live' && next.path ? `<a class="btn primary" href="${ROOT + next.path}">${ui('下一个场景', 'Next scene')}<span class="btn-en"> Next scene</span> →</a>` : ''}<button class="btn share-link">${ui('分享这一幅', 'Share')}<span class="btn-en"> Share</span></button><a class="btn" href="${ROOT}artists/" data-random="${S.id}">${ui('随便走进一幅', 'Surprise me')}<span class="btn-en"> Surprise me</span></a></div>
+  <div class="subscribe-slot"></div>`;
