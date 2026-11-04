@@ -296,7 +296,6 @@ const NAV_GROUPS = [
   { name: ['探索', 'Explore'], items: [['artists/', '画家', 'Artists'], ['themes/', '主题', 'Themes'], ['moods/', '心情', 'Moods'], ['periods/', '时期', 'Periods'], ['timeline/', '时间线', 'Timeline']] },
   { name: ['故事', 'Stories'], items: [['stories/', '艺术故事', 'Stories'], ['detective/', '画中侦探', 'Art Detective'], ['compare/', '对比两幅画', 'Compare']] },
   { name: ['看真迹', 'Visit'], items: [['london/', '伦敦', 'London'], ['paris/', '巴黎', 'Paris'], ['amsterdam/', '阿姆斯特丹', 'Amsterdam'], ['museums/', '博物馆', 'Museums'], ['map/', '地图', 'Map']] },
-  { name: ['随机', 'Surprise me'], href: 'artists/', random: true },   // 随机走进一幅已上线的画（没有 JS 时去画家页）
   { name: ['关于', 'About'], href: 'about/' }
 ];
 // 页眉右边的两个小图标：看画护照、我的画廊（不占主导航的位置）
@@ -313,7 +312,7 @@ export function chrome(active) {
       : `<div class="nav-group${g.items.some(([p]) => p === active) ? ' on' : ''}"><button class="nav-top" aria-expanded="false">${ui(g.name[0], g.name[1])} <span class="caret" aria-hidden="true">▾</span></button>
         <div class="nav-menu">${g.items.map(([p, zh, en]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}">${ui(zh, en)}</a>`).join('')}</div></div>`).join('')}
       <div class="nav-lang-m">${langSwitchHTML()}</div></nav>
-    <span class="nav-icons">${ME.map(([p, zh, en, icon]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}" title="${zh} · ${en}" aria-label="${zh} · ${en}">${icon}</a>`).join('')}
+    <span class="nav-icons"><a class="nav-random" href="${ROOT}artists/" data-random="" title="随机走进一幅 · Surprise me"><span class="dot" aria-hidden="true"></span>${ui('随机', 'Surprise me')}<span class="btn-en"> Surprise me</span></a>${ME.map(([p, zh, en, icon]) => `<a href="${ROOT + p}" class="${active === p ? 'on' : ''}" title="${zh} · ${en}" aria-label="${zh} · ${en}">${icon}</a>`).join('')}
       <span class="nav-lang">${langSwitchHTML()}</span>
       <button class="nav-toggle" aria-expanded="false" aria-controls="siteNav" aria-label="Menu">☰</button></span>`;
   document.body.prepend(header);
@@ -552,11 +551,11 @@ const PAGES = {
         </a>
       </section>
 
+      <div class="wrap subscribe-slot home-sub"></div>
+
       ${(f => f ? `<section class="section wrap first-time-wrap" id="first-time">
         <a class="continue-card first-time" href="${sceneUrl(f)}" data-track="first-time"><span class="continue-pic"><img src="${ROOT + f.cover}" ${altAttr(f.title)} loading="lazy" />${typeTag(f)}</span>
           <span><span class="continue-name">${bi({ zh: '第一次来？从这幅画开始', en: 'First time? Start here' })}</span><span class="continue-meta">${bi(f.title)} →</span></span></a></section>` : '')(cover('cafe-terrace'))}
-
-      <div class="wrap subscribe-slot"></div>
 
       <section class="section wrap" id="doors">
         <div class="doors jrows" data-target="400">
@@ -996,25 +995,36 @@ export function mountSubscribe(root = document) {
     for (const slot of slots) {
       slot.classList.add('ready');
       if (!action) { slot.remove(); continue; }   // 还没设置邮件服务：整个订阅框不显示
-      slot.innerHTML = `<form class="subscribe" action="${esc(action)}" method="post" target="_blank">
-        <p class="subscribe-title">${bi({ zh: '每周一幅，周日送到你的邮箱', en: 'One painting a week, every Sunday' })}</p>
-        <p class="subscribe-text">${bi({ zh: '一扇新的门，一个小故事，和去哪里看真迹。随时退订。', en: 'A new door, a short story, and where to see the real thing. Unsubscribe anytime.' }, ' ')}</p>
-        <div class="subscribe-row"><input type="email" name="${esc(field)}" required autocomplete="email" data-ph-zh="你的邮箱" data-ph-en="Your email" placeholder="${lang === 'en' ? 'Your email' : '你的邮箱'}" aria-label="Email" />
-          <button class="btn primary" type="submit">${ui('订阅', 'Subscribe')}</button></div>
-        <p class="subscribe-note"><a href="${ROOT}about/#privacy-subscribe">${ui('邮箱只用来寄信，不给别人 · 隐私说明', 'Your email is only used for the letter · Privacy')}</a></p>
-        <p class="subscribe-done" hidden>${N.confirm ? ui('请去邮箱点确认链接，周日见。', 'Check your inbox to confirm. See you on Sunday.') : ui('已订阅，周日见。', "You're in. See you on Sunday.")}</p></form>`;   // confirm：邮件服务会先发一封确认邮件
-      const f = slot.querySelector('form');
-      f.addEventListener('submit', e => {   // 有 JS：原地提交、原地显示“已订阅”；没 JS：表单照常提交到邮件服务
+      slot.innerHTML = `<form class="sub" action="${esc(action)}" method="post" target="_blank" novalidate>
+        <div class="sub-text">
+          <p class="sub-eyebrow"><span>${ui('周日来信', 'The Sunday Letter')}<span class="sub-eyebrow-en"> · THE SUNDAY LETTER</span></span></p>
+          <p class="sub-title"><span class="zh">每周一幅，周日送到你的邮箱。</span><span class="en">One painting a week, every Sunday.</span></p>
+        </div>
+        <div class="sub-form">
+          <div class="sub-field"><input type="email" name="${esc(field)}" required autocomplete="email" data-ph-zh="你的邮箱" data-ph-en="Your email" data-ph-both="你的邮箱 · Your email" aria-label="Email" />
+            <button class="sub-btn" type="submit"><span class="sub-btn-idle">${ui('订阅', 'Subscribe')}<span class="btn-en"> Subscribe</span></span><span class="sub-btn-busy">${ui('订阅中…', 'Sending…')}<span class="btn-en"> Sending</span></span></button></div>
+          <p class="sub-error" role="alert" hidden>${ui('邮箱好像不完整，再看一下？', 'That email looks incomplete.')}<span class="btn-en"> · That email looks incomplete.</span></p>
+          <p class="sub-done" role="status" hidden><span class="sub-check" aria-hidden="true">✓</span><span>${N.confirm ? bi({ zh: '快去邮箱点一下确认链接，周日见。', en: 'Check your inbox to confirm — see you on Sunday.' }, ' ') : bi({ zh: '已订阅，周日见。', en: "You're in. See you on Sunday." }, ' ')}</span></p>
+          <p class="sub-note"><a href="${ROOT}about/#privacy-subscribe">${ui('不发广告，随时退订', 'No spam, unsubscribe anytime')}<span class="btn-en"> · No spam, unsubscribe anytime</span></a></p>
+        </div></form>`;   // 样式见 style.css“订阅框”；状态：默认 / 聚焦 / 发送中（.busy）/ 出错（.err）/ 成功（.done）
+      const f = slot.querySelector('form'), input = f.querySelector('input');
+      const ok = v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim());
+      input.addEventListener('input', () => { if (f.classList.contains('err') && ok(input.value)) { f.classList.remove('err'); f.querySelector('.sub-error').hidden = true; } });
+      f.addEventListener('submit', e => {   // 有 JS：原地提交、原地显示结果；没 JS：表单照常提交到邮件服务
         e.preventDefault();
+        if (!ok(input.value)) { f.classList.add('err'); f.querySelector('.sub-error').hidden = false; input.focus(); return; }
+        f.classList.add('busy'); f.querySelector('.sub-btn').disabled = true;
         fetch(action, { method: 'POST', body: new FormData(f), mode: 'no-cors' }).then(() => {
-          f.querySelector('.subscribe-row').hidden = true; f.querySelector('.subscribe-done').hidden = false; track('subscribe');
-        }).catch(() => f.submit());
+          f.classList.remove('busy'); f.classList.add('done');
+          f.querySelector('.sub-field').hidden = true; f.querySelector('.sub-done').hidden = false; track('subscribe');
+        }).catch(() => { f.classList.remove('busy'); f.querySelector('.sub-btn').disabled = false; f.submit(); });
       });
     }
-    setLang(lang);
+    setLang(lang); setPh(lang);
   });
 }
-onLang(l => document.querySelectorAll('input[data-ph-zh]').forEach(i => { i.placeholder = l === 'en' ? i.dataset.phEn : i.dataset.phZh; }));
+const setPh = l => document.querySelectorAll('input[data-ph-zh]').forEach(i => { i.placeholder = l === 'en' ? i.dataset.phEn : l === 'both' && i.dataset.phBoth ? i.dataset.phBoth : i.dataset.phZh; });
+onLang(setPh);
 
 // ---------- 缩略图“等高不等宽”（justified rows）：同一行高度相同，宽度按画的原比例，整行铺满；手机上每行最多 2 幅 ----------
 // .jrows 的每个子元素写 data-r（宽 / 高）；图片区（.pic / .art-pic）的高度和整张卡片的宽度由这里算

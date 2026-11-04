@@ -11,7 +11,7 @@
 // =====================================================================
 import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, shortHint, track, oneMinuteHTML, oneMinute, worldMap, ROOT, markSeen, mountSubscribe } from './site.js';
 import { setupGuide } from './guide.js';
-import { setupShareCard, shareBtnHTML } from './share.js';
+import { setupShareCard, shareBtnHTML, endMainHTML } from './share.js';
 import { setupPersonal, saveBtnHTML } from './personal.js';
 import { setupJourney } from './journey.js';
 import { setupSound } from './sound.js';
@@ -56,10 +56,11 @@ function buildDOM(S, R, meta) {
   const artist = R && meta && R.artistById[meta.artist];
   const museumLinks = (E.museums || []).map(id => R && R.museumById[id]).filter(m => m && m.url)
     .map(m => `<a class="btn" href="${m.url}" target="_blank" rel="noopener">${bi(m.name, ' · ')}</a>`).join('');
-  let nextHTML = '';
+  let nextHTML = '', nextScene = null;
   if (R && meta) {
     const order = (R.collectionById[meta.collection] || {}).order || [];
     const next = R.sceneById[order[order.indexOf(S.id) + 1]];
+    nextScene = next || null;
     if (next) nextHTML = `<div class="section-title">${ui('下一个场景', 'Next scene')}</div><div class="next-scene">${sceneCard(R, next)}</div>`;
   }
   // 每一层：同一张原画，按 clip（原画上的 0–1 坐标，多边形）切出来
@@ -181,7 +182,7 @@ function buildDOM(S, R, meta) {
     </section>`).join('')}
     <section class="act final" id="actEnd">
       <h2 class="reveal"><span class="zh">${E.final.zh}</span><small class="en">${E.final.en}</small>${E.finalBy ? `<small class="final-by">${bi(E.finalBy, ' / ')}</small>` : ''}</h2>
-      <p class="zoom-row">${shareBtnHTML()}</p>
+      <p class="zoom-row">${shareBtnHTML({ link: false })}</p>
       ${recordHTML ? `<div class="section-title">${ui('作品档案', 'Artwork record')}<small class="en-sub">Artwork record</small></div>${recordHTML}` : ''}
       ${artist && artist.bio ? `<section class="artist-bio">
         <div class="section-title">${ui('关于画家', 'About the artist')}</div>
@@ -191,13 +192,12 @@ function buildDOM(S, R, meta) {
       <div class="section-title">${ui('去现场看真迹', 'See it in person')}<small class="en-sub">See it in person</small></div>
       <div class="links">${seeInPersonHTML(R, meta) || museumLinks}</div>
       ${nextHTML}
+      ${endMainHTML(S, nextScene)}
       <div class="end-actions">
         ${[].concat(E.exit || []).filter(x => isLive(R, x.scene)).map(x => `<a class="btn primary" href="${x.href}">${ui(x.label.zh, x.label.en)} →</a>`).join('')}
         <button class="btn" id="backRoom">← ${ui('回到画里', 'Back to the painting')}</button>
-        <a class="btn" href="${ROOT}artists/" data-random="${S.id}">🎲 ${ui('随便走进一幅', 'Step into another')}</a>
         <a class="btn" href="${ROOT}">${ui('更多名画', 'More paintings')} →</a>
       </div>
-      <div class="subscribe-slot"></div>
       ${readingItems.length ? `<section class="reading"><div class="section-title">${ui('延伸阅读与来源', 'Further reading and sources')}</div>
         <ul>${readingItems.map(it => `<li><a href="${it.url}" target="_blank" rel="noopener">${bi(it.title, ' / ')}</a> ↗</li>`).join('')}</ul></section>` : ''}
       <div class="credit">${imgLine}<br>${creditHTML()}</div>
