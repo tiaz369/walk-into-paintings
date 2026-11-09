@@ -180,7 +180,7 @@ export function artGridHTML(R, list) {
   return `<div class="art-grid jrows">${list.map(s => {
     const live = s.status === 'live', t = s.title || {};
     const pic = live && s.cover ? `<img src="${ROOT + s.cover}" ${altAttr(t)} loading="lazy" />${detailTag(s)}${typeTag(s)}` : `<span class="soon">${ui('即将开放', 'Coming soon')}</span>`;
-    const inner = `<div class="art-pic">${pic}</div><div class="art-zh" lang="zh-CN">${esc(t.zh || '')}</div>${t.en ? `<div class="art-en" lang="en"><i>${esc(t.en)}</i></div>` : ''}<div class="art-year">${bi(s.year)}</div>`;
+    const inner = `<div class="art-pic">${pic}</div><div class="art-zh" lang="zh-CN">${esc(t.zh || '')}</div>${t.en ? `<div class="art-en" lang="en"><i>${esc(t.en)}</i></div>` : ''}<div class="art-year">${bi(s.year)}</div>${s.displayStatus ? `<div class="art-status">${bi(s.displayStatus, ' / ')}</div>` : ''}`;   // displayStatus：展出状态说明（比如在临时展览中、之后借展别处）
     return live ? `<a class="art" data-r="${ratioOf(R, s)}" href="${sceneUrl(s)}">${inner}</a>` : `<div class="art is-soon" data-r="${ratioOf(R, s)}">${inner}</div>`;
   }).join('')}</div>`;
 }

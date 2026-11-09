@@ -1,0 +1,58 @@
+{
+  "_说明": "画家页的“生平 / Life”一节（高更）。结构和 van-gogh.json 一样；文字由 Tia 提供。scenes 写场景 id：已上线的显示缩略图、可以点进去；还没上线的不显示。",
+  "entries": [
+    {
+      "date": {
+        "zh": "1848",
+        "en": "1848"
+      },
+      "text": {
+        "zh": "生于巴黎",
+        "en": "Born in Paris"
+      }
+    },
+    {
+      "date": {
+        "zh": "1888年10月",
+        "en": "October 1888"
+      },
+      "text": {
+        "zh": "来到阿尔勒，住进梵高的黄房子",
+        "en": "Arrives in Arles and moves into Van Gogh's Yellow House"
+      },
+      "scenes": [
+        "arlesiennes-mistral"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1888年12月",
+        "en": "December 1888"
+      },
+      "text": {
+        "zh": "离开阿尔勒",
+        "en": "Leaves Arles"
+      }
+    },
+    {
+      "date": {
+        "zh": "1891",
+        "en": "1891"
+      },
+      "text": {
+        "zh": "第一次前往塔希提",
+        "en": "Travels to Tahiti for the first time"
+      }
+    },
+    {
+      "date": {
+        "zh": "1903",
+        "en": "1903"
+      },
+      "text": {
+        "zh": "在法属波利尼西亚去世",
+        "en": "Dies in French Polynesia"
+      }
+    }
+  ]
+}
