@@ -125,7 +125,8 @@
         "en": "Paints *The Bedroom*; Gauguin arrives"
       },
       "scenes": [
-        "bedroom"
+        "bedroom",
+        "arlesiennes-mistral"
       ]
     },
     {
@@ -149,10 +150,7 @@
       "text": {
         "zh": "梵高精神崩溃住院，高更离开阿尔勒",
         "en": "Van Gogh breaks down and is hospitalised; Gauguin leaves Arles"
-      },
-      "scenes": [
-        "bandaged-ear"
-      ]
+      }
     },
     {
       "date": {
@@ -165,6 +163,19 @@
       },
       "scenes": [
         "bandaged-ear"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1889年1月",
+        "en": "January 1889"
+      },
+      "text": {
+        "zh": "画下《两只螃蟹》",
+        "en": "Paints *Two Crabs*"
+      },
+      "scenes": [
+        "two-crabs"
       ]
     },
     {

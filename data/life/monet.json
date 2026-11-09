@@ -92,6 +92,32 @@
     },
     {
       "date": {
+        "zh": "1890–91",
+        "en": "1890–91"
+      },
+      "text": {
+        "zh": "画干草堆系列",
+        "en": "Paints the *Stacks of Wheat* series"
+      },
+      "scenes": [
+        "stacks-of-wheat"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1892–94",
+        "en": "1892–94"
+      },
+      "text": {
+        "zh": "画鲁昂大教堂系列",
+        "en": "Paints the *Rouen Cathedral* series"
+      },
+      "scenes": [
+        "rouen-cathedral"
+      ]
+    },
+    {
+      "date": {
         "zh": "1893",
         "en": "1893"
       },
