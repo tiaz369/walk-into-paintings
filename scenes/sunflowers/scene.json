@@ -34,7 +34,8 @@
       "vangogh-chair",
       "wheatfield-cypresses",
       "arnolfini",
-      "water-lily-pond"
+      "water-lily-pond",
+      "arlesiennes-mistral"
     ]
   },
   "kind": "light",
@@ -537,6 +538,14 @@
         "label": {
           "zh": "同属“花与花园”",
           "en": "Also in Flowers and gardens"
+        }
+      },
+      {
+        "scene": "arlesiennes-mistral",
+        "href": "../arlesiennes-mistral/",
+        "label": {
+          "zh": "向日葵是为他准备的",
+          "en": "The sunflowers were painted for him"
         }
       }
     ]

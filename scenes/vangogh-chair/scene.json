@@ -24,7 +24,8 @@
       "wheatfield-cypresses",
       "arnolfini",
       "bandaged-ear",
-      "two-crabs"
+      "two-crabs",
+      "arlesiennes-mistral"
     ]
   },
   "painting": {
@@ -482,6 +483,14 @@
         "label": {
           "zh": "挂在旁边的《两只螃蟹》",
           "en": "Two Crabs, hanging beside it"
+        }
+      },
+      {
+        "scene": "arlesiennes-mistral",
+        "href": "../arlesiennes-mistral/",
+        "label": {
+          "zh": "两把椅子，一把就是他的",
+          "en": "Two chairs: one of them was his"
         }
       }
     ]
