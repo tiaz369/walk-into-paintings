@@ -622,6 +622,16 @@ const AMBIENCE = {
     const chirp = t => { for (let i = 0; i < 3; i++) burst(far, t + i * 0.09, { type: 'bandpass', freq: 4300, q: 14, vol: 0.12, dur: 0.05, p: rnd(-0.6, 0.6) }); };
     chirp(ctx.currentTime + 1); every(st, 1.5, 4, chirp);
   },
+  // 冬天阿尔勒的公园（高更《阿尔勒的女人》）：一阵一阵的寒风（密史脱拉风），远处教堂的钟声，有人踩着沙土走过
+  'mistral-garden'(out, st) {
+    const w = loopNoise('brown', out, { freq: 520, gain: 0.2 });   // 呼呼的冷风：音量和音高一阵一阵起伏
+    st.timers.push(setInterval(() => { const t = ctx.currentTime, k = Math.random(); w.g.gain.setTargetAtTime(0.06 + 0.2 * k, t, 1.2); w.f.frequency.setTargetAtTime(380 + 600 * k, t, 1.2); }, 2200));
+    const far = ctx.createGain(); far.gain.value = 0.3; far.connect(pan(out, 0.3));
+    const toll = t => { for (let k = 0; k < 3; k++) { tone(far, t + k * 2.6, { f0: 220, vol: 0.07, attack: 0.005, dur: 4 }); tone(far, t + k * 2.6, { f0: 220 * 2.4, vol: 0.02, attack: 0.005, dur: 2 }); } };
+    toll(ctx.currentTime + 6); every(st, 40, 70, toll);
+    const steps = t => { const p0 = rnd(-0.7, 0.7); for (let k = 0; k < 8; k++) burst(out, t + k * 0.55, { kind: 'brown', type: 'bandpass', freq: rnd(500, 800), q: 2, vol: 0.12 * Math.sin(Math.PI * (k + 0.5) / 8), dur: 0.09, p: p0 + k * 0.05 }); };
+    every(st, 12, 25, steps);
+  },
   // 农舍里安静的夜晚：木头椅子轻响，餐具碰撞，屋外的风
   farmhouse(out, st) {
     loopNoise('brown', out, { freq: 200, gain: 0.1 });

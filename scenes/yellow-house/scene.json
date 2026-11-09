@@ -20,7 +20,8 @@
     "cards": [],
     "end": [
       "night-cafe",
-      "wheatfield-cypresses"
+      "wheatfield-cypresses",
+      "arlesiennes-mistral"
     ]
   },
   "painting": {
@@ -540,6 +541,14 @@
           "en": "Next: Saint-Rémy"
         },
         "href": "../wheatfield-cypresses/"
+      },
+      {
+        "scene": "arlesiennes-mistral",
+        "href": "../arlesiennes-mistral/",
+        "label": {
+          "zh": "黄房子对面",
+          "en": "Across from the Yellow House"
+        }
       }
     ]
   },

@@ -1,0 +1,786 @@
+{
+  "_说明": "阿尔勒的女人（密史脱拉风）（户外风景，完整版：公园）。高更的第一幅。所有事实文字由 Tia 提供（芝加哥艺术博物馆官网、梵高博物馆的研究）。冬天阿尔勒的公园，几位披着深色披肩的妇女低着头走过，旁边是一道红色的栅栏和灌木；颜色是一块块平平的色面，几乎没有远近的层次。原画来自芝加哥艺术博物馆开放资源（CC0，1686 × 1333）。视角按原画对准：站得比较高往下看（画面里没有天空），眼睛 2.2 米，往下 26.4°，竖直视角 42.7°。",
+  "id": "arlesiennes-mistral",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "daylight",
+    "label": {
+      "zh": "冬天公园里的冷光",
+      "en": "Cold winter light in the garden"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：cards 是卡片里的链接，end 是故事结尾的按钮。卡片1链接《黄房子》，卡片4链接《麦田与柏树》的“风”卡片；结尾和《黄房子》《梵高的椅子》《向日葵》互相链接。",
+    "doors": [],
+    "cards": [
+      "yellow-house",
+      "wheatfield-cypresses"
+    ],
+    "end": [
+      "yellow-house",
+      "vangogh-chair",
+      "sunflowers"
+    ]
+  },
+  "painting": {
+    "image": "images/arlesiennes-mistral.jpg",
+    "width": 1686,
+    "height": 1333,
+    "alt": {
+      "zh": "高更《阿尔勒的女人（密史脱拉风）》1888，芝加哥艺术博物馆",
+      "en": "Paul Gauguin, Arlésiennes (Mistral), 1888, Art Institute of Chicago"
+    }
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "阿尔勒的女人（密史脱拉风）",
+      "en": "Arlésiennes (Mistral)"
+    },
+    "artist": {
+      "zh": "高更",
+      "en": "Paul Gauguin"
+    },
+    "date": {
+      "zh": "1888年",
+      "en": "1888"
+    },
+    "museum": {
+      "zh": "芝加哥艺术博物馆",
+      "en": "Art Institute of Chicago"
+    },
+    "source": {
+      "zh": "芝加哥艺术博物馆，CC0",
+      "en": "Art Institute of Chicago, CC0"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下几位妇女、红栅栏、灌木和水池看介绍 · 点“同一座花园，两种画法”，对比梵高的画 · 地上发光的圆点 = 高更的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the women, the red fence, the bushes or the pond to learn more · Tap “One garden, two ways” to compare with Van Gogh · The glowing circle = Gauguin's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：按原画对准（站得比较高，往下看）。",
+    "x": 0,
+    "z": 0,
+    "eye": 2.2,
+    "yaw": 0,
+    "pitch": -0.4599,
+    "fov": 42.7,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "mistral-garden",
+  "colors": {
+    "line": "#22201c",
+    "grass": "#3f8a4e",
+    "path": "#e6d2c8",
+    "water": "#5a7ec0",
+    "walk": "#e4e2b8",
+    "yellow": "#e2c640",
+    "bush": "#6a8a30",
+    "straw": "#dc9a30",
+    "fence": "#d0442c",
+    "shawl": "#1e2a48",
+    "sky": "#c8ccd0",
+    "trunk": "#5a4a32",
+    "leaves": "#3a6a3a"
+  },
+  "room": {
+    "_说明": "户外：ground 是地面范围，bounds 是可以走动的范围，都写 [x最小, x最大, z最小, z最大]，单位是米。",
+    "kind": "outdoor",
+    "ground": [
+      -40,
+      40,
+      -60,
+      4
+    ],
+    "bounds": [
+      -1.6,
+      1.6,
+      -1.8,
+      1.5
+    ],
+    "groundCard": "yellowhouse",
+    "skyCard": "mistral",
+    "skyRadius": 70,
+    "walkSpeed": 0.8
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "yellowhouse",
+      "_": "公园的草地",
+      "pts": [
+        [
+          -60,
+          0.01,
+          4
+        ],
+        [
+          -60,
+          0.01,
+          -80
+        ],
+        [
+          60,
+          0.01,
+          -80
+        ],
+        [
+          60,
+          0.01,
+          4
+        ]
+      ],
+      "color": "grass"
+    },
+    {
+      "type": "surface",
+      "card": "yellowhouse",
+      "_": "左边浅粉色的地面（小路）",
+      "pts": [
+        [
+          -11.62,
+          0.02,
+          -25.15
+        ],
+        [
+          -6.97,
+          0.02,
+          -25.15
+        ],
+        [
+          -1.38,
+          0.02,
+          -8.05
+        ],
+        [
+          -1.06,
+          0.02,
+          -4.92
+        ],
+        [
+          -1.76,
+          0.02,
+          -2.88
+        ]
+      ],
+      "color": "path"
+    },
+    {
+      "type": "surface",
+      "card": "seventeen",
+      "_": "右上方蓝色的水池",
+      "pts": [
+        [
+          -0.35,
+          0.02,
+          -12.21
+        ],
+        [
+          11.62,
+          0.02,
+          -25.15
+        ],
+        [
+          3.15,
+          0.02,
+          -6.01
+        ],
+        [
+          0.67,
+          0.02,
+          -6.47
+        ]
+      ],
+      "color": "water"
+    },
+    {
+      "type": "surface",
+      "card": "seventeen",
+      "_": "水池中间浅色的小路",
+      "pts": [
+        [
+          0.46,
+          0.03,
+          -16.12
+        ],
+        [
+          5.69,
+          0.03,
+          -20.33
+        ],
+        [
+          2.02,
+          0.03,
+          -8.05
+        ],
+        [
+          0.44,
+          0.03,
+          -8.82
+        ]
+      ],
+      "color": "walk"
+    },
+    {
+      "type": "surface",
+      "card": "flat",
+      "_": "右边黄色的一条",
+      "pts": [
+        [
+          0.85,
+          0.03,
+          -5.73
+        ],
+        [
+          3.02,
+          0.03,
+          -5.73
+        ],
+        [
+          2.62,
+          0.03,
+          -4.81
+        ],
+        [
+          0.87,
+          0.03,
+          -5.02
+        ]
+      ],
+      "color": "yellow"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "shawl",
+      "legs": "shawl",
+      "x": -0.9,
+      "z": -3.33,
+      "rot": 0.15,
+      "scale": 0.79,
+      "card": "women",
+      "_": "前面左边的妇女（低头，披深蓝披肩）"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "shawl",
+      "legs": "shawl",
+      "x": -0.4,
+      "z": -3.44,
+      "rot": 0.05,
+      "scale": 0.86,
+      "card": "women",
+      "_": "前面右边的妇女（手放在嘴边）"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "shawl",
+      "legs": "shawl",
+      "x": -1.27,
+      "z": -7.59,
+      "rot": 0.1,
+      "scale": 0.73,
+      "card": "women",
+      "_": "小路上的妇女（后面）"
+    },
+    {
+      "type": "figure",
+      "pose": "standing",
+      "color": "shawl",
+      "legs": "shawl",
+      "x": -0.71,
+      "z": -7.81,
+      "rot": 0.0,
+      "scale": 0.73,
+      "card": "women",
+      "_": "小路上的妇女（后面）"
+    },
+    {
+      "type": "boxes",
+      "card": "flat",
+      "_": "左下方一大片绿色的灌木（修剪过的矮树篱）",
+      "x": -0.85,
+      "z": -2.35,
+      "boxes": [
+        [
+          2.33,
+          0.66,
+          0.7,
+          "bush",
+          0,
+          0.33,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "tree",
+      "shape": "cypress",
+      "card": "flat",
+      "_": "用稻草包起来过冬的灌木（左）",
+      "x": 0.43,
+      "z": -3.56,
+      "h": 1.94,
+      "r": 0.5,
+      "sway": 0.0,
+      "color": "straw"
+    },
+    {
+      "type": "tree",
+      "shape": "cypress",
+      "card": "flat",
+      "_": "用稻草包起来过冬的灌木（右）",
+      "x": 1.39,
+      "z": -3.22,
+      "h": 1.97,
+      "r": 0.5,
+      "sway": 0.0,
+      "color": "straw"
+    },
+    {
+      "type": "boxes",
+      "card": "fence",
+      "_": "红色的栅栏",
+      "x": 1.11,
+      "z": -2.6,
+      "boxes": [
+        [
+          0.12,
+          0.4,
+          0.05,
+          "fence",
+          -0.86,
+          0.2,
+          0
+        ],
+        [
+          0.12,
+          0.4,
+          0.05,
+          "fence",
+          -0.65,
+          0.2,
+          0
+        ],
+        [
+          0.12,
+          0.4,
+          0.05,
+          "fence",
+          -0.43,
+          0.2,
+          0
+        ],
+        [
+          0.12,
+          0.4,
+          0.05,
+          "fence",
+          -0.22,
+          0.2,
+          0
+        ],
+        [
+          0.12,
+          0.4,
+          0.05,
+          "fence",
+          0.0,
+          0.2,
+          0
+        ],
+        [
+          0.12,
+          0.4,
+          0.05,
+          "fence",
+          0.22,
+          0.2,
+          0
+        ],
+        [
+          0.12,
+          0.4,
+          0.05,
+          "fence",
+          0.43,
+          0.2,
+          0
+        ],
+        [
+          0.12,
+          0.4,
+          0.05,
+          "fence",
+          0.65,
+          0.2,
+          0
+        ],
+        [
+          0.12,
+          0.4,
+          0.05,
+          "fence",
+          0.86,
+          0.2,
+          0
+        ],
+        [
+          1.94,
+          0.08,
+          0.04,
+          "fence",
+          0,
+          0.3,
+          -0.03
+        ],
+        [
+          1.94,
+          0.08,
+          0.04,
+          "fence",
+          0,
+          0.12,
+          -0.03
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "yellowhouse": {
+      "title": {
+        "zh": "黄房子对面",
+        "en": "Across from the Yellow House"
+      },
+      "text": {
+        "zh": "这是梵高住的黄房子正对面的公园。",
+        "en": "This is the public garden directly across from Van Gogh's Yellow House."
+      },
+      "link": {
+        "scene": "yellow-house",
+        "href": "../yellow-house/",
+        "label": {
+          "zh": "走进《黄房子》",
+          "en": "Step into The Yellow House"
+        }
+      }
+    },
+    "women": {
+      "title": {
+        "zh": "披着披肩的女人",
+        "en": "Women in shawls"
+      },
+      "text": {
+        "zh": "几位阿尔勒的妇女披着深色的披肩，低着头走过。",
+        "en": "Several women of Arles walk past, wrapped in dark shawls, heads bowed."
+      }
+    },
+    "fence": {
+      "title": {
+        "zh": "红色的栅栏",
+        "en": "The red fence"
+      },
+      "text": {
+        "zh": "她们身边是一道鲜红色的栅栏。",
+        "en": "Beside them runs a bright red fence."
+      }
+    },
+    "mistral": {
+      "title": {
+        "zh": "密史脱拉风",
+        "en": "The mistral"
+      },
+      "text": {
+        "zh": "画名里的“密史脱拉”，是法国南部一种又冷又强的风。",
+        "en": "The “mistral” in the title is the strong, cold wind of southern France."
+      },
+      "link": {
+        "scene": "wheatfield-cypresses",
+        "href": "../wheatfield-cypresses/?card=mistral",
+        "label": {
+          "zh": "梵高画里的风",
+          "en": "The wind in Van Gogh's painting"
+        }
+      }
+    },
+    "flat": {
+      "title": {
+        "zh": "平平的颜色",
+        "en": "Flat colour"
+      },
+      "text": {
+        "zh": "高更用大块平平的颜色作画，几乎看不出远近。他的构图经过精心安排，和梵高的即兴完全不同。",
+        "en": "Gauguin painted in large areas of flat colour, with almost no sense of depth. His composition is carefully planned, quite unlike Van Gogh's spontaneity."
+      }
+    },
+    "seventeen": {
+      "title": {
+        "zh": "十七幅画",
+        "en": "Seventeen canvases"
+      },
+      "text": {
+        "zh": "高更在阿尔勒和梵高同住的两个月里，一共画了17幅画，这是其中之一。",
+        "en": "In the two months he lived with Van Gogh in Arles, Gauguin completed 17 canvases. This is one of them."
+      }
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“同一座花园，两种画法”：工具栏上的按钮，打开左右对比滑块。左边高更，右边梵高《埃滕花园的回忆》。两幅都是原作，不加“这是示意”。",
+    "type": "compare",
+    "label": {
+      "zh": "同一座花园，两种画法",
+      "en": "One garden, two ways"
+    },
+    "left": {
+      "image": "images/arlesiennes-mistral.jpg",
+      "caption": {
+        "zh": "高更《阿尔勒的女人（密史脱拉风）》（1888）",
+        "en": "Gauguin, Arlésiennes (Mistral) (1888)"
+      }
+    },
+    "right": {
+      "image": "images/memory-garden-etten.jpg",
+      "caption": {
+        "zh": "梵高《埃滕花园的回忆》（圣彼得堡埃尔米塔日博物馆）",
+        "en": "Van Gogh, Memory of the Garden at Etten (Hermitage, St Petersburg)"
+      },
+      "credit": {
+        "zh": "《埃滕花园的回忆》图片：Wikimedia Commons，公有领域",
+        "en": "Memory of the Garden at Etten image: Wikimedia Commons, public domain"
+      }
+    },
+    "note": {
+      "zh": "梵高借用了高更这类画的构图，画出了自己的花园。这里两幅都是原作。",
+      "en": "Van Gogh borrowed from Gauguin's composition to paint his own garden. Both images are originals."
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/arlesiennes-mistral.jpg",
+        "alt": {
+          "zh": "高更《阿尔勒的女人（密史脱拉风）》1888，芝加哥艺术博物馆",
+          "en": "Paul Gauguin, Arlésiennes (Mistral), 1888, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1888年 · 芝加哥艺术博物馆",
+          "en": "1888 · Art Institute of Chicago"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 高更来了",
+          "en": "Gauguin arrives"
+        },
+        "text": {
+          "zh": "1888年秋天，梵高等了很久的高更终于来到阿尔勒，住进了黄房子。",
+          "en": "In autumn 1888, after Van Gogh had waited so long, Gauguin finally arrived in Arles and moved into the Yellow House."
+        }
+      },
+      {
+        "image": "images/arlesiennes-mistral.jpg",
+        "alt": {
+          "zh": "高更《阿尔勒的女人（密史脱拉风）》1888，芝加哥艺术博物馆",
+          "en": "Paul Gauguin, Arlésiennes (Mistral), 1888, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1888年 · 芝加哥艺术博物馆",
+          "en": "1888 · Art Institute of Chicago"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 同一座花园",
+          "en": "The same garden"
+        },
+        "text": {
+          "zh": "黄房子对面有一座公园。高更画下了它，梵高也画过它。两人看的是同一座花园，画出来却完全不一样。",
+          "en": "Across from the Yellow House was a public garden. Gauguin painted it, and so did Van Gogh. They looked at the same garden, but painted it in completely different ways."
+        }
+      },
+      {
+        "image": "images/arlesiennes-mistral.jpg",
+        "alt": {
+          "zh": "高更《阿尔勒的女人（密史脱拉风）》1888，芝加哥艺术博物馆",
+          "en": "Paul Gauguin, Arlésiennes (Mistral), 1888, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1888年 · 芝加哥艺术博物馆",
+          "en": "1888 · Art Institute of Chicago"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 来到芝加哥",
+          "en": "To Chicago"
+        },
+        "text": {
+          "zh": "1934年，芝加哥艺术博物馆买下了这幅画。今天，它和梵高、修拉、莫奈的许多作品一起，收藏在芝加哥。",
+          "en": "In 1934, the Art Institute of Chicago acquired this painting. Today it is in Chicago, alongside many works by Van Gogh, Seurat and Monet."
+        }
+      }
+    ],
+    "final": {
+      "zh": "同一座花园，两位画家。",
+      "en": "One garden, two painters."
+    },
+    "versions": [],
+    "museums": [
+      "art-institute-chicago"
+    ],
+    "exit": [
+      {
+        "scene": "yellow-house",
+        "href": "../yellow-house/",
+        "label": {
+          "zh": "黄房子对面",
+          "en": "Across from the Yellow House"
+        }
+      },
+      {
+        "scene": "vangogh-chair",
+        "href": "../vangogh-chair/",
+        "label": {
+          "zh": "两把椅子，一把就是他的",
+          "en": "Two chairs: one of them was his"
+        }
+      },
+      {
+        "scene": "sunflowers",
+        "href": "../sunflowers/",
+        "label": {
+          "zh": "向日葵是为他准备的",
+          "en": "The sunflowers were painted for him"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（芝加哥艺术博物馆官网）。",
+    "artist": {
+      "zh": "保罗·高更（1848–1903）",
+      "en": "Paul Gauguin (1848–1903)"
+    },
+    "title": {
+      "zh": "阿尔勒的女人（密史脱拉风）",
+      "en": "Arlésiennes (Mistral)"
+    },
+    "date": {
+      "zh": "1888年",
+      "en": "1888"
+    },
+    "medium": {
+      "zh": "黄麻布上油画",
+      "en": "Oil on jute"
+    },
+    "dimensions": {
+      "zh": "73 × 92 cm",
+      "en": "73 × 92 cm"
+    },
+    "collection": {
+      "zh": "芝加哥艺术博物馆（科伯恩夫妇纪念收藏；编号 1934.391）",
+      "en": "Art Institute of Chicago (Mr. and Mrs. Lewis Larned Coburn Memorial Collection; 1934.391)"
+    },
+    "url": "https://www.artic.edu/artworks/19339/arlesiennes-mistral"
+  },
+  "zoom": {
+    "image": "images/arlesiennes-mistral.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：阿尔勒的女人（密史脱拉风）",
+          "en": "Art Institute of Chicago: *Arlésiennes (Mistral)*"
+        },
+        "url": "https://www.artic.edu/artworks/19339/arlesiennes-mistral"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 高更来了",
+          "en": "Gauguin arrives"
+        },
+        "text": {
+          "zh": "1888年秋天，梵高等了很久的高更终于来到阿尔勒，住进了黄房子。",
+          "en": "In autumn 1888, after Van Gogh had waited so long, Gauguin finally arrived in Arles and moved into the Yellow House."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 同一座花园",
+          "en": "The same garden"
+        },
+        "text": {
+          "zh": "黄房子对面有一座公园。高更画下了它，梵高也画过它。两人看的是同一座花园，画出来却完全不一样。",
+          "en": "Across from the Yellow House was a public garden. Gauguin painted it, and so did Van Gogh. They looked at the same garden, but painted it in completely different ways."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 来到芝加哥",
+          "en": "To Chicago"
+        },
+        "text": {
+          "zh": "1934年，芝加哥艺术博物馆买下了这幅画。今天，它和梵高、修拉、莫奈的许多作品一起，收藏在芝加哥。",
+          "en": "In 1934, the Art Institute of Chicago acquired this painting. Today it is in Chicago, alongside many works by Van Gogh, Seurat and Monet."
+        }
+      }
+    ]
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：阿尔勒的女人（密史脱拉风）",
+        "en": "Art Institute of Chicago: *Arlésiennes (Mistral)*"
+      },
+      "url": "https://www.artic.edu/artworks/19339/arlesiennes-mistral"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。",
+    "text": {
+      "zh": "芝加哥艺术博物馆，CC0",
+      "en": "Art Institute of Chicago, CC0"
+    },
+    "url": "https://www.artic.edu/artworks/19339/arlesiennes-mistral",
+    "license": "CC0",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "arlesiennes-mistral.jpg",
+        "from": "芝加哥艺术博物馆开放资源（IIIF，1686 × 1333）",
+        "url": "https://www.artic.edu/artworks/19339/arlesiennes-mistral",
+        "license": "CC0（is_public_domain: true）",
+        "status": "符合",
+        "verified": "2026-11-09"
+      },
+      {
+        "file": "memory-garden-etten.jpg",
+        "from": "Wikimedia Commons（埃尔米塔日博物馆藏，PD-Art）",
+        "url": "https://commons.wikimedia.org/wiki/File:Gogh,_Vincent_van_-_Memory_of_the_Garden_at_Etten_(Ladies_of_Arles).jpg",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "verified": "2026-11-09"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-09"
+}
