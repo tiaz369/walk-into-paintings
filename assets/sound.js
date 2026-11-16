@@ -632,6 +632,13 @@ const AMBIENCE = {
     const steps = t => { const p0 = rnd(-0.7, 0.7); for (let k = 0; k < 8; k++) burst(out, t + k * 0.55, { kind: 'brown', type: 'bandpass', freq: rnd(500, 800), q: 2, vol: 0.12 * Math.sin(Math.PI * (k + 0.5) / 8), dur: 0.09, p: p0 + k * 0.05 }); };
     every(st, 12, 25, steps);
   },
+  // 冬天安静的画室（高更《画向日葵的梵高》）：很轻的房间底噪，画笔在画布上一下一下轻轻地刷
+  'studio-brush'(out, st) {
+    loopNoise('brown', out, { freq: 190, gain: 0.07 });
+    const stroke = t => { const n = 2 + Math.floor(Math.random() * 4), p0 = rnd(-0.4, 0.4);
+      for (let k = 0; k < n; k++) burst(out, t + k * rnd(0.35, 0.6), { kind: 'white', type: 'bandpass', freq: rnd(2200, 3600), q: 1.2, vol: 0.05, dur: rnd(0.18, 0.32), p: p0 }); };
+    stroke(ctx.currentTime + 1.5); every(st, 3, 8, stroke);
+  },
   // 农舍里安静的夜晚：木头椅子轻响，餐具碰撞，屋外的风
   farmhouse(out, st) {
     loopNoise('brown', out, { freq: 200, gain: 0.1 });

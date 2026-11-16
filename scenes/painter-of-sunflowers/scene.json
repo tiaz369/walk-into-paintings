@@ -1,0 +1,581 @@
+{
+  "_说明": "画向日葵的梵高（人物肖像，轻量版：分层景深 + 细节放大 + 卡片 + 短故事）。高更的第二幅。所有事实文字由 Tia 提供（梵高博物馆官网、研究图录）。不引用“发了疯的我”那句（出自高更多年后的回忆）；两人的争吵已在《包扎耳朵的自画像》里讲过，这里不重复。layers 是同一张原画切出来的几层：背景（墙上的风景和画架）、中间的梵高、前景的一瓶向日葵；clip 是原画上的多边形（0–1），depth 越大移动越多。切层照着 images/painter-of-sunflowers.jpg 画。",
+  "id": "painter-of-sunflowers",
+  "variant": "portrait",
+  "kind": "light",
+  "lighting": {
+    "_说明": "光线设定（渲染用的设定说明，不在页面上显示）",
+    "type": "indoor",
+    "label": {
+      "zh": "冬天画室里的光",
+      "en": "Winter light in the studio"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：cards 是卡片里的链接，end 是故事结尾的按钮。卡片“临摹自己”链接《向日葵》；结尾和《阿尔勒的女人》《梵高的椅子》互相链接；《向日葵》的卡片“高更与向日葵”链接到这里。",
+    "doors": [],
+    "cards": [
+      "sunflowers"
+    ],
+    "end": [
+      "arlesiennes-mistral",
+      "vangogh-chair"
+    ]
+  },
+  "ambience": "studio-brush",
+  "painting": {
+    "image": "images/painter-of-sunflowers.jpg",
+    "width": 960,
+    "height": 766,
+    "alt": {
+      "zh": "高更《画向日葵的梵高》1888，阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+      "en": "Paul Gauguin, Vincent van Gogh Painting Sunflowers, 1888, Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+    }
+  },
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "画向日葵的梵高",
+      "en": "Vincent van Gogh Painting Sunflowers"
+    },
+    "artist": {
+      "zh": "高更",
+      "en": "Paul Gauguin"
+    },
+    "date": {
+      "zh": "1888年12月",
+      "en": "December 1888"
+    },
+    "museum": {
+      "zh": "阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+      "en": "Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "移动鼠标、拖动画面或转动手机，画会微微转动<br>点一下发光的圆点看介绍 · 点“两个人，互相画”，对比梵高画的高更",
+    "en": "Move your mouse, drag, or tilt your phone to turn the view slightly<br>Tap the glowing dots to learn more · Tap “Two painters, painting each other” to compare with Van Gogh's portrait of Gauguin"
+  },
+  "parallax": 12,
+  "layers": [
+    {
+      "_说明": "背景（整张画：墙上的风景）",
+      "depth": 0
+    },
+    {
+      "_说明": "左边的画架",
+      "depth": 0.25,
+      "clip": [
+        [
+          0.0,
+          0.0
+        ],
+        [
+          0.21,
+          0.0
+        ],
+        [
+          0.25,
+          0.18
+        ],
+        [
+          0.3,
+          0.52
+        ],
+        [
+          0.26,
+          0.53
+        ],
+        [
+          0.15,
+          0.14
+        ],
+        [
+          0.07,
+          0.02
+        ],
+        [
+          0.04,
+          0.32
+        ],
+        [
+          0.0,
+          0.36
+        ]
+      ]
+    },
+    {
+      "_说明": "中间：坐在画架前的梵高（脸、伸出的手臂和画笔、调色板）",
+      "depth": 0.5,
+      "clip": [
+        [
+          1,
+          0.1
+        ],
+        [
+          0.9,
+          0.11
+        ],
+        [
+          0.83,
+          0.17
+        ],
+        [
+          0.8,
+          0.3
+        ],
+        [
+          0.7,
+          0.38
+        ],
+        [
+          0.5,
+          0.45
+        ],
+        [
+          0.3,
+          0.49
+        ],
+        [
+          0.29,
+          0.56
+        ],
+        [
+          0.44,
+          0.66
+        ],
+        [
+          0.42,
+          0.72
+        ],
+        [
+          0.46,
+          0.8
+        ],
+        [
+          0.45,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ]
+    },
+    {
+      "_说明": "前景：一瓶向日葵",
+      "depth": 0.9,
+      "clip": [
+        [
+          0.0,
+          0.38
+        ],
+        [
+          0.07,
+          0.27
+        ],
+        [
+          0.2,
+          0.36
+        ],
+        [
+          0.28,
+          0.5
+        ],
+        [
+          0.3,
+          0.6
+        ],
+        [
+          0.42,
+          0.72
+        ],
+        [
+          0.47,
+          0.82
+        ],
+        [
+          0.45,
+          1
+        ],
+        [
+          0.0,
+          1
+        ]
+      ]
+    }
+  ],
+  "spots": {
+    "atwork": {
+      "x": 0.33,
+      "y": 0.52,
+      "layer": 2
+    },
+    "december": {
+      "x": 0.14,
+      "y": 0.45,
+      "layer": 3
+    },
+    "copy": {
+      "x": 0.2,
+      "y": 0.76,
+      "layer": 3
+    },
+    "above": {
+      "x": 0.76,
+      "y": 0.66,
+      "layer": 2
+    },
+    "indeed": {
+      "x": 0.87,
+      "y": 0.36,
+      "layer": 2
+    },
+    "gift": {
+      "x": 0.55,
+      "y": 0.12,
+      "layer": 0
+    }
+  },
+  "exclusive": {
+    "_说明": "独家发现“两个人，互相画”：对比滑块。左边是高更画的梵高（本作品），右边是梵高画的《高更肖像》（1888，梵高博物馆 s0257V1962）。两幅都是原作，不加“这是示意”。",
+    "type": "slider",
+    "label": {
+      "zh": "两个人，互相画",
+      "en": "Two painters, painting each other"
+    },
+    "title": {
+      "zh": "两个人，互相画",
+      "en": "Two painters, painting each other"
+    },
+    "before": {
+      "image": "images/painter-of-sunflowers.jpg",
+      "alt": {
+        "zh": "高更《画向日葵的梵高》1888，阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+        "en": "Paul Gauguin, Vincent van Gogh Painting Sunflowers, 1888, Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+      },
+      "caption": {
+        "zh": "高更《画向日葵的梵高》，1888年12月，梵高博物馆",
+        "en": "Gauguin, *Vincent van Gogh Painting Sunflowers*, December 1888, Van Gogh Museum"
+      }
+    },
+    "after": {
+      "image": "images/portrait-of-gauguin.jpg",
+      "alt": {
+        "zh": "梵高《高更肖像》1888，阿姆斯特丹梵高博物馆",
+        "en": "Vincent van Gogh, Portrait of Gauguin, 1888, Van Gogh Museum, Amsterdam"
+      },
+      "caption": {
+        "zh": "梵高《高更肖像》，1888年，梵高博物馆",
+        "en": "Van Gogh, *Portrait of Gauguin*, 1888, Van Gogh Museum"
+      }
+    },
+    "note": {
+      "zh": "几乎在同一时间，梵高也画了高更。这里两幅都是原作。",
+      "en": "At almost the same time, Van Gogh painted Gauguin too. Both images are originals."
+    }
+  },
+  "cards": {
+    "atwork": {
+      "title": {
+        "zh": "画画的梵高",
+        "en": "Van Gogh at work"
+      },
+      "text": {
+        "zh": "这是高更画的梵高：他坐在画架前，手里拿着画笔。",
+        "en": "This is Van Gogh as Gauguin painted him: seated at his easel, brush in hand."
+      }
+    },
+    "december": {
+      "title": {
+        "zh": "十二月的向日葵",
+        "en": "Sunflowers in December"
+      },
+      "text": {
+        "zh": "高更画的真的是梵高在画向日葵吗？不是。当时是12月，向日葵的花期早就过了。",
+        "en": "Did Gauguin really paint Van Gogh painting sunflowers? No: it was December, and the blooming season was long over."
+      }
+    },
+    "copy": {
+      "title": {
+        "zh": "临摹自己",
+        "en": "Copying himself"
+      },
+      "text": {
+        "zh": "不过那段时间，梵高确实临摹了一幅自己画的向日葵。",
+        "en": "Around that time, though, Van Gogh did make a copy of one of his own sunflower still lifes."
+      },
+      "link": {
+        "scene": "sunflowers",
+        "href": "../sunflowers/",
+        "label": {
+          "zh": "走进《向日葵》",
+          "en": "Step into Sunflowers"
+        }
+      }
+    },
+    "above": {
+      "title": {
+        "zh": "从高处看",
+        "en": "Seen from above"
+      },
+      "text": {
+        "zh": "高更是从高处往下看梵高的，所以他看起来有点低、有点斜。",
+        "en": "Gauguin looks down on Van Gogh from above, so he appears low and at an angle."
+      }
+    },
+    "indeed": {
+      "title": {
+        "zh": "“那确实是我”",
+        "en": "“It was indeed me”"
+      },
+      "text": {
+        "zh": "九个月后，梵高写信给提奥：“我的脸后来明亮多了，但那确实是我，是当时极度疲惫的我。”",
+        "en": "Nine months later, Van Gogh wrote to Theo: “My face has lit up after all a lot since, but it was indeed me, extremely tired and charged with electricity as I was then.”"
+      }
+    },
+    "gift": {
+      "title": {
+        "zh": "送给提奥",
+        "en": "A gift for Theo"
+      },
+      "text": {
+        "zh": "画完后不久，高更把这幅画送给了梵高的弟弟提奥。",
+        "en": "Soon after finishing it, Gauguin gave the painting to Van Gogh's brother, Theo."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/painter-of-sunflowers.jpg",
+        "alt": {
+          "zh": "高更《画向日葵的梵高》1888，阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+          "en": "Paul Gauguin, Vincent van Gogh Painting Sunflowers, 1888, Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+        },
+        "caption": {
+          "zh": "1888年12月 · 阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+          "en": "December 1888 · Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "六个星期后",
+          "en": "Six weeks on"
+        },
+        "text": {
+          "zh": "1888年12月初，高更和梵高已经在黄房子同住了大约六个星期。高更开始给梵高画一幅肖像。",
+          "en": "In early December 1888, Gauguin and Van Gogh had been living together in the Yellow House for about six weeks. Gauguin began a portrait of him."
+        }
+      },
+      {
+        "image": "images/painter-of-sunflowers.jpg",
+        "alt": {
+          "zh": "高更《画向日葵的梵高》1888，阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+          "en": "Paul Gauguin, Vincent van Gogh Painting Sunflowers, 1888, Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+        },
+        "caption": {
+          "zh": "1888年12月 · 阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+          "en": "December 1888 · Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+        },
+        "kicker": "ACT II",
+        "title": {
+          "zh": "想象出来的向日葵",
+          "en": "Imagined sunflowers"
+        },
+        "text": {
+          "zh": "12月没有向日葵。高更画的，是他心里的梵高：那个画向日葵的人。在高更眼里，《向日葵》是梵高艺术最有力的表达。",
+          "en": "There are no sunflowers in December. Gauguin painted the Van Gogh he had in mind: the painter of sunflowers. To Gauguin, the *Sunflowers* were the most powerful expression of Van Gogh's art."
+        }
+      },
+      {
+        "image": "images/painter-of-sunflowers.jpg",
+        "alt": {
+          "zh": "高更《画向日葵的梵高》1888，阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+          "en": "Paul Gauguin, Vincent van Gogh Painting Sunflowers, 1888, Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+        },
+        "caption": {
+          "zh": "1888年12月 · 阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+          "en": "December 1888 · Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "留在梵高家",
+          "en": "Kept in the family"
+        },
+        "text": {
+          "zh": "12月20日前后，肖像画完了。不久，高更把它送给了提奥。今天，它在阿姆斯特丹梵高博物馆。",
+          "en": "Around 20 December, the portrait was finished. Soon afterwards, Gauguin gave it to Theo. Today it is in the Van Gogh Museum, Amsterdam."
+        }
+      }
+    ],
+    "final": {
+      "zh": "那确实是我。",
+      "en": "It was indeed me."
+    },
+    "finalBy": {
+      "zh": "梵高致提奥",
+      "en": "Van Gogh to Theo"
+    },
+    "versions": [],
+    "museums": [
+      "van-gogh-museum"
+    ],
+    "exit": [
+      {
+        "scene": "arlesiennes-mistral",
+        "href": "../arlesiennes-mistral/",
+        "label": {
+          "zh": "高更在阿尔勒的另一幅",
+          "en": "Another Gauguin from Arles"
+        }
+      },
+      {
+        "scene": "vangogh-chair",
+        "href": "../vangogh-chair/",
+        "label": {
+          "zh": "梵高的椅子",
+          "en": "Van Gogh's Chair"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供（梵高博物馆官网）。",
+    "artist": {
+      "zh": "保罗·高更（1848–1903）",
+      "en": "Paul Gauguin (1848–1903)"
+    },
+    "title": {
+      "zh": "画向日葵的梵高",
+      "en": "Vincent van Gogh Painting Sunflowers"
+    },
+    "date": {
+      "zh": "1888年12月，阿尔勒",
+      "en": "December 1888, Arles"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "73 × 91 cm",
+      "en": "73 × 91 cm"
+    },
+    "collection": {
+      "zh": "阿姆斯特丹梵高博物馆（文森特·梵高基金会；编号 s0225V1962）",
+      "en": "Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation; s0225V1962)"
+    },
+    "url": "https://www.vangoghmuseum.nl/en/collection/s0225V1962"
+  },
+  "zoom": {
+    "image": "images/painter-of-sunflowers.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "梵高博物馆：画向日葵的梵高",
+          "en": "Van Gogh Museum: *Vincent van Gogh Painting Sunflowers*"
+        },
+        "url": "https://www.vangoghmuseum.nl/en/collection/s0225V1962"
+      },
+      {
+        "title": {
+          "zh": "梵高博物馆研究图录：梵高同时代的画家",
+          "en": "Van Gogh Museum catalogue: Contemporaries of Van Gogh"
+        },
+        "url": "https://catalogues.vangoghmuseum.com/contemporaries-of-van-gogh-1/cat60"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/ 文件夹，文件名 guide-zh.mp3（中文）、guide-en.mp3（English）。没有录音时按钮不显示。transcript 先用三段原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "六个星期后",
+          "en": "Six weeks on"
+        },
+        "text": {
+          "zh": "1888年12月初，高更和梵高已经在黄房子同住了大约六个星期。高更开始给梵高画一幅肖像。",
+          "en": "In early December 1888, Gauguin and Van Gogh had been living together in the Yellow House for about six weeks. Gauguin began a portrait of him."
+        }
+      },
+      {
+        "title": {
+          "zh": "想象出来的向日葵",
+          "en": "Imagined sunflowers"
+        },
+        "text": {
+          "zh": "12月没有向日葵。高更画的，是他心里的梵高：那个画向日葵的人。在高更眼里，《向日葵》是梵高艺术最有力的表达。",
+          "en": "There are no sunflowers in December. Gauguin painted the Van Gogh he had in mind: the painter of sunflowers. To Gauguin, the *Sunflowers* were the most powerful expression of Van Gogh's art."
+        }
+      },
+      {
+        "title": {
+          "zh": "留在梵高家",
+          "en": "Kept in the family"
+        },
+        "text": {
+          "zh": "12月20日前后，肖像画完了。不久，高更把它送给了提奥。今天，它在阿姆斯特丹梵高博物馆。",
+          "en": "Around 20 December, the portrait was finished. Soon afterwards, Gauguin gave it to Theo. Today it is in the Van Gogh Museum, Amsterdam."
+        }
+      }
+    ]
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "梵高博物馆：画向日葵的梵高",
+        "en": "Van Gogh Museum: *Vincent van Gogh Painting Sunflowers*"
+      },
+      "url": "https://www.vangoghmuseum.nl/en/collection/s0225V1962"
+    },
+    {
+      "title": {
+        "zh": "梵高博物馆研究图录：梵高同时代的画家",
+        "en": "Van Gogh Museum catalogue: Contemporaries of Van Gogh"
+      },
+      "url": "https://catalogues.vangoghmuseum.com/contemporaries-of-van-gogh-1/cat60"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：原图网址和授权。只用 Wikimedia Commons 的 PD-Art 版本；不从梵高博物馆官网或 Google 艺术与文化下载。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_zonnebloemen_schilderend_-_s0225V1962_-_Van_Gogh_Museum.jpg",
+    "license": "公有领域（PD-Art）",
+    "_files说明": "每张图片一条：file 文件名（images/ 里）、from 来源、url 原图网址、license 授权、status 是否符合 README 的“版权规则”、verified 核对日期。",
+    "files": [
+      {
+        "file": "painter-of-sunflowers.jpg",
+        "from": "Wikimedia Commons（Tia 2026-11-15 上传，Commons 的 960px 版本，960 × 766）",
+        "url": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_zonnebloemen_schilderend_-_s0225V1962_-_Van_Gogh_Museum.jpg",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "verified": "2026-11-15"
+      },
+      {
+        "file": "portrait-of-gauguin.jpg",
+        "from": "Wikimedia Commons（Tia 2026-11-15 上传，Commons 的 960px 版本，960 × 1072）；梵高《高更肖像》，梵高博物馆 s0257V1962",
+        "url": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Paul_Gauguin_(Man_in_a_Red_Beret).jpg",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "verified": "2026-11-15"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-15"
+}
