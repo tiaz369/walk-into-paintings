@@ -25,7 +25,8 @@
       "arnolfini",
       "bandaged-ear",
       "two-crabs",
-      "arlesiennes-mistral"
+      "arlesiennes-mistral",
+      "painter-of-sunflowers"
     ]
   },
   "painting": {
@@ -491,6 +492,14 @@
         "label": {
           "zh": "两把椅子，一把就是他的",
           "en": "Two chairs: one of them was his"
+        }
+      },
+      {
+        "scene": "painter-of-sunflowers",
+        "href": "../painter-of-sunflowers/",
+        "label": {
+          "zh": "高更画的梵高",
+          "en": "Gauguin's portrait of Van Gogh"
         }
       }
     ]

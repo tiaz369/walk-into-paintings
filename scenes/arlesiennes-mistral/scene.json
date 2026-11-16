@@ -20,7 +20,8 @@
     "end": [
       "yellow-house",
       "vangogh-chair",
-      "sunflowers"
+      "sunflowers",
+      "painter-of-sunflowers"
     ]
   },
   "painting": {
@@ -661,6 +662,14 @@
         "label": {
           "zh": "向日葵是为他准备的",
           "en": "The sunflowers were painted for him"
+        }
+      },
+      {
+        "scene": "painter-of-sunflowers",
+        "href": "../painter-of-sunflowers/",
+        "label": {
+          "zh": "高更画的梵高",
+          "en": "Gauguin's portrait of Van Gogh"
         }
       }
     ]

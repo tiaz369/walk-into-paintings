@@ -30,6 +30,19 @@
         "en": "December 1888"
       },
       "text": {
+        "zh": "画下《画向日葵的梵高》",
+        "en": "Paints *Vincent van Gogh Painting Sunflowers*"
+      },
+      "scenes": [
+        "painter-of-sunflowers"
+      ]
+    },
+    {
+      "date": {
+        "zh": "1888年12月",
+        "en": "December 1888"
+      },
+      "text": {
         "zh": "离开阿尔勒",
         "en": "Leaves Arles"
       }
