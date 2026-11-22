@@ -280,7 +280,7 @@ PAGES.append(page('about/', T('关于', 'About'), t(ABOUT['intro'][0]) + ' ' + t
                   '      <h1>' + e(both(ABOUT['title'])) + '</h1>\n      ' + (f'<p><img src="../{ABOUT["picture"]["image"]}" alt="{e(both(ABOUT["picture"]["alt"]))}"></p>' + para(ABOUT['picture']['caption']) if ABOUT.get('picture') else '') + ''.join(para(p) for p in ABOUT['intro'])
                   + '<h2>' + e(both(ABOUT['how']['heading'])) + '</h2>' + ''.join(para({'zh': s['word']['zh'] + '：' + s['text']['zh'], 'en': s['word']['en'] + ': ' + s['text']['en']}) for s in ABOUT['how']['steps'])
                   + '<h2>' + e(both(ABOUT['care']['heading'])) + '</h2>' + ''.join(para(p) for p in ABOUT['care']['items'])
-                  + para(ABOUT['credit']) + ''.join(f'<p><a href="{l["url"] if l["url"].startswith("http") else "../" + l["url"]}">{e(both(l))}</a></p>' for l in ABOUT.get('links', []) if l.get('url')) + (para(ABOUT['analytics']) if ABOUT.get('analytics') else ''), site_script('../', 'about')))
+                  + para(ABOUT['credit']) + ''.join(f'<p><a href="{l["url"] if l["url"].startswith(("http", "mailto:")) else "../" + l["url"]}">{e(both(l))}</a></p>' for l in ABOUT.get('links', []) if l.get('url')) + (para(ABOUT['analytics']) if ABOUT.get('analytics') else ''), site_script('../', 'about')))
 
 # ---------- 生平（画家页）和时间线 ----------
 def year_of(s):
