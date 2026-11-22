@@ -745,7 +745,7 @@ const PAGES = {
         <h2>${head(A.care.heading)}</h2>
         ${A.care.items.map(p => line(p)).join('')}
         <div class="about-credit">${line(A.credit)}
-          ${links.length ? `<p class="about-links">${links.map(l => `<a href="${/^https?:/.test(l.url) ? l.url : ROOT + l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ''}>${head(l)}</a>`).join('')}</p>` : ''}</div>
+          ${links.length ? `<p class="about-links">${links.map(l => `<a href="${/^(https?:|mailto:)/.test(l.url) ? l.url : ROOT + l.url}"${/^https?:/.test(l.url) ? ' target="_blank" rel="noopener"' : ''}>${head(l)}</a>`).join('')}</p>` : ''}</div>
         ${A.analytics ? `<div class="about-note">${line(A.analytics)}</div>` : ''}
         <div class="subscribe-slot" id="privacy-subscribe"></div>
       </section>`;

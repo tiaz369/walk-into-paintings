@@ -108,10 +108,10 @@
       "url": "scenes/bedroom/"
     },
     {
-      "zh": "想走进哪一幅画？告诉我",
-      "en": "Which painting should we step into next? Tell me",
+      "zh": "想看哪幅画？有建议？",
+      "en": "Suggest a painting or send feedback",
       "url": "",
-      "_": "Tia 的 X 账号，例如 https://x.com/账号名；空着时不显示"
+      "_": "反馈入口：url 写成 mailto:你的邮箱（例如 mailto:hello@example.com）；空着时不显示"
     }
   ],
   "analytics": {
