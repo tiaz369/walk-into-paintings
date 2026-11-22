@@ -1,3 +1,6 @@
 # Python 运行时自动生成的缓存，不用上传
 __pycache__/
 *.pyc
+
+# 验收检查的截图和报告（python3 tools/verify_artwork.py <id> --browser）
+verify-reports/
