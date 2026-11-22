@@ -62,6 +62,10 @@ async function diffRatio(page, a, b) {
 async function runAxe(page, where, vp) {
   const axePath = path.join(CACHE, 'node_modules', 'axe-core', 'axe.min.js');
   if (!fs.existsSync(axePath)) { add('WARN', 'X5', `axe-core 没装（bash tools/verify_setup.sh），${vp} ${where} 没检查`); return; }
+  // 先让正在进行的淡入动画走完（文字淡入到一半时量对比度会误报；结尾的“已盖进看画护照”滚到眼前才开始淡入）
+  await wait(1500);
+  await page.evaluate(() => { try { document.getAnimations().forEach(a => { try { a.finish(); } catch (e) {} }); } catch (e) {} });
+  await wait(300);
   await page.addScriptTag({ path: axePath });
   const res = await page.evaluate(async () => {
     const r = await window.axe.run(document, { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] } });
@@ -188,13 +192,16 @@ async function checkViewport(browser, base, S, vp) {
     const btn = await findAnywhere(onLabel);
     if (!btn) add('FAIL', 'I6', `${tag}：找不到独家发现按钮“${onLabel}”`);
     else {
+      const closeSel = () => page.evaluate(() => [...document.querySelectorAll('.close, [aria-label="Close"], #vpClose, #zoomClose')].filter(b => b.offsetParent && b.id !== 'cardClose' && getComputedStyle(b).visibility !== 'hidden').map((b, i) => { b.dataset.vClose = b.dataset.vClose || String(Math.random()); return b.dataset.vClose; }));
+      const closesBefore = await closeSel();   // 一直显示着的关闭按钮（比如画家视角面板）不算独家发现的
       const before = await shot('3a-before-exclusive');
       await btn.click().catch(e => errors.push('独家发现：' + e.message)); await wait(2500);
       const on = await shot('3-exclusive');
       const changed = await diffRatio(page, before, on);
       // 关掉：两个选项的点“现在”；有打开的面板就点它的关闭按钮；否则再点一次同一个按钮；最后按 Esc
       const offBtn = offLabel && await findAnywhere(offLabel);
-      const closeBtn = offBtn ? null : (await page.evaluateHandle(() => [...document.querySelectorAll('.close, [aria-label="Close"], #vpClose, #zoomClose')].find(b => b.offsetParent && b.id !== 'cardClose' && getComputedStyle(b).visibility !== 'hidden'))).asElement();
+      const newClose = offBtn ? [] : (await closeSel()).filter(k => !closesBefore.includes(k));   // 打开独家发现以后才出现的关闭按钮
+      const closeBtn = newClose.length ? await page.$(`[data-v-close="${newClose[0]}"]`) : null;
       if (offBtn) await offBtn.click().catch(() => {});
       else if (closeBtn) await closeBtn.click().catch(() => {});
       else { const b2 = await findAnywhere(onLabel); if (b2) await b2.click().catch(() => {}); else await page.keyboard.press('Escape'); }

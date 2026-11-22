@@ -12,14 +12,15 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：cards 是卡片里的链接，end 是故事结尾的按钮。卡片“临摹自己”链接《向日葵》；结尾和《阿尔勒的女人》《梵高的椅子》互相链接；《向日葵》的卡片“高更与向日葵”链接到这里。",
+    "_说明": "与其他场景的衔接（一览）：cards 是卡片里的链接，end 是故事结尾的按钮。卡片“临摹自己”链接《向日葵》；结尾和《阿尔勒的女人》《梵高的椅子》互相链接；《向日葵》的卡片“高更与向日葵”链接到这里。 和《高更的椅子》互相链接（结尾：高更眼里的梵高 / 梵高眼里的高更）。",
     "doors": [],
     "cards": [
       "sunflowers"
     ],
     "end": [
       "arlesiennes-mistral",
-      "vangogh-chair"
+      "vangogh-chair",
+      "gauguin-chair"
     ]
   },
   "ambience": "studio-brush",
@@ -443,6 +444,14 @@
         "label": {
           "zh": "梵高的椅子",
           "en": "Van Gogh's Chair"
+        }
+      },
+      {
+        "scene": "gauguin-chair",
+        "href": "../gauguin-chair/",
+        "label": {
+          "zh": "梵高眼里的高更",
+          "en": "Gauguin through Van Gogh’s eyes"
         }
       }
     ]

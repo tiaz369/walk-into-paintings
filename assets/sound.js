@@ -223,6 +223,13 @@ const AMBIENCE = {
     loopNoise('brown', out, { freq: 150, gain: 0.04 });
     every(st, 25, 50, t => burst(out, t, { kind: 'brown', type: 'bandpass', freq: rnd(300, 500), q: 8, vol: 0.05, dur: rnd(0.1, 0.2), p: rnd(-0.5, 0.5) }));
   },
+  // 夜晚安静的房间（梵高《高更的椅子》）：很轻的底噪，煤气灯低低的嘶嘶声，蜡烛偶尔轻轻噼啪一下
+  'candle-night'(out, st) {
+    loopNoise('brown', out, { freq: 160, gain: 0.05 });
+    loopNoise('white', out, { type: 'bandpass', freq: 5200, q: 0.8, gain: 0.012 });   // 煤气灯：一直响着的细细的嘶嘶声
+    const crackle = t => { const n = 1 + Math.floor(Math.random() * 2); for (let i = 0; i < n; i++) burst(out, t + i * rnd(0.04, 0.12), { type: 'bandpass', freq: rnd(1800, 3200), q: 3, vol: rnd(0.04, 0.08), dur: rnd(0.01, 0.025), p: rnd(-0.2, 0.2) }); };
+    every(st, 3, 9, crackle);   // 蜡烛：隔几秒轻轻噼啪一下
+  },
   // 非常安静的美术馆展厅：很轻的底噪，偶尔远处的脚步声（在石头地上慢慢走过）和几句低语（A very quiet gallery）
   gallery(out, st) {
     loopNoise('brown', out, { freq: 170, gain: 0.05 });
