@@ -47,8 +47,8 @@
       "en": "Vincent van Gogh"
     },
     "date": {
-      "zh": "1888年",
-      "en": "1888"
+      "zh": "1888年11月",
+      "en": "November 1888"
     },
     "museum": {
       "zh": "阿姆斯特丹梵高博物馆",
@@ -458,8 +458,8 @@
         "en": "A candle and two novels"
       },
       "text": {
-        "zh": "椅子上放着一支点燃的蜡烛和两本当时的小说。它们代表了不在场的高更。",
-        "en": "On the seat are a lit candle and two modern novels. They stand in for the absent Gauguin."
+        "zh": "椅子上放着一支点燃的蜡烛和两本当时的小说。它们象征着不在场的高更的性格。",
+        "en": "On the seat are a lit candle and two modern novels. They symbolise the character of the absent Gauguin."
       }
     },
     "armchair": {
@@ -530,8 +530,8 @@
           "en": "Autumn 1888"
         },
         "text": {
-          "zh": "高更来到阿尔勒，和梵高一起住在黄房子里。梵高画了两把空椅子：一把是自己的，白天，黄色和蓝色；一把是高更的，夜晚，红色和绿色。11月19日，他在给弟弟提奥的信里说，这两幅画“挺有意思的”。",
-          "en": "Gauguin came to Arles to live with Van Gogh in the Yellow House. Van Gogh painted two empty chairs: his own, by day, in yellow and blue; and Gauguin's, by night, in red and green. On 19 November he wrote to his brother Theo that the two pictures were “rather funny”."
+          "zh": "高更来到阿尔勒，和梵高一起住在黄房子里。梵高画了两把空椅子：一把是自己的，白天，黄色和蓝色；一把是高更的，夜晚，红色和绿色。梵高博物馆说，这两幅画代表了两位画家不同的性格。",
+          "en": "Gauguin came to Arles to live with Van Gogh in the Yellow House. Van Gogh painted two empty chairs: his own, by day, in yellow and blue; and Gauguin's, by night, in red and green. The Van Gogh Museum says the two paintings represent the different personalities of the two artists."
         }
       },
       {
@@ -621,7 +621,7 @@
     ]
   },
   "record": {
-    "_说明": "作品档案表：Tia 提供。尺寸先留空（等 Tia 在梵高博物馆官网核对）；空着的行不显示。",
+    "_说明": "作品档案表：Tia 提供，2026-11-23 按梵高博物馆官网核对（日期、尺寸 90.5 × 72.7 cm 是画布尺寸；官网另有画框尺寸）。空着的行不显示。",
     "artist": {
       "zh": "文森特·梵高（1853–1890）",
       "en": "Vincent van Gogh (1853–1890)"
@@ -631,16 +631,16 @@
       "en": "Gauguin's Chair"
     },
     "date": {
-      "zh": "1888年",
-      "en": "1888"
+      "zh": "1888年11月，阿尔勒",
+      "en": "Arles, November 1888"
     },
     "medium": {
       "zh": "布面油画",
       "en": "Oil on canvas"
     },
     "dimensions": {
-      "zh": "",
-      "en": ""
+      "zh": "90.5 × 72.7 cm",
+      "en": "90.5 × 72.7 cm"
     },
     "collection": {
       "zh": "阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
@@ -694,8 +694,8 @@
           "en": "Autumn 1888"
         },
         "text": {
-          "zh": "高更来到阿尔勒，和梵高一起住在黄房子里。梵高画了两把空椅子：一把是自己的，白天，黄色和蓝色；一把是高更的，夜晚，红色和绿色。11月19日，他在给弟弟提奥的信里说，这两幅画“挺有意思的”。",
-          "en": "Gauguin came to Arles to live with Van Gogh in the Yellow House. Van Gogh painted two empty chairs: his own, by day, in yellow and blue; and Gauguin's, by night, in red and green. On 19 November he wrote to his brother Theo that the two pictures were “rather funny”."
+          "zh": "高更来到阿尔勒，和梵高一起住在黄房子里。梵高画了两把空椅子：一把是自己的，白天，黄色和蓝色；一把是高更的，夜晚，红色和绿色。梵高博物馆说，这两幅画代表了两位画家不同的性格。",
+          "en": "Gauguin came to Arles to live with Van Gogh in the Yellow House. Van Gogh painted two empty chairs: his own, by day, in yellow and blue; and Gauguin's, by night, in red and green. The Van Gogh Museum says the two paintings represent the different personalities of the two artists."
         }
       },
       {
@@ -829,5 +829,5 @@
       }
     ]
   },
-  "lastVerified": "2026-11-22"
+  "lastVerified": "2026-11-23"
 }

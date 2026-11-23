@@ -9,8 +9,11 @@
 - 尺寸参考：https://archive.artic.edu/vangogh/slideshow/slide_lrg20.html （90.5 × 72 cm，2001 年展览资料；等 Tia 在梵高博物馆官网核对，页面上先不显示尺寸）
 - 图片：Wikimedia Commons，公有领域（PD-Art）：https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_De_stoel_van_Gauguin_-_Google_Art_Project.jpg
 
-## 待核对
+## 2026-11-23 按梵高博物馆官网核对（Tia 贴来的官网文字）
 
-- 尺寸：梵高博物馆官网要 JavaScript，读不到。
-- 第一幕“11月19日”“挺有意思的”：出自 The Art Newspaper 转述的梵高书信。
-- 是否在展、展厅：官网没有显示，onDisplay 和 room 不填。
+- 日期：Arles, November 1888 → 展签和作品档案改成“1888年11月”。
+- 尺寸：90.5 cm x 72.7 cm（画布；官网另有画框 110 × 91.8 × 8.4 cm）。芝加哥资料的 72 cm 不用。
+- 图片署名（官网要求）：Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)，已写在作品档案“收藏”一栏。
+- 卡片“蜡烛和小说”：官网说蜡烛和小说 symbolize the character of the absent painter → 改成“象征着不在场的高更的性格”。
+- 第一幕：“11月19日”“挺有意思的”只有 The Art Newspaper 转述，书信原文没能打开核对 → 删掉，改用官网的话：两幅画代表了两位画家不同的性格。
+- 是否在展、展厅：官网没有显示，onDisplay 和 room 仍不填。
