@@ -875,7 +875,7 @@ function run(S, R, meta) {
   const projUniforms = {
     uPaint: { value: paintingTex }, uPaintB: { value: paintingTexB }, uDepth: { value: depthRT.depthTexture },
     uProjVP: { value: new THREE.Matrix4().multiplyMatrices(projector.projectionMatrix, projector.matrixWorldInverse) },
-    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 }, uTint: { value: new THREE.Vector3(1, 1, 1) }, uMixB: { value: 0 }, uSpotPos: { value: new THREE.Vector3() }, uSpotR: { value: 1 }, uSpotDark: { value: 0.2 }, uSpotK: { value: 0 }, uLift: { value: new THREE.Vector3(0, 0, 0) },
+    uProjPos: { value: projector.position.clone() }, uNear: { value: projector.near }, uFar: { value: projector.far }, uViolet: { value: 0 }, uDawn: { value: 0 }, uTint: { value: new THREE.Vector3(1, 1, 1) }, uMixB: { value: 0 }, uSpotPos: { value: new THREE.Vector3() }, uSpotR: { value: 1 }, uSpotDark: { value: 0.2 }, uSpotK: { value: 0 }, uSpotUV: { value: new THREE.Vector3(0.5, 0.5, 0) }, uSpotAsp: { value: VIEW.aspect || 1 }, uLift: { value: new THREE.Vector3(0, 0, 0) },
     uWind: { value: 0 }, uTime: { value: 0 }   // 独家发现“起风了”
   };
   const projVert = `
@@ -884,7 +884,7 @@ function run(S, R, meta) {
   const projFrag = `
     uniform sampler2D uPaint; uniform sampler2D uDepth; uniform sampler2D uMap;
     uniform mat4 uProjVP; uniform vec3 uProjPos; uniform float uNear; uniform float uFar;
-    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn; uniform vec3 uTint; uniform vec3 uLift; uniform sampler2D uPaintB; uniform float uMixB; uniform vec3 uSpotPos; uniform float uSpotR; uniform float uSpotDark; uniform float uSpotK; uniform float uWind; uniform float uTime;
+    uniform vec3 uBase; uniform float uWall; uniform float uViolet; uniform float uDouble; uniform float uAlpha; uniform float uEdge; uniform float uSky; uniform float uDawn; uniform vec3 uTint; uniform vec3 uLift; uniform sampler2D uPaintB; uniform float uMixB; uniform vec3 uSpotPos; uniform float uSpotR; uniform float uSpotDark; uniform float uSpotK; uniform vec3 uSpotUV; uniform float uSpotAsp; uniform float uWind; uniform float uTime;
     varying vec3 vWorld; varying vec3 vNormal; varying vec2 vUv;
     float linDepth(float d) { float z = d * 2.0 - 1.0; return 2.0 * uNear * uFar / (uFar + uNear - z * (uFar - uNear)); }
     void main() {
@@ -906,7 +906,12 @@ function run(S, R, meta) {
       col = mix(col, col * vec3(0.8, 0.92, 1.1) + vec3(0.05, 0.06, 0.09), uDawn);   // 天亮了：灯光变淡、偏冷的晨光
       col = clamp(col * uTint + uLift, 0.0, 1.0);   // 独家发现“换一种光”：清晨、正午、傍晚
       if (uSpotK > 0.0) {   // 独家发现“只有一盏灯”：离灯越远越暗
-        float lit = 1.0 - smoothstep(uSpotR * 0.35, uSpotR, distance(vWorld, uSpotPos));
+        float sd = distance(vWorld, uSpotPos);
+        if (uSpotUV.z > 0.5) {   // spot.uv：按原画上的位置算远近（从画家视角看，亮的地方正好跟着画里的光，不会露出简化的家具形状）
+          vec4 sp = uProjVP * vec4(vWorld, 1.0); vec2 suv = sp.w > 0.0 ? sp.xy / sp.w * 0.5 + 0.5 : vec2(9.0);
+          sd = length((suv - uSpotUV.xy) * vec2(uSpotAsp, 1.0));
+        }
+        float lit = 1.0 - smoothstep(uSpotR * 0.35, uSpotR, sd);
         col *= mix(1.0, mix(uSpotDark, 1.0, lit), uSpotK);
       }
       if (uWall > 0.5) {   // 褪色开关：把墙上偏蓝的颜色加回一点红色
@@ -1567,8 +1572,10 @@ function run(S, R, meta) {
   //   paintAlt：同时把投影的原画换成改过的那一版（示意）；note：打开时显示的说明；card：打开时显示的卡片；noPaint：这些物体不贴原画（比如窗框和铁栏）
   const togObj = S.exclusive && S.exclusive.type === 'toggles' ? S.exclusive : null;
   const toggles = [];
-  if (togObj) for (const t of togObj.toggles) if (t.spot) {   // spot：{ at: [x, y, z], radius, dark }，只有灯附近亮着
-    projUniforms.uSpotPos.value.set(...t.spot.at); projUniforms.uSpotR.value = t.spot.radius || 1.5; projUniforms.uSpotDark.value = t.spot.dark ?? 0.18;
+  if (togObj) for (const t of togObj.toggles) if (t.spot) {   // spot：{ at: [x, y, z], radius, dark }，只有灯附近亮着；或者 { uv: [x, y]（原画上的位置，0–1，从左上角量）, radius（占画面高度的比例）, dark }
+    if (t.spot.at) projUniforms.uSpotPos.value.set(...t.spot.at);
+    if (t.spot.uv) projUniforms.uSpotUV.value.set(t.spot.uv[0], 1 - t.spot.uv[1], 1);
+    projUniforms.uSpotR.value = t.spot.radius || 1.5; projUniforms.uSpotDark.value = t.spot.dark ?? 0.18;
   }
   if (togObj) togObj.toggles.forEach((t, i) => {
     const meshes = [];

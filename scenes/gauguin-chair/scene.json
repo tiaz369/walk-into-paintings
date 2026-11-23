@@ -1,0 +1,833 @@
+{
+  "_说明": "高更的椅子场景的全部内容。所有事实文字由 Tia 提供（2026-11-22）。墙、地面、椅子（椅面、四根腿、扶手、靠背）、蜡烛、书和煤气灯的位置是从原画（1024×1279）按透视算出来的（生成脚本见 PR 说明）：画家的眼睛约 1.2 米高，往下看着椅子，后墙正对着画家。站在画家视角时，原画正好贴在这些形状上。原画里椅子画得比房间“大”（离得很近），所以房间比真实的小一些。",
+  "id": "gauguin-chair",
+  "variant": "interior",
+  "lighting": {
+    "_说明": "光线设定（3D 渲染用的设定说明，不在页面上显示）：夜晚，煤气灯 + 烛光",
+    "type": "gaslight",
+    "label": {
+      "zh": "夜晚，煤气灯和烛光",
+      "en": "Night, gaslight and candlelight"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮。和《梵高的椅子》互相链接（门 + 卡片 + 结尾）；和《画向日葵的梵高》互相链接（结尾）。",
+    "doors": [
+      "vangogh-chair"
+    ],
+    "cards": [
+      "vangogh-chair"
+    ],
+    "end": [
+      "vangogh-chair",
+      "painter-of-sunflowers",
+      "yellow-house",
+      "bedroom",
+      "bandaged-ear"
+    ]
+  },
+  "painting": {
+    "image": "images/gauguin-chair.jpg",
+    "width": 1024,
+    "height": 1279,
+    "alt": {
+      "zh": "梵高《高更的椅子》1888，阿姆斯特丹梵高博物馆",
+      "en": "Vincent van Gogh, Gauguin's Chair, 1888, Van Gogh Museum, Amsterdam"
+    }
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "高更的椅子",
+      "en": "Gauguin's Chair"
+    },
+    "artist": {
+      "zh": "梵高",
+      "en": "Vincent van Gogh"
+    },
+    "date": {
+      "zh": "1888年",
+      "en": "1888"
+    },
+    "museum": {
+      "zh": "阿姆斯特丹梵高博物馆",
+      "en": "Van Gogh Museum, Amsterdam"
+    },
+    "source": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    }
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下椅子、蜡烛、煤气灯、扶手、墙、地面看介绍 · 点“熄灭煤气灯”只留烛光 · 地上发光的圆点 = 梵高视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the chair, the candle, the gas lamp, the arms, the wall or the floor to learn more · Tap “Turn off the gas” to leave only the candle · The glowing circle = Van Gogh's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：眼睛约 1.2 米高，往下看着椅子。数字是照着 images/gauguin-chair.jpg 算出来的（tools 里没有，见 PR 说明）。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.2,
+    "yaw": 0,
+    "pitch": -0.45,
+    "fov": 50,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "candle-night",
+  "colors": {
+    "line": "#1f2a22",
+    "floor": "#ffffff",
+    "wall": "#ffffff",
+    "ceiling": "#2c3b31",
+    "wood": "#6e2f22",
+    "wood2": "#6e2f22",
+    "seat": "#6f8f3a",
+    "door": "#3d6a4a",
+    "doorPanel": "#2c4a36",
+    "candle": "#e8e2c8",
+    "flame": "#ffd25a",
+    "brass": "#2a3a5a",
+    "book": "#e6c24a",
+    "book2": "#d8d0a8",
+    "lamp": "#1e2a33",
+    "glow": "#ffe08a"
+  },
+  "room": {
+    "_说明": "房间形状（米）：黄房子里的一角。后墙正对画家，在 z=-3.09。",
+    "height": 2.6,
+    "front": 1.0,
+    "left": -2.0,
+    "backLeft": [
+      -2.0,
+      -3.086
+    ],
+    "backRight": [
+      2.0,
+      -3.086
+    ],
+    "rightFront": [
+      2.0,
+      1.0
+    ],
+    "floorCard": "portrait",
+    "wallCard": "redgreen",
+    "floorTex": "gcFloor",
+    "wallTex": "gcWall"
+  },
+  "textures": {
+    "_说明": "从原画里剪下来的地面和墙（images/crops/），让画面以外的房间看起来和原画一样。size 是一张贴图铺多少米。",
+    "gcFloor": {
+      "image": "images/crops/floor.jpg",
+      "size": 0.5
+    },
+    "gcWall": {
+      "image": "images/crops/wall.jpg",
+      "size": 0.8
+    }
+  },
+  "softEdge": true,
+  "objects": [
+    {
+      "type": "boxes",
+      "card": "armchair",
+      "x": 0.037,
+      "y": 0.57,
+      "z": -1.313,
+      "rot": -0.89,
+      "boxes": [
+        [
+          0.435,
+          0.06,
+          0.538,
+          "seat",
+          0,
+          -0.03,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "armchair",
+      "x": -0.349,
+      "y": 0,
+      "z": -1.369,
+      "rot": 0,
+      "boxes": [
+        [
+          0.06,
+          0.8,
+          0.06,
+          "wood",
+          0,
+          0.4,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "armchair",
+      "x": -0.035,
+      "y": 0,
+      "z": -0.981,
+      "rot": 0,
+      "boxes": [
+        [
+          0.06,
+          0.87,
+          0.06,
+          "wood",
+          0,
+          0.435,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "armchair",
+      "x": 0.153,
+      "y": 0,
+      "z": -1.598,
+      "rot": 0,
+      "boxes": [
+        [
+          0.06,
+          1.09,
+          0.06,
+          "wood",
+          0,
+          0.545,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "armchair",
+      "x": 0.379,
+      "y": 0,
+      "z": -1.304,
+      "rot": 0,
+      "boxes": [
+        [
+          0.06,
+          1.09,
+          0.06,
+          "wood",
+          0,
+          0.545,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "blue",
+      "x": -0.088,
+      "y": 0.82,
+      "z": -1.489,
+      "rot": 0.325,
+      "boxes": [
+        [
+          0.492,
+          0.06,
+          0.06,
+          "wood2",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "blue",
+      "x": 0.16,
+      "y": 0.89,
+      "z": -1.106,
+      "rot": 0.655,
+      "boxes": [
+        [
+          0.523,
+          0.06,
+          0.06,
+          "wood2",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "blue",
+      "x": 0.26,
+      "y": 1.04,
+      "z": -1.448,
+      "rot": -0.802,
+      "boxes": [
+        [
+          0.527,
+          0.12,
+          0.1,
+          "wood2",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "armchair",
+      "x": 0.266,
+      "y": 0.82,
+      "z": -1.451,
+      "rot": -0.915,
+      "boxes": [
+        [
+          0.411,
+          0.08,
+          0.04,
+          "wood2",
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "candle",
+      "id": "candle",
+      "x": -0.104,
+      "y": 0.6,
+      "z": -1.244,
+      "rot": 0,
+      "boxes": [
+        [
+          0.1,
+          0.02,
+          0.1,
+          "brass",
+          0,
+          0.01,
+          0
+        ],
+        [
+          0.03,
+          0.06,
+          0.03,
+          "brass",
+          0,
+          0.05,
+          0
+        ],
+        [
+          0.025,
+          0.2,
+          0.025,
+          "candle",
+          0,
+          0.18,
+          0,
+          "cloth"
+        ],
+        [
+          0.012,
+          0.03,
+          0.012,
+          "flame",
+          0,
+          0.295,
+          0,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "boxes",
+      "card": "candle",
+      "x": -0.264,
+      "y": 0.6,
+      "z": -1.403,
+      "rot": 0.5,
+      "boxes": [
+        [
+          0.2,
+          0.03,
+          0.13,
+          "book",
+          0,
+          0.015,
+          0,
+          "cloth"
+        ],
+        [
+          0.18,
+          0.03,
+          0.12,
+          "book2",
+          0.03,
+          0.045,
+          0.02,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "wallBoxes",
+      "card": "gaslamp",
+      "id": "gas-lamp",
+      "wall": "back",
+      "x": -0.793,
+      "y": 0.988,
+      "z": 0,
+      "boxes": [
+        [
+          0.04,
+          0.25,
+          0.08,
+          "lamp",
+          0,
+          -0.12,
+          0.04
+        ],
+        [
+          0.12,
+          0.03,
+          0.12,
+          "lamp",
+          0,
+          -0.25,
+          0.08
+        ],
+        [
+          0.1,
+          0.1,
+          0.1,
+          "glow",
+          0,
+          -0.18,
+          0.1,
+          "cloth"
+        ]
+      ]
+    },
+    {
+      "type": "portalDoor",
+      "x": 1.2,
+      "z": 0.95,
+      "rot": 3.1416,
+      "w": 0.9,
+      "h": 2.1,
+      "portal": {
+        "scene": "vangogh-chair",
+        "href": "../vangogh-chair/",
+        "label": {
+          "zh": "去看梵高自己的椅子",
+          "en": "To Van Gogh's own chair"
+        }
+      }
+    }
+  ],
+  "cards": {
+    "portrait": {
+      "title": {
+        "zh": "一张“肖像”",
+        "en": "A “portrait” without a sitter"
+      },
+      "text": {
+        "zh": "画里没有人，但梵高博物馆说，这把椅子就是高更的一张“肖像”。",
+        "en": "There is no one in the picture, but the Van Gogh Museum calls this chair a “portrait” of Gauguin."
+      }
+    },
+    "candle": {
+      "title": {
+        "zh": "蜡烛和小说",
+        "en": "A candle and two novels"
+      },
+      "text": {
+        "zh": "椅子上放着一支点燃的蜡烛和两本当时的小说。它们代表了不在场的高更。",
+        "en": "On the seat are a lit candle and two modern novels. They stand in for the absent Gauguin."
+      }
+    },
+    "armchair": {
+      "title": {
+        "zh": "讲究的扶手椅",
+        "en": "A fine armchair"
+      },
+      "text": {
+        "zh": "这是一把雕花、打磨发亮的深红棕色扶手椅，木头可能是胡桃木。和梵高自己那把简单的草编木椅很不一样。",
+        "en": "This is a carved, polished armchair of dark reddish-brown wood, perhaps walnut. It is very different from Van Gogh's own plain rush-seated chair."
+      },
+      "link": {
+        "scene": "vangogh-chair",
+        "href": "../vangogh-chair/",
+        "label": {
+          "zh": "去看梵高自己的椅子",
+          "en": "See Van Gogh's own chair"
+        }
+      }
+    },
+    "gaslamp": {
+      "title": {
+        "zh": "墙上的煤气灯",
+        "en": "The gas lamp on the wall"
+      },
+      "text": {
+        "zh": "看背景，墙上亮着一盏煤气灯。梵高大约一个月前才在黄房子里装上煤气灯，部分原因是想吸引高更来南方。",
+        "en": "Look at the background: a gas lamp is burning on the wall. Van Gogh had installed gas lighting in the Yellow House about a month earlier, partly to tempt Gauguin to come south."
+      }
+    },
+    "blue": {
+      "title": {
+        "zh": "木头上的蓝影",
+        "en": "Blue shadows on the wood"
+      },
+      "text": {
+        "zh": "椅子打磨过的木头上有蓝色的阴影和反光，那是煤气灯照出来的。",
+        "en": "The polished wood of the chair shows bluish shadows and reflected light, made by the gas lighting."
+      }
+    },
+    "redgreen": {
+      "title": {
+        "zh": "红与绿的夜晚",
+        "en": "A night in red and green"
+      },
+      "text": {
+        "zh": "梵高主要用红色和绿色，营造夜晚的气氛。",
+        "en": "Van Gogh used mainly red and green to suggest the mood of night."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/gauguin-chair.jpg",
+        "alt": {
+          "zh": "梵高《高更的椅子》1888",
+          "en": "Vincent van Gogh, Gauguin's Chair, 1888"
+        },
+        "caption": {
+          "zh": "1888 · 阿姆斯特丹梵高博物馆",
+          "en": "1888 · Van Gogh Museum, Amsterdam"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 1888年秋",
+          "en": "Autumn 1888"
+        },
+        "text": {
+          "zh": "高更来到阿尔勒，和梵高一起住在黄房子里。梵高画了两把空椅子：一把是自己的，白天，黄色和蓝色；一把是高更的，夜晚，红色和绿色。11月19日，他在给弟弟提奥的信里说，这两幅画“挺有意思的”。",
+          "en": "Gauguin came to Arles to live with Van Gogh in the Yellow House. Van Gogh painted two empty chairs: his own, by day, in yellow and blue; and Gauguin's, by night, in red and green. On 19 November he wrote to his brother Theo that the two pictures were “rather funny”."
+        }
+      },
+      {
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 空着的位置",
+          "en": "The empty place"
+        },
+        "text": {
+          "zh": "没过多久，两人就吵翻了。大约在1888年圣诞节，高更生气地离开了黄房子。一年多以后，梵高写信说：在他们分开前几天，他试着画下“他的空位”。",
+          "en": "Soon afterwards the two men quarrelled. Around Christmas 1888, Gauguin left the Yellow House in anger. More than a year later, Van Gogh wrote that a few days before they parted, he had tried to paint “his empty place”."
+        }
+      },
+      {
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 一把在伦敦，一把在阿姆斯特丹",
+          "en": "One in London, one in Amsterdam"
+        },
+        "text": {
+          "zh": "两幅画本是一对，后来分开了。1923年，伦敦国家美术馆买下《梵高的椅子》。《高更的椅子》留在了梵高家族的收藏里，今天在阿姆斯特丹的梵高博物馆。",
+          "en": "The two pictures were made as a pair, but they were separated. In 1923 the National Gallery in London bought *Van Gogh's Chair*. *Gauguin's Chair* stayed in the Van Gogh family collection and is now in the Van Gogh Museum, Amsterdam."
+        }
+      }
+    ],
+    "final": {
+      "zh": "两把椅子，像白天和黑夜。",
+      "en": "Two chairs, as different as night and day."
+    },
+    "versions": [
+      {
+        "image": "images/gauguin-chair.jpg",
+        "short": {
+          "zh": "1888 · 阿姆斯特丹",
+          "en": "1888 · Amsterdam"
+        },
+        "caption": {
+          "zh": "1888 · 阿姆斯特丹梵高博物馆",
+          "en": "1888 · Van Gogh Museum, Amsterdam"
+        }
+      }
+    ],
+    "museums": [
+      "van-gogh-museum"
+    ],
+    "exit": [
+      {
+        "scene": "vangogh-chair",
+        "href": "../vangogh-chair/",
+        "label": {
+          "zh": "两把椅子面对面：梵高的椅子",
+          "en": "Face to face: Van Gogh's Chair"
+        }
+      },
+      {
+        "scene": "painter-of-sunflowers",
+        "href": "../painter-of-sunflowers/",
+        "label": {
+          "zh": "高更眼里的梵高",
+          "en": "Van Gogh through Gauguin’s eyes"
+        }
+      },
+      {
+        "scene": "yellow-house",
+        "href": "../yellow-house/",
+        "label": {
+          "zh": "回到黄房子",
+          "en": "Back to the Yellow House"
+        }
+      },
+      {
+        "scene": "bedroom",
+        "href": "../bedroom/",
+        "label": {
+          "zh": "阿尔勒的卧室",
+          "en": "The bedroom in Arles"
+        }
+      },
+      {
+        "scene": "bandaged-ear",
+        "href": "../bandaged-ear/",
+        "label": {
+          "zh": "高更走后：包扎耳朵的自画像",
+          "en": "After Gauguin left: the bandaged ear"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：Tia 提供。尺寸先留空（等 Tia 在梵高博物馆官网核对）；空着的行不显示。",
+    "artist": {
+      "zh": "文森特·梵高（1853–1890）",
+      "en": "Vincent van Gogh (1853–1890)"
+    },
+    "title": {
+      "zh": "高更的椅子",
+      "en": "Gauguin's Chair"
+    },
+    "date": {
+      "zh": "1888年",
+      "en": "1888"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "",
+      "en": ""
+    },
+    "collection": {
+      "zh": "阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
+      "en": "Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+    },
+    "url": "https://www.vangoghmuseum.nl/en/collection/s0048V1962"
+  },
+  "zoom": {
+    "image": "images/gauguin-chair.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "梵高博物馆：高更的椅子",
+          "en": "Van Gogh Museum: Gauguin's Chair"
+        },
+        "url": "https://www.vangoghmuseum.nl/en/collection/s0048V1962"
+      },
+      {
+        "title": {
+          "zh": "伦敦国家美术馆：本月之画（2019年4月）",
+          "en": "The National Gallery: Picture of the Month, April 2019"
+        },
+        "url": "https://nationalgallery.org.uk/paintings/picture-of-the-month/picture-of-the-month-april-2019"
+      },
+      {
+        "title": {
+          "zh": "The Art Newspaper：分开的一对（2020）",
+          "en": "The Art Newspaper: a separated pair (2020)"
+        },
+        "url": "https://www.theartnewspaper.com/2020/11/20/a-separated-pair-the-story-behind-van-goghs-famed-empty-chairs"
+      },
+      {
+        "title": {
+          "zh": "梵高致奥里耶的信（1890年2月）",
+          "en": "Van Gogh to Albert Aurier, February 1890"
+        },
+        "url": "https://vangoghletters.org/en/let853"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/（guide-zh.mp3、guide-en.mp3）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 1888年秋",
+          "en": "Autumn 1888"
+        },
+        "text": {
+          "zh": "高更来到阿尔勒，和梵高一起住在黄房子里。梵高画了两把空椅子：一把是自己的，白天，黄色和蓝色；一把是高更的，夜晚，红色和绿色。11月19日，他在给弟弟提奥的信里说，这两幅画“挺有意思的”。",
+          "en": "Gauguin came to Arles to live with Van Gogh in the Yellow House. Van Gogh painted two empty chairs: his own, by day, in yellow and blue; and Gauguin's, by night, in red and green. On 19 November he wrote to his brother Theo that the two pictures were “rather funny”."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 空着的位置",
+          "en": "The empty place"
+        },
+        "text": {
+          "zh": "没过多久，两人就吵翻了。大约在1888年圣诞节，高更生气地离开了黄房子。一年多以后，梵高写信说：在他们分开前几天，他试着画下“他的空位”。",
+          "en": "Soon afterwards the two men quarrelled. Around Christmas 1888, Gauguin left the Yellow House in anger. More than a year later, Van Gogh wrote that a few days before they parted, he had tried to paint “his empty place”."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 一把在伦敦，一把在阿姆斯特丹",
+          "en": "One in London, one in Amsterdam"
+        },
+        "text": {
+          "zh": "两幅画本是一对，后来分开了。1923年，伦敦国家美术馆买下《梵高的椅子》。《高更的椅子》留在了梵高家族的收藏里，今天在阿姆斯特丹的梵高博物馆。",
+          "en": "The two pictures were made as a pair, but they were separated. In 1923 the National Gallery in London bought *Van Gogh's Chair*. *Gauguin's Chair* stayed in the Van Gogh family collection and is now in the Van Gogh Museum, Amsterdam."
+        }
+      }
+    ]
+  },
+  "exclusive": {
+    "_说明": "独家发现“熄灭煤气灯”：打开后，除了蜡烛附近，房间里其他地方都暗下去（spot.at 是烛火的位置）；再点一次恢复原画的灯光。用的是 toggles 的 spot（和《吃土豆的人》同一种做法，名字和效果不同）。",
+    "type": "toggles",
+    "label": {
+      "zh": "熄灭煤气灯",
+      "en": "Turn off the gas"
+    },
+    "toggles": [
+      {
+        "id": "gas",
+        "label": {
+          "zh": "熄灭煤气灯",
+          "en": "Turn off the gas"
+        },
+        "spot": {
+          "uv": [
+            0.4,
+            0.37
+          ],
+          "radius": 0.36,
+          "dark": 0.12
+        },
+        "note": {
+          "zh": "画里的光来自煤气灯和蜡烛。关掉煤气灯，就只剩下他的“空位”。这是示意。",
+          "en": "The light in the painting comes from the gas lamp and the candle. Turn off the gas and only “his empty place” remains. This is an illustration."
+        }
+      }
+    ]
+  },
+  "sources": [
+    {
+      "title": {
+        "zh": "梵高博物馆：高更的椅子",
+        "en": "Van Gogh Museum: Gauguin's Chair"
+      },
+      "url": "https://www.vangoghmuseum.nl/en/collection/s0048V1962"
+    },
+    {
+      "title": {
+        "zh": "伦敦国家美术馆：本月之画（2019年4月）",
+        "en": "The National Gallery: Picture of the Month, April 2019"
+      },
+      "url": "https://nationalgallery.org.uk/paintings/picture-of-the-month/picture-of-the-month-april-2019"
+    },
+    {
+      "title": {
+        "zh": "The Art Newspaper：分开的一对（2020）",
+        "en": "The Art Newspaper: a separated pair (2020)"
+      },
+      "url": "https://www.theartnewspaper.com/2020/11/20/a-separated-pair-the-story-behind-van-goghs-famed-empty-chairs"
+    },
+    {
+      "title": {
+        "zh": "梵高致奥里耶的信（1890年2月）",
+        "en": "Van Gogh to Albert Aurier, February 1890"
+      },
+      "url": "https://vangoghletters.org/en/let853"
+    },
+    {
+      "title": {
+        "zh": "引文参考：WebExhibits",
+        "en": "Quotation reference: WebExhibits"
+      },
+      "url": "https://www.webexhibits.org/vangogh/letter/20/626a.htm"
+    },
+    {
+      "title": {
+        "zh": "尺寸参考：芝加哥艺术博物馆（2001年展览资料）",
+        "en": "Size reference: Art Institute of Chicago (2001 exhibition)"
+      },
+      "url": "https://archive.artic.edu/vangogh/slideshow/slide_lrg20.html"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：只用 Wikimedia Commons 的 PD-Art 版本（Google Art Project）；不从梵高博物馆官网或 Google 艺术与文化下载。",
+    "text": {
+      "zh": "Wikimedia Commons，公有领域",
+      "en": "Wikimedia Commons, public domain"
+    },
+    "url": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_De_stoel_van_Gauguin_-_Google_Art_Project.jpg",
+    "license": "公有领域（PD-Art）",
+    "files": [
+      {
+        "file": "gauguin-chair.jpg",
+        "from": "Wikimedia Commons（Google Art Project 版本）。和《梵高的椅子》场景里的 gauguin-chair.jpg 是同一个文件（Tia 2026-10-27 上传，1280 × 1599），缩到 1024 × 1279 以便不超过 500KB",
+        "url": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_De_stoel_van_Gauguin_-_Google_Art_Project.jpg",
+        "license": "公有领域（PD-Art）",
+        "status": "符合",
+        "verified": "2026-11-22",
+        "note": "2026-11-22 Commons 返回 429，没能重新打开文件页确认授权；Tia 的资料核实日期是 2026-11-22"
+      },
+      {
+        "file": "crops/floor.jpg",
+        "from": "从 gauguin-chair.jpg 裁出（椅子左边的地面）",
+        "url": "",
+        "license": "同 gauguin-chair.jpg",
+        "status": "符合",
+        "verified": "2026-11-22"
+      },
+      {
+        "file": "crops/wall.jpg",
+        "from": "从 gauguin-chair.jpg 裁出（椅子上方的墙）",
+        "url": "",
+        "license": "同 gauguin-chair.jpg",
+        "status": "符合",
+        "verified": "2026-11-22"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-22"
+}

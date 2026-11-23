@@ -11,7 +11,7 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。真正的设置在 objects / cards / ending.exit 里，tools/check_scenes.py 会检查这里和那里是否一致。和《两只螃蟹》互相链接（挂在旁边）。",
+    "_说明": "与其他场景的衔接（一览）：doors 是房间里的门，cards 是卡片里的链接，end 是故事结尾的按钮；“下一个场景”按系列顺序自动出现。真正的设置在 objects / cards / ending.exit 里，tools/check_scenes.py 会检查这里和那里是否一致。和《两只螃蟹》互相链接（挂在旁边）。 和《高更的椅子》互相链接（结尾）。",
     "doors": [
       "yellow-house"
     ],
@@ -19,6 +19,7 @@
       "bedroom"
     ],
     "end": [
+      "gauguin-chair",
       "bedroom",
       "yellow-house",
       "wheatfield-cypresses",
@@ -391,8 +392,8 @@
           "en": "Gauguin's Chair · 1888 · Van Gogh Museum, Amsterdam"
         },
         "credit": {
-          "zh": "《高更的椅子》图片：阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
-          "en": "Gauguin's Chair image: Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+          "zh": "《高更的椅子》图片：Wikimedia Commons，公有领域",
+          "en": "Gauguin's Chair image: Wikimedia Commons, public domain"
         },
         "kicker": "ACT II",
         "title": {
@@ -438,6 +439,14 @@
       "van-gogh-museum"
     ],
     "exit": [
+      {
+        "scene": "gauguin-chair",
+        "href": "../gauguin-chair/",
+        "label": {
+          "zh": "走进高更的椅子",
+          "en": "Step into Gauguin's Chair"
+        }
+      },
       {
         "scene": "bedroom",
         "label": {
@@ -641,8 +650,8 @@
       "en": "The two paintings were designed as a pair: one chair faces right, the other left."
     },
     "credit": {
-      "zh": "《高更的椅子》图片：阿姆斯特丹梵高博物馆（文森特·梵高基金会）",
-      "en": "Gauguin's Chair image: Van Gogh Museum, Amsterdam (Vincent van Gogh Foundation)"
+      "zh": "《高更的椅子》图片：Wikimedia Commons，公有领域",
+      "en": "Gauguin's Chair image: Wikimedia Commons, public domain"
     }
   },
   "textures": {

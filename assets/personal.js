@@ -64,5 +64,5 @@ export function setupPersonal(S) {
     if (!e.isIntersecting) return;
     stamp(S.id); note.classList.add('show'); io.disconnect();
   }), { threshold: 0.25 });
-  io.observe(end);
+  io.observe(h || end);   // 看标题（结尾整段在手机上有三四屏高，按整段的 25% 算，有的场景永远到不了，就盖不上章）
 }

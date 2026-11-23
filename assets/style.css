@@ -799,9 +799,9 @@ body.lang-both .col-row h3 .en { font-size: .68em; color: var(--muted); font-sty
 .artist-bio p { max-width: 36em; margin-left: auto; margin-right: auto; }
 .artist-bio p .en { margin-top: 12px; }
 .artist-bio p:has(.btn) { text-align: center; }
-/* 故事页：右下角的语言切换不挡正文（底部多留空白；看故事时按钮变小、半透明，鼠标移上去恢复） */
+/* 故事页：右下角的语言切换不挡正文（底部多留空白；看故事时按钮变小，鼠标移上去恢复）。不再半透明：半透明时文字对比度不够（规范 X1） */
 #gallery .act { padding-bottom: 96px; padding-left: 20px; padding-right: 20px; }
-body:has(#gallery.show) #langSwitch { transform: scale(.82); transform-origin: right bottom; opacity: .5; transition: opacity .3s, transform .3s; }
+body:has(#gallery.show) #langSwitch { transform: scale(.82); transform-origin: right bottom; transition: opacity .3s, transform .3s; }
 body:has(#gallery.show) #langSwitch:hover, body:has(#gallery.show) #langSwitch:focus-within { opacity: 1; transform: none; }
 @media (max-width: 640px) {
   #gallery .act { padding-left: 22px; padding-right: 22px; padding-bottom: 104px; }
@@ -853,7 +853,7 @@ body.lang-both .pass-group h3 > .en { display: inline; font-size: .7em; margin-l
 .save-btn.on { color: #b3433a; }
 .stamp-note { margin: 6px 0 0; font-size: 13px; text-align: center; opacity: 0; transition: opacity 1s; }
 .stamp-note.show { opacity: 1; }
-.stamp-note a { color: var(--accent); text-decoration: none; }
+.stamp-note a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); }   /* 文字用正文颜色：有的系列主色很浅（阿尔勒的黄），直接做文字颜色对比度不够（X1） */
 
 /* 独家发现“黑白”（grayscale）：3D 画面、原画叠加和对照原画都变成黑白 */
 canvas, #vpOverlay, #compare img { transition: filter 1.2s ease; }
