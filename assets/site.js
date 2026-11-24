@@ -88,6 +88,12 @@ export const SOCIAL = [
   { name: { zh: '小红书', en: 'Xiaohongshu' }, url: '' }
 ];
 const creditLine = ([a, name, b]) => `${esc(a)}<a href="${CREDIT.byUrl}">${esc(name)}</a>${esc(b)}`;
+// 版权声明（Tia 2026-11-24 定的措辞）：页脚和每个场景的结尾都显示
+export const RIGHTS = {
+  zh: '画作均为公有领域，图片来源见每幅画的展签。文字与场景 ©\u00a02026\u00a0Tia',
+  en: 'Paintings are in the public domain; image sources are listed with each painting. Text and scenes ©\u00a02026\u00a0Tia'
+};
+export const rightsHTML = () => `<span class="zh credit-line rights">${esc(RIGHTS.zh)}</span><span class="en credit-line rights">${esc(RIGHTS.en)}</span>`;
 // inline = 一行显示（双语时用 / 隔开）；默认中英文各占一行
 export const creditHTML = (inline = false) => inline
   ? `<span class="zh">${creditLine(CREDIT.zh)}</span><span class="en"><span class="zh sep"> / </span>${creditLine(CREDIT.en)}</span>`
@@ -330,7 +336,7 @@ export function chrome(active) {
   footer.className = 'wrap site-footer';
   const social = SOCIAL.filter(s => s.url).map(s => `<a href="${s.url}" target="_blank" rel="noopener">${bi(s.name)}</a>`).join(' · ');
   footer.innerHTML = `<div class="prefs">${themeSwitchHTML()}</div>
-    ${social ? social + '<br>' : ''}${active === 'about/' ? '' : creditHTML()}`;   // 关于页正文里已经有署名，页脚不再重复
+    ${social ? social + '<br>' : ''}${active === 'about/' ? '' : creditHTML()}${rightsHTML()}`;   // 关于页正文里已经有署名，页脚不再重复；版权声明每页都有
   document.body.append(footer);
   wirePrefs();
 }

@@ -9,7 +9,7 @@
 // 这个文件只负责“怎么做”，不放任何某一幅画的文字。
 // =====================================================================
 import * as THREE from 'three';
-import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, shortHint, track, oneMinuteHTML, oneMinute, ROOT, markSeen, mountSubscribe } from './site.js';
+import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, rightsHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, shortHint, track, oneMinuteHTML, oneMinute, ROOT, markSeen, mountSubscribe } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupShareCard, shareBtnHTML, endMainHTML } from './share.js';
 import { setupPersonal, saveBtnHTML } from './personal.js';
@@ -322,7 +322,7 @@ function buildDOM(S, R, meta) {
         <a class="btn" href="${ROOT}">${ui('更多名画', 'More paintings')} →</a>
       </div>
       ${readingHTML}
-      <div class="credit">${[imgLine, ...extraCredits].join('<br>')}<br>${creditHTML()}</div>
+      <div class="credit">${[imgLine, ...extraCredits].join('<br>')}<br>${creditHTML()}${rightsHTML()}</div>
     </section>
   </div>`);
 }

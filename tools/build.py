@@ -93,6 +93,8 @@ CITIES = {c: json.load(open(os.path.join(ROOT, f'data/{c}.json'), encoding='utf-
 LIFE = {a['id']: json.load(open(f, encoding='utf-8')) for a in R['artists'] if os.path.exists(f := os.path.join(ROOT, 'data/life', a['id'] + '.json'))}   # 画家页的“生平”
 CREDIT = ('<p><span lang="zh-CN">由 <a href="https://tiaz369.github.io">Tia</a> 创作与策划</span><br>'
           '<span lang="en">Created and curated by <a href="https://tiaz369.github.io">Tia</a></span></p>')
+RIGHTS = ('<p><span lang="zh-CN">画作均为公有领域，图片来源见每幅画的展签。文字与场景 ©&nbsp;2026&nbsp;Tia</span><br>'
+          '<span lang="en">Paintings are in the public domain; image sources are listed with each painting. Text and scenes ©&nbsp;2026&nbsp;Tia</span></p>')
 NAV = [('artists/', '探索', 'Explore'), ('stories/', '故事', 'Stories'), ('museums/', '看真迹', 'Visit'), ('about/', '关于', 'About')]   # 和 assets/site.js 的 NAV_GROUPS 一样只有 4 项（不运行 JavaScript 时显示）
 def nav(up): return '<nav>' + ' · '.join(f'<a href="{up}{p}">{zh} {en}</a>' for p, zh, en in NAV) + '</nav>'
 
@@ -154,7 +156,7 @@ def page(path, title, desc, static, script, image=OG_HOME, image_alt=OG_HOME_ALT
     <main>
 {static}
     </main>
-    <footer>{'' if path == 'about/' else CREDIT}</footer>
+    <footer>{'' if path == 'about/' else CREDIT}{RIGHTS}</footer>
   </div>
   <!-- ↑ 自动生成结束 -->
   <script type="module">
