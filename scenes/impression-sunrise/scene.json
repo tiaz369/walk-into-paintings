@@ -54,6 +54,10 @@
       "en": "Wikimedia Commons, public domain"
     }
   },
+  "hook": {
+    "zh": "",
+    "en": ""
+  },
   "enter": {
     "zh": "推开窗",
     "en": "Open the window"

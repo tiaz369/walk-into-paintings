@@ -88,6 +88,8 @@ export const SOCIAL = [
   { name: { zh: '小红书', en: 'Xiaohongshu' }, url: '' }
 ];
 const creditLine = ([a, name, b]) => `${esc(a)}<a href="${CREDIT.byUrl}">${esc(name)}</a>${esc(b)}`;
+// 首屏的一句话（scene.json 的 hook，中英）：放在开场原画下面、展签前面；空着就不显示
+export const hookHTML = h => h && (h.zh || h.en) ? `<p id="introHook" class="panel">${bi(h, ' / ')}</p>` : '';
 // 版权声明（Tia 2026-11-24 定的措辞）：页脚和每个场景的结尾都显示
 export const RIGHTS = {
   zh: '画作均为公有领域，图片来源见每幅画的展签。文字与场景 ©\u00a02026\u00a0Tia',
@@ -513,10 +515,12 @@ function compareSlider(root, CV, base) {
   names(); at(50); onLang(names);
 }
 
+// 首页“第一次来？从这 5 幅开始”（Tia 2026-11-25 定的顺序）
+const FIRST_FIVE = ['bedroom', 'cafe-terrace', 'pearl-earring', 'arnolfini', 'starry-night'];
 const PAGES = {
   // ---------- 首页 ----------
   home(R, main) {
-    // 首页只有五块，以图片为主：首屏 · 本周新作 · 从这里开始 · 系列 · 底部图标链接
+    // 首页以图片为主：首屏 · 本周新作 · 第一次来？从这 5 幅开始 · 从这里开始 · 系列 · 底部图标链接
     // 首屏：一幅画（卧室的原画）铺满一屏
     const pick = R.sceneById[HERO.scene] && R.sceneById[HERO.scene].status === 'live' ? R.sceneById[HERO.scene] : R.live[0];
     const heroMedia = `<img src="${ROOT + pick.cover}" ${altAttr(pick.title)} />${detailTag(pick)}`;
@@ -557,11 +561,12 @@ const PAGES = {
         </a>
       </section>
 
-      <div class="wrap subscribe-slot home-sub"></div>
+      ${(list => list.length ? `<section class="section wrap" id="first-time" data-track="first-time">
+        <h2>${ui('第一次来？从这 5 幅开始', 'New here? Start with these five')}</h2>
+        ${cardsHTML(R, list)}
+      </section>` : '')(FIRST_FIVE.map(cover).filter(Boolean))}
 
-      ${(f => f ? `<section class="section wrap first-time-wrap" id="first-time">
-        <a class="continue-card first-time" href="${sceneUrl(f)}" data-track="first-time"><span class="continue-pic"><img src="${ROOT + f.cover}" ${altAttr(f.title)} loading="lazy" />${typeTag(f)}</span>
-          <span><span class="continue-name">${bi({ zh: '第一次来？从这幅画开始', en: 'First time? Start here' })}</span><span class="continue-meta">${bi(f.title)} →</span></span></a></section>` : '')(cover('cafe-terrace'))}
+      <div class="wrap subscribe-slot home-sub"></div>
 
       <section class="section wrap" id="doors">
         <div class="doors jrows" data-target="400">

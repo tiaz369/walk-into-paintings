@@ -199,6 +199,7 @@ DESC = both(TAGLINE, ' ')
 
 # ---------- 首页 ----------
 # 本周新作：最近上线的一幅；一句话介绍用登记表的 tagline，没有就用场景故事的最后一句（和 site.js 一样）
+FIRST_FIVE = ['bedroom', 'cafe-terrace', 'pearl-earring', 'arnolfini', 'starry-night']   # 和 site.js 一样
 NEWEST = sorted(LIVE, key=lambda s: (s.get('added', ''), ORDER.index(s['id'])), reverse=True)[0]
 NEWEST_INTRO = NEWEST.get('tagline') or json.load(open(os.path.join(ROOT, NEWEST['path'], 'scene.json'), encoding='utf-8')).get('ending', {}).get('final')
 def col_home(c):   # 首页的系列：系列名 · 作品数量（和 site.js 一样，不列每一幅画）
@@ -210,6 +211,8 @@ s = f'''      <h1>{bi(NAME)}</h1>
       <p>{bi(TAGLINE)}</p>
       <h2>本周新作 · New this week</h2>
       {scene_list([NEWEST], '')}{f'<p>{bi(NEWEST_INTRO)}</p>' if NEWEST_INTRO else ''}
+      <h2>第一次来？从这 5 幅开始 · New here? Start with these five</h2>
+      {scene_list([SCENES[x] for x in FIRST_FIVE if x in SCENES and SCENES[x]['status'] == 'live'], '')}
       <ul>{''.join(f'<li><a href="{p}">{zh} · {en}</a></li>' for p, zh, en in DOORS)}<li>去看真迹 · See the real thing：<a href="london/">伦敦 London</a> · <a href="paris/">巴黎 Paris</a> · <a href="amsterdam/">阿姆斯特丹 Amsterdam</a></li></ul>
       <h2>系列 · Collections</h2>
       <ul>{''.join(col_home(c) for c in R['collections'])}</ul>
@@ -372,6 +375,8 @@ for meta in BUILT:
     alt = both(S['painting'].get('alt'), ' · ')
     cards = itl(''.join(f'<h3>{bi(c["title"])}</h3>{bi(c["text"], "p")}' for c in S['cards'].values()))
     acts = itl(''.join(f'<h3>{e(a.get("kicker", ""))} {bi(a["title"])}</h3>{bi(a["text"], "p")}' + (f'<p>{e(both(a["caption"], " / "))}</p>' if a.get('caption') else '') for a in E['acts']))
+    H = S.get('hook') or {}
+    hook = f'<p>{bi(H)}</p>\n      ' if H.get('zh') or H.get('en') else ''   # 首屏的一句话，空着不写
     rec = S.get('record')
     rec_html = ''
     if rec and any(both(v) for k, v in rec.items() if not k.startswith('_')):
@@ -400,7 +405,7 @@ for meta in BUILT:
       <p><span lang="zh-CN">{e(sub("zh"))}</span><br><span lang="en">{e(sub("en"))}</span></p>
       <p>图片：{e(L["source"]["zh"])} / Image: {e(L["source"]["en"])}</p>
       <img src="{e(S["painting"]["image"])}" alt="{e(alt)}" width="{S["painting"]["width"]}" height="{S["painting"]["height"]}" />
-      <h2>发现 · Discover</h2>
+      {hook}<h2>发现 · Discover</h2>
       {cards}
       <h2>故事 · The story</h2>
       {acts}
