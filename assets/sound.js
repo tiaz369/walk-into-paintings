@@ -378,6 +378,13 @@ const AMBIENCE = {
       field.gain.setTargetAtTime(g ? 0 : 1, t, 0.6); room.gain.setTargetAtTime(g ? 1 : 0, t, 0.6);
     }, 300));
   },
+  // 雪后的田野，冬天的傍晚（莫奈《干草堆（日落，雪景）》）：很安静，冷风一阵一阵慢慢吹过，偶尔远处一声鸟叫（A snowy field at a winter sunset）
+  'snow-field'(out, st) {
+    const wind = loopNoise('brown', out, { type: 'bandpass', freq: 420, q: 0.5, gain: 0.05 });
+    st.timers.push(setInterval(() => { const t = ctx.currentTime, k = Math.random(); wind.g.gain.setTargetAtTime(0.03 + 0.07 * k, t, 2.5); wind.f.frequency.setTargetAtTime(340 + 260 * k, t, 2.5); }, 4000));
+    loopNoise('white', out, { type: 'highpass', freq: 6000, gain: 0.004 });   // 很轻的细沙沙声（风吹过雪面）
+    every(st, 18, 40, t => bird(out, t));
+  },
   // 剧院后台：很低的说话声，远处乐队调音（几件乐器各拉各的长音），舞鞋踩在木地板上的声音（Backstage at the theatre）
   backstage(out, st) {
     loopNoise('brown', out, { freq: 230, gain: 0.07 });

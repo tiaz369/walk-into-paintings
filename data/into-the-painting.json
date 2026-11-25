@@ -1,0 +1,328 @@
+{
+  "_说明": "“走进画里的你”预约 / 下单页（/into-the-painting/）的全部文字。改价格、名额、付款链接都在这里改，不用改代码。不要把顾客照片、名字、留言放进这个仓库（仓库是公开的）。",
+  "title": {
+    "zh": "把 TA 送进一幅名画里",
+    "en": "Step them into a painting"
+  },
+  "subtitle": {
+    "zh": "画里的每一笔都是原作，只有 TA 是新来的。",
+    "en": "Every brushstroke is the original, except the one who just arrived."
+  },
+  "sample": {
+    "_说明": "样片：Tia 有了经同意的样片后，把 image 写成图片路径（不要放顾客照片，只放经同意公开的样片），caption 写说明。image 为空时显示占位框。",
+    "image": "",
+    "alt": {
+      "zh": "",
+      "en": ""
+    },
+    "caption": {
+      "zh": "",
+      "en": ""
+    },
+    "placeholder": {
+      "zh": "样片即将补上",
+      "en": "Sample coming soon"
+    }
+  },
+  "steps": {
+    "heading": {
+      "zh": "三步",
+      "en": "Three steps"
+    },
+    "items": [
+      {
+        "zh": "发照片",
+        "en": "Send a photo"
+      },
+      {
+        "zh": "选一幅画",
+        "en": "Choose a painting"
+      },
+      {
+        "zh": "收到入画图、10 秒“走进去”视频和双语小故事",
+        "en": "Receive the picture, a 10-second “walk-in” video and a short bilingual story"
+      }
+    ]
+  },
+  "paintings": {
+    "heading": {
+      "zh": "可选的画",
+      "en": "Paintings to choose from"
+    },
+    "_说明": "scene 是场景 id（封面图、画名、馆藏从登记表读）；open 为 false 时显示“即将开放”，不可选。license 是图片授权。",
+    "items": [
+      {
+        "scene": "stacks-sunset-snow",
+        "open": true,
+        "year": {
+          "zh": "1890–91年",
+          "en": "1890–91"
+        },
+        "license": {
+          "zh": "CC0",
+          "en": "CC0"
+        }
+      },
+      {
+        "scene": "stacks-of-wheat",
+        "open": true,
+        "year": {
+          "zh": "1890/91年",
+          "en": "1890/91"
+        },
+        "license": {
+          "zh": "CC0",
+          "en": "CC0"
+        }
+      },
+      {
+        "scene": "paris-street-rainy-day",
+        "open": true,
+        "year": {
+          "zh": "1877年",
+          "en": "1877"
+        },
+        "license": {
+          "zh": "CC0",
+          "en": "CC0"
+        }
+      },
+      {
+        "scene": "milkmaid",
+        "open": false,
+        "year": {
+          "zh": "约1660年",
+          "en": "c. 1660"
+        },
+        "license": {
+          "zh": "公有领域（Wikimedia Commons PD-Art）",
+          "en": "Public domain (Wikimedia Commons PD-Art)"
+        }
+      },
+      {
+        "scene": "woman-parasol",
+        "open": false,
+        "year": {
+          "zh": "1875年",
+          "en": "1875"
+        },
+        "license": {
+          "zh": "公有领域（馆方开放资源）",
+          "en": "Public domain (museum open access)"
+        }
+      }
+    ],
+    "soon": {
+      "zh": "即将开放",
+      "en": "Coming soon"
+    },
+    "who": {
+      "heading": {
+        "zh": "送进画里的是",
+        "en": "Who goes into the painting"
+      },
+      "pet": {
+        "zh": "宠物",
+        "en": "Pet"
+      },
+      "person": {
+        "zh": "人",
+        "en": "Person"
+      },
+      "personSoon": {
+        "zh": "2027 年开放",
+        "en": "Opening 2027"
+      }
+    },
+    "museumLabel": {
+      "zh": "馆藏",
+      "en": "Collection"
+    },
+    "licenseLabel": {
+      "zh": "授权",
+      "en": "Licence"
+    }
+  },
+  "versions": {
+    "heading": {
+      "zh": "选版本",
+      "en": "Choose a version"
+    },
+    "items": [
+      {
+        "id": "one",
+        "name": {
+          "zh": "入画 · 一幅",
+          "en": "One painting"
+        },
+        "price": "£19",
+        "text": {
+          "zh": "选一幅画。",
+          "en": "Choose one painting."
+        },
+        "_payLink说明": "Tia 用个人 Stripe 账户（sole trader）开通 Payment Link 后，把这里换成真实 URL（https://buy.stripe.com/…），再合并收费功能。以 #STRIPE_ 开头时，按钮显示“即将开放”，不能点。",
+        "payLink": "#STRIPE_PAYMENT_LINK_19"
+      },
+      {
+        "id": "two",
+        "name": {
+          "zh": "夏和冬 · 两幅",
+          "en": "Summer & Winter"
+        },
+        "price": "£29",
+        "text": {
+          "zh": "同一只 TA，走进莫奈的两幅干草堆：夏末和雪景。",
+          "en": "The same one, stepping into two of Monet's stacks of wheat: end of summer, and snow."
+        },
+        "_payLink说明": "同上：换成 £29 的 Stripe Payment Link。",
+        "payLink": "#STRIPE_PAYMENT_LINK_29"
+      }
+    ],
+    "includes": {
+      "zh": "都包含：高清入画图、手机壁纸、10 秒“走进去”视频、中英双语小故事卡。圣诞只做数字版，不卖带框。",
+      "en": "Both include: a high-resolution picture, a phone wallpaper, a 10-second “walk-in” video and a bilingual story card. Digital only for Christmas; no framed prints."
+    },
+    "_quota说明": "名额是写死的数字，不是自动倒数。改数字就改 quota。",
+    "quota": 40,
+    "quotaLine": {
+      "zh": "圣诞前只接 {n} 单，因为是一个人手工做。",
+      "en": "Only {n} orders before Christmas, because one person makes them by hand."
+    }
+  },
+  "upload": {
+    "heading": {
+      "zh": "照片要求",
+      "en": "About your photos"
+    },
+    "items": [
+      {
+        "zh": "请发 1–3 张清晰、光线好、能看到全身的照片。",
+        "en": "Please send 1–3 clear, well-lit photos that show the whole body."
+      },
+      {
+        "zh": "照片里的人会被裁掉。",
+        "en": "Any people in the photos will be cropped out."
+      },
+      {
+        "zh": "交付后 30 天内删除原图。",
+        "en": "Original photos are deleted within 30 days of delivery."
+      },
+      {
+        "zh": "付款后，我们会告诉你发照片的方式。这个页面不会上传或保存你的照片。",
+        "en": "After payment we'll tell you how to send your photos. This page does not upload or store any photos."
+      }
+    ]
+  },
+  "checkout": {
+    "heading": {
+      "zh": "下单前请确认",
+      "en": "Before you pay"
+    },
+    "_说明": "两个勾选框都勾上后，付款按钮才能点。原文，不要改意思。",
+    "boxes": [
+      {
+        "zh": "我同意付款后马上开始制作。",
+        "en": "Please start making it as soon as I've paid."
+      },
+      {
+        "zh": "我明白：作品交付后，我将不再享有 14 天无理由取消权；交付前取消，需按已完成的部分付费。作品有问题时，我的法定权利不受影响。",
+        "en": "I understand I lose my 14-day right to cancel once it's delivered; if I cancel before then, I pay for the work already done. My statutory rights if it's faulty are not affected."
+      }
+    ],
+    "pay": {
+      "zh": "去付款",
+      "en": "Pay"
+    },
+    "soon": {
+      "zh": "即将开放",
+      "en": "Coming soon"
+    },
+    "tickFirst": {
+      "zh": "请先勾选上面两项。",
+      "en": "Please tick both boxes above first."
+    }
+  },
+  "promise": {
+    "heading": {
+      "zh": "交付和修改",
+      "en": "Delivery and edits"
+    },
+    "_说明": "原文，不要改意思。",
+    "items": [
+      {
+        "zh": "付款后 24–48 小时内收到预览。可以免费修改 2 次，之后每次 £5（示意价）。主观上不喜欢，不退款。作品不符合描述或有缺陷时，我们会先修改；仍不行，可以降价或退款。你的法定权利不受影响。",
+        "en": "Preview within 24–48 hours of payment. Two free edits, then £5 each (indicative). No refund if you simply dislike it. If it doesn't match the description or is faulty, we'll amend it first; if that still isn't right, a price reduction or refund may apply. Your statutory rights are unaffected."
+      },
+      {
+        "zh": "圣诞单 12/18（周五）23:59 前下单，12/22 前交付。只做数字版。",
+        "en": "Christmas orders by 18 Dec, 23:59, delivered by 22 Dec. Digital only."
+      }
+    ]
+  },
+  "privacy": {
+    "zh": "照片在交付后 30 天内删除，照片里的人会被裁掉。",
+    "en": "Photos deleted within 30 days of delivery; any people in them are cropped out."
+  },
+  "faq": {
+    "heading": {
+      "zh": "常见问题",
+      "en": "Questions"
+    },
+    "items": [
+      {
+        "q": {
+          "zh": "我的照片会怎么处理？",
+          "en": "What happens to my photos?"
+        },
+        "a": {
+          "zh": "只用来制作你的作品。照片里的人会被裁掉，交付后 30 天内删除原图。照片不会放到网站上。",
+          "en": "They are used only to make your piece. Any people in them are cropped out, and the originals are deleted within 30 days of delivery. Photos are never put on the website."
+        }
+      },
+      {
+        "q": {
+          "zh": "做出来不像怎么办？",
+          "en": "What if it doesn't look like them?"
+        },
+        "a": {
+          "zh": "付款后 24–48 小时内收到预览。可以免费修改 2 次，之后每次 £5（示意价）。主观上不喜欢，不退款。作品不符合描述或有缺陷时，我们会先修改；仍不行，可以降价或退款。你的法定权利不受影响。",
+          "en": "Preview within 24–48 hours of payment. Two free edits, then £5 each (indicative). No refund if you simply dislike it. If it doesn't match the description or is faulty, we'll amend it first; if that still isn't right, a price reduction or refund may apply. Your statutory rights are unaffected."
+        }
+      },
+      {
+        "q": {
+          "zh": "能把人放进画里吗？",
+          "en": "Can you put a person in the painting?"
+        },
+        "a": {
+          "zh": "2027 年开放。现在只做宠物。",
+          "en": "From 2027. For now, pets only."
+        }
+      },
+      {
+        "q": {
+          "zh": "为什么不能选《星夜》？",
+          "en": "Why can't I choose The Starry Night?"
+        },
+        "a": {
+          "zh": "因为授权。我们只用馆方明确开放、可以用来制作商品的原画图片。",
+          "en": "Because of image licensing. We only use painting images that the museums have clearly opened for this kind of use."
+        }
+      },
+      {
+        "q": {
+          "zh": "圣诞前能收到吗？",
+          "en": "Will it arrive before Christmas?"
+        },
+        "a": {
+          "zh": "12/18（周五）23:59 前下单，12/22 前交付。也可以选择在圣诞节早上发到收礼人的邮箱。",
+          "en": "Order by 18 Dec, 23:59, and it will be delivered by 22 Dec. We can also send it to the recipient's email on Christmas morning."
+        }
+      }
+    ]
+  },
+  "disclaimer": {
+    "zh": "独立项目，与博物馆无合作关系。画作为公有领域，图片来自馆方开放资源。宠物部分为数字加工示意。",
+    "en": "An independent project, not affiliated with any museum. The paintings are in the public domain; images come from the museums' open-access programmes. The pet is digitally added, as an illustration."
+  }
+}

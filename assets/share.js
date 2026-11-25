@@ -179,4 +179,7 @@ export function setupShareCard(S) {
 export const shareBtnHTML = ({ link = true } = {}) => (link ? `<button class="btn share-link">↗ ${ui('分享', 'Share')}</button>` : '') + `<button class="btn share-btn">${ui('生成分享图', 'Save image')}</button>`;
 // 场景结尾的三个主按钮：下一个场景 → / 分享这一幅 / 随便走进一幅（样式见 style.css .end-main）
 export const endMainHTML = (S, next) => `<div class="end-main">${next && next.status === 'live' && next.path ? `<a class="btn primary" href="${ROOT + next.path}">${ui('下一个场景', 'Next scene')}<span class="btn-en"> Next scene</span> →</a>` : ''}<button class="btn share-link">${ui('分享这一幅', 'Share')}<span class="btn-en"> Share</span></button><a class="btn" href="${ROOT}artists/" data-random="${S.id}">${ui('随便走进一幅', 'Surprise me')}<span class="btn-en"> Surprise me</span></a></div>
-  <div class="subscribe-slot"></div>`;
+  <div class="subscribe-slot"></div>${ITP_SCENES.includes(S.id) ? itpLineHTML(S.id) : ''}`;
+// 订阅框下面的一行小字（不是按钮、不是卡片）：把宠物送进画里。只加在这几个场景（白名单），其他场景不显示
+export const ITP_SCENES = ['stacks-of-wheat', 'stacks-sunset-snow', 'paris-street-rainy-day'];
+const itpLineHTML = id => `<p class="itp-line"><a href="${ROOT}into-the-painting/" data-track="itp-scene-cta-${id}">${ui('把你的宠物送进这幅画 →', 'Put your pet in this painting →')}</a></p>`;
