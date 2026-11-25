@@ -55,8 +55,8 @@
     }
   },
   "hook": {
-    "zh": "",
-    "en": ""
+    "zh": "我们站在昏暗的房间里，透过门口看向另一个明亮的房间。",
+    "en": "We stand in a dark room, looking through a doorway into a bright one."
   },
   "enter": {
     "zh": "走进画里",

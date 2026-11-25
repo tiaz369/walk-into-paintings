@@ -58,8 +58,8 @@
     }
   },
   "hook": {
-    "zh": "",
-    "en": ""
+    "zh": "桥的两端被画框截断，看起来像飘在水面上。",
+    "en": "Cut off by the frame at both ends, the bridge seems to float above the water."
   },
   "enter": {
     "zh": "走进画里",

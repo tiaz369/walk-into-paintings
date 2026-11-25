@@ -58,8 +58,8 @@
     }
   },
   "hook": {
-    "zh": "",
-    "en": ""
+    "zh": "墙上的旋钮投下了两道影子，房间里也许还有第二个光源。",
+    "en": "The knob on the wall casts two shadows: there may be a second light in the room."
   },
   "enter": {
     "zh": "走进画里",
