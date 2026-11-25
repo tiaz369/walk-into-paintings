@@ -55,6 +55,10 @@
       "en": "Wikimedia Commons, public domain"
     }
   },
+  "hook": {
+    "zh": "",
+    "en": ""
+  },
   "enter": {
     "zh": "走近祭坛",
     "en": "Approach the altarpiece"

@@ -53,6 +53,10 @@
       "en": "National Gallery of Art Open Access, public domain"
     }
   },
+  "hook": {
+    "zh": "",
+    "en": ""
+  },
   "enter": {
     "zh": "走进画里",
     "en": "Step into the painting"

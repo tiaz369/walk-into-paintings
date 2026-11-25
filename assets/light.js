@@ -9,7 +9,7 @@
 // 移动鼠标、拖动或转动手机时，前面的层移动得多一点，看起来像微微转动视角。
 // 文字、卡片、故事都写在 scene.json 里（结构和 3D 场景一样，按钮和样式也共用）。
 // =====================================================================
-import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, shortHint, track, oneMinuteHTML, oneMinute, worldMap, ROOT, markSeen, mountSubscribe } from './site.js';
+import { bi, ui, escItalic, textOf, altAttr, removeStatic, sameUrl, lang, onLang, wirePrefs, langSwitchHTML, creditHTML, rightsHTML, hookHTML, imageSourceHTML, loadRegistry, sceneCard, seeInPersonHTML, cleanToggle, shortHint, track, oneMinuteHTML, oneMinute, worldMap, ROOT, markSeen, mountSubscribe } from './site.js';
 import { setupGuide } from './guide.js';
 import { setupShareCard, shareBtnHTML, endMainHTML } from './share.js';
 import { setupPersonal, saveBtnHTML } from './personal.js';
@@ -91,6 +91,7 @@ function buildDOM(S, R, meta) {
     <div id="introBottom">
       <button id="enter" class="btn primary">${bi(S.enter)}</button>
       ${oneMinuteHTML()}
+      ${hookHTML(S.hook)}
       <div id="introInfo" class="panel"><div class="lbl">${bi(labelLine, ' / ')}</div><div>${imgLine}</div></div>
     </div>
   </div>
@@ -200,7 +201,7 @@ function buildDOM(S, R, meta) {
       </div>
       ${readingItems.length ? `<section class="reading"><div class="section-title">${ui('延伸阅读与来源', 'Further reading and sources')}</div>
         <ul>${readingItems.map(it => `<li><a href="${it.url}" target="_blank" rel="noopener">${bi(it.title, ' / ')}</a> ↗</li>`).join('')}</ul></section>` : ''}
-      <div class="credit">${imgLine}<br>${creditHTML()}</div>
+      <div class="credit">${imgLine}<br>${creditHTML()}${rightsHTML()}</div>
     </section>
   </div>`);
 }

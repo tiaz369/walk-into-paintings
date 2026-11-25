@@ -56,6 +56,8 @@ body.lang-en .zh { display: none !important; }
 body:not(.lang-en) .en-ui { display: none !important; }
 body:not(.lang-both) .en-sub { display: none !important; }   /* 只在双语时出现的英文小字 */
 .credit-line { display: block; }
+.rights { font-size: 11px; line-height: 1.7; }   /* 版权声明：比署名小一点 */
+.rights.zh { margin-top: 6px; }
 /* 标题、卡片名：双语时英文换行显示，更小、更淡 */
 :is(h1, h3, .card .name, .series .name, .ways .name, .group h3) .sep { display: none; }
 body.lang-both h1 small.sub > .en { display: block; }   /* 系列页副标题：英文换行 */
@@ -270,6 +272,7 @@ body.scene canvas { display: block; touch-action: none; }
 #enter span.en { font-size: 12px; opacity: .8; }
 #introInfo { width: max-content; max-width: 100%; padding: 6px 12px; text-align: center; font-size: 11px; color: var(--muted); line-height: 1.7; }
 #introInfo .lbl { color: var(--ink); }
+#introHook { max-width: 34em; margin: 0; padding: 8px 14px; text-align: center; font-size: 14px; line-height: 1.6; color: var(--ink); }   /* 首屏的一句话（hook） */
 #contentNote { font-size: 11px; color: var(--muted); text-align: center; }
 body.lang-both #contentNote .zh + .en::before { content: " / "; }
 

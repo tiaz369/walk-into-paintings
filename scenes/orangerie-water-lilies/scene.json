@@ -53,6 +53,10 @@
       "en": "Wikimedia Commons (Google Art Project and others), public domain"
     }
   },
+  "hook": {
+    "zh": "",
+    "en": ""
+  },
   "enter": {
     "zh": "走进展厅",
     "en": "Step into the rooms"

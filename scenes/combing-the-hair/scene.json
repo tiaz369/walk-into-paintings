@@ -56,6 +56,10 @@
       "en": "Wikimedia Commons, public domain"
     }
   },
+  "hook": {
+    "zh": "",
+    "en": ""
+  },
   "enter": {
     "zh": "走进画里",
     "en": "Step into the painting"
