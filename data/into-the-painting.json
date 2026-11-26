@@ -88,6 +88,30 @@
         }
       },
       {
+        "scene": "grande-jatte",
+        "open": true,
+        "year": {
+          "zh": "1884–86年",
+          "en": "1884–86"
+        },
+        "license": {
+          "zh": "CC0",
+          "en": "CC0"
+        }
+      },
+      {
+        "scene": "two-sisters",
+        "open": true,
+        "year": {
+          "zh": "1881年",
+          "en": "1881"
+        },
+        "license": {
+          "zh": "CC0",
+          "en": "CC0"
+        }
+      },
+      {
         "scene": "milkmaid",
         "open": false,
         "year": {
