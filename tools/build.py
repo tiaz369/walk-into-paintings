@@ -287,6 +287,23 @@ PAGES.append(page('about/', T('关于', 'About'), t(ABOUT['intro'][0]) + ' ' + t
                   + '<h2>' + e(both(ABOUT['care']['heading'])) + '</h2>' + ''.join(para(p) for p in ABOUT['care']['items'])
                   + para(ABOUT['credit']) + ''.join(f'<p><a href="{l["url"] if l["url"].startswith(("http", "mailto:")) else "../" + l["url"]}">{e(both(l))}</a></p>' for l in ABOUT.get('links', []) if l.get('url')) + (para(ABOUT['analytics']) if ABOUT.get('analytics') else ''), site_script('../', 'about')))
 
+# “走进画里的你”预约页（不在导航和首页里；文字在 data/into-the-painting.json）
+ITP = json.load(open(os.path.join(ROOT, 'data/into-the-painting.json'), encoding='utf-8'))
+def itp_static():
+    V, C, PT = ITP['versions'], ITP['checkout'], ITP['paintings']
+    q = lambda o: {'zh': o['zh'].replace('{n}', str(V['quota'])), 'en': o['en'].replace('{n}', str(V['quota']))}
+    pics = ''.join(f'<li>{e(both(SCENES[x["scene"]]["title"]))} · {e(both(x["year"]))} · {e(both(MUSEUMS[SCENES[x["scene"]]["museum"]]["name"]))} · {e(both(x["license"]))}' + ('' if x['open'] else f' · {e(both(PT["soon"]))}') + '</li>' for x in PT['items'] if x['scene'] in SCENES)
+    return ('      <h1>' + e(both(ITP['title'])) + '</h1>\n      ' + para(ITP['subtitle'])
+            + '<h2>' + e(both(ITP['steps']['heading'])) + '</h2><ol>' + ''.join(f'<li>{e(both(x))}</li>' for x in ITP['steps']['items']) + '</ol>'
+            + '<h2>' + e(both(PT['heading'])) + f'</h2><ul>{pics}</ul>' + para({'zh': PT['who']['person']['zh'] + '：' + PT['who']['personSoon']['zh'], 'en': PT['who']['person']['en'] + ': ' + PT['who']['personSoon']['en']})
+            + '<h2>' + e(both(V['heading'])) + '</h2>' + ''.join(para({'zh': v['name']['zh'] + ' · ' + v['price'] + '：' + v['text']['zh'], 'en': v['name']['en'] + ' · ' + v['price'] + ': ' + v['text']['en']}) for v in V['items']) + para(V['includes']) + para(q(V['quotaLine']))
+            + '<h2>' + e(both(ITP['upload']['heading'])) + '</h2>' + ''.join(para(x) for x in ITP['upload']['items'])
+            + '<h2>' + e(both(C['heading'])) + '</h2>' + ''.join(para(x) for x in C['boxes'])
+            + '<h2>' + e(both(ITP['promise']['heading'])) + '</h2>' + ''.join(para(x) for x in ITP['promise']['items']) + para(ITP['privacy'])
+            + '<h2>' + e(both(ITP['faq']['heading'])) + '</h2>' + ''.join(f'<h3>{e(both(f["q"]))}</h3>' + para(f['a']) for f in ITP['faq']['items'])
+            + para(ITP['disclaimer']))
+PAGES.append(page('into-the-painting/', T(ITP['title']['zh'], ITP['title']['en']), both(ITP['subtitle'], ' '), itp_static(), site_script('../', 'into-the-painting')))
+
 # ---------- 生平（画家页）和时间线 ----------
 def year_of(s):
     m = __import__('re').search(r'\d{4}', t(s['year'], 'en'))

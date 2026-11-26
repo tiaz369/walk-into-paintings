@@ -743,6 +743,63 @@ const PAGES = {
       <section class="section wrap"><h2>${ui('现在开放', 'Now open')}</h2>${cardsHTML(R, R.live)}</section>`;
   },
 
+  // ---------- “走进画里的你”预约 / 下单页（/into-the-painting/）：文字全在 data/into-the-painting.json ----------
+  // 不在导航和首页里。不上传、不保存任何照片。付款链接是 Stripe Payment Link：以 #STRIPE_ 开头（占位）时按钮显示“即将开放”、不能点；
+  // Tia 用个人 Stripe 账户（sole trader）开通 Payment Link 后，把 data/into-the-painting.json 里的 payLink 换成真实网址，再合并收费功能。
+  async 'into-the-painting'(R, main) {
+    const D = await getJSON('into-the-painting.json');
+    const h = o => bi(o, ' / '), H = o => ui(o.zh, o.en);   // h：正文里的双语（中文 / English，一样时只写一次）；H：标题和按钮（和全站一样）
+    const p = (o, cls = '') => `<p class="zh ${cls}">${esc(o.zh)}</p><p class="en ${cls}">${esc(o.en)}</p>`;
+    const S = D.sample, V = D.versions, C = D.checkout, PT = D.paintings;
+    const placeholder = l => !l || l.startsWith('#');
+    const pics = PT.items.map(it => {
+      const s = R.sceneById[it.scene]; if (!s) return '';
+      const m = R.museumById[s.museum], live = it.open && s.status === 'live';
+      return `<div class="itp-pic${live ? '' : ' is-soon'}">
+        ${live ? `<a href="${sceneUrl(s)}" class="itp-pic-img">` : '<span class="itp-pic-img">'}<img src="${ROOT + s.cover}" ${altAttr(s.title)} loading="lazy" />${live ? '</a>' : '</span>'}
+        <p class="itp-pic-name">${bi(s.title)}${live ? '' : ` <small class="itp-soon">${h(PT.soon)}</small>`}</p>
+        <p class="itp-pic-meta">${h(it.year)} · ${h(PT.museumLabel)}：${m ? bi(m.name) : ''} · ${h(PT.licenseLabel)}：${h(it.license)}</p></div>`;
+    }).join('');
+    const vers = V.items.map(v => `<div class="itp-ver">
+        <p class="itp-ver-name">${H(v.name)} <span class="itp-price">${esc(v.price)}</span></p>${p(v.text)}</div>`).join('');
+    const payBtns = V.items.map(v => placeholder(v.payLink)
+      ? `<button class="btn" disabled aria-disabled="true">${H(v.name)} · ${esc(v.price)} · ${H(C.soon)}</button>`
+      : `<a class="btn primary itp-pay is-locked" role="button" aria-disabled="true" data-href="${esc(v.payLink)}" data-ver="${v.id}">${H(C.pay)} · ${H(v.name)} · ${esc(v.price)} →</a>`).join('');
+    const quota = o => ({ zh: o.zh.replace('{n}', V.quota), en: o.en.replace('{n}', V.quota) });
+    main.innerHTML = `<div class="wrap itp">
+      <section class="itp-hero">
+        <h1>${H(D.title)}</h1>${p(D.subtitle, 'itp-sub')}
+        ${S.image ? `<figure class="itp-sample"><img src="${ROOT + S.image}" ${altAttr(S.alt)} /><figcaption>${h(S.caption)}</figcaption></figure>`
+          : `<div class="itp-sample itp-sample-empty">${h(S.placeholder)}</div>`}
+      </section>
+      <section><h2>${H(D.steps.heading)}</h2><ol class="itp-steps">${D.steps.items.map(x => `<li>${h(x)}</li>`).join('')}</ol></section>
+      <section><h2>${H(PT.heading)}</h2><div class="itp-pics">${pics}</div>
+        <h3>${H(PT.who.heading)}</h3>
+        <div class="seg itp-who" role="group"><button class="on" aria-pressed="true">${H(PT.who.pet)}</button><button disabled aria-disabled="true" title="${esc(PT.who.personSoon.en)}">${H(PT.who.person)} · ${H(PT.who.personSoon)}</button></div></section>
+      <section><h2>${H(V.heading)}</h2><div class="itp-vers">${vers}</div>${p(V.includes)}${p(quota(V.quotaLine), 'itp-quota')}</section>
+      <section><h2>${H(D.upload.heading)}</h2><ul class="itp-list">${D.upload.items.map(x => `<li>${h(x)}</li>`).join('')}</ul></section>
+      <section id="itp-checkout"><h2>${H(C.heading)}</h2>
+        ${C.boxes.map((b, i) => `<label class="itp-check"><input type="checkbox" id="itpBox${i}" /> <span>${h(b)}</span></label>`).join('')}
+        <p class="itp-tick" id="itpTick">${h(C.tickFirst)}</p>
+        <div class="itp-pays">${payBtns}</div></section>
+      <section><h2>${H(D.promise.heading)}</h2>${D.promise.items.map(x => p(x)).join('')}${p(D.privacy)}</section>
+      <section><h2>${H(D.faq.heading)}</h2>${D.faq.items.map(f => `<details class="itp-faq"><summary>${H(f.q)}</summary>${p(f.a)}</details>`).join('')}</section>
+      <section class="itp-disclaimer">${p(D.disclaimer)}</section>
+    </div>`;
+    // 两个勾选框都勾上，付款按钮才能点；没勾全时点按钮会提示先勾选
+    const boxes = [...main.querySelectorAll('.itp-check input')], pays = [...main.querySelectorAll('.itp-pay')];
+    const sync = () => {
+      const ok = boxes.every(b => b.checked);
+      pays.forEach(a => { a.classList.toggle('is-locked', !ok); a.setAttribute('aria-disabled', String(!ok)); if (ok) a.href = a.dataset.href + (a.dataset.href.includes('?') ? '&' : '?') + 'utm_source=itp'; else a.removeAttribute('href'); });
+      main.querySelector('#itpTick').classList.toggle('ok', ok);
+    };
+    boxes.forEach(b => b.addEventListener('change', sync)); sync();
+    pays.forEach(a => a.addEventListener('click', e => {
+      if (a.classList.contains('is-locked')) { e.preventDefault(); main.querySelector('#itpTick').classList.add('flash'); return; }
+      track('itp-pay-click'); track('itp-pay-click-' + a.dataset.ver);
+    }));
+  },
+
   about(R, main) {
     const A = ABOUT, line = (o, cls = '') => `<p class="zh ${cls}">${esc(o.zh)}</p><p class="en ${cls}">${esc(o.en)}</p>`,
       head = o => `<span class="zh">${esc(o.zh)}</span><span class="en">${esc(o.en)}</span>`;

@@ -1,0 +1,520 @@
+{
+  "_说明": "干草堆（日落，雪景）（户外，完整版）。以《干草堆（夏末）》为模板。事实来自芝加哥艺术博物馆作品页和 API（81545，2026-11-25 读取），以及夏末场景里已核对的系列资料；文字由 Claude 按这些来源整理，等 Tia 审。画家视角按原画估算：眼睛约1.6米，视平线约在画面上方62%（远处的山比眼睛高）；前面的大草堆离画家约17米、高约4.5米，后面的小草堆约24米、高约3.9米（原画里小草堆的底被挡住，位置按画面估）。",
+  "id": "stacks-sunset-snow",
+  "variant": "outdoor",
+  "lighting": {
+    "_说明": "光线设定（不在页面上显示）",
+    "type": "winter-sunset",
+    "label": {
+      "zh": "雪后的冬日日落",
+      "en": "A winter sunset after snow"
+    }
+  },
+  "links": {
+    "_说明": "与其他场景的衔接（一览）。和《干草堆（夏末）》互相链接（结尾；独家发现里也有“走进夏末那一幅”）；和《鲁昂大教堂》《圣拉扎尔火车站》（莫奈的系列画）。",
+    "doors": [],
+    "cards": [],
+    "end": [
+      "stacks-of-wheat",
+      "rouen-cathedral",
+      "gare-saint-lazare"
+    ]
+  },
+  "painting": {
+    "image": "images/stacks-sunset-snow.jpg",
+    "width": 1686,
+    "height": 1089,
+    "alt": {
+      "zh": "莫奈《干草堆（日落，雪景）》1890–91，芝加哥艺术博物馆",
+      "en": "Claude Monet, Stacks of Wheat (Sunset, Snow Effect), 1890–91, Art Institute of Chicago"
+    }
+  },
+  "projection": true,
+  "label": {
+    "_说明": "展签：画名、画家、年份、收藏地",
+    "title": {
+      "zh": "干草堆（日落，雪景）",
+      "en": "Stacks of Wheat (Sunset, Snow Effect)"
+    },
+    "artist": {
+      "zh": "莫奈",
+      "en": "Claude Monet"
+    },
+    "date": {
+      "zh": "1890–91年",
+      "en": "1890–91"
+    },
+    "museum": {
+      "zh": "芝加哥艺术博物馆",
+      "en": "Art Institute of Chicago"
+    },
+    "source": {
+      "zh": "芝加哥艺术博物馆开放资源（CC0），公有领域",
+      "en": "Art Institute of Chicago, CC0 public domain"
+    }
+  },
+  "hook": {
+    "zh": "草堆的尖顶冲破了地平线，伸进日落的天空。",
+    "en": "The tip of the stack breaks the horizon and pushes into the sunset sky."
+  },
+  "enter": {
+    "zh": "走进画里",
+    "en": "Step into the painting"
+  },
+  "hint": {
+    "zh": "电脑：WASD 走动，拖动鼠标转视角<br>手机：左下摇杆走动，拖动屏幕转视角<br>点一下草堆、雪地、远山和天空看介绍 · 点“夏末和雪景”对比同一个系列的两幅 · 地上发光的圆点 = 莫奈的视角",
+    "en": "Desktop: WASD to walk, drag to look around<br>Phone: joystick to walk, drag to look around<br>Tap the stacks, the snow, the hills and the sky to learn more · Tap “Summer and snow” to compare two paintings from the series · The glowing circle = Monet's viewpoint"
+  },
+  "viewpoint": {
+    "_说明": "画家视角：按原画估算（两个草堆和远山对齐原画）。",
+    "x": 0,
+    "z": 0,
+    "eye": 1.6,
+    "yaw": 0,
+    "pitch": 0.0665,
+    "fov": 30,
+    "text": {
+      "zh": "从这里看，就是画里的样子。",
+      "en": "From here, you see what the painting sees."
+    }
+  },
+  "ambience": "snow-field",
+  "colors": {
+    "line": "#2a2a34",
+    "field": "#d8c8d8",
+    "ground": "#c8bcd0",
+    "sky": "#e8b890",
+    "stack": "#8a6a6a",
+    "trees": "#7a7a9a",
+    "house": "#c8b8c0",
+    "hills": "#8a8ab0",
+    "leaves": "#7a7a9a"
+  },
+  "room": {
+    "_说明": "户外：ground 是雪地，bounds 是可以走动的范围（米，[x最小, x最大, z最小, z最大]）。",
+    "kind": "outdoor",
+    "ground": [
+      -80,
+      80,
+      -160,
+      30
+    ],
+    "bounds": [
+      -7,
+      7,
+      -12,
+      4
+    ],
+    "groundCard": "row",
+    "skyCard": "palmer",
+    "skyRadius": 150,
+    "walkSpeed": 0.8
+  },
+  "objects": [
+    {
+      "type": "surface",
+      "card": "easels",
+      "_": "雪后的田野（原画投影上去）",
+      "pts": [
+        [
+          -60,
+          0.01,
+          10
+        ],
+        [
+          -60,
+          0.01,
+          -150
+        ],
+        [
+          60,
+          0.01,
+          -150
+        ],
+        [
+          60,
+          0.01,
+          10
+        ]
+      ],
+      "color": "field"
+    },
+    {
+      "type": "tree",
+      "shape": "bush",
+      "card": "survival",
+      "_": "后面较小的草堆",
+      "x": -5.8,
+      "z": -24.0,
+      "h": 3.9,
+      "r": 1.5,
+      "color": "stack"
+    },
+    {
+      "type": "tree",
+      "shape": "bush",
+      "card": "tall",
+      "_": "前面的大草堆",
+      "x": -1.0,
+      "z": -17.2,
+      "h": 4.5,
+      "r": 2.65,
+      "color": "stack"
+    },
+    {
+      "type": "boxes",
+      "card": "horizon",
+      "x": 0,
+      "z": -120,
+      "_": "远处的山丘和树林（比眼睛高，对齐原画里的一条远山）",
+      "boxes": [
+        [
+          220,
+          24,
+          2,
+          "hills",
+          0,
+          12,
+          -6
+        ],
+        [
+          160,
+          20,
+          2,
+          "trees",
+          0,
+          10,
+          0
+        ]
+      ]
+    }
+  ],
+  "cards": {
+    "tall": {
+      "title": {
+        "zh": "比人高得多",
+        "en": "Far taller than a person"
+      },
+      "text": {
+        "zh": "这些草堆高约4.5到6米，就在莫奈吉维尼农舍的外面。",
+        "en": "The stacks rose 15 to 20 feet (about 4.5 to 6 metres), just outside Monet's farmhouse at Giverny."
+      }
+    },
+    "horizon": {
+      "title": {
+        "zh": "冲破地平线",
+        "en": "Breaking the horizon"
+      },
+      "text": {
+        "zh": "这一幅里，草堆的尖顶冲破了地平线，伸进天空。冬天的大多数几幅，草堆却像被山丘和田野一层层裹住。",
+        "en": "In this view the conical tops break the horizon and push into the sky. In most of the winter views, the stacks seem wrapped by bands of hill and field."
+      }
+    },
+    "easels": {
+      "title": {
+        "zh": "几个画架同时画",
+        "en": "Several easels at once"
+      },
+      "text": {
+        "zh": "1890到1891年，他在田野里同时用几个画架作画，再回到画室调整整个系列的色彩。",
+        "en": "Through 1890 and 1891 he painted in the field at several easels at once, then refined the harmonies of the series in his studio."
+      }
+    },
+    "survival": {
+      "title": {
+        "zh": "食物和生存",
+        "en": "Sustenance and survival"
+      },
+      "text": {
+        "zh": "芝加哥艺术博物馆说，对莫奈来说，草堆象征着食物和生存。",
+        "en": "The Art Institute of Chicago says that for Monet, the stack was a symbol of sustenance and survival."
+      }
+    },
+    "row": {
+      "title": {
+        "zh": "一个小房间，15幅",
+        "en": "Fifteen in one small room"
+      },
+      "text": {
+        "zh": "1891年5月，莫奈把15幅草堆并排挂在巴黎杜兰-鲁埃画廊的一个小房间里。展览大获成功。",
+        "en": "In May 1891, Monet hung fifteen of the canvases side by side in one small room at the Galerie Durand-Ruel in Paris. The show was a great success."
+      }
+    },
+    "palmer": {
+      "title": {
+        "zh": "芝加哥的草堆",
+        "en": "Chicago's stacks"
+      },
+      "text": {
+        "zh": "这一幅来自波特·帕尔默的收藏。芝加哥艺术博物馆收藏的莫奈草堆，是世界上最多的。",
+        "en": "This painting comes from the Potter Palmer Collection. The Art Institute of Chicago has the largest group of Monet's stacks in the world."
+      }
+    }
+  },
+  "ending": {
+    "unlockAfter": 3,
+    "acts": [
+      {
+        "image": "images/stacks-sunset-snow.jpg",
+        "alt": {
+          "zh": "莫奈《干草堆（日落，雪景）》1890–91，芝加哥艺术博物馆",
+          "en": "Claude Monet, Stacks of Wheat (Sunset, Snow Effect), 1890–91, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1890–91年 · 芝加哥艺术博物馆",
+          "en": "1890–91 · Art Institute of Chicago"
+        },
+        "kicker": "ACT I",
+        "title": {
+          "zh": "第一幕 · 农舍外的田野",
+          "en": "The field outside his house"
+        },
+        "text": {
+          "zh": "1890年夏末，莫奈开始画吉维尼农舍外田野里的草堆。草堆高约4.5到6米，他一画就是一个系列。",
+          "en": "At the end of summer 1890, Monet began painting the stacks in the field outside his farmhouse at Giverny. They stood 15 to 20 feet tall, and he painted them as a series."
+        }
+      },
+      {
+        "kicker": "ACT II",
+        "title": {
+          "zh": "第二幕 · 雪后的日落",
+          "en": "Sunset after snow"
+        },
+        "text": {
+          "zh": "冬天，田野盖上了雪。他常常在田野里同时用几个画架作画，再回到画室，调整整个系列的色彩。",
+          "en": "In winter the field was covered with snow. He often worked at several easels at once in the field, then returned to the studio to refine the colours of the whole series."
+        }
+      },
+      {
+        "image": "images/stacks-sunset-snow.jpg",
+        "alt": {
+          "zh": "莫奈《干草堆（日落，雪景）》1890–91，芝加哥艺术博物馆",
+          "en": "Claude Monet, Stacks of Wheat (Sunset, Snow Effect), 1890–91, Art Institute of Chicago"
+        },
+        "caption": {
+          "zh": "1890–91年 · 芝加哥艺术博物馆",
+          "en": "1890–91 · Art Institute of Chicago"
+        },
+        "kicker": "ACT III",
+        "title": {
+          "zh": "第三幕 · 排成一排",
+          "en": "Side by side"
+        },
+        "text": {
+          "zh": "1891年5月，15幅草堆在巴黎的一个小房间里并排展出，这次展览大获成功。今天，芝加哥艺术博物馆收藏的莫奈草堆是世界上最多的。",
+          "en": "In May 1891, fifteen of the stacks were shown side by side in a small room in Paris, and the exhibition was a great success. Today the Art Institute of Chicago has the largest group of Monet's stacks in the world."
+        }
+      }
+    ],
+    "final": {
+      "zh": "同一个主题，冬天的光。",
+      "en": "The same subject, in winter light."
+    },
+    "versions": [],
+    "museums": [
+      "art-institute-chicago"
+    ],
+    "exit": [
+      {
+        "scene": "stacks-of-wheat",
+        "href": "../stacks-of-wheat/",
+        "label": {
+          "zh": "同一个系列：夏末的田野",
+          "en": "The same series: end of summer"
+        }
+      },
+      {
+        "scene": "rouen-cathedral",
+        "href": "../rouen-cathedral/",
+        "label": {
+          "zh": "莫奈的另一个系列",
+          "en": "Another of Monet's series"
+        }
+      },
+      {
+        "scene": "gare-saint-lazare",
+        "href": "../gare-saint-lazare/",
+        "label": {
+          "zh": "系列画，从车站开始",
+          "en": "Series painting began at the station"
+        }
+      }
+    ]
+  },
+  "record": {
+    "_说明": "作品档案表：按芝加哥艺术博物馆作品页（2026-11-25 读取）。空着的行不显示。",
+    "artist": {
+      "zh": "克劳德·莫奈（1840–1926）",
+      "en": "Claude Monet (1840–1926)"
+    },
+    "title": {
+      "zh": "干草堆（日落，雪景）",
+      "en": "Stacks of Wheat (Sunset, Snow Effect)"
+    },
+    "date": {
+      "zh": "1890–91年",
+      "en": "1890–91"
+    },
+    "medium": {
+      "zh": "布面油画",
+      "en": "Oil on canvas"
+    },
+    "dimensions": {
+      "zh": "65.3 × 100.4 cm",
+      "en": "65.3 × 100.4 cm"
+    },
+    "collection": {
+      "zh": "芝加哥艺术博物馆",
+      "en": "Art Institute of Chicago"
+    },
+    "creditLine": {
+      "zh": "波特·帕尔默收藏（1922.431）",
+      "en": "Potter Palmer Collection (1922.431)"
+    },
+    "url": "https://www.artic.edu/artworks/81545/stacks-of-wheat-sunset-snow-effect"
+  },
+  "zoom": {
+    "image": "images/stacks-sunset-snow.jpg"
+  },
+  "reading": {
+    "items": [
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：干草堆（日落，雪景）",
+          "en": "Art Institute of Chicago: *Stacks of Wheat (Sunset, Snow Effect)*"
+        },
+        "url": "https://www.artic.edu/artworks/81545/stacks-of-wheat-sunset-snow-effect"
+      },
+      {
+        "title": {
+          "zh": "芝加哥艺术博物馆：莫奈的油画和素描，第27–33号：干草堆（1890/91）",
+          "en": "Art Institute of Chicago: Monet Paintings and Drawings, Cats. 27–33, *Stacks of Wheat*, 1890/91"
+        },
+        "url": "https://www.artic.edu/digital-publications/48/monet-paintings-and-drawings-at-the-art-institute-of-chicago-2/398/cats-27-33-stacks-of-wheat-189091"
+      }
+    ]
+  },
+  "audioGuide": {
+    "_说明": "语音导览：录音放进 audio/（guide-zh.mp3、guide-en.mp3）。没有录音时按钮不显示。transcript 先用三幕原文。",
+    "zh": "",
+    "en": "",
+    "transcript": [
+      {
+        "title": {
+          "zh": "第一幕 · 农舍外的田野",
+          "en": "The field outside his house"
+        },
+        "text": {
+          "zh": "1890年夏末，莫奈开始画吉维尼农舍外田野里的草堆。草堆高约4.5到6米，他一画就是一个系列。",
+          "en": "At the end of summer 1890, Monet began painting the stacks in the field outside his farmhouse at Giverny. They stood 15 to 20 feet tall, and he painted them as a series."
+        }
+      },
+      {
+        "title": {
+          "zh": "第二幕 · 雪后的日落",
+          "en": "Sunset after snow"
+        },
+        "text": {
+          "zh": "冬天，田野盖上了雪。他常常在田野里同时用几个画架作画，再回到画室，调整整个系列的色彩。",
+          "en": "In winter the field was covered with snow. He often worked at several easels at once in the field, then returned to the studio to refine the colours of the whole series."
+        }
+      },
+      {
+        "title": {
+          "zh": "第三幕 · 排成一排",
+          "en": "Side by side"
+        },
+        "text": {
+          "zh": "1891年5月，15幅草堆在巴黎的一个小房间里并排展出，这次展览大获成功。今天，芝加哥艺术博物馆收藏的莫奈草堆是世界上最多的。",
+          "en": "In May 1891, fifteen of the stacks were shown side by side in a small room in Paris, and the exhibition was a great success. Today the Art Institute of Chicago has the largest group of Monet's stacks in the world."
+        }
+      }
+    ]
+  },
+  "exclusive": {
+    "_说明": "独家发现“夏末和雪景”：左右对比滑块，左边是这一幅（雪后的日落），右边是同一个系列的《干草堆（夏末）》，下面有按钮走进夏末那一幅。两幅都是芝加哥艺术博物馆的原画（CC0），不是示意效果，不加“这是示意”。",
+    "type": "compare",
+    "label": {
+      "zh": "夏末和雪景",
+      "en": "Summer and snow"
+    },
+    "left": {
+      "image": "images/stacks-sunset-snow.jpg",
+      "caption": {
+        "zh": "干草堆（日落，雪景），1890–91年 · 芝加哥艺术博物馆",
+        "en": "*Stacks of Wheat (Sunset, Snow Effect)*, 1890–91 · Art Institute of Chicago"
+      }
+    },
+    "right": {
+      "image": "images/stacks-end-of-summer.jpg",
+      "caption": {
+        "zh": "干草堆（夏末），1890/91年 · 芝加哥艺术博物馆",
+        "en": "*Stacks of Wheat (End of Summer)*, 1890/91 · Art Institute of Chicago"
+      },
+      "link": {
+        "scene": "stacks-of-wheat",
+        "href": "../stacks-of-wheat/",
+        "label": {
+          "zh": "走进夏末那一幅",
+          "en": "Step into the summer one"
+        }
+      }
+    },
+    "note": {
+      "zh": "同一个系列里的两幅：一幅在夏末，一幅在雪后的日落。两幅都是莫奈的原画。",
+      "en": "Two paintings from the same series: one at the end of summer, one at sunset after snow. Both are original paintings by Monet."
+    }
+  },
+  "softEdge": true,
+  "sources": [
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：干草堆（日落，雪景）",
+        "en": "Art Institute of Chicago: *Stacks of Wheat (Sunset, Snow Effect)*"
+      },
+      "url": "https://www.artic.edu/artworks/81545/stacks-of-wheat-sunset-snow-effect"
+    },
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：莫奈的油画和素描，第27–33号：干草堆（1890/91）",
+        "en": "Art Institute of Chicago: Monet Paintings and Drawings, Cats. 27–33, *Stacks of Wheat*, 1890/91"
+      },
+      "url": "https://www.artic.edu/digital-publications/48/monet-paintings-and-drawings-at-the-art-institute-of-chicago-2/398/cats-27-33-stacks-of-wheat-189091"
+    },
+    {
+      "title": {
+        "zh": "芝加哥艺术博物馆：干草堆（夏末）",
+        "en": "Art Institute of Chicago: *Stacks of Wheat (End of Summer)*"
+      },
+      "url": "https://www.artic.edu/artworks/64818/stacks-of-wheat-end-of-summer"
+    }
+  ],
+  "imageSource": {
+    "_说明": "图片来源：两张都是芝加哥艺术博物馆开放资源（CC0），从《干草堆（夏末）》场景复制过来（Tia 2026-10-27 上传），没有另外下载。",
+    "text": {
+      "zh": "芝加哥艺术博物馆开放资源（CC0），公有领域",
+      "en": "Art Institute of Chicago, CC0 public domain"
+    },
+    "url": "https://www.artic.edu/artworks/81545/stacks-of-wheat-sunset-snow-effect",
+    "license": "CC0",
+    "files": [
+      {
+        "file": "stacks-sunset-snow.jpg",
+        "from": "芝加哥艺术博物馆开放资源（从 scenes/stacks-of-wheat/images/ 复制；原为 Tia 2026-10-27 上传的 IMG_0534.jpeg）",
+        "url": "https://www.artic.edu/artworks/81545/stacks-of-wheat-sunset-snow-effect",
+        "license": "CC0",
+        "status": "符合",
+        "verified": "2026-11-25"
+      },
+      {
+        "file": "stacks-end-of-summer.jpg",
+        "from": "芝加哥艺术博物馆开放资源（从 scenes/stacks-of-wheat/images/ 复制；原为 Tia 2026-10-27 上传的 IMG_0537.jpeg）",
+        "url": "https://www.artic.edu/artworks/64818/stacks-of-wheat-end-of-summer",
+        "license": "CC0",
+        "status": "符合",
+        "verified": "2026-11-25"
+      }
+    ]
+  },
+  "lastVerified": "2026-11-25"
+}

@@ -11,10 +11,11 @@
     }
   },
   "links": {
-    "_说明": "与其他场景的衔接（一览）。和《鲁昂大教堂》互相链接（“莫奈的另一个系列”）；和《圣拉扎尔火车站》互相链接（“系列画，从车站开始”）。",
+    "_说明": "与其他场景的衔接（一览）。和《鲁昂大教堂》互相链接（“莫奈的另一个系列”）；和《圣拉扎尔火车站》互相链接（“系列画，从车站开始”）。 和《干草堆（日落，雪景）》互相链接（结尾）。",
     "doors": [],
     "cards": [],
     "end": [
+      "stacks-sunset-snow",
       "rouen-cathedral",
       "gare-saint-lazare"
     ]
@@ -573,6 +574,14 @@
       "art-institute-chicago"
     ],
     "exit": [
+      {
+        "scene": "stacks-sunset-snow",
+        "href": "../stacks-sunset-snow/",
+        "label": {
+          "zh": "同一个系列：雪后的日落",
+          "en": "The same series: sunset after snow"
+        }
+      },
       {
         "scene": "rouen-cathedral",
         "href": "../rouen-cathedral/",

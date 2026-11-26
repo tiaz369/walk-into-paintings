@@ -856,6 +856,8 @@ body.lang-both .pass-group h3 > .en { display: inline; font-size: .7em; margin-l
 .save-btn.on { color: #b3433a; }
 .stamp-note { margin: 6px 0 0; font-size: 13px; text-align: center; opacity: 0; transition: opacity 1s; }
 .stamp-note.show { opacity: 1; }
+.itp-line { margin: 18px 0 0; text-align: center; font-size: 13px; }   /* 场景结尾订阅框下面的一行小字链接（把宠物送进画里，只在白名单场景） */
+.itp-line a { color: var(--muted); text-decoration: underline; text-underline-offset: 3px; }
 .stamp-note a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent); }   /* 文字用正文颜色：有的系列主色很浅（阿尔勒的黄），直接做文字颜色对比度不够（X1） */
 
 /* 独家发现“黑白”（grayscale）：3D 画面、原画叠加和对照原画都变成黑白 */
@@ -1175,3 +1177,39 @@ body.lang-both .btn-en { display: inline; color: inherit; opacity: .7; font-size
 /* ---------- 分享：“链接已复制”小提示 ---------- */
 .share-toast { position: fixed; left: 50%; bottom: 88px; transform: translateX(-50%); z-index: 40; padding: 10px 18px; border-radius: 999px; background: var(--ink); color: var(--paper); font-size: 14px; box-shadow: 0 4px 16px rgba(0,0,0,.2); transition: opacity .5s; }
 .share-toast.out { opacity: 0; }
+
+/* ---------- “走进画里的你”预约页（/into-the-painting/） ---------- */
+.itp { max-width: 760px; padding-top: 24px; padding-bottom: 48px; }
+.itp section { margin: 40px 0; }
+.itp h1 { margin-bottom: 8px; }
+.itp .itp-sub { color: var(--muted); font-size: 17px; }
+.itp-sample { margin: 24px 0 0; }
+.itp-sample img { width: 100%; height: auto; border-radius: 4px; display: block; }
+.itp-sample figcaption { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.itp-sample-empty { aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--line); border-radius: 4px; color: var(--muted); background: var(--paper-2); }
+.itp-steps { padding-left: 1.4em; line-height: 1.9; }
+.itp-pics { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; align-items: start; }
+.itp-pic-img { display: block; }
+.itp-pic img { width: 100%; height: auto; border-radius: 4px; display: block; }   /* 整幅原画，不裁切 */
+.itp-pic.is-soon img { filter: grayscale(1); opacity: .5; }
+.itp-pic-name { margin: 8px 0 2px; }
+.itp-pic-meta { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.6; }
+.itp-soon { color: var(--muted); font-size: 12px; }
+.itp-who { margin-top: 8px; }
+.itp-who button[disabled] { color: var(--muted); cursor: not-allowed; }
+.itp-vers { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-bottom: 16px; }
+.itp-ver { border: 1px solid var(--line); border-radius: 6px; padding: 16px; }
+.itp-ver-name { font-size: 18px; margin: 0 0 6px; }
+.itp-price { float: right; font-weight: 500; }
+.itp-quota { font-weight: 500; }
+.itp-list { padding-left: 1.2em; line-height: 1.9; }
+.itp-check { display: flex; gap: 10px; align-items: flex-start; margin: 12px 0; line-height: 1.6; cursor: pointer; }
+.itp-check input { width: 20px; height: 20px; margin-top: 3px; flex: none; }
+.itp-tick { font-size: 13px; color: var(--muted); }
+.itp-tick.ok { visibility: hidden; }
+.itp-tick.flash { color: var(--ink); font-weight: 500; }
+.itp-pays { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.itp-pay.is-locked { opacity: .45; cursor: not-allowed; }
+.itp-faq { border-top: 1px solid var(--line); padding: 12px 0; }
+.itp-faq summary { cursor: pointer; }
+.itp-disclaimer { font-size: 12px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
