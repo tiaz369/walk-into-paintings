@@ -356,12 +356,12 @@
     "en": "An independent project, not affiliated with any museum. The paintings are in the public domain; images come from the museums' open-access programmes. The pet is digitally added, as an illustration."
   },
   "seller": {
-    "_说明": "卖家信息（Tia 2026-11-26）：NexArt Ltd，用公司的 Stripe 账户收款。companyNo（公司编号）和office（注册地址）填好后，页面上会自动显示完整的一行；空着时只显示前半句。",
+    "_说明": "卖家信息（Tia 2026-11-26）：NexArt Ltd，用公司的 Stripe 账户收款。companyNo（公司编号）和office（注册地址）填好后，页面上会自动显示完整的一行；空着时只显示前半句。 2026-11-26 按 Companies House 填入：NEXART LIMITED，编号 14951786。",
     "name": "NexArt Ltd",
-    "companyNo": "",
+    "companyNo": "14951786",
     "office": {
-      "zh": "",
-      "en": ""
+      "zh": "167-169 Great Portland Street, 5th Floor, London, England, W1W 5PF",
+      "en": "167-169 Great Portland Street, 5th Floor, London, England, W1W 5PF"
     },
     "line": {
       "zh": "订单由 {name} 提供 · 英格兰及威尔士注册公司",
