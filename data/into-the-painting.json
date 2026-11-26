@@ -112,6 +112,18 @@
         }
       },
       {
+        "scene": "woman-parasol",
+        "open": true,
+        "year": {
+          "zh": "1875年",
+          "en": "1875"
+        },
+        "license": {
+          "zh": "公有领域（馆方开放资源）",
+          "en": "Public domain (museum open access)"
+        }
+      },
+      {
         "scene": "milkmaid",
         "open": false,
         "year": {
@@ -121,18 +133,6 @@
         "license": {
           "zh": "公有领域（Wikimedia Commons PD-Art）",
           "en": "Public domain (Wikimedia Commons PD-Art)"
-        }
-      },
-      {
-        "scene": "woman-parasol",
-        "open": false,
-        "year": {
-          "zh": "1875年",
-          "en": "1875"
-        },
-        "license": {
-          "zh": "公有领域（馆方开放资源）",
-          "en": "Public domain (museum open access)"
         }
       }
     ],
