@@ -4,3 +4,7 @@ __pycache__/
 
 # 验收检查的截图和报告（python3 tools/verify_artwork.py <id> --browser）
 verify-reports/
+
+# 本地“走进去”视频工具的输入和输出（顾客的照片和成品，不能进仓库）
+tools/render-walkin/input/
+tools/render-walkin/output/
