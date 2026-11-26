@@ -11,6 +11,7 @@
 #   python3 tools/render-walkin/render_walkin.py 成品.jpg --grid                      先看格子，找宠物在哪
 #   python3 tools/render-walkin/render_walkin.py 成品.jpg --focus 0.43,0.62           做视频
 #   python3 tools/render-walkin/render_walkin.py 成品.jpg --focus 0.43,0.62 --wallpaper   视频 + 壁纸
+#   python3 tools/render-walkin/render_walkin.py 成品.jpg --focus 0.43,0.62 --wallpaper-only   只做壁纸
 # 可选：--zoom 3（推得多近，默认 3 = 最后画面宽度是原画的三分之一）、--seconds 10、--out 文件名
 #
 # 需要：Python 3 + Pillow，和 ffmpeg。没有新增仓库依赖。
@@ -129,6 +130,7 @@ def main():
     ap.add_argument('--fps', type=int, default=30)
     ap.add_argument('--out', help='视频文件名（默认放在 output/ 里）')
     ap.add_argument('--wallpaper', action='store_true', help='同时做手机壁纸')
+    ap.add_argument('--wallpaper-only', action='store_true', help='只做手机壁纸，不做视频')
     ap.add_argument('--grid', action='store_true', help='只做定位图（帮你找宠物的坐标）')
     a = ap.parse_args()
     here = os.path.dirname(os.path.abspath(__file__))
@@ -141,8 +143,9 @@ def main():
     fx, fy = (float(v) for v in a.focus.split(','))
     if not (0 <= fx <= 1 and 0 <= fy <= 1):
         ap.error('--focus 的两个数都要在 0 到 1 之间')
-    render_video(a.image, (fx, fy), a.zoom, a.seconds, a.fps, a.out or os.path.join(outdir, stem + '-walkin.mp4'))
-    if a.wallpaper:
+    if not a.wallpaper_only:
+        render_video(a.image, (fx, fy), a.zoom, a.seconds, a.fps, a.out or os.path.join(outdir, stem + '-walkin.mp4'))
+    if a.wallpaper or a.wallpaper_only:
         render_wallpaper(a.image, (fx, fy), os.path.join(outdir, stem + '-wallpaper.jpg'))
 
 

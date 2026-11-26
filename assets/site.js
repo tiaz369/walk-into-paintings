@@ -745,7 +745,7 @@ const PAGES = {
 
   // ---------- “走进画里的你”预约 / 下单页（/into-the-painting/）：文字全在 data/into-the-painting.json ----------
   // 不在导航和首页里。不上传、不保存任何照片。付款链接是 Stripe Payment Link：以 #STRIPE_ 开头（占位）时按钮显示“即将开放”、不能点；
-  // Tia 用个人 Stripe 账户（sole trader）开通 Payment Link 后，把 data/into-the-painting.json 里的 payLink 换成真实网址，再合并收费功能。
+  // 卖家是 NexArt Ltd：用公司的 Stripe 账户开通 Payment Link 后，把 data/into-the-painting.json 里的 payLink 换成真实网址，再合并收费功能。
   async 'into-the-painting'(R, main) {
     const D = await getJSON('into-the-painting.json');
     const h = o => bi(o, ' / '), H = o => ui(o.zh, o.en);   // h：正文里的双语（中文 / English，一样时只写一次）；H：标题和按钮（和全站一样）
@@ -766,6 +766,12 @@ const PAGES = {
       ? `<button class="btn" disabled aria-disabled="true">${H(v.name)} · ${esc(v.price)} · ${H(C.soon)}</button>`
       : `<a class="btn primary itp-pay is-locked" role="button" aria-disabled="true" data-href="${esc(v.payLink)}" data-ver="${v.id}">${H(C.pay)} · ${H(v.name)} · ${esc(v.price)} →</a>`).join('');
     const quota = o => ({ zh: o.zh.replace('{n}', V.quota), en: o.en.replace('{n}', V.quota) });
+    // 卖家一行：公司编号、注册地址填好才显示那一部分（不会出现空的方括号）
+    const SL = D.seller, fill = (o, l, map) => Object.entries(map).reduce((t, [k, v]) => t.replaceAll('{' + k + '}', v), o[l]);
+    const sellerLine = SL ? ['zh', 'en'].reduce((acc, l) => ({ ...acc, [l]: fill(SL.line, l, { name: SL.name })
+      + (SL.companyNo ? fill(SL.lineNo, l, { no: SL.companyNo }) : '') + (SL.office && SL.office[l] ? fill(SL.lineOffice, l, { office: SL.office[l] }) : '') + (l === 'zh' ? '。' : '.') }), {}) : null;
+    const privacy = [].concat(D.privacy || []);
+    const mail = D.contact && D.contact.email;
     main.innerHTML = `<div class="wrap itp">
       <section class="itp-hero">
         <h1>${H(D.title)}</h1>${p(D.subtitle, 'itp-sub')}
@@ -782,9 +788,10 @@ const PAGES = {
         ${C.boxes.map((b, i) => `<label class="itp-check"><input type="checkbox" id="itpBox${i}" /> <span>${h(b)}</span></label>`).join('')}
         <p class="itp-tick" id="itpTick">${h(C.tickFirst)}</p>
         <div class="itp-pays">${payBtns}</div></section>
-      <section><h2>${H(D.promise.heading)}</h2>${D.promise.items.map(x => p(x)).join('')}${p(D.privacy)}</section>
+      <section><h2>${H(D.promise.heading)}</h2>${D.promise.items.map(x => p(x)).join('')}${privacy.map(x => p(x)).join('')}</section>
       <section><h2>${H(D.faq.heading)}</h2>${D.faq.items.map(f => `<details class="itp-faq"><summary>${H(f.q)}</summary>${p(f.a)}</details>`).join('')}</section>
-      <section class="itp-disclaimer">${p(D.disclaimer)}</section>
+      ${mail ? `<section class="itp-contact"><h2>${H(D.contact.label)}</h2><p><a href="mailto:${esc(mail)}">${esc(mail)}</a></p></section>` : ''}
+      <section class="itp-disclaimer">${sellerLine ? p(sellerLine) : ''}${p(D.disclaimer)}</section>
     </div>`;
     // 两个勾选框都勾上，付款按钮才能点；没勾全时点按钮会提示先勾选
     const boxes = [...main.querySelectorAll('.itp-check input')], pays = [...main.querySelectorAll('.itp-pay')];

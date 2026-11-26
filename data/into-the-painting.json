@@ -184,7 +184,7 @@
           "zh": "选一幅画。",
           "en": "Choose one painting."
         },
-        "_payLink说明": "Tia 用个人 Stripe 账户（sole trader）开通 Payment Link 后，把这里换成真实 URL（https://buy.stripe.com/…），再合并收费功能。以 #STRIPE_ 开头时，按钮显示“即将开放”，不能点。",
+        "_payLink说明": "NexArt Ltd 用公司的 Stripe 账户开通 Payment Link 后，把这里换成真实网址（https://buy.stripe.com/…）。以 #STRIPE_ 开头时，按钮显示“即将开放”，不能点。",
         "payLink": "#STRIPE_PAYMENT_LINK_19"
       },
       {
@@ -198,19 +198,19 @@
           "zh": "同一只 TA，走进莫奈的两幅干草堆：夏末和雪景。",
           "en": "The same one, stepping into two of Monet's stacks of wheat: end of summer, and snow."
         },
-        "_payLink说明": "同上：换成 £29 的 Stripe Payment Link。",
+        "_payLink说明": "NexArt Ltd 用公司的 Stripe 账户开通 Payment Link 后，把这里换成真实网址（https://buy.stripe.com/…）。以 #STRIPE_ 开头时，按钮显示“即将开放”，不能点。",
         "payLink": "#STRIPE_PAYMENT_LINK_29"
       }
     ],
     "includes": {
-      "zh": "都包含：高清入画图、手机壁纸、10 秒“走进去”视频、中英双语小故事卡。圣诞只做数字版，不卖带框。",
-      "en": "Both include: a high-resolution picture, a phone wallpaper, a 10-second “walk-in” video and a bilingual story card. Digital only for Christmas; no framed prints."
+      "zh": "都包含：高清入画图（可打印）、手机壁纸、中英小故事卡、10 秒“走进去”视频。圣诞只做数字版，不卖带框。",
+      "en": "Both include: a high-resolution picture (printable), a phone wallpaper, a bilingual story card and a 10-second “walk-in” video. Digital only for Christmas; no framed prints."
     },
     "_quota说明": "名额是写死的数字，不是自动倒数。改数字就改 quota。",
-    "quota": 40,
+    "quota": 66,
     "quotaLine": {
-      "zh": "圣诞前只接 {n} 单，因为是一个人手工做。",
-      "en": "Only {n} orders before Christmas, because one person makes them by hand."
+      "zh": "每一单都由我逐单制作和检查，圣诞前只接 {n} 单。",
+      "en": "Each order is made and checked by me, one by one. Only {n} orders before Christmas."
     }
   },
   "upload": {
@@ -232,8 +232,8 @@
         "en": "Original photos are deleted within 30 days of delivery."
       },
       {
-        "zh": "付款后，我们会告诉你发照片的方式。这个页面不会上传或保存你的照片。",
-        "en": "After payment we'll tell you how to send your photos. This page does not upload or store any photos."
+        "zh": "付款后，我们会发邮件（hello@walkintopaintings.com）告诉你发照片的方式。这个页面不会上传或保存你的照片。",
+        "en": "After payment we'll email you (from hello@walkintopaintings.com) with how to send your photos. This page does not upload or store any photos."
       }
     ]
   },
@@ -274,19 +274,25 @@
     "_说明": "原文，不要改意思。",
     "items": [
       {
-        "zh": "付款后 24–48 小时内收到预览。可以免费修改 1 次，之后每次 £5（示意价）。主观上不喜欢，不退款。作品不符合描述或有缺陷时，我们会先修改；仍不行，可以降价或退款。你的法定权利不受影响。",
-        "en": "Preview within 24–48 hours of payment. One free edit, then £5 each (indicative). No refund if you simply dislike it. If it doesn't match the description or is faulty, we'll amend it first; if that still isn't right, a price reduction or refund may apply. Your statutory rights are unaffected."
+        "zh": "付款后 48 小时内收到预览，圣诞单最晚 12 月 20 日交付。可以免费修改 1 次，之后每次 £5（示意价）。主观上不喜欢，不退款。作品不符合描述或有缺陷时，我们会先修改；仍不行，可以降价或退款。你的法定权利不受影响。",
+        "en": "You'll receive a preview within 48 hours of payment. Christmas orders are delivered by 20 December at the latest. One free edit, then £5 each (indicative). No refund if you simply dislike it. If it doesn't match the description or is faulty, we'll amend it first; if that still isn't right, a price reduction or refund may apply. Your statutory rights are unaffected."
       },
       {
-        "zh": "圣诞单 12/18（周五）23:59 前下单，12/22 前交付。只做数字版。",
-        "en": "Christmas orders by 18 Dec, 23:59, delivered by 22 Dec. Digital only."
+        "zh": "圣诞单 12 月 16 日（周三）23:59 前下单。只做数字版。",
+        "en": "Christmas orders by Wednesday 16 December, 23:59. Digital only."
       }
     ]
   },
-  "privacy": {
-    "zh": "照片在交付后 30 天内删除，照片里的人会被裁掉。",
-    "en": "Photos deleted within 30 days of delivery; any people in them are cropped out."
-  },
+  "privacy": [
+    {
+      "zh": "照片在交付后 30 天内删除，照片里的人会被裁掉。",
+      "en": "Photos deleted within 30 days of delivery; any people in them are cropped out."
+    },
+    {
+      "zh": "为了制作作品，你的宠物照片会用第三方图像工具处理，不会用于其他用途，交付后 30 天内删除。",
+      "en": "To make your artwork, your pet photo is processed with third-party image tools. It is not used for anything else and is deleted within 30 days of delivery."
+    }
+  ],
   "faq": {
     "heading": {
       "zh": "常见问题",
@@ -299,8 +305,8 @@
           "en": "What happens to my photos?"
         },
         "a": {
-          "zh": "只用来制作你的作品。照片里的人会被裁掉，交付后 30 天内删除原图。照片不会放到网站上。",
-          "en": "They are used only to make your piece. Any people in them are cropped out, and the originals are deleted within 30 days of delivery. Photos are never put on the website."
+          "zh": "只用来制作你的作品。为了制作作品，照片会用第三方图像工具处理，不会用于其他用途。照片里的人会被裁掉，交付后 30 天内删除原图。照片不会放到网站上。",
+          "en": "They are used only to make your artwork. To make it, your pet photo is processed with third-party image tools; it is not used for anything else. Any people in the photos are cropped out, and the originals are deleted within 30 days of delivery. Photos are never put on the website."
         }
       },
       {
@@ -309,8 +315,8 @@
           "en": "What if it doesn't look like them?"
         },
         "a": {
-          "zh": "付款后 24–48 小时内收到预览。可以免费修改 1 次，之后每次 £5（示意价）。主观上不喜欢，不退款。作品不符合描述或有缺陷时，我们会先修改；仍不行，可以降价或退款。你的法定权利不受影响。",
-          "en": "Preview within 24–48 hours of payment. One free edit, then £5 each (indicative). No refund if you simply dislike it. If it doesn't match the description or is faulty, we'll amend it first; if that still isn't right, a price reduction or refund may apply. Your statutory rights are unaffected."
+          "zh": "付款后 48 小时内收到预览，圣诞单最晚 12 月 20 日交付。可以免费修改 1 次，之后每次 £5（示意价）。主观上不喜欢，不退款。作品不符合描述或有缺陷时，我们会先修改；仍不行，可以降价或退款。你的法定权利不受影响。",
+          "en": "You'll receive a preview within 48 hours of payment. Christmas orders are delivered by 20 December at the latest. One free edit, then £5 each (indicative). No refund if you simply dislike it. If it doesn't match the description or is faulty, we'll amend it first; if that still isn't right, a price reduction or refund may apply. Your statutory rights are unaffected."
         }
       },
       {
@@ -339,8 +345,8 @@
           "en": "Will it arrive before Christmas?"
         },
         "a": {
-          "zh": "12/18（周五）23:59 前下单，12/22 前交付。也可以选择在圣诞节早上发到收礼人的邮箱。",
-          "en": "Order by 18 Dec, 23:59, and it will be delivered by 22 Dec. We can also send it to the recipient's email on Christmas morning."
+          "zh": "12 月 16 日（周三）23:59 前下单，最晚 12 月 20 日交付。也可以选择在圣诞节早上发到收礼人的邮箱。",
+          "en": "Order by Wednesday 16 December, 23:59, and it will be delivered by 20 December at the latest. We can also send it to the recipient's email on Christmas morning."
         }
       }
     ]
@@ -348,5 +354,33 @@
   "disclaimer": {
     "zh": "独立项目，与博物馆无合作关系。画作为公有领域，图片来自馆方开放资源。宠物部分为数字加工示意。",
     "en": "An independent project, not affiliated with any museum. The paintings are in the public domain; images come from the museums' open-access programmes. The pet is digitally added, as an illustration."
+  },
+  "seller": {
+    "_说明": "卖家信息（Tia 2026-11-26）：NexArt Ltd，用公司的 Stripe 账户收款。companyNo（公司编号）和office（注册地址）填好后，页面上会自动显示完整的一行；空着时只显示前半句。",
+    "name": "NexArt Ltd",
+    "companyNo": "",
+    "office": {
+      "zh": "",
+      "en": ""
+    },
+    "line": {
+      "zh": "订单由 {name} 提供 · 英格兰及威尔士注册公司",
+      "en": "Orders are provided by {name}, registered in England and Wales"
+    },
+    "lineNo": {
+      "zh": "，编号 {no}",
+      "en": ", company no. {no}"
+    },
+    "lineOffice": {
+      "zh": " · 注册地址 {office}",
+      "en": ", registered office {office}"
+    }
+  },
+  "contact": {
+    "email": "hello@walkintopaintings.com",
+    "label": {
+      "zh": "联系我们",
+      "en": "Contact"
+    }
   }
 }

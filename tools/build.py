@@ -289,6 +289,14 @@ PAGES.append(page('about/', T('关于', 'About'), t(ABOUT['intro'][0]) + ' ' + t
 
 # “走进画里的你”预约页（不在导航和首页里；文字在 data/into-the-painting.json）
 ITP = json.load(open(os.path.join(ROOT, 'data/into-the-painting.json'), encoding='utf-8'))
+def itp_seller():   # 卖家一行（和 site.js 一样：公司编号、注册地址填好才显示）
+    S = ITP['seller']; out = {}
+    for l in ('zh', 'en'):
+        t = S['line'][l].replace('{name}', S['name'])
+        if S.get('companyNo'): t += S['lineNo'][l].replace('{no}', S['companyNo'])
+        if (S.get('office') or {}).get(l): t += S['lineOffice'][l].replace('{office}', S['office'][l])
+        out[l] = t + ('。' if l == 'zh' else '.')
+    return out
 def itp_static():
     V, C, PT = ITP['versions'], ITP['checkout'], ITP['paintings']
     q = lambda o: {'zh': o['zh'].replace('{n}', str(V['quota'])), 'en': o['en'].replace('{n}', str(V['quota']))}
@@ -299,9 +307,10 @@ def itp_static():
             + '<h2>' + e(both(V['heading'])) + '</h2>' + ''.join(para({'zh': v['name']['zh'] + ' · ' + v['price'] + '：' + v['text']['zh'], 'en': v['name']['en'] + ' · ' + v['price'] + ': ' + v['text']['en']}) for v in V['items']) + para(V['includes']) + para(q(V['quotaLine']))
             + '<h2>' + e(both(ITP['upload']['heading'])) + '</h2>' + ''.join(para(x) for x in ITP['upload']['items'])
             + '<h2>' + e(both(C['heading'])) + '</h2>' + ''.join(para(x) for x in C['boxes'])
-            + '<h2>' + e(both(ITP['promise']['heading'])) + '</h2>' + ''.join(para(x) for x in ITP['promise']['items']) + para(ITP['privacy'])
+            + '<h2>' + e(both(ITP['promise']['heading'])) + '</h2>' + ''.join(para(x) for x in ITP['promise']['items']) + ''.join(para(x) for x in ([ITP['privacy']] if isinstance(ITP['privacy'], dict) else ITP['privacy']))
             + '<h2>' + e(both(ITP['faq']['heading'])) + '</h2>' + ''.join(f'<h3>{e(both(f["q"]))}</h3>' + para(f['a']) for f in ITP['faq']['items'])
-            + para(ITP['disclaimer']))
+            + (f'<h2>{e(both(ITP["contact"]["label"]))}</h2><p><a href="mailto:{e(ITP["contact"]["email"])}">{e(ITP["contact"]["email"])}</a></p>' if ITP.get('contact') else '')
+            + (para(itp_seller()) if ITP.get('seller') else '') + para(ITP['disclaimer']))
 PAGES.append(page('into-the-painting/', T(ITP['title']['zh'], ITP['title']['en']), both(ITP['subtitle'], ' '), itp_static(), site_script('../', 'into-the-painting')))
 
 # ---------- 生平（画家页）和时间线 ----------
